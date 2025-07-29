@@ -4,92 +4,74 @@ import { motion, AnimatePresence } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../common/SafeIcon';
 
-const { FiMenu, FiX, FiChevronDown, FiBrain, FiBook, FiUsers, FiTool } = FiIcons;
+const { FiMenu, FiX, FiChevronDown, FiBrain } = FiIcons;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
-  const dropdownRef = useRef(null);
-  
-  // Close dropdown when clicking outside
+  const dropdownRefs = useRef({});
+  const buttonRefs = useRef({});
+
+  // Handle outside clicks for any dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
+      if (activeDropdown) {
+        const dropdownRef = dropdownRefs.current[activeDropdown];
+        const buttonRef = buttonRefs.current[activeDropdown];
+        
+        if (
+          dropdownRef && 
+          !dropdownRef.contains(event.target) &&
+          buttonRef && 
+          !buttonRef.contains(event.target)
+        ) {
+          setActiveDropdown(null);
+        }
       }
     };
-    
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
-  // Close dropdown on route change
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [activeDropdown]);
+
+  // Reset all dropdowns when route changes
   useEffect(() => {
-    setDropdownOpen(false);
+    setActiveDropdown(null);
     setIsOpen(false);
   }, [location.pathname]);
 
   const isActive = (path) => location.pathname === path;
 
   const navItems = [
+    { path: '/', label: 'Home' },
     {
-      path: '/',
-      label: 'Home'
-    },
-    {
+      id: 'voor-docenten',
       label: 'Voor Docenten',
       dropdown: [
-        {
-          path: '/voor-docenten/po',
-          label: 'Basisonderwijs (PO)'
-        },
-        {
-          path: '/voor-docenten/vo',
-          label: 'Voortgezet Onderwijs (VO)'
-        },
-        {
-          path: '/voor-docenten/mbo-hbo',
-          label: 'MBO & HBO'
-        },
+        { path: '/voor-docenten/po', label: 'Basisonderwijs (PO)', color: 'hover:bg-blue-50 hover:text-blue-600' },
+        { path: '/voor-docenten/vo', label: 'Voortgezet Onderwijs (VO)', color: 'hover:bg-purple-50 hover:text-purple-600' },
+        { path: '/voor-docenten/mbo-hbo', label: 'MBO & HBO', color: 'hover:bg-green-50 hover:text-green-600' },
       ]
     },
-    {
-      path: '/ai-tools',
-      label: 'AI Tools'
-    },
-    {
-      path: '/leslab',
-      label: 'LesLab'
-    },
-    {
-      path: '/trainingen',
-      label: 'Trainingen'
-    },
-    {
-      path: '/blog',
-      label: 'Blog'
-    },
+    { path: '/ai-tools', label: 'AI Tools' },
+    { path: '/leslab', label: 'LesLab' },
+    { path: '/trainingen', label: 'Trainingen' },
+    { path: '/blog', label: 'Blog' },
   ];
 
-  const handleDropdownToggle = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('Dropdown toggle clicked, current state:', dropdownOpen);
-    setDropdownOpen(!dropdownOpen);
+  const toggleDropdown = (id, e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setActiveDropdown(activeDropdown === id ? null : id);
   };
 
-  const handleDropdownItemClick = (e) => {
-    console.log('Dropdown item clicked');
-    setDropdownOpen(false);
-    setIsOpen(false);
-  };
-
-  const handleMobileMenuToggle = () => {
+  // Enhanced mobile menu toggle
+  const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
-    setDropdownOpen(false);
+    setActiveDropdown(null); // Close any open dropdowns when toggling mobile menu
   };
 
   return (
@@ -107,54 +89,62 @@ const Navbar = () => {
             {navItems.map((item, index) => (
               <div key={index} className="relative">
                 {item.dropdown ? (
-                  <div className="relative" ref={dropdownRef}>
-                    <button 
-                      onClick={handleDropdownToggle} 
-                      className="flex items-center space-x-1 text-gray-700 hover:text-primary-600 transition-colors py-2 px-2 rounded-md hover:bg-gray-50 cursor-pointer"
-                      type="button"
+                  <div>
+                    <button
+                      ref={el => buttonRefs.current[`desktop-${item.id}`] = el}
+                      onClick={(e) => toggleDropdown(`desktop-${item.id}`, e)}
+                      className="flex items-center space-x-1 text-gray-700 hover:text-primary-600 transition-colors py-2 px-2 rounded-md hover:bg-gray-50"
+                      aria-expanded={activeDropdown === `desktop-${item.id}`}
+                      aria-haspopup="true"
                     >
                       <span>{item.label}</span>
                       <SafeIcon 
                         icon={FiChevronDown} 
-                        className={`text-sm transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} 
+                        className={`transition-transform duration-200 ${
+                          activeDropdown === `desktop-${item.id}` ? 'rotate-180' : ''
+                        }`} 
                       />
                     </button>
                     
-                    {/* Dropdown Menu */}
-                    {dropdownOpen && (
-                      <div 
-                        className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50 py-2"
-                        style={{ display: 'block' }}
-                      >
-                        {item.dropdown.map((subItem, subIndex) => (
-                          <Link 
-                            key={subIndex} 
-                            to={subItem.path} 
-                            onClick={handleDropdownItemClick}
-                            className={`block px-4 py-3 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg ${
-                              isActive(subItem.path) 
-                                ? 'bg-primary-50 text-primary-600 font-medium' 
-                                : 'text-gray-700 hover:bg-primary-50 hover:text-primary-600'
-                            }`}
-                          >
-                            {subItem.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                    <AnimatePresence>
+                      {activeDropdown === `desktop-${item.id}` && (
+                        <motion.div
+                          ref={el => dropdownRefs.current[`desktop-${item.id}`] = el}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
+                          style={{ zIndex: 9999 }}
+                        >
+                          {item.dropdown.map((subItem, subIndex) => (
+                            <Link
+                              key={subIndex}
+                              to={subItem.path}
+                              className={`block px-4 py-3 text-sm transition-colors hover:bg-gray-50 ${subItem.color}`}
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              {subItem.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ) : (
-                  <Link 
-                    to={item.path} 
-                    className={`text-gray-700 hover:text-primary-600 transition-colors py-2 px-2 rounded-md hover:bg-gray-50 ${isActive(item.path) ? 'text-primary-600 font-medium' : ''}`}
+                  <Link
+                    to={item.path}
+                    className={`text-gray-700 hover:text-primary-600 transition-colors py-2 px-2 rounded-md hover:bg-gray-50 ${
+                      isActive(item.path) ? 'text-primary-600 font-medium' : ''
+                    }`}
                   >
                     {item.label}
                   </Link>
                 )}
               </div>
             ))}
-            <Link 
-              to="/nieuwsbrief" 
+            <Link
+              to="/nieuwsbrief"
               className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors"
             >
               Gratis Download
@@ -162,9 +152,11 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <button 
-            onClick={handleMobileMenuToggle} 
-            className="md:hidden p-2"
+          <button
+            onClick={toggleMobileMenu}
+            className="md:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
+            aria-expanded={isOpen}
+            aria-label="Toggle navigation menu"
           >
             <SafeIcon icon={isOpen ? FiX : FiMenu} className="text-xl" />
           </button>
@@ -177,47 +169,70 @@ const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden py-4 border-t"
+              className="md:hidden py-4 border-t border-gray-200"
             >
               {navItems.map((item, index) => (
                 <div key={index} className="py-2">
                   {item.dropdown ? (
                     <div>
-                      <div className="text-gray-700 font-medium px-4 py-2">{item.label}</div>
-                      {item.dropdown.map((subItem, subIndex) => (
-                        <Link 
-                          key={subIndex} 
-                          to={subItem.path} 
-                          className={`block px-8 py-2 text-sm transition-colors ${
-                            isActive(subItem.path) 
-                              ? 'text-primary-600 font-medium' 
-                              : 'text-gray-600 hover:text-primary-600'
-                          }`}
-                          onClick={handleDropdownItemClick}
-                        >
-                          {subItem.label}
-                        </Link>
-                      ))}
+                      <button
+                        ref={el => buttonRefs.current[`mobile-${item.id}`] = el}
+                        className="flex items-center w-full text-left text-gray-700 font-medium px-4 py-2 hover:bg-gray-50 rounded-md transition-colors"
+                        onClick={(e) => toggleDropdown(`mobile-${item.id}`, e)}
+                        aria-expanded={activeDropdown === `mobile-${item.id}`}
+                      >
+                        <span>{item.label}</span>
+                        <SafeIcon 
+                          icon={FiChevronDown} 
+                          className={`ml-2 transition-transform duration-200 ${
+                            activeDropdown === `mobile-${item.id}` ? 'rotate-180' : ''
+                          }`} 
+                        />
+                      </button>
+                      
+                      <AnimatePresence>
+                        {activeDropdown === `mobile-${item.id}` && (
+                          <motion.div
+                            ref={el => dropdownRefs.current[`mobile-${item.id}`] = el}
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="bg-gray-50 rounded-md mx-2 mt-2"
+                          >
+                            {item.dropdown.map((subItem, subIndex) => (
+                              <Link
+                                key={subIndex}
+                                to={subItem.path}
+                                className={`block px-6 py-3 text-sm transition-colors rounded-md ${subItem.color}`}
+                                onClick={() => {
+                                  setActiveDropdown(null);
+                                  setIsOpen(false);
+                                }}
+                              >
+                                {subItem.label}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   ) : (
-                    <Link 
-                      to={item.path} 
-                      className={`block px-4 py-2 transition-colors ${
-                        isActive(item.path) 
-                          ? 'text-primary-600 font-medium' 
-                          : 'text-gray-700 hover:text-primary-600'
+                    <Link
+                      to={item.path}
+                      className={`block px-4 py-2 transition-colors rounded-md hover:bg-gray-50 ${
+                        isActive(item.path) ? 'text-primary-600 font-medium' : 'text-gray-700 hover:text-primary-600'
                       }`}
-                      onClick={handleDropdownItemClick}
+                      onClick={() => setIsOpen(false)}
                     >
                       {item.label}
                     </Link>
                   )}
                 </div>
               ))}
-              <Link 
-                to="/nieuwsbrief" 
+              <Link
+                to="/nieuwsbrief"
                 className="block mx-4 mt-4 bg-primary-600 text-white px-4 py-2 rounded-lg text-center hover:bg-primary-700 transition-colors"
-                onClick={handleDropdownItemClick}
+                onClick={() => setIsOpen(false)}
               >
                 Gratis Download
               </Link>

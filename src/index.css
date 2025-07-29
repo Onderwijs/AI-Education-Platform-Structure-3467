@@ -10,8 +10,7 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -19,6 +18,18 @@ body {
 #root {
   width: 100%;
   min-height: 100vh;
+}
+
+/* Ensure buttons are always visible */
+.ai-tool-button {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Fix for any CSS conflicts */
+button[style*="display: flex"] {
+  display: flex !important;
 }
 
 .scrollbar-hide {
@@ -36,3 +47,43 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Ensure all interactive elements have proper styling */
+button, 
+[role="button"],
+.cursor-pointer {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Force visibility for critical UI elements */
+.bg-indigo-600,
+.bg-indigo-700 {
+  background-color: rgb(79 70 229) !important;
+}
+
+.text-white {
+  color: rgb(255 255 255) !important;
+}
+
+/* Additional CSS reset for production issues */
+[hidden] {
+  display: none !important;
+}
+
+/* Ensure proper box model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Fix potential z-index issues */
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+/* Ensure proper font loading */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');

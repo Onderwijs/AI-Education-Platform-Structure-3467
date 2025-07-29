@@ -11,10 +11,15 @@ const AITools = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const categories = [
-    'Alle', 'Tekstverwerking', 'Presentaties', 'Beeldbewerking', 
-    'Onderzoek', 'Programmeren', 'Creatief'
+    'Alle',
+    'Tekstverwerking',
+    'Presentaties',
+    'Beeldbewerking',
+    'Onderzoek',
+    'Programmeren',
+    'Creatief'
   ];
-  
+
   const levels = ['Alle', 'Beginner', 'Gemiddeld', 'Gevorderd'];
 
   const tools = [
@@ -127,11 +132,50 @@ const AITools = () => {
   const filteredTools = tools.filter(tool => {
     const matchesCategory = selectedCategory === 'Alle' || tool.category === selectedCategory;
     const matchesLevel = selectedLevel === 'Alle' || tool.level === selectedLevel;
-    const matchesSearch = 
-      tool.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      tool.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                         tool.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesLevel && matchesSearch;
   });
+
+  // Enhanced link handler with multiple fallback methods
+  const handleLinkClick = (url, event) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    
+    // Method 1: Try window.open
+    try {
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      if (newWindow) {
+        newWindow.focus();
+        return;
+      }
+    } catch (e) {
+      console.log('Window.open failed, trying alternative method');
+    }
+    
+    // Method 2: Create temporary link element
+    try {
+      const link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    } catch (e) {
+      console.log('Link element method failed');
+    }
+    
+    // Method 3: Fallback to location assignment
+    try {
+      window.location.assign(url);
+    } catch (e) {
+      console.error('All link opening methods failed');
+    }
+  };
 
   return (
     <motion.div
@@ -267,37 +311,53 @@ const AITools = () => {
                     <p className="text-sm text-gray-600">{tool.useCase}</p>
                   </div>
 
-                  {/* Footer */}
-                  <div className="flex items-center justify-between pt-4 border-t">
+                  {/* Footer with pricing and education badge */}
+                  <div className="flex items-center justify-between pt-4 border-t mb-4">
                     <div className="flex items-center space-x-2">
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        tool.pricing === 'Freemium' || tool.pricing === 'Gratis voor studenten'
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-orange-100 text-orange-800'
-                      }`}>
+                      <span
+                        className={`text-xs px-2 py-1 rounded-full font-medium ${
+                          tool.pricing === 'Freemium' || tool.pricing === 'Gratis voor studenten'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-orange-100 text-orange-800'
+                        }`}
+                      >
                         {tool.pricing}
                       </span>
                       {tool.education && (
-                        <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                        <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full font-medium">
                           Onderwijs
                         </span>
                       )}
                     </div>
-                    <a 
-                      href={tool.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
+                    <button 
+                      onClick={(e) => handleLinkClick(tool.link, e)}
                       className="text-indigo-600 hover:text-indigo-700 transition-colors p-2 rounded-full hover:bg-indigo-50"
                       aria-label={`Bezoek ${tool.name} website`}
+                      title={`Bezoek ${tool.name} website`}
                     >
-                      <SafeIcon icon={FiExternalLink} />
-                    </a>
+                      <SafeIcon icon={FiExternalLink} className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                  {/* Visit Website Button - Make sure it's always visible */}
+                  <div className="w-full">
+                    <button
+                      onClick={(e) => handleLinkClick(tool.link, e)}
+                      className="w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-lg transition-colors font-semibold text-sm flex items-center justify-center space-x-2 min-h-[44px]"
+                      style={{ 
+                        display: 'flex !important',
+                        visibility: 'visible !important',
+                        opacity: '1 !important'
+                      }}
+                    >
+                      <span>Bezoek Website</span>
+                      <SafeIcon icon={FiExternalLink} className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
-
           {filteredTools.length === 0 && (
             <div className="text-center py-12">
               <SafeIcon icon={FiTool} className="text-4xl text-gray-400 mx-auto mb-4" />
