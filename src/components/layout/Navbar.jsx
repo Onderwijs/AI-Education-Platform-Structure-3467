@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../common/SafeIcon';
 
@@ -10,35 +10,84 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const location = useLocation();
+  const dropdownRef = useRef(null);
+  
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setDropdownOpen(false);
+    setIsOpen(false);
+  }, [location.pathname]);
 
   const isActive = (path) => location.pathname === path;
 
   const navItems = [
-    { path: '/', label: 'Home' },
+    {
+      path: '/',
+      label: 'Home'
+    },
     {
       label: 'Voor Docenten',
       dropdown: [
-        { path: '/voor-docenten/po', label: 'Basisonderwijs (PO)' },
-        { path: '/voor-docenten/vo', label: 'Voortgezet Onderwijs (VO)' },
-        { path: '/voor-docenten/mbo-hbo', label: 'MBO & HBO' },
+        {
+          path: '/voor-docenten/po',
+          label: 'Basisonderwijs (PO)'
+        },
+        {
+          path: '/voor-docenten/vo',
+          label: 'Voortgezet Onderwijs (VO)'
+        },
+        {
+          path: '/voor-docenten/mbo-hbo',
+          label: 'MBO & HBO'
+        },
       ]
     },
-    { path: '/ai-tools', label: 'AI Tools' },
-    { path: '/leslab', label: 'LesLab' },
-    { path: '/trainingen', label: 'Trainingen' },
-    { path: '/blog', label: 'Blog' },
+    {
+      path: '/ai-tools',
+      label: 'AI Tools'
+    },
+    {
+      path: '/leslab',
+      label: 'LesLab'
+    },
+    {
+      path: '/trainingen',
+      label: 'Trainingen'
+    },
+    {
+      path: '/blog',
+      label: 'Blog'
+    },
   ];
 
-  const handleDropdownToggle = () => {
+  const handleDropdownToggle = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setDropdownOpen(!dropdownOpen);
   };
 
-  const handleDropdownClose = () => {
+  const handleDropdownItemClick = (e) => {
+    // Don't stop propagation here to allow link navigation
     setDropdownOpen(false);
+    setIsOpen(false);
   };
 
-  const handleLinkClick = () => {
-    setIsOpen(false);
+  const handleMobileMenuToggle = () => {
+    setIsOpen(!isOpen);
     setDropdownOpen(false);
   };
 
@@ -57,58 +106,50 @@ const Navbar = () => {
             {navItems.map((item, index) => (
               <div key={index} className="relative">
                 {item.dropdown ? (
-                  <div className="relative">
-                    <button
-                      onClick={handleDropdownToggle}
-                      className="flex items-center space-x-1 text-gray-700 hover:text-primary-600 transition-colors"
+                  <div className="relative" ref={dropdownRef}>
+                    <button 
+                      onClick={handleDropdownToggle} 
+                      className="flex items-center space-x-1 text-gray-700 hover:text-primary-600 transition-colors py-2 px-2 rounded-md hover:bg-gray-50"
                     >
                       <span>{item.label}</span>
                       <SafeIcon 
                         icon={FiChevronDown} 
-                        className={`text-sm transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} 
+                        className={`text-sm transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} 
                       />
                     </button>
+                    
+                    {/* Dropdown Menu */}
                     {dropdownOpen && (
-                      <>
-                        {/* Invisible overlay to close dropdown when clicking outside */}
-                        <div 
-                          className="fixed inset-0 z-10"
-                          onClick={handleDropdownClose}
-                        />
-                        <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-20"
-                        >
-                          {item.dropdown.map((subItem, subIndex) => (
-                            <Link
-                              key={subIndex}
-                              to={subItem.path}
-                              onClick={handleDropdownClose}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors"
-                            >
-                              {subItem.label}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      </>
+                      <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50 py-2">
+                        {item.dropdown.map((subItem, subIndex) => (
+                          <Link 
+                            key={subIndex} 
+                            to={subItem.path} 
+                            onClick={handleDropdownItemClick}
+                            className={`block px-4 py-3 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg ${
+                              isActive(subItem.path) 
+                                ? 'bg-primary-50 text-primary-600 font-medium' 
+                                : 'text-gray-700 hover:bg-primary-50 hover:text-primary-600'
+                            }`}
+                          >
+                            {subItem.label}
+                          </Link>
+                        ))}
+                      </div>
                     )}
                   </div>
                 ) : (
-                  <Link
-                    to={item.path}
-                    className={`text-gray-700 hover:text-primary-600 transition-colors ${
-                      isActive(item.path) ? 'text-primary-600 font-medium' : ''
-                    }`}
+                  <Link 
+                    to={item.path} 
+                    className={`text-gray-700 hover:text-primary-600 transition-colors py-2 px-2 rounded-md hover:bg-gray-50 ${isActive(item.path) ? 'text-primary-600 font-medium' : ''}`}
                   >
                     {item.label}
                   </Link>
                 )}
               </div>
             ))}
-            <Link
-              to="/nieuwsbrief"
+            <Link 
+              to="/nieuwsbrief" 
               className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors"
             >
               Gratis Download
@@ -116,8 +157,8 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
+          <button 
+            onClick={handleMobileMenuToggle} 
             className="md:hidden p-2"
           >
             <SafeIcon icon={isOpen ? FiX : FiMenu} className="text-xl" />
@@ -125,49 +166,59 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden py-4 border-t"
-          >
-            {navItems.map((item, index) => (
-              <div key={index} className="py-2">
-                {item.dropdown ? (
-                  <div>
-                    <div className="text-gray-700 font-medium px-4 py-2">{item.label}</div>
-                    {item.dropdown.map((subItem, subIndex) => (
-                      <Link
-                        key={subIndex}
-                        to={subItem.path}
-                        className="block px-8 py-2 text-sm text-gray-600 hover:text-primary-600 transition-colors"
-                        onClick={handleLinkClick}
-                      >
-                        {subItem.label}
-                      </Link>
-                    ))}
-                  </div>
-                ) : (
-                  <Link
-                    to={item.path}
-                    className="block px-4 py-2 text-gray-700 hover:text-primary-600 transition-colors"
-                    onClick={handleLinkClick}
-                  >
-                    {item.label}
-                  </Link>
-                )}
-              </div>
-            ))}
-            <Link
-              to="/nieuwsbrief"
-              className="block mx-4 mt-4 bg-primary-600 text-white px-4 py-2 rounded-lg text-center hover:bg-primary-700 transition-colors"
-              onClick={handleLinkClick}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden py-4 border-t"
             >
-              Gratis Download
-            </Link>
-          </motion.div>
-        )}
+              {navItems.map((item, index) => (
+                <div key={index} className="py-2">
+                  {item.dropdown ? (
+                    <div>
+                      <div className="text-gray-700 font-medium px-4 py-2">{item.label}</div>
+                      {item.dropdown.map((subItem, subIndex) => (
+                        <Link 
+                          key={subIndex} 
+                          to={subItem.path} 
+                          className={`block px-8 py-2 text-sm transition-colors ${
+                            isActive(subItem.path) 
+                              ? 'text-primary-600 font-medium' 
+                              : 'text-gray-600 hover:text-primary-600'
+                          }`}
+                          onClick={handleDropdownItemClick}
+                        >
+                          {subItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : (
+                    <Link 
+                      to={item.path} 
+                      className={`block px-4 py-2 transition-colors ${
+                        isActive(item.path) 
+                          ? 'text-primary-600 font-medium' 
+                          : 'text-gray-700 hover:text-primary-600'
+                      }`}
+                      onClick={handleDropdownItemClick}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </div>
+              ))}
+              <Link 
+                to="/nieuwsbrief" 
+                className="block mx-4 mt-4 bg-primary-600 text-white px-4 py-2 rounded-lg text-center hover:bg-primary-700 transition-colors"
+                onClick={handleDropdownItemClick}
+              >
+                Gratis Download
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );
