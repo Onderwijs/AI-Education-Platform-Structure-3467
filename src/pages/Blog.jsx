@@ -1,0 +1,304 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import * as FiIcons from 'react-icons/fi';
+import SafeIcon from '../common/SafeIcon';
+
+const { FiSearch, FiCalendar, FiUser, FiTag, FiArrowRight } = FiIcons;
+
+const Blog = () => {
+  const featuredPost = {
+    title: "10 Manieren om ChatGPT te gebruiken in jouw klas",
+    excerpt: "Ontdek hoe je ChatGPT effectief kunt inzetten voor lesvoorbereiding, differentiatie en creatieve opdrachten.",
+    date: "28 maart 2024",
+    author: "Emma de Boer",
+    category: "AI Tools",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop",
+    readTime: "5 min"
+  };
+
+  const posts = [
+    {
+      title: "Ethisch gebruik van AI in het onderwijs: een praktische gids",
+      excerpt: "Hoe zorg je voor verantwoord gebruik van AI door leerlingen? Deze gids helpt je op weg.",
+      date: "21 maart 2024",
+      author: "Thomas Jansen",
+      category: "AI Ethiek",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop",
+      readTime: "8 min"
+    },
+    {
+      title: "AI voor differentiatie: maatwerk voor elke leerling",
+      excerpt: "Leer hoe AI je kan helpen om effectiever te differentiëren en elke leerling op eigen niveau uit te dagen.",
+      date: "14 maart 2024",
+      author: "Laura Smit",
+      category: "Onderwijs",
+      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop",
+      readTime: "6 min"
+    },
+    {
+      title: "Van AI-angst naar AI-enthousiasme: hoe overtuig je collega's?",
+      excerpt: "Praktische tips om weerstand tegen AI-tools om te zetten in nieuwsgierigheid en enthousiasme.",
+      date: "7 maart 2024",
+      author: "Mark Bakker",
+      category: "Implementatie",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop",
+      readTime: "4 min"
+    },
+    {
+      title: "Beste AI-tools voor het basisonderwijs (2024)",
+      excerpt: "Een overzicht van de meest kindvriendelijke en educatieve AI-tools voor groep 1 t/m 8.",
+      date: "28 februari 2024",
+      author: "Emma de Boer",
+      category: "AI Tools",
+      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop",
+      readTime: "7 min"
+    },
+    {
+      title: "Hoe AI je helpt betere toetsen te maken",
+      excerpt: "Maak gevarieerde en effectieve toetsen met behulp van AI, inclusief voorbeeldprompts.",
+      date: "21 februari 2024",
+      author: "Jasper Koning",
+      category: "Toetsing",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop",
+      readTime: "5 min"
+    },
+    {
+      title: "AI in MBO: praktijkvoorbeelden uit technische opleidingen",
+      excerpt: "Hoe docenten in technische MBO-opleidingen AI inzetten voor praktijkgericht onderwijs.",
+      date: "14 februari 2024",
+      author: "Robin Visser",
+      category: "MBO",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop",
+      readTime: "6 min"
+    }
+  ];
+
+  const categories = [
+    "Alle categorieën", "AI Tools", "Onderwijs", "Ethiek", "Implementatie", 
+    "Toetsing", "PO", "VO", "MBO/HBO"
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen"
+    >
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Blog: AI in Onderwijs
+            </h1>
+            <p className="text-xl text-indigo-100 max-w-3xl mx-auto mb-8">
+              Praktische tips, inzichten en ervaringen over het gebruik van AI in het onderwijs
+            </p>
+            <div className="max-w-xl mx-auto relative">
+              <SafeIcon icon={FiSearch} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Zoek in artikelen..."
+                className="w-full pl-12 pr-4 py-3 rounded-lg focus:ring-2 focus:ring-indigo-300 focus:border-transparent"
+              />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Featured Post */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-6"
+          >
+            <h2 className="text-2xl font-bold text-gray-900">
+              Uitgelicht artikel
+            </h2>
+          </motion.div>
+
+          <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative h-64 lg:h-auto"
+              >
+                <img
+                  src={featuredPost.image}
+                  alt={featuredPost.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="p-8"
+              >
+                <div className="flex items-center space-x-4 mb-4">
+                  <span className="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">
+                    {featuredPost.category}
+                  </span>
+                  <div className="flex items-center text-sm text-gray-500">
+                    <SafeIcon icon={FiCalendar} className="mr-1" />
+                    <span>{featuredPost.date}</span>
+                  </div>
+                </div>
+                
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  {featuredPost.title}
+                </h3>
+                
+                <p className="text-gray-600 mb-6">
+                  {featuredPost.excerpt}
+                </p>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>
+                    <span className="text-sm text-gray-600">{featuredPost.author}</span>
+                    <span className="text-sm text-gray-400">•</span>
+                    <span className="text-sm text-gray-600">{featuredPost.readTime} leestijd</span>
+                  </div>
+                  <button className="text-indigo-600 hover:text-indigo-700 font-medium inline-flex items-center space-x-1">
+                    <span>Lees artikel</span>
+                    <SafeIcon icon={FiArrowRight} />
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="py-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center space-x-3 overflow-x-auto py-2 scrollbar-hide">
+            {categories.map((category, index) => (
+              <button
+                key={index}
+                className={`px-4 py-2 rounded-full whitespace-nowrap ${
+                  index === 0
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-white text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Posts */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform hover:scale-105"
+                  />
+                  <div className="absolute top-0 right-0 m-4">
+                    <span className="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">
+                      {post.category}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex items-center space-x-2 text-sm text-gray-500 mb-3">
+                    <SafeIcon icon={FiCalendar} />
+                    <span>{post.date}</span>
+                    <span className="text-gray-300">•</span>
+                    <span>{post.readTime} leestijd</span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 mb-6 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center justify-between pt-4 border-t">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>
+                      <span className="text-sm text-gray-600">{post.author}</span>
+                    </div>
+                    <button className="text-indigo-600 hover:text-indigo-700">
+                      <SafeIcon icon={FiArrowRight} />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+              Meer artikelen laden
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter CTA */}
+      <section className="py-20 bg-indigo-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Blijf op de hoogte
+            </h2>
+            <p className="text-xl text-indigo-100 mb-8">
+              Ontvang wekelijks nieuwe artikelen, tips en AI-tools direct in je inbox
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <input
+                type="email"
+                placeholder="Jouw email"
+                className="px-6 py-3 rounded-lg border-0 focus:ring-2 focus:ring-indigo-300 flex-1 max-w-sm"
+              />
+              <Link
+                to="/nieuwsbrief"
+                className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Inschrijven
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </motion.div>
+  );
+};
+
+export default Blog;
