@@ -77,11 +77,12 @@ const Navbar = () => {
   const handleDropdownToggle = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    console.log('Dropdown toggle clicked, current state:', dropdownOpen);
     setDropdownOpen(!dropdownOpen);
   };
 
   const handleDropdownItemClick = (e) => {
-    // Don't stop propagation here to allow link navigation
+    console.log('Dropdown item clicked');
     setDropdownOpen(false);
     setIsOpen(false);
   };
@@ -109,7 +110,8 @@ const Navbar = () => {
                   <div className="relative" ref={dropdownRef}>
                     <button 
                       onClick={handleDropdownToggle} 
-                      className="flex items-center space-x-1 text-gray-700 hover:text-primary-600 transition-colors py-2 px-2 rounded-md hover:bg-gray-50"
+                      className="flex items-center space-x-1 text-gray-700 hover:text-primary-600 transition-colors py-2 px-2 rounded-md hover:bg-gray-50 cursor-pointer"
+                      type="button"
                     >
                       <span>{item.label}</span>
                       <SafeIcon 
@@ -120,7 +122,10 @@ const Navbar = () => {
                     
                     {/* Dropdown Menu */}
                     {dropdownOpen && (
-                      <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50 py-2">
+                      <div 
+                        className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50 py-2"
+                        style={{ display: 'block' }}
+                      >
                         {item.dropdown.map((subItem, subIndex) => (
                           <Link 
                             key={subIndex} 
