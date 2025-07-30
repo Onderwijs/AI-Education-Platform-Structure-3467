@@ -3,7 +3,7 @@
 <</Type/Catalog/Pages 2 0 R>>
 endobj
 2 0 obj
-<</Type/Pages/Kids[3 0 R]/Count 1>>
+<</Type/Pages/Kids[3 0 R 8 0 R]/Count 2>>
 endobj
 3 0 obj
 <</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 7 0 R>>
@@ -18,7 +18,7 @@ endobj
 <</Type/Font/Subtype/Type1/BaseFont/Helvetica-Oblique>>
 endobj
 7 0 obj
-<</Length 12500>>
+<</Length 8500>>
 stream
 BT
 /F1 24 Tf
@@ -215,7 +215,7 @@ ET
 BT
 /F2 11 Tf
 50 160 Td
-(3. Start klein met één tool per week) Tj
+(3. Start klein met een tool per week) Tj
 ET
 
 BT
@@ -259,286 +259,567 @@ BT
 60 15 Td
 (• Tekst begrijpen en genereren) Tj
 ET
+endstream
+endobj
 
+8 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 9 0 R>>
+endobj
+
+9 0 obj
+<</Length 12000>>
+stream
 BT
 /F2 11 Tf
-60 0 Td
+60 792 Td
 (• Afbeeldingen herkennen en maken) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -15 Td
+60 777 Td
 (• Patronen herkennen in data) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -30 Td
+60 762 Td
 (• Problemen oplossen en beslissingen nemen) Tj
 ET
 
 BT
 /F1 12 Tf
-50 -60 Td
+50 732 Td
 (Waarom AI in het Onderwijs?) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -80 Td
+60 712 Td
 (• Tijd besparen op administratieve taken) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -95 Td
+60 697 Td
 (• Gepersonaliseerd leren mogelijk maken) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -110 Td
+60 682 Td
 (• Creatieve mogelijkheden vergroten) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -125 Td
+60 667 Td
 (• Leerlingen voorbereiden op de toekomst) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -140 Td
+60 652 Td
 (• Toegankelijkheid van onderwijs verbeteren) Tj
 ET
 
 BT
 /F1 12 Tf
-50 -170 Td
+50 622 Td
 (De Gouden Regels voor AI in Onderwijs) Tj
 ET
 
 BT
 /F2 11 Tf
-50 -190 Td
-(1. Start klein: Begin met één tool en bouw langzaam op) Tj
+50 602 Td
+(1. Start klein: Begin met een tool en bouw langzaam op) Tj
 ET
 
 BT
 /F2 11 Tf
-50 -205 Td
+50 587 Td
 (2. Blijf kritisch: Controleer altijd AI-gegenereerde content) Tj
 ET
 
 BT
 /F2 11 Tf
-50 -220 Td
+50 572 Td
 (3. Wees transparant: Vertel leerlingen wanneer je AI gebruikt) Tj
 ET
 
 BT
 /F2 11 Tf
-50 -235 Td
+50 557 Td
 (4. Bescherm privacy: Let op gegevensbescherming) Tj
 ET
 
 BT
 /F2 11 Tf
-50 -250 Td
+50 542 Td
 (5. Behoud menselijke verbinding: AI vervangt geen docent) Tj
 ET
 
 BT
 /F1 14 Tf
-50 -290 Td
+50 502 Td
 (3. AI-Tools voor Tekstverwerking) Tj
 ET
 
 BT
 /F1 12 Tf
-50 -315 Td
+50 477 Td
 (ChatGPT - De Veelzijdige Assistent) Tj
 ET
 
 BT
 /F2 10 Tf
-50 -330 Td
+50 462 Td
 (Website: chat.openai.com | Prijs: Freemium | Niveau: Beginner) Tj
 ET
 
 BT
 /F2 11 Tf
-50 -350 Td
+50 442 Td
 (Wat kan het?) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -365 Td
+60 427 Td
 (• Lesplannen genereren en verbeteren) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -380 Td
+60 412 Td
 (• Toetsvragen maken in verschillende moeilijkheidsgraden) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -395 Td
+60 397 Td
 (• Feedback formuleren op leerlingwerk) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -410 Td
+60 382 Td
 (• Teksten vereenvoudigen voor verschillende niveaus) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -425 Td
+60 367 Td
 (• Creatieve schrijfopdrachten bedenken) Tj
 ET
 
 BT
 /F1 11 Tf
-50 -450 Td
+50 342 Td
 (Praktische Prompt Voorbeelden:) Tj
 ET
 
 BT
 /F6 9 Tf
-50 -470 Td
+50 322 Td
 ("Maak een lesplan van 50 minuten over fotosynthese voor groep 7,) Tj
 ET
 
 BT
 /F6 9 Tf
-50 -485 Td
+50 307 Td
 (inclusief een experiment en drie verschillende opdrachten.") Tj
 ET
 
 BT
 /F6 9 Tf
-50 -505 Td
+50 287 Td
 ("Genereer 10 meerkeuzevragen over de Tweede Wereldoorlog) Tj
 ET
 
 BT
 /F6 9 Tf
-50 -520 Td
+50 272 Td
 (voor VMBO niveau 3, met telkens 4 antwoordmogelijkheden.") Tj
 ET
 
 BT
 /F6 9 Tf
-50 -540 Td
+50 252 Td
 ("Herschrijf deze tekst over klimaatverandering voor leerlingen) Tj
 ET
 
 BT
 /F6 9 Tf
-50 -555 Td
+50 237 Td
 (van 12 jaar oud, gebruik eenvoudige taal en korte zinnen.") Tj
 ET
 
 BT
 /F1 12 Tf
-50 -585 Td
+50 207 Td
 (Quillbot - Schrijfhulp en Parafrasering) Tj
 ET
 
 BT
 /F2 10 Tf
-50 -600 Td
+50 192 Td
 (Website: quillbot.com | Prijs: Freemium | Niveau: Beginner) Tj
 ET
 
 BT
 /F2 11 Tf
-50 -620 Td
+50 172 Td
 (Perfect voor:) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -635 Td
+60 157 Td
 (• Teksten herformuleren en verbeteren) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -650 Td
+60 142 Td
 (• Grammatica en spelling controleren) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -665 Td
+60 127 Td
 (• Samenvattingen maken van lange teksten) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -680 Td
+60 112 Td
 (• Citaten correct formatteren) Tj
 ET
 
 BT
 /F1 12 Tf
-50 -710 Td
+50 82 Td
 (Grammarly - Geavanceerde Tekstcorrectie) Tj
 ET
 
 BT
 /F2 10 Tf
-50 -725 Td
+50 67 Td
 (Website: grammarly.com | Prijs: Freemium | Niveau: Beginner) Tj
 ET
 
 BT
 /F2 11 Tf
-50 -745 Td
+50 47 Td
 (Ideaal voor:) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -760 Td
+60 32 Td
 (• Professionele communicatie verbeteren) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -775 Td
+60 17 Td
 (• Leerlingen helpen met schrijfvaardigheden) Tj
 ET
 
 BT
 /F2 11 Tf
-60 -790 Td
+60 2 Td
 (• Consistent schrijven in verschillende stijlen) Tj
+ET
+
+BT
+/F1 14 Tf
+50 -28 Td
+(4. AI-Tools voor Presentaties) Tj
+ET
+
+BT
+/F1 12 Tf
+50 -53 Td
+(Gamma - Automatische Presentaties) Tj
+ET
+
+BT
+/F2 10 Tf
+50 -68 Td
+(Website: gamma.app | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -88 Td
+(Functies:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -103 Td
+(• Presentaties maken vanuit tekst) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -118 Td
+(• Automatische lay-out en design) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -133 Td
+(• Interactieve elementen toevoegen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -148 Td
+(• Samenwerken met collega's) Tj
+ET
+
+BT
+/F1 12 Tf
+50 -178 Td
+(Canva AI - Design met Kunstmatige Intelligentie) Tj
+ET
+
+BT
+/F2 10 Tf
+50 -193 Td
+(Website: canva.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -213 Td
+(Mogelijkheden:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -228 Td
+(• AI-gegenereerde afbeeldingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -243 Td
+(• Automatische tekstsuggesties) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -258 Td
+(• Slimme lay-out aanpassingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -273 Td
+(• Brand kit integratie) Tj
+ET
+
+BT
+/F1 14 Tf
+50 -303 Td
+(5. AI-Tools voor Beeldbewerking) Tj
+ET
+
+BT
+/F1 12 Tf
+50 -328 Td
+(DALL-E 3 - Afbeeldingen Genereren) Tj
+ET
+
+BT
+/F2 10 Tf
+50 -343 Td
+(Website: openai.com/dall-e-3 | Prijs: Betaald | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -363 Td
+(Toepassingen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -378 Td
+(• Illustraties voor lesmateriaal) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -393 Td
+(• Creatieve projecten met leerlingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -408 Td
+(• Conceptuele visualisaties) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -423 Td
+(• Historische reconstructies) Tj
+ET
+
+BT
+/F1 12 Tf
+50 -453 Td
+(Midjourney - Artistieke AI-Beelden) Tj
+ET
+
+BT
+/F2 10 Tf
+50 -468 Td
+(Website: midjourney.com | Prijs: Betaald | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -488 Td
+(Gebruik in onderwijs:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -503 Td
+(• Kunstprojecten en inspiratie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -518 Td
+(• Verhaalillustraties) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -533 Td
+(• Wetenschappelijke visualisaties) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -548 Td
+(• Culturele en historische beelden) Tj
+ET
+
+BT
+/F1 14 Tf
+50 -578 Td
+(6. AI-Tools voor Onderzoek) Tj
+ET
+
+BT
+/F1 12 Tf
+50 -603 Td
+(Perplexity AI - Onderzoek met Bronvermelding) Tj
+ET
+
+BT
+/F2 10 Tf
+50 -618 Td
+(Website: perplexity.ai | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -638 Td
+(Voordelen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -653 Td
+(• Automatische bronvermelding) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -668 Td
+(• Actuele informatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -683 Td
+(• Begrijpelijke samenvattingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -698 Td
+(• Follow-up vragen stellen) Tj
+ET
+
+BT
+/F1 12 Tf
+50 -728 Td
+(Consensus - Wetenschappelijk Onderzoek) Tj
+ET
+
+BT
+/F2 10 Tf
+50 -743 Td
+(Website: consensus.app | Prijs: Freemium | Niveau: Gevorderd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -763 Td
+(Ideaal voor:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -778 Td
+(• Wetenschappelijke literatuur zoeken) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -793 Td
+(• Onderzoeksresultaten samenvatten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -808 Td
+(• Betrouwbare bronnen vinden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -823 Td
+(• Academische projecten ondersteunen) Tj
 ET
 endstream
 endobj
 
 xref
-0 8
+0 10
 0000000000 65535 f 
 0000000010 00000 n 
 0000000053 00000 n 
-0000000102 00000 n 
-0000000249 00000 n 
-0000000311 00000 n 
-0000000368 00000 n 
-0000000433 00000 n 
+0000000108 00000 n 
+0000000255 00000 n 
+0000000317 00000 n 
+0000000374 00000 n 
+0000000439 00000 n 
+0000008991 00000 n 
+0000009148 00000 n 
 
 trailer
-<</Size 8/Root 1 0 R>>
+<</Size 10/Root 1 0 R>>
 startxref
-12984
+21200
 %%EOF
