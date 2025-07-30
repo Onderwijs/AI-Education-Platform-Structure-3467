@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React,{useState} from 'react';
+import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
-import { downloadStartersgids } from '../utils/downloadUtils';
+import {downloadStartersgids} from '../utils/downloadUtils';
 
-const { FiMail, FiDownload, FiCheck, FiGift, FiUsers, FiTrendingUp } = FiIcons;
+const {FiMail,FiDownload,FiCheck,FiGift,FiUsers,FiTrendingUp}=FiIcons;
 
-const Nieuwsbrief = () => {
-  const [email, setEmail] = useState('');
-  const [isSubscribed, setIsSubscribed] = useState(false);
+const Nieuwsbrief=()=> {
+  const [formData, setFormData] = useState({
+    email: '',
+    role: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubscribed,setIsSubscribed]=useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Download the startersgids immediately
-    downloadStartersgids();
-    // Show success message
-    setIsSubscribed(true);
-  };
-
-  const benefits = [
+  const benefits=[
     {
       icon: FiDownload,
       title: "Gratis AI Startersgids",
@@ -41,7 +37,7 @@ const Nieuwsbrief = () => {
     }
   ];
 
-  const freebies = [
+  const freebies=[
     {
       title: "AI in 30 Dagen Challenge",
       description: "Dagelijkse opdrachten om AI te integreren in je onderwijs",
@@ -59,18 +55,57 @@ const Nieuwsbrief = () => {
     }
   ];
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Send email to ai.onderwijs@gmail.com
+      const subject = encodeURIComponent('Nieuwsbrief Inschrijving - AI in Onderwijs');
+      const body = encodeURIComponent(`
+Nieuwe nieuwsbrief inschrijving:
+
+Email: ${formData.email}
+Rol: ${formData.role || 'Niet opgegeven'}
+
+Deze persoon wil zich inschrijven voor de nieuwsbrief en de gratis AI startersgids ontvangen.
+      `);
+      
+      const mailtoLink = `mailto:ai.onderwijs@gmail.com?subject=${subject}&body=${body}`;
+      window.open(mailtoLink, '_blank');
+
+      // Download the startersgids immediately 
+      downloadStartersgids();
+      
+      // Show success message
+      setIsSubscribed(true);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   if (isSubscribed) {
     return (
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
         className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center"
       >
         <div className="max-w-md mx-auto text-center px-4">
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2 }}
+            initial={{scale: 0}}
+            animate={{scale: 1}}
+            transition={{delay: 0.2}}
             className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6"
           >
             <SafeIcon icon={FiCheck} className="text-3xl text-white" />
@@ -79,18 +114,18 @@ const Nieuwsbrief = () => {
             Download gestart!
           </h1>
           <p className="text-gray-600 mb-6">
-            Je AI Startersgids wordt nu gedownload. Check ook je downloads map als de download niet automatisch start.
+            Je AI Startersgids wordt nu gedownload. Je gegevens zijn ook verstuurd voor nieuwsbrief inschrijving. Check ook je downloads map als de download niet automatisch start.
           </p>
           <div className="space-y-4">
             <button
-              onClick={() => downloadStartersgids()}
+              onClick={()=> downloadStartersgids()}
               className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
             >
               <SafeIcon icon={FiDownload} />
               <span>Download opnieuw</span>
             </button>
             <button
-              onClick={() => setIsSubscribed(false)}
+              onClick={()=> setIsSubscribed(false)}
               className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors"
             >
               Terug naar overzicht
@@ -103,17 +138,17 @@ const Nieuwsbrief = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
       className="min-h-screen"
     >
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-600 to-secondary-600 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{opacity: 0, y: 50}}
+            animate={{opacity: 1, y: 0}}
           >
             <SafeIcon icon={FiGift} className="text-6xl mx-auto mb-6 text-primary-200" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -132,9 +167,9 @@ const Nieuwsbrief = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left Column - Form */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
+              initial={{opacity: 0, x: -50}}
+              animate={{opacity: 1, x: 0}}
+              transition={{delay: 0.2}}
             >
               <div className="bg-gray-50 p-8 rounded-2xl">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -143,13 +178,14 @@ const Nieuwsbrief = () => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email adres
+                      Email adres *
                     </label>
                     <input
                       type="email"
                       id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="jouw@email.nl"
@@ -161,6 +197,9 @@ const Nieuwsbrief = () => {
                     </label>
                     <select
                       id="role"
+                      name="role"
+                      value={formData.role}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     >
                       <option value="">Selecteer je rol</option>
@@ -175,10 +214,11 @@ const Nieuwsbrief = () => {
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-primary-600 text-white py-4 px-6 rounded-lg font-semibold hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
+                    disabled={isSubmitting}
+                    className="w-full bg-primary-600 text-white py-4 px-6 rounded-lg font-semibold hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50"
                   >
                     <SafeIcon icon={FiDownload} />
-                    <span>Download Gratis Startersgids</span>
+                    <span>{isSubmitting ? 'Bezig...' : 'Download Gratis Startersgids'}</span>
                   </button>
                 </form>
                 <p className="text-xs text-gray-500 mt-4">
@@ -193,9 +233,9 @@ const Nieuwsbrief = () => {
 
             {/* Right Column - Benefits */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
+              initial={{opacity: 0, x: 50}}
+              animate={{opacity: 1, x: 0}}
+              transition={{delay: 0.4}}
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-8">
                 Wat krijg je?
@@ -204,9 +244,9 @@ const Nieuwsbrief = () => {
                 {benefits.map((benefit, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 + index * 0.1 }}
+                    initial={{opacity: 0, y: 20}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{delay: 0.6 + index * 0.1}}
                     className="flex items-start space-x-4"
                   >
                     <div className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -232,9 +272,9 @@ const Nieuwsbrief = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -244,15 +284,14 @@ const Nieuwsbrief = () => {
               Exclusieve materialen om direct mee aan de slag te gaan
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {freebies.map((freebie, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                initial={{opacity: 0, y: 50}}
+                whileInView={{opacity: 1, y: 0}}
+                viewport={{once: true}}
+                transition={{delay: index * 0.1}}
                 className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -276,9 +315,9 @@ const Nieuwsbrief = () => {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               Sluit je aan bij 2.500+ docenten
@@ -300,7 +339,7 @@ const Nieuwsbrief = () => {
             <blockquote className="text-xl text-gray-600 italic mb-4">
               "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding gehalveerd en mijn leerlingen zijn veel meer betrokken."
             </blockquote>
-            <cite className="text-gray-500">- Marieke, VO Docent Nederlands</cite>
+            <cite className="text-gray-500">- Marieke,VO Docent Nederlands</cite>
           </motion.div>
         </div>
       </section>
@@ -309,9 +348,9 @@ const Nieuwsbrief = () => {
       <section className="py-20 bg-primary-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Klaar om te beginnen?
@@ -320,7 +359,7 @@ const Nieuwsbrief = () => {
               Schrijf je nu in en ontvang direct toegang tot alle materialen
             </p>
             <button
-              onClick={() => document.getElementById('email')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={()=> document.getElementById('email')?.scrollIntoView({behavior: 'smooth'})}
               className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
             >
               <SafeIcon icon={FiMail} />

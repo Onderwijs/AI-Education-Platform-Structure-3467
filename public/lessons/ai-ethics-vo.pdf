@@ -3,7 +3,7 @@
 <</Type/Catalog/Pages 2 0 R>>
 endobj
 2 0 obj
-<</Type/Pages/Kids[3 0 R]/Count 1>>
+<</Type/Pages/Kids[3 0 R 8 0 R]/Count 2>>
 endobj
 3 0 obj
 <</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 7 0 R>>
@@ -18,357 +18,562 @@ endobj
 <</Type/Font/Subtype/Type1/BaseFont/Helvetica-Oblique>>
 endobj
 7 0 obj
-<</Length 4823>>
+<</Length 4500>>
 stream
 BT
 /F1 18 Tf
 50 792 Td
 (AI en Ethiek) Tj
 ET
+
 BT
 /F2 12 Tf
 50 760 Td
 (Lesplan voor Voortgezet Onderwijs \(HAVO/VWO 4-6\) - Maatschappijleer) Tj
 ET
+
 BT
 /F2 12 Tf
 50 740 Td
 (Duur: 2 lesuren \(100 minuten\)) Tj
 ET
+
 BT
 /F1 14 Tf
 50 700 Td
 (Omschrijving) Tj
 ET
+
 BT
 /F2 11 Tf
 50 680 Td
-(Deze les behandelt de ethische aspecten van kunstmatige intelligentie en de impact ervan op) Tj
+(Deze les behandelt de ethische aspecten van kunstmatige intelligentie en de) Tj
 ET
+
 BT
 /F2 11 Tf
 50 665 Td
-(de samenleving. Leerlingen onderzoeken verschillende ethische dilemma's rond AI, vormen) Tj
+(impact ervan op de samenleving. Leerlingen onderzoeken verschillende ethische) Tj
 ET
+
 BT
 /F2 11 Tf
 50 650 Td
-(hun eigen mening en nemen deel aan een gestructureerd debat over AI-gerelateerde kwesties.) Tj
+(dilemma's rond AI, vormen hun eigen mening en nemen deel aan een) Tj
 ET
+
+BT
+/F2 11 Tf
+50 635 Td
+(gestructureerd debat over AI-gerelateerde kwesties.) Tj
+ET
+
 BT
 /F1 14 Tf
-50 620 Td
+50 605 Td
 (Leerdoelen) Tj
 ET
+
 BT
 /F2 11 Tf
-50 600 Td
+50 585 Td
 (Na deze les kunnen leerlingen:) Tj
 ET
-BT
-/F2 11 Tf
-60 580 Td
-(- Verschillende ethische kwesties rond AI identificeren en uitleggen) Tj
-ET
+
 BT
 /F2 11 Tf
 60 565 Td
-(- Argumenten voor verschillende standpunten formuleren en onderbouwen) Tj
+(- Verschillende ethische kwesties rond AI identificeren en uitleggen) Tj
 ET
+
 BT
 /F2 11 Tf
 60 550 Td
-(- Kritisch nadenken over de impact van AI op individuen en de samenleving) Tj
+(- Argumenten voor verschillende standpunten formuleren en onderbouwen) Tj
 ET
+
 BT
 /F2 11 Tf
 60 535 Td
-(- Een gebalanceerde mening vormen over AI-gerelateerde ethische dilemma's) Tj
+(- Kritisch nadenken over de impact van AI op individuen en de samenleving) Tj
 ET
-BT
-/F1 14 Tf
-50 505 Td
-(Benodigde materialen) Tj
-ET
+
 BT
 /F2 11 Tf
-60 485 Td
-(- Casuskaarten met AI-ethiek dilemma's \(bijgevoegd\)) Tj
+60 520 Td
+(- Een gebalanceerde mening vormen over AI-gerelateerde ethische dilemma's) Tj
 ET
+
+BT
+/F1 14 Tf
+50 490 Td
+(Benodigde materialen) Tj
+ET
+
 BT
 /F2 11 Tf
 60 470 Td
-(- Debatformulier voor leerlingen \(bijgevoegd\)) Tj
+(- Casuskaarten met AI-ethiek dilemma's \(bijgevoegd\)) Tj
 ET
+
 BT
 /F2 11 Tf
 60 455 Td
-(- Toegang tot internet voor onderzoek) Tj
+(- Debatformulier voor leerlingen \(bijgevoegd\)) Tj
 ET
+
 BT
 /F2 11 Tf
 60 440 Td
-(- Optioneel: projector voor het tonen van korte video's) Tj
+(- Toegang tot internet voor onderzoek) Tj
 ET
-BT
-/F1 14 Tf
-50 410 Td
-(Lesopbouw) Tj
-ET
-BT
-/F1 12 Tf
-50 390 Td
-(1. Introductie \(15 minuten\)) Tj
-ET
+
 BT
 /F2 11 Tf
-60 375 Td
-(- Start met een korte video over AI-ethiek \(bijv. "AI Ethics: The Trolley Problem"\)) Tj
+60 425 Td
+(- Optioneel: projector voor het tonen van korte video's) Tj
 ET
+
+BT
+/F1 14 Tf
+50 395 Td
+(Lesopbouw) Tj
+ET
+
+BT
+/F1 12 Tf
+50 375 Td
+(1. Introductie \(15 minuten\)) Tj
+ET
+
 BT
 /F2 11 Tf
 60 360 Td
-(- Klassikale discussie: Wat zijn ethische dilemma's? Waarom zijn ze belangrijk bij AI?) Tj
+(- Start met een korte video over AI-ethiek) Tj
 ET
+
 BT
 /F2 11 Tf
 60 345 Td
-(- Introduceer de belangrijkste ethische principes: eerlijkheid, transparantie, privacy, autonomie) Tj
+(- Klassikale discussie: Wat zijn ethische dilemma's? Waarom zijn ze) Tj
 ET
+
 BT
-/F1 12 Tf
-50 315 Td
-(2. Casusanalyse in groepen \(25 minuten\)) Tj
+/F2 11 Tf
+60 330 Td
+(  belangrijk bij AI?) Tj
 ET
+
+BT
+/F2 11 Tf
+60 315 Td
+(- Introduceer de belangrijkste ethische principes: eerlijkheid,) Tj
+ET
+
 BT
 /F2 11 Tf
 60 300 Td
+(  transparantie, privacy, autonomie) Tj
+ET
+
+BT
+/F1 12 Tf
+50 270 Td
+(2. Casusanalyse in groepen \(25 minuten\)) Tj
+ET
+
+BT
+/F2 11 Tf
+60 255 Td
 (- Verdeel de klas in groepen van 3-4 leerlingen) Tj
 ET
+
 BT
 /F2 11 Tf
-60 285 Td
+60 240 Td
 (- Elke groep krijgt een casuskaart met een AI-ethisch dilemma, zoals:) Tj
 ET
-BT
-/F2 11 Tf
-70 270 Td
-(* Gezichtsherkenning door de overheid) Tj
-ET
-BT
-/F2 11 Tf
-70 255 Td
-(* AI-beslissingen in de gezondheidszorg) Tj
-ET
-BT
-/F2 11 Tf
-70 240 Td
-(* Algoritmes die bepalen wie een lening krijgt) Tj
-ET
+
 BT
 /F2 11 Tf
 70 225 Td
-(* Autonome wapensystemen) Tj
+(* Gezichtsherkenning door de overheid) Tj
 ET
+
 BT
 /F2 11 Tf
-60 210 Td
-(- Leerlingen analyseren de casus aan de hand van de volgende vragen:) Tj
+70 210 Td
+(* AI-beslissingen in de gezondheidszorg) Tj
 ET
+
 BT
 /F2 11 Tf
 70 195 Td
-(* Welke ethische principes zijn hier in het geding?) Tj
+(* Algoritmes die bepalen wie een lening krijgt) Tj
 ET
+
 BT
 /F2 11 Tf
 70 180 Td
+(* Autonome wapensystemen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 165 Td
+(- Leerlingen analyseren de casus aan de hand van de volgende vragen:) Tj
+ET
+
+BT
+/F2 11 Tf
+70 150 Td
+(* Welke ethische principes zijn hier in het geding?) Tj
+ET
+
+BT
+/F2 11 Tf
+70 135 Td
 (* Wie zijn de belanghebbenden en wat zijn hun belangen?) Tj
 ET
+
 BT
 /F2 11 Tf
-70 165 Td
+70 120 Td
 (* Welke voor- en nadelen heeft deze AI-toepassing?) Tj
 ET
+
 BT
 /F1 12 Tf
-50 135 Td
+50 90 Td
 (3. Voorbereiding debat \(20 minuten\)) Tj
 ET
+
 BT
 /F2 11 Tf
-60 120 Td
+60 75 Td
 (- Verdeel elke groep in twee subgroepen: voor en tegen) Tj
 ET
+
 BT
 /F2 11 Tf
-60 105 Td
+60 60 Td
 (- Laat leerlingen argumenten voorbereiden voor hun toegewezen standpunt) Tj
 ET
+
 BT
 /F2 11 Tf
-60 90 Td
+60 45 Td
 (- Ze vullen het debatformulier in met:) Tj
 ET
+
 BT
 /F2 11 Tf
-70 75 Td
+70 30 Td
 (* Hoofdargumenten \(minimaal 3\)) Tj
 ET
+
 BT
 /F2 11 Tf
-70 60 Td
+70 15 Td
 (* Ondersteunend bewijs/voorbeelden) Tj
 ET
+endstream
+endobj
+
+8 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 9 0 R>>
+endobj
+
+9 0 obj
+<</Length 4200>>
+stream
 BT
 /F2 11 Tf
-70 45 Td
+70 792 Td
 (* Anticipatie op tegenargumenten) Tj
 ET
+
 BT
 /F1 12 Tf
-50 15 Td
+50 762 Td
 (4. Debat \(30 minuten\)) Tj
 ET
+
 BT
 /F2 11 Tf
-60 0 Td
+60 747 Td
 (- Organiseer mini-debatten per casus \(ongeveer 7-8 minuten per debat\)) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -15 Td
+60 732 Td
 (- Debatformat:) Tj
 ET
+
 BT
 /F2 11 Tf
-70 -30 Td
+70 717 Td
 (* Opening voor-standpunt \(1 minuut\)) Tj
 ET
+
 BT
 /F2 11 Tf
-70 -45 Td
+70 702 Td
 (* Opening tegen-standpunt \(1 minuut\)) Tj
 ET
+
 BT
 /F2 11 Tf
-70 -60 Td
+70 687 Td
 (* Weerwoord voor \(1 minuut\)) Tj
 ET
+
 BT
 /F2 11 Tf
-70 -75 Td
+70 672 Td
 (* Weerwoord tegen \(1 minuut\)) Tj
 ET
+
 BT
 /F2 11 Tf
-70 -90 Td
+70 657 Td
 (* Vragen uit de klas \(2 minuten\)) Tj
 ET
+
 BT
 /F2 11 Tf
-70 -105 Td
+70 642 Td
 (* Slotargument beide kanten \(1 minuut per kant\)) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -120 Td
+60 627 Td
 (- De rest van de klas noteert sterke argumenten en vragen) Tj
 ET
+
 BT
 /F1 12 Tf
-50 -150 Td
+50 597 Td
 (5. Reflectie en afsluiting \(10 minuten\)) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -165 Td
-(- Leerlingen schrijven hun persoonlijke mening over de casus \(los van het debat\)) Tj
+60 582 Td
+(- Leerlingen schrijven hun persoonlijke mening over de casus) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -180 Td
+60 567 Td
+(  \(los van het debat\)) Tj
+ET
+
+BT
+/F2 11 Tf
+60 552 Td
 (- Klassikale discussie: Wat zijn de grootste ethische uitdagingen van AI?) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -195 Td
-(- Bespreek: Hoe kunnen we ervoor zorgen dat AI op een ethische manier wordt ontwikkeld?) Tj
+60 537 Td
+(- Bespreek: Hoe kunnen we ervoor zorgen dat AI op een ethische manier) Tj
 ET
+
+BT
+/F2 11 Tf
+60 522 Td
+(  wordt ontwikkeld?) Tj
+ET
+
 BT
 /F1 14 Tf
-50 -225 Td
+50 492 Td
 (Huiswerkopdracht) Tj
 ET
+
 BT
 /F2 11 Tf
-50 -245 Td
-(Laat leerlingen een kort essay \(300-500 woorden\) schrijven over een van de volgende onderwerpen:) Tj
+50 472 Td
+(Laat leerlingen een kort essay \(300-500 woorden\) schrijven over een van de) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -260 Td
+50 457 Td
+(volgende onderwerpen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 442 Td
 (- "Wie is verantwoordelijk voor de beslissingen die AI neemt?") Tj
 ET
+
 BT
 /F2 11 Tf
-60 -275 Td
-(- "Moeten er internationale regels komen voor AI-ontwikkeling? Zo ja, welke?") Tj
+60 427 Td
+(- "Moeten er internationale regels komen voor AI-ontwikkeling?) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -290 Td
+60 412 Td
+(  Zo ja, welke?") Tj
+ET
+
+BT
+/F2 11 Tf
+60 397 Td
 (- "Hoe kan AI bijdragen aan een rechtvaardige samenleving?") Tj
 ET
+
 BT
 /F1 14 Tf
-50 -320 Td
+50 367 Td
 (Beoordeling) Tj
 ET
+
 BT
 /F2 11 Tf
-50 -340 Td
+50 347 Td
 (Leerlingen worden beoordeeld op:) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -355 Td
+60 332 Td
 (- Kwaliteit en onderbouwing van argumenten tijdens het debat) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -370 Td
+60 317 Td
 (- Gebruik van ethische principes en concepten) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -385 Td
+60 302 Td
 (- Diepgang en kritisch denken in het reflectie-essay) Tj
 ET
+
 BT
 /F2 11 Tf
-60 -400 Td
+60 287 Td
 (- Actieve participatie in discussies) Tj
 ET
+
+BT
+/F1 14 Tf
+50 257 Td
+(Casusvoorbeelden) Tj
+ET
+
+BT
+/F1 12 Tf
+50 237 Td
+(Casus 1: Gezichtsherkenning op scholen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 222 Td
+(Een school wil gezichtsherkenning gebruiken voor veiligheid en om) Tj
+ET
+
+BT
+/F2 11 Tf
+50 207 Td
+(spijbelaars te identificeren. Voor: verhoogde veiligheid, automatische) Tj
+ET
+
+BT
+/F2 11 Tf
+50 192 Td
+(aanwezigheid. Tegen: privacy, surveillance, vertrouwen.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 162 Td
+(Casus 2: AI-algoritme voor sollicitaties) Tj
+ET
+
+BT
+/F2 11 Tf
+50 147 Td
+(Een bedrijf gebruikt AI om CV's te beoordelen en kandidaten te selecteren.) Tj
+ET
+
+BT
+/F2 11 Tf
+50 132 Td
+(Voor: objectiviteit, efficientie. Tegen: bias, menselijke factoren.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 102 Td
+(Casus 3: AI-diagnose in ziekenhuizen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 87 Td
+(AI-systemen kunnen sneller en accurater diagnoses stellen dan artsen.) Tj
+ET
+
+BT
+/F2 11 Tf
+50 72 Td
+(Voor: snelheid, nauwkeurigheid. Tegen: verantwoordelijkheid, fouten.) Tj
+ET
+
+BT
+/F1 14 Tf
+50 42 Td
+(Aanvullende bronnen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 22 Td
+(- AI Ethics Lab: www.aiethicslab.com) Tj
+ET
+
+BT
+/F2 11 Tf
+50 7 Td
+(- Future of Humanity Institute: www.fhi.ox.ac.uk) Tj
+ET
+
 BT
 /F3 10 Tf
-50 -430 Td
+50 -23 Td
 (© 2024 AI in Onderwijs - www.aiinonderwijs.nl) Tj
 ET
 endstream
 endobj
+
 xref
-0 8
-0000000000 65535 f
-0000000010 00000 n
-0000000053 00000 n
-0000000102 00000 n
-0000000249 00000 n
-0000000311 00000 n
-0000000368 00000 n
-0000000433 00000 n
+0 10
+0000000000 65535 f 
+0000000010 00000 n 
+0000000053 00000 n 
+0000000108 00000 n 
+0000000255 00000 n 
+0000000317 00000 n 
+0000000374 00000 n 
+0000000439 00000 n 
+0000004990 00000 n 
+0000005147 00000 n 
+
 trailer
-<</Size 8/Root 1 0 R>>
+<</Size 10/Root 1 0 R>>
 startxref
-5307
+9398
 %%EOF
