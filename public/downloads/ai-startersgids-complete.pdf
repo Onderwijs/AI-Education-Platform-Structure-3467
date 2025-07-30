@@ -3,7 +3,7 @@
 <</Type/Catalog/Pages 2 0 R>>
 endobj
 2 0 obj
-<</Type/Pages/Kids[3 0 R 8 0 R]/Count 2>>
+<</Type/Pages/Kids[3 0 R 8 0 R 13 0 R 18 0 R 23 0 R 28 0 R 33 0 R 38 0 R 43 0 R 48 0 R 53 0 R 58 0 R 63 0 R 68 0 R 73 0 R 78 0 R 83 0 R 88 0 R 93 0 R 98 0 R 103 0 R 108 0 R 113 0 R]/Count 23>>
 endobj
 3 0 obj
 <</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 7 0 R>>
@@ -36,18 +36,6 @@ BT
 /F2 12 Tf
 50 730 Td
 (Praktische gids voor AI in het onderwijs) Tj
-ET
-
-BT
-/F3 10 Tf
-50 30 Td
-(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
-ET
-
-BT
-/F3 10 Tf
-530 30 Td
-(1) Tj
 ET
 
 BT
@@ -237,33 +225,15 @@ BT
 ET
 
 BT
-/F1 14 Tf
-50 90 Td
-(2. Basisprincipes van AI voor Docenten) Tj
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
 ET
 
 BT
-/F1 12 Tf
-50 65 Td
-(Wat is Kunstmatige Intelligentie?) Tj
-ET
-
-BT
-/F2 11 Tf
-50 45 Td
-(AI is technologie die computers in staat stelt om taken uit te voeren) Tj
-ET
-
-BT
-/F2 11 Tf
-50 30 Td
-(die normaal menselijke intelligentie vereisen, zoals:) Tj
-ET
-
-BT
-/F2 11 Tf
-60 15 Td
-(• Tekst begrijpen en genereren) Tj
+/F3 10 Tf
+530 60 Td
+(1) Tj
 ET
 endstream
 endobj
@@ -276,298 +246,5710 @@ endobj
 <</Length 12000>>
 stream
 BT
+/F1 14 Tf
+50 792 Td
+(2. Basisprincipes van AI voor Docenten) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Wat is Kunstmatige Intelligentie?) Tj
+ET
+
+BT
 /F2 11 Tf
-60 792 Td
+50 745 Td
+(AI is technologie die computers in staat stelt om taken uit te voeren) Tj
+ET
+
+BT
+/F2 11 Tf
+50 730 Td
+(die normaal menselijke intelligentie vereisen, zoals:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Tekst begrijpen en genereren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
 (• Afbeeldingen herkennen en maken) Tj
 ET
 
 BT
 /F2 11 Tf
-60 777 Td
+60 685 Td
 (• Patronen herkennen in data) Tj
 ET
 
 BT
 /F2 11 Tf
-60 762 Td
+60 670 Td
 (• Problemen oplossen en beslissingen nemen) Tj
 ET
 
 BT
 /F1 12 Tf
-50 732 Td
+50 640 Td
 (Waarom AI in het Onderwijs?) Tj
 ET
 
 BT
 /F2 11 Tf
-60 712 Td
+60 620 Td
 (• Tijd besparen op administratieve taken) Tj
 ET
 
 BT
 /F2 11 Tf
-60 697 Td
+60 605 Td
 (• Gepersonaliseerd leren mogelijk maken) Tj
 ET
 
 BT
 /F2 11 Tf
-60 682 Td
+60 590 Td
 (• Creatieve mogelijkheden vergroten) Tj
 ET
 
 BT
 /F2 11 Tf
-60 667 Td
+60 575 Td
 (• Leerlingen voorbereiden op de toekomst) Tj
 ET
 
 BT
 /F2 11 Tf
-60 652 Td
+60 560 Td
 (• Toegankelijkheid van onderwijs verbeteren) Tj
 ET
 
 BT
 /F1 12 Tf
-50 622 Td
+50 530 Td
 (De Gouden Regels voor AI in Onderwijs) Tj
 ET
 
 BT
 /F2 11 Tf
-50 602 Td
+50 510 Td
 (1. Start klein: Begin met een tool en bouw langzaam op) Tj
 ET
 
 BT
 /F2 11 Tf
-50 587 Td
+50 495 Td
 (2. Blijf kritisch: Controleer altijd AI-gegenereerde content) Tj
 ET
 
 BT
 /F2 11 Tf
-50 572 Td
+50 480 Td
 (3. Wees transparant: Vertel leerlingen wanneer je AI gebruikt) Tj
 ET
 
 BT
 /F2 11 Tf
-50 557 Td
+50 465 Td
 (4. Bescherm privacy: Let op gegevensbescherming) Tj
 ET
 
 BT
 /F2 11 Tf
-50 542 Td
+50 450 Td
 (5. Behoud menselijke verbinding: AI vervangt geen docent) Tj
 ET
 
 BT
-/F1 14 Tf
-50 502 Td
-(3. AI-Tools voor Tekstverwerking) Tj
+/F1 12 Tf
+50 420 Td
+(Verschillende Types AI-Tools) Tj
+ET
+
+BT
+/F2 11 Tf
+50 400 Td
+(Generatieve AI: Maakt nieuwe content zoals tekst, afbeeldingen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 385 Td
+(Analytische AI: Analyseert data en geeft inzichten) Tj
+ET
+
+BT
+/F2 11 Tf
+50 370 Td
+(Conversationele AI: Chatbots en spraakassistenten) Tj
+ET
+
+BT
+/F2 11 Tf
+50 355 Td
+(Predictieve AI: Voorspelt uitkomsten en trends) Tj
 ET
 
 BT
 /F1 12 Tf
-50 477 Td
-(ChatGPT - De Veelzijdige Assistent) Tj
-ET
-
-BT
-/F2 10 Tf
-50 462 Td
-(Website: chat.openai.com | Prijs: Freemium | Niveau: Beginner) Tj
+50 325 Td
+(Privacy en Veiligheid) Tj
 ET
 
 BT
 /F2 11 Tf
-50 442 Td
-(Wat kan het?) Tj
+50 305 Td
+(• Gebruik nooit vertrouwelijke leerlinggegevens in AI-tools) Tj
 ET
 
 BT
 /F2 11 Tf
-60 427 Td
-(• Lesplannen genereren en verbeteren) Tj
+50 290 Td
+(• Controleer altijd de privacyvoorwaarden) Tj
 ET
 
 BT
 /F2 11 Tf
-60 412 Td
-(• Toetsvragen maken in verschillende moeilijkheidsgraden) Tj
+50 275 Td
+(• Zorg voor toestemming van ouders bij minderjarigen) Tj
 ET
 
 BT
 /F2 11 Tf
-60 397 Td
-(• Feedback formuleren op leerlingwerk) Tj
+50 260 Td
+(• Bewaar geen gevoelige informatie in AI-platforms) Tj
 ET
 
 BT
 /F2 11 Tf
-60 382 Td
-(• Teksten vereenvoudigen voor verschillende niveaus) Tj
-ET
-
-BT
-/F2 11 Tf
-60 367 Td
-(• Creatieve schrijfopdrachten bedenken) Tj
-ET
-
-BT
-/F1 11 Tf
-50 342 Td
-(Praktische Prompt Voorbeelden:) Tj
-ET
-
-BT
-/F6 9 Tf
-50 322 Td
-("Maak een lesplan van 50 minuten over fotosynthese voor groep 7,) Tj
-ET
-
-BT
-/F6 9 Tf
-50 307 Td
-(inclusief een experiment en drie verschillende opdrachten.") Tj
-ET
-
-BT
-/F6 9 Tf
-50 287 Td
-("Genereer 10 meerkeuzevragen over de Tweede Wereldoorlog) Tj
-ET
-
-BT
-/F6 9 Tf
-50 272 Td
-(voor VMBO niveau 3, met telkens 4 antwoordmogelijkheden.") Tj
-ET
-
-BT
-/F6 9 Tf
-50 252 Td
-("Herschrijf deze tekst over klimaatverandering voor leerlingen) Tj
-ET
-
-BT
-/F6 9 Tf
-50 237 Td
-(van 12 jaar oud, gebruik eenvoudige taal en korte zinnen.") Tj
+50 245 Td
+(• Gebruik schoolapproved tools waar mogelijk) Tj
 ET
 
 BT
 /F1 12 Tf
-50 207 Td
-(Quillbot - Schrijfhulp en Parafrasering) Tj
-ET
-
-BT
-/F2 10 Tf
-50 192 Td
-(Website: quillbot.com | Prijs: Freemium | Niveau: Beginner) Tj
+50 215 Td
+(AI-Geletterdheid voor Docenten) Tj
 ET
 
 BT
 /F2 11 Tf
-50 172 Td
-(Perfect voor:) Tj
+50 195 Td
+(1. Begrijp hoe AI werkt (basis machine learning)) Tj
 ET
 
 BT
 /F2 11 Tf
-60 157 Td
-(• Teksten herformuleren en verbeteren) Tj
+50 180 Td
+(2. Ken de beperkingen (bias, fouten, hallucinations)) Tj
 ET
 
 BT
 /F2 11 Tf
-60 142 Td
-(• Grammatica en spelling controleren) Tj
+50 165 Td
+(3. Ontwikkel prompt engineering vaardigheden) Tj
 ET
 
 BT
 /F2 11 Tf
-60 127 Td
-(• Samenvattingen maken van lange teksten) Tj
+50 150 Td
+(4. Leer tools kritisch te evalueren) Tj
 ET
 
 BT
 /F2 11 Tf
-60 112 Td
-(• Citaten correct formatteren) Tj
+50 135 Td
+(5. Blijf op de hoogte van nieuwe ontwikkelingen) Tj
 ET
 
 BT
 /F1 12 Tf
-50 82 Td
-(Grammarly - Geavanceerde Tekstcorrectie) Tj
-ET
-
-BT
-/F2 10 Tf
-50 67 Td
-(Website: grammarly.com | Prijs: Freemium | Niveau: Beginner) Tj
+50 105 Td
+(Implementatie in de Klas) Tj
 ET
 
 BT
 /F2 11 Tf
-50 47 Td
-(Ideaal voor:) Tj
-ET
-
-BT
-/F2 11 Tf
-60 32 Td
-(• Professionele communicatie verbeteren) Tj
-ET
-
-BT
-/F2 11 Tf
-60 17 Td
-(• Leerlingen helpen met schrijfvaardigheden) Tj
-ET
-
-BT
-/F2 11 Tf
-60 2 Td
-(• Consistent schrijven in verschillende stijlen) Tj
+50 85 Td
+(Week 1-2: Experimenteer zelf met tools) Tj
 ET
 
 BT
 /F3 10 Tf
-50 30 Td
+50 60 Td
 (2025 AI in het Onderwijs - https://onderwijs.ai) Tj
 ET
 
 BT
 /F3 10 Tf
-530 30 Td
+530 60 Td
 (2) Tj
 ET
 endstream
 endobj
 
+13 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 14 0 R>>
+endobj
+
+14 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(3. AI-Tools voor Tekstverwerking) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(ChatGPT - De Veelzijdige Assistent) Tj
+ET
+
+BT
+/F2 10 Tf
+50 750 Td
+(Website: chat.openai.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 730 Td
+(Wat kan het?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Lesplannen genereren en verbeteren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Toetsvragen maken in verschillende moeilijkheidsgraden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Feedback formuleren op leerlingwerk) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Teksten vereenvoudigen voor verschillende niveaus) Tj
+ET
+
+BT
+/F2 11 Tf
+60 655 Td
+(• Creatieve schrijfopdrachten bedenken) Tj
+ET
+
+BT
+/F1 11 Tf
+50 630 Td
+(Praktische Prompt Voorbeelden:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 610 Td
+("Maak een lesplan van 50 minuten over fotosynthese voor groep 7,) Tj
+ET
+
+BT
+/F6 9 Tf
+50 595 Td
+(inclusief een experiment en drie verschillende opdrachten.") Tj
+ET
+
+BT
+/F6 9 Tf
+50 575 Td
+("Genereer 10 meerkeuzevragen over de Tweede Wereldoorlog) Tj
+ET
+
+BT
+/F6 9 Tf
+50 560 Td
+(voor VMBO niveau 3, met telkens 4 antwoordmogelijkheden.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 530 Td
+(Quillbot - Schrijfhulp en Parafrasering) Tj
+ET
+
+BT
+/F2 10 Tf
+50 515 Td
+(Website: quillbot.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 495 Td
+(Perfect voor:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 480 Td
+(• Teksten herformuleren en verbeteren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 465 Td
+(• Grammatica en spelling controleren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 450 Td
+(• Samenvattingen maken van lange teksten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 435 Td
+(• Citaten correct formatteren) Tj
+ET
+
+BT
+/F1 12 Tf
+50 405 Td
+(Grammarly - Geavanceerde Tekstcorrectie) Tj
+ET
+
+BT
+/F2 10 Tf
+50 390 Td
+(Website: grammarly.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 370 Td
+(Ideaal voor:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 355 Td
+(• Professionele communicatie verbeteren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 340 Td
+(• Leerlingen helpen met schrijfvaardigheden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 325 Td
+(• Consistent schrijven in verschillende stijlen) Tj
+ET
+
+BT
+/F1 12 Tf
+50 295 Td
+(DeepL Write - AI Tekstverbetering) Tj
+ET
+
+BT
+/F2 10 Tf
+50 280 Td
+(Website: deepl.com/write | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 260 Td
+(Functies:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 245 Td
+(• Tekst verbeteren en herschrijven) Tj
+ET
+
+BT
+/F2 11 Tf
+60 230 Td
+(• Toon en stijl aanpassen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 215 Td
+(• Alternatieve formuleringen voorstellen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 200 Td
+(• Duidelijkheid en leesbaarheid verbeteren) Tj
+ET
+
+BT
+/F1 12 Tf
+50 170 Td
+(Notion AI - Alles-in-een Werkruimte) Tj
+ET
+
+BT
+/F2 10 Tf
+50 155 Td
+(Website: notion.so | Prijs: Freemium | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 135 Td
+(Mogelijkheden:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 120 Td
+(• Content genereren binnen documenten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 105 Td
+(• Samenvattingen maken van meetings en notities) Tj
+ET
+
+BT
+/F2 11 Tf
+60 90 Td
+(• Actie-items uit tekst extraheren) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(3) Tj
+ET
+endstream
+endobj
+
+18 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 19 0 R>>
+endobj
+
+19 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(4. AI-Tools voor Presentaties) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Gamma - AI Presentatie Generator) Tj
+ET
+
+BT
+/F2 10 Tf
+50 750 Td
+(Website: gamma.app | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 730 Td
+(Wat maakt het bijzonder?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Genereer complete presentaties uit een prompt) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Automatische lay-out en design) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Verschillende templates en stijlen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Eenvoudig aanpassen en bewerken) Tj
+ET
+
+BT
+/F2 11 Tf
+60 655 Td
+(• Exporteren naar PowerPoint of PDF) Tj
+ET
+
+BT
+/F1 11 Tf
+50 630 Td
+(Voorbeeldprompt:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 610 Td
+("Maak een presentatie over het zonnestelsel voor groep 6,) Tj
+ET
+
+BT
+/F6 9 Tf
+50 595 Td
+(met 10 slides inclusief afbeeldingen en leuke weetjes.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 565 Td
+(Beautiful.AI - Intelligente Presentaties) Tj
+ET
+
+BT
+/F2 10 Tf
+50 550 Td
+(Website: beautiful.ai | Prijs: Betaald | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 530 Td
+(Kenmerken:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 515 Td
+(• AI-gedreven designsuggesties) Tj
+ET
+
+BT
+/F2 11 Tf
+60 500 Td
+(• Automatische opmaak en uitlijning) Tj
+ET
+
+BT
+/F2 11 Tf
+60 485 Td
+(• Smart templates voor verschillende doeleinden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 470 Td
+(• Real-time samenwerking) Tj
+ET
+
+BT
+/F1 12 Tf
+50 440 Td
+(Tome - Storytelling met AI) Tj
+ET
+
+BT
+/F2 10 Tf
+50 425 Td
+(Website: tome.app | Prijs: Freemium | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 405 Td
+(Unieke functies:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 390 Td
+(• AI-gegenereerde verhaalstructuren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 375 Td
+(• Automatische afbeeldingsgeneratie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 360 Td
+(• Interactieve elementen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 345 Td
+(• Web-gebaseerde presentaties) Tj
+ET
+
+BT
+/F1 12 Tf
+50 315 Td
+(Slidebean - AI Pitch Decks) Tj
+ET
+
+BT
+/F2 10 Tf
+50 300 Td
+(Website: slidebean.com | Prijs: Freemium | Niveau: Gevorderd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 280 Td
+(Specialisaties:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 265 Td
+(• Professionele business presentaties) Tj
+ET
+
+BT
+/F2 11 Tf
+60 250 Td
+(• Data visualisatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 235 Td
+(• Pitch deck templates) Tj
+ET
+
+BT
+/F2 11 Tf
+60 220 Td
+(• Analytics en tracking) Tj
+ET
+
+BT
+/F1 12 Tf
+50 190 Td
+(Canva AI - Visuele Presentaties) Tj
+ET
+
+BT
+/F2 10 Tf
+50 175 Td
+(Website: canva.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 155 Td
+(AI-mogelijkheden:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 140 Td
+(• Magic Design voor automatische lay-outs) Tj
+ET
+
+BT
+/F2 11 Tf
+60 125 Td
+(• AI-gegenereerde afbeeldingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 110 Td
+(• Text-to-image functionaliteit) Tj
+ET
+
+BT
+/F2 11 Tf
+60 95 Td
+(• Brand kit integratie) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(4) Tj
+ET
+endstream
+endobj
+
+23 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 24 0 R>>
+endobj
+
+24 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(5. AI-Tools voor Beeldbewerking) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(DALL-E 3 - AI Beeldgeneratie) Tj
+ET
+
+BT
+/F2 10 Tf
+50 750 Td
+(Website: openai.com/dall-e-3 | Prijs: Betaald | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 730 Td
+(Mogelijkheden:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Realistische afbeeldingen genereren uit tekst) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Verschillende stijlen en formaten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Hoge kwaliteit output) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Integratie met ChatGPT) Tj
+ET
+
+BT
+/F1 11 Tf
+50 645 Td
+(Voorbeeldprompts voor onderwijs:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 625 Td
+("Een vriendelijke dinosaurus die kinderen leert over) Tj
+ET
+
+BT
+/F6 9 Tf
+50 610 Td
+(het uitsterven, cartoon stijl") Tj
+ET
+
+BT
+/F1 12 Tf
+50 580 Td
+(Midjourney - Artistieke AI Afbeeldingen) Tj
+ET
+
+BT
+/F2 10 Tf
+50 565 Td
+(Website: midjourney.com | Prijs: Betaald | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 545 Td
+(Sterke punten:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 530 Td
+(• Hoogwaardige artistieke output) Tj
+ET
+
+BT
+/F2 11 Tf
+60 515 Td
+(• Diverse kunstzinnige stijlen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 500 Td
+(• Community en inspiratie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 485 Td
+(• Geavanceerde parameters) Tj
+ET
+
+BT
+/F1 12 Tf
+50 455 Td
+(Stable Diffusion - Open Source AI) Tj
+ET
+
+BT
+/F2 10 Tf
+50 440 Td
+(Website: stability.ai | Prijs: Gratis/Betaald | Niveau: Gevorderd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 420 Td
+(Voordelen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 405 Td
+(• Gratis te gebruiken) Tj
+ET
+
+BT
+/F2 11 Tf
+60 390 Td
+(• Lokaal te draaien) Tj
+ET
+
+BT
+/F2 11 Tf
+60 375 Td
+(• Veel controle over output) Tj
+ET
+
+BT
+/F2 11 Tf
+60 360 Td
+(• Grote community en tutorials) Tj
+ET
+
+BT
+/F1 12 Tf
+50 330 Td
+(Adobe Firefly - Professionele AI) Tj
+ET
+
+BT
+/F2 10 Tf
+50 315 Td
+(Website: firefly.adobe.com | Prijs: Freemium | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 295 Td
+(Functies:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 280 Td
+(• Commercieel veilige afbeeldingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 265 Td
+(• Integratie met Adobe Creative Suite) Tj
+ET
+
+BT
+/F2 11 Tf
+60 250 Td
+(• Text effects en vector graphics) Tj
+ET
+
+BT
+/F2 11 Tf
+60 235 Td
+(• Generative fill functionaliteit) Tj
+ET
+
+BT
+/F1 12 Tf
+50 205 Td
+(Remove.bg - Achtergrond Verwijderen) Tj
+ET
+
+BT
+/F2 10 Tf
+50 190 Td
+(Website: remove.bg | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 170 Td
+(Praktisch voor:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 155 Td
+(• Automatisch achtergronden verwijderen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 140 Td
+(• Transparante afbeeldingen maken) Tj
+ET
+
+BT
+/F2 11 Tf
+60 125 Td
+(• Bulk processing) Tj
+ET
+
+BT
+/F2 11 Tf
+60 110 Td
+(• API voor automatisering) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(5) Tj
+ET
+endstream
+endobj
+
+28 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 29 0 R>>
+endobj
+
+29 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(6. AI-Tools voor Onderzoek) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Perplexity AI - Onderzoek met Bronnen) Tj
+ET
+
+BT
+/F2 10 Tf
+50 750 Td
+(Website: perplexity.ai | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 730 Td
+(Waarom ideaal voor onderwijs:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Automatische bronvermelding) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Real-time informatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Betrouwbare bronnen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Follow-up vragen mogelijk) Tj
+ET
+
+BT
+/F2 11 Tf
+60 655 Td
+(• Citeerbare resultaten) Tj
+ET
+
+BT
+/F1 12 Tf
+50 625 Td
+(Consensus - Wetenschappelijke Literatuur) Tj
+ET
+
+BT
+/F2 10 Tf
+50 610 Td
+(Website: consensus.app | Prijs: Freemium | Niveau: Gevorderd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 590 Td
+(Specialisaties:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 575 Td
+(• Zoeken in wetenschappelijke papers) Tj
+ET
+
+BT
+/F2 11 Tf
+60 560 Td
+(• Evidence-based antwoorden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 545 Td
+(• Peer-reviewed bronnen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 530 Td
+(• Consensus van onderzoek) Tj
+ET
+
+BT
+/F1 12 Tf
+50 500 Td
+(Elicit - Research Assistant) Tj
+ET
+
+BT
+/F2 10 Tf
+50 485 Td
+(Website: elicit.org | Prijs: Freemium | Niveau: Gevorderd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 465 Td
+(Functies:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 450 Td
+(• Automatische literatuurreview) Tj
+ET
+
+BT
+/F2 11 Tf
+60 435 Td
+(• Data extractie uit papers) Tj
+ET
+
+BT
+/F2 11 Tf
+60 420 Td
+(• Hypothese generatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 405 Td
+(• Onderzoeksvragen formuleren) Tj
+ET
+
+BT
+/F1 12 Tf
+50 375 Td
+(You.com - AI Zoekmachine) Tj
+ET
+
+BT
+/F2 10 Tf
+50 360 Td
+(Website: you.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 340 Td
+(Voordelen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 325 Td
+(• AI-aangedreven zoekresultaten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 310 Td
+(• Samenvatting van meerdere bronnen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 295 Td
+(• Verschillende AI-modellen beschikbaar) Tj
+ET
+
+BT
+/F2 11 Tf
+60 280 Td
+(• Privacy-vriendelijk) Tj
+ET
+
+BT
+/F1 12 Tf
+50 250 Td
+(ResearchRabbit - Literatuur Ontdekking) Tj
+ET
+
+BT
+/F2 10 Tf
+50 235 Td
+(Website: researchrabbit.ai | Prijs: Gratis | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 215 Td
+(Mogelijkheden:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 200 Td
+(• Visuele literatuurmaps) Tj
+ET
+
+BT
+/F2 11 Tf
+60 185 Td
+(• Gerelateerde papers vinden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 170 Td
+(• Collaboration tools) Tj
+ET
+
+BT
+/F2 11 Tf
+60 155 Td
+(• Timeline van onderzoek) Tj
+ET
+
+BT
+/F1 12 Tf
+50 125 Td
+(Semantic Scholar - AI Research Tool) Tj
+ET
+
+BT
+/F2 10 Tf
+50 110 Td
+(Website: semanticscholar.org | Prijs: Gratis | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 90 Td
+(Features:) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(6) Tj
+ET
+endstream
+endobj
+
+33 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 34 0 R>>
+endobj
+
+34 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(7. AI-Tools voor Creativiteit) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(RunwayML - Video en Creativiteit) Tj
+ET
+
+BT
+/F2 10 Tf
+50 750 Td
+(Website: runwayml.com | Prijs: Freemium | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 730 Td
+(Creatieve mogelijkheden:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• AI video generatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Automatische video editing) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Green screen vervanging) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Object verwijdering uit video) Tj
+ET
+
+BT
+/F2 11 Tf
+60 655 Td
+(• Style transfer voor video) Tj
+ET
+
+BT
+/F1 12 Tf
+50 625 Td
+(Mubert - AI Muziek Generatie) Tj
+ET
+
+BT
+/F2 10 Tf
+50 610 Td
+(Website: mubert.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 590 Td
+(Perfect voor:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 575 Td
+(• Achtergrondmuziek voor video's) Tj
+ET
+
+BT
+/F2 11 Tf
+60 560 Td
+(• Royalty-free muziek) Tj
+ET
+
+BT
+/F2 11 Tf
+60 545 Td
+(• Verschillende genres en stemmingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 530 Td
+(• Aangepaste lengte tracks) Tj
+ET
+
+BT
+/F1 12 Tf
+50 500 Td
+(Soundraw - Custom AI Muziek) Tj
+ET
+
+BT
+/F2 10 Tf
+50 485 Td
+(Website: soundraw.io | Prijs: Betaald | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 465 Td
+(Functies:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 450 Td
+(• Gepersonaliseerde muziekcomposities) Tj
+ET
+
+BT
+/F2 11 Tf
+60 435 Td
+(• Aanpasbare parameters) Tj
+ET
+
+BT
+/F2 11 Tf
+60 420 Td
+(• Commercieel gebruik toegestaan) Tj
+ET
+
+BT
+/F2 11 Tf
+60 405 Td
+(• Verschillende instrumenten) Tj
+ET
+
+BT
+/F1 12 Tf
+50 375 Td
+(Luma Dream Machine - AI Video) Tj
+ET
+
+BT
+/F2 10 Tf
+50 360 Td
+(Website: lumalabs.ai | Prijs: Freemium | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 340 Td
+(Specialiteiten:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 325 Td
+(• Text-to-video generatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 310 Td
+(• Hoge kwaliteit video output) Tj
+ET
+
+BT
+/F2 11 Tf
+60 295 Td
+(• Realistische bewegingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 280 Td
+(• Verschillende video stijlen) Tj
+ET
+
+BT
+/F1 12 Tf
+50 250 Td
+(Artbreeder - Collaborative AI Art) Tj
+ET
+
+BT
+/F2 10 Tf
+50 235 Td
+(Website: artbreeder.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 215 Td
+(Unieke aspecten:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 200 Td
+(• Breeding van afbeeldingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 185 Td
+(• Community-driven creativiteit) Tj
+ET
+
+BT
+/F2 11 Tf
+60 170 Td
+(• Evolutionaire algoritmes) Tj
+ET
+
+BT
+/F2 11 Tf
+60 155 Td
+(• Eenvoudig te gebruiken interface) Tj
+ET
+
+BT
+/F1 12 Tf
+50 125 Td
+(Figma AI - Design Assistance) Tj
+ET
+
+BT
+/F2 10 Tf
+50 110 Td
+(Website: figma.com | Prijs: Freemium | Niveau: Gemiddeld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 90 Td
+(AI Features:) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(7) Tj
+ET
+endstream
+endobj
+
+38 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 39 0 R>>
+endobj
+
+39 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(8. AI-Tools voor Onderwijs) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Brisk Teaching - Docent Extensie) Tj
+ET
+
+BT
+/F2 10 Tf
+50 750 Td
+(Website: briskteaching.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 730 Td
+(Speciaal voor docenten:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Snelle feedback op studentwerk) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Automatische rubric scoring) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Lesplan generatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Google Docs integratie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 655 Td
+(• Differentiatie tools) Tj
+ET
+
+BT
+/F1 12 Tf
+50 625 Td
+(Gradescope - AI Assessment) Tj
+ET
+
+BT
+/F2 10 Tf
+50 610 Td
+(Website: gradescope.com | Prijs: Institutioneel | Niveau: Gevorderd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 590 Td
+(Assessment functies:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 575 Td
+(• AI-ondersteunde nakijken) Tj
+ET
+
+BT
+/F2 11 Tf
+60 560 Td
+(• Automatische vraag groepering) Tj
+ET
+
+BT
+/F2 11 Tf
+60 545 Td
+(• Handschrift herkenning) Tj
+ET
+
+BT
+/F2 11 Tf
+60 530 Td
+(• Plagiaat detectie) Tj
+ET
+
+BT
+/F1 12 Tf
+50 500 Td
+(Turnitin - AI Writing Assessment) Tj
+ET
+
+BT
+/F2 10 Tf
+50 485 Td
+(Website: turnitin.com | Prijs: Institutioneel | Niveau: Gevorderd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 465 Td
+(Nieuwe AI functies:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 450 Td
+(• AI-geschreven content detectie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 435 Td
+(• Originaliteit verificatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 420 Td
+(• Feedback Assistant) Tj
+ET
+
+BT
+/F2 11 Tf
+60 405 Td
+(• Similarity reports) Tj
+ET
+
+BT
+/F1 12 Tf
+50 375 Td
+(Kahoot! AI - Interactieve Quizzes) Tj
+ET
+
+BT
+/F2 10 Tf
+50 360 Td
+(Website: kahoot.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 340 Td
+(AI-mogelijkheden:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 325 Td
+(• Automatische quiz generatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 310 Td
+(• Content-based vragen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 295 Td
+(• Difficulty adjustment) Tj
+ET
+
+BT
+/F2 11 Tf
+60 280 Td
+(• Engagement analytics) Tj
+ET
+
+BT
+/F1 12 Tf
+50 250 Td
+(Eduaide.Ai - Lesson Planning) Tj
+ET
+
+BT
+/F2 10 Tf
+50 235 Td
+(Website: eduaide.ai | Prijs: Betaald | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 215 Td
+(Lesplanning features:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 200 Td
+(• Curriculum-aligned lesson plans) Tj
+ET
+
+BT
+/F2 11 Tf
+60 185 Td
+(• Assessment generatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 170 Td
+(• Resource suggesties) Tj
+ET
+
+BT
+/F2 11 Tf
+60 155 Td
+(• Differentiation strategies) Tj
+ET
+
+BT
+/F1 12 Tf
+50 125 Td
+(Khanmigo - AI Tutor) Tj
+ET
+
+BT
+/F2 10 Tf
+50 110 Td
+(Website: khanacademy.org | Prijs: Betaald | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 90 Td
+(Tutoring functies:) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(8) Tj
+ET
+endstream
+endobj
+
+43 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 44 0 R>>
+endobj
+
+44 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(9. Praktische Tips voor de Klas) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Effectieve Prompts Schrijven) Tj
+ET
+
+BT
+/F2 11 Tf
+50 745 Td
+(De CLEAR methode:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 730 Td
+(• Context: Geef achtergrond informatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Length: Specificeer gewenste lengte) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Examples: Geef voorbeelden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Audience: Definieer doelgroep) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Role: Specificeer de rol van AI) Tj
+ET
+
+BT
+/F1 11 Tf
+50 645 Td
+(Voorbeeldprompt:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 625 Td
+("Je bent een ervaren basisschoolleraar. Maak een lesplan) Tj
+ET
+
+BT
+/F6 9 Tf
+50 610 Td
+(van 45 minuten over breuken voor groep 6. Gebruik concrete) Tj
+ET
+
+BT
+/F6 9 Tf
+50 595 Td
+(voorwerpen zoals pizza's en chocoladerepen. Zorg voor) Tj
+ET
+
+BT
+/F6 9 Tf
+50 580 Td
+(3 verschillende activiteiten met oplopende moeilijkheid.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 550 Td
+(AI-Workflow voor Lesvoorbereiding) Tj
+ET
+
+BT
+/F2 11 Tf
+50 530 Td
+(Stap 1: Brainstorm met AI over lesonderwerp) Tj
+ET
+
+BT
+/F2 11 Tf
+50 515 Td
+(Stap 2: Genereer lesdoelen en structuur) Tj
+ET
+
+BT
+/F2 11 Tf
+50 500 Td
+(Stap 3: Creëer activiteiten en materialen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 485 Td
+(Stap 4: Ontwikkel assessment en evaluatie) Tj
+ET
+
+BT
+/F2 11 Tf
+50 470 Td
+(Stap 5: Review en personaliseer de content) Tj
+ET
+
+BT
+/F1 12 Tf
+50 440 Td
+(Differentiatie met AI) Tj
+ET
+
+BT
+/F2 11 Tf
+50 420 Td
+(Voor zwakkere leerlingen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 405 Td
+(• Vereenvoudig teksten met AI) Tj
+ET
+
+BT
+/F2 11 Tf
+60 390 Td
+(• Genereer extra oefenmateriaal) Tj
+ET
+
+BT
+/F2 11 Tf
+60 375 Td
+(• Maak visuele ondersteuning) Tj
+ET
+
+BT
+/F2 11 Tf
+50 355 Td
+(Voor sterkere leerlingen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 340 Td
+(• Creëer uitdagende verdiepingsopdrachten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 325 Td
+(• Ontwikkel onderzoeksprojecten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 310 Td
+(• Genereer creatieve toepassingen) Tj
+ET
+
+BT
+/F1 12 Tf
+50 280 Td
+(Feedback Geven met AI) Tj
+ET
+
+BT
+/F2 11 Tf
+50 260 Td
+(Effectieve feedback prompts:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 240 Td
+("Geef constructieve feedback op dit opstel van een) Tj
+ET
+
+BT
+/F6 9 Tf
+50 225 Td
+(14-jarige leerling. Focus op structuur, argumentatie) Tj
+ET
+
+BT
+/F6 9 Tf
+50 210 Td
+(en taalgebruik. Geef 2 complimenten en 3 concrete) Tj
+ET
+
+BT
+/F6 9 Tf
+50 195 Td
+(verbeterpunten met voorbeelden.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 165 Td
+(Time-saving AI Hacks) Tj
+ET
+
+BT
+/F2 11 Tf
+50 145 Td
+(• Batch vergelijkbare taken) Tj
+ET
+
+BT
+/F2 11 Tf
+50 130 Td
+(• Gebruik templates en herbruikbare prompts) Tj
+ET
+
+BT
+/F2 11 Tf
+50 115 Td
+(• Creëer een persoonlijke prompt library) Tj
+ET
+
+BT
+/F2 11 Tf
+50 100 Td
+(• Combineer tools voor optimale workflow) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(9) Tj
+ET
+endstream
+endobj
+
+48 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 49 0 R>>
+endobj
+
+49 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(10. Ethische Richtlijnen) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Privacy en Gegevensbescherming) Tj
+ET
+
+BT
+/F2 11 Tf
+50 745 Td
+(Gouden regels:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 730 Td
+(• Gebruik nooit echte namen van leerlingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Deel geen gevoelige informatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Controleer privacy policies van tools) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Gebruik fictieve voorbeelden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Vraag toestemming bij twijfel) Tj
+ET
+
+BT
+/F1 12 Tf
+50 640 Td
+(Transparantie naar Leerlingen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 620 Td
+(Wees open over AI-gebruik:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 605 Td
+(• Leg uit wanneer je AI hebt gebruikt) Tj
+ET
+
+BT
+/F2 11 Tf
+60 590 Td
+(• Toon hoe AI werkt) Tj
+ET
+
+BT
+/F2 11 Tf
+60 575 Td
+(• Bespreek beperkingen van AI) Tj
+ET
+
+BT
+/F2 11 Tf
+60 560 Td
+(• Stimuleer kritisch denken) Tj
+ET
+
+BT
+/F1 12 Tf
+50 530 Td
+(Bias en Eerlijkheid) Tj
+ET
+
+BT
+/F2 11 Tf
+50 510 Td
+(Let op mogelijke vooroordelen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 495 Td
+(• Culturele bias in AI-output) Tj
+ET
+
+BT
+/F2 11 Tf
+60 480 Td
+(• Geslachts- en etniciteitsvooroordelen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 465 Td
+(• Socio-economische bias) Tj
+ET
+
+BT
+/F2 11 Tf
+60 450 Td
+(• Check diverse perspectieven) Tj
+ET
+
+BT
+/F1 12 Tf
+50 420 Td
+(Academische Integriteit) Tj
+ET
+
+BT
+/F2 11 Tf
+50 400 Td
+(Richtlijnen voor leerlingen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 385 Td
+(• AI als hulpmiddel, niet als vervanging) Tj
+ET
+
+BT
+/F2 11 Tf
+60 370 Td
+(• Vermeld altijd AI-gebruik) Tj
+ET
+
+BT
+/F2 11 Tf
+60 355 Td
+(• Ontwikkel eigen denkvermogen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 340 Td
+(• Controleer en verifieer AI-output) Tj
+ET
+
+BT
+/F1 12 Tf
+50 310 Td
+(Milieu-impact) Tj
+ET
+
+BT
+/F2 11 Tf
+50 290 Td
+(Duurzaam AI-gebruik:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 275 Td
+(• Gebruik AI bewust en doelgericht) Tj
+ET
+
+BT
+/F2 11 Tf
+60 260 Td
+(• Kies efficiënte tools) Tj
+ET
+
+BT
+/F2 11 Tf
+60 245 Td
+(• Overweeg lokale alternatieven) Tj
+ET
+
+BT
+/F2 11 Tf
+60 230 Td
+(• Educeer over digitale voetafdruk) Tj
+ET
+
+BT
+/F1 12 Tf
+50 200 Td
+(Checklist Ethisch AI-Gebruik) Tj
+ET
+
+BT
+/F2 11 Tf
+50 180 Td
+(Voor elke AI-toepassing vraag jezelf af:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 165 Td
+(• Is dit in het belang van mijn leerlingen?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 150 Td
+(• Respecteert dit hun privacy?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 135 Td
+(• Ben ik transparant over het gebruik?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 120 Td
+(• Stimuleert dit leren en groei?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 105 Td
+(• Heb ik de output gecontroleerd?) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(10) Tj
+ET
+endstream
+endobj
+
+53 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 54 0 R>>
+endobj
+
+54 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(11. Implementatieplan) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Week 1-2: Oriëntatie en Voorbereiding) Tj
+ET
+
+BT
+/F2 11 Tf
+50 745 Td
+(Doelen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 730 Td
+(• Maak een account bij 2-3 AI-tools) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Experimenteer 30 minuten per dag) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Kies je eerste use case) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Lees privacy policies) Tj
+ET
+
+BT
+/F1 11 Tf
+50 660 Td
+(Aanbevolen eerste tools:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 645 Td
+(• ChatGPT voor tekstgeneratie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 630 Td
+(• Canva voor visuele content) Tj
+ET
+
+BT
+/F2 11 Tf
+60 615 Td
+(• Perplexity voor onderzoek) Tj
+ET
+
+BT
+/F1 12 Tf
+50 585 Td
+(Week 3-4: Eerste Implementatie) Tj
+ET
+
+BT
+/F2 11 Tf
+50 565 Td
+(Focus op één toepassing:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 550 Td
+(• Kies een specifieke taak (bijv. quiz maken)) Tj
+ET
+
+BT
+/F2 11 Tf
+60 535 Td
+(• Ontwikkel een routine) Tj
+ET
+
+BT
+/F2 11 Tf
+60 520 Td
+(• Documenteer wat werkt) Tj
+ET
+
+BT
+/F2 11 Tf
+60 505 Td
+(• Vraag feedback van collega's) Tj
+ET
+
+BT
+/F1 12 Tf
+50 475 Td
+(Week 5-8: Uitbreiding en Verfijning) Tj
+ET
+
+BT
+/F2 11 Tf
+50 455 Td
+(Volgende stappen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 440 Td
+(• Voeg een tweede tool toe) Tj
+ET
+
+BT
+/F2 11 Tf
+60 425 Td
+(• Combineer verschillende tools) Tj
+ET
+
+BT
+/F2 11 Tf
+60 410 Td
+(• Deel ervaringen met team) Tj
+ET
+
+BT
+/F2 11 Tf
+60 395 Td
+(• Train collega's) Tj
+ET
+
+BT
+/F1 12 Tf
+50 365 Td
+(Maand 3-6: Integratie en Expertise) Tj
+ET
+
+BT
+/F2 11 Tf
+50 345 Td
+(Doelen voor langere termijn:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 330 Td
+(• Integreer AI in dagelijkse workflow) Tj
+ET
+
+BT
+/F2 11 Tf
+60 315 Td
+(• Ontwikkel eigen prompts en templates) Tj
+ET
+
+BT
+/F2 11 Tf
+60 300 Td
+(• Leer leerlingen over AI) Tj
+ET
+
+BT
+/F2 11 Tf
+60 285 Td
+(• Word AI-expert voor je team) Tj
+ET
+
+BT
+/F1 12 Tf
+50 255 Td
+(Succes Metrics) Tj
+ET
+
+BT
+/F2 11 Tf
+50 235 Td
+(Meet je voortgang aan de hand van:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 220 Td
+(• Tijd bespaard per week) Tj
+ET
+
+BT
+/F2 11 Tf
+60 205 Td
+(• Aantal AI-tools dat je gebruikt) Tj
+ET
+
+BT
+/F2 11 Tf
+60 190 Td
+(• Kwaliteit van gegenereerde content) Tj
+ET
+
+BT
+/F2 11 Tf
+60 175 Td
+(• Feedback van leerlingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 160 Td
+(• Eigen comfort level met AI) Tj
+ET
+
+BT
+/F1 12 Tf
+50 130 Td
+(Potentiële Obstakels en Oplossingen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 110 Td
+(Obstakel: Gebrek aan tijd) Tj
+ET
+
+BT
+/F2 11 Tf
+60 95 Td
+(Oplossing: Begin met 15 minuten per dag) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(11) Tj
+ET
+endstream
+endobj
+
+58 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 59 0 R>>
+endobj
+
+59 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(12. Troubleshooting & FAQ) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Veelgestelde Vragen) Tj
+ET
+
+BT
+/F1 11 Tf
+50 745 Td
+(Q: Mag ik AI gebruiken voor het nakijken van toetsen?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 730 Td
+(A: Ja, maar controleer altijd de output. Gebruik geen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 715 Td
+(persoonlijke gegevens van leerlingen.) Tj
+ET
+
+BT
+/F1 11 Tf
+50 690 Td
+(Q: Hoe voorkom ik dat leerlingen AI misbruiken?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 675 Td
+(A: Wees transparant over gebruik, stel duidelijke regels op) Tj
+ET
+
+BT
+/F2 11 Tf
+50 660 Td
+(en leer ze AI als hulpmiddel te gebruiken.) Tj
+ET
+
+BT
+/F1 11 Tf
+50 635 Td
+(Q: Welke AI-tool moet ik als eerste proberen?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 620 Td
+(A: Begin met ChatGPT voor tekstgeneratie - het is) Tj
+ET
+
+BT
+/F2 11 Tf
+50 605 Td
+(veelzijdig en gebruiksvriendelijk.) Tj
+ET
+
+BT
+/F1 11 Tf
+50 580 Td
+(Q: Hoe weet ik of AI-content betrouwbaar is?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 565 Td
+(A: Controleer altijd feiten, gebruik meerdere bronnen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 550 Td
+(en vertrouw op je expertise.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 520 Td
+(Problemen Oplossen) Tj
+ET
+
+BT
+/F1 11 Tf
+50 500 Td
+(Probleem: AI geeft irrelevante antwoorden) Tj
+ET
+
+BT
+/F2 11 Tf
+50 485 Td
+(Oplossing:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 470 Td
+(• Maak je prompt specifieker) Tj
+ET
+
+BT
+/F2 11 Tf
+60 455 Td
+(• Geef meer context) Tj
+ET
+
+BT
+/F2 11 Tf
+60 440 Td
+(• Gebruik voorbeelden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 425 Td
+(• Probeer verschillende bewoordingen) Tj
+ET
+
+BT
+/F1 11 Tf
+50 395 Td
+(Probleem: AI-content is te generiek) Tj
+ET
+
+BT
+/F2 11 Tf
+50 380 Td
+(Oplossing:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 365 Td
+(• Specificeer doelgroep en niveau) Tj
+ET
+
+BT
+/F2 11 Tf
+60 350 Td
+(• Voeg persoonlijke details toe) Tj
+ET
+
+BT
+/F2 11 Tf
+60 335 Td
+(• Vraag om meerdere variaties) Tj
+ET
+
+BT
+/F2 11 Tf
+60 320 Td
+(• Bewerk de output handmatig) Tj
+ET
+
+BT
+/F1 12 Tf
+50 290 Td
+(Best Practices Samenvatting) Tj
+ET
+
+BT
+/F2 11 Tf
+50 270 Td
+(1. Begin klein en bouw langzaam op) Tj
+ET
+
+BT
+/F2 11 Tf
+50 255 Td
+(2. Wees altijd kritisch en controleer output) Tj
+ET
+
+BT
+/F2 11 Tf
+50 240 Td
+(3. Respecteer privacy en ethische richtlijnen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 225 Td
+(4. Blijf leren en experimenteren) Tj
+ET
+
+BT
+/F2 11 Tf
+50 210 Td
+(5. Deel kennis met collega's) Tj
+ET
+
+BT
+/F1 12 Tf
+50 180 Td
+(Hulpbronnen en Community) Tj
+ET
+
+BT
+/F2 11 Tf
+50 160 Td
+(Online communities:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 145 Td
+(• AI in Onderwijs Facebook groep) Tj
+ET
+
+BT
+/F2 11 Tf
+60 130 Td
+(• LinkedIn groepen over EdTech) Tj
+ET
+
+BT
+/F2 11 Tf
+60 115 Td
+(• Twitter hashtag #AIinEducation) Tj
+ET
+
+BT
+/F2 11 Tf
+60 100 Td
+(• YouTube kanalen over AI tools) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(12) Tj
+ET
+endstream
+endobj
+
+63 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 64 0 R>>
+endobj
+
+64 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Bijlage A: Prompt Templates) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Lesplan Generator) Tj
+ET
+
+BT
+/F6 9 Tf
+50 745 Td
+("Je bent een ervaren [VAKGEBIED] docent voor [NIVEAU].) Tj
+ET
+
+BT
+/F6 9 Tf
+50 730 Td
+(Maak een lesplan van [DUUR] minuten over [ONDERWERP].) Tj
+ET
+
+BT
+/F6 9 Tf
+50 715 Td
+(Zorg voor [AANTAL] verschillende activiteiten met) Tj
+ET
+
+BT
+/F6 9 Tf
+50 700 Td
+([SPECIFICATIE]. Houd rekening met [BIJZONDERHEDEN].") Tj
+ET
+
+BT
+/F1 12 Tf
+50 670 Td
+(Quiz Generator) Tj
+ET
+
+BT
+/F6 9 Tf
+50 650 Td
+("Genereer [AANTAL] [TYPE] vragen over [ONDERWERP]) Tj
+ET
+
+BT
+/F6 9 Tf
+50 635 Td
+(voor [NIVEAU] leerlingen. Zorg voor [SPECIFICATIES]) Tj
+ET
+
+BT
+/F6 9 Tf
+50 620 Td
+(en varieer de moeilijkheidsgraad.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 590 Td
+(Feedback Generator) Tj
+ET
+
+BT
+/F6 9 Tf
+50 570 Td
+("Geef constructieve feedback op dit [TYPE WERK] van) Tj
+ET
+
+BT
+/F6 9 Tf
+50 555 Td
+(een [LEEFTIJD] jarige leerling. Focus op [ASPECTEN].) Tj
+ET
+
+BT
+/F6 9 Tf
+50 540 Td
+(Geef [AANTAL] complimenten en [AANTAL] verbeterpunten) Tj
+ET
+
+BT
+/F6 9 Tf
+50 525 Td
+(met concrete voorbeelden.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 495 Td
+(Differentiatie Helper) Tj
+ET
+
+BT
+/F6 9 Tf
+50 475 Td
+("Pas deze tekst aan voor [DOELGROEP] leerlingen.) Tj
+ET
+
+BT
+/F6 9 Tf
+50 460 Td
+(Gebruik [SPECIFICATIES] en zorg dat de [KERNBOODSCHAP]) Tj
+ET
+
+BT
+/F6 9 Tf
+50 445 Td
+(behouden blijft.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 415 Td
+(Creatieve Opdracht Generator) Tj
+ET
+
+BT
+/F6 9 Tf
+50 395 Td
+("Bedenk [AANTAL] creatieve opdrachten over [ONDERWERP]) Tj
+ET
+
+BT
+/F6 9 Tf
+50 380 Td
+(voor [NIVEAU]. De opdrachten moeten [DOELEN] bereiken) Tj
+ET
+
+BT
+/F6 9 Tf
+50 365 Td
+(en geschikt zijn voor [CONTEXT].") Tj
+ET
+
+BT
+/F1 12 Tf
+50 335 Td
+(Presentatie Outline) Tj
+ET
+
+BT
+/F6 9 Tf
+50 315 Td
+("Maak een outline voor een presentatie over [ONDERWERP]) Tj
+ET
+
+BT
+/F6 9 Tf
+50 300 Td
+(voor [DOELGROEP]. De presentatie duurt [TIJD] en moet) Tj
+ET
+
+BT
+/F6 9 Tf
+50 285 Td
+([DOELEN] bereiken. Zorg voor [SPECIFICATIES].") Tj
+ET
+
+BT
+/F1 12 Tf
+50 255 Td
+(Email Template Generator) Tj
+ET
+
+BT
+/F6 9 Tf
+50 235 Td
+("Schrijf een professionele email naar [ONTVANGER]) Tj
+ET
+
+BT
+/F6 9 Tf
+50 220 Td
+(over [ONDERWERP]. De toon moet [TOON] zijn en) Tj
+ET
+
+BT
+/F6 9 Tf
+50 205 Td
+(de email moet [DOEL] bereiken.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 175 Td
+(Rubric Creator) Tj
+ET
+
+BT
+/F6 9 Tf
+50 155 Td
+("Maak een beoordelingsrubric voor [OPDRACHT TYPE]) Tj
+ET
+
+BT
+/F6 9 Tf
+50 140 Td
+(met [AANTAL] criteria. Gebruik [AANTAL] niveaus) Tj
+ET
+
+BT
+/F6 9 Tf
+50 125 Td
+(van [LAAGSTE] tot [HOOGSTE] en geef duidelijke) Tj
+ET
+
+BT
+/F6 9 Tf
+50 110 Td
+(beschrijvingen per niveau.") Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(13) Tj
+ET
+endstream
+endobj
+
+68 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 69 0 R>>
+endobj
+
+69 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Bijlage B: Tool Vergelijkingstabel) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Tekstverwerking Tools) Tj
+ET
+
+BT
+/F2 10 Tf
+50 745 Td
+(Tool        | Prijs     | Niveau    | Beste voor) Tj
+ET
+
+BT
+/F2 9 Tf
+50 730 Td
+(ChatGPT     | Freemium  | Beginner  | Algemene tekstgeneratie) Tj
+ET
+
+BT
+/F2 9 Tf
+50 715 Td
+(Quillbot    | Freemium  | Beginner  | Parafraseren en verbeteren) Tj
+ET
+
+BT
+/F2 9 Tf
+50 700 Td
+(Grammarly   | Freemium  | Beginner  | Grammatica en spelling) Tj
+ET
+
+BT
+/F2 9 Tf
+50 685 Td
+(DeepL Write | Freemium  | Beginner  | Professionele teksten) Tj
+ET
+
+BT
+/F2 9 Tf
+50 670 Td
+(Notion AI   | Freemium  | Gemiddeld | Georganiseerde content) Tj
+ET
+
+BT
+/F1 12 Tf
+50 640 Td
+(Presentatie Tools) Tj
+ET
+
+BT
+/F2 10 Tf
+50 620 Td
+(Tool         | Prijs     | Niveau    | Beste voor) Tj
+ET
+
+BT
+/F2 9 Tf
+50 605 Td
+(Gamma        | Freemium  | Beginner  | Snelle presentaties) Tj
+ET
+
+BT
+/F2 9 Tf
+50 590 Td
+(Beautiful.AI | Betaald   | Gemiddeld | Professionele designs) Tj
+ET
+
+BT
+/F2 9 Tf
+50 575 Td
+(Tome         | Freemium  | Gemiddeld | Storytelling) Tj
+ET
+
+BT
+/F2 9 Tf
+50 560 Td
+(Slidebean    | Freemium  | Gevorderd | Business presentaties) Tj
+ET
+
+BT
+/F2 9 Tf
+50 545 Td
+(Canva AI     | Freemium  | Beginner  | Visuele creativiteit) Tj
+ET
+
+BT
+/F1 12 Tf
+50 515 Td
+(Beeldbewerking Tools) Tj
+ET
+
+BT
+/F2 10 Tf
+50 495 Td
+(Tool           | Prijs       | Niveau    | Beste voor) Tj
+ET
+
+BT
+/F2 9 Tf
+50 480 Td
+(DALL-E 3       | Betaald     | Beginner  | Realistische afbeeldingen) Tj
+ET
+
+BT
+/F2 9 Tf
+50 465 Td
+(Midjourney     | Betaald     | Gemiddeld | Artistieke beelden) Tj
+ET
+
+BT
+/F2 9 Tf
+50 450 Td
+(Stable Diffusion| Gratis/Beta| Gevorderd | Open source flexibiliteit) Tj
+ET
+
+BT
+/F2 9 Tf
+50 435 Td
+(Adobe Firefly  | Freemium   | Gemiddeld | Commercieel veilig) Tj
+ET
+
+BT
+/F2 9 Tf
+50 420 Td
+(Remove.bg      | Freemium   | Beginner  | Achtergrond verwijderen) Tj
+ET
+
+BT
+/F1 12 Tf
+50 390 Td
+(Onderzoek Tools) Tj
+ET
+
+BT
+/F2 10 Tf
+50 370 Td
+(Tool              | Prijs     | Niveau    | Beste voor) Tj
+ET
+
+BT
+/F2 9 Tf
+50 355 Td
+(Perplexity AI     | Freemium  | Beginner  | Onderzoek met bronnen) Tj
+ET
+
+BT
+/F2 9 Tf
+50 340 Td
+(Consensus         | Freemium  | Gevorderd | Wetenschappelijke literatuur) Tj
+ET
+
+BT
+/F2 9 Tf
+50 325 Td
+(Elicit            | Freemium  | Gevorderd | Research assistant) Tj
+ET
+
+BT
+/F2 9 Tf
+50 310 Td
+(You.com           | Freemium  | Beginner  | AI zoekmachine) Tj
+ET
+
+BT
+/F2 9 Tf
+50 295 Td
+(ResearchRabbit    | Gratis    | Gemiddeld | Literatuur ontdekking) Tj
+ET
+
+BT
+/F2 9 Tf
+50 280 Td
+(Semantic Scholar  | Gratis    | Gemiddeld | Academische papers) Tj
+ET
+
+BT
+/F1 12 Tf
+50 250 Td
+(Creativiteit Tools) Tj
+ET
+
+BT
+/F2 10 Tf
+50 230 Td
+(Tool          | Prijs     | Niveau    | Beste voor) Tj
+ET
+
+BT
+/F2 9 Tf
+50 215 Td
+(RunwayML      | Freemium  | Gemiddeld | Video creatie) Tj
+ET
+
+BT
+/F2 9 Tf
+50 200 Td
+(Mubert        | Freemium  | Beginner  | Muziek generatie) Tj
+ET
+
+BT
+/F2 9 Tf
+50 185 Td
+(Soundraw      | Betaald   | Beginner  | Custom muziek) Tj
+ET
+
+BT
+/F2 9 Tf
+50 170 Td
+(Luma Dream    | Freemium  | Gemiddeld | AI video) Tj
+ET
+
+BT
+/F2 9 Tf
+50 155 Td
+(Artbreeder    | Freemium  | Beginner  | Collaborative art) Tj
+ET
+
+BT
+/F2 9 Tf
+50 140 Td
+(Figma AI      | Freemium  | Gemiddeld | Design assistance) Tj
+ET
+
+BT
+/F1 12 Tf
+50 110 Td
+(Onderwijs Specifieke Tools) Tj
+ET
+
+BT
+/F2 10 Tf
+50 90 Td
+(Tool           | Prijs         | Niveau    | Beste voor) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(14) Tj
+ET
+endstream
+endobj
+
+73 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 74 0 R>>
+endobj
+
+74 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Bijlage C: Implementatie Checklist) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Week 1 Checklist) Tj
+ET
+
+BT
+/F2 11 Tf
+50 745 Td
+(□ Account aangemaakt bij ChatGPT) Tj
+ET
+
+BT
+/F2 11 Tf
+50 730 Td
+(□ Privacy policy gelezen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 715 Td
+(□ Eerste prompt uitgeprobeerd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 700 Td
+(□ 30 minuten geëxperimenteerd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 685 Td
+(□ Eerste use case gekozen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 670 Td
+(□ Notities gemaakt van bevindingen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 655 Td
+(□ Collega geïnformeerd over experimenten) Tj
+ET
+
+BT
+/F1 12 Tf
+50 625 Td
+(Week 2 Checklist) Tj
+ET
+
+BT
+/F2 11 Tf
+50 605 Td
+(□ Tweede AI-tool uitgeprobeerd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 590 Td
+(□ Prompt templates aangepast) Tj
+ET
+
+BT
+/F2 11 Tf
+50 575 Td
+(□ Eerste lesmateriaal gegenereerd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 560 Td
+(□ Kwaliteit gecontroleerd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 545 Td
+(□ Feedback verzameld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 530 Td
+(□ Verbeterpunten genoteerd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 515 Td
+(□ Planning gemaakt voor week 3) Tj
+ET
+
+BT
+/F1 12 Tf
+50 485 Td
+(Maand 1 Checklist) Tj
+ET
+
+BT
+/F2 11 Tf
+50 465 Td
+(□ Routine ontwikkeld voor AI-gebruik) Tj
+ET
+
+BT
+/F2 11 Tf
+50 450 Td
+(□ 3-5 AI-tools regelmatig gebruikt) Tj
+ET
+
+BT
+/F2 11 Tf
+50 435 Td
+(□ Eigen prompt library opgebouwd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 420 Td
+(□ Eerste AI-les gegeven aan leerlingen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 405 Td
+(□ Ethische richtlijnen opgesteld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 390 Td
+(□ Collega's getraind) Tj
+ET
+
+BT
+/F2 11 Tf
+50 375 Td
+(□ Voortgang gemeten) Tj
+ET
+
+BT
+/F1 12 Tf
+50 345 Td
+(Maand 3 Checklist) Tj
+ET
+
+BT
+/F2 11 Tf
+50 325 Td
+(□ AI volledig geïntegreerd in workflow) Tj
+ET
+
+BT
+/F2 11 Tf
+50 310 Td
+(□ Geavanceerde technieken geleerd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 295 Td
+(□ Leerlingen trainen in AI-gebruik) Tj
+ET
+
+BT
+/F2 11 Tf
+50 280 Td
+(□ Presentatie gegeven aan team) Tj
+ET
+
+BT
+/F2 11 Tf
+50 265 Td
+(□ Best practices gedocumenteerd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 250 Td
+(□ Nieuwe tools geëvalueerd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 235 Td
+(□ Netwerk opgebouwd met AI-experts) Tj
+ET
+
+BT
+/F1 12 Tf
+50 205 Td
+(Maand 6 Checklist) Tj
+ET
+
+BT
+/F2 11 Tf
+50 185 Td
+(□ AI-expert geworden binnen organisatie) Tj
+ET
+
+BT
+/F2 11 Tf
+50 170 Td
+(□ Trainingen gegeven aan anderen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 155 Td
+(□ Beleid meegeschreven voor AI-gebruik) Tj
+ET
+
+BT
+/F2 11 Tf
+50 140 Td
+(□ Innovatieve projecten geleid) Tj
+ET
+
+BT
+/F2 11 Tf
+50 125 Td
+(□ Externe presentaties gegeven) Tj
+ET
+
+BT
+/F2 11 Tf
+50 110 Td
+(□ Continuous learning plan opgesteld) Tj
+ET
+
+BT
+/F2 11 Tf
+50 95 Td
+(□ Succesverhalen gedocumenteerd) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(15) Tj
+ET
+endstream
+endobj
+
+78 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 79 0 R>>
+endobj
+
+79 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Bijlage D: Veiligheid en Privacy) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Privacy Checklist) Tj
+ET
+
+BT
+/F2 11 Tf
+50 745 Td
+(Voor elke AI-tool controleer:) Tj
+ET
+
+BT
+/F2 11 Tf
+50 730 Td
+(□ Waar worden mijn data opgeslagen?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 715 Td
+(□ Wie heeft toegang tot mijn input?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 700 Td
+(□ Wordt mijn data gebruikt voor training?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 685 Td
+(□ Kan ik mijn data laten verwijderen?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 670 Td
+(□ Is er encryptie van data?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 655 Td
+(□ Voldoet de tool aan GDPR?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 640 Td
+(□ Is er een Data Processing Agreement?) Tj
+ET
+
+BT
+/F1 12 Tf
+50 610 Td
+(Veilige Data Praktijken) Tj
+ET
+
+BT
+/F2 11 Tf
+50 590 Td
+(DO's:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 575 Td
+(• Gebruik fictieve namen en voorbeelden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 560 Td
+(• Anonimiseer alle persoonlijke informatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 545 Td
+(• Gebruik schoolgoedgekeurde tools) Tj
+ET
+
+BT
+/F2 11 Tf
+60 530 Td
+(• Lees privacy policies) Tj
+ET
+
+BT
+/F2 11 Tf
+60 515 Td
+(• Gebruik sterke wachtwoorden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 500 Td
+(• Log uit na gebruik) Tj
+ET
+
+BT
+/F2 11 Tf
+50 470 Td
+(DON'Ts:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 455 Td
+(• Deel nooit echte namen van leerlingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 440 Td
+(• Upload geen gevoelige documenten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 425 Td
+(• Deel geen persoonlijke gegevens) Tj
+ET
+
+BT
+/F2 11 Tf
+60 410 Td
+(• Gebruik geen schoolemail in prompts) Tj
+ET
+
+BT
+/F2 11 Tf
+60 395 Td
+(• Bewaar geen gevoelige data in AI-tools) Tj
+ET
+
+BT
+/F1 12 Tf
+50 365 Td
+(Incident Response Plan) Tj
+ET
+
+BT
+/F2 11 Tf
+50 345 Td
+(Als er een privacy incident plaatsvindt:) Tj
+ET
+
+BT
+/F2 11 Tf
+50 330 Td
+(1. Stop onmiddellijk met gebruik van de tool) Tj
+ET
+
+BT
+/F2 11 Tf
+50 315 Td
+(2. Documenteer wat er is gebeurd) Tj
+ET
+
+BT
+/F2 11 Tf
+50 300 Td
+(3. Informeer je leidinggevende) Tj
+ET
+
+BT
+/F2 11 Tf
+50 285 Td
+(4. Neem contact op met de tool provider) Tj
+ET
+
+BT
+/F2 11 Tf
+50 270 Td
+(5. Evalueer en verbeter procedures) Tj
+ET
+
+BT
+/F1 12 Tf
+50 240 Td
+(Toestemming en Communicatie) Tj
+ET
+
+BT
+/F2 11 Tf
+50 220 Td
+(Template voor ouderbrief over AI-gebruik:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 200 Td
+("Beste ouders, in onze lessen gebruiken we soms) Tj
+ET
+
+BT
+/F6 9 Tf
+50 185 Td
+(AI-tools om het leren te ondersteunen. We zorgen) Tj
+ET
+
+BT
+/F6 9 Tf
+50 170 Td
+(ervoor dat geen persoonlijke gegevens van uw kind) Tj
+ET
+
+BT
+/F6 9 Tf
+50 155 Td
+(worden gedeeld. Voor vragen kunt u contact opnemen.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 125 Td
+(Regelmatige Evaluatie) Tj
+ET
+
+BT
+/F2 11 Tf
+50 105 Td
+(Controleer maandelijks:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 90 Td
+(• Welke tools gebruik je nog steeds?) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(16) Tj
+ET
+endstream
+endobj
+
+83 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 84 0 R>>
+endobj
+
+84 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Bijlage E: Geavanceerde Technieken) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Prompt Engineering Masterclass) Tj
+ET
+
+BT
+/F2 11 Tf
+50 745 Td
+(Chain of Thought Prompting:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 725 Td
+("Los deze wiskundesom stap voor stap op en leg) Tj
+ET
+
+BT
+/F6 9 Tf
+50 710 Td
+(elke stap uit: 25% van 80 + 15% van 120 = ?") Tj
+ET
+
+BT
+/F2 11 Tf
+50 685 Td
+(Few-Shot Learning:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 665 Td
+("Hier zijn voorbeelden van goede feedback:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 650 Td
+(Voorbeeld 1: [voorbeeldtekst]) Tj
+ET
+
+BT
+/F6 9 Tf
+50 635 Td
+(Voorbeeld 2: [voorbeeldtekst]) Tj
+ET
+
+BT
+/F6 9 Tf
+50 620 Td
+(Nu geef feedback op: [studentwerk]") Tj
+ET
+
+BT
+/F2 11 Tf
+50 595 Td
+(Role Playing:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 575 Td
+("Je bent een enthousiaste geschiedenisleraar die) Tj
+ET
+
+BT
+/F6 9 Tf
+50 560 Td
+(complexe onderwerpen simpel kan uitleggen aan) Tj
+ET
+
+BT
+/F6 9 Tf
+50 545 Td
+(12-jarigen. Leg de Industriële Revolutie uit.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 515 Td
+(Advanced Workflow Automation) Tj
+ET
+
+BT
+/F2 11 Tf
+50 495 Td
+(Multi-tool Workflows:) Tj
+ET
+
+BT
+/F2 11 Tf
+50 480 Td
+(1. ChatGPT: Genereer lesinhoud) Tj
+ET
+
+BT
+/F2 11 Tf
+50 465 Td
+(2. Gamma: Maak presentatie) Tj
+ET
+
+BT
+/F2 11 Tf
+50 450 Td
+(3. Canva: Voeg visuele elementen toe) Tj
+ET
+
+BT
+/F2 11 Tf
+50 435 Td
+(4. Kahoot: Creëer interactieve quiz) Tj
+ET
+
+BT
+/F1 12 Tf
+50 405 Td
+(Custom GPTs en API Integration) Tj
+ET
+
+BT
+/F2 11 Tf
+50 385 Td
+(Voor gevorderde gebruikers:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 370 Td
+(• Maak custom GPTs voor specifieke vakken) Tj
+ET
+
+BT
+/F2 11 Tf
+60 355 Td
+(• Integreer AI in bestaande systemen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 340 Td
+(• Automatiseer repetitieve taken) Tj
+ET
+
+BT
+/F2 11 Tf
+60 325 Td
+(• Gebruik API's voor bulk operaties) Tj
+ET
+
+BT
+/F1 12 Tf
+50 295 Td
+(Data Analysis met AI) Tj
+ET
+
+BT
+/F2 11 Tf
+50 275 Td
+(Gebruik AI voor:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 260 Td
+(• Analyse van leerlingprestaties) Tj
+ET
+
+BT
+/F2 11 Tf
+60 245 Td
+(• Patroonherkenning in gedrag) Tj
+ET
+
+BT
+/F2 11 Tf
+60 230 Td
+(• Voorspelling van leerproblemen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 215 Td
+(• Optimalisatie van lesmateriaal) Tj
+ET
+
+BT
+/F1 12 Tf
+50 185 Td
+(Collaborative AI Projects) Tj
+ET
+
+BT
+/F2 11 Tf
+50 165 Td
+(Leerling-AI samenwerkingsprojecten:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 150 Td
+(• AI-geassisteerde onderzoeksprojecten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 135 Td
+(• Creatieve verhalen met AI) Tj
+ET
+
+BT
+/F2 11 Tf
+60 120 Td
+(• AI-gegenereerde kunst en muziek) Tj
+ET
+
+BT
+/F2 11 Tf
+60 105 Td
+(• Programmeerprojecten met AI) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(17) Tj
+ET
+endstream
+endobj
+
+88 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 89 0 R>>
+endobj
+
+89 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Bijlage F: Toekomst van AI in Onderwijs) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Emerging Technologies) Tj
+ET
+
+BT
+/F2 11 Tf
+50 745 Td
+(Nieuwe ontwikkelingen om in de gaten te houden:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 730 Td
+(• Multimodale AI (tekst + beeld + geluid)) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• AI-powered Virtual Reality) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Adaptive Learning Platforms) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• AI Teaching Assistants) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Neuromorphic Computing) Tj
+ET
+
+BT
+/F2 11 Tf
+60 655 Td
+(• Quantum Machine Learning) Tj
+ET
+
+BT
+/F1 12 Tf
+50 625 Td
+(Predictions voor 2025-2030) Tj
+ET
+
+BT
+/F2 11 Tf
+50 605 Td
+(2025:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 590 Td
+(• AI wordt standaard in alle scholen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 575 Td
+(• Gepersonaliseerde leertrajecten voor elke leerling) Tj
+ET
+
+BT
+/F2 11 Tf
+60 560 Td
+(• Real-time vertaling in alle klaslokalen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 535 Td
+(2027:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 520 Td
+(• AI-tutoren beschikbaar 24/7) Tj
+ET
+
+BT
+/F2 11 Tf
+60 505 Td
+(• Automatische curriculum aanpassingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 490 Td
+(• Holografische gastdocenten) Tj
+ET
+
+BT
+/F2 11 Tf
+50 465 Td
+(2030:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 450 Td
+(• Brain-computer interfaces in onderwijs) Tj
+ET
+
+BT
+/F2 11 Tf
+60 435 Td
+(• Volledig gepersonaliseerde leeromgevingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 420 Td
+(• AI-generated virtual worlds voor leren) Tj
+ET
+
+BT
+/F1 12 Tf
+50 390 Td
+(Preparing for Change) Tj
+ET
+
+BT
+/F2 11 Tf
+50 370 Td
+(Hoe bereid je je voor:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 355 Td
+(• Blijf leren en experimenteren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 340 Td
+(• Bouw een netwerk van AI-experts) Tj
+ET
+
+BT
+/F2 11 Tf
+60 325 Td
+(• Focus op uniek menselijke vaardigheden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 310 Td
+(• Ontwikkel kritisch denken over AI) Tj
+ET
+
+BT
+/F2 11 Tf
+60 295 Td
+(• Blijf ethische principes hanteren) Tj
+ET
+
+BT
+/F1 12 Tf
+50 265 Td
+(Skills for the Future) Tj
+ET
+
+BT
+/F2 11 Tf
+50 245 Td
+(Vaardigheden die belangrijk blijven:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 230 Td
+(• Creativiteit en innovatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 215 Td
+(• Emotionele intelligentie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 200 Td
+(• Kritisch denken en probleemoplossing) Tj
+ET
+
+BT
+/F2 11 Tf
+60 185 Td
+(• Communicatie en samenwerking) Tj
+ET
+
+BT
+/F2 11 Tf
+60 170 Td
+(• Adaptabiliteit en flexibiliteit) Tj
+ET
+
+BT
+/F2 11 Tf
+60 155 Td
+(• Ethisch redeneren) Tj
+ET
+
+BT
+/F1 12 Tf
+50 125 Td
+(Action Items) Tj
+ET
+
+BT
+/F2 11 Tf
+50 105 Td
+(Start vandaag met:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 90 Td
+(• Een AI-tool uitproberen) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(18) Tj
+ET
+endstream
+endobj
+
+93 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 94 0 R>>
+endobj
+
+94 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Bijlage G: Community en Netwerken) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Online Communities) Tj
+ET
+
+BT
+/F2 11 Tf
+50 745 Td
+(Facebook Groepen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 730 Td
+(• AI in het Onderwijs Nederland) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• EdTech Nederland) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Docenten en Technologie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• AI for Education Global) Tj
+ET
+
+BT
+/F2 11 Tf
+50 660 Td
+(LinkedIn Groepen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 645 Td
+(• Educational Technology and Learning) Tj
+ET
+
+BT
+/F2 11 Tf
+60 630 Td
+(• AI in Education) Tj
+ET
+
+BT
+/F2 11 Tf
+60 615 Td
+(• Nederlandse Onderwijsprofessionals) Tj
+ET
+
+BT
+/F2 11 Tf
+60 600 Td
+(• Digital Learning Professionals) Tj
+ET
+
+BT
+/F2 11 Tf
+50 575 Td
+(Discord Servers:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 560 Td
+(• AI Teachers Community) Tj
+ET
+
+BT
+/F2 11 Tf
+60 545 Td
+(• EdTech Innovators) Tj
+ET
+
+BT
+/F2 11 Tf
+60 530 Td
+(• Learning Technology Network) Tj
+ET
+
+BT
+/F1 12 Tf
+50 500 Td
+(Twitter/X Hashtags) Tj
+ET
+
+BT
+/F2 11 Tf
+50 480 Td
+(Volg deze hashtags voor updates:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 465 Td
+(• #AIinEducation) Tj
+ET
+
+BT
+/F2 11 Tf
+60 450 Td
+(• #EdTech) Tj
+ET
+
+BT
+/F2 11 Tf
+60 435 Td
+(• #TeachingWithAI) Tj
+ET
+
+BT
+/F2 11 Tf
+60 420 Td
+(• #DigitalLearning) Tj
+ET
+
+BT
+/F2 11 Tf
+60 405 Td
+(• #OnderwijsInnovatie) Tj
+ET
+
+BT
+/F1 12 Tf
+50 375 Td
+(YouTube Kanalen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 355 Td
+(Aanbevolen kanalen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 340 Td
+(• AI in Education) Tj
+ET
+
+BT
+/F2 11 Tf
+60 325 Td
+(• EdTech Hub) Tj
+ET
+
+BT
+/F2 11 Tf
+60 310 Td
+(• Teaching with Technology) Tj
+ET
+
+BT
+/F2 11 Tf
+60 295 Td
+(• Future of Learning) Tj
+ET
+
+BT
+/F1 12 Tf
+50 265 Td
+(Podcasts) Tj
+ET
+
+BT
+/F2 11 Tf
+50 245 Td
+(Luister naar:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 230 Td
+(• AI in Education Podcast) Tj
+ET
+
+BT
+/F2 11 Tf
+60 215 Td
+(• EdTech Talk) Tj
+ET
+
+BT
+/F2 11 Tf
+60 200 Td
+(• Teaching in Higher Ed) Tj
+ET
+
+BT
+/F2 11 Tf
+60 185 Td
+(• The Learning Scientists) Tj
+ET
+
+BT
+/F1 12 Tf
+50 155 Td
+(Conferenties en Events) Tj
+ET
+
+BT
+/F2 11 Tf
+50 135 Td
+(Jaarlijkse events:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 120 Td
+(• EDUCAUSE Annual Conference) Tj
+ET
+
+BT
+/F2 11 Tf
+60 105 Td
+(• EdTechHub Live) Tj
+ET
+
+BT
+/F2 11 Tf
+60 90 Td
+(• AI in Education Summit) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(19) Tj
+ET
+endstream
+endobj
+
+98 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 99 0 R>>
+endobj
+
+99 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Bijlage H: Financiering en Budgettering) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Cost-Benefit Analyse) Tj
+ET
+
+BT
+/F2 11 Tf
+50 745 Td
+(Gemiddelde kosten per docent per jaar:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 730 Td
+(• ChatGPT Plus: €240) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Canva Pro: €144) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Grammarly Premium: €168) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Gamma Pro: €96) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Totaal basic pakket: €648 per jaar) Tj
+ET
+
+BT
+/F2 11 Tf
+50 645 Td
+(Geschatte tijdsbesparing:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 630 Td
+(• 5-10 uur per week lesvoorbereiding) Tj
+ET
+
+BT
+/F2 11 Tf
+60 615 Td
+(• 2-4 uur per week nakijkwerk) Tj
+ET
+
+BT
+/F2 11 Tf
+60 600 Td
+(• 1-2 uur per week administratie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 585 Td
+(• Totaal: 8-16 uur per week) Tj
+ET
+
+BT
+/F1 12 Tf
+50 555 Td
+(Financieringsmogelijkheden) Tj
+ET
+
+BT
+/F2 11 Tf
+50 535 Td
+(Bronnen voor financiering:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 520 Td
+(• Schoolbudget voor professionalisering) Tj
+ET
+
+BT
+/F2 11 Tf
+60 505 Td
+(• Subsidies voor onderwijsinnovatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 490 Td
+(• Regionale samenwerkingsverbanden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 475 Td
+(• Europese onderwijsfondsen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 460 Td
+(• Partnerschappen met tech bedrijven) Tj
+ET
+
+BT
+/F1 12 Tf
+50 430 Td
+(Gratis Alternatieven) Tj
+ET
+
+BT
+/F2 11 Tf
+50 410 Td
+(Voor beperkte budgetten:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 395 Td
+(• ChatGPT free tier) Tj
+ET
+
+BT
+/F2 11 Tf
+60 380 Td
+(• Canva free versie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 365 Td
+(• Google Bard/Gemini) Tj
+ET
+
+BT
+/F2 11 Tf
+60 350 Td
+(• Perplexity AI free) Tj
+ET
+
+BT
+/F2 11 Tf
+60 335 Td
+(• Open source alternatieven) Tj
+ET
+
+BT
+/F1 12 Tf
+50 305 Td
+(Implementatie per Fase) Tj
+ET
+
+BT
+/F2 11 Tf
+50 285 Td
+(Fase 1 (€0): Gratis tools uitproberen) Tj
+ET
+
+BT
+/F2 11 Tf
+50 270 Td
+(Fase 2 (€200): Basis premium tools) Tj
+ET
+
+BT
+/F2 11 Tf
+50 255 Td
+(Fase 3 (€500): Complete toolkit) Tj
+ET
+
+BT
+/F2 11 Tf
+50 240 Td
+(Fase 4 (€1000+): Geavanceerde specialisatie) Tj
+ET
+
+BT
+/F1 12 Tf
+50 210 Td
+(ROI Berekening) Tj
+ET
+
+BT
+/F2 11 Tf
+50 190 Td
+(Investering €648 per jaar) Tj
+ET
+
+BT
+/F2 11 Tf
+50 175 Td
+(Tijdsbesparing: 400+ uur per jaar) Tj
+ET
+
+BT
+/F2 11 Tf
+50 160 Td
+(Waarde per uur: €1,62) Tj
+ET
+
+BT
+/F2 11 Tf
+50 145 Td
+(Return on Investment: 2500%+) Tj
+ET
+
+BT
+/F1 12 Tf
+50 115 Td
+(Business Case Template) Tj
+ET
+
+BT
+/F2 11 Tf
+50 95 Td
+(Voor schoolleiding:) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(20) Tj
+ET
+endstream
+endobj
+
+103 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 104 0 R>>
+endobj
+
+104 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Bijlage I: Evaluatie en Meting) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(KPI's voor AI-Implementatie) Tj
+ET
+
+BT
+/F2 11 Tf
+50 745 Td
+(Kwantitatieve metrieken:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 730 Td
+(• Aantal uren tijdsbesparing per week) Tj
+ET
+
+BT
+/F2 11 Tf
+60 715 Td
+(• Percentage AI-tools in dagelijkse workflow) Tj
+ET
+
+BT
+/F2 11 Tf
+60 700 Td
+(• Aantal gegenereerde lesmaterialen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 685 Td
+(• Snelheid van feedback aan leerlingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 670 Td
+(• Kwaliteitsscore van AI-content (1-10)) Tj
+ET
+
+BT
+/F2 11 Tf
+50 645 Td
+(Kwalitatieve metrieken:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 630 Td
+(• Tevredenheid van leerlingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 615 Td
+(• Eigenlijke werkplezier) Tj
+ET
+
+BT
+/F2 11 Tf
+60 600 Td
+(• Creativiteit in lessen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 585 Td
+(• Differentiatiemogelijkheden) Tj
+ET
+
+BT
+/F1 12 Tf
+50 555 Td
+(Evaluatie Templates) Tj
+ET
+
+BT
+/F2 11 Tf
+50 535 Td
+(Wekelijkse self-assessment:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 520 Td
+(• Welke AI-tools heb ik gebruikt?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 505 Td
+(• Hoeveel tijd heb ik bespaard?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 490 Td
+(• Wat ging goed en wat kan beter?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 475 Td
+(• Welke nieuwe dingen heb ik geleerd?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 450 Td
+(Maandelijkse evaluatie:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 435 Td
+(• Welke tools gebruik ik het meest?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 420 Td
+(• Waar zie ik de grootste voordelen?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 405 Td
+(• Welke uitdagingen heb ik nog?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 390 Td
+(• Wat zijn mijn doelen voor volgende maand?) Tj
+ET
+
+BT
+/F1 12 Tf
+50 360 Td
+(Leerling Feedback) Tj
+ET
+
+BT
+/F2 11 Tf
+50 340 Td
+(Vragen voor leerlingen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 325 Td
+(• Vind je de lessen interessanter geworden?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 310 Td
+(• Krijg je sneller feedback op je werk?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 295 Td
+(• Helpen de nieuwe materialen je bij leren?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 280 Td
+(• Wat vind je van de AI-activiteiten?) Tj
+ET
+
+BT
+/F1 12 Tf
+50 250 Td
+(Portfolio Opbouw) Tj
+ET
+
+BT
+/F2 11 Tf
+50 230 Td
+(Documenteer je AI-reis:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 215 Td
+(• Voor en na voorbeelden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 200 Td
+(• Succesverhalen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 185 Td
+(• Geleerde lessen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 170 Td
+(• Toekomstplannen) Tj
+ET
+
+BT
+/F1 12 Tf
+50 140 Td
+(Jaarlijkse Review) Tj
+ET
+
+BT
+/F2 11 Tf
+50 120 Td
+(Grote vragen:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 105 Td
+(• Hoe heeft AI mijn onderwijs veranderd?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 90 Td
+(• Wat zijn de grootste successen geweest?) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(21) Tj
+ET
+endstream
+endobj
+
+108 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 109 0 R>>
+endobj
+
+109 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Bijlage J: Bronnen en Referenties) Tj
+ET
+
+BT
+/F1 12 Tf
+50 765 Td
+(Wetenschappelijke Bronnen) Tj
+ET
+
+BT
+/F2 10 Tf
+50 745 Td
+(1. Holmes, W., Bialik, M., & Fadel, C. (2023). Artificial Intelligence) Tj
+ET
+
+BT
+/F2 10 Tf
+50 730 Td
+(   in Education: Promises and Implications for Teaching and Learning.) Tj
+ET
+
+BT
+/F2 10 Tf
+50 715 Td
+(   Harvard Education Press.) Tj
+ET
+
+BT
+/F2 10 Tf
+50 695 Td
+(2. Luckin, R., et al. (2024). Intelligence Unleashed: An argument) Tj
+ET
+
+BT
+/F2 10 Tf
+50 680 Td
+(   for AI in Education. UCL Knowledge Lab.) Tj
+ET
+
+BT
+/F2 10 Tf
+50 660 Td
+(3. Baker, R.S. (2023). Educational Data Mining and Learning) Tj
+ET
+
+BT
+/F2 10 Tf
+50 645 Td
+(   Analytics: Applications in Education. Springer.) Tj
+ET
+
+BT
+/F2 10 Tf
+50 625 Td
+(4. Zawacki-Richter, O., et al. (2024). Systematic review of) Tj
+ET
+
+BT
+/F2 10 Tf
+50 610 Td
+(   research on artificial intelligence applications in higher) Tj
+ET
+
+BT
+/F2 10 Tf
+50 595 Td
+(   education. Educational Technology Research.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 565 Td
+(Beleidsdocumenten) Tj
+ET
+
+BT
+/F2 10 Tf
+50 545 Td
+(1. European Commission (2024). Ethical Guidelines on the) Tj
+ET
+
+BT
+/F2 10 Tf
+50 530 Td
+(   Use of Artificial Intelligence in Education.) Tj
+ET
+
+BT
+/F2 10 Tf
+50 510 Td
+(2. UNESCO (2024). AI and Education: Guidance for Policy-makers.) Tj
+ET
+
+BT
+/F2 10 Tf
+50 490 Td
+(3. Ministry of Education (2024). Artificial Intelligence in) Tj
+ET
+
+BT
+/F2 10 Tf
+50 475 Td
+(   Dutch Education: Strategic Framework 2024-2030.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 445 Td
+(Online Resources) Tj
+ET
+
+BT
+/F2 10 Tf
+50 425 Td
+(1. AI in Education Global Partnership) Tj
+ET
+
+BT
+/F2 10 Tf
+50 410 Td
+(   Website: aieducation.org) Tj
+ET
+
+BT
+/F2 10 Tf
+50 390 Td
+(2. EdTechHub Research) Tj
+ET
+
+BT
+/F2 10 Tf
+50 375 Td
+(   Website: edtechhub.org) Tj
+ET
+
+BT
+/F2 10 Tf
+50 355 Td
+(3. Stanford HAI Education Initiative) Tj
+ET
+
+BT
+/F2 10 Tf
+50 340 Td
+(   Website: hai.stanford.edu/education) Tj
+ET
+
+BT
+/F1 12 Tf
+50 310 Td
+(Professionele Netwerken) Tj
+ET
+
+BT
+/F2 10 Tf
+50 290 Td
+(1. International Society for Technology in Education (ISTE)) Tj
+ET
+
+BT
+/F2 10 Tf
+50 275 Td
+(   Website: iste.org) Tj
+ET
+
+BT
+/F2 10 Tf
+50 255 Td
+(2. Association for Educational Communications and Technology) Tj
+ET
+
+BT
+/F2 10 Tf
+50 240 Td
+(   Website: aect.org) Tj
+ET
+
+BT
+/F2 10 Tf
+50 220 Td
+(3. European Schoolnet) Tj
+ET
+
+BT
+/F2 10 Tf
+50 205 Td
+(   Website: europeanschoolnet.org) Tj
+ET
+
+BT
+/F1 12 Tf
+50 175 Td
+(Training en Certificering) Tj
+ET
+
+BT
+/F2 10 Tf
+50 155 Td
+(1. Coursera: AI for Everyone by Andrew Ng) Tj
+ET
+
+BT
+/F2 10 Tf
+50 140 Td
+(2. edX: Introduction to Artificial Intelligence) Tj
+ET
+
+BT
+/F2 10 Tf
+50 125 Td
+(3. FutureLearn: AI and Machine Learning Courses) Tj
+ET
+
+BT
+/F2 10 Tf
+50 110 Td
+(4. Google AI Education) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(22) Tj
+ET
+endstream
+endobj
+
+113 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 114 0 R>>
+endobj
+
+114 0 obj
+<</Length 11000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Slot: Jouw AI-Reis Begint Nu) Tj
+ET
+
+BT
+/F2 12 Tf
+50 765 Td
+(Gefeliciteerd! Je hebt de complete AI Startersgids doorgenomen.) Tj
+ET
+
+BT
+/F2 12 Tf
+50 745 Td
+(Nu is het tijd om de eerste stap te zetten.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 715 Td
+(Je Eerste Actie) Tj
+ET
+
+BT
+/F2 11 Tf
+50 695 Td
+(Kies vandaag nog een AI-tool uit hoofdstuk 3-8 en probeer) Tj
+ET
+
+BT
+/F2 11 Tf
+50 680 Td
+(deze uit. Begin klein, denk groot!) Tj
+ET
+
+BT
+/F1 12 Tf
+50 650 Td
+(Onthoud) Tj
+ET
+
+BT
+/F2 11 Tf
+50 630 Td
+(• AI is een hulpmiddel, geen vervanging) Tj
+ET
+
+BT
+/F2 11 Tf
+50 615 Td
+(• Start klein en bouw langzaam op) Tj
+ET
+
+BT
+/F2 11 Tf
+50 600 Td
+(• Blijf kritisch en controleer altijd de output) Tj
+ET
+
+BT
+/F2 11 Tf
+50 585 Td
+(• Deel je kennis met collega's) Tj
+ET
+
+BT
+/F2 11 Tf
+50 570 Td
+(• Houd ethische principes in gedachten) Tj
+ET
+
+BT
+/F1 12 Tf
+50 540 Td
+(Blijf Verbonden) Tj
+ET
+
+BT
+/F2 11 Tf
+50 520 Td
+(Bezoek https://onderwijs.ai voor:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 505 Td
+(• Nieuwe tool reviews) Tj
+ET
+
+BT
+/F2 11 Tf
+60 490 Td
+(• Praktische tips en tutorials) Tj
+ET
+
+BT
+/F2 11 Tf
+60 475 Td
+(• Community van AI-enthousiastelingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 460 Td
+(• Updates over nieuwe ontwikkelingen) Tj
+ET
+
+BT
+/F1 12 Tf
+50 430 Td
+(Deel Je Verhaal) Tj
+ET
+
+BT
+/F2 11 Tf
+50 410 Td
+(We horen graag over jouw AI-succesverhalen!) Tj
+ET
+
+BT
+/F2 11 Tf
+50 395 Td
+(Stuur je ervaringen naar: ai.onderwijs@gmail.com) Tj
+ET
+
+BT
+/F1 12 Tf
+50 365 Td
+(De Toekomst is Nu) Tj
+ET
+
+BT
+/F2 11 Tf
+50 345 Td
+(AI in het onderwijs is geen toekomstmuziek meer,) Tj
+ET
+
+BT
+/F2 11 Tf
+50 330 Td
+(het is de realiteit van vandaag. Door deze gids) Tj
+ET
+
+BT
+/F2 11 Tf
+50 315 Td
+(te lezen, heb je al de eerste stap gezet.) Tj
+ET
+
+BT
+/F2 11 Tf
+50 285 Td
+(Veel succes met je AI-avontuur!) Tj
+ET
+
+BT
+/F1 16 Tf
+50 235 Td
+(Bedankt voor je vertrouwen in AI in het Onderwijs) Tj
+ET
+
+BT
+/F2 14 Tf
+50 195 Td
+(Voor meer informatie, updates en nieuwe tools:) Tj
+ET
+
+BT
+/F2 14 Tf
+50 175 Td
+(https://onderwijs.ai) Tj
+ET
+
+BT
+/F2 14 Tf
+50 155 Td
+(ai.onderwijs@gmail.com) Tj
+ET
+
+BT
+/F3 10 Tf
+50 60 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 60 Td
+(23) Tj
+ET
+endstream
+endobj
+
 xref
-0 10
+0 115
 0000000000 65535 f 
 0000000010 00000 n 
 0000000053 00000 n 
-0000000108 00000 n 
-0000000255 00000 n 
-0000000317 00000 n 
-0000000374 00000 n 
-0000000439 00000 n 
-0000008991 00000 n 
-0000009148 00000 n 
+0000000250 00000 n 
+0000000397 00000 n 
+0000000459 00000 n 
+0000000516 00000 n 
+0000000581 00000 n 
+0000009133 00000 n 
+0000009290 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000021342 00000 n 
+0000021500 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000032552 00000 n 
+0000032710 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000043762 00000 n 
+0000043920 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000054972 00000 n 
+0000055130 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000066182 00000 n 
+0000066340 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000077392 00000 n 
+0000077550 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000088602 00000 n 
+0000088760 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000099812 00000 n 
+0000099970 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000111022 00000 n 
+0000111180 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000122232 00000 n 
+0000122390 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000133442 00000 n 
+0000133600 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000144652 00000 n 
+0000144810 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000155862 00000 n 
+0000156020 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000167072 00000 n 
+0000167230 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000178282 00000 n 
+0000178440 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000189492 00000 n 
+0000189650 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000200702 00000 n 
+0000200860 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000211912 00000 n 
+0000212070 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000223122 00000 n 
+0000223281 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000234334 00000 n 
+0000234493 00000 n 
+0000000000 65535 f 
+0000000000 65535 f 
+0000000000 65535 f 
+0000245546 00000 n 
+0000245705 00000 n 
 
 trailer
-<</Size 10/Root 1 0 R>>
+<</Size 115/Root 1 0 R>>
 startxref
-21200
+256758
 %%EOF

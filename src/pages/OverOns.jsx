@@ -17,12 +17,31 @@ const OverOns = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Send email directly without opening mail client
+    // Create email content
+    const subject = encodeURIComponent('Contact formulier - AI in het Onderwijs');
+    const body = encodeURIComponent(`
+Nieuw bericht via contact formulier:
+
+Naam: ${formData.name}
+E-mail: ${formData.email}
+Onderwerp: ${formData.subject}
+
+Bericht:
+${formData.message}
+
+---
+Verzonden via onderwijs.ai contact formulier
+    `);
+
+    // Send email using mailto (this will open the user's email client)
+    const mailtoLink = `mailto:ai.onderwijs@gmail.com?subject=${subject}&body=${body}`;
+    
     try {
-      // Here you would normally send an API request to your backend
-      // For now, we'll just show a success message
-      console.log('Sending message:', formData);
-      alert('Bericht verzonden! Bedankt voor je bericht.');
+      // Try to open email client
+      window.location.href = mailtoLink;
+      
+      // Show success message
+      alert('Je e-mailprogramma wordt geopend om het bericht te versturen naar ai.onderwijs@gmail.com');
       
       // Reset form
       setFormData({
@@ -32,8 +51,8 @@ const OverOns = () => {
         message: ''
       });
     } catch (error) {
-      console.error('Error sending message:', error);
-      alert('Er is een fout opgetreden bij het verzenden van het bericht. Probeer het later opnieuw.');
+      console.error('Error opening email client:', error);
+      alert(`Er is een probleem opgetreden. Stuur je bericht handmatig naar: ai.onderwijs@gmail.com`);
     }
   };
 
@@ -101,10 +120,10 @@ const OverOns = () => {
               animate={{opacity: 1, x: 0}}
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Over AI in Onderwijs
+                Over AI in het Onderwijs
               </h1>
               <p className="text-xl text-primary-100 mb-8">
-                Wij zijn een team van ervaren docenten en AI-experts met één missie: kunstmatige intelligentie toegankelijk maken voor alle onderwijsprofessionals.
+                Ervaren docent, passie voor technologie met één missie: kunstmatige intelligentie toegankelijk maken voor alle onderwijsprofessionals.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button
@@ -378,7 +397,7 @@ const OverOns = () => {
                     <SafeIcon icon={FiMail} className="text-primary-600 mt-1" />
                     <div>
                       <div className="font-medium text-gray-900">E-mail</div>
-                      <div className="text-primary-600">
+                      <div className="text-gray-600">
                         ai.onderwijs@gmail.com
                       </div>
                     </div>

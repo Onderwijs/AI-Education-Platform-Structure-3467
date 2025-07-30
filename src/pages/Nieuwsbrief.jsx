@@ -68,8 +68,8 @@ const Nieuwsbrief = () => {
     setIsSubmitting(true);
 
     try {
-      // Send email to ai.onderwijs@gmail.com
-      const subject = encodeURIComponent('Nieuwsbrief Inschrijving - AI in Onderwijs');
+      // Create email content for notification
+      const subject = encodeURIComponent('Nieuwe nieuwsbrief inschrijving - AI in het Onderwijs');
       const body = encodeURIComponent(`
 Nieuwe nieuwsbrief inschrijving:
 
@@ -77,18 +77,37 @@ Email: ${formData.email}
 Rol: ${formData.role || 'Niet opgegeven'}
 
 Deze persoon wil zich inschrijven voor de nieuwsbrief en de gratis AI startersgids ontvangen.
-      `);
-      
-      const mailtoLink = `mailto:ai.onderwijs@gmail.com?subject=${subject}&body=${body}`;
-      window.open(mailtoLink, '_blank');
 
-      // Download the startersgids immediately 
-      downloadStartersgids();
+Verzonden via onderwijs.ai nieuwsbrief pagina
+      `);
+
+      // Send notification email using mailto
+      const mailtoLink = `mailto:ai.onderwijs@gmail.com?subject=${subject}&body=${body}`;
       
+      // Open email client in background
+      const emailWindow = window.open(mailtoLink, '_blank');
+      
+      // Close the email window after a short delay (if it opened)
+      if (emailWindow) {
+        setTimeout(() => {
+          try {
+            emailWindow.close();
+          } catch (e) {
+            // Ignore errors when closing
+          }
+        }, 1000);
+      }
+
+      // Download the startersgids immediately
+      downloadStartersgids();
+
       // Show success message
       setIsSubscribed(true);
     } catch (error) {
       console.error('Error submitting form:', error);
+      // Still download the guide even if email fails
+      downloadStartersgids();
+      setIsSubscribed(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -284,6 +303,7 @@ Deze persoon wil zich inschrijven voor de nieuwsbrief en de gratis AI startersgi
               Exclusieve materialen om direct mee aan de slag te gaan
             </p>
           </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {freebies.map((freebie, index) => (
               <motion.div
