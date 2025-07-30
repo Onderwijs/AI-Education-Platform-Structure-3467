@@ -1,6 +1,6 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import {HashRouter as Router, Routes, Route} from 'react-router-dom';
+import {AnimatePresence} from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
@@ -39,6 +39,7 @@ function App() {
             <Route path="/nieuwsbrief" element={<Nieuwsbrief />} />
             <Route path="/over-ons" element={<OverOns />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/contact" element={<OverOns />} />
           </Routes>
         </AnimatePresence>
         <Footer />

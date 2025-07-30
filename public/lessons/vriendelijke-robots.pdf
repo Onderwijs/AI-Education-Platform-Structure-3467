@@ -259,6 +259,18 @@ BT
 70 60 Td
 (* Een robot moet kiezen wie eerst te helpen) Tj
 ET
+
+BT
+/F3 10 Tf
+50 30 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 30 Td
+(1) Tj
+ET
 endstream
 endobj
 
@@ -508,6 +520,18 @@ BT
 60 117 Td
 (  reflecteren) Tj
 ET
+
+BT
+/F3 10 Tf
+50 30 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 30 Td
+(2) Tj
+ET
 endstream
 endobj
 
@@ -725,7 +749,13 @@ ET
 BT
 /F3 10 Tf
 50 30 Td
-(© 2025 AI in Onderwijs - https://onderwijs.ai) Tj
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 30 Td
+(3) Tj
 ET
 endstream
 endobj

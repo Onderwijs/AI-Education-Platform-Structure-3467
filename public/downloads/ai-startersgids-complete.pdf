@@ -39,9 +39,15 @@ BT
 ET
 
 BT
-/F2 10 Tf
-50 710 Td
-(© 2025 AI in Onderwijs - https://onderwijs.ai) Tj
+/F3 10 Tf
+50 30 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 30 Td
+(1) Tj
 ET
 
 BT
@@ -535,8 +541,14 @@ ET
 
 BT
 /F3 10 Tf
-50 -23 Td
-(© 2025 AI in Onderwijs - https://onderwijs.ai) Tj
+50 30 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+
+BT
+/F3 10 Tf
+530 30 Td
+(2) Tj
 ET
 endstream
 endobj
