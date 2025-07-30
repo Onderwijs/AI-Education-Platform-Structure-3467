@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import {Link} from 'react-router-dom';
+import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiDownload, FiBook, FiUsers, FiTool, FiTrendingUp, FiAward, FiPlay, FiArrowRight } = FiIcons;
+const {FiDownload, FiBook, FiUsers, FiTool, FiTrendingUp, FiAward, FiPlay, FiArrowRight} = FiIcons;
 
 const Home = () => {
   const features = [
@@ -35,16 +35,16 @@ const Home = () => {
     },
     {
       category: "LesLab",
-      title: "Maandelijkse AI-Lessen",
-      description: "Elke maand een nieuwe, kant-en-klare AI-les voor jouw klas",
+      title: "AI-Lessen",
+      description: "Kant-en-klare AI-lessen voor jouw klas",
       link: "/leslab",
       image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop"
     },
     {
-      category: "Trainingen",
-      title: "AI Masterclass",
-      description: "Word expert in het gebruik van AI voor onderwijs",
-      link: "/trainingen",
+      category: "AI Tools",
+      title: "AI Tool Database",
+      description: "Ontdek de beste AI-tools voor jouw vakgebied",
+      link: "/ai-tools",
       image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop"
     }
   ];
@@ -69,10 +69,9 @@ const Home = () => {
                 AI in het <span className="text-primary-200">Onderwijs</span>
               </h1>
               <p className="text-xl mb-8 text-primary-100">
-                Ontdek hoe kunstmatige intelligentie jouw onderwijs kan verbeteren. 
-                Praktische tools, lessen en trainingen voor moderne docenten.
+                Ontdek hoe kunstmatige intelligentie jouw onderwijs kan verbeteren. Praktische tools, lessen en trainingen voor moderne docenten.
               </p>
-              
+
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link
@@ -138,8 +137,7 @@ const Home = () => {
               Waarom AI in het Onderwijs?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Kunstmatige intelligentie biedt ongekende mogelijkheden om onderwijs 
-              persoonlijker, effectiever en toegankelijker te maken.
+              Kunstmatige intelligentie biedt ongekende mogelijkheden om onderwijs persoonlijker, effectiever en toegankelijker te maken.
             </p>
           </motion.div>
 
@@ -230,7 +228,7 @@ const Home = () => {
               Start vandaag met AI in jouw onderwijs
             </h2>
             <p className="text-xl text-primary-100 mb-8">
-              Download gratis onze AI-toolkit en ontvang maandelijks nieuwe lessen en tips
+              Download gratis onze AI-toolkit en ontvang nieuwe lessen en tips
             </p>
             <Link
               to="/nieuwsbrief"

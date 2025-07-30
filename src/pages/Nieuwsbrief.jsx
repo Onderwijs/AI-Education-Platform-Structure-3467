@@ -23,7 +23,7 @@ const Nieuwsbrief = () => {
     },
     {
       icon: FiMail,
-      title: "Wekelijkse Tips",
+      title: "Tips",
       description: "Praktische AI-tips direct in je inbox"
     },
     {
@@ -76,10 +76,9 @@ const Nieuwsbrief = () => {
             Welkom bij AI in Onderwijs!
           </h1>
           <p className="text-gray-600 mb-6">
-            Je bent succesvol ingeschreven. Check je email voor de gratis startersgids 
-            en je eerste AI-tips.
+            Je bent succesvol ingeschreven. Check je email voor de gratis startersgids en je eerste AI-tips.
           </p>
-          <button 
+          <button
             onClick={() => setIsSubscribed(false)}
             className="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
           >
@@ -109,8 +108,7 @@ const Nieuwsbrief = () => {
               Gratis AI Startersgids + Nieuwsbrief
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Ontvang direct onze complete AI-toolkit en blijf op de hoogte 
-              van de nieuwste ontwikkelingen in AI voor het onderwijs.
+              Ontvang direct onze complete AI-toolkit en blijf op de hoogte van de nieuwste ontwikkelingen in AI voor het onderwijs.
             </p>
           </motion.div>
         </div>
@@ -130,7 +128,6 @@ const Nieuwsbrief = () => {
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
                   Start vandaag met AI in jouw onderwijs
                 </h2>
-                
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -146,7 +143,6 @@ const Nieuwsbrief = () => {
                       placeholder="jouw@email.nl"
                     />
                   </div>
-                  
                   <div>
                     <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2">
                       Ik ben... (optioneel)
@@ -165,7 +161,6 @@ const Nieuwsbrief = () => {
                       <option value="anders">Anders</option>
                     </select>
                   </div>
-
                   <button
                     type="submit"
                     className="w-full bg-primary-600 text-white py-4 px-6 rounded-lg font-semibold hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
@@ -174,12 +169,12 @@ const Nieuwsbrief = () => {
                     <span>Download Gratis Startersgids</span>
                   </button>
                 </form>
-
                 <p className="text-xs text-gray-500 mt-4">
                   Door je in te schrijven ga je akkoord met onze{' '}
                   <a href="/privacy" className="text-primary-600 hover:underline">
                     privacyverklaring
-                  </a>. Je kunt je altijd uitschrijven.
+                  </a>
+                  . Je kunt je altijd uitschrijven.
                 </p>
               </div>
             </motion.div>
@@ -193,7 +188,6 @@ const Nieuwsbrief = () => {
               <h3 className="text-2xl font-bold text-gray-900 mb-8">
                 Wat krijg je?
               </h3>
-              
               <div className="space-y-6">
                 {benefits.map((benefit, index) => (
                   <motion.div
@@ -277,7 +271,6 @@ const Nieuwsbrief = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               Sluit je aan bij 2.500+ docenten
             </h2>
-            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary-600 mb-2">2.500+</div>
@@ -292,10 +285,8 @@ const Nieuwsbrief = () => {
                 <div className="text-gray-600">Leest elke week mee</div>
               </div>
             </div>
-
             <blockquote className="text-xl text-gray-600 italic mb-4">
-              "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding 
-              gehalveerd en mijn leerlingen zijn veel meer betrokken."
+              "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding gehalveerd en mijn leerlingen zijn veel meer betrokken."
             </blockquote>
             <cite className="text-gray-500">- Marieke, VO Docent Nederlands</cite>
           </motion.div>

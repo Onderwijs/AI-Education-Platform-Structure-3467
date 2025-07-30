@@ -109,27 +109,25 @@ const MBOHBO = () => {
                 AI in MBO & HBO
               </h1>
               <p className="text-xl text-green-100 mb-8">
-                Bereid studenten voor op de arbeidsmarkt van de toekomst met 
-                praktijkgerichte AI-toepassingen en professionele vaardigheden.
+                Bereid studenten voor op de arbeidsmarkt van de toekomst met praktijkgerichte AI-toepassingen en professionele vaardigheden.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  to="/voor-scholen"
+                  to="/ai-tools"
                   className="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center space-x-2"
                 >
-                  <SafeIcon icon={FiBriefcase} />
-                  <span>Schooltrainingen</span>
+                  <SafeIcon icon={FiTool} />
+                  <span>AI Tools</span>
                 </Link>
                 <Link
-                  to="/trainingen"
+                  to="/nieuwsbrief"
                   className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors flex items-center space-x-2"
                 >
-                  <SafeIcon icon={FiUsers} />
-                  <span>Docententraining</span>
+                  <SafeIcon icon={FiDownload} />
+                  <span>Gratis Download</span>
                 </Link>
               </div>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -180,10 +178,7 @@ const MBOHBO = () => {
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
                   {sector.applications.map((app, appIndex) => (
-                    <div
-                      key={appIndex}
-                      className="bg-white p-3 rounded-lg text-sm text-gray-700 flex items-center space-x-2"
-                    >
+                    <div key={appIndex} className="bg-white p-3 rounded-lg text-sm text-gray-700 flex items-center space-x-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span>{app}</span>
                     </div>
@@ -239,7 +234,6 @@ const MBOHBO = () => {
                   </h3>
                   <p className="text-sm text-gray-600 mb-3">{project.sector}</p>
                   <p className="text-gray-600 mb-4">{project.description}</p>
-                  
                   <div className="mb-4">
                     <div className="text-sm font-medium text-gray-700 mb-2">Vaardigheden:</div>
                     <div className="flex flex-wrap gap-2">
@@ -253,7 +247,6 @@ const MBOHBO = () => {
                       ))}
                     </div>
                   </div>
-
                   <div className="mb-6">
                     <div className="text-sm font-medium text-gray-700 mb-2">Oplevering:</div>
                     <ul className="space-y-1">
@@ -265,7 +258,6 @@ const MBOHBO = () => {
                       ))}
                     </ul>
                   </div>
-                  
                   <Link
                     to="/leslab"
                     className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
@@ -321,7 +313,8 @@ const MBOHBO = () => {
         </div>
       </section>
 
-      {/* Career Preparation */}
+      {/* Career Preparation - Hidden Section */}
+      {/* 
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -367,7 +360,6 @@ const MBOHBO = () => {
                 <SafeIcon icon={FiArrowRight} />
               </Link>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -382,6 +374,7 @@ const MBOHBO = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* CTA Section */}
       <section className="py-20 bg-green-600">
@@ -405,6 +398,8 @@ const MBOHBO = () => {
                 <SafeIcon icon={FiDownload} />
                 <span>Gratis MBO/HBO Toolkit</span>
               </Link>
+              {/* Hidden Schooltraining button */}
+              {/* 
               <Link
                 to="/voor-scholen"
                 className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors inline-flex items-center space-x-2"
@@ -412,6 +407,7 @@ const MBOHBO = () => {
                 <SafeIcon icon={FiBriefcase} />
                 <span>Schooltraining Aanvragen</span>
               </Link>
+              */}
             </div>
           </motion.div>
         </div>
