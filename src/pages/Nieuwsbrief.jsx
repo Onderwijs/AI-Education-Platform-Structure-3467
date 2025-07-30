@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
+import { downloadStartersgids } from '../utils/downloadUtils';
 
 const { FiMail, FiDownload, FiCheck, FiGift, FiUsers, FiTrendingUp } = FiIcons;
 
@@ -11,7 +12,9 @@ const Nieuwsbrief = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Hier zou je de nieuwsbrief logica implementeren
+    // Download the startersgids immediately
+    downloadStartersgids();
+    // Show success message
     setIsSubscribed(true);
   };
 
@@ -73,17 +76,26 @@ const Nieuwsbrief = () => {
             <SafeIcon icon={FiCheck} className="text-3xl text-white" />
           </motion.div>
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Welkom bij AI in Onderwijs!
+            Download gestart!
           </h1>
           <p className="text-gray-600 mb-6">
-            Je bent succesvol ingeschreven. Check je email voor de gratis startersgids en je eerste AI-tips.
+            Je AI Startersgids wordt nu gedownload. Check ook je downloads map als de download niet automatisch start.
           </p>
-          <button
-            onClick={() => setIsSubscribed(false)}
-            className="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
-          >
-            Terug naar overzicht
-          </button>
+          <div className="space-y-4">
+            <button
+              onClick={() => downloadStartersgids()}
+              className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
+            >
+              <SafeIcon icon={FiDownload} />
+              <span>Download opnieuw</span>
+            </button>
+            <button
+              onClick={() => setIsSubscribed(false)}
+              className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              Terug naar overzicht
+            </button>
+          </div>
         </div>
       </motion.div>
     );

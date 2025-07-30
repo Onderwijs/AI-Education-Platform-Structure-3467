@@ -1,0 +1,544 @@
+%PDF-1.7
+1 0 obj
+<</Type/Catalog/Pages 2 0 R>>
+endobj
+2 0 obj
+<</Type/Pages/Kids[3 0 R]/Count 1>>
+endobj
+3 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 7 0 R>>
+endobj
+4 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold>>
+endobj
+5 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>
+endobj
+6 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Oblique>>
+endobj
+7 0 obj
+<</Length 12500>>
+stream
+BT
+/F1 24 Tf
+50 792 Td
+(AI Complete Startersgids) Tj
+ET
+
+BT
+/F1 18 Tf
+50 760 Td
+(50+ AI-Tools voor Docenten) Tj
+ET
+
+BT
+/F2 12 Tf
+50 730 Td
+(Praktische gids voor AI in het onderwijs) Tj
+ET
+
+BT
+/F2 10 Tf
+50 710 Td
+(© 2024 AI in Onderwijs - www.aiinonderwijs.nl) Tj
+ET
+
+BT
+/F1 16 Tf
+50 670 Td
+(Inhoudsopgave) Tj
+ET
+
+BT
+/F2 11 Tf
+60 645 Td
+(1. Welkom bij AI in het Onderwijs ............................ 3) Tj
+ET
+
+BT
+/F2 11 Tf
+60 630 Td
+(2. Basisprincipes van AI voor Docenten ...................... 4) Tj
+ET
+
+BT
+/F2 11 Tf
+60 615 Td
+(3. AI-Tools voor Tekstverwerking ........................... 5) Tj
+ET
+
+BT
+/F2 11 Tf
+60 600 Td
+(4. AI-Tools voor Presentaties ............................... 7) Tj
+ET
+
+BT
+/F2 11 Tf
+60 585 Td
+(5. AI-Tools voor Beeldbewerking ............................. 9) Tj
+ET
+
+BT
+/F2 11 Tf
+60 570 Td
+(6. AI-Tools voor Onderzoek ................................. 11) Tj
+ET
+
+BT
+/F2 11 Tf
+60 555 Td
+(7. AI-Tools voor Creativiteit .............................. 13) Tj
+ET
+
+BT
+/F2 11 Tf
+60 540 Td
+(8. AI-Tools voor Onderwijs ................................. 15) Tj
+ET
+
+BT
+/F2 11 Tf
+60 525 Td
+(9. Praktische Tips voor de Klas ............................ 17) Tj
+ET
+
+BT
+/F2 11 Tf
+60 510 Td
+(10. Ethische Richtlijnen ................................... 19) Tj
+ET
+
+BT
+/F2 11 Tf
+60 495 Td
+(11. Implementatieplan ....................................... 21) Tj
+ET
+
+BT
+/F2 11 Tf
+60 480 Td
+(12. Troubleshooting & FAQ .................................. 23) Tj
+ET
+
+BT
+/F1 14 Tf
+50 440 Td
+(1. Welkom bij AI in het Onderwijs) Tj
+ET
+
+BT
+/F2 11 Tf
+50 415 Td
+(Beste collega,) Tj
+ET
+
+BT
+/F2 11 Tf
+50 395 Td
+(Kunstmatige intelligentie verandert de manier waarop we leren en onderwijzen.) Tj
+ET
+
+BT
+/F2 11 Tf
+50 380 Td
+(Deze startersgids helpt je om AI effectief en verantwoord in te zetten in) Tj
+ET
+
+BT
+/F2 11 Tf
+50 365 Td
+(jouw onderwijspraktijk.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 335 Td
+(Wat vind je in deze gids?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 315 Td
+(• 50+ geteste AI-tools met praktische toepassingen) Tj
+ET
+
+BT
+/F2 11 Tf
+60 300 Td
+(• Stap-voor-stap handleidingen voor elke tool) Tj
+ET
+
+BT
+/F2 11 Tf
+60 285 Td
+(• Praktische tips voor directe implementatie) Tj
+ET
+
+BT
+/F2 11 Tf
+60 270 Td
+(• Ethische richtlijnen voor verantwoord gebruik) Tj
+ET
+
+BT
+/F2 11 Tf
+60 255 Td
+(• Voorbeeldlessen en activiteiten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 240 Td
+(• Troubleshooting en veelgestelde vragen) Tj
+ET
+
+BT
+/F1 12 Tf
+50 210 Td
+(Hoe gebruik je deze gids?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 190 Td
+(1. Begin met hoofdstuk 2 voor de basisprincipes) Tj
+ET
+
+BT
+/F2 11 Tf
+50 175 Td
+(2. Kies tools die passen bij jouw vakgebied) Tj
+ET
+
+BT
+/F2 11 Tf
+50 160 Td
+(3. Start klein met één tool per week) Tj
+ET
+
+BT
+/F2 11 Tf
+50 145 Td
+(4. Gebruik de praktische tips voor implementatie) Tj
+ET
+
+BT
+/F2 11 Tf
+50 130 Td
+(5. Raadpleeg de ethische richtlijnen bij twijfel) Tj
+ET
+
+BT
+/F1 14 Tf
+50 90 Td
+(2. Basisprincipes van AI voor Docenten) Tj
+ET
+
+BT
+/F1 12 Tf
+50 65 Td
+(Wat is Kunstmatige Intelligentie?) Tj
+ET
+
+BT
+/F2 11 Tf
+50 45 Td
+(AI is technologie die computers in staat stelt om taken uit te voeren) Tj
+ET
+
+BT
+/F2 11 Tf
+50 30 Td
+(die normaal menselijke intelligentie vereisen, zoals:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 15 Td
+(• Tekst begrijpen en genereren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 0 Td
+(• Afbeeldingen herkennen en maken) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -15 Td
+(• Patronen herkennen in data) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -30 Td
+(• Problemen oplossen en beslissingen nemen) Tj
+ET
+
+BT
+/F1 12 Tf
+50 -60 Td
+(Waarom AI in het Onderwijs?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -80 Td
+(• Tijd besparen op administratieve taken) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -95 Td
+(• Gepersonaliseerd leren mogelijk maken) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -110 Td
+(• Creatieve mogelijkheden vergroten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -125 Td
+(• Leerlingen voorbereiden op de toekomst) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -140 Td
+(• Toegankelijkheid van onderwijs verbeteren) Tj
+ET
+
+BT
+/F1 12 Tf
+50 -170 Td
+(De Gouden Regels voor AI in Onderwijs) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -190 Td
+(1. Start klein: Begin met één tool en bouw langzaam op) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -205 Td
+(2. Blijf kritisch: Controleer altijd AI-gegenereerde content) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -220 Td
+(3. Wees transparant: Vertel leerlingen wanneer je AI gebruikt) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -235 Td
+(4. Bescherm privacy: Let op gegevensbescherming) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -250 Td
+(5. Behoud menselijke verbinding: AI vervangt geen docent) Tj
+ET
+
+BT
+/F1 14 Tf
+50 -290 Td
+(3. AI-Tools voor Tekstverwerking) Tj
+ET
+
+BT
+/F1 12 Tf
+50 -315 Td
+(ChatGPT - De Veelzijdige Assistent) Tj
+ET
+
+BT
+/F2 10 Tf
+50 -330 Td
+(Website: chat.openai.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -350 Td
+(Wat kan het?) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -365 Td
+(• Lesplannen genereren en verbeteren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -380 Td
+(• Toetsvragen maken in verschillende moeilijkheidsgraden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -395 Td
+(• Feedback formuleren op leerlingwerk) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -410 Td
+(• Teksten vereenvoudigen voor verschillende niveaus) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -425 Td
+(• Creatieve schrijfopdrachten bedenken) Tj
+ET
+
+BT
+/F1 11 Tf
+50 -450 Td
+(Praktische Prompt Voorbeelden:) Tj
+ET
+
+BT
+/F6 9 Tf
+50 -470 Td
+("Maak een lesplan van 50 minuten over fotosynthese voor groep 7,) Tj
+ET
+
+BT
+/F6 9 Tf
+50 -485 Td
+(inclusief een experiment en drie verschillende opdrachten.") Tj
+ET
+
+BT
+/F6 9 Tf
+50 -505 Td
+("Genereer 10 meerkeuzevragen over de Tweede Wereldoorlog) Tj
+ET
+
+BT
+/F6 9 Tf
+50 -520 Td
+(voor VMBO niveau 3, met telkens 4 antwoordmogelijkheden.") Tj
+ET
+
+BT
+/F6 9 Tf
+50 -540 Td
+("Herschrijf deze tekst over klimaatverandering voor leerlingen) Tj
+ET
+
+BT
+/F6 9 Tf
+50 -555 Td
+(van 12 jaar oud, gebruik eenvoudige taal en korte zinnen.") Tj
+ET
+
+BT
+/F1 12 Tf
+50 -585 Td
+(Quillbot - Schrijfhulp en Parafrasering) Tj
+ET
+
+BT
+/F2 10 Tf
+50 -600 Td
+(Website: quillbot.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -620 Td
+(Perfect voor:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -635 Td
+(• Teksten herformuleren en verbeteren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -650 Td
+(• Grammatica en spelling controleren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -665 Td
+(• Samenvattingen maken van lange teksten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -680 Td
+(• Citaten correct formatteren) Tj
+ET
+
+BT
+/F1 12 Tf
+50 -710 Td
+(Grammarly - Geavanceerde Tekstcorrectie) Tj
+ET
+
+BT
+/F2 10 Tf
+50 -725 Td
+(Website: grammarly.com | Prijs: Freemium | Niveau: Beginner) Tj
+ET
+
+BT
+/F2 11 Tf
+50 -745 Td
+(Ideaal voor:) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -760 Td
+(• Professionele communicatie verbeteren) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -775 Td
+(• Leerlingen helpen met schrijfvaardigheden) Tj
+ET
+
+BT
+/F2 11 Tf
+60 -790 Td
+(• Consistent schrijven in verschillende stijlen) Tj
+ET
+endstream
+endobj
+
+xref
+0 8
+0000000000 65535 f 
+0000000010 00000 n 
+0000000053 00000 n 
+0000000102 00000 n 
+0000000249 00000 n 
+0000000311 00000 n 
+0000000368 00000 n 
+0000000433 00000 n 
+
+trailer
+<</Size 8/Root 1 0 R>>
+startxref
+12984
+%%EOF

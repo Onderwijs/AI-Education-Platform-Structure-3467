@@ -32,6 +32,15 @@ export const downloadFile = (url, filename = null) => {
 };
 
 /**
+ * Downloads the AI Startersgids PDF
+ */
+export const downloadStartersgids = () => {
+  const fileUrl = '/downloads/ai-startersgids-complete.pdf';
+  const filename = 'AI-Complete-Startersgids-50-Tools.pdf';
+  downloadFile(fileUrl, filename);
+};
+
+/**
  * Maps lesson titles to their corresponding PDF files
  */
 export const lessonFileMap = {

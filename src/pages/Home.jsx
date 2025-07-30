@@ -1,10 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {motion} from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
+import { downloadStartersgids } from '../utils/downloadUtils';
 
-const {FiDownload, FiBook, FiUsers, FiTool, FiTrendingUp, FiAward, FiPlay, FiArrowRight} = FiIcons;
+const { FiDownload, FiBook, FiUsers, FiTool, FiTrendingUp, FiAward, FiPlay, FiArrowRight } = FiIcons;
 
 const Home = () => {
   const features = [
@@ -49,6 +50,10 @@ const Home = () => {
     }
   ];
 
+  const handleDownloadClick = () => {
+    downloadStartersgids();
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -74,13 +79,13 @@ const Home = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link
-                  to="/nieuwsbrief"
+                <button
+                  onClick={handleDownloadClick}
                   className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2"
                 >
                   <SafeIcon icon={FiDownload} />
                   <span>Gratis Download</span>
-                </Link>
+                </button>
                 <Link
                   to="/quiz"
                   className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2"
@@ -230,13 +235,13 @@ const Home = () => {
             <p className="text-xl text-primary-100 mb-8">
               Download gratis onze AI-toolkit en ontvang nieuwe lessen en tips
             </p>
-            <Link
-              to="/nieuwsbrief"
+            <button
+              onClick={handleDownloadClick}
               className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
             >
               <SafeIcon icon={FiDownload} />
               <span>Gratis Download + Nieuwsbrief</span>
-            </Link>
+            </button>
           </motion.div>
         </div>
       </section>
