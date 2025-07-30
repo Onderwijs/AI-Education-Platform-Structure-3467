@@ -1,20 +1,20 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import {downloadStartersgids} from '../utils/downloadUtils';
 
-const {FiMail,FiDownload,FiCheck,FiGift,FiUsers,FiTrendingUp}=FiIcons;
+const {FiMail, FiDownload, FiCheck, FiGift, FiUsers, FiTrendingUp} = FiIcons;
 
-const Nieuwsbrief=()=> {
+const Nieuwsbrief = () => {
   const [formData, setFormData] = useState({
     email: '',
     role: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubscribed,setIsSubscribed]=useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const benefits=[
+  const benefits = [
     {
       icon: FiDownload,
       title: "Gratis AI Startersgids",
@@ -37,7 +37,7 @@ const Nieuwsbrief=()=> {
     }
   ];
 
-  const freebies=[
+  const freebies = [
     {
       title: "AI in 30 Dagen Challenge",
       description: "Dagelijkse opdrachten om AI te integreren in je onderwijs",
@@ -56,7 +56,7 @@ const Nieuwsbrief=()=> {
   ];
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -118,14 +118,14 @@ Deze persoon wil zich inschrijven voor de nieuwsbrief en de gratis AI startersgi
           </p>
           <div className="space-y-4">
             <button
-              onClick={()=> downloadStartersgids()}
+              onClick={() => downloadStartersgids()}
               className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
             >
               <SafeIcon icon={FiDownload} />
               <span>Download opnieuw</span>
             </button>
             <button
-              onClick={()=> setIsSubscribed(false)}
+              onClick={() => setIsSubscribed(false)}
               className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors"
             >
               Terug naar overzicht
@@ -339,7 +339,7 @@ Deze persoon wil zich inschrijven voor de nieuwsbrief en de gratis AI startersgi
             <blockquote className="text-xl text-gray-600 italic mb-4">
               "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding gehalveerd en mijn leerlingen zijn veel meer betrokken."
             </blockquote>
-            <cite className="text-gray-500">- Marieke,VO Docent Nederlands</cite>
+            <cite className="text-gray-500">- Marieke, VO Docent Nederlands</cite>
           </motion.div>
         </div>
       </section>
@@ -359,7 +359,7 @@ Deze persoon wil zich inschrijven voor de nieuwsbrief en de gratis AI startersgi
               Schrijf je nu in en ontvang direct toegang tot alle materialen
             </p>
             <button
-              onClick={()=> document.getElementById('email')?.scrollIntoView({behavior: 'smooth'})}
+              onClick={() => document.getElementById('email')?.scrollIntoView({behavior: 'smooth'})}
               className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
             >
               <SafeIcon icon={FiMail} />

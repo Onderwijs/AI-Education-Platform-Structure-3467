@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import {Link} from 'react-router-dom';
+import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../common/SafeIcon';
+import {downloadFile} from '../../utils/downloadUtils';
 
-const { FiTool, FiTrendingUp, FiDownload, FiBriefcase, FiUsers, FiArrowRight } = FiIcons;
+const {FiTool, FiTrendingUp, FiDownload, FiBriefcase, FiUsers, FiArrowRight} = FiIcons;
 
 const MBOHBO = () => {
   const sectors = [
@@ -43,7 +44,8 @@ const MBOHBO = () => {
       description: "Studenten gebruiken AI-tools voor uitgebreid marktonderzoek en business planning",
       skills: ["Data analyse", "Strategisch denken", "Presenteren", "AI-tools"],
       deliverables: ["Marktrapport", "Business plan", "Pitch presentatie"],
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop"
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop",
+      projectFile: "/projects/ai-gedreven-marktonderzoek.pdf"
     },
     {
       title: "Smart Healthcare Solutions",
@@ -53,7 +55,8 @@ const MBOHBO = () => {
       description: "Ontwikkeling van AI-ondersteunde zorgoplossingen voor praktijkproblemen",
       skills: ["Probleemanalyse", "Ethiek", "Technologie", "Samenwerken"],
       deliverables: ["Prototype", "Ethische analyse", "Implementatieplan"],
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=200&fit=crop"
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=200&fit=crop",
+      projectFile: "/projects/smart-healthcare-solutions.pdf"
     },
     {
       title: "Creative AI Portfolio",
@@ -90,11 +93,18 @@ const MBOHBO = () => {
     }
   ];
 
+  const handleDownloadProject = (projectFile, projectTitle) => {
+    if (projectFile) {
+      const filename = `${projectTitle.toLowerCase().replace(/\s+/g, '-')}.pdf`;
+      downloadFile(projectFile, filename);
+    }
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
       className="min-h-screen"
     >
       {/* Hero Section */}
@@ -102,8 +112,8 @@ const MBOHBO = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{opacity: 0, x: -50}}
+              animate={{opacity: 1, x: 0}}
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 AI in MBO & HBO
@@ -129,9 +139,9 @@ const MBOHBO = () => {
               </div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
+              initial={{opacity: 0, x: 50}}
+              animate={{opacity: 1, x: 0}}
+              transition={{delay: 0.2}}
             >
               <img
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
@@ -147,9 +157,9 @@ const MBOHBO = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -159,15 +169,14 @@ const MBOHBO = () => {
               Praktijkgerichte AI-toepassingen voor verschillende beroepsrichtingen
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {sectors.map((sector, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                initial={{opacity: 0, y: 50}}
+                whileInView={{opacity: 1, y: 0}}
+                viewport={{once: true}}
+                transition={{delay: index * 0.1}}
                 className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow"
               >
                 <div className={`w-16 h-16 rounded-2xl ${sector.color} flex items-center justify-center mb-6`}>
@@ -194,9 +203,9 @@ const MBOHBO = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -206,15 +215,14 @@ const MBOHBO = () => {
               Uitdagende projecten die studenten voorbereiden op de praktijk
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                initial={{opacity: 0, y: 50}}
+                whileInView={{opacity: 1, y: 0}}
+                viewport={{once: true}}
+                transition={{delay: index * 0.1}}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
                 <img
@@ -258,13 +266,13 @@ const MBOHBO = () => {
                       ))}
                     </ul>
                   </div>
-                  <Link
-                    to="/leslab"
+                  <button
+                    onClick={() => handleDownloadProject(project.projectFile, project.title)}
                     className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
                   >
                     <SafeIcon icon={FiDownload} />
                     <span>Download Project</span>
-                  </Link>
+                  </button>
                 </div>
               </motion.div>
             ))}
@@ -276,9 +284,9 @@ const MBOHBO = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -288,15 +296,14 @@ const MBOHBO = () => {
               Essentiële AI-vaardigheden voor de arbeidsmarkt
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {professionalSkills.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                initial={{opacity: 0, x: index % 2 === 0 ? -50 : 50}}
+                whileInView={{opacity: 1, x: 0}}
+                viewport={{once: true}}
+                transition={{delay: index * 0.1}}
                 className="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-2xl"
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -313,76 +320,13 @@ const MBOHBO = () => {
         </div>
       </section>
 
-      {/* Career Preparation - Hidden Section */}
-      {/* 
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Arbeidsmarktvoorbereiding
-              </h2>
-              <p className="text-xl text-gray-600 mb-8">
-                Bereid studenten optimaal voor op een arbeidsmarkt waarin AI een centrale rol speelt.
-              </p>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-start space-x-3">
-                  <SafeIcon icon={FiTrendingUp} className="text-green-600 mt-1" />
-                  <div>
-                    <div className="font-medium text-gray-900">Portfolio Development</div>
-                    <div className="text-gray-600">AI-ondersteunde projecten in professionele portfolio's</div>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <SafeIcon icon={FiBriefcase} className="text-green-600 mt-1" />
-                  <div>
-                    <div className="font-medium text-gray-900">Praktijkstages</div>
-                    <div className="text-gray-600">AI-toepassingen in echte werkgevingscontexten</div>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <SafeIcon icon={FiUsers} className="text-green-600 mt-1" />
-                  <div>
-                    <div className="font-medium text-gray-900">Netwerk & Mentoring</div>
-                    <div className="text-gray-600">Verbinding met AI-professionals uit het werkveld</div>
-                  </div>
-                </li>
-              </ul>
-              <Link
-                to="/voor-scholen"
-                className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors inline-flex items-center space-x-2"
-              >
-                <span>Schoolprogramma Aanvragen</span>
-                <SafeIcon icon={FiArrowRight} />
-              </Link>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=400&fit=crop"
-                alt="Studenten werken samen"
-                className="rounded-2xl shadow-2xl"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-      */}
-
       {/* CTA Section */}
       <section className="py-20 bg-green-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Implementeer AI in jouw MBO/HBO programma
@@ -398,16 +342,6 @@ const MBOHBO = () => {
                 <SafeIcon icon={FiDownload} />
                 <span>Gratis MBO/HBO Toolkit</span>
               </Link>
-              {/* Hidden Schooltraining button */}
-              {/* 
-              <Link
-                to="/voor-scholen"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors inline-flex items-center space-x-2"
-              >
-                <SafeIcon icon={FiBriefcase} />
-                <span>Schooltraining Aanvragen</span>
-              </Link>
-              */}
             </div>
           </motion.div>
         </div>

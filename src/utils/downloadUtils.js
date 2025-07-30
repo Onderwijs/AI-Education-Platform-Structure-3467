@@ -50,7 +50,7 @@ export const lessonFileMap = {
   // PO lessons
   "Wat is Kunstmatige Intelligentie?": "/lessons/ai-in-po.pdf",
   "AI in Ons Dagelijks Leven": "/lessons/ai-in-po.pdf",
-  "Vriendelijke Robots": "/lessons/ai-in-po.pdf",
+  "Vriendelijke Robots": "/lessons/vriendelijke-robots.pdf",
   
   // VO lessons
   "AI en Ethiek": "/lessons/ai-ethics-vo.pdf",

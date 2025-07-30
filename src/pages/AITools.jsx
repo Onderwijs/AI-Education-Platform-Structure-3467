@@ -1,33 +1,33 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const {FiTool,FiFilter,FiStar,FiExternalLink,FiSearch}=FiIcons;
+const {FiTool, FiFilter, FiStar, FiExternalLink, FiSearch} = FiIcons;
 
-const AITools=()=> {
-  const [selectedCategory,setSelectedCategory]=useState('Alle');
-  const [selectedLevel,setSelectedLevel]=useState('Alle');
-  const [searchTerm,setSearchTerm]=useState('');
+const AITools = () => {
+  const [selectedCategory, setSelectedCategory] = useState('Alle');
+  const [selectedLevel, setSelectedLevel] = useState('Alle');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const categories=[
-    'Alle','Tekstverwerking','Presentaties','Beeldbewerking','Onderzoek','Programmeren','Creatief','Onderwijs'
+  const categories = [
+    'Alle', 'Tekstverwerking', 'Presentaties', 'Beeldbewerking', 'Onderzoek', 'Programmeren', 'Creatief', 'Onderwijs'
   ];
 
-  const levels=['Alle','Beginner','Gemiddeld','Gevorderd'];
+  const levels = ['Alle', 'Beginner', 'Gemiddeld', 'Gevorderd'];
 
-  const tools=[
+  const tools = [
     {
       name: "ChatGPT",
       category: "Tekstverwerking",
       level: "Beginner",
       rating: 4.8,
-      description: "Veelzijdige AI-assistent voor tekst generatie,bewerking en conversatie",
-      features: ["Tekstgeneratie","Vraag & antwoord","Code schrijven","Vertalingen"],
+      description: "Veelzijdige AI-assistent voor tekst generatie, bewerking en conversatie",
+      features: ["Tekstgeneratie", "Vraag & antwoord", "Code schrijven", "Vertalingen"],
       pricing: "Freemium",
       education: true,
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=200&fit=crop",
-      useCase: "Lesvoorbereiding,feedback op teksten,brainstormsessies",
+      useCase: "Lesvoorbereiding, feedback op teksten, brainstormsessies",
       link: "https://chat.openai.com"
     },
     {
@@ -36,7 +36,7 @@ const AITools=()=> {
       level: "Beginner",
       rating: 4.7,
       description: "AI-powered Chrome extensie speciaal ontworpen voor docenten om tijd te besparen",
-      features: ["Snelle feedback","Lesplan generatie","Differentiatie tools","Google Docs integratie"],
+      features: ["Snelle feedback", "Lesplan generatie", "Differentiatie tools", "Google Docs integratie"],
       pricing: "Freemium",
       education: true,
       image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=300&h=200&fit=crop",
@@ -49,11 +49,11 @@ const AITools=()=> {
       level: "Beginner",
       rating: 4.6,
       description: "Grafisch ontwerp met AI-ondersteuning voor presentaties en lesmateriaal",
-      features: ["Design templates","AI afbeeldingen","Presentaties","Infographics"],
+      features: ["Design templates", "AI afbeeldingen", "Presentaties", "Infographics"],
       pricing: "Freemium",
       education: true,
       image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=300&h=200&fit=crop",
-      useCase: "Visuele lesmateriaal,posters,presentaties",
+      useCase: "Visuele lesmateriaal, posters, presentaties",
       link: "https://www.canva.com"
     },
     {
@@ -62,11 +62,11 @@ const AITools=()=> {
       level: "Beginner",
       rating: 4.5,
       description: "AI-powered presentaties maken in enkele minuten",
-      features: ["Auto-layout","Content suggesties","Templates","Collaboratie"],
+      features: ["Auto-layout", "Content suggesties", "Templates", "Collaboratie"],
       pricing: "Freemium",
       education: true,
-      image: "https://images.unsplash.com/photo-1573166364524-d9dbfd1ca5d9?w=300&h=200&fit=crop",
-      useCase: "Snelle presentaties,lesplannen,student projecten",
+      image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=300&h=200&fit=crop",
+      useCase: "Snelle presentaties, lesplannen, student projecten",
       link: "https://gamma.app"
     },
     {
@@ -75,11 +75,11 @@ const AITools=()=> {
       level: "Gemiddeld",
       rating: 4.7,
       description: "AI zoekengine met bronvermelding voor betrouwbaar onderzoek",
-      features: ["Bronvermelding","Real-time info","Samenvatting","Follow-up vragen"],
+      features: ["Bronvermelding", "Real-time info", "Samenvatting", "Follow-up vragen"],
       pricing: "Freemium",
       education: true,
       image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop",
-      useCase: "Onderzoeksopdrachten,fact-checking,bronnen zoeken",
+      useCase: "Onderzoeksopdrachten, fact-checking, bronnen zoeken",
       link: "https://www.perplexity.ai"
     },
     {
@@ -88,11 +88,11 @@ const AITools=()=> {
       level: "Gevorderd",
       rating: 4.4,
       description: "AI code assistent voor programmeeronderwijs",
-      features: ["Code completion","Functie suggesties","Debugging","Code uitleg"],
+      features: ["Code completion", "Functie suggesties", "Debugging", "Code uitleg"],
       pricing: "Gratis voor studenten",
       education: true,
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&h=200&fit=crop",
-      useCase: "Programmeren leren,code review,debugging",
+      useCase: "Programmeren leren, code review, debugging",
       link: "https://github.com/features/copilot"
     },
     {
@@ -101,11 +101,11 @@ const AITools=()=> {
       level: "Gemiddeld",
       rating: 4.6,
       description: "AI beeldgeneratie voor creatieve projecten",
-      features: ["Tekst naar beeld","Hoge kwaliteit","Stijl variaties","Bewerkingen"],
+      features: ["Tekst naar beeld", "Hoge kwaliteit", "Stijl variaties", "Bewerkingen"],
       pricing: "Betaald",
       education: false,
       image: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=300&h=200&fit=crop",
-      useCase: "Illustraties maken,creatieve opdrachten,conceptvisualisatie",
+      useCase: "Illustraties maken, creatieve opdrachten, conceptvisualisatie",
       link: "https://openai.com/dall-e-3"
     },
     {
@@ -114,11 +114,11 @@ const AITools=()=> {
       level: "Beginner",
       rating: 4.3,
       description: "AI parafrasering en grammatica controle tool",
-      features: ["Parafrasering","Grammatica check","Samenvatting","Citatie hulp"],
+      features: ["Parafrasering", "Grammatica check", "Samenvatting", "Citatie hulp"],
       pricing: "Freemium",
       education: true,
       image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=300&h=200&fit=crop",
-      useCase: "Tekst verbeteren,plagiaatpreventie,schrijfhulp",
+      useCase: "Tekst verbeteren, plagiaatpreventie, schrijfhulp",
       link: "https://quillbot.com"
     },
     {
@@ -127,25 +127,25 @@ const AITools=()=> {
       level: "Gevorderd",
       rating: 4.2,
       description: "AI video's maken met virtuele presentatoren",
-      features: ["AI avatars","Meertalig","Custom branding","Templates"],
+      features: ["AI avatars", "Meertalig", "Custom branding", "Templates"],
       pricing: "Betaald",
       education: true,
       image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=300&h=200&fit=crop",
-      useCase: "Instructievideo's,online lessen,presentaties",
+      useCase: "Instructievideo's, online lessen, presentaties",
       link: "https://www.synthesia.io"
     }
   ];
 
-  const filteredTools=tools.filter(tool=> {
-    const matchesCategory=selectedCategory==='Alle' || tool.category===selectedCategory;
-    const matchesLevel=selectedLevel==='Alle' || tool.level===selectedLevel;
-    const matchesSearch=tool.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                      tool.description.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredTools = tools.filter(tool => {
+    const matchesCategory = selectedCategory === 'Alle' || tool.category === selectedCategory;
+    const matchesLevel = selectedLevel === 'Alle' || tool.level === selectedLevel;
+    const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          tool.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesLevel && matchesSearch;
   });
 
   // Enhanced link handler with multiple fallback methods
-  const handleLinkClick=(url,event)=> {
+  const handleLinkClick = (url, event) => {
     if (event) {
       event.preventDefault();
       event.stopPropagation();
@@ -153,21 +153,21 @@ const AITools=()=> {
 
     // Method 1: Try window.open
     try {
-      const newWindow=window.open(url,'_blank','noopener,noreferrer');
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
       if (newWindow) {
         newWindow.focus();
         return;
       }
     } catch (e) {
-      console.log('Window.open failed,trying alternative method');
+      console.log('Window.open failed, trying alternative method');
     }
 
     // Method 2: Create temporary link element
     try {
-      const link=document.createElement('a');
-      link.href=url;
-      link.target='_blank';
-      link.rel='noopener noreferrer';
+      const link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -195,15 +195,15 @@ const AITools=()=> {
       <section className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0,y: 50}}
-            animate={{opacity: 1,y: 0}}
+            initial={{opacity: 0, y: 50}}
+            animate={{opacity: 1, y: 0}}
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               AI-Tools voor het Onderwijs
             </h1>
             <p className="text-xl text-indigo-100 max-w-3xl mx-auto">
-              Ontdek de beste AI-tools voor docenten. Getest,beoordeeld en voorzien van praktische tips voor gebruik in de klas.
+              Ontdek de beste AI-tools voor docenten. Getest, beoordeeld en voorzien van praktische tips voor gebruik in de klas.
             </p>
           </motion.div>
         </div>
@@ -220,7 +220,7 @@ const AITools=()=> {
                 type="text"
                 placeholder="Zoek AI-tools..."
                 value={searchTerm}
-                onChange={(e)=> setSearchTerm(e.target.value)}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               />
             </div>
@@ -230,10 +230,10 @@ const AITools=()=> {
               <SafeIcon icon={FiFilter} className="text-gray-500" />
               <select
                 value={selectedCategory}
-                onChange={(e)=> setSelectedCategory(e.target.value)}
+                onChange={(e) => setSelectedCategory(e.target.value)}
                 className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               >
-                {categories.map(category=> (
+                {categories.map(category => (
                   <option key={category} value={category}>{category}</option>
                 ))}
               </select>
@@ -244,10 +244,10 @@ const AITools=()=> {
               <span className="text-sm text-gray-600">Niveau:</span>
               <select
                 value={selectedLevel}
-                onChange={(e)=> setSelectedLevel(e.target.value)}
+                onChange={(e) => setSelectedLevel(e.target.value)}
                 className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               >
-                {levels.map(level=> (
+                {levels.map(level => (
                   <option key={level} value={level}>{level}</option>
                 ))}
               </select>
@@ -260,19 +260,19 @@ const AITools=()=> {
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredTools.map((tool,index)=> (
+            {filteredTools.map((tool, index) => (
               <motion.div
                 key={tool.name}
-                initial={{opacity: 0,y: 50}}
-                whileInView={{opacity: 1,y: 0}}
+                initial={{opacity: 0, y: 50}}
+                whileInView={{opacity: 1, y: 0}}
                 viewport={{once: true}}
                 transition={{delay: index * 0.1}}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                <img 
-                  src={tool.image} 
-                  alt={tool.name} 
-                  className="w-full h-48 object-cover" 
+                <img
+                  src={tool.image}
+                  alt={tool.name}
+                  className="w-full h-48 object-cover"
                 />
                 <div className="p-6">
                   {/* Header */}
@@ -302,7 +302,7 @@ const AITools=()=> {
                   <div className="mb-4">
                     <div className="text-sm font-medium text-gray-700 mb-2">Functies:</div>
                     <div className="flex flex-wrap gap-2">
-                      {tool.features.slice(0,3).map((feature,featureIndex)=> (
+                      {tool.features.slice(0, 3).map((feature, featureIndex) => (
                         <span
                           key={featureIndex}
                           className="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full"
@@ -326,7 +326,7 @@ const AITools=()=> {
                   <div className="flex items-center justify-between pt-4 border-t mb-4">
                     <div className="flex items-center space-x-2">
                       <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-                        tool.pricing==='Freemium' || tool.pricing==='Gratis voor studenten' 
+                        tool.pricing === 'Freemium' || tool.pricing === 'Gratis voor studenten' 
                           ? 'bg-green-100 text-green-800' 
                           : 'bg-orange-100 text-orange-800'
                       }`}>
@@ -339,7 +339,7 @@ const AITools=()=> {
                       )}
                     </div>
                     <button
-                      onClick={(e)=> handleLinkClick(tool.link,e)}
+                      onClick={(e) => handleLinkClick(tool.link, e)}
                       className="text-indigo-600 hover:text-indigo-700 transition-colors p-2 rounded-full hover:bg-indigo-50"
                       aria-label={`Bezoek ${tool.name} website`}
                       title={`Bezoek ${tool.name} website`}
@@ -351,9 +351,9 @@ const AITools=()=> {
                   {/* Visit Website Button - Make sure it's always visible */}
                   <div className="w-full">
                     <button
-                      onClick={(e)=> handleLinkClick(tool.link,e)}
+                      onClick={(e) => handleLinkClick(tool.link, e)}
                       className="w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-lg transition-colors font-semibold text-sm flex items-center justify-center space-x-2 min-h-[44px]"
-                      style={{display: 'flex !important',visibility: 'visible !important',opacity: '1 !important'}}
+                      style={{display: 'flex !important', visibility: 'visible !important', opacity: '1 !important'}}
                     >
                       <span>Bezoek Website</span>
                       <SafeIcon icon={FiExternalLink} className="w-4 h-4" />
@@ -364,7 +364,7 @@ const AITools=()=> {
             ))}
           </div>
 
-          {filteredTools.length===0 && (
+          {filteredTools.length === 0 && (
             <div className="text-center py-12">
               <SafeIcon icon={FiTool} className="text-4xl text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">Geen tools gevonden</h3>
@@ -378,8 +378,8 @@ const AITools=()=> {
       <section className="py-20 bg-indigo-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{opacity: 0,y: 50}}
-            whileInView={{opacity: 1,y: 0}}
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
             viewport={{once: true}}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">

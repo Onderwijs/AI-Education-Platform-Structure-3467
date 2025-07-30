@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../common/SafeIcon';
 
-const {FiBrain,FiMail,FiLinkedin}=FiIcons;
+const {FiBrain, FiMail, FiLinkedin} = FiIcons;
 
-const Footer=()=> {
+const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -53,18 +53,10 @@ const Footer=()=> {
 
             {/* Social Links */}
             <div className="flex space-x-4 mt-6">
-              <a
-                href="https://www.linkedin.com/in/maikewarner/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
+              <a href="https://www.linkedin.com/in/maikewarner/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                 <SafeIcon icon={FiLinkedin} className="text-xl" />
               </a>
-              <a
-                href="mailto:info@aiinonderwijs.nl"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
+              <a href="mailto:ai.onderwijs@gmail.com" className="text-gray-300 hover:text-white transition-colors">
                 <SafeIcon icon={FiMail} className="text-xl" />
               </a>
             </div>
