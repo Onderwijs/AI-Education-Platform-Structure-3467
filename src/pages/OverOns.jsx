@@ -44,14 +44,9 @@ Verzonden via onderwijs.ai contact formulier
       alert('Je e-mailprogramma wordt geopend om het bericht te versturen naar ai.onderwijs@gmail.com');
       
       // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+      setFormData({name: '',email: '',subject: '',message: ''});
     } catch (error) {
-      console.error('Error opening email client:', error);
+      console.error('Error opening email client:',error);
       alert(`Er is een probleem opgetreden. Stuur je bericht handmatig naar: ai.onderwijs@gmail.com`);
     }
   };
@@ -106,9 +101,9 @@ Verzonden via onderwijs.ai contact formulier
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
       className="min-h-screen"
     >
       {/* Hero Section */}
@@ -116,8 +111,8 @@ Verzonden via onderwijs.ai contact formulier
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{opacity: 0,x: -50}}
+              animate={{opacity: 1,x: 0}}
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 Over AI in het Onderwijs
@@ -135,17 +130,16 @@ Verzonden via onderwijs.ai contact formulier
                 <a
                   href="#contact"
                   className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors opacity-50 cursor-not-allowed"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={(e)=> e.preventDefault()}
                 >
                   Neem contact op
                 </a>
               </div>
             </motion.div>
-
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
+              initial={{opacity: 0,x: 50}}
+              animate={{opacity: 1,x: 0}}
+              transition={{delay: 0.2}}
             >
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop"
@@ -161,21 +155,20 @@ Verzonden via onderwijs.ai contact formulier
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Verhaal
             </h2>
           </motion.div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{opacity: 0,x: -50}}
+              whileInView={{opacity: 1,x: 0}}
+              viewport={{once: true}}
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Wie ben ik
@@ -187,14 +180,13 @@ Verzonden via onderwijs.ai contact formulier
                 Naarmate de interesse groeide,ontstond het idee om een platform te creëren dat docenten helpt om AI effectief en verantwoord in te zetten in het onderwijs.
               </p>
               <p className="text-gray-600">
-                Missie van deze website: AI toegankelijk maken voor alle onderwijsprofessionals,ongeacht hun technische achtergrond.
+                Missie van deze website: AI toegankelijk maken voor alle onderwijsprofessionals, ongeacht hun technische achtergrond.
               </p>
             </motion.div>
-
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{opacity: 0,x: 50}}
+              whileInView={{opacity: 1,x: 0}}
+              viewport={{once: true}}
               className="relative"
             >
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary-100 rounded-lg z-0"></div>
@@ -213,9 +205,9 @@ Verzonden via onderwijs.ai contact formulier
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -225,15 +217,14 @@ Verzonden via onderwijs.ai contact formulier
               Deze principes staan centraal
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
+            {values.map((value,index)=> (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                initial={{opacity: 0,y: 50}}
+                whileInView={{opacity: 1,y: 0}}
+                viewport={{once: true}}
+                transition={{delay: index * 0.1}}
                 className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -252,9 +243,9 @@ Verzonden via onderwijs.ai contact formulier
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -264,15 +255,14 @@ Verzonden via onderwijs.ai contact formulier
               Ervaren docent met een passie voor technologie
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
+            {teamMembers.map((member,index)=> (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                initial={{opacity: 0,y: 50}}
+                whileInView={{opacity: 1,y: 0}}
+                viewport={{once: true}}
+                transition={{delay: index * 0.1}}
                 className="bg-gray-50 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
               >
                 <img
@@ -297,9 +287,9 @@ Verzonden via onderwijs.ai contact formulier
       <section id="contact" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -309,12 +299,11 @@ Verzonden via onderwijs.ai contact formulier
               Heb je vragen of wil je samenwerken? Stuur een berichtje!
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{opacity: 0,x: -50}}
+              whileInView={{opacity: 1,x: 0}}
+              viewport={{once: true}}
             >
               <div className="bg-white p-8 rounded-2xl shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
@@ -384,11 +373,10 @@ Verzonden via onderwijs.ai contact formulier
                 </form>
               </div>
             </motion.div>
-
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{opacity: 0,x: 50}}
+              whileInView={{opacity: 1,x: 0}}
+              viewport={{once: true}}
             >
               <div className="bg-white p-8 rounded-2xl shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
@@ -425,9 +413,9 @@ Verzonden via onderwijs.ai contact formulier
       <section className="py-20 bg-primary-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Klaar om te beginnen met AI in jouw onderwijs?

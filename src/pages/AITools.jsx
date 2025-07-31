@@ -26,7 +26,7 @@ const AITools=()=> {
       features: ["Tekstgeneratie","Vraag & antwoord","Document analyse","Uitgebreide context"],
       pricing: "Freemium",
       education: true,
-      image: "https://images.unsplash.com/photo-1676299081847-824916de030a?w=300&h=200&fit=crop",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=200&fit=crop",
       useCase: "Lesvoorbereiding,feedback op leerlingwerk,onderzoeksvragen beantwoorden",
       link: "https://claude.ai"
     },
