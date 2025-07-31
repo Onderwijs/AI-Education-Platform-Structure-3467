@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import { downloadStartersgids } from '../utils/downloadUtils';
+import { simulateLogin, isUserLoggedIn } from '../utils/userUtils';
 
 const { FiDownload, FiBook, FiUsers, FiTool, FiTrendingUp, FiAward, FiPlay, FiArrowRight } = FiIcons;
 
@@ -54,6 +55,15 @@ const Home = () => {
     downloadStartersgids();
   };
 
+  const handleGetStartedClick = () => {
+    if (!isUserLoggedIn()) {
+      // Simulate login for demo purposes
+      simulateLogin();
+      // Refresh navbar to show GetStarted button
+      window.location.reload();
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -86,13 +96,23 @@ const Home = () => {
                   <SafeIcon icon={FiDownload} />
                   <span>Gratis Download</span>
                 </button>
-                <Link
-                  to="/quiz"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2"
-                >
-                  <SafeIcon icon={FiPlay} />
-                  <span>Start Quiz</span>
-                </Link>
+                {!isUserLoggedIn() ? (
+                  <button
+                    onClick={handleGetStartedClick}
+                    className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2"
+                  >
+                    <SafeIcon icon={FiPlay} />
+                    <span>Get Started</span>
+                  </button>
+                ) : (
+                  <Link
+                    to="/get-started"
+                    className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2"
+                  >
+                    <SafeIcon icon={FiPlay} />
+                    <span>Continue Journey</span>
+                  </Link>
+                )}
               </div>
 
               {/* Stats */}
