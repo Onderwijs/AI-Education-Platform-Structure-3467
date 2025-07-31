@@ -4,10 +4,10 @@ import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const {FiSearch,FiCalendar,FiUser,FiTag,FiArrowRight,FiExternalLink} = FiIcons;
+const {FiSearch,FiCalendar,FiUser,FiTag,FiArrowRight,FiExternalLink}=FiIcons;
 
-const Blog = () => {
-  const featuredPost = {
+const Blog=()=> {
+  const featuredPost={
     title: "Google I/O 2025: AI en de toekomst van onderwijs",
     excerpt: "Ontdek de nieuwste AI-ontwikkelingen van Google I/O 2025 en wat dit betekent voor de toekomst van het onderwijs.",
     date: "15 mei 2025",
@@ -18,10 +18,10 @@ const Blog = () => {
     url: "https://aivooronderwijs.nl/google-i-o-2025-ai-en-de-toekomst-van-onderwijs/"
   };
 
-  const posts = [
+  const posts=[
     {
-      title: "Maak aanpasbare grafieken, figuren en formules met AI",
-      excerpt: "Leer hoe je AI kunt gebruiken om dynamische en interactieve grafieken, figuren en formules te maken voor je lessen.",
+      title: "Maak aanpasbare grafieken,figuren en formules met AI",
+      excerpt: "Leer hoe je AI kunt gebruiken om dynamische en interactieve grafieken,figuren en formules te maken voor je lessen.",
       date: "10 mei 2025",
       author: "AI voor Onderwijs",
       category: "AI Tools",
@@ -65,7 +65,7 @@ const Blog = () => {
       date: "15 april 2025",
       author: "Adwise Academy",
       category: "Richtlijnen",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=250&fit=crop",
       readTime: "10 min",
       url: "https://www.adwiseacademy.nl/stories/pleidooi-voor-ai-richtlijnen-in-het-onderwijs"
     },
@@ -81,7 +81,7 @@ const Blog = () => {
     }
   ];
 
-  const categories = [
+  const categories=[
     "Alle categorieën",
     "AI Tools",
     "AI Trends",
@@ -92,8 +92,8 @@ const Blog = () => {
     "Implementatie"
   ];
 
-  const handleArticleClick = (url) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+  const handleArticleClick=(url)=> {
+    window.open(url,'_blank','noopener,noreferrer');
   };
 
   return (
@@ -115,7 +115,7 @@ const Blog = () => {
               Blog: AI in het Onderwijs
             </h1>
             <p className="text-xl text-indigo-100 max-w-3xl mx-auto mb-8">
-              Praktische tips, inzichten en ervaringen over het gebruik van AI in het onderwijs
+              Praktische tips,inzichten en ervaringen over het gebruik van AI in het onderwijs
             </p>
             <div className="max-w-xl mx-auto relative">
               <SafeIcon icon={FiSearch} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -298,7 +298,7 @@ const Blog = () => {
               Blijf op de hoogte
             </h2>
             <p className="text-xl text-indigo-100 mb-8">
-              Ontvang wekelijks nieuwe artikelen, tips en AI-tools direct in je inbox
+              Ontvang wekelijks nieuwe artikelen,tips en AI-tools direct in je inbox
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <input

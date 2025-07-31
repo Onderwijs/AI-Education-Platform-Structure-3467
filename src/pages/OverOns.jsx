@@ -1,25 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import {Link} from 'react-router-dom';
+import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiMail, FiMapPin } = FiIcons;
+const {FiMail,FiMapPin}=FiIcons;
 
-const OverOns = () => {
-  const [formData, setFormData] = React.useState({
+const OverOns=()=> {
+  const [formData,setFormData]=React.useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit=async (e)=> {
     e.preventDefault();
-
+    
     // Create email content
-    const subject = encodeURIComponent('Contact formulier - AI in het Onderwijs');
-    const body = encodeURIComponent(`
+    const subject=encodeURIComponent('Contact formulier - AI in het Onderwijs');
+    const body=encodeURIComponent(`
 Nieuw bericht via contact formulier:
 
 Naam: ${formData.name}
@@ -34,11 +34,11 @@ Verzonden via onderwijs.ai contact formulier
     `);
 
     // Send email using mailto (this will open the user's email client)
-    const mailtoLink = `mailto:ai.onderwijs@gmail.com?subject=${subject}&body=${body}`;
-
+    const mailtoLink=`mailto:ai.onderwijs@gmail.com?subject=${subject}&body=${body}`;
+    
     try {
       // Try to open email client
-      window.location.href = mailtoLink;
+      window.location.href=mailtoLink;
       
       // Show success message
       alert('Je e-mailprogramma wordt geopend om het bericht te versturen naar ai.onderwijs@gmail.com');
@@ -56,15 +56,15 @@ Verzonden via onderwijs.ai contact formulier
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
+  const handleChange=(e)=> {
+    const {name,value}=e.target;
+    setFormData(prevState=> ({
       ...prevState,
       [name]: value
     }));
   };
 
-  const teamMembers = [
+  const teamMembers=[
     {
       name: "Maike",
       role: "Oprichter & Docent",
@@ -75,7 +75,7 @@ Verzonden via onderwijs.ai contact formulier
       name: "Join",
       role: "Iets leuks",
       bio: "Ben jij een onderwijsprofessional met passie voor AI en innovatie? Neem contact op!",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop"
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop"
     },
     {
       name: "Join",
@@ -85,10 +85,10 @@ Verzonden via onderwijs.ai contact formulier
     }
   ];
 
-  const values = [
+  const values=[
     {
       title: "Praktijkgericht",
-      description: "We geloven in concrete, toepasbare kennis in plaats van theoretische concepten."
+      description: "We geloven in concrete,toepasbare kennis in plaats van theoretische concepten."
     },
     {
       title: "Ethisch verantwoord",
@@ -96,7 +96,7 @@ Verzonden via onderwijs.ai contact formulier
     },
     {
       title: "Toegankelijk",
-      description: "AI moet beschikbaar zijn voor alle docenten, ongeacht technische achtergrond."
+      description: "AI moet beschikbaar zijn voor alle docenten,ongeacht technische achtergrond."
     },
     {
       title: "Toekomstgericht",
@@ -123,7 +123,7 @@ Verzonden via onderwijs.ai contact formulier
                 Over AI in het Onderwijs
               </h1>
               <p className="text-xl text-primary-100 mb-8">
-                Ervaren docent, passie voor technologie met één missie: kunstmatige intelligentie toegankelijk maken voor alle onderwijsprofessionals.
+                Ervaren docent,passie voor technologie met één missie: kunstmatige intelligentie toegankelijk maken voor alle onderwijsprofessionals.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button
@@ -141,6 +141,7 @@ Verzonden via onderwijs.ai contact formulier
                 </a>
               </div>
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -166,7 +167,7 @@ Verzonden via onderwijs.ai contact formulier
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Ons Verhaal
+              Verhaal
             </h2>
           </motion.div>
 
@@ -180,15 +181,16 @@ Verzonden via onderwijs.ai contact formulier
                 Wie ben ik
               </h3>
               <p className="text-gray-600 mb-4">
-                Als docent Kunst & Vormgeving combineer ik creativiteit met technologie. Ik onderzoek hoe AI onderwijs kan verrijken en ik probeer complexe tools naar praktische toepassingen in de klas te vertalen.
+                Als docent Kunst & Vormgeving combineer ik creativiteit met technologie. Ik ben zoekende hoe AI onderwijs kan verrijken en ik probeer complexe tools naar praktische toepassingen in de klas te vertalen.
               </p>
               <p className="text-gray-600 mb-4">
-                Naarmate de interesse groeide, ontstond het idee om een platform te creëren dat docenten helpt om AI effectief en verantwoord in te zetten in het onderwijs.
+                Naarmate de interesse groeide,ontstond het idee om een platform te creëren dat docenten helpt om AI effectief en verantwoord in te zetten in het onderwijs.
               </p>
               <p className="text-gray-600">
-                Missie van deze website: AI toegankelijk maken voor alle onderwijsprofessionals, ongeacht hun technische achtergrond.
+                Missie van deze website: AI toegankelijk maken voor alle onderwijsprofessionals,ongeacht hun technische achtergrond.
               </p>
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -217,10 +219,10 @@ Verzonden via onderwijs.ai contact formulier
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Onze Waarden
+              Waarden
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Deze principes staan centraal in alles wat we doen
+              Deze principes staan centraal
             </p>
           </motion.div>
 
@@ -259,7 +261,7 @@ Verzonden via onderwijs.ai contact formulier
               Team
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Ervaren onderwijsprofessionals met een passie voor technologie
+              Ervaren docent met een passie voor technologie
             </p>
           </motion.div>
 
