@@ -1,9 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../common/SafeIcon';
 
-const {FiBrain, FiMail, FiLinkedin} = FiIcons;
+const { FiBrain, FiLinkedin } = FiIcons;
 
 const Footer = () => {
   return (
@@ -56,15 +56,12 @@ const Footer = () => {
               <a href="https://www.linkedin.com/in/maikewarner/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                 <SafeIcon icon={FiLinkedin} className="text-xl" />
               </a>
-              <a href="mailto:ai.onderwijs@gmail.com" className="text-gray-300 hover:text-white transition-colors">
-                <SafeIcon icon={FiMail} className="text-xl" />
-              </a>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; 2025 AI in het Onderwijs. Alle rechten voorbehouden.</p>
+          <p>&copy;2025 AI in het Onderwijs. Alle rechten voorbehouden.</p>
         </div>
       </div>
     </footer>

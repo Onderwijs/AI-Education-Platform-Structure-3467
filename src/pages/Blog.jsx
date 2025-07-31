@@ -1,88 +1,95 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {motion} from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const {FiSearch, FiCalendar, FiUser, FiTag, FiArrowRight} = FiIcons;
+const { FiSearch, FiCalendar, FiUser, FiTag, FiArrowRight, FiExternalLink } = FiIcons;
 
 const Blog = () => {
   const featuredPost = {
-    title: "10 Manieren om ChatGPT te gebruiken in jouw klas",
-    excerpt: "Ontdek hoe je ChatGPT effectief kunt inzetten voor lesvoorbereiding, differentiatie en creatieve opdrachten.",
-    date: "28 maart 2025",
-    author: "Emma de Boer",
-    category: "AI Tools",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop",
-    readTime: "5 min",
-    url: "https://www.kennisnet.nl/artikel/18617/10-manieren-om-chatgpt-te-gebruiken-in-de-klas/"
+    title: "Google I/O 2025: AI en de toekomst van onderwijs",
+    excerpt: "Ontdek de nieuwste AI-ontwikkelingen van Google I/O 2025 en wat dit betekent voor de toekomst van het onderwijs.",
+    date: "15 mei 2025",
+    author: "AI voor Onderwijs Team",
+    category: "AI Trends",
+    image: "https://images.unsplash.com/photo-1561736778-92e52a7769ef?w=800&h=400&fit=crop",
+    readTime: "6 min",
+    url: "https://aivooronderwijs.nl/google-i-o-2025-ai-en-de-toekomst-van-onderwijs/"
   };
 
   const posts = [
     {
-      title: "Ethisch gebruik van AI in het onderwijs: een praktische gids",
-      excerpt: "Hoe zorg je voor verantwoord gebruik van AI door leerlingen? Deze gids helpt je op weg.",
-      date: "21 maart 2025",
-      author: "Thomas Jansen",
-      category: "AI Ethiek",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop",
-      readTime: "8 min",
-      url: "https://www.surf.nl/kennisbank/ethisch-gebruik-van-ai-in-het-onderwijs"
-    },
-    {
-      title: "AI voor differentiatie: maatwerk voor elke leerling",
-      excerpt: "Leer hoe AI je kan helpen om effectiever te differentiëren en elke leerling op eigen niveau uit te dagen.",
-      date: "14 maart 2025",
-      author: "Laura Smit",
-      category: "Onderwijs",
-      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop",
-      readTime: "6 min",
-      url: "https://www.leraar24.nl/2618571/differentiatie-in-de-klas-met-ai-tools/"
-    },
-    {
-      title: "Van AI-angst naar AI-enthousiasme: hoe overtuig je collega's?",
-      excerpt: "Praktische tips om weerstand tegen AI-tools om te zetten in nieuwsgierigheid en enthousiasme.",
-      date: "7 maart 2025",
-      author: "Mark Bakker",
-      category: "Implementatie",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop",
-      readTime: "4 min",
-      url: "https://www.voion.nl/ai-in-het-onderwijs-van-angst-naar-enthousiasme/"
-    },
-    {
-      title: "Beste AI-tools voor het basisonderwijs (2025)",
-      excerpt: "Een overzicht van de meest kindvriendelijke en educatieve AI-tools voor groep 1 t/m 8.",
-      date: "28 februari 2025",
-      author: "Emma de Boer",
+      title: "Maak aanpasbare grafieken, figuren en formules met AI",
+      excerpt: "Leer hoe je AI kunt gebruiken om dynamische en interactieve grafieken, figuren en formules te maken voor je lessen.",
+      date: "10 mei 2025",
+      author: "AI voor Onderwijs",
       category: "AI Tools",
-      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
       readTime: "7 min",
-      url: "https://wij-leren.nl/ai-tools-basisonderwijs.php"
+      url: "https://aivooronderwijs.nl/maak-aanpasbare-grafieken-figuren-en-formules-met-ai/"
     },
     {
-      title: "Hoe AI je helpt betere toetsen te maken",
-      excerpt: "Maak gevarieerde en effectieve toetsen met behulp van AI, inclusief voorbeeldprompts.",
-      date: "21 februari 2025",
-      author: "Jasper Koning",
-      category: "Toetsing",
+      title: "Onderwijsbeleid en regelgeving rond AI",
+      excerpt: "Een overzicht van het huidige beleid en de regelgeving rond AI in het onderwijs en wat dit betekent voor docenten.",
+      date: "5 mei 2025",
+      author: "Beleidsexperts",
+      category: "Beleid",
+      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=250&fit=crop",
+      readTime: "9 min",
+      url: "https://aivooronderwijs.nl/category/onderwijsbeleid-en-regelgeving/"
+    },
+    {
+      title: "AI voor schoolleiders: strategische implementatie",
+      excerpt: "Hoe schoolleiders AI strategisch kunnen implementeren en welke stappen nodig zijn voor succesvolle adoptie.",
+      date: "28 april 2025",
+      author: "Onderwijs-AI",
+      category: "Management",
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=250&fit=crop",
+      readTime: "8 min",
+      url: "https://onderwijs-ai.nl/blog/ai-voor-schoolleiders"
+    },
+    {
+      title: "Kritisch denken in het AI-tijdperk",
+      excerpt: "Waarom kritisch denken belangrijker dan ooit is en hoe we leerlingen kunnen leren omgaan met AI-informatie.",
+      date: "22 april 2025",
+      author: "Onderwijs-AI",
+      category: "Vaardigheden",
       image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=250&fit=crop",
-      readTime: "5 min",
-      url: "https://www.cito.nl/kennis-en-innovatie/ai-voor-toetsontwikkeling"
+      readTime: "6 min",
+      url: "https://onderwijs-ai.nl/blog/kritisch-denken"
     },
     {
-      title: "AI in MBO: praktijkvoorbeelden uit technische opleidingen",
-      excerpt: "Hoe docenten in technische MBO-opleidingen AI inzetten voor praktijkgericht onderwijs.",
-      date: "14 februari 2025",
-      author: "Robin Visser",
-      category: "MBO",
-      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=250&fit=crop",
-      readTime: "6 min",
-      url: "https://www.mboraad.nl/publicaties/ai-in-technische-opleidingen"
+      title: "Pleidooi voor AI-richtlijnen in het onderwijs",
+      excerpt: "Een uitgebreid pleidooi voor duidelijke richtlijnen rond het gebruik van AI in onderwijsinstellingen.",
+      date: "15 april 2025",
+      author: "Adwise Academy",
+      category: "Richtlijnen",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop",
+      readTime: "10 min",
+      url: "https://www.adwiseacademy.nl/stories/pleidooi-voor-ai-richtlijnen-in-het-onderwijs"
+    },
+    {
+      title: "AI in het onderwijs: praktische toepassingen",
+      excerpt: "Een praktische gids voor het implementeren van AI-tools in verschillende onderwijscontexten en vakgebieden.",
+      date: "8 april 2025",
+      author: "Advantive",
+      category: "Implementatie",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
+      readTime: "7 min",
+      url: "https://www.advantive.nl/ai-in-het-onderwijs/"
     }
   ];
 
   const categories = [
-    "Alle categorieën", "AI Tools", "Onderwijs", "Ethiek", "Implementatie", "Toetsing", "PO", "VO", "MBO/HBO"
+    "Alle categorieën",
+    "AI Tools",
+    "AI Trends",
+    "Beleid",
+    "Management",
+    "Vaardigheden",
+    "Richtlijnen",
+    "Implementatie"
   ];
 
   const handleArticleClick = (url) => {
@@ -91,17 +98,17 @@ const Blog = () => {
 
   return (
     <motion.div
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="min-h-screen"
     >
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            animate={{opacity: 1, y: 0}}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -126,9 +133,9 @@ const Blog = () => {
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="mb-6"
           >
             <h2 className="text-2xl font-bold text-gray-900">
@@ -136,12 +143,13 @@ const Blog = () => {
             </h2>
           </motion.div>
 
-          <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg">
+          <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+               onClick={() => handleArticleClick(featuredPost.url)}>
             <div className="grid grid-cols-1 lg:grid-cols-2">
               <motion.div
-                initial={{opacity: 0, x: -50}}
-                whileInView={{opacity: 1, x: 0}}
-                viewport={{once: true}}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 className="relative h-64 lg:h-auto"
               >
                 <img
@@ -151,9 +159,9 @@ const Blog = () => {
                 />
               </motion.div>
               <motion.div
-                initial={{opacity: 0, x: 50}}
-                whileInView={{opacity: 1, x: 0}}
-                viewport={{once: true}}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 className="p-8"
               >
                 <div className="flex items-center space-x-4 mb-4">
@@ -178,12 +186,9 @@ const Blog = () => {
                     <span className="text-sm text-gray-400">•</span>
                     <span className="text-sm text-gray-600">{featuredPost.readTime} leestijd</span>
                   </div>
-                  <button 
-                    onClick={() => handleArticleClick(featuredPost.url)}
-                    className="text-indigo-600 hover:text-indigo-700 font-medium inline-flex items-center space-x-1"
-                  >
+                  <button className="text-indigo-600 hover:text-indigo-700 font-medium inline-flex items-center space-x-1">
                     <span>Lees artikel</span>
-                    <SafeIcon icon={FiArrowRight} />
+                    <SafeIcon icon={FiExternalLink} />
                   </button>
                 </div>
               </motion.div>
@@ -200,7 +205,9 @@ const Blog = () => {
               <button
                 key={index}
                 className={`px-4 py-2 rounded-full whitespace-nowrap ${
-                  index === 0 ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'
+                  index === 0
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-white text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 {category}
@@ -217,10 +224,10 @@ const Blog = () => {
             {posts.map((post, index) => (
               <motion.div
                 key={index}
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all cursor-pointer"
                 onClick={() => handleArticleClick(post.url)}
               >
@@ -254,8 +261,8 @@ const Blog = () => {
                       <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>
                       <span className="text-sm text-gray-600">{post.author}</span>
                     </div>
-                    <button className="text-indigo-600 hover:text-indigo-700">
-                      <SafeIcon icon={FiArrowRight} />
+                    <button className="text-indigo-600 hover:text-indigo-700 inline-flex items-center space-x-1">
+                      <SafeIcon icon={FiExternalLink} />
                     </button>
                   </div>
                 </div>
@@ -275,9 +282,9 @@ const Blog = () => {
       <section className="py-20 bg-indigo-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Blijf op de hoogte

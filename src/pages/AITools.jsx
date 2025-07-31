@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {motion} from 'framer-motion';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const {FiTool, FiFilter, FiStar, FiExternalLink, FiSearch} = FiIcons;
+const { FiTool, FiFilter, FiStar, FiExternalLink, FiSearch } = FiIcons;
 
 const AITools = () => {
   const [selectedCategory, setSelectedCategory] = useState('Alle');
@@ -17,6 +17,19 @@ const AITools = () => {
   const levels = ['Alle', 'Beginner', 'Gemiddeld', 'Gevorderd'];
 
   const tools = [
+    {
+      name: "Claude",
+      category: "Tekstverwerking",
+      level: "Beginner",
+      rating: 4.8,
+      description: "Krachtige AI-assistent met uitstekende context verwerking en lange gespreksmogelijkheden",
+      features: ["Tekstgeneratie", "Vraag & antwoord", "Document analyse", "Uitgebreide context"],
+      pricing: "Freemium",
+      education: true,
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=200&fit=crop",
+      useCase: "Lesvoorbereiding, feedback op leerlingwerk, onderzoeksvragen beantwoorden",
+      link: "https://claude.ai"
+    },
     {
       name: "ChatGPT",
       category: "Tekstverwerking",
@@ -139,18 +152,18 @@ const AITools = () => {
   const filteredTools = tools.filter(tool => {
     const matchesCategory = selectedCategory === 'Alle' || tool.category === selectedCategory;
     const matchesLevel = selectedLevel === 'Alle' || tool.level === selectedLevel;
-    const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          tool.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase()) 
+                        || tool.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesLevel && matchesSearch;
   });
 
-  // Enhanced link handler with multiple fallback methods
+  // Enhanced link handler with multiple fallback methods 
   const handleLinkClick = (url, event) => {
     if (event) {
       event.preventDefault();
       event.stopPropagation();
     }
-
+    
     // Method 1: Try window.open
     try {
       const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
@@ -161,7 +174,7 @@ const AITools = () => {
     } catch (e) {
       console.log('Window.open failed, trying alternative method');
     }
-
+    
     // Method 2: Create temporary link element
     try {
       const link = document.createElement('a');
@@ -175,7 +188,7 @@ const AITools = () => {
     } catch (e) {
       console.log('Link element method failed');
     }
-
+    
     // Method 3: Fallback to location assignment
     try {
       window.location.assign(url);
@@ -186,17 +199,17 @@ const AITools = () => {
 
   return (
     <motion.div
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="min-h-screen"
     >
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            animate={{opacity: 1, y: 0}}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -263,17 +276,13 @@ const AITools = () => {
             {filteredTools.map((tool, index) => (
               <motion.div
                 key={tool.name}
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                <img
-                  src={tool.image}
-                  alt={tool.name}
-                  className="w-full h-48 object-cover"
-                />
+                <img src={tool.image} alt={tool.name} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   {/* Header */}
                   <div className="flex items-start justify-between mb-3">
@@ -303,8 +312,8 @@ const AITools = () => {
                     <div className="text-sm font-medium text-gray-700 mb-2">Functies:</div>
                     <div className="flex flex-wrap gap-2">
                       {tool.features.slice(0, 3).map((feature, featureIndex) => (
-                        <span
-                          key={featureIndex}
+                        <span 
+                          key={featureIndex} 
                           className="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full"
                         >
                           {feature}
@@ -353,7 +362,7 @@ const AITools = () => {
                     <button
                       onClick={(e) => handleLinkClick(tool.link, e)}
                       className="w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-lg transition-colors font-semibold text-sm flex items-center justify-center space-x-2 min-h-[44px]"
-                      style={{display: 'flex !important', visibility: 'visible !important', opacity: '1 !important'}}
+                      style={{ display: 'flex !important', visibility: 'visible !important', opacity: '1 !important' }}
                     >
                       <span>Bezoek Website</span>
                       <SafeIcon icon={FiExternalLink} className="w-4 h-4" />
@@ -378,9 +387,9 @@ const AITools = () => {
       <section className="py-20 bg-indigo-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Mis je een AI-tool?

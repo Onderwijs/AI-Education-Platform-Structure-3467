@@ -1,0 +1,702 @@
+%PDF-1.7
+1 0 obj
+<</Type/Catalog/Pages 2 0 R>>
+endobj
+2 0 obj
+<</Type/Pages/Kids[3 0 R 8 0 R 13 0 R]/Count 3>>
+endobj
+3 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 7 0 R>>
+endobj
+4 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold>>
+endobj
+5 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>
+endobj
+6 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Oblique>>
+endobj
+7 0 obj
+<</Length 4200>>
+stream
+BT
+/F1 18 Tf
+50 792 Td
+(Programmeren met AI Copilot) Tj
+ET
+BT
+/F2 12 Tf
+50 760 Td
+(Lesplan voor MBO/HBO - Informatica) Tj
+ET
+BT
+/F2 12 Tf
+50 740 Td
+(Duur: 120 minuten) Tj
+ET
+BT
+/F1 14 Tf
+50 700 Td
+(Omschrijving) Tj
+ET
+BT
+/F2 11 Tf
+50 680 Td
+(In deze les leren studenten hoe ze GitHub Copilot en andere AI-codeerassistenten) Tj
+ET
+BT
+/F2 11 Tf
+50 665 Td
+(kunnen gebruiken om hun programmeervaardigheden te verbeteren. Ze ontdekken) Tj
+ET
+BT
+/F2 11 Tf
+50 650 Td
+(hoe AI kan helpen bij het schrijven, begrijpen en debuggen van code, terwijl ze) Tj
+ET
+BT
+/F2 11 Tf
+50 635 Td
+(tegelijkertijd kritisch leren nadenken over de gegenereerde suggesties.) Tj
+ET
+BT
+/F1 14 Tf
+50 605 Td
+(Leerdoelen) Tj
+ET
+BT
+/F2 11 Tf
+50 585 Td
+(Na deze les kunnen studenten:) Tj
+ET
+BT
+/F2 11 Tf
+60 565 Td
+(- AI-codeerassistenten effectief configureren en gebruiken) Tj
+ET
+BT
+/F2 11 Tf
+60 550 Td
+(- Efficiënt code schrijven met behulp van AI-suggesties) Tj
+ET
+BT
+/F2 11 Tf
+60 535 Td
+(- AI-gegenereerde code kritisch evalueren en verbeteren) Tj
+ET
+BT
+/F2 11 Tf
+60 520 Td
+(- De beperkingen en ethische aspecten van AI-geassisteerd coderen begrijpen) Tj
+ET
+BT
+/F1 14 Tf
+50 490 Td
+(Benodigde materialen) Tj
+ET
+BT
+/F2 11 Tf
+60 470 Td
+(- Computers met VS Code of een andere ondersteunde IDE geïnstalleerd) Tj
+ET
+BT
+/F2 11 Tf
+60 455 Td
+(- GitHub Copilot toegang \(studententoegang is gratis\)) Tj
+ET
+BT
+/F2 11 Tf
+60 440 Td
+(- Alternatieve AI-codeerassistenten voor vergelijking:) Tj
+ET
+BT
+/F2 11 Tf
+70 425 Td
+(* Amazon CodeWhisperer) Tj
+ET
+BT
+/F2 11 Tf
+70 410 Td
+(* Tabnine) Tj
+ET
+BT
+/F2 11 Tf
+70 395 Td
+(* ChatGPT/Claude voor codeervragen) Tj
+ET
+BT
+/F2 11 Tf
+60 380 Td
+(- Voorbeeldprojecten en codeeropgaven \(bijgevoegd\)) Tj
+ET
+BT
+/F1 14 Tf
+50 350 Td
+(Voorbereiding) Tj
+ET
+BT
+/F2 11 Tf
+50 330 Td
+(Docent:) Tj
+ET
+BT
+/F2 11 Tf
+60 315 Td
+(- Zorg dat alle AI-tools vooraf zijn geïnstalleerd en getest) Tj
+ET
+BT
+/F2 11 Tf
+60 300 Td
+(- Bereid voorbeelden voor van goede en slechte AI-suggesties) Tj
+ET
+BT
+/F2 11 Tf
+60 285 Td
+(- Creëer opdrachten van verschillende moeilijkheidsgraden) Tj
+ET
+BT
+/F2 11 Tf
+50 265 Td
+(Studenten:) Tj
+ET
+BT
+/F2 11 Tf
+60 250 Td
+(- GitHub-account aanmaken \(als ze dit nog niet hebben\)) Tj
+ET
+BT
+/F2 11 Tf
+60 235 Td
+(- GitHub Student Developer Pack aanvragen voor gratis Copilot-toegang) Tj
+ET
+BT
+/F2 11 Tf
+60 220 Td
+(- VS Code of een andere ondersteunde IDE installeren) Tj
+ET
+BT
+/F1 14 Tf
+50 190 Td
+(Lesopbouw) Tj
+ET
+BT
+/F1 12 Tf
+50 170 Td
+(1. Introductie \(15 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 155 Td
+(- Wat zijn AI-codeerassistenten en hoe werken ze?) Tj
+ET
+BT
+/F2 11 Tf
+60 140 Td
+(- Demonstratie van GitHub Copilot in actie) Tj
+ET
+BT
+/F2 11 Tf
+60 125 Td
+(- Discussie: Hoe verandert AI het programmeeronderwijs?) Tj
+ET
+BT
+/F1 12 Tf
+50 95 Td
+(2. Setup en configuratie \(20 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 80 Td
+(- Installatie en activatie van GitHub Copilot) Tj
+ET
+BT
+/F2 11 Tf
+60 65 Td
+(- Configuratie van voorkeuren en instellingen) Tj
+ET
+BT
+/F2 11 Tf
+60 50 Td
+(- Eerste tests om te controleren of alles werkt) Tj
+ET
+BT
+/F3 10 Tf
+50 30 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+BT
+/F3 10 Tf
+530 30 Td
+(1) Tj
+ET
+endstream
+endobj
+8 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 9 0 R>>
+endobj
+9 0 obj
+<</Length 3800>>
+stream
+BT
+/F1 12 Tf
+50 792 Td
+(3. Basisvaardigheden \(25 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 772 Td
+(- Oefening 1: Code aanvullen met Copilot) Tj
+ET
+BT
+/F2 11 Tf
+70 757 Td
+(* Schrijf een commentaar met wat je wilt bereiken) Tj
+ET
+BT
+/F2 11 Tf
+70 742 Td
+(* Laat Copilot suggesties doen) Tj
+ET
+BT
+/F2 11 Tf
+70 727 Td
+(* Evalueer en pas de suggesties aan) Tj
+ET
+BT
+/F2 11 Tf
+60 712 Td
+(- Oefening 2: Functies implementeren) Tj
+ET
+BT
+/F2 11 Tf
+70 697 Td
+(* Schrijf alleen de functiesignatuur en documentatie) Tj
+ET
+BT
+/F2 11 Tf
+70 682 Td
+(* Laat Copilot de implementatie genereren) Tj
+ET
+BT
+/F2 11 Tf
+70 667 Td
+(* Beoordeel de kwaliteit van de gegenereerde code) Tj
+ET
+BT
+/F1 12 Tf
+50 637 Td
+(4. Gevorderde technieken \(30 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 622 Td
+(- Prompt engineering voor betere code-suggesties) Tj
+ET
+BT
+/F2 11 Tf
+60 607 Td
+(- Gebruik van Copilot voor het debuggen van bestaande code) Tj
+ET
+BT
+/F2 11 Tf
+60 592 Td
+(- Complexe algoritmen implementeren met AI-assistentie) Tj
+ET
+BT
+/F2 11 Tf
+60 577 Td
+(- Vergelijking van verschillende AI-codeerassistenten) Tj
+ET
+BT
+/F1 12 Tf
+50 547 Td
+(5. Projectopdracht \(20 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 532 Td
+(- Studenten werken aan een klein project naar keuze:) Tj
+ET
+BT
+/F2 11 Tf
+70 517 Td
+(a. Webapplicatie met formuliervalidatie) Tj
+ET
+BT
+/F2 11 Tf
+70 502 Td
+(b. Datavisualisatie script) Tj
+ET
+BT
+/F2 11 Tf
+70 487 Td
+(c. API-client voor een publieke API) Tj
+ET
+BT
+/F2 11 Tf
+60 472 Td
+(- Ze gebruiken Copilot om sneller te ontwikkelen) Tj
+ET
+BT
+/F2 11 Tf
+60 457 Td
+(- Docent loopt rond voor ondersteuning) Tj
+ET
+BT
+/F1 12 Tf
+50 427 Td
+(6. Reflectie en discussie \(10 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 412 Td
+(- Wat zijn de sterke en zwakke punten van AI-codeerassistenten?) Tj
+ET
+BT
+/F2 11 Tf
+60 397 Td
+(- Hoe beïnvloedt dit het leerproces van programmeren?) Tj
+ET
+BT
+/F2 11 Tf
+60 382 Td
+(- Ethische overwegingen: copyright, plagiaatdetectie, etc.) Tj
+ET
+BT
+/F1 14 Tf
+50 352 Td
+(Voorbeeldopdrachten) Tj
+ET
+BT
+/F1 12 Tf
+50 332 Td
+(Basisopdracht: Tekstverwerking) Tj
+ET
+BT
+/F2 11 Tf
+50 317 Td
+(Schrijf het volgende commentaar en laat Copilot de implementatie genereren:) Tj
+ET
+BT
+/F3 10 Tf
+50 297 Td
+(// Functie die een string neemt en het volgende doet:) Tj
+ET
+BT
+/F3 10 Tf
+50 282 Td
+(// 1. Alle woorden in hoofdletters zet) Tj
+ET
+BT
+/F3 10 Tf
+50 267 Td
+(// 2. Spaties vervangt door underscores) Tj
+ET
+BT
+/F3 10 Tf
+50 252 Td
+(// 3. Het resultaat teruggeeft) Tj
+ET
+BT
+/F3 10 Tf
+50 237 Td
+(// Naam van de functie: formatText) Tj
+ET
+BT
+/F1 12 Tf
+50 207 Td
+(Gevorderde opdracht: API-client) Tj
+ET
+BT
+/F2 11 Tf
+50 192 Td
+(Vraag Copilot om een client te maken voor de OpenWeatherMap API:) Tj
+ET
+BT
+/F3 10 Tf
+50 172 Td
+(// Maak een klasse WeatherClient die de OpenWeatherMap API gebruikt) Tj
+ET
+BT
+/F3 10 Tf
+50 157 Td
+(// De klasse moet de volgende functionaliteit hebben:) Tj
+ET
+BT
+/F3 10 Tf
+50 142 Td
+(// - Constructor die API key accepteert) Tj
+ET
+BT
+/F3 10 Tf
+50 127 Td
+(// - Methode getCurrentWeather(city) die het huidige weer ophaalt) Tj
+ET
+BT
+/F3 10 Tf
+50 112 Td
+(// - Methode getForecast(city, days) die een weersvoorspelling ophaalt) Tj
+ET
+BT
+/F3 10 Tf
+50 97 Td
+(// - Foutafhandeling voor ongeldige steden of API-problemen) Tj
+ET
+BT
+/F1 12 Tf
+50 67 Td
+(Debugging opdracht:) Tj
+ET
+BT
+/F2 11 Tf
+50 52 Td
+(Geef studenten buggy code en laat ze Copilot gebruiken om de problemen op te sporen:) Tj
+ET
+BT
+/F3 10 Tf
+50 30 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+BT
+/F3 10 Tf
+530 30 Td
+(2) Tj
+ET
+endstream
+endobj
+13 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 14 0 R>>
+endobj
+14 0 obj
+<</Length 3500>>
+stream
+BT
+/F3 10 Tf
+50 792 Td
+(// Deze functie zou de som van alle even getallen in een array moeten berekenen) Tj
+ET
+BT
+/F3 10 Tf
+50 777 Td
+(// maar er zitten meerdere bugs in. Gebruik Copilot om ze te vinden en op te lossen.) Tj
+ET
+BT
+/F3 10 Tf
+50 762 Td
+(function sumEvenNumbers\(numbers\) {) Tj
+ET
+BT
+/F3 10 Tf
+50 747 Td
+(  let sum;) Tj
+ET
+BT
+/F3 10 Tf
+50 732 Td
+(  for \(let i = 0; i <= numbers.length; i++\) {) Tj
+ET
+BT
+/F3 10 Tf
+50 717 Td
+(    if \(numbers[i] % 2 = 0\) {) Tj
+ET
+BT
+/F3 10 Tf
+50 702 Td
+(      sum += numbers[i]) Tj
+ET
+BT
+/F3 10 Tf
+50 687 Td
+(    }) Tj
+ET
+BT
+/F3 10 Tf
+50 672 Td
+(  }) Tj
+ET
+BT
+/F3 10 Tf
+50 657 Td
+(}) Tj
+ET
+BT
+/F1 14 Tf
+50 627 Td
+(Beoordelingscriteria) Tj
+ET
+BT
+/F2 11 Tf
+50 607 Td
+(Studenten worden beoordeeld op:) Tj
+ET
+BT
+/F2 11 Tf
+60 592 Td
+(- Effectief gebruik van AI-codeerassistenten \(25%\)) Tj
+ET
+BT
+/F2 11 Tf
+60 577 Td
+(- Kwaliteit en correctheid van de gegenereerde code \(25%\)) Tj
+ET
+BT
+/F2 11 Tf
+60 562 Td
+(- Kritische evaluatie en verbetering van AI-suggesties \(25%\)) Tj
+ET
+BT
+/F2 11 Tf
+60 547 Td
+(- Begrip van de onderliggende programmeerconcepten \(25%\)) Tj
+ET
+BT
+/F1 14 Tf
+50 517 Td
+(Tips voor docenten) Tj
+ET
+BT
+/F2 11 Tf
+50 497 Td
+(- Benadruk dat AI een hulpmiddel is, geen vervanging voor begrip) Tj
+ET
+BT
+/F2 11 Tf
+50 482 Td
+(- Moedig studenten aan om te experimenteren met verschillende prompts) Tj
+ET
+BT
+/F2 11 Tf
+50 467 Td
+(- Bespreek hoe AI kan helpen bij het leerproces door code te verklaren) Tj
+ET
+BT
+/F2 11 Tf
+50 452 Td
+(- Wijs op het belang van het begrijpen van de gegenereerde code) Tj
+ET
+BT
+/F2 11 Tf
+50 437 Td
+(- Integreer codereviews om kritisch denken te stimuleren) Tj
+ET
+BT
+/F1 14 Tf
+50 407 Td
+(Uitbreidingsmogelijkheden) Tj
+ET
+BT
+/F2 11 Tf
+50 387 Td
+(Voor gevorderde studenten of vervolgactiviteiten:) Tj
+ET
+BT
+/F2 11 Tf
+60 372 Td
+(- Vergelijkende analyse van verschillende AI-codeerassistenten) Tj
+ET
+BT
+/F2 11 Tf
+60 357 Td
+(- Onderzoek naar hoe AI codeerkwaliteit kan verbeteren) Tj
+ET
+BT
+/F2 11 Tf
+60 342 Td
+(- Ontwikkeling van custom prompts voor specifieke programmeertaken) Tj
+ET
+BT
+/F2 11 Tf
+60 327 Td
+(- Integratie van AI in bestaande ontwikkelworkflows) Tj
+ET
+BT
+/F1 14 Tf
+50 297 Td
+(Aanvullende bronnen) Tj
+ET
+BT
+/F2 11 Tf
+50 277 Td
+(- GitHub Copilot documentatie: https://docs.github.com/copilot) Tj
+ET
+BT
+/F2 11 Tf
+50 262 Td
+(- "AI-Assisted Programming" door Sarah Johnson \(2024\)) Tj
+ET
+BT
+/F2 11 Tf
+50 247 Td
+(- Online cursus: "Mastering GitHub Copilot" op Pluralsight) Tj
+ET
+BT
+/F2 11 Tf
+50 232 Td
+(- YouTube-kanaal: "AI Coding Tutorials" voor praktische voorbeelden) Tj
+ET
+BT
+/F1 14 Tf
+50 202 Td
+(Reflectievragen voor studenten) Tj
+ET
+BT
+/F2 11 Tf
+50 182 Td
+(- Hoe verandert AI-assistentie je manier van programmeren?) Tj
+ET
+BT
+/F2 11 Tf
+50 167 Td
+(- Welke taken kan AI goed overnemen en welke blijven menselijk vakmanschap?) Tj
+ET
+BT
+/F2 11 Tf
+50 152 Td
+(- Hoe zorg je ervoor dat je conceptueel begrip behoudt terwijl je AI gebruikt?) Tj
+ET
+BT
+/F2 11 Tf
+50 137 Td
+(- Wat zijn de ethische implicaties van het gebruik van AI-gegenereerde code?) Tj
+ET
+BT
+/F2 11 Tf
+50 122 Td
+(- Hoe zie je de toekomst van programmeren met AI-assistentie?) Tj
+ET
+BT
+/F3 10 Tf
+50 30 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+BT
+/F3 10 Tf
+530 30 Td
+(3) Tj
+ET
+endstream
+endobj
+xref
+0 15
+0000000000 65535 f
+0000000010 00000 n
+0000000053 00000 n
+0000000115 00000 n
+0000000262 00000 n
+0000000324 00000 n
+0000000381 00000 n
+0000000446 00000 n
+0000004697 00000 n
+0000004854 00000 n
+0000000000 65535 f
+0000000000 65535 f
+0000000000 65535 f
+0000008705 00000 n
+0000008863 00000 n
+trailer
+<</Size 15/Root 1 0 R>>
+startxref
+12415
+%%EOF

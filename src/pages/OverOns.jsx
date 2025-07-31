@@ -1,10 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {motion} from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const {FiMail, FiMapPin} = FiIcons;
+const { FiMail, FiMapPin } = FiIcons;
 
 const OverOns = () => {
   const [formData, setFormData] = React.useState({
@@ -16,7 +16,7 @@ const OverOns = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Create email content
     const subject = encodeURIComponent('Contact formulier - AI in het Onderwijs');
     const body = encodeURIComponent(`
@@ -35,7 +35,7 @@ Verzonden via onderwijs.ai contact formulier
 
     // Send email using mailto (this will open the user's email client)
     const mailtoLink = `mailto:ai.onderwijs@gmail.com?subject=${subject}&body=${body}`;
-    
+
     try {
       // Try to open email client
       window.location.href = mailtoLink;
@@ -57,7 +57,7 @@ Verzonden via onderwijs.ai contact formulier
   };
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
       [name]: value
@@ -72,14 +72,14 @@ Verzonden via onderwijs.ai contact formulier
       image: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1753861745628-MaikeFoto.jpg"
     },
     {
-      name: "Nieuw teamlid?",
-      role: "Naam?",
+      name: "Join",
+      role: "Iets leuks",
       bio: "Ben jij een onderwijsprofessional met passie voor AI en innovatie? Neem contact op!",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop"
     },
     {
       name: "Join",
-      role: "Naam?",
+      role: "Iets leuks",
       bio: "Ben je een enthousiaste professional die wil bijdragen aan de toekomst van het onderwijs?",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop"
     }
@@ -106,9 +106,9 @@ Verzonden via onderwijs.ai contact formulier
 
   return (
     <motion.div
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="min-h-screen"
     >
       {/* Hero Section */}
@@ -116,8 +116,8 @@ Verzonden via onderwijs.ai contact formulier
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{opacity: 0, x: -50}}
-              animate={{opacity: 1, x: 0}}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 Over AI in het Onderwijs
@@ -142,9 +142,9 @@ Verzonden via onderwijs.ai contact formulier
               </div>
             </motion.div>
             <motion.div
-              initial={{opacity: 0, x: 50}}
-              animate={{opacity: 1, x: 0}}
-              transition={{delay: 0.2}}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
             >
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop"
@@ -160,9 +160,9 @@ Verzonden via onderwijs.ai contact formulier
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -172,9 +172,9 @@ Verzonden via onderwijs.ai contact formulier
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{opacity: 0, x: -50}}
-              whileInView={{opacity: 1, x: 0}}
-              viewport={{once: true}}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Wie ben ik
@@ -190,9 +190,9 @@ Verzonden via onderwijs.ai contact formulier
               </p>
             </motion.div>
             <motion.div
-              initial={{opacity: 0, x: 50}}
-              whileInView={{opacity: 1, x: 0}}
-              viewport={{once: true}}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               className="relative"
             >
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary-100 rounded-lg z-0"></div>
@@ -211,9 +211,9 @@ Verzonden via onderwijs.ai contact formulier
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -228,10 +228,10 @@ Verzonden via onderwijs.ai contact formulier
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -250,9 +250,9 @@ Verzonden via onderwijs.ai contact formulier
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -267,10 +267,10 @@ Verzonden via onderwijs.ai contact formulier
             {teamMembers.map((member, index) => (
               <motion.div
                 key={index}
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 className="bg-gray-50 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
               >
                 <img
@@ -295,9 +295,9 @@ Verzonden via onderwijs.ai contact formulier
       <section id="contact" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -310,9 +310,9 @@ Verzonden via onderwijs.ai contact formulier
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <motion.div
-              initial={{opacity: 0, x: -50}}
-              whileInView={{opacity: 1, x: 0}}
-              viewport={{once: true}}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
               <div className="bg-white p-8 rounded-2xl shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
@@ -384,9 +384,9 @@ Verzonden via onderwijs.ai contact formulier
             </motion.div>
 
             <motion.div
-              initial={{opacity: 0, x: 50}}
-              whileInView={{opacity: 1, x: 0}}
-              viewport={{once: true}}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
               <div className="bg-white p-8 rounded-2xl shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
@@ -423,9 +423,9 @@ Verzonden via onderwijs.ai contact formulier
       <section className="py-20 bg-primary-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Klaar om te beginnen met AI in jouw onderwijs?

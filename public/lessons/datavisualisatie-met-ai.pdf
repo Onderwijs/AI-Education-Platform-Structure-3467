@@ -1,0 +1,672 @@
+%PDF-1.7
+1 0 obj
+<</Type/Catalog/Pages 2 0 R>>
+endobj
+2 0 obj
+<</Type/Pages/Kids[3 0 R 8 0 R 13 0 R]/Count 3>>
+endobj
+3 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 7 0 R>>
+endobj
+4 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold>>
+endobj
+5 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>
+endobj
+6 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Oblique>>
+endobj
+7 0 obj
+<</Length 4200>>
+stream
+BT
+/F1 18 Tf
+50 792 Td
+(Datavisualisatie met AI) Tj
+ET
+BT
+/F2 12 Tf
+50 760 Td
+(Lesplan voor MBO/HBO - Wiskunde/Data) Tj
+ET
+BT
+/F2 12 Tf
+50 740 Td
+(Duur: 90 minuten) Tj
+ET
+BT
+/F1 14 Tf
+50 700 Td
+(Omschrijving) Tj
+ET
+BT
+/F2 11 Tf
+50 680 Td
+(In deze les leren studenten hoe ze AI-tools kunnen gebruiken om complexe data) Tj
+ET
+BT
+/F2 11 Tf
+50 665 Td
+(begrijpelijk en visueel aantrekkelijk te presenteren. Ze ontdekken hoe AI kan helpen) Tj
+ET
+BT
+/F2 11 Tf
+50 650 Td
+(bij het analyseren, interpreteren en visualiseren van datasets, en hoe ze deze) Tj
+ET
+BT
+/F2 11 Tf
+50 635 Td
+(vaardigheden kunnen toepassen in hun vakgebied.) Tj
+ET
+BT
+/F1 14 Tf
+50 605 Td
+(Leerdoelen) Tj
+ET
+BT
+/F2 11 Tf
+50 585 Td
+(Na deze les kunnen studenten:) Tj
+ET
+BT
+/F2 11 Tf
+60 565 Td
+(- AI-tools selecteren en gebruiken voor datavisualisatie) Tj
+ET
+BT
+/F2 11 Tf
+60 550 Td
+(- Data-analyses interpreteren en presenteren) Tj
+ET
+BT
+/F2 11 Tf
+60 535 Td
+(- Kritisch reflecteren op de betrouwbaarheid van AI-gegenereerde visualisaties) Tj
+ET
+BT
+/F2 11 Tf
+60 520 Td
+(- Een datavisualisatie-workflow opzetten met AI-ondersteuning) Tj
+ET
+BT
+/F1 14 Tf
+50 490 Td
+(Benodigde materialen) Tj
+ET
+BT
+/F2 11 Tf
+60 470 Td
+(- Computers of laptops met internettoegang) Tj
+ET
+BT
+/F2 11 Tf
+60 455 Td
+(- Toegang tot AI-visualisatietools \(zie aanbevolen tools\)) Tj
+ET
+BT
+/F2 11 Tf
+60 440 Td
+(- Voorbeelddatasets \(bijgevoegd\)) Tj
+ET
+BT
+/F2 11 Tf
+60 425 Td
+(- Presentatiemogelijkheid voor de docent) Tj
+ET
+BT
+/F1 14 Tf
+50 395 Td
+(Aanbevolen AI-tools) Tj
+ET
+BT
+/F2 11 Tf
+60 375 Td
+(- Flourish \(flourish.studio\) - Voor interactieve visualisaties) Tj
+ET
+BT
+/F2 11 Tf
+60 360 Td
+(- ChatGPT/Claude - Voor data-interpretatie en code-generatie) Tj
+ET
+BT
+/F2 11 Tf
+60 345 Td
+(- Tableau - Voor geavanceerde dashboards) Tj
+ET
+BT
+/F2 11 Tf
+60 330 Td
+(- PowerBI - Voor business intelligence visualisaties) Tj
+ET
+BT
+/F2 11 Tf
+60 315 Td
+(- DataWrapper - Voor snelle grafieken en kaarten) Tj
+ET
+BT
+/F1 14 Tf
+50 285 Td
+(Lesopbouw) Tj
+ET
+BT
+/F1 12 Tf
+50 265 Td
+(1. Introductie \(15 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 250 Td
+(- Kennismaking met datavisualisatie en het belang ervan) Tj
+ET
+BT
+/F2 11 Tf
+60 235 Td
+(- Demonstratie: Vergelijking tussen traditionele en AI-ondersteunde visualisaties) Tj
+ET
+BT
+/F2 11 Tf
+60 220 Td
+(- Discussie: Hoe kan AI helpen bij het begrijpelijk maken van complexe data?) Tj
+ET
+BT
+/F1 12 Tf
+50 190 Td
+(2. Verkenning van AI-tools \(20 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 175 Td
+(- Overzicht van beschikbare AI-tools voor datavisualisatie) Tj
+ET
+BT
+/F2 11 Tf
+60 160 Td
+(- Demonstratie van 2-3 geselecteerde tools) Tj
+ET
+BT
+/F2 11 Tf
+60 145 Td
+(- Criteria voor het kiezen van de juiste tool voor specifieke doeleinden) Tj
+ET
+BT
+/F1 12 Tf
+50 115 Td
+(3. Hands-on workshop \(30 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 100 Td
+(- Studenten werken met een voorbeelddataset naar keuze:) Tj
+ET
+BT
+/F2 11 Tf
+70 85 Td
+(a. Klimaatdata: temperatuurtrends over 50 jaar) Tj
+ET
+BT
+/F2 11 Tf
+70 70 Td
+(b. Economische data: werkgelegenheidscijfers per sector) Tj
+ET
+BT
+/F3 10 Tf
+50 30 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+BT
+/F3 10 Tf
+530 30 Td
+(1) Tj
+ET
+endstream
+endobj
+8 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 9 0 R>>
+endobj
+9 0 obj
+<</Length 3600>>
+stream
+BT
+/F2 11 Tf
+70 792 Td
+(c. Gezondheidsdata: vaccinatiepercentages per regio) Tj
+ET
+BT
+/F2 11 Tf
+60 772 Td
+(- Opdracht: Creëer een betekenisvolle visualisatie met behulp van AI-tools) Tj
+ET
+BT
+/F2 11 Tf
+60 757 Td
+(- Docent loopt rond voor ondersteuning en feedback) Tj
+ET
+BT
+/F1 12 Tf
+50 727 Td
+(4. Presentatie en analyse \(15 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 712 Td
+(- Enkele studenten presenteren hun visualisaties) Tj
+ET
+BT
+/F2 11 Tf
+60 697 Td
+(- Klasdiscussie: Wat vertellen deze visualisaties ons?) Tj
+ET
+BT
+/F2 11 Tf
+60 682 Td
+(- Analyse van de effectiviteit van verschillende visualisatietechnieken) Tj
+ET
+BT
+/F1 12 Tf
+50 652 Td
+(5. Reflectie en kritische evaluatie \(10 minuten\)) Tj
+ET
+BT
+/F2 11 Tf
+60 637 Td
+(- Discussie over de betrouwbaarheid van AI-gegenereerde visualisaties) Tj
+ET
+BT
+/F2 11 Tf
+60 622 Td
+(- Potentiële valkuilen en misleidende visualisaties) Tj
+ET
+BT
+/F2 11 Tf
+60 607 Td
+(- Ethische overwegingen bij datavisualisatie) Tj
+ET
+BT
+/F1 14 Tf
+50 577 Td
+(Uitgewerkte voorbeeldopdracht) Tj
+ET
+BT
+/F1 12 Tf
+50 557 Td
+(Dataset: Klimaatdata - Gemiddelde temperaturen 1970-2020) Tj
+ET
+BT
+/F2 11 Tf
+50 537 Td
+(Stap 1: Data voorbereiden) Tj
+ET
+BT
+/F2 11 Tf
+60 522 Td
+(- Importeer de dataset in de gekozen AI-tool) Tj
+ET
+BT
+/F2 11 Tf
+60 507 Td
+(- Gebruik ChatGPT om de dataset te analyseren met de prompt:) Tj
+ET
+BT
+/F3 10 Tf
+60 487 Td
+("Analyseer deze temperatuurdata van 1970-2020. Wat zijn de belangrijkste trends) Tj
+ET
+BT
+/F3 10 Tf
+60 472 Td
+(en patronen? Welke visualisaties zouden deze data het beste representeren?") Tj
+ET
+BT
+/F2 11 Tf
+50 447 Td
+(Stap 2: Visualisatie creëren) Tj
+ET
+BT
+/F2 11 Tf
+60 432 Td
+(- Kies een geschikte visualisatietool \(bijv. Flourish voor interactieve lijngrafiek\)) Tj
+ET
+BT
+/F2 11 Tf
+60 417 Td
+(- Implementeer de visualisatie volgens de AI-suggesties) Tj
+ET
+BT
+/F2 11 Tf
+60 402 Td
+(- Voeg context en interpretatie toe) Tj
+ET
+BT
+/F2 11 Tf
+50 377 Td
+(Stap 3: Verfijning en verbetering) Tj
+ET
+BT
+/F2 11 Tf
+60 362 Td
+(- Gebruik AI om de visualisatie te optimaliseren met de prompt:) Tj
+ET
+BT
+/F3 10 Tf
+60 342 Td
+("Hoe kan ik deze temperatuurgrafiek verbeteren om seizoenspatronen) Tj
+ET
+BT
+/F3 10 Tf
+60 327 Td
+(duidelijker te tonen en lange-termijn trends te benadrukken?") Tj
+ET
+BT
+/F2 11 Tf
+50 302 Td
+(Stap 4: Presentatie en context) Tj
+ET
+BT
+/F2 11 Tf
+60 287 Td
+(- Creëer een korte presentatie die de visualisatie in context plaatst) Tj
+ET
+BT
+/F2 11 Tf
+60 272 Td
+(- Voeg kritische reflectie toe over de betrouwbaarheid en beperkingen) Tj
+ET
+BT
+/F1 14 Tf
+50 242 Td
+(Beoordelingscriteria) Tj
+ET
+BT
+/F2 11 Tf
+50 222 Td
+(Studenten worden beoordeeld op:) Tj
+ET
+BT
+/F2 11 Tf
+60 207 Td
+(- Effectief gebruik van AI-tools voor datavisualisatie \(30%\)) Tj
+ET
+BT
+/F2 11 Tf
+60 192 Td
+(- Kwaliteit en duidelijkheid van de visualisatie \(25%\)) Tj
+ET
+BT
+/F2 11 Tf
+60 177 Td
+(- Interpretatie en contextualisering van de data \(25%\)) Tj
+ET
+BT
+/F2 11 Tf
+60 162 Td
+(- Kritische reflectie op de betrouwbaarheid en beperkingen \(20%\)) Tj
+ET
+BT
+/F1 14 Tf
+50 132 Td
+(Uitbreidingsmogelijkheden) Tj
+ET
+BT
+/F2 11 Tf
+50 112 Td
+(Voor gevorderde studenten of extra opdrachten:) Tj
+ET
+BT
+/F2 11 Tf
+60 97 Td
+(- Combineer meerdere datasets in één dashboard) Tj
+ET
+BT
+/F2 11 Tf
+60 82 Td
+(- Creëer interactieve visualisaties met gebruikersfilters) Tj
+ET
+BT
+/F2 11 Tf
+60 67 Td
+(- Implementeer voorspellingsmodellen op basis van historische data) Tj
+ET
+BT
+/F3 10 Tf
+50 30 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+BT
+/F3 10 Tf
+530 30 Td
+(2) Tj
+ET
+endstream
+endobj
+13 0 obj
+<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 14 0 R>>
+endobj
+14 0 obj
+<</Length 3000>>
+stream
+BT
+/F1 14 Tf
+50 792 Td
+(Tips voor docenten) Tj
+ET
+BT
+/F2 11 Tf
+50 772 Td
+(Voorbereiding:) Tj
+ET
+BT
+/F2 11 Tf
+60 757 Td
+(- Test de aanbevolen AI-tools vooraf om vertrouwd te raken met de functionaliteit) Tj
+ET
+BT
+/F2 11 Tf
+60 742 Td
+(- Bereid diverse datasets voor die aansluiten bij de interesses van studenten) Tj
+ET
+BT
+/F2 11 Tf
+60 727 Td
+(- Creëer voorbeeldvisualisaties om te demonstreren) Tj
+ET
+BT
+/F2 11 Tf
+50 702 Td
+(Tijdens de les:) Tj
+ET
+BT
+/F2 11 Tf
+60 687 Td
+(- Benadruk het belang van kritisch denken bij het interpreteren van visualisaties) Tj
+ET
+BT
+/F2 11 Tf
+60 672 Td
+(- Moedig studenten aan om verschillende tools te vergelijken) Tj
+ET
+BT
+/F2 11 Tf
+60 657 Td
+(- Wijs op de balans tussen esthetiek en informatiewaarde) Tj
+ET
+BT
+/F1 14 Tf
+50 627 Td
+(Mogelijke uitdagingen en oplossingen) Tj
+ET
+BT
+/F2 11 Tf
+50 607 Td
+(Uitdaging: Studenten zijn overweldigd door de hoeveelheid beschikbare tools) Tj
+ET
+BT
+/F2 11 Tf
+60 592 Td
+(Oplossing: Begin met één of twee tools en breid later uit) Tj
+ET
+BT
+/F2 11 Tf
+50 572 Td
+(Uitdaging: Variërende technische vaardigheden onder studenten) Tj
+ET
+BT
+/F2 11 Tf
+60 557 Td
+(Oplossing: Peer-learning stimuleren en gedifferentieerde ondersteuning bieden) Tj
+ET
+BT
+/F2 11 Tf
+50 537 Td
+(Uitdaging: Kritische evaluatie van AI-output is moeilijk) Tj
+ET
+BT
+/F2 11 Tf
+60 522 Td
+(Oplossing: Voorbeelden tonen van misleidende visualisaties en discussie stimuleren) Tj
+ET
+BT
+/F1 14 Tf
+50 492 Td
+(Vervolgactiviteiten) Tj
+ET
+BT
+/F2 11 Tf
+50 472 Td
+(- Laat studenten een portfolio opbouwen van datavisualisaties) Tj
+ET
+BT
+/F2 11 Tf
+50 457 Td
+(- Organiseer een datavisualisatie-wedstrijd of expositie) Tj
+ET
+BT
+/F2 11 Tf
+50 442 Td
+(- Verbind met actuele onderwerpen of onderzoeksprojecten binnen de opleiding) Tj
+ET
+BT
+/F1 14 Tf
+50 412 Td
+(Bronnen en verdere studie) Tj
+ET
+BT
+/F2 11 Tf
+50 392 Td
+(- "Data Visualization with AI" door Alex Johnson \(2024\)) Tj
+ET
+BT
+/F2 11 Tf
+50 377 Td
+(- Online cursus: "AI-Powered Data Visualization" op Coursera) Tj
+ET
+BT
+/F2 11 Tf
+50 362 Td
+(- "The Truthful Art" door Alberto Cairo) Tj
+ET
+BT
+/F2 11 Tf
+50 347 Td
+(- DataVizSociety.com - Community voor datavisualisatie professionals) Tj
+ET
+BT
+/F1 14 Tf
+50 317 Td
+(Bijlage: AI-prompts voor datavisualisatie) Tj
+ET
+BT
+/F2 11 Tf
+50 297 Td
+(Voor het analyseren van datasets:) Tj
+ET
+BT
+/F3 10 Tf
+60 277 Td
+("Analyseer deze dataset over [onderwerp]. Welke patronen zie je? Welke) Tj
+ET
+BT
+/F3 10 Tf
+60 262 Td
+(visualisaties zou je aanbevelen om de belangrijkste inzichten te tonen?") Tj
+ET
+BT
+/F2 11 Tf
+50 237 Td
+(Voor het genereren van visualisatiecode:) Tj
+ET
+BT
+/F3 10 Tf
+60 217 Td
+("Genereer Python/R code om deze data te visualiseren als [grafiektype].) Tj
+ET
+BT
+/F3 10 Tf
+60 202 Td
+(Voeg duidelijke labels, kleuren en een titel toe.") Tj
+ET
+BT
+/F2 11 Tf
+50 177 Td
+(Voor het verbeteren van bestaande visualisaties:) Tj
+ET
+BT
+/F3 10 Tf
+60 157 Td
+("Hoe kan ik deze visualisatie verbeteren om [specifiek doel] beter te) Tj
+ET
+BT
+/F3 10 Tf
+60 142 Td
+(communiceren? Geef specifieke suggesties voor kleurgebruik, layout en annotaties.") Tj
+ET
+BT
+/F2 11 Tf
+50 117 Td
+(Voor het interpreteren van visualisaties:) Tj
+ET
+BT
+/F3 10 Tf
+60 97 Td
+("Bekijk deze visualisatie en help me de belangrijkste conclusies te trekken.) Tj
+ET
+BT
+/F3 10 Tf
+60 82 Td
+(Welke vragen zou ik nog moeten stellen over deze data?") Tj
+ET
+BT
+/F3 10 Tf
+50 30 Td
+(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
+ET
+BT
+/F3 10 Tf
+530 30 Td
+(3) Tj
+ET
+endstream
+endobj
+xref
+0 15
+0000000000 65535 f
+0000000010 00000 n
+0000000053 00000 n
+0000000115 00000 n
+0000000262 00000 n
+0000000324 00000 n
+0000000381 00000 n
+0000000446 00000 n
+0000004697 00000 n
+0000004854 00000 n
+0000000000 65535 f
+0000000000 65535 f
+0000000000 65535 f
+0000008505 00000 n
+0000008663 00000 n
+trailer
+<</Size 15/Root 1 0 R>>
+startxref
+11715
+%%EOF

@@ -60,10 +60,10 @@ export const lessonFileMap = {
   // Archive lessons
   "Introductie tot AI voor Kinderen": "/lessons/ai-in-po.pdf",
   "AI in de Geschiedenis": "/lessons/ai-ethics-vo.pdf",
-  "Datavisualisatie met AI": "/lessons/ai-creatief-schrijven.pdf",
+  "Datavisualisatie met AI": "/lessons/datavisualisatie-met-ai.pdf",
   "AI Ethics Debat": "/lessons/ai-ethics-vo.pdf",
   "AI Kunstproject": "/lessons/ai-in-po.pdf",
-  "Programmeren met AI Copilot": "/lessons/ai-creatief-schrijven.pdf",
+  "Programmeren met AI Copilot": "/lessons/programmeren-met-ai-copilot.pdf",
   
   // Default fallback
   "default": "/lessons/ai-creatief-schrijven.pdf"

@@ -161,16 +161,14 @@ const Navbar = () => {
               </div>
             ))}
 
-            {/* GetStarted button for logged in users */}
-            {isLoggedIn && (
-              <Link
-                to="/get-started"
-                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2"
-              >
-                <SafeIcon icon={FiPlay} />
-                <span>Get Started</span>
-              </Link>
-            )}
+            {/* GetStarted button - always show for demo */}
+            <Link
+              to="/get-started"
+              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2"
+            >
+              <SafeIcon icon={FiPlay} />
+              <span>Get Started</span>
+            </Link>
 
             <button
               onClick={handleDownloadClick}
@@ -260,17 +258,15 @@ const Navbar = () => {
                 </div>
               ))}
 
-              {/* Mobile GetStarted button for logged in users */}
-              {isLoggedIn && (
-                <Link
-                  to="/get-started"
-                  className="block mx-4 mt-4 bg-green-600 text-white px-4 py-2 rounded-lg text-center hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <SafeIcon icon={FiPlay} />
-                  <span>Get Started</span>
-                </Link>
-              )}
+              {/* Mobile GetStarted button - always show for demo */}
+              <Link
+                to="/get-started"
+                className="block mx-4 mt-4 bg-green-600 text-white px-4 py-2 rounded-lg text-center hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
+                onClick={() => setIsOpen(false)}
+              >
+                <SafeIcon icon={FiPlay} />
+                <span>Get Started</span>
+              </Link>
 
               <button
                 onClick={() => {
