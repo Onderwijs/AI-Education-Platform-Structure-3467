@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import {Link} from 'react-router-dom';
+import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiSearch, FiCalendar, FiUser, FiTag, FiArrowRight, FiExternalLink } = FiIcons;
+const {FiSearch,FiCalendar,FiUser,FiTag,FiArrowRight,FiExternalLink} = FiIcons;
 
 const Blog = () => {
   const featuredPost = {
@@ -112,7 +112,7 @@ const Blog = () => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Blog: AI in Onderwijs
+              Blog: AI in het Onderwijs
             </h1>
             <p className="text-xl text-indigo-100 max-w-3xl mx-auto mb-8">
               Praktische tips, inzichten en ervaringen over het gebruik van AI in het onderwijs
@@ -158,6 +158,7 @@ const Blog = () => {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </motion.div>
+
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -173,12 +174,15 @@ const Blog = () => {
                     <span>{featuredPost.date}</span>
                   </div>
                 </div>
+
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {featuredPost.title}
                 </h3>
+
                 <p className="text-gray-600 mb-6">
                   {featuredPost.excerpt}
                 </p>
+
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>
@@ -205,8 +209,8 @@ const Blog = () => {
               <button
                 key={index}
                 className={`px-4 py-2 rounded-full whitespace-nowrap ${
-                  index === 0
-                    ? 'bg-indigo-600 text-white'
+                  index === 0 
+                    ? 'bg-indigo-600 text-white' 
                     : 'bg-white text-gray-600 hover:bg-gray-100'
                 }`}
               >
@@ -243,6 +247,7 @@ const Blog = () => {
                     </span>
                   </div>
                 </div>
+
                 <div className="p-6">
                   <div className="flex items-center space-x-2 text-sm text-gray-500 mb-3">
                     <SafeIcon icon={FiCalendar} />
@@ -250,12 +255,15 @@ const Blog = () => {
                     <span className="text-gray-300">•</span>
                     <span>{post.readTime} leestijd</span>
                   </div>
+
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {post.title}
                   </h3>
+
                   <p className="text-gray-600 mb-6 line-clamp-3">
                     {post.excerpt}
                   </p>
+
                   <div className="flex items-center justify-between pt-4 border-t">
                     <div className="flex items-center space-x-2">
                       <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>

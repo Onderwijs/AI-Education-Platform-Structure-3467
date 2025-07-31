@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import {Link} from 'react-router-dom';
+import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
-import { downloadStartersgids } from '../utils/downloadUtils';
+import {downloadStartersgids} from '../utils/downloadUtils';
 
-const { FiDownload, FiBook, FiUsers, FiTool, FiTrendingUp, FiAward, FiPlay, FiArrowRight } = FiIcons;
+const {FiDownload,FiBook,FiUsers,FiTool,FiTrendingUp,FiAward,FiPlay,FiArrowRight} = FiIcons;
 
 const Home = () => {
   const features = [
@@ -51,7 +51,7 @@ const Home = () => {
   ];
 
   const handleDownloadClick = () => {
-    downloadStartersgids();
+    window.open('https://onderwijs.ai/#/nieuwsbrief', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -71,12 +71,13 @@ const Home = () => {
               transition={{ delay: 0.2 }}
             >
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                AI in het <span className="text-primary-200">Onderwijs</span>
+                AI in het{' '}
+                <span className="text-primary-200">Onderwijs</span>
               </h1>
               <p className="text-xl mb-8 text-primary-100">
                 Ontdek hoe kunstmatige intelligentie jouw onderwijs kan verbeteren. Praktische tools, lessen en trainingen voor moderne docenten.
               </p>
-
+              
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <button
@@ -87,11 +88,11 @@ const Home = () => {
                   <span>Gratis Download</span>
                 </button>
                 <Link
-                  to="/get-started"
+                  to="/ai-tools"
                   className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2"
                 >
-                  <SafeIcon icon={FiPlay} />
-                  <span>Get Started</span>
+                  <SafeIcon icon={FiTool} />
+                  <span>Bekijk AI Tools</span>
                 </Link>
               </div>
 

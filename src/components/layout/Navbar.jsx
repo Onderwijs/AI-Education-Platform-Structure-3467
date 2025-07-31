@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../common/SafeIcon';
 
-const { FiMenu, FiX, FiChevronDown, FiBrain, FiPlay } = FiIcons;
+const { FiMenu, FiX, FiChevronDown, FiBrain } = FiIcons;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,11 +19,10 @@ const Navbar = () => {
       if (activeDropdown) {
         const dropdownRef = dropdownRefs.current[activeDropdown];
         const buttonRef = buttonRefs.current[activeDropdown];
+        
         if (
-          dropdownRef &&
-          !dropdownRef.contains(event.target) &&
-          buttonRef &&
-          !buttonRef.contains(event.target)
+          dropdownRef && !dropdownRef.contains(event.target) &&
+          buttonRef && !buttonRef.contains(event.target)
         ) {
           setActiveDropdown(null);
         }
@@ -89,9 +88,6 @@ const Navbar = () => {
     window.open('https://onderwijs.ai/#/nieuwsbrief', '_blank', 'noopener,noreferrer');
   };
 
-  // Check if user is logged in (simple check for userId in localStorage)
-  const isLoggedIn = localStorage.getItem('userId') || false;
-
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,13 +112,14 @@ const Navbar = () => {
                       aria-haspopup="true"
                     >
                       <span>{item.label}</span>
-                      <SafeIcon
-                        icon={FiChevronDown}
+                      <SafeIcon 
+                        icon={FiChevronDown} 
                         className={`transition-transform duration-200 ${
                           activeDropdown === `desktop-${item.id}` ? 'rotate-180' : ''
-                        }`}
+                        }`} 
                       />
                     </button>
+                    
                     <AnimatePresence>
                       {activeDropdown === `desktop-${item.id}` && (
                         <motion.div
@@ -160,15 +157,6 @@ const Navbar = () => {
                 )}
               </div>
             ))}
-
-            {/* GetStarted button - always show for demo */}
-            <Link
-              to="/get-started"
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2"
-            >
-              <SafeIcon icon={FiPlay} />
-              <span>Get Started</span>
-            </Link>
 
             <button
               onClick={handleDownloadClick}
@@ -209,13 +197,14 @@ const Navbar = () => {
                         aria-expanded={activeDropdown === `mobile-${item.id}`}
                       >
                         <span>{item.label}</span>
-                        <SafeIcon
-                          icon={FiChevronDown}
+                        <SafeIcon 
+                          icon={FiChevronDown} 
                           className={`ml-2 transition-transform duration-200 ${
                             activeDropdown === `mobile-${item.id}` ? 'rotate-180' : ''
-                          }`}
+                          }`} 
                         />
                       </button>
+                      
                       <AnimatePresence>
                         {activeDropdown === `mobile-${item.id}` && (
                           <motion.div
@@ -246,8 +235,8 @@ const Navbar = () => {
                     <Link
                       to={item.path}
                       className={`block px-4 py-2 transition-colors rounded-md hover:bg-gray-50 ${
-                        isActive(item.path)
-                          ? 'text-primary-600 font-medium'
+                        isActive(item.path) 
+                          ? 'text-primary-600 font-medium' 
                           : 'text-gray-700 hover:text-primary-600'
                       }`}
                       onClick={() => setIsOpen(false)}
@@ -257,16 +246,6 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
-
-              {/* Mobile GetStarted button - always show for demo */}
-              <Link
-                to="/get-started"
-                className="block mx-4 mt-4 bg-green-600 text-white px-4 py-2 rounded-lg text-center hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
-                onClick={() => setIsOpen(false)}
-              >
-                <SafeIcon icon={FiPlay} />
-                <span>Get Started</span>
-              </Link>
 
               <button
                 onClick={() => {

@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {motion} from 'framer-motion';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
-import {downloadLesson} from '../utils/downloadUtils';
+import { downloadLesson } from '../utils/downloadUtils';
 
-const {FiBook, FiDownload, FiCalendar, FiFilter, FiStar, FiClock, FiUsers, FiCheck} = FiIcons;
+const { FiBook, FiDownload, FiCalendar, FiFilter, FiStar, FiClock, FiUsers, FiCheck } = FiIcons;
 
 const LesLab = () => {
   const [selectedMonth, setSelectedMonth] = useState('Alle');
@@ -51,7 +51,7 @@ const LesLab = () => {
       rating: 4.7,
       downloads: 890,
       description: "Hoe AI historisch onderzoek kan ondersteunen",
-      image: "https://images.unsplash.com/photo-1582034438152-77bc4069e787?w=300&h=200&fit=crop"
+      image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop"
     },
     {
       title: "Datavisualisatie met AI",
@@ -116,17 +116,17 @@ const LesLab = () => {
 
   return (
     <motion.div
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="min-h-screen"
     >
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-emerald-600 to-teal-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            animate={{opacity: 1, y: 0}}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -143,9 +143,9 @@ const LesLab = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -158,9 +158,9 @@ const LesLab = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{opacity: 0, x: -50}}
-              whileInView={{opacity: 1, x: 0}}
-              viewport={{once: true}}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
               <img
                 src={currentLesson.image}
@@ -168,10 +168,11 @@ const LesLab = () => {
                 className="rounded-2xl shadow-2xl"
               />
             </motion.div>
+
             <motion.div
-              initial={{opacity: 0, x: 50}}
-              whileInView={{opacity: 1, x: 0}}
-              viewport={{once: true}}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
               <div className="flex items-center space-x-4 mb-4">
                 <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-medium">
@@ -181,12 +182,15 @@ const LesLab = () => {
                 <span className="text-gray-500">•</span>
                 <span className="text-gray-500">{currentLesson.duration}</span>
               </div>
+
               <h3 className="text-3xl font-bold text-gray-900 mb-4">
                 {currentLesson.title}
               </h3>
+
               <p className="text-gray-600 mb-6">
                 {currentLesson.description}
               </p>
+
               <div className="mb-6">
                 <h4 className="font-semibold text-gray-900 mb-3">Leerdoelen:</h4>
                 <ul className="space-y-2">
@@ -198,6 +202,7 @@ const LesLab = () => {
                   ))}
                 </ul>
               </div>
+
               <div className="mb-8">
                 <h4 className="font-semibold text-gray-900 mb-3">Inclusief materialen:</h4>
                 <div className="flex flex-wrap gap-2">
@@ -211,10 +216,13 @@ const LesLab = () => {
                   ))}
                 </div>
               </div>
+
               <button
                 onClick={() => handleDownload(currentLesson.title)}
                 disabled={downloadStarted}
-                className={`bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center space-x-2 ${downloadStarted ? 'opacity-75' : ''}`}
+                className={`bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center space-x-2 ${
+                  downloadStarted ? 'opacity-75' : ''
+                }`}
               >
                 <SafeIcon icon={downloadStarted ? FiCheck : FiDownload} />
                 <span>{downloadStarted ? 'Download gestart...' : 'Download Complete Les'}</span>
@@ -228,9 +236,9 @@ const LesLab = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -274,10 +282,10 @@ const LesLab = () => {
             {filteredLessons.map((lesson, index) => (
               <motion.div
                 key={index}
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
                 <img
@@ -292,11 +300,13 @@ const LesLab = () => {
                     </span>
                     <span className="text-sm text-gray-500">{lesson.month}</span>
                   </div>
+
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {lesson.title}
                   </h3>
                   <p className="text-sm text-gray-600 mb-3">{lesson.subject}</p>
                   <p className="text-gray-600 mb-4">{lesson.description}</p>
+
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                     <div className="flex items-center space-x-1">
                       <SafeIcon icon={FiClock} />
@@ -307,6 +317,7 @@ const LesLab = () => {
                       <span>{lesson.rating}</span>
                     </div>
                   </div>
+
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
                       {lesson.downloads} downloads
@@ -338,9 +349,9 @@ const LesLab = () => {
       <section className="py-20 bg-emerald-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Mis nooit meer een nieuwe les
