@@ -23,12 +23,25 @@ const AITools=()=> {
       level: "Beginner",
       rating: 4.8,
       description: "Krachtige AI-assistent met uitstekende context verwerking en lange gespreksmogelijkheden",
-      features: ["Tekstgeneratie","Vraag & antwoord","Document analyse","Uitgebreide context"],
+      features: ["Tekstgeneratie","Vraag & antwoord","Document analyse","Code schrijven","Uitgebreide context"],
       pricing: "Freemium",
       education: true,
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=200&fit=crop",
-      useCase: "Lesvoorbereiding,feedback op leerlingwerk,onderzoeksvragen beantwoorden",
+      image: "https://images.unsplash.com/photo-1515378791036-0648a814c963?w=300&h=200&fit=crop&auto=format&q=80",
+      useCase: "Lesvoorbereiding,feedback op leerlingwerk,onderzoeksvragen beantwoorden,code review",
       link: "https://claude.ai"
+    },
+    {
+      name: "NotebookLM",
+      category: "Onderzoek",
+      level: "Beginner",
+      rating: 4.7,
+      description: "Google's AI-onderzoeksassistent die je helpt bij het analyseren en begrijpen van documenten",
+      features: ["Document analyse","Automatische samenvattingen","Bronvermelding","Vraag & antwoord over documenten"],
+      pricing: "Gratis",
+      education: true,
+      image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop&auto=format&q=80",
+      useCase: "Onderzoek,literatuurstudie,document analyse,lesvoorbereiding",
+      link: "https://notebooklm.google/"
     },
     {
       name: "ChatGPT",
@@ -91,7 +104,7 @@ const AITools=()=> {
       features: ["Bronvermelding","Real-time info","Samenvatting","Follow-up vragen"],
       pricing: "Freemium",
       education: true,
-      image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop&auto=format&q=80",
       useCase: "Onderzoeksopdrachten,fact-checking,bronnen zoeken",
       link: "https://www.perplexity.ai"
     },
@@ -237,7 +250,7 @@ const AITools=()=> {
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               />
             </div>
-            
+
             {/* Category Filter */}
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiFilter} className="text-gray-500" />
@@ -282,12 +295,42 @@ const AITools=()=> {
                 transition={{delay: index * 0.1}}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                <img
-                  src={tool.image}
-                  alt={tool.name}
-                  className="w-full h-48 object-cover"
-                />
-                
+                <div className="relative h-48 bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
+                  {tool.name==="Claude" ? (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-500 to-red-600 text-white relative">
+                      <img 
+                        src={tool.image} 
+                        alt={tool.name} 
+                        className="w-full h-full object-cover opacity-30" 
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold mb-2">{tool.name}</div>
+                          <div className="text-sm opacity-90">Tekstverwerking / Code</div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <img 
+                      src={tool.image} 
+                      alt={tool.name} 
+                      className="w-full h-full object-cover"
+                      onError={(e)=> {
+                        // Fallback for broken images - show tool name with colored background
+                        e.target.style.display='none';
+                        e.target.parentElement.innerHTML=`
+                          <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-500 to-red-600 text-white">
+                            <div class="text-center">
+                              <div class="text-2xl font-bold mb-2">${tool.name}</div>
+                              <div class="text-sm opacity-80">${tool.category}</div>
+                            </div>
+                          </div>
+                        `;
+                      }}
+                    />
+                  )}
+                </div>
+
                 <div className="p-6">
                   {/* Header */}
                   <div className="flex items-start justify-between mb-3">
@@ -317,7 +360,7 @@ const AITools=()=> {
                     <div className="text-sm font-medium text-gray-700 mb-2">Functies:</div>
                     <div className="flex flex-wrap gap-2">
                       {tool.features.slice(0,3).map((feature,featureIndex)=> (
-                        <span
+                        <span 
                           key={featureIndex}
                           className="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full"
                         >
@@ -340,8 +383,8 @@ const AITools=()=> {
                   <div className="flex items-center justify-between pt-4 border-t mb-4">
                     <div className="flex items-center space-x-2">
                       <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-                        tool.pricing==='Freemium' || tool.pricing==='Gratis voor studenten' 
-                          ? 'bg-green-100 text-green-800' 
+                        tool.pricing==='Freemium' || tool.pricing==='Gratis voor studenten' || tool.pricing==='Gratis'
+                          ? 'bg-green-100 text-green-800'
                           : 'bg-orange-100 text-orange-800'
                       }`}>
                         {tool.pricing}
