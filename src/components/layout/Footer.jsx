@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../common/SafeIcon';
 
-const { FiBrain, FiLinkedin } = FiIcons;
+const {FiBrain,FiLinkedin}=FiIcons;
 
-const Footer = () => {
+const Footer=()=> {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -47,13 +47,18 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/over-ons" className="text-gray-300 hover:text-white transition-colors">Over Ons</Link></li>
-              <li><Link to="/nieuwsbrief" className="text-gray-300 hover:text-white transition-colors">Nieuwsbrief</Link></li>
+              <li><Link to="/nieuws" className="text-gray-300 hover:text-white transition-colors">Nieuwsbrief</Link></li>
               <li><Link to="/privacy" className="text-gray-300 hover:text-white transition-colors">Privacy</Link></li>
             </ul>
 
             {/* Social Links */}
             <div className="flex space-x-4 mt-6">
-              <a href="https://www.linkedin.com/in/maikewarner/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+              <a
+                href="https://www.linkedin.com/in/maikewarner/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
                 <SafeIcon icon={FiLinkedin} className="text-xl" />
               </a>
             </div>

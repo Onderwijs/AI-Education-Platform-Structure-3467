@@ -7,51 +7,87 @@ import {downloadStartersgids} from '../utils/downloadUtils';
 const {FiMail,FiDownload,FiCheck,FiGift,FiUsers,FiTrendingUp}=FiIcons;
 
 const Nieuwsbrief=()=> {
-  const [formData,setFormData]=useState({email: '',role: ''});
+  const [formData,setFormData]=useState({
+    email: '',
+    role: ''
+  });
   const [isSubmitting,setIsSubmitting]=useState(false);
   const [isSubscribed,setIsSubscribed]=useState(false);
 
   const benefits=[ 
-    {icon: FiDownload,title: "Gratis AI Startersgids",description: "Complete gids met 50+ AI-tools voor docenten"},
-    {icon: FiMail,title: "Tips",description: "Praktische AI-tips direct in je inbox"},
-    {icon: FiUsers,title: "Exclusieve Content",description: "Vroege toegang tot nieuwe lessen en tools"},
-    {icon: FiTrendingUp,title: "Trends & Updates",description: "Blijf op de hoogte van de nieuwste ontwikkelingen"} 
+    {
+      icon: FiDownload,
+      title: "Gratis AI Startersgids",
+      description: "Complete gids met 50+ AI-tools voor docenten"
+    },
+    {
+      icon: FiMail,
+      title: "Tips",
+      description: "Praktische AI-tips direct in je inbox"
+    },
+    {
+      icon: FiUsers,
+      title: "Exclusieve Content",
+      description: "Vroege toegang tot nieuwe lessen en tools"
+    },
+    {
+      icon: FiTrendingUp,
+      title: "Trends & Updates",
+      description: "Blijf op de hoogte van de nieuwste ontwikkelingen"
+    } 
   ];
 
   const freebies=[ 
-    {title: "AI in 30 Dagen Challenge",description: "Dagelijkse opdrachten om AI te integreren in je onderwijs",format: "PDF Workbook + Email Serie"},
-    {title: "ChatGPT Prompt Library",description: "100+ geteste prompts voor verschillende vakken",format: "Digitale Database"},
-    {title: "AI Ethics Lesplan",description: "Complete les over ethiek en AI voor alle niveaus",format: "Lesplan + Materialen"} 
+    {
+      title: "AI in 30 Dagen Challenge",
+      description: "Dagelijkse opdrachten om AI te integreren in je onderwijs",
+      format: "PDF Workbook + Email Serie"
+    },
+    {
+      title: "ChatGPT Prompt Library",
+      description: "100+ geteste prompts voor verschillende vakken",
+      format: "Digitale Database"
+    },
+    {
+      title: "AI Ethics Lesplan",
+      description: "Complete les over ethiek en AI voor alle niveaus",
+      format: "Lesplan + Materialen"
+    } 
   ];
 
   const handleInputChange=(e)=> {
     const {name,value}=e.target;
-    setFormData(prev=> ({...prev,[name]: value}));
+    setFormData(prev=> ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleSubmit=async (e)=> {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-      // Create email content for notification 
+      // Create email content for notification
       const subject=encodeURIComponent('Nieuwe nieuwsbrief inschrijving - AI in het Onderwijs');
-      const body=encodeURIComponent(` 
-        Nieuwe nieuwsbrief inschrijving: 
-        Email: ${formData.email} 
-        Rol: ${formData.role || 'Niet opgegeven'} 
+      const body=encodeURIComponent(
+        `
+        Nieuwe nieuwsbrief inschrijving:
+        Email: ${formData.email}
+        Rol: ${formData.role || 'Niet opgegeven'}
+        
+        Deze persoon wil zich inschrijven voor de nieuwsbrief en de gratis AI startersgids ontvangen.
+        Verzonden via onderwijs.ai nieuwsbrief pagina
+        `
+      );
 
-        Deze persoon wil zich inschrijven voor de nieuwsbrief en de gratis AI startersgids ontvangen. 
-        Verzonden via onderwijs.ai nieuwsbrief pagina 
-      `);
-
-      // Send notification email using mailto 
+      // Send notification email using mailto
       const mailtoLink=`mailto:ai.onderwijs@gmail.com?subject=${subject}&body=${body}`;
 
-      // Open email client in background 
+      // Open email client in background
       const emailWindow=window.open(mailtoLink,'_blank');
 
-      // Close the email window after a short delay (if it opened) 
+      // Close the email window after a short delay (if it opened)
       if (emailWindow) {
         setTimeout(()=> {
           try {
@@ -62,15 +98,15 @@ const Nieuwsbrief=()=> {
         },1000);
       }
 
-      // Download the startersgids immediately 
+      // Download the startersgids immediately
       downloadStartersgids();
 
-      // Show success message 
+      // Show success message
       setIsSubscribed(true);
     } catch (error) {
       console.error('Error submitting form:',error);
       
-      // Still download the guide even if email fails 
+      // Still download the guide even if email fails
       downloadStartersgids();
       setIsSubscribed(true);
     } finally {
@@ -80,23 +116,39 @@ const Nieuwsbrief=()=> {
 
   if (isSubscribed) {
     return (
-      <motion.div initial={{opacity: 0}} animate={{opacity: 1}} className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center" >
+      <motion.div
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center"
+      >
         <div className="max-w-md mx-auto text-center px-4">
-          <motion.div initial={{scale: 0}} animate={{scale: 1}} transition={{delay: 0.2}} className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6" >
+          <motion.div
+            initial={{scale: 0}}
+            animate={{scale: 1}}
+            transition={{delay: 0.2}}
+            className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6"
+          >
             <SafeIcon icon={FiCheck} className="text-3xl text-white" />
           </motion.div>
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
             Download gestart!
           </h1>
           <p className="text-gray-600 mb-6">
-            Je AI Startersgids wordt nu gedownload. Je gegevens zijn ook verstuurd voor nieuwsbrief inschrijving. Check ook je downloads map als de download niet automatisch start.
+            Je AI Startersgids wordt nu gedownload. Je gegevens zijn ook verstuurd voor nieuwsbrief inschrijving.
+            Check ook je downloads map als de download niet automatisch start.
           </p>
           <div className="space-y-4">
-            <button onClick={()=> downloadStartersgids()} className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2" >
+            <button
+              onClick={()=> downloadStartersgids()}
+              className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
+            >
               <SafeIcon icon={FiDownload} />
               <span>Download opnieuw</span>
             </button>
-            <button onClick={()=> setIsSubscribed(false)} className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors" >
+            <button
+              onClick={()=> setIsSubscribed(false)}
+              className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors"
+            >
               Terug naar overzicht
             </button>
           </div>
@@ -226,12 +278,13 @@ const Nieuwsbrief=()=> {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} className="text-center mb-16" >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Gratis Downloads voor Abonnees
+              Binnenkort meer Gratis Downloads
             </h2>
             <p className="text-xl text-gray-600">
               Exclusieve materialen om direct mee aan de slag te gaan
             </p>
           </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {freebies.map((freebie,index)=> (
               <motion.div
@@ -298,7 +351,7 @@ const Nieuwsbrief=()=> {
             <p className="text-xl text-primary-100 mb-8">
               Stuur een berichtje.
             </p>
-            <button 
+            <button
               className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 cursor-not-allowed"
               disabled
             >

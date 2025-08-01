@@ -21,10 +21,17 @@ const OverOns=()=> {
                 Ervaren docent,passie voor technologie met één missie: kunstmatige intelligentie toegankelijk maken voor alle onderwijsprofessionals.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button disabled className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors opacity-50 cursor-not-allowed" >
+                <button
+                  disabled
+                  className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors opacity-50 cursor-not-allowed"
+                >
                   Samenwerken
                 </button>
-                <a href="#contact" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors opacity-50 cursor-not-allowed" onClick={(e)=> e.preventDefault()} >
+                <a
+                  href="#contact"
+                  className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors opacity-50 cursor-not-allowed"
+                  onClick={(e)=> e.preventDefault()}
+                >
                   Neem contact op
                 </a>
               </div>
@@ -44,6 +51,7 @@ const OverOns=()=> {
               Verhaal
             </h2>
           </motion.div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{opacity: 0,x: -50}} whileInView={{opacity: 1,x: 0}} viewport={{once: true}} >
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
@@ -79,14 +87,34 @@ const OverOns=()=> {
               Deze principes staan centraal
             </p>
           </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              {title: "Praktijkgericht",description: "We geloven in concrete,toepasbare kennis in plaats van theoretische concepten."},
-              {title: "Ethisch verantwoord",description: "Verantwoord gebruik van AI staat centraal in al onze materialen en trainingen."},
-              {title: "Toegankelijk",description: "AI moet beschikbaar zijn voor alle docenten,ongeacht technische achtergrond."},
-              {title: "Toekomstgericht",description: "We bereiden docenten en leerlingen voor op een wereld waarin AI centraal staat."}
+              {
+                title: "Praktijkgericht",
+                description: "We geloven in concrete,toepasbare kennis in plaats van theoretische concepten."
+              },
+              {
+                title: "Ethisch verantwoord",
+                description: "Verantwoord gebruik van AI staat centraal in al onze materialen en trainingen."
+              },
+              {
+                title: "Toegankelijk",
+                description: "AI moet beschikbaar zijn voor alle docenten,ongeacht technische achtergrond."
+              },
+              {
+                title: "Toekomstgericht",
+                description: "We bereiden docenten en leerlingen voor op een wereld waarin AI centraal staat."
+              }
             ].map((value,index)=> (
-              <motion.div key={index} initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} transition={{delay: index * 0.1}} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow" >
+              <motion.div
+                key={index}
+                initial={{opacity: 0,y: 50}}
+                whileInView={{opacity: 1,y: 0}}
+                viewport={{once: true}}
+                transition={{delay: index * 0.1}}
+                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+              >
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
                   {value.title}
                 </h3>
@@ -110,13 +138,36 @@ const OverOns=()=> {
               Ervaren docent met een passie voor technologie
             </p>
           </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              {name: "Maike",role: "Oprichter & Docent",bio: "Docent Kunst & Vormgeving aan het Teylingen College Leeuwenhorst met een passie voor technologie.",image: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1753861745628-MaikeFoto.jpg"},
-              {name: "Join",role: "Iets leuks",bio: "Ben jij een onderwijsprofessional met passie voor AI en innovatie? Neem contact op!",image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop"},
-              {name: "Join",role: "Iets leuks",bio: "Ben je een enthousiaste professional die wil bijdragen aan de toekomst van het onderwijs?",image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop"}
+              {
+                name: "Maike",
+                role: "Oprichter & Docent",
+                bio: "Docent Kunst & Vormgeving aan het Teylingen College Leeuwenhorst met een passie voor technologie.",
+                image: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1753861745628-MaikeFoto.jpg"
+              },
+              {
+                name: "Join",
+                role: "Iets leuks",
+                bio: "Ben jij een onderwijsprofessional met passie voor AI en innovatie? Neem contact op!",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop"
+              },
+              {
+                name: "Join",
+                role: "Iets leuks",
+                bio: "Ben je een enthousiaste professional die wil bijdragen aan de toekomst van het onderwijs?",
+                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop"
+              }
             ].map((member,index)=> (
-              <motion.div key={index} initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} transition={{delay: index * 0.1}} className="bg-gray-50 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow" >
+              <motion.div
+                key={index}
+                initial={{opacity: 0,y: 50}}
+                whileInView={{opacity: 1,y: 0}}
+                viewport={{once: true}}
+                transition={{delay: index * 0.1}}
+                className="bg-gray-50 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
+              >
                 <img src={member.image} alt={member.name} className="w-full h-64 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-1">
@@ -142,6 +193,7 @@ const OverOns=()=> {
               Heb je vragen of wil je samenwerken? Stuur een berichtje!
             </p>
           </motion.div>
+
           <div className="flex justify-center">
             <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} viewport={{once: true}} >
               <div className="bg-white p-8 rounded-2xl shadow-lg">
@@ -185,7 +237,7 @@ const OverOns=()=> {
             <p className="text-xl text-primary-100 mb-8">
               Download onze gratis startgids en begin vandaag nog
             </p>
-            <Link to="/nieuwsbrief" className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <Link to="/nieuws" className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
               Gratis Download
             </Link>
           </motion.div>
