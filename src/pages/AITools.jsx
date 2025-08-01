@@ -286,7 +286,7 @@ const AITools=()=> {
               Mis je een AI-tool?
             </h2>
             <p className="text-xl text-indigo-100 mb-8">
-              Laat ons weten welke tools je graag toegevoegd zou zien. Suggereer een tool.
+              Laat weten welke tools je graag toegevoegd zou zien. Suggereer een tool.
             </p>
             <button 
               className="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-not-allowed"

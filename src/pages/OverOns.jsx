@@ -53,7 +53,7 @@ const OverOns=()=> {
                 Als docent Kunst & Vormgeving combineer ik creativiteit met technologie. Ik ben zoekende hoe AI onderwijs kan verrijken en ik probeer complexe tools naar praktische toepassingen in de klas te vertalen.
               </p>
               <p className="text-gray-600 mb-4">
-                Naarmate de interesse groeide,ontstond het idee om een platform te creëren dat docenten helpt om AI effectief en verantwoord in te zetten in het onderwijs.
+                Naarmate de interesse groeide, ontstond het idee om een platform te creëren dat docenten helpt om AI effectief en verantwoord in te zetten in het onderwijs.
               </p>
               <p className="text-gray-600">
                 Missie van deze website: AI toegankelijk maken voor alle onderwijsprofessionals,ongeacht hun technische achtergrond.

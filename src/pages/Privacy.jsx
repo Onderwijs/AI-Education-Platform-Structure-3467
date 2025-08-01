@@ -1,15 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import {Link} from 'react-router-dom';
+import {motion} from 'framer-motion';
 
-const Privacy = () => {
+const Privacy=()=> {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen bg-gray-50 py-16"
-    >
+    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className="min-h-screen bg-gray-50 py-16" >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
           <h1 className="text-3xl font-bold text-gray-900 mb-8">
@@ -17,20 +12,20 @@ const Privacy = () => {
           </h1>
           <div className="prose prose-lg max-w-none text-gray-600">
             <p>
-              Bij AI in Onderwijs vinden we jouw privacy belangrijk. In deze privacyverklaring leggen we uit welke gegevens we verzamelen, waarom we deze verzamelen en wat we ermee doen.
+              Bij AI in het Onderwijs vinden we jouw privacy belangrijk. In deze privacyverklaring leggen we uit welke gegevens we verzamelen,waarom we deze verzamelen en wat we ermee doen.
             </p>
 
             <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">1. Welke gegevens verzamelen we?</h2>
             <p>
-              Wanneer je onze website bezoekt, verzamelen we automatisch bepaalde informatie over je apparaat, waaronder informatie over je webbrowser, IP-adres, tijdzone en sommige cookies die op je apparaat zijn geïnstalleerd.
+              Wanneer je onze website bezoekt,verzamelen we automatisch bepaalde informatie over je apparaat,waaronder informatie over je webbrowser,IP-adres,tijdzone en sommige cookies die op je apparaat zijn geïnstalleerd.
             </p>
             <p>
-              Wanneer je je inschrijft voor onze nieuwsbrief of een download aanvraagt, verzamelen we:
+              Wanneer je je inschrijft voor onze nieuwsbrief of een download aanvraagt,verzamelen we:
             </p>
             <ul className="list-disc pl-6 mb-4">
               <li>Voor- en achternaam</li>
               <li>E-mailadres</li>
-              <li>Onderwijstype (PO, VO, MBO/HBO)</li>
+              <li>Onderwijstype (PO,VO,MBO/HBO)</li>
               <li>School/organisatie (optioneel)</li>
             </ul>
 
@@ -40,7 +35,7 @@ const Privacy = () => {
             </p>
             <ul className="list-disc pl-6 mb-4">
               <li>Het versturen van onze nieuwsbrief met AI-tips en updates</li>
-              <li>Het leveren van de aangevraagde materialen (downloads, lesmateriaal)</li>
+              <li>Het leveren van de aangevraagde materialen (downloads,lesmateriaal)</li>
               <li>Het verbeteren van onze website en diensten</li>
               <li>Het personaliseren van content op basis van je onderwijstype</li>
             </ul>
@@ -72,7 +67,7 @@ const Privacy = () => {
 
             <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">5. Hoe lang bewaren we je gegevens?</h2>
             <p>
-              We bewaren je gegevens zolang als nodig is voor de doelen waarvoor we ze hebben verzameld, of om te voldoen aan wettelijke verplichtingen:
+              We bewaren je gegevens zolang als nodig is voor de doelen waarvoor we ze hebben verzameld,of om te voldoen aan wettelijke verplichtingen:
             </p>
             <ul className="list-disc pl-6 mb-4">
               <li>Nieuwsbrief gegevens: tot je je uitschrijft</li>
@@ -105,16 +100,14 @@ const Privacy = () => {
 
             <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">8. Contact</h2>
             <p>
-              Als je vragen hebt over deze privacyverklaring, neem dan contact met ons op via:
+              Als je vragen hebt over deze privacyverklaring,neem dan contact met ons op via:
             </p>
             <p>
-              <strong>AI in Onderwijs</strong><br />
-              Onderwijslaan 42<br />
-              1234 AB Amsterdam<br />
+              <strong>AI in het Onderwijs</strong><br />
+              Amsterdam<br />
               <span className="text-gray-500 cursor-not-allowed">ai.onderwijs@gmail.com</span>
             </p>
           </div>
-
           <div className="mt-8 pt-6 border-t">
             <Link to="/over-ons" className="text-primary-600 hover:underline">
               Terug naar Over Ons
