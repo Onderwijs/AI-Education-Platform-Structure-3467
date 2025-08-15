@@ -16,7 +16,7 @@ const LesLab=()=> {
 
   const currentLesson={
     title: "AI-Geassisteerd Creatief Schrijven",
-    month: "Maart 2024",
+    month: "Augustus 2025",
     level: "VO",
     subject: "Nederlands",
     duration: "2 lesuren",
@@ -33,7 +33,7 @@ const LesLab=()=> {
   const archive=[ 
     {
       title: "Introductie tot AI voor Kinderen",
-      month: "Februari 2024",
+      month: "Augustus 2025",
       level: "PO",
       subject: "Algemeen",
       duration: "45 min",
@@ -44,7 +44,7 @@ const LesLab=()=> {
     },
     {
       title: "AI in de Geschiedenis",
-      month: "Januari 2024",
+      month: "Augustus 2025",
       level: "VO",
       subject: "Geschiedenis",
       duration: "50 min",
@@ -55,7 +55,7 @@ const LesLab=()=> {
     },
     {
       title: "Datavisualisatie met AI",
-      month: "December 2023",
+      month: "Augustus 2025",
       level: "MBO/HBO",
       subject: "Wiskunde/Data",
       duration: "90 min",
@@ -66,7 +66,7 @@ const LesLab=()=> {
     },
     {
       title: "AI Ethics Debat",
-      month: "November 2023",
+      month: "Augustus 2025",
       level: "VO",
       subject: "Maatschappijleer",
       duration: "100 min",
@@ -77,7 +77,7 @@ const LesLab=()=> {
     },
     {
       title: "AI Kunstproject",
-      month: "Oktober 2023",
+      month: "Augustus 2025",
       level: "PO",
       subject: "Tekenen",
       duration: "60 min",
@@ -88,7 +88,7 @@ const LesLab=()=> {
     },
     {
       title: "Programmeren met AI Copilot",
-      month: "September 2023",
+      month: "Augustus 2025",
       level: "MBO/HBO",
       subject: "Informatica",
       duration: "120 min",
