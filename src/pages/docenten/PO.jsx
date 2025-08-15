@@ -121,11 +121,11 @@ const PO=()=> {
 
   const dutchExamples=[ 
     {
-      title: "Basisschool De Kust - Programmeren met Scratch",
-      description: "Leerlingen van groep 7-8 leren programmeren met Scratch en maken hun eigen AI-spelletjes",
-      result: "Verhoogde interesse in technologie en logisch denken",
-      school: "BS De Kust, Katwijk",
-      link: "https://www.dekust.nl/projecten/scratch-programmeren"
+      title: "Kinderen leren over AI door het zélf te ontdekken",
+      description: "Kunstmatige intelligentie heeft veel impact, ook op jonge kinderen.",
+      result: "Kinderen te helpen kritische consumenten te worden van kunstmatige intelligentie.",
+      school: "Basisscholen",
+      link: "https://www.erasmusplus.nl/inspiratie-resultaten/kinderen-leren-over-ai-door-het-zelf-te-ontdekken"
     },
     {
       title: "Montessorischool Bilthoven - AI in de Klas",
