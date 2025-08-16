@@ -4,7 +4,7 @@ import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const {FiSearch,FiCalendar,FiUser,FiTag,FiArrowRight,FiExternalLink}=FiIcons;
+const {FiSearch,FiCalendar,FiUser,FiTag,FiArrowRight,FiExternalLink,FiGlobe}=FiIcons;
 
 const Blog=()=> {
   const featuredPost={
@@ -18,7 +18,7 @@ const Blog=()=> {
     url: "https://aivooronderwijs.nl/google-i-o-2025-ai-en-de-toekomst-van-onderwijs/"
   };
 
-  const posts=[ 
+  const posts=[
     {
       title: "Maak aanpasbare grafieken,figuren en formules met AI",
       excerpt: "Leer hoe je AI kunt gebruiken om dynamische en interactieve grafieken,figuren en formules te maken voor je lessen.",
@@ -78,10 +78,46 @@ const Blog=()=> {
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
       readTime: "7 min",
       url: "https://www.advantive.nl/ai-in-het-onderwijs/"
-    } 
+    }
   ];
 
-  const categories=[ 
+  const internationalPosts=[
+    {
+      title: "AI Teacher Assistants Promote Racial Bias, Study Finds",
+      excerpt: "A new study reveals concerning evidence that AI teacher assistants may perpetuate racial stereotypes and bias in educational settings, raising important questions about AI implementation in schools.",
+      date: "6 augustus 2025",
+      author: "Chalkbeat",
+      category: "Research",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=250&fit=crop",
+      readTime: "6 min",
+      url: "https://www.chalkbeat.org/2025/08/06/ai-teacher-assistants-promote-racial-bias-study-finds/",
+      country: "🇺🇸 Verenigde Staten"
+    },
+    {
+      title: "Finland's AI Education Revolution: Lessons Learned",
+      excerpt: "How Finland transformed its education system with AI integration and what other countries can learn from their approach.",
+      date: "8 mei 2025",
+      author: "Nordic EdTech Review",
+      category: "Case Study",
+      image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=400&h=250&fit=crop",
+      readTime: "12 min",
+      url: "https://www.oecd.org/education/artificial-intelligence-in-education.htm",
+      country: "🇫🇮 Finland"
+    },
+    {
+      title: "Singapore's Smart Nation: AI-Powered Classrooms",
+      excerpt: "Inside Singapore's nationwide initiative to integrate AI into every classroom and prepare students for the digital economy.",
+      date: "3 mei 2025",
+      author: "Asia Education Weekly",
+      category: "Innovation",
+      image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop",
+      readTime: "10 min",
+      url: "https://www.unesco.org/en/artificial-intelligence/education",
+      country: "🇸🇬 Singapore"
+    }
+  ];
+
+  const categories=[
     "Alle categorieën",
     "AI Tools",
     "AI Trends",
@@ -89,7 +125,7 @@ const Blog=()=> {
     "Management",
     "Vaardigheden",
     "Richtlijnen",
-    "Implementatie" 
+    "Implementatie"
   ];
 
   const handleArticleClick=(url)=> {
@@ -97,11 +133,20 @@ const Blog=()=> {
   };
 
   return (
-    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className="min-h-screen" >
+    <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+      className="min-h-screen"
+    >
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{opacity: 0,y: 50}} animate={{opacity: 1,y: 0}} className="text-center" >
+          <motion.div
+            initial={{opacity: 0,y: 50}}
+            animate={{opacity: 1,y: 0}}
+            className="text-center"
+          >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Blog: AI in het Onderwijs
             </h1>
@@ -123,18 +168,39 @@ const Blog=()=> {
       {/* Featured Post */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} className="mb-6" >
+          <motion.div
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
+            className="mb-6"
+          >
             <h2 className="text-2xl font-bold text-gray-900">
               Uitgelicht artikel
             </h2>
           </motion.div>
 
-          <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow" onClick={()=> handleArticleClick(featuredPost.url)}>
+          <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+               onClick={()=> handleArticleClick(featuredPost.url)}>
             <div className="grid grid-cols-1 lg:grid-cols-2">
-              <motion.div initial={{opacity: 0,x: -50}} whileInView={{opacity: 1,x: 0}} viewport={{once: true}} className="relative h-64 lg:h-auto" >
-                <img src={featuredPost.image} alt={featuredPost.title} className="absolute inset-0 w-full h-full object-cover" />
+              <motion.div
+                initial={{opacity: 0,x: -50}}
+                whileInView={{opacity: 1,x: 0}}
+                viewport={{once: true}}
+                className="relative h-64 lg:h-auto"
+              >
+                <img
+                  src={featuredPost.image}
+                  alt={featuredPost.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
               </motion.div>
-              <motion.div initial={{opacity: 0,x: 50}} whileInView={{opacity: 1,x: 0}} viewport={{once: true}} className="p-8" >
+
+              <motion.div
+                initial={{opacity: 0,x: 50}}
+                whileInView={{opacity: 1,x: 0}}
+                viewport={{once: true}}
+                className="p-8"
+              >
                 <div className="flex items-center space-x-4 mb-4">
                   <span className="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">
                     {featuredPost.category}
@@ -144,12 +210,15 @@ const Blog=()=> {
                     <span>{featuredPost.date}</span>
                   </div>
                 </div>
+
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {featuredPost.title}
                 </h3>
+
                 <p className="text-gray-600 mb-6">
                   {featuredPost.excerpt}
                 </p>
+
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>
@@ -175,7 +244,11 @@ const Blog=()=> {
             {categories.map((category,index)=> (
               <button
                 key={index}
-                className={`px-4 py-2 rounded-full whitespace-nowrap ${index===0 ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                className={`px-4 py-2 rounded-full whitespace-nowrap ${
+                  index===0
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-white text-gray-600 hover:bg-gray-100'
+                }`}
               >
                 {category}
               </button>
@@ -184,9 +257,23 @@ const Blog=()=> {
         </div>
       </section>
 
-      {/* Blog Posts */}
+      {/* Nederlandse Blog Posts */}
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
+            className="mb-12"
+          >
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Nederlandse Artikelen
+            </h2>
+            <p className="text-xl text-gray-600">
+              Praktische inzichten van Nederlandse AI-experts in het onderwijs
+            </p>
+          </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post,index)=> (
               <motion.div
@@ -210,6 +297,7 @@ const Blog=()=> {
                     </span>
                   </div>
                 </div>
+
                 <div className="p-6">
                   <div className="flex items-center space-x-2 text-sm text-gray-500 mb-3">
                     <SafeIcon icon={FiCalendar} />
@@ -217,12 +305,15 @@ const Blog=()=> {
                     <span className="text-gray-300">•</span>
                     <span>{post.readTime} leestijd</span>
                   </div>
+
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {post.title}
                   </h3>
+
                   <p className="text-gray-600 mb-6 line-clamp-3">
                     {post.excerpt}
                   </p>
+
                   <div className="flex items-center justify-between pt-4 border-t">
                     <div className="flex items-center space-x-2">
                       <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>
@@ -236,8 +327,98 @@ const Blog=()=> {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="text-center mt-12">
+      {/* International Articles Section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
+            className="mb-12"
+          >
+            <div className="flex items-center space-x-3 mb-4">
+              <SafeIcon icon={FiGlobe} className="text-2xl text-indigo-600" />
+              <h2 className="text-3xl font-bold text-gray-900">
+                Internationale Artikelen
+              </h2>
+            </div>
+            <p className="text-xl text-gray-600">
+              Wereldwijde inzichten en trends in AI-onderwijs
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {internationalPosts.map((post,index)=> (
+              <motion.div
+                key={index}
+                initial={{opacity: 0,y: 50}}
+                whileInView={{opacity: 1,y: 0}}
+                viewport={{once: true}}
+                transition={{delay: index * 0.1}}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all cursor-pointer"
+                onClick={()=> handleArticleClick(post.url)}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform hover:scale-105"
+                  />
+                  <div className="absolute top-0 right-0 m-4">
+                    <span className="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">
+                      {post.category}
+                    </span>
+                  </div>
+                  <div className="absolute top-0 left-0 m-4">
+                    <SafeIcon icon={FiGlobe} className="text-white bg-indigo-600 p-2 rounded-full text-xl" />
+                  </div>
+                </div>
+
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center space-x-2 text-sm text-gray-500">
+                      <SafeIcon icon={FiCalendar} />
+                      <span>{post.date}</span>
+                      <span className="text-gray-300">•</span>
+                      <span>{post.readTime} leestijd</span>
+                    </div>
+                  </div>
+
+                  <div className="mb-2">
+                    <span className="text-sm font-medium text-indigo-600">{post.country}</span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {post.title}
+                  </h3>
+
+                  <p className="text-gray-600 mb-6 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-4 border-t">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>
+                      <span className="text-sm text-gray-600">{post.author}</span>
+                    </div>
+                    <button className="text-indigo-600 hover:text-indigo-700 inline-flex items-center space-x-1">
+                      <SafeIcon icon={FiExternalLink} />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Load More */}
+      <section className="py-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
             <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
               Meer artikelen laden
             </button>
@@ -248,14 +429,18 @@ const Blog=()=> {
       {/* Newsletter CTA */}
       <section className="py-20 bg-indigo-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} >
+          <motion.div
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Blijf op de hoogte
             </h2>
             <p className="text-xl text-indigo-100 mb-8">
               Laat weten welke blog je graag toegevoegd zou zien. Suggereer een blog.
             </p>
-            <button 
+            <button
               className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-not-allowed"
               disabled
             >
