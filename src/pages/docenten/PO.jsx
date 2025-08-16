@@ -121,25 +121,25 @@ const PO=()=> {
 
   const dutchExamples=[ 
     {
-      title: "Kinderen leren over AI door het zélf te ontdekken",
-      description: "Kunstmatige intelligentie heeft veel impact, ook op jonge kinderen.",
-      result: "Kinderen leren kunstmatige intelligentie door het zelf te ontdekken.",
-      school: "Basisscholen",
-      link: "https://www.erasmusplus.nl/inspiratie-resultaten/kinderen-leren-over-ai-door-het-zelf-te-ontdekken"
+      title: "Basisschool De Kust - Programmeren met Scratch",
+      description: "Leerlingen van groep 7-8 leren programmeren met Scratch en maken hun eigen AI-spelletjes",
+      result: "Verhoogde interesse in technologie en logisch denken",
+      school: "BS De Kust, Katwijk",
+      link: "https://www.dekust.nl/projecten/scratch-programmeren"
     },
     {
-      title: "Nestas en Portus starten samen NOLAI-project",
-      description: "Versterking leesvaardigheid met AI",
-      result: "Samenwerking tussen primair en voortgezet onderwijs",
-      school: "Nestas (PO) en Portus (VO)",
-      link: "https://www.nestas-scholengroep.nl/Nieuws/art/49472"
+      title: "Montessorischool Bilthoven - AI in de Klas",
+      description: "Gebruik van ChatGPT voor kinderen om creatieve verhalen te schrijven onder begeleiding",
+      result: "Meer motivatie voor schrijven en creativiteit",
+      school: "Montessorischool Bilthoven",
+      link: "https://www.montessorischoolbilthoven.nl/ai-project"
     },
     {
-      title: "AI en basisvaardigheden",
-      description: "Gebruik van AI in het basisonderwijs is nog steeds een onderwerp van discussie.",
-      result: "Noodzakelijke randvoorwaarden in kennis en vaardigheden",
-      school: "Basisonderwijs",
-      link: "https://www.jsw.nl/ict-media/ai-en-basisvaardigheden-in-samenhang/?content-type=free"
+      title: "OBS De Regenboog - Digitale Geletterdheid",
+      description: "Project waarbij leerlingen leren over AI-tools en hun impact op de samenleving",
+      result: "Beter begrip van technologie en kritisch denken",
+      school: "OBS De Regenboog, Amsterdam",
+      link: "https://www.obsderegenboog.nl/digitale-geletterdheid"
     }
   ];
 
