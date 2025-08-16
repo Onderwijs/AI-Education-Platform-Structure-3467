@@ -135,11 +135,11 @@ const PO=()=> {
       link: "https://www.nestas-scholengroep.nl/Nieuws/art/49472"
     },
     {
-      title: "OBS De Regenboog - Digitale Geletterdheid",
-      description: "Project waarbij leerlingen leren over AI-tools en hun impact op de samenleving",
-      result: "Beter begrip van technologie en kritisch denken",
-      school: "OBS De Regenboog, Amsterdam",
-      link: "https://www.obsderegenboog.nl/digitale-geletterdheid"
+      title: "AI en basisvaardigheden",
+      description: "Gebruik van AI in het basisonderwijs is nog steeds een onderwerp van discussie.",
+      result: "Noodzakelijke randvoorwaarden in kennis en vaardigheden",
+      school: "Basisonderwijs",
+      link: "https://www.jsw.nl/ict-media/ai-en-basisvaardigheden-in-samenhang/?content-type=free"
     }
   ];
 
