@@ -123,16 +123,16 @@ const PO=()=> {
     {
       title: "Kinderen leren over AI door het zélf te ontdekken",
       description: "Kunstmatige intelligentie heeft veel impact, ook op jonge kinderen.",
-      result: "Kinderen te helpen kritische consumenten te worden van kunstmatige intelligentie.",
+      result: "Kinderen leren kunstmatige intelligentie door het zelf te ontdekken.",
       school: "Basisscholen",
       link: "https://www.erasmusplus.nl/inspiratie-resultaten/kinderen-leren-over-ai-door-het-zelf-te-ontdekken"
     },
     {
-      title: "Montessorischool Bilthoven - AI in de Klas",
-      description: "Gebruik van ChatGPT voor kinderen om creatieve verhalen te schrijven onder begeleiding",
-      result: "Meer motivatie voor schrijven en creativiteit",
-      school: "Montessorischool Bilthoven",
-      link: "https://www.montessorischoolbilthoven.nl/ai-project"
+      title: "Nestas en Portus starten samen NOLAI-project",
+      description: "Versterking leesvaardigheid met AI",
+      result: "Samenwerking tussen primair en voortgezet onderwijs",
+      school: "Nestas (PO) en Portus (VO)",
+      link: "https://www.nestas-scholengroep.nl/Nieuws/art/49472"
     },
     {
       title: "OBS De Regenboog - Digitale Geletterdheid",
