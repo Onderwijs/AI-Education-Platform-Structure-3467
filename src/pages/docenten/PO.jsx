@@ -119,27 +119,28 @@ const PO=()=> {
     }
   ];
 
+  // Updated Dutch examples - using your provided data
   const dutchExamples=[ 
     {
-      title: "Basisschool De Kust - Programmeren met Scratch",
-      description: "Leerlingen van groep 7-8 leren programmeren met Scratch en maken hun eigen AI-spelletjes",
-      result: "Verhoogde interesse in technologie en logisch denken",
-      school: "BS De Kust, Katwijk",
-      link: "https://www.dekust.nl/projecten/scratch-programmeren"
+      title: "Kinderen leren over AI door het zélf te ontdekken",
+      description: "Kunstmatige intelligentie heeft veel impact, ook op jonge kinderen.",
+      result: "Kinderen leren kunstmatige intelligentie door het zelf te ontdekken.",
+      school: "Basisscholen",
+      link: "https://www.erasmusplus.nl/inspiratie-resultaten/kinderen-leren-over-ai-door-het-zelf-te-ontdekken"
     },
     {
-      title: "Montessorischool Bilthoven - AI in de Klas",
-      description: "Gebruik van ChatGPT voor kinderen om creatieve verhalen te schrijven onder begeleiding",
-      result: "Meer motivatie voor schrijven en creativiteit",
-      school: "Montessorischool Bilthoven",
-      link: "https://www.montessorischoolbilthoven.nl/ai-project"
+      title: "Nestas en Portus starten samen NOLAI-project",
+      description: "Versterking leesvaardigheid met AI",
+      result: "Samenwerking tussen primair en voortgezet onderwijs",
+      school: "Nestas (PO) en Portus (VO)",
+      link: "https://www.nestas-scholengroep.nl/Nieuws/art/49472"
     },
     {
-      title: "OBS De Regenboog - Digitale Geletterdheid",
-      description: "Project waarbij leerlingen leren over AI-tools en hun impact op de samenleving",
-      result: "Beter begrip van technologie en kritisch denken",
-      school: "OBS De Regenboog, Amsterdam",
-      link: "https://www.obsderegenboog.nl/digitale-geletterdheid"
+      title: "AI en basisvaardigheden",
+      description: "Gebruik van AI in het basisonderwijs is nog steeds een onderwerp van discussie.",
+      result: "Noodzakelijke randvoorwaarden in kennis en vaardigheden",
+      school: "Basisonderwijs",
+      link: "https://www.jsw.nl/ict-media/ai-en-basisvaardigheden-in-samenhang/?content-type=free"
     }
   ];
 
@@ -165,20 +166,20 @@ const PO=()=> {
     downloadLesson(lessonTitle);
   };
 
-  return (
-    <motion.div
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
-      className="min-h-screen"
+  return ( 
+    <motion.div 
+      initial={{opacity: 0}} 
+      animate={{opacity: 1}} 
+      exit={{opacity: 0}} 
+      className="min-h-screen" 
     >
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{opacity: 0, x: -50}}
-              animate={{opacity: 1, x: 0}}
+            <motion.div 
+              initial={{opacity: 0,x: -50}} 
+              animate={{opacity: 1,x: 0}} 
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 AI in het Basisonderwijs
@@ -187,16 +188,16 @@ const PO=()=> {
                 Maak kennis met kunstmatige intelligentie op een speelse en veilige manier. Perfect voor groep 1 t/m 8,met speciale aandacht voor Nederlandse tools en voorbeelden.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/leslab"
+                <Link 
+                  to="/leslab" 
                   className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center space-x-2"
                 >
                   <SafeIcon icon={FiBook} />
                   <span>Bekijk Lessen</span>
                 </Link>
-                <a
-                  href="https://onderwijs.ai/#/nieuwsbrief"
-                  target="_blank"
+                <a 
+                  href="https://onderwijs.ai/#/nieuwsbrief" 
+                  target="_blank" 
                   rel="noopener noreferrer"
                   className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors flex items-center space-x-2"
                 >
@@ -205,15 +206,15 @@ const PO=()=> {
                 </a>
               </div>
             </motion.div>
-            <motion.div
-              initial={{opacity: 0, x: 50}}
-              animate={{opacity: 1, x: 0}}
-              transition={{delay: 0.2}}
+            <motion.div 
+              initial={{opacity: 0,x: 50}} 
+              animate={{opacity: 1,x: 0}} 
+              transition={{delay: 0.2}} 
             >
-              <img
-                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop"
-                alt="Kinderen leren met AI"
-                className="rounded-2xl shadow-2xl"
+              <img 
+                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop" 
+                alt="Kinderen leren met AI" 
+                className="rounded-2xl shadow-2xl" 
               />
             </motion.div>
           </div>
@@ -223,10 +224,10 @@ const PO=()=> {
       {/* Nederlandse AI Tools Section */}
       <section className="py-20 bg-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+          <motion.div 
+            initial={{opacity: 0,y: 50}} 
+            whileInView={{opacity: 1,y: 0}} 
+            viewport={{once: true}} 
             className="text-center mb-16"
           >
             <div className="flex items-center justify-center space-x-2 mb-4">
@@ -240,13 +241,13 @@ const PO=()=> {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {dutchTools.map((tool, index) => (
-              <motion.div
-                key={index}
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+            {dutchTools.map((tool,index)=> ( 
+              <motion.div 
+                key={index} 
+                initial={{opacity: 0,y: 50}} 
+                whileInView={{opacity: 1,y: 0}} 
+                viewport={{once: true}} 
+                transition={{delay: index * 0.1}} 
                 className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border-l-4 border-orange-500"
               >
                 <div className="flex items-start justify-between mb-4">
@@ -256,9 +257,9 @@ const PO=()=> {
                       {tool.name}
                     </h3>
                   </div>
-                  <a
-                    href={tool.url}
-                    target="_blank"
+                  <a 
+                    href={tool.url} 
+                    target="_blank" 
                     rel="noopener noreferrer"
                     className="text-orange-600 hover:text-orange-700 transition-colors p-2 rounded-full hover:bg-orange-50"
                     aria-label={`Bezoek ${tool.name} website`}
@@ -286,16 +287,16 @@ const PO=()=> {
                   <div className="text-sm text-orange-800">{tool.tips}</div>
                 </div>
                 <div className="flex items-center justify-between">
-                  <Link
-                    to="/ai-tools"
+                  <Link 
+                    to="/ai-tools" 
                     className="text-orange-600 hover:text-orange-700 font-medium text-sm inline-flex items-center space-x-1"
                   >
                     <span>Meer info</span>
                     <SafeIcon icon={FiArrowRight} />
                   </Link>
-                  <a
-                    href={tool.url}
-                    target="_blank"
+                  <a 
+                    href={tool.url} 
+                    target="_blank" 
                     rel="noopener noreferrer"
                     className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium inline-flex items-center space-x-2"
                   >
@@ -327,10 +328,10 @@ const PO=()=> {
       {/* Internationale AI Tools Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+          <motion.div 
+            initial={{opacity: 0,y: 50}} 
+            whileInView={{opacity: 1,y: 0}} 
+            viewport={{once: true}} 
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -341,22 +342,22 @@ const PO=()=> {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {internationalTools.map((tool, index) => (
-              <motion.div
-                key={index}
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+            {internationalTools.map((tool,index)=> ( 
+              <motion.div 
+                key={index} 
+                initial={{opacity: 0,y: 50}} 
+                whileInView={{opacity: 1,y: 0}} 
+                viewport={{once: true}} 
+                transition={{delay: index * 0.1}} 
                 className="bg-gray-50 p-6 rounded-2xl hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="text-xl font-semibold text-gray-900">
                     {tool.name}
                   </h3>
-                  <a
-                    href={tool.url}
-                    target="_blank"
+                  <a 
+                    href={tool.url} 
+                    target="_blank" 
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-700 transition-colors p-2 rounded-full hover:bg-blue-50"
                     aria-label={`Bezoek ${tool.name} website`}
@@ -383,9 +384,9 @@ const PO=()=> {
                   <div className="text-sm font-medium text-blue-900 mb-1">Tip voor docenten:</div>
                   <div className="text-sm text-blue-800">{tool.tips}</div>
                 </div>
-                <a
-                  href={tool.url}
-                  target="_blank"
+                <a 
+                  href={tool.url} 
+                  target="_blank" 
                   rel="noopener noreferrer"
                   className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium inline-flex items-center justify-center space-x-2"
                 >
@@ -416,10 +417,10 @@ const PO=()=> {
       {/* Lesson Examples */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+          <motion.div 
+            initial={{opacity: 0,y: 50}} 
+            whileInView={{opacity: 1,y: 0}} 
+            viewport={{once: true}} 
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -430,19 +431,19 @@ const PO=()=> {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {lessons.map((lesson, index) => (
-              <motion.div
-                key={index}
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+            {lessons.map((lesson,index)=> ( 
+              <motion.div 
+                key={index} 
+                initial={{opacity: 0,y: 50}} 
+                whileInView={{opacity: 1,y: 0}} 
+                viewport={{once: true}} 
+                transition={{delay: index * 0.1}} 
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                <img
-                  src={lesson.image}
-                  alt={lesson.title}
-                  className="w-full h-48 object-cover"
+                <img 
+                  src={lesson.image} 
+                  alt={lesson.title} 
+                  className="w-full h-48 object-cover" 
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -459,9 +460,9 @@ const PO=()=> {
                   <div className="space-y-2 mb-4">
                     <div className="text-sm font-medium text-gray-700">Inclusief:</div>
                     <div className="flex flex-wrap gap-2">
-                      {lesson.materials.map((material, materialIndex) => (
-                        <span
-                          key={materialIndex}
+                      {lesson.materials.map((material,materialIndex)=> ( 
+                        <span 
+                          key={materialIndex} 
                           className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
                         >
                           {material}
@@ -469,8 +470,8 @@ const PO=()=> {
                       ))}
                     </div>
                   </div>
-                  <button
-                    onClick={() => handleDownloadLesson(lesson.title)}
+                  <button 
+                    onClick={()=> handleDownloadLesson(lesson.title)} 
                     className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
                   >
                     <SafeIcon icon={FiDownload} />
@@ -486,10 +487,10 @@ const PO=()=> {
       {/* Nederlandse Success Stories */}
       <section className="py-20 bg-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+          <motion.div 
+            initial={{opacity: 0,y: 50}} 
+            whileInView={{opacity: 1,y: 0}} 
+            viewport={{once: true}} 
             className="text-center mb-16"
           >
             <div className="flex items-center justify-center space-x-2 mb-4">
@@ -503,22 +504,22 @@ const PO=()=> {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {dutchExamples.map((example, index) => (
-              <motion.div
-                key={index}
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+            {dutchExamples.map((example,index)=> ( 
+              <motion.div 
+                key={index} 
+                initial={{opacity: 0,y: 50}} 
+                whileInView={{opacity: 1,y: 0}} 
+                viewport={{once: true}} 
+                transition={{delay: index * 0.1}} 
                 className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-orange-500"
               >
                 <div className="flex items-start justify-between mb-3">
                   <h3 className="text-xl font-semibold text-gray-900">
                     {example.title}
                   </h3>
-                  <a
-                    href={example.link}
-                    target="_blank"
+                  <a 
+                    href={example.link} 
+                    target="_blank" 
                     rel="noopener noreferrer"
                     className="text-orange-600 hover:text-orange-700 transition-colors p-2 rounded-full hover:bg-orange-50"
                     aria-label={`Lees artikel over ${example.title}`}
@@ -535,9 +536,9 @@ const PO=()=> {
                   <div className="text-sm text-gray-500 font-medium">
                     {example.school}
                   </div>
-                  <a
-                    href={example.link}
-                    target="_blank"
+                  <a 
+                    href={example.link} 
+                    target="_blank" 
                     rel="noopener noreferrer"
                     className="text-orange-600 hover:text-orange-700 font-medium text-sm inline-flex items-center space-x-1"
                   >
@@ -554,10 +555,10 @@ const PO=()=> {
       {/* International Success Stories */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
+          <motion.div 
+            initial={{opacity: 0,y: 50}} 
+            whileInView={{opacity: 1,y: 0}} 
+            viewport={{once: true}} 
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -568,13 +569,13 @@ const PO=()=> {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {examples.map((example, index) => (
-              <motion.div
-                key={index}
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+            {examples.map((example,index)=> ( 
+              <motion.div 
+                key={index} 
+                initial={{opacity: 0,y: 50}} 
+                whileInView={{opacity: 1,y: 0}} 
+                viewport={{once: true}} 
+                transition={{delay: index * 0.1}} 
                 className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-2xl"
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -594,9 +595,9 @@ const PO=()=> {
       {/* CTA Section */}
       <section className="py-20 bg-blue-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{opacity: 0, y: 50}}
-            whileInView={{opacity: 1, y: 0}}
+          <motion.div 
+            initial={{opacity: 0,y: 50}} 
+            whileInView={{opacity: 1,y: 0}} 
             viewport={{once: true}}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -605,9 +606,9 @@ const PO=()=> {
             <p className="text-xl text-blue-100 mb-8">
               Download onze complete startersgids voor AI in het Nederlandse basisonderwijs
             </p>
-            <a
-              href="https://onderwijs.ai/#/nieuwsbrief"
-              target="_blank"
+            <a 
+              href="https://onderwijs.ai/#/nieuwsbrief" 
+              target="_blank" 
               rel="noopener noreferrer"
               className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
             >
