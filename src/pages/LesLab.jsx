@@ -11,29 +11,29 @@ const LesLab=()=> {
   const [selectedLevel,setSelectedLevel]=useState('Alle');
   const [downloadStarted,setDownloadStarted]=useState(false);
 
-  const months=['Alle','Januari','Februari','Maart','April','Mei','Juni'];
+  const months=['Alle','Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus'];
   const levels=['Alle','PO','VO','MBO/HBO'];
 
   const currentLesson={
     title: "AI-Geassisteerd Creatief Schrijven",
-    month: "Maart 2024",
+    month: "Augustus 2025",
     level: "VO",
     subject: "Nederlands",
     duration: "2 lesuren",
     description: "Leerlingen gebruiken AI-tools om hun creativiteit te stimuleren en betere verhalen te schrijven.",
-    objectives: [ 
+    objectives: [
       "Begrijpen hoe AI kan helpen bij creatieve processen",
       "Ethisch gebruik van AI bij schrijfopdrachten",
-      "Ontwikkelen van eigen schrijfstijl met AI-ondersteuning" 
+      "Ontwikkelen van eigen schrijfstijl met AI-ondersteuning"
     ],
     materials: ["Lesplan","Werkbladen","AI-prompt templates","Beoordelingsrubric"],
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop"
   };
 
-  const archive=[ 
+  const archive=[
     {
       title: "Introductie tot AI voor Kinderen",
-      month: "Februari 2024",
+      month: "Augustus 2025",
       level: "PO",
       subject: "Algemeen",
       duration: "45 min",
@@ -44,7 +44,7 @@ const LesLab=()=> {
     },
     {
       title: "AI in de Geschiedenis",
-      month: "Januari 2024",
+      month: "Augustus 2025",
       level: "VO",
       subject: "Geschiedenis",
       duration: "50 min",
@@ -55,7 +55,7 @@ const LesLab=()=> {
     },
     {
       title: "Datavisualisatie met AI",
-      month: "December 2023",
+      month: "Augustus 2025",
       level: "MBO/HBO",
       subject: "Wiskunde/Data",
       duration: "90 min",
@@ -66,7 +66,7 @@ const LesLab=()=> {
     },
     {
       title: "AI Ethics Debat",
-      month: "November 2023",
+      month: "Augustus 2025",
       level: "VO",
       subject: "Maatschappijleer",
       duration: "100 min",
@@ -77,7 +77,7 @@ const LesLab=()=> {
     },
     {
       title: "AI Kunstproject",
-      month: "Oktober 2023",
+      month: "Augustus 2025",
       level: "PO",
       subject: "Tekenen",
       duration: "60 min",
@@ -88,7 +88,7 @@ const LesLab=()=> {
     },
     {
       title: "Programmeren met AI Copilot",
-      month: "September 2023",
+      month: "Augustus 2025",
       level: "MBO/HBO",
       subject: "Informatica",
       duration: "120 min",
@@ -96,7 +96,29 @@ const LesLab=()=> {
       downloads: 750,
       description: "Leren programmeren met AI-assistentie",
       image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=300&h=200&fit=crop"
-    } 
+    },
+    {
+      title: "AI voor Taalonderwijs",
+      month: "Augustus 2025",
+      level: "VO",
+      subject: "Engels/Frans",
+      duration: "75 min",
+      rating: 4.7,
+      downloads: 920,
+      description: "AI-tools voor het leren van vreemde talen",
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=300&h=200&fit=crop"
+    },
+    {
+      title: "Wetenschappelijk Onderzoek met AI",
+      month: "Augustus 2025",
+      level: "MBO/HBO",
+      subject: "Onderzoek",
+      duration: "150 min",
+      rating: 4.8,
+      downloads: 680,
+      description: "AI gebruiken voor literatuuronderzoek en data-analyse",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop"
+    }
   ];
 
   const filteredLessons=archive.filter(lesson=> {
@@ -115,11 +137,20 @@ const LesLab=()=> {
   };
 
   return (
-    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className="min-h-screen" >
+    <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+      className="min-h-screen"
+    >
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-emerald-600 to-teal-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{opacity: 0,y: 50}} animate={{opacity: 1,y: 0}} className="text-center" >
+          <motion.div
+            initial={{opacity: 0,y: 50}}
+            animate={{opacity: 1,y: 0}}
+            className="text-center"
+          >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               LesLab: AI-Lessen
             </h1>
@@ -133,7 +164,12 @@ const LesLab=()=> {
       {/* Current Lesson Spotlight */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} className="text-center mb-16" >
+          <motion.div
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Uitgelicht: Nieuwe Les
             </h2>
@@ -143,10 +179,23 @@ const LesLab=()=> {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{opacity: 0,x: -50}} whileInView={{opacity: 1,x: 0}} viewport={{once: true}} >
-              <img src={currentLesson.image} alt={currentLesson.title} className="rounded-2xl shadow-2xl" />
+            <motion.div
+              initial={{opacity: 0,x: -50}}
+              whileInView={{opacity: 1,x: 0}}
+              viewport={{once: true}}
+            >
+              <img
+                src={currentLesson.image}
+                alt={currentLesson.title}
+                className="rounded-2xl shadow-2xl"
+              />
             </motion.div>
-            <motion.div initial={{opacity: 0,x: 50}} whileInView={{opacity: 1,x: 0}} viewport={{once: true}} >
+
+            <motion.div
+              initial={{opacity: 0,x: 50}}
+              whileInView={{opacity: 1,x: 0}}
+              viewport={{once: true}}
+            >
               <div className="flex items-center space-x-4 mb-4">
                 <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-medium">
                   {currentLesson.level}
@@ -155,9 +204,11 @@ const LesLab=()=> {
                 <span className="text-gray-500">•</span>
                 <span className="text-gray-500">{currentLesson.duration}</span>
               </div>
+
               <h3 className="text-3xl font-bold text-gray-900 mb-4">
                 {currentLesson.title}
               </h3>
+
               <p className="text-gray-600 mb-6">
                 {currentLesson.description}
               </p>
@@ -178,7 +229,10 @@ const LesLab=()=> {
                 <h4 className="font-semibold text-gray-900 mb-3">Inclusief materialen:</h4>
                 <div className="flex flex-wrap gap-2">
                   {currentLesson.materials.map((material,index)=> (
-                    <span key={index} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm" >
+                    <span
+                      key={index}
+                      className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                    >
                       {material}
                     </span>
                   ))}
@@ -188,7 +242,9 @@ const LesLab=()=> {
               <button
                 onClick={()=> handleDownload(currentLesson.title)}
                 disabled={downloadStarted}
-                className={`bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center space-x-2 ${downloadStarted ? 'opacity-75' : ''}`}
+                className={`bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center space-x-2 ${
+                  downloadStarted ? 'opacity-75' : ''
+                }`}
               >
                 <SafeIcon icon={downloadStarted ? FiCheck : FiDownload} />
                 <span>{downloadStarted ? 'Download gestart...' : 'Download Complete Les'}</span>
@@ -201,7 +257,12 @@ const LesLab=()=> {
       {/* Archive Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} className="text-center mb-16" >
+          <motion.div
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Lesarchief
             </h2>
@@ -224,6 +285,7 @@ const LesLab=()=> {
                 ))}
               </select>
             </div>
+
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiUsers} className="text-gray-500" />
               <select
@@ -249,7 +311,11 @@ const LesLab=()=> {
                 transition={{delay: index * 0.1}}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                <img src={lesson.image} alt={lesson.title} className="w-full h-48 object-cover" />
+                <img
+                  src={lesson.image}
+                  alt={lesson.title}
+                  className="w-full h-48 object-cover"
+                />
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs font-medium">
@@ -257,11 +323,13 @@ const LesLab=()=> {
                     </span>
                     <span className="text-sm text-gray-500">{lesson.month}</span>
                   </div>
+
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {lesson.title}
                   </h3>
                   <p className="text-sm text-gray-600 mb-3">{lesson.subject}</p>
                   <p className="text-gray-600 mb-4">{lesson.description}</p>
+
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                     <div className="flex items-center space-x-1">
                       <SafeIcon icon={FiClock} />
@@ -272,6 +340,7 @@ const LesLab=()=> {
                       <span>{lesson.rating}</span>
                     </div>
                   </div>
+
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
                       {lesson.downloads} downloads
@@ -302,14 +371,18 @@ const LesLab=()=> {
       {/* Subscription CTA */}
       <section className="py-20 bg-emerald-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} >
+          <motion.div
+            initial={{opacity: 0,y: 50}}
+            whileInView={{opacity: 1,y: 0}}
+            viewport={{once: true}}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Mis nooit meer een nieuwe les
             </h2>
             <p className="text-xl text-emerald-100 mb-8">
               Laat weten welke les je graag toegevoegd zou zien. Suggereer een les.
             </p>
-            <button 
+            <button
               className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-not-allowed"
               disabled
             >
