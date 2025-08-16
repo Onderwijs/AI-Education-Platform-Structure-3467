@@ -9,3 +9,13 @@
 
 [build.environment]
   NODE_VERSION = "18"
+
+# Enable form processing
+[forms]
+  # Enable form processing on all forms
+  
+[[forms]]
+  name = "nieuwsbrief-inschrijving"
+  
+[functions]
+  # Optional: you can add serverless functions here later

@@ -18,6 +18,7 @@ import Nieuwsbrief from './pages/Nieuwsbrief';
 import OverOns from './pages/OverOns';
 import Privacy from './pages/Privacy';
 import GetStarted from './pages/GetStarted';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/contact" element={<OverOns />} />
             <Route path="/get-started" element={<GetStarted />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </AnimatePresence>
         <Footer />

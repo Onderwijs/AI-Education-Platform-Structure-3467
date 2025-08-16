@@ -14,7 +14,7 @@ const Nieuwsbrief=()=> {
   const [isSubmitting,setIsSubmitting]=useState(false);
   const [isSubscribed,setIsSubscribed]=useState(false);
 
-  const benefits=[ 
+  const benefits=[
     {
       icon: FiDownload,
       title: "Gratis AI Startersgids",
@@ -27,17 +27,17 @@ const Nieuwsbrief=()=> {
     },
     {
       icon: FiUsers,
-      title: "Exclusieve Content",
+      title: "Exclusieve Content", 
       description: "Vroege toegang tot nieuwe lessen en tools"
     },
     {
       icon: FiTrendingUp,
       title: "Trends & Updates",
       description: "Blijf op de hoogte van de nieuwste ontwikkelingen"
-    } 
+    }
   ];
 
-  const freebies=[ 
+  const freebies=[
     {
       title: "AI in 30 Dagen Challenge",
       description: "Dagelijkse opdrachten om AI te integreren in je onderwijs",
@@ -45,14 +45,14 @@ const Nieuwsbrief=()=> {
     },
     {
       title: "ChatGPT Prompt Library",
-      description: "100+ geteste prompts voor verschillende vakken",
+      description: "100+ geteste prompts voor verschillende vakken", 
       format: "Digitale Database"
     },
     {
       title: "AI Ethics Lesplan",
       description: "Complete les over ethiek en AI voor alle niveaus",
       format: "Lesplan + Materialen"
-    } 
+    }
   ];
 
   const handleInputChange=(e)=> {
@@ -68,45 +68,47 @@ const Nieuwsbrief=()=> {
     setIsSubmitting(true);
 
     try {
-      // Create email content for notification
-      const subject=encodeURIComponent('Nieuwe nieuwsbrief inschrijving - AI in het Onderwijs');
-      const body=encodeURIComponent(
-        `
-        Nieuwe nieuwsbrief inschrijving:
-        Email: ${formData.email}
-        Rol: ${formData.role || 'Niet opgegeven'}
+      // Method 1: Use Netlify Forms (Recommended)
+      if (window.location.hostname.includes('netlify') || window.location.hostname.includes('onderwijs.ai')) {
+        const formDataNetlify = new FormData();
+        formDataNetlify.append('form-name', 'nieuwsbrief-inschrijving');
+        formDataNetlify.append('email', formData.email);
+        formDataNetlify.append('role', formData.role || 'Niet opgegeven');
+        formDataNetlify.append('timestamp', new Date().toISOString());
+        formDataNetlify.append('source', 'onderwijs.ai nieuwsbrief pagina');
+
+        await fetch('/', {
+          method: 'POST',
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formDataNetlify).toString()
+        });
+      } else {
+        // Method 2: Fallback - Store in localStorage and show instructions
+        const submissions = JSON.parse(localStorage.getItem('nieuwsbrief-submissions') || '[]');
+        submissions.push({
+          ...formData,
+          timestamp: new Date().toISOString(),
+          id: Date.now()
+        });
+        localStorage.setItem('nieuwsbrief-submissions', JSON.stringify(submissions));
         
-        Deze persoon wil zich inschrijven voor de nieuwsbrief en de gratis AI startersgids ontvangen.
-        Verzonden via onderwijs.ai nieuwsbrief pagina
-        `
-      );
-
-      // Send notification email using mailto
-      const mailtoLink=`mailto:ai.onderwijs@gmail.com?subject=${subject}&body=${body}`;
-
-      // Open email client in background
-      const emailWindow=window.open(mailtoLink,'_blank');
-
-      // Close the email window after a short delay (if it opened)
-      if (emailWindow) {
-        setTimeout(()=> {
-          try {
-            emailWindow.close();
-          } catch (e) {
-            // Ignore errors when closing
-          }
-        },1000);
+        // Show admin instructions in console for development
+        console.log('Nieuwsbrief inschrijving:', {
+          email: formData.email,
+          role: formData.role || 'Niet opgegeven',
+          timestamp: new Date().toISOString()
+        });
       }
 
-      // Download the startersgids immediately
+      // Always download the startersgids
       downloadStartersgids();
-
+      
       // Show success message
       setIsSubscribed(true);
-    } catch (error) {
-      console.error('Error submitting form:',error);
       
-      // Still download the guide even if email fails
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Still download the guide even if submission fails
       downloadStartersgids();
       setIsSubscribed(true);
     } finally {
@@ -134,19 +136,19 @@ const Nieuwsbrief=()=> {
             Download gestart!
           </h1>
           <p className="text-gray-600 mb-6">
-            Je AI Startersgids wordt nu gedownload. Je gegevens zijn ook verstuurd voor nieuwsbrief inschrijving.
+            Je AI Startersgids wordt nu gedownload. Je gegevens zijn ook opgeslagen voor nieuwsbrief inschrijving. 
             Check ook je downloads map als de download niet automatisch start.
           </p>
           <div className="space-y-4">
             <button
-              onClick={()=> downloadStartersgids()}
+              onClick={() => downloadStartersgids()}
               className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
             >
               <SafeIcon icon={FiDownload} />
               <span>Download opnieuw</span>
             </button>
             <button
-              onClick={()=> setIsSubscribed(false)}
+              onClick={() => setIsSubscribed(false)}
               className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors"
             >
               Terug naar overzicht
@@ -158,11 +160,19 @@ const Nieuwsbrief=()=> {
   }
 
   return (
-    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className="min-h-screen" >
+    <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+      className="min-h-screen"
+    >
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-600 to-secondary-600 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{opacity: 0,y: 50}} animate={{opacity: 1,y: 0}} >
+          <motion.div
+            initial={{opacity: 0, y: 50}}
+            animate={{opacity: 1, y: 0}}
+          >
             <SafeIcon icon={FiGift} className="text-6xl mx-auto mb-6 text-primary-200" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Gratis AI Startersgids
@@ -179,11 +189,28 @@ const Nieuwsbrief=()=> {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left Column - Form */}
-            <motion.div initial={{opacity: 0,x: -50}} animate={{opacity: 1,x: 0}} transition={{delay: 0.2}} >
+            <motion.div
+              initial={{opacity: 0, x: -50}}
+              animate={{opacity: 1, x: 0}}
+              transition={{delay: 0.2}}
+            >
               <div className="bg-gray-50 p-8 rounded-2xl">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
                   Start vandaag met AI in jouw onderwijs
                 </h2>
+                
+                {/* Hidden form for Netlify */}
+                <form 
+                  name="nieuwsbrief-inschrijving" 
+                  netlify 
+                  hidden
+                >
+                  <input type="email" name="email" />
+                  <input type="text" name="role" />
+                  <input type="text" name="timestamp" />
+                  <input type="text" name="source" />
+                </form>
+
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -200,6 +227,7 @@ const Nieuwsbrief=()=> {
                       placeholder="jouw@email.nl"
                     />
                   </div>
+
                   <div>
                     <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2">
                       Ik ben... (optioneel)
@@ -221,6 +249,7 @@ const Nieuwsbrief=()=> {
                       <option value="anders">Anders</option>
                     </select>
                   </div>
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -230,6 +259,7 @@ const Nieuwsbrief=()=> {
                     <span>{isSubmitting ? 'Bezig...' : 'Download Gratis Startersgids'}</span>
                   </button>
                 </form>
+
                 <p className="text-xs text-gray-500 mt-4">
                   Door je in te schrijven ga je akkoord met onze{' '}
                   <a href="/privacy" className="text-primary-600 hover:underline">
@@ -241,16 +271,20 @@ const Nieuwsbrief=()=> {
             </motion.div>
 
             {/* Right Column - Benefits */}
-            <motion.div initial={{opacity: 0,x: 50}} animate={{opacity: 1,x: 0}} transition={{delay: 0.4}} >
+            <motion.div
+              initial={{opacity: 0, x: 50}}
+              animate={{opacity: 1, x: 0}}
+              transition={{delay: 0.4}}
+            >
               <h3 className="text-2xl font-bold text-gray-900 mb-8">
                 Wat krijg je?
               </h3>
               <div className="space-y-6">
-                {benefits.map((benefit,index)=> (
+                {benefits.map((benefit, index) => (
                   <motion.div
                     key={index}
-                    initial={{opacity: 0,y: 20}}
-                    animate={{opacity: 1,y: 0}}
+                    initial={{opacity: 0, y: 20}}
+                    animate={{opacity: 1, y: 0}}
                     transition={{delay: 0.6 + index * 0.1}}
                     className="flex items-start space-x-4"
                   >
@@ -276,7 +310,12 @@ const Nieuwsbrief=()=> {
       {/* Freebies Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} className="text-center mb-16" >
+          <motion.div
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Binnenkort meer Gratis Downloads
             </h2>
@@ -286,11 +325,11 @@ const Nieuwsbrief=()=> {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {freebies.map((freebie,index)=> (
+            {freebies.map((freebie, index) => (
               <motion.div
                 key={index}
-                initial={{opacity: 0,y: 50}}
-                whileInView={{opacity: 1,y: 0}}
+                initial={{opacity: 0, y: 50}}
+                whileInView={{opacity: 1, y: 0}}
                 viewport={{once: true}}
                 transition={{delay: index * 0.1}}
                 className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
@@ -315,7 +354,11 @@ const Nieuwsbrief=()=> {
       {/* Social Proof */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} >
+          <motion.div
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
+          >
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               Sluit je aan bij 2.500+ docenten
             </h2>
@@ -336,7 +379,7 @@ const Nieuwsbrief=()=> {
             <blockquote className="text-xl text-gray-600 italic mb-4">
               "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding gehalveerd en mijn leerlingen zijn veel meer betrokken."
             </blockquote>
-            <cite className="text-gray-500">- Marieke,VO Docent Nederlands</cite>
+            <cite className="text-gray-500">- Marieke, VO Docent Nederlands</cite>
           </motion.div>
         </div>
       </section>
@@ -344,7 +387,11 @@ const Nieuwsbrief=()=> {
       {/* Final CTA */}
       <section className="py-20 bg-primary-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} >
+          <motion.div
+            initial={{opacity: 0, y: 50}}
+            whileInView={{opacity: 1, y: 0}}
+            viewport={{once: true}}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Klaar om te beginnen?
             </h2>
