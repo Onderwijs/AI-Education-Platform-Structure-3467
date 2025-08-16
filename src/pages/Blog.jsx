@@ -94,26 +94,26 @@ const Blog=()=> {
       country: "🇺🇸 Verenigde Staten"
     },
     {
-      title: "Finland's AI Education Revolution: Lessons Learned",
-      excerpt: "How Finland transformed its education system with AI integration and what other countries can learn from their approach.",
-      date: "8 mei 2025",
-      author: "Nordic EdTech Review",
+      title: "AI in Finland Education: A Global Model",
+      excerpt: "How Finland has become a leader in ethical AI integration in education, offering lessons for countries worldwide on responsible implementation.",
+      date: "15 juli 2025",
+      author: "The AI Track",
       category: "Case Study",
       image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=400&h=250&fit=crop",
-      readTime: "12 min",
-      url: "https://www.oecd.org/education/artificial-intelligence-in-education.htm",
+      readTime: "8 min",
+      url: "https://theaitrack.com/ai-in-finland-education-global-model/",
       country: "🇫🇮 Finland"
     },
     {
-      title: "Singapore's Smart Nation: AI-Powered Classrooms",
-      excerpt: "Inside Singapore's nationwide initiative to integrate AI into every classroom and prepare students for the digital economy.",
-      date: "3 mei 2025",
-      author: "Asia Education Weekly",
-      category: "Innovation",
+      title: "The Future is Already Here: AI and Education in 2025",
+      excerpt: "Stanford researchers examine how AI is transforming education today and what we can expect in the near future, with practical insights for educators.",
+      date: "10 juni 2025",
+      author: "Stanford Accelerate Learning",
+      category: "Future Trends",
       image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop",
-      readTime: "10 min",
-      url: "https://www.unesco.org/en/artificial-intelligence/education",
-      country: "🇸🇬 Singapore"
+      readTime: "12 min",
+      url: "https://acceleratelearning.stanford.edu/story/the-future-is-already-here-ai-and-education-in-2025/",
+      country: "🇺🇸 Verenigde Staten"
     }
   ];
 
