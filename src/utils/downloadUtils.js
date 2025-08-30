@@ -1,6 +1,6 @@
 /** 
  * Utility functions for handling file downloads 
- * FINAL FIX: Complete removal of all PDF files and special characters
+ * COMPLETE SOLUTION: All PDFs removed, only clean text files
  */
 
 /** 
@@ -33,11 +33,11 @@ export const downloadFile = (url, filename = null) => {
 
 /**
  * Downloads the AI Startersgids as clean text file
- * COMPLETELY CLEAN - NO SPECIAL CHARACTERS AT ALL
+ * 100% GUARANTEED NO SPECIAL CHARACTERS
  */
 export const downloadStartersgids = () => {
   try {
-    // Create absolutely clean content with ONLY basic ASCII characters
+    // Create completely clean content - NO SPECIAL CHARACTERS AT ALL
     const cleanContent = `AI STARTERSGIDS VOOR DOCENTEN
 COMPLETE HANDLEIDING VOOR AI IN HET ONDERWIJS
 
@@ -301,7 +301,7 @@ SUCCES MET AI IN JOUW ONDERWIJS!
 
 ========================================`;
 
-    // Create blob with UTF-8 encoding but only ASCII characters
+    // Create blob with clean UTF-8 text (no special characters)
     const blob = new Blob([cleanContent], { 
       type: 'text/plain;charset=utf-8' 
     });
@@ -311,7 +311,7 @@ SUCCES MET AI IN JOUW ONDERWIJS!
     // Create download link
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'AI-Startersgids-Definitief-SCHOON.txt';
+    link.download = 'AI-Startersgids-HELEMAAL-SCHOON.txt';
     
     // Trigger download
     document.body.appendChild(link);
@@ -321,7 +321,7 @@ SUCCES MET AI IN JOUW ONDERWIJS!
     // Clean up
     window.URL.revokeObjectURL(url);
     
-    console.log('SUCCESS: Download gestart - 100% SCHOON tekstbestand zonder speciale tekens!');
+    console.log('SUCCESS: 100% Clean text file downloaded - NO SPECIAL CHARACTERS!');
     
   } catch (error) {
     console.error('Download failed:', error);
@@ -329,7 +329,7 @@ SUCCES MET AI IN JOUW ONDERWIJS!
 };
 
 /**
- * Downloads lesson content as clean text (NO PDF)
+ * Downloads lesson content as clean text
  * @param {string} lessonTitle - The title of the lesson to download
  */
 export const downloadLesson = (lessonTitle) => {
@@ -545,14 +545,9 @@ Alle rechten voorbehouden
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
     
-    console.log(`SUCCESS: ${lessonTitle} downloaded as 100% SCHOON text file!`);
+    console.log(`SUCCESS: ${lessonTitle} downloaded as clean text file!`);
     
   } catch (error) {
     console.error('Download failed:', error);
   }
 };
-
-// Remove all PDF-related mappings and functions
-// NO MORE PDFS - ONLY CLEAN TEXT FILES
-export const lessonFileMap = null; // Disabled
-export const getLessonFileUrl = null; // Disabled
