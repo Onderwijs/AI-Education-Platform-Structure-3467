@@ -256,7 +256,7 @@ const LesLab = () => {
       </section>
 
       {/* Archive Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -301,8 +301,8 @@ const LesLab = () => {
             </div>
           </div>
 
-          {/* Lessons Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          {/* Lessons Grid with extra bottom margin */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
             {filteredLessons.map((lesson, index) => (
               <motion.div
                 key={index}
@@ -360,7 +360,7 @@ const LesLab = () => {
           </div>
 
           {filteredLessons.length === 0 && (
-            <div className="text-center py-12 mb-20">
+            <div className="text-center py-12 mb-32">
               <SafeIcon icon={FiBook} className="text-4xl text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">Geen lessen gevonden</h3>
               <p className="text-gray-600">Probeer andere filters</p>
@@ -369,8 +369,8 @@ const LesLab = () => {
         </div>
       </section>
 
-      {/* Subscription CTA */}
-      <section className="py-20 bg-emerald-600">
+      {/* Subscription CTA with extra top padding */}
+      <section className="py-20 pt-32 bg-emerald-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}

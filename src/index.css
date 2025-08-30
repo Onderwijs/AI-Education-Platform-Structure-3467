@@ -89,7 +89,8 @@ button,
 /* Ensure proper font loading */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Fix footer overlap issue */
+/* FOOTER OVERLAP FIXES */
+/* Fix footer overlap issue by ensuring proper spacing */
 main {
   margin-bottom: 0;
   padding-bottom: 0;
@@ -118,15 +119,41 @@ section:last-of-type {
 
 /* Fix for LesLab page specific spacing */
 .leslab-content {
-  padding-bottom: 100px;
+  padding-bottom: 120px;
 }
 
 /* Ensure grid items don't get cut off */
 .grid.gap-8 {
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 /* Add bottom margin to prevent footer overlap */
 .page-content {
-  margin-bottom: 100px;
+  margin-bottom: 120px;
+}
+
+/* Specific fixes for LesLab grid sections */
+section.py-20.bg-gray-50 {
+  padding-bottom: 8rem; /* Ensure enough space before footer */
+}
+
+section.py-20.bg-gray-50 .grid {
+  margin-bottom: 8rem; /* Extra space for grid items */
+}
+
+/* Last section before footer needs extra padding */
+section:last-of-type.py-20 {
+  padding-top: 8rem;
+}
+
+/* Additional safety margin for any last content */
+body > div:last-child > div:last-child {
+  margin-bottom: 2rem;
+}
+
+/* Ensure CTA sections have proper spacing */
+.bg-emerald-600.py-20,
+.bg-blue-600.py-20,
+.bg-primary-600.py-20 {
+  margin-top: 2rem;
 }
