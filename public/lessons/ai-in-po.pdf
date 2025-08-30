@@ -1,689 +1,251 @@
-%PDF-1.7
+%PDF-1.4
 1 0 obj
-<</Type/Catalog/Pages 2 0 R>>
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
 endobj
+
 2 0 obj
-<</Type/Pages/Kids[3 0 R 8 0 R 13 0 R]/Count 3>>
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
 endobj
+
 3 0 obj
-<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 7 0 R>>
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 4 0 R
+/Resources <<
+  /Font <<
+    /F1 5 0 R
+    /F2 6 0 R
+  >>
+>>
+>>
 endobj
+
 4 0 obj
-<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold>>
-endobj
-5 0 obj
-<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>
-endobj
-6 0 obj
-<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Oblique>>
-endobj
-7 0 obj
-<</Length 3500>>
+<<
+/Length 1900
+>>
 stream
 BT
 /F1 18 Tf
-50 792 Td
+50 750 Td
 (Wat is Kunstmatige Intelligentie?) Tj
 ET
 
 BT
 /F2 12 Tf
-50 760 Td
-(Lesplan voor Basisonderwijs \(PO\) - Groep 6-8) Tj
+50 720 Td
+(Lesplan voor Basisonderwijs - Groep 6-8) Tj
 ET
 
 BT
 /F2 12 Tf
-50 740 Td
+50 700 Td
 (Duur: 45 minuten) Tj
 ET
 
 BT
 /F1 14 Tf
-50 700 Td
+50 670 Td
 (Omschrijving) Tj
 ET
 
 BT
 /F2 11 Tf
-50 680 Td
+50 650 Td
 (Deze les introduceert op een speelse manier het concept van kunstmatige) Tj
 ET
 
 BT
 /F2 11 Tf
-50 665 Td
+50 635 Td
 (intelligentie aan leerlingen van groep 6-8. Leerlingen ontdekken wat AI is,) Tj
 ET
 
 BT
 /F2 11 Tf
-50 650 Td
+50 620 Td
 (hoe het werkt, en waar ze het in hun dagelijks leven tegenkomen.) Tj
 ET
 
 BT
 /F2 11 Tf
-50 635 Td
+50 605 Td
 (De nadruk ligt op laagdrempelig begrip en verwondering.) Tj
 ET
 
 BT
 /F1 14 Tf
-50 605 Td
+50 575 Td
 (Leerdoelen) Tj
 ET
 
 BT
 /F2 11 Tf
-50 585 Td
+50 555 Td
 (Na deze les kunnen leerlingen:) Tj
 ET
 
 BT
 /F2 11 Tf
-60 565 Td
+60 535 Td
 (- In eigen woorden uitleggen wat kunstmatige intelligentie is) Tj
 ET
 
 BT
 /F2 11 Tf
-60 550 Td
+60 520 Td
 (- Enkele voorbeelden noemen van AI in hun dagelijks leven) Tj
 ET
 
 BT
 /F2 11 Tf
-60 535 Td
+60 505 Td
 (- Begrijpen dat AI door mensen wordt gemaakt en getraind) Tj
 ET
 
 BT
 /F2 11 Tf
-60 520 Td
+60 490 Td
 (- Nadenken over de voor- en nadelen van AI) Tj
 ET
 
 BT
 /F1 14 Tf
-50 490 Td
+50 460 Td
 (Benodigde materialen) Tj
 ET
 
 BT
 /F2 11 Tf
-60 470 Td
+60 440 Td
 (- Het bijgevoegde werkblad 'AI in ons leven') Tj
 ET
 
 BT
 /F2 11 Tf
-60 455 Td
-(- Korte video over AI \(link op werkblad\)) Tj
+60 425 Td
+(- Korte video over AI - link op werkblad) Tj
 ET
 
 BT
 /F2 11 Tf
-60 440 Td
+60 410 Td
 (- Kleurpotloden/stiften) Tj
 ET
 
 BT
 /F2 11 Tf
-60 425 Td
-(- Optioneel: tablet of computer voor de Quick, Draw! activiteit) Tj
+60 395 Td
+(- Optioneel: tablet of computer voor de Quick Draw activiteit) Tj
 ET
 
 BT
 /F1 14 Tf
-50 395 Td
+50 365 Td
 (Lesopbouw) Tj
 ET
 
 BT
 /F1 12 Tf
-50 375 Td
-(1. Introductie \(10 minuten\)) Tj
-ET
-
-BT
-/F2 11 Tf
-60 360 Td
-(- Start met een korte discussie: "Wie weet wat kunstmatige intelligentie is?") Tj
-ET
-
-BT
-/F2 11 Tf
-60 345 Td
-(- Toon de korte video over AI voor kinderen) Tj
+50 345 Td
+(1. Introductie - 10 minuten) Tj
 ET
 
 BT
 /F2 11 Tf
 60 330 Td
-(- Bespreek samen: "AI is een computerprogramma dat kan leren en) Tj
+(- Start met een korte discussie: "Wie weet wat kunstmatige intelligentie is?") Tj
 ET
 
 BT
 /F2 11 Tf
 60 315 Td
-(  slimme dingen kan doen") Tj
-ET
-
-BT
-/F1 12 Tf
-50 285 Td
-(2. AI ontdekken \(15 minuten\)) Tj
+(- Toon de korte video over AI voor kinderen) Tj
 ET
 
 BT
 /F2 11 Tf
-60 270 Td
+60 300 Td
+(- Bespreek samen: "AI is een computerprogramma dat kan leren en) Tj
+ET
+
+BT
+/F2 11 Tf
+60 285 Td
+( slimme dingen kan doen") Tj
+ET
+
+BT
+/F1 12 Tf
+50 255 Td
+(2. AI ontdekken - 15 minuten) Tj
+ET
+
+BT
+/F2 11 Tf
+60 240 Td
 (- Deel het werkblad 'AI in ons leven' uit) Tj
 ET
 
 BT
 /F2 11 Tf
-60 255 Td
-(- Laat leerlingen in tweetallen voorbeelden zoeken van AI om hen heen:) Tj
+60 225 Td
+(- Laat leerlingen in tweetallen voorbeelden zoeken van AI om hen heen) Tj
 ET
 
 BT
 /F2 11 Tf
-70 240 Td
-(* Spraakassistenten \(Siri, Google Assistent\)) Tj
-ET
-
-BT
-/F2 11 Tf
-70 225 Td
-(* Gezichtsherkenning op foto's) Tj
-ET
-
-BT
-/F2 11 Tf
-70 210 Td
-(* Spelletjes op de computer/tablet) Tj
-ET
-
-BT
-/F2 11 Tf
-70 195 Td
-(* Aanbevelingen op YouTube/Netflix) Tj
-ET
-
-BT
-/F2 11 Tf
-60 180 Td
+60 210 Td
 (- Laat ze deze voorbeelden op hun werkblad tekenen/schrijven) Tj
 ET
 
 BT
-/F1 12 Tf
-50 150 Td
-(3. AI ervaren \(10 minuten\)) Tj
-ET
-
-BT
-/F2 11 Tf
-60 135 Td
-(- Introduceer de 'Quick, Draw!' activiteit) Tj
-ET
-
-BT
-/F2 11 Tf
-60 120 Td
-(  \(https://quickdraw.withgoogle.com\)) Tj
-ET
-
-BT
-/F2 11 Tf
-60 105 Td
-(- Laat leerlingen in groepjes ervaren hoe AI hun tekeningen) Tj
-ET
-
-BT
-/F2 11 Tf
-60 90 Td
-(  probeert te herkennen) Tj
-ET
-
-BT
-/F2 11 Tf
-60 75 Td
-(- Bespreek: "Hoe weet de computer wat je tekent? Door veel) Tj
-ET
-
-BT
-/F2 11 Tf
-60 60 Td
-(  voorbeelden te zien!") Tj
-ET
-
-BT
-/F3 10 Tf
-50 30 Td
+/F2 10 Tf
+50 60 Td
 (2025 AI in het Onderwijs - https://onderwijs.ai) Tj
-ET
-
-BT
-/F3 10 Tf
-530 30 Td
-(1) Tj
 ET
 endstream
 endobj
 
-8 0 obj
-<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 9 0 R>>
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
 endobj
 
-9 0 obj
-<</Length 3000>>
-stream
-BT
-/F1 12 Tf
-50 792 Td
-(4. Reflectie en discussie \(10 minuten\)) Tj
-ET
-
-BT
-/F2 11 Tf
-60 772 Td
-(- Klassikale discussie aan de hand van deze vragen:) Tj
-ET
-
-BT
-/F2 11 Tf
-70 752 Td
-(* Wat vind je cool aan AI?) Tj
-ET
-
-BT
-/F2 11 Tf
-70 737 Td
-(* Waar kan AI ons mee helpen?) Tj
-ET
-
-BT
-/F2 11 Tf
-70 722 Td
-(* Zijn er ook dingen waar je voorzichtig mee moet zijn?) Tj
-ET
-
-BT
-/F2 11 Tf
-70 707 Td
-(* Wat zou jij een AI willen leren?) Tj
-ET
-
-BT
-/F2 11 Tf
-60 692 Td
-(- Noteer antwoorden op het bord) Tj
-ET
-
-BT
-/F1 14 Tf
-50 662 Td
-(Uitbreidingsmogelijkheden) Tj
-ET
-
-BT
-/F2 11 Tf
-50 642 Td
-(Voor snelle leerlingen of als extra activiteit:) Tj
-ET
-
-BT
-/F2 11 Tf
-60 627 Td
-(- Laat leerlingen een eigen AI-helper ontwerpen en tekenen) Tj
-ET
-
-BT
-/F2 11 Tf
-60 612 Td
-(- Wat zou deze AI kunnen doen? Hoe zou het eruit zien?) Tj
-ET
-
-BT
-/F2 11 Tf
-60 597 Td
-(- Laat ze in tweetallen hun ontwerpen presenteren) Tj
-ET
-
-BT
-/F1 14 Tf
-50 567 Td
-(Huiswerkopdracht) Tj
-ET
-
-BT
-/F2 11 Tf
-50 547 Td
-(Vraag leerlingen om thuis op zoek te gaan naar drie voorbeelden van AI) Tj
-ET
-
-BT
-/F2 11 Tf
-50 532 Td
-(en deze te noteren of te tekenen op het werkblad "AI Speurtocht") Tj
-ET
-
-BT
-/F2 11 Tf
-50 517 Td
-(\(bijgevoegd\).) Tj
-ET
-
-BT
-/F1 14 Tf
-50 487 Td
-(Tips voor de docent) Tj
-ET
-
-BT
-/F2 11 Tf
-50 467 Td
-(- Houd de uitleg eenvoudig en concreet, met veel voorbeelden) Tj
-ET
-
-BT
-/F2 11 Tf
-50 452 Td
-(- Benadruk dat AI door mensen wordt gemaakt en getraind) Tj
-ET
-
-BT
-/F2 11 Tf
-50 437 Td
-(- Zorg voor een veilige sfeer waarin leerlingen vragen durven te stellen) Tj
-ET
-
-BT
-/F2 11 Tf
-50 422 Td
-(- Als leerlingen technische vragen hebben die u niet kunt beantwoorden,) Tj
-ET
-
-BT
-/F2 11 Tf
-50 407 Td
-(  maak er een gezamenlijk onderzoekmoment van: "Goede vraag!) Tj
-ET
-
-BT
-/F2 11 Tf
-50 392 Td
-(  Laten we samen uitzoeken hoe dat werkt.") Tj
-ET
-
-BT
-/F1 14 Tf
-50 362 Td
-(Verdiepingsmogelijkheden) Tj
-ET
-
-BT
-/F2 11 Tf
-50 342 Td
-(Voor scholen die dieper op het onderwerp in willen gaan:) Tj
-ET
-
-BT
-/F2 11 Tf
-60 327 Td
-(- Organiseer een AI-dag waarop leerlingen verschillende AI-tools uitproberen) Tj
-ET
-
-BT
-/F2 11 Tf
-60 312 Td
-(- Nodig een expert uit om te vertellen over AI en ethiek) Tj
-ET
-
-BT
-/F2 11 Tf
-60 297 Td
-(- Laat leerlingen een onderzoek doen naar AI in hun favoriete hobby/sport) Tj
-ET
-
-BT
-/F2 11 Tf
-60 282 Td
-(- Maak een tentoonstelling van AI-kunst die de leerlingen hebben gemaakt) Tj
-ET
-
-BT
-/F2 11 Tf
-60 267 Td
-(  met behulp van tools zoals Dall-E Mini of vergelijkbare kindvriendelijke tools) Tj
-ET
-
-BT
-/F3 10 Tf
-50 30 Td
-(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
-ET
-
-BT
-/F3 10 Tf
-530 30 Td
-(2) Tj
-ET
-endstream
-endobj
-
-13 0 obj
-<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 5 0 R/F3 6 0 R>>/ProcSet[/PDF/Text]>>/MediaBox[0 0 595 842]/Contents 14 0 R>>
-endobj
-
-14 0 obj
-<</Length 2500>>
-stream
-BT
-/F1 14 Tf
-50 792 Td
-(Werkblad: AI in ons leven) Tj
-ET
-
-BT
-/F2 11 Tf
-50 772 Td
-(Naam: _________________ Datum: _________________) Tj
-ET
-
-BT
-/F1 12 Tf
-50 742 Td
-(Opdracht 1: AI voorbeelden zoeken) Tj
-ET
-
-BT
-/F2 11 Tf
-50 727 Td
-(Teken of schrijf hier drie voorbeelden van AI die je kent:) Tj
-ET
-
-BT
-/F2 11 Tf
-50 712 Td
-(1. _________________________________________________) Tj
-ET
-
-BT
-/F2 11 Tf
-50 697 Td
-(2. _________________________________________________) Tj
-ET
-
-BT
-/F2 11 Tf
-50 682 Td
-(3. _________________________________________________) Tj
-ET
-
-BT
-/F1 12 Tf
-50 652 Td
-(Opdracht 2: Wat kan AI?) Tj
-ET
-
-BT
-/F2 11 Tf
-50 637 Td
-(Kruis aan wat AI wel of niet kan:) Tj
-ET
-
-BT
-/F2 11 Tf
-50 622 Td
-(□ Auto's besturen                    □ Gevoelens hebben) Tj
-ET
-
-BT
-/F2 11 Tf
-50 607 Td
-(□ Spelletjes spelen                  □ Dromen) Tj
-ET
-
-BT
-/F2 11 Tf
-50 592 Td
-(□ Muziek maken                       □ Leren van fouten) Tj
-ET
-
-BT
-/F2 11 Tf
-50 577 Td
-(□ Foto's herkennen                   □ Vriendschappen sluiten) Tj
-ET
-
-BT
-/F1 12 Tf
-50 547 Td
-(Opdracht 3: Ontwerp je eigen AI) Tj
-ET
-
-BT
-/F2 11 Tf
-50 532 Td
-(Teken hier je eigen AI-robot en schrijf op wat hij kan doen:) Tj
-ET
-
-BT
-/F2 11 Tf
-50 517 Td
-([Ruimte voor tekening]) Tj
-ET
-
-BT
-/F2 11 Tf
-50 502 Td
-(Mijn AI kan: _________________________________________) Tj
-ET
-
-BT
-/F2 11 Tf
-50 487 Td
-(___________________________________________________) Tj
-ET
-
-BT
-/F1 12 Tf
-50 457 Td
-(Reflectie) Tj
-ET
-
-BT
-/F2 11 Tf
-50 442 Td
-(Het coolste aan AI vind ik: ____________________________) Tj
-ET
-
-BT
-/F2 11 Tf
-50 427 Td
-(___________________________________________________) Tj
-ET
-
-BT
-/F2 11 Tf
-50 412 Td
-(Een vraag die ik nog heb over AI: __________________________) Tj
-ET
-
-BT
-/F2 11 Tf
-50 397 Td
-(___________________________________________________) Tj
-ET
-
-BT
-/F1 12 Tf
-50 367 Td
-(Extra: AI-uitdaging voor thuis) Tj
-ET
-
-BT
-/F2 11 Tf
-50 352 Td
-(Probeer thuis een van deze AI-tools uit \(vraag altijd toestemming aan je ouders\):) Tj
-ET
-
-BT
-/F2 11 Tf
-60 337 Td
-(- Quick, Draw!: https://quickdraw.withgoogle.com) Tj
-ET
-
-BT
-/F2 11 Tf
-60 322 Td
-(- AI For Oceans: https://code.org/oceans) Tj
-ET
-
-BT
-/F2 11 Tf
-60 307 Td
-(- Akinator: https://nl.akinator.com/) Tj
-ET
-
-BT
-/F3 10 Tf
-50 30 Td
-(2025 AI in het Onderwijs - https://onderwijs.ai) Tj
-ET
-
-BT
-/F3 10 Tf
-530 30 Td
-(3) Tj
-ET
-endstream
+6 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
 endobj
 
 xref
-0 15
+0 7
 0000000000 65535 f 
 0000000010 00000 n 
 0000000053 00000 n 
-0000000115 00000 n 
-0000000262 00000 n 
-0000000324 00000 n 
-0000000381 00000 n 
-0000000446 00000 n 
-0000003997 00000 n 
-0000004154 00000 n 
-0000000000 65535 f 
-0000000000 65535 f 
-0000000000 65535 f 
-0000007205 00000 n 
-0000007363 00000 n 
-
+0000000110 00000 n 
+0000000271 00000 n 
+0000002223 00000 n 
+0000002290 00000 n 
 trailer
-<</Size 15/Root 1 0 R>>
+<<
+/Size 7
+/Root 1 0 R
+>>
 startxref
-9915
+2348
 %%EOF
