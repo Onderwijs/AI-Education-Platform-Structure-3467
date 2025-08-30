@@ -1,9 +1,9 @@
-/** 
+/**
  * FINAL SOLUTION: Complete PDF removal and clean text generation
- * NO PDF FILES EXIST ANYWHERE IN THE PROJECT
+ * ALL PDF FILES HAVE BEEN PERMANENTLY DELETED FROM THE PROJECT
  */
 
-/** 
+/**
  * Downloads the AI Startersgids as 100% clean text file
  * GUARANTEED NO SPECIAL CHARACTERS - ALL PDFS DELETED
  */
@@ -283,7 +283,7 @@ SUCCES MET AI IN JOUW ONDERWIJS!
     // Create download link
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'AI-Startersgids-Compleet-Schoon.txt';
+    link.download = 'AI-Startersgids-Compleet-DEFINITIEF-SCHOON.txt';
     
     // Trigger download
     document.body.appendChild(link);
@@ -293,7 +293,7 @@ SUCCES MET AI IN JOUW ONDERWIJS!
     // Clean up
     window.URL.revokeObjectURL(url);
     
-    console.log('SUCCESS: 100% Clean text file downloaded - NO PDFs exist anymore!');
+    console.log('SUCCESS: 100% Clean text file downloaded - ALL PDFs PERMANENTLY DELETED!');
     
   } catch (error) {
     console.error('Download failed:', error);
@@ -448,14 +448,14 @@ Alle rechten voorbehouden
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `${lessonTitle.toLowerCase().replace(/\s+/g, '-')}-lesplan-schoon.txt`;
+    link.download = `${lessonTitle.toLowerCase().replace(/\s+/g, '-')}-lesplan-DEFINITIEF-SCHOON.txt`;
     
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
     
-    console.log(`SUCCESS: ${lessonTitle} downloaded as clean text file!`);
+    console.log(`SUCCESS: ${lessonTitle} downloaded as 100% clean text file!`);
     
   } catch (error) {
     console.error('Download failed:', error);
@@ -468,7 +468,7 @@ Alle rechten voorbehouden
 export const downloadFile = (url, filename = null) => {
   // Since we removed all PDFs, redirect to clean text downloads
   if (url && url.includes('.pdf')) {
-    console.warn('PDF files have been removed. Generating clean text version instead.');
+    console.warn('ALL PDF FILES HAVE BEEN PERMANENTLY DELETED. Generating clean text version instead.');
     downloadStartersgids();
     return;
   }
