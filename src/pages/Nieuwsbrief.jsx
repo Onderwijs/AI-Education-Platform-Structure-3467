@@ -18,11 +18,11 @@ const Nieuwsbrief = () => {
     {
       icon: FiDownload,
       title: "Gratis AI Startersgids",
-      description: "Complete gids met 50+ AI-tools voor docenten - 100% SCHOON TEKSTBESTAND"
+      description: "Complete gids met 50+ AI-tools - 100% SCHOON TEKSTBESTAND (geen speciale tekens!)"
     },
     {
       icon: FiMail,
-      title: "Tips",
+      title: "Wekelijkse Tips",
       description: "Praktische AI-tips direct in je inbox"
     },
     {
@@ -136,8 +136,8 @@ const Nieuwsbrief = () => {
           
           <p className="text-gray-600 mb-6">
             Je AI Startersgids wordt nu gedownload als 100% SCHOON TEKSTBESTAND. 
-            Helemaal geen speciale tekens meer! Je gegevens zijn ook opgeslagen voor 
-            nieuwsbrief inschrijving.
+            Helemaal geen speciale tekens meer - gegarandeerd! Je gegevens zijn 
+            ook opgeslagen voor nieuwsbrief inschrijving.
           </p>
 
           <div className="space-y-4">
@@ -159,9 +159,9 @@ const Nieuwsbrief = () => {
 
           <div className="mt-6 p-4 bg-green-100 border border-green-300 rounded-lg">
             <p className="text-sm text-green-800">
-              <strong>DEFINITIEVE OPLOSSING:</strong> Download is nu een 100% schoon 
-              TXT bestand zonder enige speciale karakters. Het ¢ symbool probleem 
-              is permanent opgelost!
+              <strong>DEFINITIEF OPGELOST!</strong> Download is nu een 100% schoon 
+              TXT bestand zonder enige speciale karakters. Het probleem met het 
+              cent-symbool is permanent weggenomen!
             </p>
           </div>
         </div>
@@ -189,7 +189,7 @@ const Nieuwsbrief = () => {
             </h1>
             <p className="text-xl text-primary-100 mb-8">
               Ontvang direct onze complete AI-toolkit als 100% SCHOON TEKSTBESTAND. 
-              Helemaal geen speciale tekens - gegarandeerd!
+              Helemaal geen speciale tekens - gegarandeerd geen ¢ symbool!
             </p>
           </motion.div>
         </div>
@@ -215,10 +215,11 @@ const Nieuwsbrief = () => {
                 <div className="mb-6 p-4 bg-green-100 border border-green-300 rounded-lg">
                   <div className="flex items-center space-x-2">
                     <SafeIcon icon={FiCheck} className="text-green-600" />
-                    <span className="font-semibold text-green-800">PROBLEEM OPGELOST!</span>
+                    <span className="font-semibold text-green-800">PROBLEEM DEFINITIEF OPGELOST!</span>
                   </div>
                   <p className="text-sm text-green-700 mt-1">
-                    Download is nu een 100% schoon TXT bestand. Geen ¢ symbool meer - gegarandeerd!
+                    Download is nu een 100% schoon TXT bestand. Geen ¢ symbool meer - 
+                    gegarandeerd! Alle PDFs zijn verwijderd en vervangen door schone tekstbestanden.
                   </p>
                 </div>
 

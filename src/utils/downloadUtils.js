@@ -311,7 +311,7 @@ SUCCES MET AI IN JOUW ONDERWIJS!
     // Create download link
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'AI-Startersgids-Complete-Schoon.txt';
+    link.download = 'AI-Startersgids-Definitief-SCHOON.txt';
     
     // Trigger download
     document.body.appendChild(link);
@@ -321,7 +321,7 @@ SUCCES MET AI IN JOUW ONDERWIJS!
     // Clean up
     window.URL.revokeObjectURL(url);
     
-    console.log('SUCCESS: Download gestart - 100% clean text file with NO special characters!');
+    console.log('SUCCESS: Download gestart - 100% SCHOON tekstbestand zonder speciale tekens!');
     
   } catch (error) {
     console.error('Download failed:', error);
@@ -538,14 +538,14 @@ Alle rechten voorbehouden
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `${lessonTitle.toLowerCase().replace(/\s+/g, '-')}-lesplan-schoon.txt`;
+    link.download = `${lessonTitle.toLowerCase().replace(/\s+/g, '-')}-lesplan-SCHOON.txt`;
     
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
     
-    console.log(`SUCCESS: ${lessonTitle} downloaded as 100% clean text file!`);
+    console.log(`SUCCESS: ${lessonTitle} downloaded as 100% SCHOON text file!`);
     
   } catch (error) {
     console.error('Download failed:', error);
