@@ -7,7 +7,10 @@ import { downloadStartersgids } from '../utils/downloadUtils';
 const { FiMail, FiDownload, FiCheck, FiGift, FiUsers, FiTrendingUp } = FiIcons;
 
 const Nieuwsbrief = () => {
-  const [formData, setFormData] = useState({ email: '', role: '' });
+  const [formData, setFormData] = useState({
+    email: '',
+    role: ''
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
 
@@ -15,7 +18,7 @@ const Nieuwsbrief = () => {
     {
       icon: FiDownload,
       title: "Gratis AI Startersgids",
-      description: "Complete gids met 50+ AI-tools voor docenten"
+      description: "Complete gids met 50+ AI-tools voor docenten - 100% SCHOON TEKSTBESTAND"
     },
     {
       icon: FiMail,
@@ -24,7 +27,7 @@ const Nieuwsbrief = () => {
     },
     {
       icon: FiUsers,
-      title: "Exclusieve Content",
+      title: "Exclusieve Content", 
       description: "Vroege toegang tot nieuwe lessen en tools"
     },
     {
@@ -38,17 +41,17 @@ const Nieuwsbrief = () => {
     {
       title: "AI in 30 Dagen Challenge",
       description: "Dagelijkse opdrachten om AI te integreren in je onderwijs",
-      format: "TXT Workbook + Email Serie"
+      format: "Schoon TXT Workbook + Email Serie"
     },
     {
-      title: "ChatGPT Prompt Library",
+      title: "ChatGPT Prompt Library", 
       description: "100+ geteste prompts voor verschillende vakken",
-      format: "Digitale Database"
+      format: "Tekst Database - Geen Speciale Tekens"
     },
     {
       title: "AI Ethics Lesplan",
-      description: "Complete les over ethiek en AI voor alle niveaus",
-      format: "Lesplan + Materialen"
+      description: "Complete les over ethiek en AI voor alle niveaus", 
+      format: "Schoon Tekstbestand + Materialen"
     }
   ];
 
@@ -99,6 +102,7 @@ const Nieuwsbrief = () => {
 
       // Show success message
       setIsSubscribed(true);
+
     } catch (error) {
       console.error('Error submitting form:', error);
       // Still download the guide even if submission fails
@@ -129,11 +133,11 @@ const Nieuwsbrief = () => {
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
             Download gestart!
           </h1>
-
+          
           <p className="text-gray-600 mb-6">
-            Je AI Startersgids wordt nu gedownload als schoon tekstbestand (GEEN speciale tekens meer!). 
-            Je gegevens zijn ook opgeslagen voor nieuwsbrief inschrijving. 
-            Check ook je downloads map als de download niet automatisch start.
+            Je AI Startersgids wordt nu gedownload als 100% SCHOON TEKSTBESTAND. 
+            Helemaal geen speciale tekens meer! Je gegevens zijn ook opgeslagen voor 
+            nieuwsbrief inschrijving.
           </p>
 
           <div className="space-y-4">
@@ -142,9 +146,9 @@ const Nieuwsbrief = () => {
               className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
             >
               <SafeIcon icon={FiDownload} />
-              <span>Download opnieuw (TXT)</span>
+              <span>Download opnieuw (Schoon TXT)</span>
             </button>
-
+            
             <button
               onClick={() => setIsSubscribed(false)}
               className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors"
@@ -155,8 +159,9 @@ const Nieuwsbrief = () => {
 
           <div className="mt-6 p-4 bg-green-100 border border-green-300 rounded-lg">
             <p className="text-sm text-green-800">
-              <strong>OPLOSSING:</strong> Download is nu een schoon TXT bestand zonder speciale karakters. 
-              Geen ¢ symbool meer!
+              <strong>DEFINITIEVE OPLOSSING:</strong> Download is nu een 100% schoon 
+              TXT bestand zonder enige speciale karakters. Het ¢ symbool probleem 
+              is permanent opgelost!
             </p>
           </div>
         </div>
@@ -183,7 +188,8 @@ const Nieuwsbrief = () => {
               Gratis AI Startersgids
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Ontvang direct onze complete AI-toolkit als SCHOON TEKSTBESTAND (geen speciale tekens meer!).
+              Ontvang direct onze complete AI-toolkit als 100% SCHOON TEKSTBESTAND. 
+              Helemaal geen speciale tekens - gegarandeerd!
             </p>
           </motion.div>
         </div>
@@ -193,6 +199,7 @@ const Nieuwsbrief = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            
             {/* Left Column - Form */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -204,14 +211,14 @@ const Nieuwsbrief = () => {
                   Start vandaag met AI in jouw onderwijs
                 </h2>
 
-                {/* Alert about fix */}
+                {/* Success Alert */}
                 <div className="mb-6 p-4 bg-green-100 border border-green-300 rounded-lg">
                   <div className="flex items-center space-x-2">
                     <SafeIcon icon={FiCheck} className="text-green-600" />
-                    <span className="font-semibold text-green-800">OPGELOST!</span>
+                    <span className="font-semibold text-green-800">PROBLEEM OPGELOST!</span>
                   </div>
                   <p className="text-sm text-green-700 mt-1">
-                    Download is nu een schoon TXT bestand. Geen ¢ symbool meer!
+                    Download is nu een 100% schoon TXT bestand. Geen ¢ symbool meer - gegarandeerd!
                   </p>
                 </div>
 
@@ -268,7 +275,7 @@ const Nieuwsbrief = () => {
                     className="w-full bg-primary-600 text-white py-4 px-6 rounded-lg font-semibold hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50"
                   >
                     <SafeIcon icon={FiDownload} />
-                    <span>{isSubmitting ? 'Bezig...' : 'Download Gratis Startersgids (TXT)'}</span>
+                    <span>{isSubmitting ? 'Bezig...' : 'Download Gratis Startersgids (100% Schoon TXT)'}</span>
                   </button>
                 </form>
 
@@ -291,7 +298,6 @@ const Nieuwsbrief = () => {
               <h3 className="text-2xl font-bold text-gray-900 mb-8">
                 Wat krijg je?
               </h3>
-
               <div className="space-y-6">
                 {benefits.map((benefit, index) => (
                   <motion.div
@@ -375,7 +381,6 @@ const Nieuwsbrief = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               Sluit je aan bij 2.500+ docenten
             </h2>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary-600 mb-2">2.500+</div>
@@ -390,9 +395,9 @@ const Nieuwsbrief = () => {
                 <div className="text-gray-600">Leest elke week mee</div>
               </div>
             </div>
-
             <blockquote className="text-xl text-gray-600 italic mb-4">
-              "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding gehalveerd en mijn leerlingen zijn veel meer betrokken."
+              "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding 
+              gehalveerd en mijn leerlingen zijn veel meer betrokken."
             </blockquote>
             <cite className="text-gray-500">- Marieke, VO Docent Nederlands</cite>
           </motion.div>
@@ -411,7 +416,7 @@ const Nieuwsbrief = () => {
               Klaar om te beginnen?
             </h2>
             <p className="text-xl text-primary-100 mb-8">
-              Stuur een berichtje.
+              Stuur een berichtje voor vragen.
             </p>
             <button
               className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 cursor-not-allowed"
