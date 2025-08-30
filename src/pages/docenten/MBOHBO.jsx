@@ -5,72 +5,72 @@ import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../common/SafeIcon';
 import {downloadFile} from '../../utils/downloadUtils';
 
-const {FiTool, FiTrendingUp, FiDownload, FiBriefcase, FiUsers, FiArrowRight} = FiIcons;
+const {FiTool,FiTrendingUp,FiDownload,FiBriefcase,FiUsers,FiArrowRight}=FiIcons;
 
-const MBOHBO = () => {
-  const sectors = [
+const MBOHBO=()=> {
+  const sectors=[
     {
-      name: "Techniek & ICT",
-      applications: ["Code Review AI", "Projectmanagement", "Data Analyse", "Prototyping"],
+      name: "Techniek en ICT",
+      applications: ["Code Review AI","Projectmanagement","Data Analyse","Prototyping"],
       icon: FiTool,
       color: "bg-blue-100 text-blue-600"
     },
     {
-      name: "Zorg & Welzijn",
-      applications: ["Diagnostiek ondersteuning", "Behandelplannen", "Casus analyse", "Ethiek training"],
+      name: "Zorg en Welzijn",
+      applications: ["Diagnostiek ondersteuning","Behandelplannen","Casus analyse","Ethiek training"],
       icon: FiUsers,
       color: "bg-green-100 text-green-600"
     },
     {
-      name: "Economie & Business",
-      applications: ["Marktanalyse", "Business modelling", "Financial forecasting", "Customer insights"],
+      name: "Economie en Business",
+      applications: ["Marktanalyse","Business modelling","Financial forecasting","Customer insights"],
       icon: FiBriefcase,
       color: "bg-purple-100 text-purple-600"
     },
     {
       name: "Creatieve Vakken",
-      applications: ["Design assistentie", "Content creatie", "Concept development", "Portfolio review"],
+      applications: ["Design assistentie","Content creatie","Concept development","Portfolio review"],
       icon: FiTrendingUp,
       color: "bg-orange-100 text-orange-600"
     }
   ];
 
-  const projects = [
+  const projects=[
     {
       title: "AI-gedreven Marktonderzoek",
       sector: "Business Studies",
       level: "HBO Bachelor",
       duration: "8 weken",
       description: "Studenten gebruiken AI-tools voor uitgebreid marktonderzoek en business planning",
-      skills: ["Data analyse", "Strategisch denken", "Presenteren", "AI-tools"],
-      deliverables: ["Marktrapport", "Business plan", "Pitch presentatie"],
+      skills: ["Data analyse","Strategisch denken","Presenteren","AI-tools"],
+      deliverables: ["Marktrapport","Business plan","Pitch presentatie"],
       image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop",
       projectFile: "/projects/ai-gedreven-marktonderzoek.pdf"
     },
     {
       title: "Smart Healthcare Solutions",
-      sector: "Zorg & Welzijn",
+      sector: "Zorg en Welzijn",
       level: "MBO 4 / HBO",
       duration: "12 weken",
       description: "Ontwikkeling van AI-ondersteunde zorgoplossingen voor praktijkproblemen",
-      skills: ["Probleemanalyse", "Ethiek", "Technologie", "Samenwerken"],
-      deliverables: ["Prototype", "Ethische analyse", "Implementatieplan"],
+      skills: ["Probleemanalyse","Ethiek","Technologie","Samenwerken"],
+      deliverables: ["Prototype","Ethische analyse","Implementatieplan"],
       image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=200&fit=crop",
       projectFile: "/projects/smart-healthcare-solutions.pdf"
     },
     {
       title: "Creative AI Portfolio",
-      sector: "Media & Design",
+      sector: "Media en Design",
       level: "MBO 3-4",
       duration: "6 weken",
       description: "Portfolio ontwikkeling met AI-tools voor grafisch ontwerp en content creatie",
-      skills: ["Creativiteit", "Technische vaardigheden", "Kritisch denken", "Portfolio ontwikkeling"],
-      deliverables: ["Digital portfolio", "Proces documentatie", "Reflectie rapport"],
+      skills: ["Creativiteit","Technische vaardigheden","Kritisch denken","Portfolio ontwikkeling"],
+      deliverables: ["Digital portfolio","Proces documentatie","Reflectie rapport"],
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop"
     }
   ];
 
-  const professionalSkills = [
+  const professionalSkills=[
     {
       skill: "AI Literacy",
       description: "Begrip van AI-mogelijkheden en beperkingen",
@@ -93,7 +93,7 @@ const MBOHBO = () => {
     }
   ];
 
-  const handleDownloadProject = (projectFile, projectTitle) => {
+  const handleDownloadProject=(projectFile, projectTitle)=> {
     if (projectFile) {
       const filename = `${projectTitle.toLowerCase().replace(/\s+/g, '-')}.pdf`;
       downloadFile(projectFile, filename);
@@ -116,7 +116,7 @@ const MBOHBO = () => {
               animate={{opacity: 1, x: 0}}
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                AI in MBO & HBO
+                AI in MBO en HBO
               </h1>
               <p className="text-xl text-green-100 mb-8">
                 Bereid studenten voor op de arbeidsmarkt van de toekomst met praktijkgerichte AI-toepassingen en professionele vaardigheden.
@@ -169,6 +169,7 @@ const MBOHBO = () => {
               Praktijkgerichte AI-toepassingen voor verschillende beroepsrichtingen
             </p>
           </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {sectors.map((sector, index) => (
               <motion.div
@@ -215,6 +216,7 @@ const MBOHBO = () => {
               Uitdagende projecten die studenten voorbereiden op de praktijk
             </p>
           </motion.div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <motion.div
@@ -237,11 +239,13 @@ const MBOHBO = () => {
                     </span>
                     <span className="text-sm text-gray-500">{project.duration}</span>
                   </div>
+
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {project.title}
                   </h3>
                   <p className="text-sm text-gray-600 mb-3">{project.sector}</p>
                   <p className="text-gray-600 mb-4">{project.description}</p>
+
                   <div className="mb-4">
                     <div className="text-sm font-medium text-gray-700 mb-2">Vaardigheden:</div>
                     <div className="flex flex-wrap gap-2">
@@ -255,6 +259,7 @@ const MBOHBO = () => {
                       ))}
                     </div>
                   </div>
+
                   <div className="mb-6">
                     <div className="text-sm font-medium text-gray-700 mb-2">Oplevering:</div>
                     <ul className="space-y-1">
@@ -266,6 +271,7 @@ const MBOHBO = () => {
                       ))}
                     </ul>
                   </div>
+
                   <button
                     onClick={() => handleDownloadProject(project.projectFile, project.title)}
                     className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
@@ -296,6 +302,7 @@ const MBOHBO = () => {
               Essentiële AI-vaardigheden voor de arbeidsmarkt
             </p>
           </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {professionalSkills.map((item, index) => (
               <motion.div
