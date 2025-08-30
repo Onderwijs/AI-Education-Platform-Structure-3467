@@ -20,6 +20,7 @@ export const getNewsletterSubmissions = () => {
  */
 export const exportSubmissionsAsCSV = () => {
   const submissions = getNewsletterSubmissions();
+  
   if (submissions.length === 0) {
     console.log('No submissions found');
     return;
