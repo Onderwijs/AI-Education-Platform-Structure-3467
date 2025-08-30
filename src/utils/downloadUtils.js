@@ -44,25 +44,27 @@ export const downloadStartersgids = () => {
  * Maps lesson titles to their corresponding PDF files
  */
 export const lessonFileMap = {
-  // Featured lesson
-  "AI-Geassisteerd Creatief Schrijven": "/lessons/ai-creatief-schrijven.pdf",
+  // Featured lesson - Updated to match new content
+  "Wetenschappelijk Onderzoek met AI": "/lessons/programmeren-met-ai-copilot.pdf",
   
   // PO lessons
   "Wat is Kunstmatige Intelligentie?": "/lessons/ai-in-po.pdf",
-  "AI in Ons Dagelijks Leven": "/lessons/ai-in-po.pdf",
+  "AI in Ons Dagelijks Leven": "/lessons/ai-in-po.pdf", 
   "Vriendelijke Robots": "/lessons/vriendelijke-robots.pdf",
+  "Introductie tot AI voor Kinderen": "/lessons/ai-in-po.pdf",
+  "AI Kunstproject": "/lessons/ai-in-po.pdf",
   
   // VO lessons
   "AI en Ethiek": "/lessons/ai-ethics-vo.pdf",
   "ChatGPT voor Onderzoek": "/lessons/ai-ethics-vo.pdf",
   "AI in de Creatieve Vakken": "/lessons/ai-ethics-vo.pdf",
-  
-  // Archive lessons
-  "Introductie tot AI voor Kinderen": "/lessons/ai-in-po.pdf",
-  "AI in de Geschiedenis": "/lessons/ai-ethics-vo.pdf",
-  "Datavisualisatie met AI": "/lessons/datavisualisatie-met-ai.pdf",
+  "AI in de Geschiedenis": "/lessons/ai-ethics-vo.pdf", 
   "AI Ethics Debat": "/lessons/ai-ethics-vo.pdf",
-  "AI Kunstproject": "/lessons/ai-in-po.pdf",
+  "AI-Geassisteerd Creatief Schrijven": "/lessons/ai-creatief-schrijven.pdf",
+  "AI voor Taalonderwijs": "/lessons/ai-ethics-vo.pdf",
+  
+  // MBO/HBO lessons
+  "Datavisualisatie met AI": "/lessons/datavisualisatie-met-ai.pdf",
   "Programmeren met AI Copilot": "/lessons/programmeren-met-ai-copilot.pdf",
   
   // Default fallback

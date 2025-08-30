@@ -9,8 +9,7 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -49,7 +48,7 @@ button[style*="display: flex"] {
 }
 
 /* Ensure all interactive elements have proper styling */
-button, 
+button,
 [role="button"],
 .cursor-pointer {
   cursor: pointer;
@@ -72,7 +71,9 @@ button,
 }
 
 /* Ensure proper box model */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -87,3 +88,45 @@ button,
 
 /* Ensure proper font loading */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Fix footer overlap issue */
+main {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Ensure proper spacing between sections */
+section:last-of-type {
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}
+
+/* Add proper spacing for grid items at bottom of page */
+.grid:last-child {
+  margin-bottom: 80px;
+}
+
+/* Prevent footer from overlapping content */
+.min-h-screen {
+  min-height: calc(100vh - 200px);
+}
+
+/* Ensure proper spacing for last elements before footer */
+.py-20:last-of-type {
+  padding-bottom: 80px;
+}
+
+/* Fix for LesLab page specific spacing */
+.leslab-content {
+  padding-bottom: 100px;
+}
+
+/* Ensure grid items don't get cut off */
+.grid.gap-8 {
+  margin-bottom: 40px;
+}
+
+/* Add bottom margin to prevent footer overlap */
+.page-content {
+  margin-bottom: 100px;
+}
