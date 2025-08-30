@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   base: './',
@@ -13,7 +14,8 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
-          icons: ['react-icons']
+          icons: ['react-icons'],
+          motion: ['framer-motion']
         }
       }
     }
@@ -22,5 +24,13 @@ export default defineConfig({
     alias: {
       '@': '/src'
     }
+  },
+  server: {
+    port: 5173,
+    host: true
+  },
+  preview: {
+    port: 4173,
+    host: true
   }
-});
+})

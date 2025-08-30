@@ -9,9 +9,12 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 #root {
@@ -19,7 +22,7 @@ body {
   min-height: 100vh;
 }
 
-/* Ensure buttons are always visible */
+/* Ensure buttons are always visible and functional */
 .ai-tool-button {
   display: flex !important;
   visibility: visible !important;
@@ -86,74 +89,100 @@ button,
   position: absolute;
 }
 
-/* Ensure proper font loading */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Error states */
+.error-boundary {
+  padding: 2rem;
+  text-align: center;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+  color: #991b1b;
+}
 
 /* FOOTER OVERLAP FIXES */
-/* Fix footer overlap issue by ensuring proper spacing */
 main {
   margin-bottom: 0;
   padding-bottom: 0;
 }
 
-/* Ensure proper spacing between sections */
 section:last-of-type {
   margin-bottom: 0;
   padding-bottom: 20px;
 }
 
-/* Add proper spacing for grid items at bottom of page */
 .grid:last-child {
   margin-bottom: 80px;
 }
 
-/* Prevent footer from overlapping content */
 .min-h-screen {
   min-height: calc(100vh - 200px);
 }
 
-/* Ensure proper spacing for last elements before footer */
 .py-20:last-of-type {
   padding-bottom: 80px;
 }
 
-/* Fix for LesLab page specific spacing */
 .leslab-content {
   padding-bottom: 120px;
 }
 
-/* Ensure grid items don't get cut off */
 .grid.gap-8 {
   margin-bottom: 60px;
 }
 
-/* Add bottom margin to prevent footer overlap */
 .page-content {
   margin-bottom: 120px;
 }
 
-/* Specific fixes for LesLab grid sections */
 section.py-20.bg-gray-50 {
-  padding-bottom: 8rem; /* Ensure enough space before footer */
+  padding-bottom: 8rem;
 }
 
 section.py-20.bg-gray-50 .grid {
-  margin-bottom: 8rem; /* Extra space for grid items */
+  margin-bottom: 8rem;
 }
 
-/* Last section before footer needs extra padding */
 section:last-of-type.py-20 {
   padding-top: 8rem;
 }
 
-/* Additional safety margin for any last content */
 body > div:last-child > div:last-child {
   margin-bottom: 2rem;
 }
 
-/* Ensure CTA sections have proper spacing */
 .bg-emerald-600.py-20,
 .bg-blue-600.py-20,
 .bg-primary-600.py-20 {
   margin-top: 2rem;
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
 }
