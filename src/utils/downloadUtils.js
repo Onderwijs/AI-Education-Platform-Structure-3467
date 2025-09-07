@@ -2,7 +2,7 @@ import jsPDF from 'jspdf';
 
 /**
  * PDF DOWNLOAD SYSTEM: Generates clean PDF files using jsPDF
- * No more text files - proper PDF generation with formatting
+ * Updated version that ensures new PDF generation is always used
  */
 
 /**
@@ -10,6 +10,8 @@ import jsPDF from 'jspdf';
  */
 export const downloadStartersgids = () => {
   try {
+    console.log('Starting NEW PDF generation for AI Startersgids...');
+    
     // Create new PDF document
     const doc = new jsPDF({
       orientation: 'portrait',
@@ -146,7 +148,7 @@ export const downloadStartersgids = () => {
       '• Samenvatten van lange documenten',
       '',
       'BEELDHERKENNING EN -GENERATIE:',
-      '• Herkennen van objecten in foto\'s',
+      '• Herkennen van objecten in fotos',
       '• Genereren van illustraties en diagrammen',
       '• Automatisch bijschriften bij afbeeldingen',
       '• Visuele hulpmiddelen creëren',
@@ -255,8 +257,89 @@ export const downloadStartersgids = () => {
       doc.text(line, 20, yPos);
       yPos += 6;
     });
+
+    // Add Chapter 4 - More Tools
+    doc.addPage();
+    yPos = 20;
     
-    // Add footer with contact info
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.text('HOOFDSTUK 4: MEER ESSENTIËLE AI TOOLS', 20, yPos);
+    yPos += 15;
+    
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('3. PERPLEXITY AI', 20, yPos);
+    yPos += 10;
+    
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    
+    const perplexityInfo = [
+      'Website: perplexity.ai',
+      'Prijs: Freemium',
+      'Niveau: Beginner',
+      '',
+      'WAAROM PERFECT VOOR ONDERWIJS:',
+      '• Automatische bronvermelding bij alle antwoorden',
+      '• Actuele informatie (real-time zoeken)',
+      '• Betrouwbare en geverifieerde bronnen',
+      '• Ideaal voor onderzoeksopdrachten',
+      '',
+      'ONDERWIJSTOEPASSINGEN:',
+      '• Factchecking van lesinhoud',
+      '• Actuele voorbeelden vinden',
+      '• Onderzoeksopdrachten voorbereiden',
+      '• Leerlingen leren over bronvermelding'
+    ];
+    
+    perplexityInfo.forEach(line => {
+      if (yPos > 270) {
+        doc.addPage();
+        yPos = 20;
+      }
+      doc.text(line, 20, yPos);
+      yPos += 6;
+    });
+
+    yPos += 10;
+    
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('4. NOTEBOOKLM (Google)', 20, yPos);
+    yPos += 10;
+    
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    
+    const notebookInfo = [
+      'Website: notebooklm.google.com',
+      'Prijs: Gratis',
+      'Niveau: Beginner',
+      '',
+      'REVOLUTIONAIR VOOR DOCENTEN:',
+      '• Upload je eigen documenten voor analyse',
+      '• Genereert automatisch samenvattingen',
+      '• Beantwoordt vragen gebaseerd op jouw materiaal',
+      '• Creëert studiegidsen en quizzes',
+      '',
+      'PRAKTIJKVOORBEELDEN:',
+      '• Upload leerboekhoofstukken voor samenvatting',
+      '• Analyseer leerlingessays voor feedback',
+      '• Maak studiegidsen van complexe teksten',
+      '• Genereer vragen uit lesmateriaal'
+    ];
+    
+    notebookInfo.forEach(line => {
+      if (yPos > 270) {
+        doc.addPage();
+        yPos = 20;
+      }
+      doc.text(line, 20, yPos);
+      yPos += 6;
+    });
+    
+    // Add footer with contact info and ensure proper page numbering
     const totalPages = doc.internal.getNumberOfPages();
     for (let i = 1; i <= totalPages; i++) {
       doc.setPage(i);
@@ -266,13 +349,22 @@ export const downloadStartersgids = () => {
       doc.text(`Pagina ${i} van ${totalPages}`, 170, 285);
     }
     
-    // Save the PDF
-    doc.save('AI-Startersgids-Complete-2025.pdf');
+    // Save the PDF with current timestamp to ensure it's always new
+    const timestamp = new Date().toISOString().slice(0, 10);
+    const filename = `AI-Startersgids-Compleet-${timestamp}.pdf`;
+    doc.save(filename);
     
-    console.log('SUCCESS: AI Startersgids PDF generated and downloaded!');
+    console.log('SUCCESS: NEW AI Startersgids PDF generated and downloaded!', filename);
+    
+    // Show success message to user
+    if (typeof window !== 'undefined') {
+      setTimeout(() => {
+        console.log('PDF download should have started automatically');
+      }, 500);
+    }
     
   } catch (error) {
-    console.error('PDF generation failed:', error);
+    console.error('NEW PDF generation failed:', error);
     // Fallback to text download if PDF fails
     downloadStartersgidsAsText();
   }
@@ -282,6 +374,8 @@ export const downloadStartersgids = () => {
  * Fallback function to download as text if PDF generation fails
  */
 const downloadStartersgidsAsText = () => {
+  console.log('Falling back to text download...');
+  
   const textContent = `AI STARTERSGIDS VOOR DOCENTEN - NIEUWE EDITIE 2025
 COMPLETE HANDLEIDING VOOR AI IN HET ONDERWIJS
 
@@ -330,6 +424,8 @@ om AI effectief, veilig en verantwoord in te zetten in jouw onderwijspraktijk.
  */
 export const downloadLesson = (lessonTitle) => {
   try {
+    console.log('Generating lesson PDF for:', lessonTitle);
+    
     const doc = new jsPDF({
       orientation: 'portrait',
       unit: 'mm',
@@ -446,9 +542,20 @@ export const downloadLesson = (lessonTitle) => {
 };
 
 /**
- * Generic file download function - now supports PDF generation
+ * Generic file download function - REMOVED old file references
  */
 export const downloadFile = (url, filename = null) => {
+  console.warn('downloadFile called with URL:', url);
+  console.warn('This function should not be used anymore. Use downloadStartersgids() instead.');
+  
+  // Force use of new PDF generation instead
+  if (url && url.includes('startersgids')) {
+    console.log('Redirecting to new PDF generation...');
+    downloadStartersgids();
+    return;
+  }
+  
+  // For other files, proceed as normal
   try {
     const link = document.createElement('a');
     link.href = url;
