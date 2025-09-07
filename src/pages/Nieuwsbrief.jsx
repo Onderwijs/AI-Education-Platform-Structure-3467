@@ -18,7 +18,7 @@ const Nieuwsbrief = () => {
     {
       icon: FiDownload,
       title: "Gratis AI Startersgids",
-      description: "Complete gids met 50+ AI-tools - 100% SCHOON TEKSTBESTAND (geen speciale tekens!)"
+      description: "Complete gids met 50+ AI-tools - Nu als professionele PDF!"
     },
     {
       icon: FiMail,
@@ -27,7 +27,7 @@ const Nieuwsbrief = () => {
     },
     {
       icon: FiUsers,
-      title: "Exclusieve Content", 
+      title: "Exclusieve Content",
       description: "Vroege toegang tot nieuwe lessen en tools"
     },
     {
@@ -41,23 +41,26 @@ const Nieuwsbrief = () => {
     {
       title: "AI in 30 Dagen Challenge",
       description: "Dagelijkse opdrachten om AI te integreren in je onderwijs",
-      format: "Schoon TXT Workbook + Email Serie"
+      format: "PDF Workbook + Email Serie"
     },
     {
-      title: "ChatGPT Prompt Library", 
+      title: "ChatGPT Prompt Library",
       description: "100+ geteste prompts voor verschillende vakken",
-      format: "Tekst Database - Geen Speciale Tekens"
+      format: "PDF Database - Gestructureerd en Overzichtelijk"
     },
     {
       title: "AI Ethics Lesplan",
-      description: "Complete les over ethiek en AI voor alle niveaus", 
-      format: "Schoon Tekstbestand + Materialen"
+      description: "Complete les over ethiek en AI voor alle niveaus",
+      format: "Professionele PDF + Materialen"
     }
   ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -97,7 +100,7 @@ const Nieuwsbrief = () => {
         });
       }
 
-      // Always download the startersgids (now as clean TXT file)
+      // Always download the startersgids (now as PDF)
       downloadStartersgids();
 
       // Show success message
@@ -129,24 +132,24 @@ const Nieuwsbrief = () => {
           >
             <SafeIcon icon={FiCheck} className="text-3xl text-white" />
           </motion.div>
-
+          
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Download gestart!
+            PDF Download gestart!
           </h1>
           
           <p className="text-gray-600 mb-6">
-            Je AI Startersgids wordt nu gedownload als 100% SCHOON TEKSTBESTAND. 
-            Helemaal geen speciale tekens meer - gegarandeerd! Je gegevens zijn 
-            ook opgeslagen voor nieuwsbrief inschrijving.
+            Je AI Startersgids wordt nu gedownload als professionele PDF. 
+            Mooi geformatteerd, gemakkelijk te lezen en te printen. 
+            Je gegevens zijn ook opgeslagen voor nieuwsbrief inschrijving.
           </p>
-
+          
           <div className="space-y-4">
             <button
               onClick={() => downloadStartersgids()}
               className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
             >
               <SafeIcon icon={FiDownload} />
-              <span>Download opnieuw (Schoon TXT)</span>
+              <span>Download PDF opnieuw</span>
             </button>
             
             <button
@@ -156,12 +159,11 @@ const Nieuwsbrief = () => {
               Terug naar overzicht
             </button>
           </div>
-
+          
           <div className="mt-6 p-4 bg-green-100 border border-green-300 rounded-lg">
             <p className="text-sm text-green-800">
-              <strong>DEFINITIEF OPGELOST!</strong> Download is nu een 100% schoon 
-              TXT bestand zonder enige speciale karakters. Het probleem met het 
-              cent-symbool is permanent weggenomen!
+              <strong>NIEUW!</strong> Download is nu een professionele PDF met mooie opmaak, 
+              hoofdstukken en pagina-nummering. Perfect voor printen of digitaal lezen!
             </p>
           </div>
         </div>
@@ -188,8 +190,8 @@ const Nieuwsbrief = () => {
               Gratis AI Startersgids
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Ontvang direct onze complete AI-toolkit als 100% SCHOON TEKSTBESTAND. 
-              Helemaal geen speciale tekens - gegarandeerd geen ¢ symbool!
+              Ontvang direct onze complete AI-toolkit als professionele PDF. 
+              Mooi geformatteerd, gemakkelijk te lezen en perfect voor printen!
             </p>
           </motion.div>
         </div>
@@ -199,7 +201,6 @@ const Nieuwsbrief = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            
             {/* Left Column - Form */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -212,14 +213,14 @@ const Nieuwsbrief = () => {
                 </h2>
 
                 {/* Success Alert */}
-                <div className="mb-6 p-4 bg-green-100 border border-green-300 rounded-lg">
+                <div className="mb-6 p-4 bg-blue-100 border border-blue-300 rounded-lg">
                   <div className="flex items-center space-x-2">
-                    <SafeIcon icon={FiCheck} className="text-green-600" />
-                    <span className="font-semibold text-green-800">PROBLEEM DEFINITIEF OPGELOST!</span>
+                    <SafeIcon icon={FiCheck} className="text-blue-600" />
+                    <span className="font-semibold text-blue-800">NIEUW: Professionele PDF!</span>
                   </div>
-                  <p className="text-sm text-green-700 mt-1">
-                    Download is nu een 100% schoon TXT bestand. Geen ¢ symbool meer - 
-                    gegarandeerd! Alle PDFs zijn verwijderd en vervangen door schone tekstbestanden.
+                  <p className="text-sm text-blue-700 mt-1">
+                    Download is nu een mooie PDF met hoofdstukken, opmaak en pagina-nummering. 
+                    Perfect geformatteerd voor lezen en printen!
                   </p>
                 </div>
 
@@ -276,7 +277,9 @@ const Nieuwsbrief = () => {
                     className="w-full bg-primary-600 text-white py-4 px-6 rounded-lg font-semibold hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50"
                   >
                     <SafeIcon icon={FiDownload} />
-                    <span>{isSubmitting ? 'Bezig...' : 'Download Gratis Startersgids (100% Schoon TXT)'}</span>
+                    <span>
+                      {isSubmitting ? 'Bezig...' : 'Download Gratis PDF Startersgids'}
+                    </span>
                   </button>
                 </form>
 
@@ -299,6 +302,7 @@ const Nieuwsbrief = () => {
               <h3 className="text-2xl font-bold text-gray-900 mb-8">
                 Wat krijg je?
               </h3>
+
               <div className="space-y-6">
                 {benefits.map((benefit, index) => (
                   <motion.div
@@ -337,10 +341,10 @@ const Nieuwsbrief = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Binnenkort meer Gratis Downloads
+              Binnenkort meer Gratis PDF Downloads
             </h2>
             <p className="text-xl text-gray-600">
-              Exclusieve materialen om direct mee aan de slag te gaan (allemaal als schone tekstbestanden!)
+              Exclusieve materialen om direct mee aan de slag te gaan (allemaal als professionele PDFs!)
             </p>
           </motion.div>
 
@@ -382,6 +386,7 @@ const Nieuwsbrief = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               Sluit je aan bij 2.500+ docenten
             </h2>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary-600 mb-2">2.500+</div>
@@ -396,9 +401,10 @@ const Nieuwsbrief = () => {
                 <div className="text-gray-600">Leest elke week mee</div>
               </div>
             </div>
+
             <blockquote className="text-xl text-gray-600 italic mb-4">
-              "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding 
-              gehalveerd en mijn leerlingen zijn veel meer betrokken."
+              "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding gehalveerd 
+              en mijn leerlingen zijn veel meer betrokken."
             </blockquote>
             <cite className="text-gray-500">- Marieke, VO Docent Nederlands</cite>
           </motion.div>
