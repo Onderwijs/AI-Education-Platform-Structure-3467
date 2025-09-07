@@ -50,9 +50,21 @@ const Home = () => {
     }
   ];
 
-  // Updated download handler - directly calls the NEW PDF function
+  // COMPLETELY NEW download handler - forces new PDF
   const handleDownloadClick = () => {
-    console.log('Home page download clicked - generating NEW PDF...');
+    console.log('🚀 Home page download - FORCING NEW PDF generation...');
+    
+    // Clear any potential cache
+    if ('caches' in window) {
+      caches.keys().then(names => {
+        names.forEach(name => {
+          caches.delete(name);
+        });
+      });
+    }
+    
+    // Force new PDF download
+    console.log('📥 Calling downloadStartersgids() for BRAND NEW PDF...');
     downloadStartersgids();
   };
 
@@ -87,7 +99,7 @@ const Home = () => {
                   className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2"
                 >
                   <SafeIcon icon={FiDownload} />
-                  <span>Gratis Download</span>
+                  <span>NIEUWE PDF Download</span>
                 </button>
                 <Link
                   to="/ai-tools"
@@ -236,14 +248,14 @@ const Home = () => {
               Start vandaag met AI in jouw onderwijs
             </h2>
             <p className="text-xl text-primary-100 mb-8">
-              Download gratis onze AI-toolkit en ontvang nieuwe lessen en tips
+              Download gratis onze NIEUWE AI-toolkit en ontvang nieuwe lessen en tips
             </p>
             <button
               onClick={handleDownloadClick}
               className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
             >
               <SafeIcon icon={FiDownload} />
-              <span>Gratis download</span>
+              <span>NIEUWE PDF download</span>
             </button>
           </motion.div>
         </div>

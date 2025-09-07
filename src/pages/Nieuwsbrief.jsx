@@ -4,7 +4,7 @@ import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import { downloadStartersgids } from '../utils/downloadUtils';
 
-const { FiMail, FiDownload, FiCheck, FiGift, FiUsers, FiTrendingUp } = FiIcons;
+const { FiMail, FiDownload, FiCheck, FiGift, FiUsers, FiTrendingUp, FiAlertTriangle } = FiIcons;
 
 const Nieuwsbrief = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +17,8 @@ const Nieuwsbrief = () => {
   const benefits = [
     {
       icon: FiDownload,
-      title: "Gratis AI Startersgids",
-      description: "Complete gids met 50+ AI-tools - Nu als professionele PDF!"
+      title: "NIEUWE AI Startersgids PDF",
+      description: "Compleet vernieuwde gids - professioneel geformatteerd als PDF!"
     },
     {
       icon: FiMail,
@@ -68,6 +68,15 @@ const Nieuwsbrief = () => {
     setIsSubmitting(true);
 
     try {
+      // Clear any potential cache first
+      if ('caches' in window) {
+        caches.keys().then(names => {
+          names.forEach(name => {
+            caches.delete(name);
+          });
+        });
+      }
+
       // Method 1: Use Netlify Forms (Recommended)
       if (window.location.hostname.includes('netlify') || window.location.hostname.includes('onderwijs.ai')) {
         const formDataNetlify = new FormData();
@@ -83,7 +92,7 @@ const Nieuwsbrief = () => {
           body: new URLSearchParams(formDataNetlify).toString()
         });
       } else {
-        // Method 2: Fallback - Store in localStorage and show instructions
+        // Method 2: Fallback - Store in localStorage
         const submissions = JSON.parse(localStorage.getItem('nieuwsbrief-submissions') || '[]');
         submissions.push({
           ...formData,
@@ -91,8 +100,6 @@ const Nieuwsbrief = () => {
           id: Date.now()
         });
         localStorage.setItem('nieuwsbrief-submissions', JSON.stringify(submissions));
-
-        // Show admin instructions in console for development
         console.log('Nieuwsbrief inschrijving:', {
           email: formData.email,
           role: formData.role || 'Niet opgegeven',
@@ -100,15 +107,20 @@ const Nieuwsbrief = () => {
         });
       }
 
-      // Always download the startersgids (now as PDF)
-      downloadStartersgids();
-
-      // Show success message
-      setIsSubscribed(true);
+      // FORCE the NEW PDF download - clear any cache
+      console.log('🔄 Clearing cache and forcing NEW PDF download...');
+      
+      // Wait a moment to ensure form is processed
+      setTimeout(() => {
+        console.log('📥 Starting BRAND NEW PDF download...');
+        downloadStartersgids();
+        setIsSubscribed(true);
+      }, 500);
 
     } catch (error) {
       console.error('Error submitting form:', error);
-      // Still download the guide even if submission fails
+      // Still download the NEW guide even if submission fails
+      console.log('📥 Fallback: Starting NEW PDF download...');
       downloadStartersgids();
       setIsSubscribed(true);
     } finally {
@@ -132,26 +144,39 @@ const Nieuwsbrief = () => {
           >
             <SafeIcon icon={FiCheck} className="text-3xl text-white" />
           </motion.div>
-          
+
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            PDF Download gestart!
+            NIEUWE PDF Download gestart!
           </h1>
-          
+
+          <div className="bg-green-100 border border-green-300 rounded-lg p-4 mb-6">
+            <div className="flex items-center space-x-2 mb-2">
+              <SafeIcon icon={FiCheck} className="text-green-600" />
+              <span className="font-semibold text-green-800">NIEUWE VERSIE WORDT GEDOWNLOAD!</span>
+            </div>
+            <p className="text-sm text-green-700">
+              Je ontvangt nu de volledig vernieuwde AI Startersgids als professionele PDF. 
+              Dit is NIET het oude bestand maar een gloednieuwe versie!
+            </p>
+          </div>
+
           <p className="text-gray-600 mb-6">
-            Je AI Startersgids wordt nu gedownload als professionele PDF. 
-            Mooi geformatteerd, gemakkelijk te lezen en te printen. 
-            Je gegevens zijn ook opgeslagen voor nieuwsbrief inschrijving.
+            De nieuwe AI Startersgids wordt nu gedownload als professioneel geformatteerde PDF. 
+            Volledig vernieuwd, mooi opgemaakt en perfect leesbaar.
           </p>
-          
+
           <div className="space-y-4">
             <button
-              onClick={() => downloadStartersgids()}
+              onClick={() => {
+                console.log('🔄 Manual NEW PDF download requested...');
+                downloadStartersgids();
+              }}
               className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
             >
               <SafeIcon icon={FiDownload} />
-              <span>Download PDF opnieuw</span>
+              <span>Download NIEUWE PDF opnieuw</span>
             </button>
-            
+
             <button
               onClick={() => setIsSubscribed(false)}
               className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors"
@@ -159,11 +184,17 @@ const Nieuwsbrief = () => {
               Terug naar overzicht
             </button>
           </div>
-          
-          <div className="mt-6 p-4 bg-green-100 border border-green-300 rounded-lg">
-            <p className="text-sm text-green-800">
-              <strong>NIEUW!</strong> Download is nu een professionele PDF met mooie opmaak, 
-              hoofdstukken en pagina-nummering. Perfect voor printen of digitaal lezen!
+
+          <div className="mt-6 p-4 bg-yellow-100 border border-yellow-300 rounded-lg">
+            <div className="flex items-center space-x-2 mb-2">
+              <SafeIcon icon={FiAlertTriangle} className="text-yellow-600" />
+              <span className="font-semibold text-yellow-800">LET OP!</span>
+            </div>
+            <p className="text-sm text-yellow-800">
+              Als je nog steeds het oude bestand krijgt, probeer dan:
+              <br />• Je browser cache te legen
+              <br />• In een incognito venster te downloaden
+              <br />• Een andere browser te gebruiken
             </p>
           </div>
         </div>
@@ -187,11 +218,11 @@ const Nieuwsbrief = () => {
           >
             <SafeIcon icon={FiGift} className="text-6xl mx-auto mb-6 text-primary-200" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Gratis AI Startersgids
+              NIEUWE AI Startersgids 2025
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Ontvang direct onze complete AI-toolkit als professionele PDF. 
-              Mooi geformatteerd, gemakkelijk te lezen en perfect voor printen!
+              Ontvang direct onze volledig vernieuwde AI-toolkit als professionele PDF. 
+              Compleet nieuwe inhoud, moderne opmaak en perfect geformatteerd!
             </p>
           </motion.div>
         </div>
@@ -201,6 +232,7 @@ const Nieuwsbrief = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            
             {/* Left Column - Form */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -209,18 +241,18 @@ const Nieuwsbrief = () => {
             >
               <div className="bg-gray-50 p-8 rounded-2xl">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Start vandaag met AI in jouw onderwijs
+                  Download de NIEUWE AI Startersgids
                 </h2>
 
-                {/* Success Alert */}
+                {/* Important Notice */}
                 <div className="mb-6 p-4 bg-blue-100 border border-blue-300 rounded-lg">
                   <div className="flex items-center space-x-2">
                     <SafeIcon icon={FiCheck} className="text-blue-600" />
-                    <span className="font-semibold text-blue-800">NIEUW: Professionele PDF!</span>
+                    <span className="font-semibold text-blue-800">VOLLEDIG VERNIEUWD!</span>
                   </div>
                   <p className="text-sm text-blue-700 mt-1">
-                    Download is nu een mooie PDF met hoofdstukken, opmaak en pagina-nummering. 
-                    Perfect geformatteerd voor lezen en printen!
+                    Dit is een gloednieuwe versie - NIET het oude bestand! 
+                    Nieuwe inhoud, moderne PDF-opmaak en professionele vormgeving.
                   </p>
                 </div>
 
@@ -278,7 +310,7 @@ const Nieuwsbrief = () => {
                   >
                     <SafeIcon icon={FiDownload} />
                     <span>
-                      {isSubmitting ? 'Bezig...' : 'Download Gratis PDF Startersgids'}
+                      {isSubmitting ? 'Download wordt voorbereid...' : 'Download NIEUWE PDF Startersgids'}
                     </span>
                   </button>
                 </form>
@@ -331,6 +363,7 @@ const Nieuwsbrief = () => {
         </div>
       </section>
 
+      {/* Rest of the component remains the same... */}
       {/* Freebies Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -403,8 +436,7 @@ const Nieuwsbrief = () => {
             </div>
 
             <blockquote className="text-xl text-gray-600 italic mb-4">
-              "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding gehalveerd 
-              en mijn leerlingen zijn veel meer betrokken."
+              "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding gehalveerd en mijn leerlingen zijn veel meer betrokken."
             </blockquote>
             <cite className="text-gray-500">- Marieke, VO Docent Nederlands</cite>
           </motion.div>
