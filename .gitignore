@@ -29,3 +29,9 @@ dist-ssr
 *.pdf
 **/*.pdf
 public/**/*.pdf
+public/downloads/*.pdf
+public/lessons/*.pdf
+public/projects/*.pdf
+
+# EXPLICITLY BLOCK OLD FILES
+public/downloads/ai-startersgids-complete.pdf
