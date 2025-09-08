@@ -1,37 +1,37 @@
 [build]
-  publish = "dist"
-  command = "npm run build"
+publish="dist"
+command="npm run build"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from="/*"
+to="/index.html"
+status=200
 
 [build.environment]
-  NODE_VERSION = "18"
-  NPM_VERSION = "9"
+NODE_VERSION="18"
+NPM_VERSION="9"
 
 # Enable form processing
 [forms]
 
 # Enable form processing on all forms
 [[forms]]
-  name = "nieuwsbrief-inschrijving"
+name="nieuwsbrief-inschrijving"
 
 # Headers for better security and performance
 [[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
+for="/*"
+[headers.values]
+X-Frame-Options="DENY"
+X-XSS-Protection="1;mode=block"
+X-Content-Type-Options="nosniff"
+Referrer-Policy="strict-origin-when-cross-origin"
 
 [[headers]]
-  for = "/static/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for="/static/*"
+[headers.values]
+Cache-Control="public,max-age=31536000,immutable"
 
 # Functions (optional for future use)
 [functions]
-  directory = "netlify/functions"
+directory="netlify/functions"
