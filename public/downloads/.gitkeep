@@ -1,3 +1,2 @@
-# This directory is for dynamic downloads only
-# No static PDF files should ever be placed here
-# All PDFs are generated dynamically via JavaScript
+# Static PDF files directory
+# Contains professionally formatted PDF downloads
