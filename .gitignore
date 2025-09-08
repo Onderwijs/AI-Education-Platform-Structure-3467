@@ -35,3 +35,9 @@ public/projects/*.pdf
 
 # EXPLICITLY BLOCK OLD FILES
 public/downloads/ai-startersgids-complete.pdf
+public/lessons/*.pdf
+public/projects/*.pdf
+
+# PREVENT ANY PDF UPLOADS
+**/ai-startersgids-complete.pdf
+**/AI-Complete-Startersgids-50-Tools.pdf
