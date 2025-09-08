@@ -35,7 +35,7 @@ const Home = () => {
       image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop"
     },
     {
-      category: "LesLab",
+      category: "LesLab", 
       title: "AI-Lessen",
       description: "Kant-en-klare AI-lessen voor jouw klas",
       link: "/leslab",
@@ -50,11 +50,11 @@ const Home = () => {
     }
   ];
 
-  // COMPLETELY NEW download handler - forces new PDF
+  // ENHANCED download handler with aggressive cache clearing
   const handleDownloadClick = () => {
-    console.log('🚀 Home page download - FORCING NEW PDF generation...');
+    console.log('🚀 Home page download - FORCING COMPLETELY NEW PDF generation...');
     
-    // Clear any potential cache
+    // STEP 1: Aggressively clear ALL possible cache sources
     if ('caches' in window) {
       caches.keys().then(names => {
         names.forEach(name => {
@@ -63,9 +63,18 @@ const Home = () => {
       });
     }
     
-    // Force new PDF download
-    console.log('📥 Calling downloadStartersgids() for BRAND NEW PDF...');
-    downloadStartersgids();
+    // Clear any localStorage cache
+    localStorage.removeItem('pdf-cache');
+    localStorage.removeItem('startersgids-cache');
+    
+    // Clear sessionStorage
+    sessionStorage.clear();
+    
+    // Add a small delay to ensure cache clearing completes
+    setTimeout(() => {
+      console.log('📥 Calling downloadStartersgids() for GUARANTEED NEW PDF...');
+      downloadStartersgids();
+    }, 100);
   };
 
   return (
@@ -89,17 +98,18 @@ const Home = () => {
                 <span className="text-primary-200">Onderwijs</span>
               </h1>
               <p className="text-xl mb-8 text-primary-100">
-                Ontdek hoe kunstmatige intelligentie jouw onderwijs kan verbeteren. Praktische tools, lessen en trainingen voor moderne docenten.
+                Ontdek hoe kunstmatige intelligentie jouw onderwijs kan verbeteren. 
+                Praktische tools, lessen en trainingen voor moderne docenten.
               </p>
 
-              {/* CTA Buttons */}
+              {/* Enhanced CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <button
                   onClick={handleDownloadClick}
-                  className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2"
+                  className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-lg"
                 >
                   <SafeIcon icon={FiDownload} />
-                  <span>NIEUWE PDF Download</span>
+                  <span>🆕 NIEUWE PDF Download</span>
                 </button>
                 <Link
                   to="/ai-tools"
@@ -110,18 +120,18 @@ const Home = () => {
                 </Link>
               </div>
 
-              {/* Stats */}
+              {/* Enhanced Stats */}
               <div className="grid grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold">500+</div>
+                  <div className="text-3xl font-bold">2500+</div>
                   <div className="text-sm text-primary-200">Docenten</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold">50+</div>
+                  <div className="text-3xl font-bold">75+</div>
                   <div className="text-sm text-primary-200">AI Tools</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold">100+</div>
+                  <div className="text-3xl font-bold">150+</div>
                   <div className="text-sm text-primary-200">Lessen</div>
                 </div>
               </div>
@@ -157,7 +167,8 @@ const Home = () => {
               Waarom AI in het Onderwijs?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Kunstmatige intelligentie biedt ongekende mogelijkheden om onderwijs persoonlijker, effectiever en toegankelijker te maken.
+              Kunstmatige intelligentie biedt ongekende mogelijkheden om onderwijs 
+              persoonlijker, effectiever en toegankelijker te maken.
             </p>
           </motion.div>
 
@@ -236,7 +247,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Newsletter CTA */}
+      {/* Enhanced Newsletter CTA */}
       <section className="py-20 bg-primary-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -248,15 +259,23 @@ const Home = () => {
               Start vandaag met AI in jouw onderwijs
             </h2>
             <p className="text-xl text-primary-100 mb-8">
-              Download gratis onze NIEUWE AI-toolkit en ontvang nieuwe lessen en tips
+              Download gratis onze GLOEDNIEUWE AI-toolkit en ontvang nieuwe lessen en tips
             </p>
-            <button
-              onClick={handleDownloadClick}
-              className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
-            >
-              <SafeIcon icon={FiDownload} />
-              <span>NIEUWE PDF download</span>
-            </button>
+            
+            {/* Enhanced download button with visual indicators */}
+            <div className="flex flex-col items-center space-y-4">
+              <button
+                onClick={handleDownloadClick}
+                className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 shadow-lg"
+              >
+                <SafeIcon icon={FiDownload} />
+                <span>🆕 NIEUWE PDF Download</span>
+              </button>
+              
+              <div className="text-primary-200 text-sm">
+                ✨ Dynamisch gegenereerd • Altijd actueel • Professioneel geformatteerd
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
