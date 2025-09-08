@@ -9,8 +9,8 @@ endobj
 2 0 obj
 <<
 /Type /Pages
-/Kids [3 0 R]
-/Count 1
+/Kids [3 0 R 4 0 R 5 0 R 6 0 R 7 0 R 8 0 R 9 0 R 10 0 R]
+/Count 8
 >>
 endobj
 
@@ -19,10 +19,11 @@ endobj
 /Type /Page
 /Parent 2 0 R
 /MediaBox [0 0 612 792]
-/Contents 4 0 R
+/Contents 11 0 R
 /Resources <<
 /Font <<
-/F1 5 0 R
+/F1 12 0 R
+/F2 13 0 R
 >>
 >>
 >>
@@ -30,56 +31,189 @@ endobj
 
 4 0 obj
 <<
-/Length 15000
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 14 0 R
+/Resources <<
+/Font <<
+/F1 12 0 R
+/F2 13 0 R
+>>
+>>
+>>
+endobj
+
+5 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 15 0 R
+/Resources <<
+/Font <<
+/F1 12 0 R
+/F2 13 0 R
+>>
+>>
+>>
+endobj
+
+6 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 16 0 R
+/Resources <<
+/Font <<
+/F1 12 0 R
+/F2 13 0 R
+>>
+>>
+>>
+endobj
+
+7 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 17 0 R
+/Resources <<
+/Font <<
+/F1 12 0 R
+/F2 13 0 R
+>>
+>>
+>>
+endobj
+
+8 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 18 0 R
+/Resources <<
+/Font <<
+/F1 12 0 R
+/F2 13 0 R
+>>
+>>
+>>
+endobj
+
+9 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 19 0 R
+/Resources <<
+/Font <<
+/F1 12 0 R
+/F2 13 0 R
+>>
+>>
+>>
+endobj
+
+10 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 20 0 R
+/Resources <<
+/Font <<
+/F1 12 0 R
+/F2 13 0 R
+>>
+>>
+>>
+endobj
+
+11 0 obj
+<<
+/Length 2800
 >>
 stream
 BT
-/F1 12 Tf
-50 750 Td
-(AI STARTERSGIDS VOOR DOCENTEN - NIEUWE EDITIE 2025) Tj
-0 -20 Td
-(COMPLETE HANDLEIDING VOOR AI IN HET ONDERWIJS) Tj
-0 -40 Td
-(=====================================================) Tj
+/F2 24 Tf
+50 720 Td
+(AI STARTERSGIDS VOOR DOCENTEN) Tj
 0 -30 Td
+/F2 18 Tf
+(NIEUWE VERSIE 2025) Tj
+0 -40 Td
+/F1 14 Tf
+(Complete handleiding voor AI in het Nederlandse onderwijs) Tj
+
+0 -80 Td
+/F2 16 Tf
 (INHOUDSOPGAVE) Tj
-0 -15 Td
-(=============) Tj
+0 -30 Td
+/F1 12 Tf
+(Pagina 1: Welkom bij AI in het Onderwijs) Tj
 0 -20 Td
-(1. Welkom bij AI in het Onderwijs) Tj
+(Pagina 2: Wat is Kunstmatige Intelligentie?) Tj
+0 -20 Td
+(Pagina 3: TOP 15 AI Tools voor Docenten) Tj
+0 -20 Td
+(Pagina 4: AI in het Basisonderwijs \(PO\)) Tj
+0 -20 Td
+(Pagina 5: AI in het Voortgezet Onderwijs \(VO\)) Tj
+0 -20 Td
+(Pagina 6: AI in MBO en HBO) Tj
+0 -20 Td
+(Pagina 7: Ethiek en Veiligheid) Tj
+0 -20 Td
+(Pagina 8: Praktische Implementatie) Tj
+
+0 -60 Td
+/F2 14 Tf
+(WELKOM BIJ AI IN HET ONDERWIJS) Tj
+0 -30 Td
+/F1 11 Tf
+(Deze startersgids helpt Nederlandse docenten om kunstmatige) Tj
 0 -15 Td
-(2. Basisprincipes van AI voor Docenten) Tj
+(intelligentie effectief en verantwoord in te zetten in hun) Tj
 0 -15 Td
-(3. TOP 15 AI Tools voor Tekstverwerking) Tj
+(onderwijs. Of je nu lesgeeft in het basisonderwijs, voortgezet) Tj
 0 -15 Td
-(4. AI Tools voor Presentaties en Visueel Ontwerp) Tj
+(onderwijs of hoger onderwijs, deze gids biedt praktische) Tj
 0 -15 Td
-(5. AI Tools voor Beeldbewerking en Creativiteit) Tj
+(tools en concrete voorbeelden.) Tj
+
+0 -30 Td
+/F2 12 Tf
+(Waarom AI in het onderwijs?) Tj
+0 -20 Td
+/F1 11 Tf
+(• Personaliseer leerervaring voor elke leerling) Tj
 0 -15 Td
-(6. AI Tools voor Onderzoek en Bronvermelding) Tj
+(• Bespaar tijd bij lesvoorbereiding en nakijkwerk) Tj
 0 -15 Td
-(7. AI Tools voor Programmeren en Techniek) Tj
+(• Stimuleer creativiteit en kritisch denken) Tj
 0 -15 Td
-(8. Specifieke AI Tools voor Onderwijs) Tj
+(• Bereid leerlingen voor op de toekomst) Tj
+
+0 -30 Td
+/F2 12 Tf
+(Voor wie is deze gids?) Tj
+0 -20 Td
+/F1 11 Tf
+(• Docenten PO, VO, MBO en HBO) Tj
 0 -15 Td
-(9. Praktische Tips voor Implementatie) Tj
+(• Schoolleiders en ICT-coordinatoren) Tj
 0 -15 Td
-(10. Ethische Richtlijnen en Veiligheid) Tj
-0 -15 Td
-(11. Stap-voor-Stap Implementatieplan) Tj
-0 -15 Td
-(12. Troubleshooting en Veelgestelde Vragen) Tj
-0 -15 Td
-(13. Voorbeeldlessen per Onderwijsniveau) Tj
-0 -15 Td
-(14. Evaluatie en Meting van AI-Impact) Tj
-0 -15 Td
-(15. Toekomstperspectief en Trends) Tj
+(• Iedereen die AI wil gebruiken in onderwijs) Tj
 ET
 endstream
 endobj
 
-5 0 obj
+12 0 obj
 <<
 /Type /Font
 /Subtype /Type1
@@ -87,19 +221,825 @@ endobj
 >>
 endobj
 
+13 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+
+14 0 obj
+<<
+/Length 2900
+>>
+stream
+BT
+/F2 16 Tf
+50 720 Td
+(WAT IS KUNSTMATIGE INTELLIGENTIE?) Tj
+
+0 -40 Td
+/F1 11 Tf
+(Kunstmatige intelligentie \(AI\) is technologie die computers) Tj
+0 -15 Td
+(in staat stelt om taken uit te voeren die normaal menselijke) Tj
+0 -15 Td
+(intelligentie vereisen. Denk aan herkennen van patronen,) Tj
+0 -15 Td
+(begrijpen van taal, en het maken van voorspellingen.) Tj
+
+0 -30 Td
+/F2 14 Tf
+(SOORTEN AI VOOR ONDERWIJS) Tj
+
+0 -25 Td
+/F2 12 Tf
+(1. Tekstgeneratie \(zoals ChatGPT\)) Tj
+0 -20 Td
+/F1 11 Tf
+(• Helpt bij het schrijven van lesteksten) Tj
+0 -15 Td
+(• Genereert oefenvragen en antwoorden) Tj
+0 -15 Td
+(• Vat complexe onderwerpen samen) Tj
+0 -15 Td
+(• Vertaalt teksten naar verschillende niveaus) Tj
+
+0 -25 Td
+/F2 12 Tf
+(2. Beeldherkenning en -generatie) Tj
+0 -20 Td
+/F1 11 Tf
+(• Maakt illustraties voor lessen) Tj
+0 -15 Td
+(• Herkent objecten op foto's) Tj
+0 -15 Td
+(• Genereert educatieve afbeeldingen) Tj
+
+0 -25 Td
+/F2 12 Tf
+(3. Spraakherkenning) Tj
+0 -20 Td
+/F1 11 Tf
+(• Helpt bij taalonderwijs) Tj
+0 -15 Td
+(• Transcribeert gesproken tekst) Tj
+0 -15 Td
+(• Ondersteunt leerlingen met leesmoeilijkheden) Tj
+
+0 -25 Td
+/F2 12 Tf
+(4. Adaptief leren) Tj
+0 -20 Td
+/F1 11 Tf
+(• Past moeilijkheidsgraad aan per leerling) Tj
+0 -15 Td
+(• Geeft gepersonaliseerde feedback) Tj
+0 -15 Td
+(• Volgt leervoortgang automatisch) Tj
+
+0 -30 Td
+/F2 14 Tf
+(VOORDELEN VAN AI IN ONDERWIJS) Tj
+0 -25 Td
+/F1 11 Tf
+(• Meer tijd voor persoonlijke begeleiding) Tj
+0 -15 Td
+(• Betere differentiatie mogelijk) Tj
+0 -15 Td
+(• Directe feedback voor leerlingen) Tj
+0 -15 Td
+(• Inzicht in leerpatronen en -problemen) Tj
+0 -15 Td
+(• Ondersteuning bij administratieve taken) Tj
+ET
+endstream
+endobj
+
+15 0 obj
+<<
+/Length 3200
+>>
+stream
+BT
+/F2 16 Tf
+50 720 Td
+(TOP 15 AI TOOLS VOOR DOCENTEN) Tj
+
+0 -40 Td
+/F2 14 Tf
+(TEKSTVERWERKING EN LESVOORBEREIDING) Tj
+
+0 -25 Td
+/F2 12 Tf
+(1. ChatGPT \(OpenAI\)) Tj
+0 -18 Td
+/F1 10 Tf
+(• Gratis versie beschikbaar) Tj
+0 -12 Td
+(• Helpt bij lesplannen, oefeningen en uitleg) Tj
+0 -12 Td
+(• Kan teksten aanpassen aan verschillende niveaus) Tj
+
+0 -20 Td
+/F2 12 Tf
+(2. Claude \(Anthropic\)) Tj
+0 -18 Td
+/F1 10 Tf
+(• Uitstekend voor langere teksten) Tj
+0 -12 Td
+(• Goed in het analyseren van leerlingwerk) Tj
+0 -12 Td
+(• Ethische focus in antwoorden) Tj
+
+0 -20 Td
+/F2 12 Tf
+(3. Grammarly) Tj
+0 -18 Td
+/F1 10 Tf
+(• Controleert spelling en grammatica) Tj
+0 -12 Td
+(• Verbetert schrijfstijl) Tj
+0 -12 Td
+(• Ondersteunt meerdere talen) Tj
+
+0 -25 Td
+/F2 14 Tf
+(PRESENTATIES EN VISUEEL ONTWERP) Tj
+
+0 -20 Td
+/F2 12 Tf
+(4. Gamma) Tj
+0 -18 Td
+/F1 10 Tf
+(• Maakt automatisch presentaties) Tj
+0 -12 Td
+(• Professionele lay-outs) Tj
+0 -12 Td
+(• Snel en gebruiksvriendelijk) Tj
+
+0 -20 Td
+/F2 12 Tf
+(5. Canva AI) Tj
+0 -18 Td
+/F1 10 Tf
+(• AI-gegenereerde afbeeldingen) Tj
+0 -12 Td
+(• Templates voor onderwijsmateriaal) Tj
+0 -12 Td
+(• Gratis educatieve licenties) Tj
+
+0 -20 Td
+/F2 12 Tf
+(6. DALL-E 3) Tj
+0 -18 Td
+/F1 10 Tf
+(• Genereert afbeeldingen uit tekst) Tj
+0 -12 Td
+(• Creatieve illustraties voor lessen) Tj
+0 -12 Td
+(• Geintegreerd in ChatGPT Plus) Tj
+
+0 -25 Td
+/F2 14 Tf
+(ONDERZOEK EN ANALYSE) Tj
+
+0 -20 Td
+/F2 12 Tf
+(7. Perplexity AI) Tj
+0 -18 Td
+/F1 10 Tf
+(• Zoekengine met AI-antwoorden) Tj
+0 -12 Td
+(• Vermeldt bronnen automatisch) Tj
+0 -12 Td
+(• Actuele informatie) Tj
+
+0 -20 Td
+/F2 12 Tf
+(8. NotebookLM \(Google\)) Tj
+0 -18 Td
+/F1 10 Tf
+(• Analyseert documenten) Tj
+0 -12 Td
+(• Maakt samenvattingen) Tj
+0 -12 Td
+(• Genereert vragen over teksten) Tj
+ET
+endstream
+endobj
+
+16 0 obj
+<<
+/Length 3000
+>>
+stream
+BT
+/F2 16 Tf
+50 720 Td
+(AI IN HET BASISONDERWIJS \(PO\)) Tj
+
+0 -40 Td
+/F1 11 Tf
+(AI in het basisonderwijs vraagt om een speelse en veilige) Tj
+0 -15 Td
+(benadering. Kinderen zijn van nature nieuwsgierig naar) Tj
+0 -15 Td
+(technologie, maar hebben begeleiding nodig om AI) Tj
+0 -15 Td
+(verantwoord te gebruiken.) Tj
+
+0 -30 Td
+/F2 14 Tf
+(GESCHIKTE AI-TOOLS VOOR PO) Tj
+
+0 -25 Td
+/F2 12 Tf
+(Scratch for Educators) Tj
+0 -18 Td
+/F1 10 Tf
+(• Programmeren zonder code) Tj
+0 -12 Td
+(• Ontwikkelt logisch denken) Tj
+0 -12 Td
+(• Gratis en veilig voor kinderen) Tj
+0 -12 Td
+(• Nederlandse interface beschikbaar) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Quick, Draw! \(Google\)) Tj
+0 -18 Td
+/F1 10 Tf
+(• AI raadt tekeningen) Tj
+0 -12 Td
+(• Leert over patroonherkenning) Tj
+0 -12 Td
+(• Leuk en interactief) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Teachable Machine) Tj
+0 -18 Td
+/F1 10 Tf
+(• Kinderen trainen eigen AI-modellen) Tj
+0 -12 Td
+(• Herkent afbeeldingen, geluiden, poses) Tj
+0 -12 Td
+(• Geen programmeerkennis vereist) Tj
+
+0 -25 Td
+/F2 14 Tf
+(PRAKTISCHE LESIDEEËN) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Groep 3-4: AI om ons heen) Tj
+0 -18 Td
+/F1 10 Tf
+(• Zoektocht naar AI in het dagelijks leven) Tj
+0 -12 Td
+(• Spraakassistenten, spelletjes, apps) Tj
+0 -12 Td
+(• Tekenen van 'slimme' apparaten) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Groep 5-6: Patronen herkennen) Tj
+0 -18 Td
+/F1 10 Tf
+(• Quick Draw gebruiken) Tj
+0 -12 Td
+(• Patronen zoeken in getallen en vormen) Tj
+0 -12 Td
+(• Voorspellingen maken) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Groep 7-8: Eigen AI maken) Tj
+0 -18 Td
+/F1 10 Tf
+(• Teachable Machine gebruiken) Tj
+0 -12 Td
+(• Klasgenoten, dieren of objecten herkennen) Tj
+0 -12 Td
+(• Discussie over hoe AI leert) Tj
+
+0 -25 Td
+/F2 14 Tf
+(VEILIGHEID EN BEGELEIDING) Tj
+0 -20 Td
+/F1 10 Tf
+(• Altijd onder begeleiding van docent) Tj
+0 -12 Td
+(• Geen persoonlijke gegevens invoeren) Tj
+0 -12 Td
+(• Kritisch nadenken over AI-antwoorden) Tj
+0 -12 Td
+(• Bespreken wat AI wel en niet kan) Tj
+ET
+endstream
+endobj
+
+17 0 obj
+<<
+/Length 3100
+>>
+stream
+BT
+/F2 16 Tf
+50 720 Td
+(AI IN HET VOORTGEZET ONDERWIJS \(VO\)) Tj
+
+0 -40 Td
+/F1 11 Tf
+(In het voortgezet onderwijs kunnen leerlingen meer) Tj
+0 -15 Td
+(zelfstandig met AI-tools werken. De focus ligt op) Tj
+0 -15 Td
+(kritisch denken, onderzoeksvaardigheden en) Tj
+0 -15 Td
+(voorbereiding op de arbeidsmarkt.) Tj
+
+0 -30 Td
+/F2 14 Tf
+(AI-TOOLS PER VAKGEBIED) Tj
+
+0 -25 Td
+/F2 12 Tf
+(Nederlands) Tj
+0 -18 Td
+/F1 10 Tf
+(• ChatGPT voor tekstanalyse en schrijfhulp) Tj
+0 -12 Td
+(• Grammarly voor spelling en stijl) Tj
+0 -12 Td
+(• DeepL voor vertalingen) Tj
+0 -12 Td
+(• AI voor creatief schrijven \(verhaalstarters\)) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Wiskunde) Tj
+0 -18 Td
+/F1 10 Tf
+(• Photomath voor stap-voor-stap oplossingen) Tj
+0 -12 Td
+(• GeoGebra met AI-ondersteuning) Tj
+0 -12 Td
+(• ChatGPT voor uitleg van concepten) Tj
+0 -12 Td
+(• AI voor het genereren van oefenopgaven) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Geschiedenis) Tj
+0 -18 Td
+/F1 10 Tf
+(• AI voor bronnenonderzoek) Tj
+0 -12 Td
+(• Tijdlijnen maken met AI-ondersteuning) Tj
+0 -12 Td
+(• Historische figuren 'interviewen' met AI) Tj
+0 -12 Td
+(• Alternatieve geschiedenisscenario's verkennen) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Biologie) Tj
+0 -18 Td
+/F1 10 Tf
+(• AI voor analyse van DNA-sequenties) Tj
+0 -12 Td
+(• Identificatie van planten en dieren) Tj
+0 -12 Td
+(• Simulaties van biologische processen) Tj
+0 -12 Td
+(• Datavisualisatie van onderzoeksresultaten) Tj
+
+0 -25 Td
+/F2 14 Tf
+(PRAKTISCHE OPDRACHTEN) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Onderzoeksopdracht met AI) Tj
+0 -18 Td
+/F1 10 Tf
+(1. Onderwerp kiezen) Tj
+0 -12 Td
+(2. AI gebruiken voor eerste informatie) Tj
+0 -12 Td
+(3. Bronnen controleren en aanvullen) Tj
+0 -12 Td
+(4. AI gebruiken voor structuur en samenvatting) Tj
+0 -12 Td
+(5. Eigen analyse en conclusie toevoegen) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Ethiek debat) Tj
+0 -18 Td
+/F1 10 Tf
+(• Voor- en nadelen van AI bespreken) Tj
+0 -12 Td
+(• Werkgelegenheid en AI) Tj
+0 -12 Td
+(• Privacy en databeveiliging) Tj
+0 -12 Td
+(• AI in de gezondheidszorg) Tj
+ET
+endstream
+endobj
+
+18 0 obj
+<<
+/Length 2900
+>>
+stream
+BT
+/F2 16 Tf
+50 720 Td
+(AI IN MBO EN HBO) Tj
+
+0 -40 Td
+/F1 11 Tf
+(In het beroepsonderwijs en hoger onderwijs staat) Tj
+0 -15 Td
+(praktijkgerichte toepassing centraal. Studenten leren) Tj
+0 -15 Td
+(AI-tools die ze later in hun beroep zullen gebruiken.) Tj
+
+0 -30 Td
+/F2 14 Tf
+(AI-TOEPASSINGEN PER SECTOR) Tj
+
+0 -25 Td
+/F2 12 Tf
+(Techniek en ICT) Tj
+0 -18 Td
+/F1 10 Tf
+(• GitHub Copilot voor programmeren) Tj
+0 -12 Td
+(• AI voor code review en debugging) Tj
+0 -12 Td
+(• Automatisering van tests) Tj
+0 -12 Td
+(• AI in cybersecurity) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Zorg en Welzijn) Tj
+0 -18 Td
+/F1 10 Tf
+(• AI voor diagnostiek ondersteuning) Tj
+0 -12 Td
+(• Behandelplan optimalisatie) Tj
+0 -12 Td
+(• Medicatie management) Tj
+0 -12 Td
+(• Ethische vraagstukken in de zorg) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Economie en Business) Tj
+0 -18 Td
+/F1 10 Tf
+(• Marktanalyse met AI) Tj
+0 -12 Td
+(• Customer service chatbots) Tj
+0 -12 Td
+(• Voorspellende analyses) Tj
+0 -12 Td
+(• Automatisering van boekhouding) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Creatieve Vakken) Tj
+0 -18 Td
+/F1 10 Tf
+(• AI voor grafisch ontwerp) Tj
+0 -12 Td
+(• Muziekcompositie met AI) Tj
+0 -12 Td
+(• Content creatie voor social media) Tj
+0 -12 Td
+(• Video editing met AI) Tj
+
+0 -25 Td
+/F2 14 Tf
+(PROJECTVOORBEELD: MARKTONDERZOEK MET AI) Tj
+
+0 -20 Td
+/F1 10 Tf
+(Fase 1: Data verzameling) Tj
+0 -12 Td
+(• AI-tools gebruiken voor trendanalyse) Tj
+0 -12 Td
+(• Sociale media sentiment analyseren) Tj
+0 -12 Td
+(• Concurrentieanalyse automatiseren) Tj
+
+0 -15 Td
+/F1 10 Tf
+(Fase 2: Data analyse) Tj
+0 -12 Td
+(• Patronen herkennen in consumentengedrag) Tj
+0 -12 Td
+(• Voorspellingen maken over marktontwikkeling) Tj
+0 -12 Td
+(• Visualisaties maken van bevindingen) Tj
+
+0 -15 Td
+/F1 10 Tf
+(Fase 3: Presentatie) Tj
+0 -12 Td
+(• AI gebruiken voor presentatie-opzet) Tj
+0 -12 Td
+(• Aanbevelingen formuleren) Tj
+0 -12 Td
+(• Implementatieplan opstellen) Tj
+ET
+endstream
+endobj
+
+19 0 obj
+<<
+/Length 2800
+>>
+stream
+BT
+/F2 16 Tf
+50 720 Td
+(ETHIEK EN VEILIGHEID) Tj
+
+0 -40 Td
+/F1 11 Tf
+(Verantwoord gebruik van AI in onderwijs vereist aandacht) Tj
+0 -15 Td
+(voor ethische aspecten, privacy en veiligheid. Als docent) Tj
+0 -15 Td
+(speel je een cruciale rol in het begeleiden van leerlingen.) Tj
+
+0 -30 Td
+/F2 14 Tf
+(BELANGRIJKSTE ETHISCHE VRAAGSTUKKEN) Tj
+
+0 -25 Td
+/F2 12 Tf
+(Privacy en Databeveiliging) Tj
+0 -18 Td
+/F1 10 Tf
+(• Nooit persoonlijke gegevens van leerlingen invoeren) Tj
+0 -12 Td
+(• Controleer privacy-instellingen van AI-tools) Tj
+0 -12 Td
+(• Gebruik schoolaccounts waar mogelijk) Tj
+0 -12 Td
+(• Bewaar geen gevoelige informatie in AI-chats) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Betrouwbaarheid en Bias) Tj
+0 -18 Td
+/F1 10 Tf
+(• AI kan fouten maken of vooringenomen zijn) Tj
+0 -12 Td
+(• Controleer altijd AI-gegenereerde content) Tj
+0 -12 Td
+(• Leer leerlingen kritisch te zijn) Tj
+0 -12 Td
+(• Gebruik meerdere bronnen voor verificatie) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Originaliteit en Plagiaat) Tj
+0 -18 Td
+/F1 10 Tf
+(• Maak duidelijke regels over AI-gebruik) Tj
+0 -12 Td
+(• Leer leerlingen AI als hulpmiddel te zien) Tj
+0 -12 Td
+(• Stimuleer eigen denken en creativiteit) Tj
+0 -12 Td
+(• Gebruik AI-detectietools waar nodig) Tj
+
+0 -25 Td
+/F2 14 Tf
+(PRAKTISCHE RICHTLIJNEN) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Voor docenten:) Tj
+0 -15 Td
+/F1 10 Tf
+(• Test AI-tools eerst zelf voordat je ze gebruikt) Tj
+0 -12 Td
+(• Maak schoolafspraken over AI-gebruik) Tj
+0 -12 Td
+(• Blijf op de hoogte van nieuwe ontwikkelingen) Tj
+0 -12 Td
+(• Deel ervaringen met collega's) Tj
+
+0 -18 Td
+/F2 12 Tf
+(Voor leerlingen:) Tj
+0 -15 Td
+/F1 10 Tf
+(• Vertel altijd wanneer je AI hebt gebruikt) Tj
+0 -12 Td
+(• Gebruik AI als startpunt, niet als eindpunt) Tj
+0 -12 Td
+(• Controleer en verbeter AI-gegenereerde content) Tj
+0 -12 Td
+(• Ontwikkel je eigen kritische denkvaardigheden) Tj
+
+0 -25 Td
+/F2 14 Tf
+(VEILIGE AI-TOOLS VOOR ONDERWIJS) Tj
+0 -20 Td
+/F1 10 Tf
+(• ChatGPT \(met schoolaccount\)) Tj
+0 -12 Td
+(• Google Workspace for Education) Tj
+0 -12 Td
+(• Microsoft Education tools) Tj
+0 -12 Td
+(• Scratch for Educators) Tj
+0 -12 Td
+(• Teachable Machine) Tj
+ET
+endstream
+endobj
+
+20 0 obj
+<<
+/Length 2500
+>>
+stream
+BT
+/F2 16 Tf
+50 720 Td
+(PRAKTISCHE IMPLEMENTATIE) Tj
+
+0 -40 Td
+/F1 11 Tf
+(De implementatie van AI in je onderwijs doe je het beste) Tj
+0 -15 Td
+(stap voor stap. Begin klein, experimenteer veilig en) Tj
+0 -15 Td
+(bouw geleidelijk je expertise op.) Tj
+
+0 -30 Td
+/F2 14 Tf
+(STAPPENPLAN VOOR DOCENTEN) Tj
+
+0 -25 Td
+/F2 12 Tf
+(Stap 1: Oriëntatie \(Week 1-2\)) Tj
+0 -18 Td
+/F1 10 Tf
+(• Maak een gratis ChatGPT account) Tj
+0 -12 Td
+(• Probeer 30 minuten per dag verschillende prompts) Tj
+0 -12 Td
+(• Lees over AI in onderwijs) Tj
+0 -12 Td
+(• Praat met collega's over hun ervaringen) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Stap 2: Eerste toepassingen \(Week 3-4\)) Tj
+0 -18 Td
+/F1 10 Tf
+(• Gebruik AI voor lesvoorbereiding) Tj
+0 -12 Td
+(• Genereer oefenvragen voor je vakgebied) Tj
+0 -12 Td
+(• Laat AI teksten samenvatten) Tj
+0 -12 Td
+(• Experimenteer met verschillende schrijfstijlen) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Stap 3: In de klas \(Week 5-8\)) Tj
+0 -18 Td
+/F1 10 Tf
+(• Introduceer AI aan leerlingen) Tj
+0 -12 Td
+(• Demonstreer AI-tools tijdens lessen) Tj
+0 -12 Td
+(• Laat leerlingen zelf experimenteren) Tj
+0 -12 Td
+(• Bespreek ethische aspecten) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Stap 4: Uitbreiding \(Maand 3+\)) Tj
+0 -18 Td
+/F1 10 Tf
+(• Probeer nieuwe AI-tools) Tj
+0 -12 Td
+(• Ontwikkel AI-opdrachten) Tj
+0 -12 Td
+(• Deel ervaringen met collega's) Tj
+0 -12 Td
+(• Volg trainingen of workshops) Tj
+
+0 -25 Td
+/F2 14 Tf
+(HULPBRONNEN EN ONDERSTEUNING) Tj
+
+0 -20 Td
+/F2 12 Tf
+(Websites en Communities:) Tj
+0 -15 Td
+/F1 10 Tf
+(• onderwijs.ai - Nederlandse AI-community) Tj
+0 -12 Td
+(• AI voor Onderwijs Facebook groep) Tj
+0 -12 Td
+(• Kennisnet AI-resources) Tj
+0 -12 Td
+(• Edutopia AI in Education) Tj
+
+0 -18 Td
+/F2 12 Tf
+(Trainingen en Cursussen:) Tj
+0 -15 Td
+/F1 10 Tf
+(• Lokale nascholingsinstituten) Tj
+0 -12 Td
+(• Online cursussen \(Coursera, edX\)) Tj
+0 -12 Td
+(• Webinars van onderwijsorganisaties) Tj
+0 -12 Td
+(• Conferenties over AI in onderwijs) Tj
+
+0 -30 Td
+/F2 12 Tf
+(VEEL GESTELDE VRAGEN) Tj
+0 -18 Td
+/F1 10 Tf
+(Q: Is AI-gebruik niet vals spelen?) Tj
+0 -12 Td
+(A: Niet als het transparant en educatief wordt gebruikt.) Tj
+
+0 -15 Td
+/F1 10 Tf
+(Q: Vervangen AI-tools de docent?) Tj
+0 -12 Td
+(A: Nee, ze ondersteunen en versterken je rol als docent.) Tj
+
+0 -15 Td
+/F1 10 Tf
+(Q: Zijn AI-tools veilig voor kinderen?) Tj
+0 -12 Td
+(A: Met goede begeleiding en juiste tools wel.) Tj
+
+0 -30 Td
+/F2 14 Tf
+(CONTACT EN MEER INFORMATIE) Tj
+0 -18 Td
+/F1 11 Tf
+(Website: onderwijs.ai) Tj
+0 -15 Td
+(E-mail: ai.onderwijs@gmail.com) Tj
+0 -15 Td
+(Deze gids is gemaakt in 2025 en wordt regelmatig bijgewerkt.) Tj
+ET
+endstream
+endobj
+
 xref
-0 6
+0 21
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
-0000000115 00000 n 
-0000000274 00000 n 
-0000015324 00000 n 
+0000000155 00000 n 
+0000000302 00000 n 
+0000000449 00000 n 
+0000000596 00000 n 
+0000000743 00000 n 
+0000000890 00000 n 
+0000001037 00000 n 
+0000001185 00000 n 
+0000001334 00000 n 
+0000004184 00000 n 
+0000004248 00000 n 
+0000004317 00000 n 
+0000007267 00000 n 
+0000010517 00000 n 
+0000013567 00000 n 
+0000016717 00000 n 
+0000019667 00000 n 
+0000022517 00000 n 
 trailer
 <<
-/Size 6
+/Size 21
 /Root 1 0 R
 >>
 startxref
-15398
+25067
 %%EOF
