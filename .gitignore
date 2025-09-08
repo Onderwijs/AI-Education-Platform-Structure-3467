@@ -25,7 +25,7 @@ dist-ssr
 
 .env
 
-# BLOCK ALL PDF FILES TO PREVENT ACCIDENTAL RE-ADDITION
+# 🚫 BLOCK ALL PDF FILES COMPLETELY - NEVER ALLOW ANY PDF FILES IN REPOSITORY
 *.pdf
 **/*.pdf
 public/**/*.pdf
@@ -33,11 +33,23 @@ public/downloads/*.pdf
 public/lessons/*.pdf
 public/projects/*.pdf
 
-# EXPLICITLY BLOCK OLD FILES
+# 🚫 EXPLICITLY BLOCK OLD FILES BY NAME - NEVER ALLOW THESE SPECIFIC FILES
 public/downloads/ai-startersgids-complete.pdf
 public/lessons/*.pdf
 public/projects/*.pdf
-
-# PREVENT ANY PDF UPLOADS
 **/ai-startersgids-complete.pdf
 **/AI-Complete-Startersgids-50-Tools.pdf
+
+# 🚫 BLOCK ANY ATTEMPT TO ADD PDF FILES IN ANY DIRECTORY
+src/**/*.pdf
+assets/**/*.pdf
+static/**/*.pdf
+downloads/**/*.pdf
+lessons/**/*.pdf
+projects/**/*.pdf
+
+# 🚫 BLOCK COMMON PDF NAMING PATTERNS
+*startersgids*.pdf
+*complete*.pdf
+*gids*.pdf
+*handleiding*.pdf

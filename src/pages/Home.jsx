@@ -50,11 +50,11 @@ const Home = () => {
     }
   ];
 
-  // ENHANCED download handler with aggressive cache clearing
+  // ENHANCED download handler V2.0 with ultra-aggressive cache clearing
   const handleDownloadClick = () => {
-    console.log('🚀 Home page download - FORCING COMPLETELY NEW PDF generation...');
+    console.log('🚀 Home page download - FORCING COMPLETELY NEW PDF V2.0...');
     
-    // STEP 1: Aggressively clear ALL possible cache sources
+    // ULTRA AGGRESSIVE cache clearing - prevent ANY old file delivery
     if ('caches' in window) {
       caches.keys().then(names => {
         names.forEach(name => {
@@ -63,18 +63,30 @@ const Home = () => {
       });
     }
     
-    // Clear any localStorage cache
-    localStorage.removeItem('pdf-cache');
-    localStorage.removeItem('startersgids-cache');
+    // Clear ALL localStorage items that could cache PDFs
+    Object.keys(localStorage).forEach(key => {
+      if (key.includes('pdf') || key.includes('startersgids') || key.includes('download')) {
+        localStorage.removeItem(key);
+      }
+    });
     
-    // Clear sessionStorage
+    // Clear sessionStorage completely
     sessionStorage.clear();
     
-    // Add a small delay to ensure cache clearing completes
+    // Clear any browser-specific caches
+    if (window.caches) {
+      window.caches.keys().then(cacheNames => {
+        cacheNames.forEach(cacheName => {
+          window.caches.delete(cacheName);
+        });
+      });
+    }
+    
+    // Add delay to ensure complete cache clearing
     setTimeout(() => {
-      console.log('📥 Calling downloadStartersgids() for GUARANTEED NEW PDF...');
+      console.log('📥 Calling downloadStartersgids() V2.0 for GUARANTEED NEW PDF...');
       downloadStartersgids();
-    }, 100);
+    }, 200);
   };
 
   return (
@@ -102,14 +114,14 @@ const Home = () => {
                 Praktische tools, lessen en trainingen voor moderne docenten.
               </p>
 
-              {/* Enhanced CTA Buttons */}
+              {/* Enhanced CTA Buttons V2.0 */}
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <button
                   onClick={handleDownloadClick}
-                  className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-lg"
+                  className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-lg border-2 border-white"
                 >
                   <SafeIcon icon={FiDownload} />
-                  <span>🆕 NIEUWE PDF Download</span>
+                  <span>🆕 GLOEDNIEUWE PDF V2.0</span>
                 </button>
                 <Link
                   to="/ai-tools"
@@ -247,7 +259,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Enhanced Newsletter CTA */}
+      {/* Enhanced Newsletter CTA V2.0 */}
       <section className="py-20 bg-primary-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -259,21 +271,21 @@ const Home = () => {
               Start vandaag met AI in jouw onderwijs
             </h2>
             <p className="text-xl text-primary-100 mb-8">
-              Download gratis onze GLOEDNIEUWE AI-toolkit en ontvang nieuwe lessen en tips
+              Download gratis onze GLOEDNIEUWE AI-toolkit V2.0 en ontvang nieuwe lessen en tips
             </p>
             
-            {/* Enhanced download button with visual indicators */}
+            {/* Enhanced download button V2.0 with visual indicators */}
             <div className="flex flex-col items-center space-y-4">
               <button
                 onClick={handleDownloadClick}
-                className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 shadow-lg"
+                className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 shadow-lg border-2 border-white"
               >
                 <SafeIcon icon={FiDownload} />
-                <span>🆕 NIEUWE PDF Download</span>
+                <span>🆕 GLOEDNIEUWE PDF V2.0</span>
               </button>
               
               <div className="text-primary-200 text-sm">
-                ✨ Dynamisch gegenereerd • Altijd actueel • Professioneel geformatteerd
+                ✨ V2.0: Enhanced security • Ultra-unique IDs • Visual markers • Nederlandse focus
               </div>
             </div>
           </motion.div>

@@ -17,8 +17,8 @@ const Nieuwsbrief = () => {
   const benefits = [
     {
       icon: FiDownload,
-      title: "🆕 NIEUWE AI Startersgids PDF",
-      description: "Compleet vernieuwde gids - professioneel geformatteerd als PDF!"
+      title: "🆕 GLOEDNIEUWE AI Startersgids PDF V2.0",
+      description: "Compleet vernieuwde gids met enhanced security en Nederlandse focus!"
     },
     {
       icon: FiMail,
@@ -68,7 +68,7 @@ const Nieuwsbrief = () => {
     setIsSubmitting(true);
 
     try {
-      // STEP 1: Aggressively clear ALL cache before processing
+      // STEP 1: ULTRA AGGRESSIVE cache clearing before processing
       if ('caches' in window) {
         caches.keys().then(names => {
           names.forEach(name => {
@@ -77,9 +77,14 @@ const Nieuwsbrief = () => {
         });
       }
       
-      // Clear localStorage and sessionStorage
-      localStorage.removeItem('pdf-cache');
-      localStorage.removeItem('startersgids-cache');
+      // Clear ALL localStorage items that could cache PDFs
+      Object.keys(localStorage).forEach(key => {
+        if (key.includes('pdf') || key.includes('startersgids') || key.includes('download')) {
+          localStorage.removeItem(key);
+        }
+      });
+      
+      // Clear sessionStorage completely
       sessionStorage.clear();
 
       // Method 1: Use Netlify Forms (Recommended)
@@ -89,7 +94,7 @@ const Nieuwsbrief = () => {
         formDataNetlify.append('email', formData.email);
         formDataNetlify.append('role', formData.role || 'Niet opgegeven');
         formDataNetlify.append('timestamp', new Date().toISOString());
-        formDataNetlify.append('source', 'onderwijs.ai nieuwsbrief pagina');
+        formDataNetlify.append('source', 'onderwijs.ai nieuwsbrief pagina V2.0');
 
         await fetch('/', {
           method: 'POST',
@@ -102,19 +107,21 @@ const Nieuwsbrief = () => {
         submissions.push({
           ...formData,
           timestamp: new Date().toISOString(),
-          id: Date.now()
+          id: Date.now(),
+          version: 'V2.0'
         });
         localStorage.setItem('nieuwsbrief-submissions', JSON.stringify(submissions));
-        console.log('Nieuwsbrief inschrijving:', {
+        console.log('Nieuwsbrief inschrijving V2.0:', {
           email: formData.email,
           role: formData.role || 'Niet opgegeven',
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
+          version: 'V2.0'
         });
       }
 
-      // STEP 2: Wait a moment to ensure form is processed, then FORCE new PDF download
+      // STEP 2: Wait a moment to ensure form is processed, then FORCE new PDF V2.0 download
       setTimeout(() => {
-        console.log('🔄 Form processed, now FORCING completely NEW PDF download...');
+        console.log('🔄 Form processed, now FORCING completely NEW PDF V2.0 download...');
         downloadStartersgids();
         setIsSubscribed(true);
       }, 500);
@@ -122,7 +129,7 @@ const Nieuwsbrief = () => {
     } catch (error) {
       console.error('Error submitting form:', error);
       // Still download the NEW guide even if submission fails
-      console.log('📥 Fallback: Starting GUARANTEED NEW PDF download...');
+      console.log('📥 Fallback: Starting GUARANTEED NEW PDF V2.0 download...');
       downloadStartersgids();
       setIsSubscribed(true);
     } finally {
@@ -148,36 +155,35 @@ const Nieuwsbrief = () => {
           </motion.div>
 
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            🆕 NIEUWE PDF Download gestart!
+            🆕 GLOEDNIEUWE PDF V2.0 Download gestart!
           </h1>
 
           <div className="bg-green-100 border border-green-300 rounded-lg p-4 mb-6">
             <div className="flex items-center space-x-2 mb-2">
               <SafeIcon icon={FiCheck} className="text-green-600" />
-              <span className="font-semibold text-green-800">GLOEDNIEUWE VERSIE WORDT GEDOWNLOAD!</span>
+              <span className="font-semibold text-green-800">VERSIE 2.0 WORDT GEDOWNLOAD!</span>
             </div>
             <p className="text-sm text-green-700">
-              Je ontvangt nu de volledig vernieuwde AI Startersgids als professionele PDF. 
-              Dit is GEGARANDEERD NIET het oude bestand maar een gloednieuwe, dynamisch 
-              gegenereerde versie!
+              Je ontvangt nu de volledig vernieuwde AI Startersgids V2.0 als professionele PDF. 
+              Enhanced security, Nederlandse focus en GEGARANDEERD NIET het oude bestand!
             </p>
           </div>
 
           <p className="text-gray-600 mb-6">
-            De nieuwe AI Startersgids wordt nu gedownload als professioneel geformatteerde PDF. 
-            Volledig vernieuwd, dynamisch gegenereerd en perfect leesbaar.
+            De nieuwe AI Startersgids V2.0 wordt nu gedownload met enhanced security features,
+            rode en groene waarschuwingsboxen en Nederlandse voorbeelden.
           </p>
 
           <div className="space-y-4">
             <button
               onClick={() => {
-                console.log('🔄 Manual NEW PDF download requested...');
+                console.log('🔄 Manual NEW PDF V2.0 download requested...');
                 downloadStartersgids();
               }}
               className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
             >
               <SafeIcon icon={FiDownload} />
-              <span>Download NIEUWE PDF opnieuw</span>
+              <span>Download V2.0 PDF opnieuw</span>
             </button>
 
             <button
@@ -191,13 +197,14 @@ const Nieuwsbrief = () => {
           <div className="mt-6 p-4 bg-yellow-100 border border-yellow-300 rounded-lg">
             <div className="flex items-center space-x-2 mb-2">
               <SafeIcon icon={FiAlertTriangle} className="text-yellow-600" />
-              <span className="font-semibold text-yellow-800">HERKEN HET NIEUWE BESTAND:</span>
+              <span className="font-semibold text-yellow-800">HERKEN HET V2.0 BESTAND:</span>
             </div>
             <p className="text-sm text-yellow-800">
-              ✅ Nieuwe bestandsnaam met timestamp<br/>
-              ✅ Titel: "AI STARTERSGIDS 2025"<br/>
-              ✅ Footer: "DYNAMISCH GEGENEREERD"<br/>
-              ✅ Unieke document-ID<br/>
+              ✅ Rode waarschuwingsbox: "⚠️ DIT IS NIET HET OUDE BESTAND!"<br/>
+              ✅ Groene bevestigingsbox: "✅ NIEUWE DYNAMISCHE VERSIE"<br/>
+              ✅ Titel: "🆕 AI STARTERSGIDS 2025"<br/>
+              ✅ Nederlandse voorbeelden en focus<br/>
+              ✅ Dubbele unieke IDs voor verificatie<br/>
               ❌ NOOIT meer "ai-startersgids-complete.pdf"
             </p>
           </div>
@@ -222,11 +229,11 @@ const Nieuwsbrief = () => {
           >
             <SafeIcon icon={FiGift} className="text-6xl mx-auto mb-6 text-primary-200" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              🆕 NIEUWE AI Startersgids 2025
+              🆕 GLOEDNIEUWE AI Startersgids V2.0
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Ontvang direct onze volledig vernieuwde AI-toolkit als professionele PDF. 
-              Compleet nieuwe inhoud, moderne opmaak en perfect geformatteerd!
+              Ontvang direct onze volledig vernieuwde AI-toolkit V2.0 als professionele PDF. 
+              Enhanced security, Nederlandse focus en impossible-to-confuse design!
             </p>
           </motion.div>
         </div>
@@ -244,18 +251,18 @@ const Nieuwsbrief = () => {
             >
               <div className="bg-gray-50 p-8 rounded-2xl">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Download de 🆕 NIEUWE AI Startersgids
+                  Download de 🆕 GLOEDNIEUWE AI Startersgids V2.0
                 </h2>
 
-                {/* Enhanced Important Notice */}
+                {/* Enhanced Important Notice V2.0 */}
                 <div className="mb-6 p-4 bg-blue-100 border border-blue-300 rounded-lg">
                   <div className="flex items-center space-x-2">
                     <SafeIcon icon={FiCheck} className="text-blue-600" />
-                    <span className="font-semibold text-blue-800">🆕 VOLLEDIG VERNIEUWD!</span>
+                    <span className="font-semibold text-blue-800">🆕 VERSIE 2.0 - ENHANCED SECURITY!</span>
                   </div>
                   <p className="text-sm text-blue-700 mt-1">
-                    Dit is een gloednieuwe, dynamisch gegenereerde versie - GEGARANDEERD NIET het oude bestand! 
-                    Nieuwe inhoud, moderne PDF-opmaak en professionele vormgeving.
+                    V2.0 features: Rode/groene waarschuwingsboxen, Nederlandse focus, enhanced security, 
+                    dubbele unieke IDs - ONMOGELIJK te verwarren met het oude bestand!
                   </p>
                 </div>
 
@@ -313,7 +320,7 @@ const Nieuwsbrief = () => {
                   >
                     <SafeIcon icon={FiDownload} />
                     <span>
-                      {isSubmitting ? 'Download wordt voorbereid...' : '🆕 Download NIEUWE PDF Startersgids'}
+                      {isSubmitting ? 'V2.0 wordt voorbereid...' : '🆕 Download GLOEDNIEUWE PDF V2.0'}
                     </span>
                   </button>
                 </form>
@@ -335,7 +342,7 @@ const Nieuwsbrief = () => {
               transition={{ delay: 0.4 }}
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                Wat krijg je?
+                Wat krijg je in V2.0?
               </h3>
 
               <div className="space-y-6">
@@ -366,7 +373,7 @@ const Nieuwsbrief = () => {
         </div>
       </section>
 
-      {/* Rest of the component remains the same... */}
+      {/* Rest of component remains the same but with V2.0 references... */}
       {/* Freebies Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -377,10 +384,10 @@ const Nieuwsbrief = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Binnenkort meer Gratis PDF Downloads
+              Binnenkort meer Gratis PDF Downloads V2.0
             </h2>
             <p className="text-xl text-gray-600">
-              Exclusieve materialen om direct mee aan de slag te gaan (allemaal als professionele PDFs!)
+              Exclusieve materialen met enhanced security (allemaal als professionele PDFs!)
             </p>
           </motion.div>
 
@@ -456,10 +463,10 @@ const Nieuwsbrief = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Klaar om te beginnen?
+              Klaar om te beginnen met V2.0?
             </h2>
             <p className="text-xl text-primary-100 mb-8">
-              Stuur een berichtje voor vragen.
+              Stuur een berichtje voor vragen over de nieuwe versie.
             </p>
             <button
               className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 cursor-not-allowed"
