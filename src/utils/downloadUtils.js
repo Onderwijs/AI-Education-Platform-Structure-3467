@@ -4,7 +4,7 @@ import jsPDF from 'jspdf';
  * Download the complete professional AI Startersgids - EXTENDED 10+ PAGE VERSION
  */
 export const downloadStartersgids = () => {
-  console.log('📚 Generating EXTENDED 10+ page professional AI Startersgids V7.0...');
+  console.log('Generating EXTENDED 10+ page professional AI Startersgids V7.0...');
   
   try {
     const doc = new jsPDF({
