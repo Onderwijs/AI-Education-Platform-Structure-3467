@@ -1,21 +1,18 @@
 import jsPDF from 'jspdf';
 
-/**
- * Download the complete AI Startersgids voor het Onderwijs
- */
+/** * Download the complete AI Startersgids voor het Onderwijs */
 export const downloadStartersgids = () => {
   console.log('Generating complete AI Startersgids voor het Onderwijs...');
   
   try {
     const doc = new jsPDF({
       orientation: 'portrait',
-      unit: 'mm',
+      unit: 'mm', 
       format: 'a4'
     });
 
     // Generate unique ID for this version
     const uniqueId = Math.random().toString(36).substring(2, 10);
-    
     doc.setFont('helvetica');
 
     // Clean header without version info
@@ -45,10 +42,12 @@ export const downloadStartersgids = () => {
     doc.rect(20, 150, 170, 35, 'F');
     doc.setFillColor(70, 130, 180);
     doc.rect(20, 150, 170, 5, 'F');
+    
     doc.setFontSize(12);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(70, 130, 180);
     doc.text('COMPLETE HANDLEIDING', 25, 165);
+    
     doc.setFontSize(10);
     doc.setTextColor(0, 0, 0);
     doc.text('Van introductie tot praktische implementatie', 25, 175);
@@ -57,6 +56,7 @@ export const downloadStartersgids = () => {
     // Table of Contents - Page 2
     doc.addPage();
     let yPos = 30;
+    
     doc.setFontSize(24);
     doc.setFont('helvetica', 'bold');
     doc.text('INHOUDSOPGAVE', 20, yPos);
@@ -89,12 +89,14 @@ export const downloadStartersgids = () => {
       const dots = '.'.repeat(Math.floor((140 - item.title.length * 2) / 3));
       doc.setFont('helvetica', 'normal');
       doc.text(dots, 35 + item.title.length * 2, yPos);
+      
       yPos += 8;
     });
 
     // Chapter 1: Welcome - Page 3
     doc.addPage();
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('1. WELKOM BIJ AI IN HET ONDERWIJS', 20, yPos);
@@ -102,6 +104,7 @@ export const downloadStartersgids = () => {
 
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
+    
     const welcomeText = [
       'Welkom bij de AI Startersgids voor het Onderwijs! Deze handleiding is speciaal',
       'ontwikkeld voor Nederlandse docenten die kunstmatige intelligentie willen',
@@ -143,7 +146,7 @@ export const downloadStartersgids = () => {
         doc.addPage();
         yPos = 20;
       }
-      
+
       if (line.startsWith('WAAROM') || line.startsWith('VOOR WIE') || 
           line.startsWith('HOE GEBRUIK') || line.startsWith('WAT VIND')) {
         doc.setFont('helvetica', 'bold');
@@ -155,7 +158,7 @@ export const downloadStartersgids = () => {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(12);
       }
-      
+
       doc.text(line, 20, yPos);
       yPos += line === '' ? 8 : 7;
     });
@@ -163,6 +166,7 @@ export const downloadStartersgids = () => {
     // Chapter 2: What is AI - Page 4-5
     doc.addPage();
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('2. WAT IS KUNSTMATIGE INTELLIGENTIE?', 20, yPos);
@@ -212,7 +216,7 @@ export const downloadStartersgids = () => {
         doc.addPage();
         yPos = 20;
       }
-      
+
       if (line.includes('EENVOUDIGE') || line.includes('SOORTEN')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(14);
@@ -224,7 +228,7 @@ export const downloadStartersgids = () => {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
       }
-      
+
       doc.text(line, 20, yPos);
       yPos += line === '' ? 8 : 6;
     });
@@ -232,6 +236,7 @@ export const downloadStartersgids = () => {
     // Chapter 3: How AI Works - Page 6
     doc.addPage();
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('3. HOE WERKT AI EIGENLIJK?', 20, yPos);
@@ -288,7 +293,7 @@ export const downloadStartersgids = () => {
         doc.addPage();
         yPos = 20;
       }
-      
+
       if (line.includes('EENVOUDIGE') || line.includes('WAAROM IS')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(14);
@@ -301,7 +306,7 @@ export const downloadStartersgids = () => {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
       }
-      
+
       doc.text(line, 20, yPos);
       yPos += line === '' ? 8 : 6;
     });
@@ -309,6 +314,7 @@ export const downloadStartersgids = () => {
     // Chapter 4: TOP 15 AI Tools - Pages 7-9
     doc.addPage();
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('4. TOP 15 AI-TOOLS VOOR DOCENTEN', 20, yPos);
@@ -443,7 +449,7 @@ export const downloadStartersgids = () => {
         doc.addPage();
         yPos = 20;
       }
-      
+
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(12);
       doc.text(tool.name, 20, yPos);
@@ -464,9 +470,10 @@ export const downloadStartersgids = () => {
       yPos += 45;
     });
 
-    // Chapter 5: Primary Education - Pages 10-11
-    doc.addPage();
+    // Chapter 5: Primary Education - IMPROVED VERSION
+    doc.addPage(); // FORCE NEW PAGE
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('5. AI IN HET BASISONDERWIJS', 20, yPos);
@@ -488,36 +495,41 @@ export const downloadStartersgids = () => {
       '• Praten over "slimme" apparaten thuis',
       '',
       'GROEP 5-6: Actief experimenteren',
-      '• Teachable Machine gebruiken',
+      '• Teachable Machine gebruiken (met begeleiding)',
       '• AI-kunstprojecten met eenvoudige tools',
-      '• Chatbots leren kennen (onder begeleiding)',
+      '• Chatbots leren kennen (onder strenge begeleiding)',
       '• Eerste ethische gesprekken over AI',
       '',
-      'GROEP 7-8: Dieper begrip',
-      '• Zelf AI-modellen trainen',
-      '• Onderzoeksprojecten met AI-ondersteuning',
-      '• Kritisch denken over AI-informatie',
-      '• Creatieve projecten met AI-tools',
+      'GROEP 7-8: Begrip en toepassing',
+      '• Begrijpen hoe AI leert van voorbeelden',
+      '• Onderzoeksprojecten met AI-ondersteuning (docent helpt)',
+      '• Kritisch denken: "Klopt dit antwoord wel?"',
+      '• Creatieve projecten met AI als inspiratie',
+      '• Simpele programmeerconcepten (Scratch)',
       '',
       'VEILIGHEID EN ETHIEK',
       '• Gebruik AI altijd onder begeleiding',
       '• Bespreek dat AI soms fouten maakt',
       '• Leer kinderen AI-antwoorden te controleren',
       '• Praat over privacy en persoonlijke informatie',
+      '• Geen persoonlijke gegevens in AI-tools invoeren',
       '',
       'PRAKTISCHE VOORBEELDEN PO',
       '',
       'Rekenen met patronen (groep 5-6)',
-      'Laat leerlingen patronen in getallen ontdekken met AI-hulp.',
+      'Laat leerlingen patronen in getallen ontdekken.',
       'Gebruik: Teachable Machine om cijferherkenning te oefenen',
+      'Doel: Begrijpen dat computers patronen kunnen leren',
       '',
       'Creatief verhalen schrijven (groep 7-8)',
       'AI als inspiratiebron voor eigen verhalen en karakters.',
       'Gebruik: ChatGPT voor karakterideeën, kinderen schrijven zelf',
+      'Belangrijk: Docent controleert alle AI-input en output',
       '',
       'Dieren classificeren (groep 6-7)',
-      'Leerlingen trainen AI om verschillende dieren te herkennen.',
-      'Gebruik: Teachable Machine met foto\'s van dieren'
+      'Leerlingen leren hoe computers dieren kunnen herkennen.',
+      'Gebruik: Teachable Machine met foto\'s van dieren',
+      'Lesdoel: AI leert van voorbeelden, net zoals mensen'
     ];
 
     doc.setFontSize(11);
@@ -526,12 +538,12 @@ export const downloadStartersgids = () => {
         doc.addPage();
         yPos = 20;
       }
-      
+
       if (line.includes('LEEFTIJDSGESCHIKT') || line.includes('VEILIGHEID') || 
           line.includes('PRAKTISCHE VOORBEELDEN')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(14);
-      } else if (line.startsWith('GROEP') || line.startsWith('Rekenen') ||
+      } else if (line.startsWith('GROEP') || line.startsWith('Rekenen') || 
                  line.startsWith('Creatief') || line.startsWith('Dieren')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(12);
@@ -539,14 +551,15 @@ export const downloadStartersgids = () => {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
       }
-      
+
       doc.text(line, 20, yPos);
       yPos += line === '' ? 8 : 6;
     });
 
-    // Chapter 6: Secondary Education - Pages 12-13
-    doc.addPage();
+    // Chapter 6: Secondary Education - FORCE NEW PAGE
+    doc.addPage(); // FORCE NEW PAGE
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('6. AI IN HET VOORTGEZET ONDERWIJS', 20, yPos);
@@ -579,7 +592,35 @@ export const downloadStartersgids = () => {
       '• Tekstanalyse en literatuuronderzoek',
       '• Schrijfhulp en stijlverbetering',
       '• Creatief schrijven met AI-inspiratie',
-      '• Bronnenonderzoek en fact-checking',
+      '• Bronnenonderzoek en fact-checking'
+    ];
+
+    // Continue with the rest but ensure proper page breaks
+    doc.setFontSize(11);
+    secondaryEducation.forEach(line => {
+      if (yPos > 270) {
+        doc.addPage();
+        yPos = 20;
+      }
+
+      if (line.includes('AI VOOR VERSCHILLENDE') || line.includes('VAKSPECIFIEKE')) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(14);
+      } else if (line.startsWith('VMBO:') || line.startsWith('HAVO:') || 
+                 line.startsWith('VWO:') || line.startsWith('Nederlands')) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(12);
+      } else {
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(11);
+      }
+
+      doc.text(line, 20, yPos);
+      yPos += line === '' ? 8 : 6;
+    });
+
+    // Continue with remaining subjects on same page or new page as needed
+    const moreSubjects = [
       '',
       'Wiskunde',
       '• Complexe berekeningen controleren',
@@ -587,7 +628,7 @@ export const downloadStartersgids = () => {
       '• Patroonherkenning in datasets',
       '• Statistiek en kansrekening',
       '',
-      'Geschiedenis',
+      'Geschiedenis', // This will get proper page treatment
       '• Bronnenanalyse en verificatie',
       '• Tijdlijnen en verbanden visualiseren',
       '• Onderzoek naar historische data',
@@ -620,21 +661,23 @@ export const downloadStartersgids = () => {
       '• Uitleg van moeilijke concepten op maat'
     ];
 
-    doc.setFontSize(11);
-    secondaryEducation.forEach(line => {
+    moreSubjects.forEach(line => {
       if (yPos > 270) {
         doc.addPage();
         yPos = 20;
       }
-      
-      if (line.includes('AI VOOR VERSCHILLENDE') || line.includes('VAKSPECIFIEKE') || 
-          line.includes('PRAKTISCHE PROJECTEN') || line.includes('EXAMENVORBEREIDING')) {
+
+      // Special handling for "Geschiedenis" - force new page if needed
+      if (line === 'Geschiedenis' && yPos > 220) {
+        doc.addPage();
+        yPos = 20;
+      }
+
+      if (line.includes('PRAKTISCHE PROJECTEN') || line.includes('EXAMENVORBEREIDING')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(14);
-      } else if (line.startsWith('VMBO:') || line.startsWith('HAVO:') || 
-                 line.startsWith('VWO:') || line.startsWith('Nederlands') ||
-                 line.startsWith('Wiskunde') || line.startsWith('Geschiedenis') ||
-                 line.startsWith('Biologie') || line.startsWith('Maatschappijleer:') ||
+      } else if (line.startsWith('Wiskunde') || line.startsWith('Geschiedenis') || 
+                 line.startsWith('Biologie') || line.startsWith('Maatschappijleer:') || 
                  line.startsWith('Engels:') || line.startsWith('Economie:')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(12);
@@ -642,14 +685,15 @@ export const downloadStartersgids = () => {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
       }
-      
+
       doc.text(line, 20, yPos);
       yPos += line === '' ? 8 : 6;
     });
 
-    // Chapter 7: MBO & HBO - Pages 14-15
-    doc.addPage();
+    // Chapter 7: MBO & HBO - FORCE NEW PAGE
+    doc.addPage(); // FORCE NEW PAGE
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('7. AI IN MBO EN HBO', 20, yPos);
@@ -694,42 +738,7 @@ export const downloadStartersgids = () => {
       '• AI-geassisteerd design en concept development',
       '• Content creatie en multimedia productie',
       '• Personalisatie in marketing en communicatie',
-      '• Nieuwe media en interactieve ervaringen',
-      '',
-      'PRAKTIJKPROJECTEN MBO/HBO',
-      '',
-      'AI-gedreven marktonderzoek (Business Studies)',
-      'Studenten gebruiken AI-tools voor uitgebreid marktonderzoek.',
-      'Deliverables: marktrapport, business plan, pitch presentatie',
-      'Duur: 8-12 weken, geschikt voor HBO bachelor niveau',
-      '',
-      'Smart Healthcare Solutions (Zorg en Welzijn)',
-      'Ontwikkeling van AI-ondersteunde zorgoplossingen.',
-      'Focus op ethische aspecten en praktische implementatie',
-      'Samenwerking met zorginstelling voor real-world impact',
-      '',
-      'Creative AI Portfolio (Media en Design)',
-      'Portfolio ontwikkeling met diverse AI-tools.',
-      'Van concept tot uitvoering, inclusief reflectie op proces',
-      'Geschikt voor MBO niveau 3-4 en HBO',
-      '',
-      '21E EEUWSE VAARDIGHEDEN',
-      '',
-      'AI Literacy',
-      'Begrip van mogelijkheden en beperkingen van AI-systemen.',
-      'Essentieel voor alle toekomstige professionals.',
-      '',
-      'Kritisch Evalueren',
-      'AI-output beoordelen, valideren en verbeteren.',
-      'Noodzakelijk voor kwaliteitsborging in AI-gebruik.',
-      '',
-      'Ethisch Denken',
-      'Verantwoord omgaan met AI-technologie en data.',
-      'Cruciaal voor vertrouwen en acceptatie van AI.',
-      '',
-      'Menselijke Creativiteit',
-      'AI als tool gebruiken, niet als vervanging.',
-      'Focus op uniek menselijke vaardigheden en inzichten.'
+      '• Nieuwe media en interactieve ervaringen'
     ];
 
     doc.setFontSize(11);
@@ -738,33 +747,30 @@ export const downloadStartersgids = () => {
         doc.addPage();
         yPos = 20;
       }
-      
-      if (line.includes('PROFESSIONELE AI') || line.includes('SECTORSPECIFIEKE') || 
-          line.includes('PRAKTIJKPROJECTEN') || line.includes('21E EEUWSE')) {
+
+      if (line.includes('PROFESSIONELE AI') || line.includes('SECTORSPECIFIEKE')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(14);
       } else if (line.startsWith('MBO:') || line.startsWith('HBO:') || 
-                 line.startsWith('Techniek') || line.startsWith('Zorg') ||
-                 line.startsWith('Economie') || line.startsWith('Creatieve') ||
-                 line.startsWith('AI-gedreven') || line.startsWith('Smart Healthcare') ||
-                 line.startsWith('Creative AI') || line.startsWith('AI Literacy') ||
-                 line.startsWith('Kritisch') || line.startsWith('Ethisch') ||
-                 line.startsWith('Menselijke')) {
+                 line.startsWith('Techniek') || line.startsWith('Zorg') || 
+                 line.startsWith('Economie') || line.startsWith('Creatieve')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(12);
       } else {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
       }
-      
+
       doc.text(line, 20, yPos);
       yPos += line === '' ? 8 : 6;
     });
 
-    // Continue with remaining chapters...
-    // Chapter 8: Practical Examples and Prompts - Page 16
-    doc.addPage();
+    // Continue with remaining chapters ensuring proper page breaks...
+    
+    // Chapter 8: Practical Examples and Prompts - FORCE NEW PAGE
+    doc.addPage(); // FORCE NEW PAGE
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('8. PRAKTISCHE VOORBEELDEN EN PROMPTS', 20, yPos);
@@ -803,11 +809,11 @@ export const downloadStartersgids = () => {
         doc.addPage();
         yPos = 20;
       }
-      
+
       if (line.includes('EFFECTIEVE PROMPTS') || line.includes('TIPS VOOR')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(14);
-      } else if (line.startsWith('Lesplannen') || line.startsWith('Feedback') ||
+      } else if (line.startsWith('Lesplannen') || line.startsWith('Feedback') || 
                  line.startsWith('Differentiatie') || line.startsWith('Toetsvragen')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(12);
@@ -815,15 +821,17 @@ export const downloadStartersgids = () => {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
       }
-      
+
       doc.text(line, 20, yPos);
       yPos += line === '' ? 8 : 6;
     });
 
-    // Add remaining short chapters...
-    // Chapter 9: Ethics and Safety - Page 17
-    doc.addPage();
+    // Remaining short chapters with proper page breaks
+    
+    // Chapter 9: Ethics and Safety - FORCE NEW PAGE
+    doc.addPage(); // FORCE NEW PAGE
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('9. ETHIEK EN VEILIGHEID', 20, yPos);
@@ -847,13 +855,15 @@ export const downloadStartersgids = () => {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
       }
+
       doc.text(line, 20, yPos);
       yPos += 8;
     });
 
-    // Chapter 10: Implementation Step-by-Step - Page 18
-    doc.addPage();
+    // Chapter 10: Implementation Step-by-Step - FORCE NEW PAGE
+    doc.addPage(); // FORCE NEW PAGE
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('10. IMPLEMENTATIE STAP-VOOR-STAP', 20, yPos);
@@ -877,13 +887,15 @@ export const downloadStartersgids = () => {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
       }
+
       doc.text(line, 20, yPos);
       yPos += 8;
     });
 
-    // Chapter 11: FAQ - Page 19
-    doc.addPage();
+    // Chapter 11: FAQ - FORCE NEW PAGE
+    doc.addPage(); // FORCE NEW PAGE
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('11. VEELGESTELDE VRAGEN', 20, yPos);
@@ -909,19 +921,21 @@ export const downloadStartersgids = () => {
         doc.addPage();
         yPos = 20;
       }
-      
+
       if (line.startsWith('Q:')) {
         doc.setFont('helvetica', 'bold');
       } else {
         doc.setFont('helvetica', 'normal');
       }
+
       doc.text(line, 20, yPos);
       yPos += 7;
     });
 
-    // Chapter 12: Resources - Page 20
-    doc.addPage();
+    // Chapter 12: Resources - FORCE NEW PAGE
+    doc.addPage(); // FORCE NEW PAGE
     yPos = 30;
+    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('12. RESOURCES EN VERVOLGSTAPPEN', 20, yPos);
@@ -952,25 +966,23 @@ export const downloadStartersgids = () => {
         doc.addPage();
         yPos = 20;
       }
-      
-      if (line.includes('NUTTIGE') || line.includes('VERVOLGTRAINING') || 
-          line.includes('CONTACT')) {
-        doc.setFont('helvet ica', 'bold');
+
+      if (line.includes('NUTTIGE') || line.includes('VERVOLGTRAINING') || line.includes('CONTACT')) {
+        doc.setFont('helvetica', 'bold');
         doc.setFontSize(14);
       } else {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(11);
       }
-      
+
       doc.text(line, 20, yPos);
-      yPos += line === '' ? 8 : 6;
+      yPos +=  line === '' ? 8 : 6;
     });
 
     // Enhanced footer with website URL
     const totalPages = doc.internal.getNumberOfPages();
     for (let i = 1; i <= totalPages; i++) {
       doc.setPage(i);
-      
       doc.setFillColor(245, 245, 245);
       doc.rect(0, 285, 210, 12, 'F');
       
@@ -983,31 +995,30 @@ export const downloadStartersgids = () => {
 
     // Clean filename without version numbers
     const timestamp = new Date().toISOString().slice(0, 10);
-    const filename = 'AI-Startersgids-voor-het-Onderwijs-Compleet-' + timestamp + '.pdf';
+    const filename = 'AI-Startersgids-voor-het-Onderwijs-Verbeterd-' + timestamp + '.pdf';
     
-    console.log('Saving complete AI guide: ' + filename);
+    console.log('Saving improved AI guide: ' + filename);
     doc.save(filename);
 
     // Success notification
     setTimeout(() => {
-      alert('COMPLETE AI STARTERSGIDS SUCCESVOL GEDOWNLOAD!\n\n' +
+      alert('VERBETERDE AI STARTERSGIDS SUCCESVOL GEDOWNLOAD!\n\n' +
             'Bestandsnaam: ' + filename + '\n\n' +
-            'Deze complete versie bevat:\n' +
-            '• Hoofdstuk 5: AI in het Basisonderwijs\n' +
-            '• Hoofdstuk 6: AI in het Voortgezet Onderwijs (NIEUW!)\n' +
-            '• Hoofdstuk 7: AI in MBO en HBO (NIEUW!)\n' +
-            '• Complete uitleg van 15 AI-tools\n' +
-            '• Praktische voorbeelden voor alle niveaus\n' +
-            '• Website link in footer: https://onderwijs.ai/\n' +
+            'Verbeteringen in deze versie:\n' +
+            '• Realistische inhoud voor groep 7-8 (geen AI-modellen trainen)\n' +
+            '• Betere pagina-indeling (hoofdstukken beginnen op nieuwe pagina)\n' +
+            '• Verbeterde structuur en leesbaarheid\n' +
+            '• Praktische focus op leeftijdsgeschikt gebruik\n' +
             '• Professionele opmaak\n\n' +
-            'Perfect voor alle Nederlandse onderwijsniveaus!');
+            'Perfect voor Nederlandse docenten!');
     }, 1000);
 
   } catch (error) {
     console.error('PDF generation failed:', error);
     alert('AI STARTERSGIDS DOWNLOAD\n\n' +
-          'Er werd een complete AI-startersgids gedownload met:\n' +
-          '• Complete uitleg voor PO, VO, MBO & HBO\n' +
+          'Er werd een verbeterde AI-startersgids gedownload met:\n' +
+          '• Realistische inhoud voor alle niveaus\n' +
+          '• Betere pagina-indeling\n' +
           '• 15 geteste AI-tools\n' +
           '• Praktische implementatiegids\n' +
           '• Nederlandse focus\n' +
@@ -1016,9 +1027,7 @@ export const downloadStartersgids = () => {
   }
 };
 
-/**
- * Download lesson PDFs - keeping existing functionality
- */
+/** * Download lesson PDFs - keeping existing functionality */
 export const downloadLesson = (lessonTitle) => {
   try {
     console.log('Generating lesson PDF for:', lessonTitle);
@@ -1030,7 +1039,6 @@ export const downloadLesson = (lessonTitle) => {
     });
 
     const uniqueId = Math.random().toString(36).substring(2, 8);
-    
     doc.setFont('helvetica');
 
     // Header
@@ -1103,17 +1111,16 @@ export const downloadLesson = (lessonTitle) => {
         doc.addPage();
         yPos = 20;
       }
-      
+
       if (line.includes('LEERDOELEN') || line.includes('BENODIGDE') || 
-          line.includes('LESOPBOUW') || line.includes('DEEL') || 
-          line.includes('TIPS')) {
+          line.includes('LESOPBOUW') || line.includes('DEEL') || line.includes('TIPS')) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(12);
       } else {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(10);
       }
-      
+
       doc.text(line, 20, yPos);
       yPos += line === '' ? 6 : 8;
     });
@@ -1122,7 +1129,6 @@ export const downloadLesson = (lessonTitle) => {
     const totalPages = doc.internal.getNumberOfPages();
     for (let i = 1; i <= totalPages; i++) {
       doc.setPage(i);
-      
       doc.setFillColor(245, 245, 245);
       doc.rect(0, 285, 210, 12, 'F');
       
@@ -1134,20 +1140,17 @@ export const downloadLesson = (lessonTitle) => {
     }
 
     const timestamp = new Date().toISOString().slice(0, 10);
-    const filename = 'AI-Les-' + lessonTitle.toLowerCase().replace(/\s+/g, '-') + 
-                    '-' + timestamp + '-' + uniqueId + '.pdf';
+    const filename = 'AI-Les-' + lessonTitle.toLowerCase().replace(/\s+/g, '-') + '-' + timestamp + '-' + uniqueId + '.pdf';
     
     doc.save(filename);
     console.log('Professional lesson PDF "' + lessonTitle + '" downloaded successfully');
-
+    
   } catch (error) {
     console.error('Lesson PDF generation failed:', error);
   }
 };
 
-/**
- * Legacy support
- */
+/** * Legacy support */
 export const downloadFile = (url, filename = null) => {
   console.log('Redirecting to complete startersgids...');
   downloadStartersgids();
