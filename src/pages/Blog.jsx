@@ -18,11 +18,24 @@ const Blog=()=> {
     url: "https://aivooronderwijs.nl/google-i-o-2025-ai-en-de-toekomst-van-onderwijs/"
   };
 
+  // Posts sorted by date (newest first) - Added Kennisnet articles
   const posts=[
+    {
+      title: "Schoolafspraken over het gebruik van generatieve AI",
+      excerpt: "Praktische richtlijnen voor scholen om gezamenlijke afspraken te maken over het gebruik van generatieve AI-tools in het onderwijs.",
+      date: "15 mei 2025",
+      sortDate: "2025-05-15",
+      author: "Kennisnet",
+      category: "Beleid",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=250&fit=crop",
+      readTime: "8 min",
+      url: "https://www.kennisnet.nl/artificial-intelligence/schoolafspraken-over-het-gebruik-van-generatieve-ai/"
+    },
     {
       title: "Maak aanpasbare grafieken,figuren en formules met AI",
       excerpt: "Leer hoe je AI kunt gebruiken om dynamische en interactieve grafieken,figuren en formules te maken voor je lessen.",
       date: "10 mei 2025",
+      sortDate: "2025-05-10",
       author: "AI voor Onderwijs",
       category: "AI Tools",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
@@ -33,6 +46,7 @@ const Blog=()=> {
       title: "Onderwijsbeleid en regelgeving rond AI",
       excerpt: "Een overzicht van het huidige beleid en de regelgeving rond AI in het onderwijs en wat dit betekent voor docenten.",
       date: "5 mei 2025",
+      sortDate: "2025-05-05",
       author: "Beleidsexperts",
       category: "Beleid",
       image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=250&fit=crop",
@@ -40,9 +54,32 @@ const Blog=()=> {
       url: "https://aivooronderwijs.nl/category/onderwijsbeleid-en-regelgeving/"
     },
     {
+      title: "Privacy en AI: hier moeten scholen op letten",
+      excerpt: "Uitgebreide gids over privacy-aspecten bij het gebruik van AI in het onderwijs en welke maatregelen scholen moeten nemen.",
+      date: "20 juni 2024",
+      sortDate: "2024-06-20",
+      author: "Kennisnet",
+      category: "Privacy & Veiligheid",
+      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop",
+      readTime: "10 min",
+      url: "https://www.kennisnet.nl/artificial-intelligence/privacy-en-ai-hier-moeten-scholen-op-letten/"
+    },
+    {
+      title: "Problemen met generatieve AI in het onderwijs",
+      excerpt: "Een uitgebreid overzicht van de uitdagingen en problemen die generatieve AI met zich meebrengt in onderwijsomgevingen en hoe deze aan te pakken.",
+      date: "20 mei 2024",
+      sortDate: "2024-05-20",
+      author: "Universiteit Utrecht",
+      category: "Uitdagingen",
+      image: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1757628282057-universiteit-utrecht.jpg",
+      readTime: "8 min",
+      url: "https://www.uu.nl/onderwijs/onderwijsadvies-training/kennisdossiers/themadossier-generatieve-ai-in-het-onderwijs/problemen-met-generatieve-ai-in-het-onderwijs"
+    },
+    {
       title: "AI voor schoolleiders: strategische implementatie",
       excerpt: "Hoe schoolleiders AI strategisch kunnen implementeren en welke stappen nodig zijn voor succesvolle adoptie.",
       date: "28 april 2025",
+      sortDate: "2025-04-28",
       author: "Onderwijs-AI",
       category: "Management",
       image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=250&fit=crop",
@@ -53,6 +90,7 @@ const Blog=()=> {
       title: "Kritisch denken in het AI-tijdperk",
       excerpt: "Waarom kritisch denken belangrijker dan ooit is en hoe we leerlingen kunnen leren omgaan met AI-informatie.",
       date: "22 april 2025",
+      sortDate: "2025-04-22",
       author: "Onderwijs-AI",
       category: "Vaardigheden",
       image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=250&fit=crop",
@@ -63,6 +101,7 @@ const Blog=()=> {
       title: "Pleidooi voor AI-richtlijnen in het onderwijs",
       excerpt: "Een uitgebreid pleidooi voor duidelijke richtlijnen rond het gebruik van AI in onderwijsinstellingen.",
       date: "15 april 2025",
+      sortDate: "2025-04-15",
       author: "Adwise Academy",
       category: "Richtlijnen",
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=250&fit=crop",
@@ -73,6 +112,7 @@ const Blog=()=> {
       title: "AI in het onderwijs: praktische toepassingen",
       excerpt: "Een praktische gids voor het implementeren van AI-tools in verschillende onderwijscontexten en vakgebieden.",
       date: "8 april 2025",
+      sortDate: "2025-04-08",
       author: "Advantive",
       category: "Implementatie",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
@@ -81,11 +121,15 @@ const Blog=()=> {
     }
   ];
 
+  // Sort posts by date (newest first)
+  const sortedPosts = posts.sort((a, b) => new Date(b.sortDate) - new Date(a.sortDate));
+
   const internationalPosts=[
     {
-      title: "AI Teacher Assistants Promote Racial Bias, Study Finds",
-      excerpt: "A new study reveals concerning evidence that AI teacher assistants may perpetuate racial stereotypes and bias in educational settings, raising important questions about AI implementation in schools.",
+      title: "AI Teacher Assistants Promote Racial Bias,Study Finds",
+      excerpt: "A new study reveals concerning evidence that AI teacher assistants may perpetuate racial stereotypes and bias in educational settings,raising important questions about AI implementation in schools.",
       date: "6 augustus 2025",
+      sortDate: "2025-08-06",
       author: "Chalkbeat",
       category: "Research",
       image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=250&fit=crop",
@@ -95,8 +139,9 @@ const Blog=()=> {
     },
     {
       title: "AI in Finland Education: A Global Model",
-      excerpt: "How Finland has become a leader in ethical AI integration in education, offering lessons for countries worldwide on responsible implementation.",
+      excerpt: "How Finland has become a leader in ethical AI integration in education,offering lessons for countries worldwide on responsible implementation.",
       date: "15 juli 2025",
+      sortDate: "2025-07-15",
       author: "The AI Track",
       category: "Case Study",
       image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=400&h=250&fit=crop",
@@ -106,8 +151,9 @@ const Blog=()=> {
     },
     {
       title: "The Future is Already Here: AI and Education in 2025",
-      excerpt: "Stanford researchers examine how AI is transforming education today and what we can expect in the near future, with practical insights for educators.",
+      excerpt: "Stanford researchers examine how AI is transforming education today and what we can expect in the near future,with practical insights for educators.",
       date: "10 juni 2025",
+      sortDate: "2025-06-10",
       author: "Stanford Accelerate Learning",
       category: "Future Trends",
       image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop",
@@ -117,15 +163,20 @@ const Blog=()=> {
     }
   ];
 
+  // Sort international posts by date (newest first)
+  const sortedInternationalPosts = internationalPosts.sort((a, b) => new Date(b.sortDate) - new Date(a.sortDate));
+
   const categories=[
     "Alle categorieën",
     "AI Tools",
-    "AI Trends",
+    "AI Trends", 
     "Beleid",
     "Management",
     "Vaardigheden",
     "Richtlijnen",
-    "Implementatie"
+    "Implementatie",
+    "Uitdagingen",
+    "Privacy & Veiligheid"
   ];
 
   const handleArticleClick=(url)=> {
@@ -179,8 +230,10 @@ const Blog=()=> {
             </h2>
           </motion.div>
 
-          <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
-               onClick={()=> handleArticleClick(featuredPost.url)}>
+          <div
+            className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+            onClick={()=> handleArticleClick(featuredPost.url)}
+          >
             <div className="grid grid-cols-1 lg:grid-cols-2">
               <motion.div
                 initial={{opacity: 0,x: -50}}
@@ -194,7 +247,6 @@ const Blog=()=> {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </motion.div>
-
               <motion.div
                 initial={{opacity: 0,x: 50}}
                 whileInView={{opacity: 1,x: 0}}
@@ -210,15 +262,12 @@ const Blog=()=> {
                     <span>{featuredPost.date}</span>
                   </div>
                 </div>
-
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {featuredPost.title}
                 </h3>
-
                 <p className="text-gray-600 mb-6">
                   {featuredPost.excerpt}
                 </p>
-
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>
@@ -257,7 +306,7 @@ const Blog=()=> {
         </div>
       </section>
 
-      {/* Nederlandse Blog Posts */}
+      {/* Nederlandse Blog Posts - Now sorted by date */}
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -270,12 +319,12 @@ const Blog=()=> {
               Nederlandse Artikelen
             </h2>
             <p className="text-xl text-gray-600">
-              Praktische inzichten van Nederlandse AI-experts in het onderwijs
+              Praktische inzichten van Nederlandse AI-experts in het onderwijs (nieuwste eerst)
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post,index)=> (
+            {sortedPosts.map((post,index)=> (
               <motion.div
                 key={index}
                 initial={{opacity: 0,y: 50}}
@@ -296,8 +345,23 @@ const Blog=()=> {
                       {post.category}
                     </span>
                   </div>
+                  {/* NEW badge for the newest post */}
+                  {index === 0 && (
+                    <div className="absolute top-0 left-0 m-4">
+                      <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                        NIEUW
+                      </span>
+                    </div>
+                  )}
+                  {/* Kennisnet badge for Kennisnet articles */}
+                  {post.author === "Kennisnet" && (
+                    <div className="absolute bottom-0 left-0 m-4">
+                      <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                        KENNISNET
+                      </span>
+                    </div>
+                  )}
                 </div>
-
                 <div className="p-6">
                   <div className="flex items-center space-x-2 text-sm text-gray-500 mb-3">
                     <SafeIcon icon={FiCalendar} />
@@ -305,15 +369,12 @@ const Blog=()=> {
                     <span className="text-gray-300">•</span>
                     <span>{post.readTime} leestijd</span>
                   </div>
-
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {post.title}
                   </h3>
-
                   <p className="text-gray-600 mb-6 line-clamp-3">
                     {post.excerpt}
                   </p>
-
                   <div className="flex items-center justify-between pt-4 border-t">
                     <div className="flex items-center space-x-2">
                       <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>
@@ -330,7 +391,7 @@ const Blog=()=> {
         </div>
       </section>
 
-      {/* International Articles Section */}
+      {/* International Articles Section - Also sorted by date */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -346,12 +407,12 @@ const Blog=()=> {
               </h2>
             </div>
             <p className="text-xl text-gray-600">
-              Wereldwijde inzichten en trends in AI-onderwijs
+              Wereldwijde inzichten en trends in AI-onderwijs (nieuwste eerst)
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {internationalPosts.map((post,index)=> (
+            {sortedInternationalPosts.map((post,index)=> (
               <motion.div
                 key={index}
                 initial={{opacity: 0,y: 50}}
@@ -376,7 +437,6 @@ const Blog=()=> {
                     <SafeIcon icon={FiGlobe} className="text-white bg-indigo-600 p-2 rounded-full text-xl" />
                   </div>
                 </div>
-
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center space-x-2 text-sm text-gray-500">
@@ -386,19 +446,15 @@ const Blog=()=> {
                       <span>{post.readTime} leestijd</span>
                     </div>
                   </div>
-
                   <div className="mb-2">
                     <span className="text-sm font-medium text-indigo-600">{post.country}</span>
                   </div>
-
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {post.title}
                   </h3>
-
                   <p className="text-gray-600 mb-6 line-clamp-3">
                     {post.excerpt}
                   </p>
-
                   <div className="flex items-center justify-between pt-4 border-t">
                     <div className="flex items-center space-x-2">
                       <div className="w-8 h-8 bg-indigo-200 rounded-full"></div>
