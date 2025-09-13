@@ -1,6 +1,8 @@
 import jsPDF from 'jspdf';
 
-/** * Download the complete AI Startersgids voor het Onderwijs */
+/** 
+ * Download the complete AI Startersgids voor het Onderwijs
+ */
 export const downloadStartersgids = () => {
   console.log('Generating complete AI Startersgids voor het Onderwijs...');
   
@@ -13,6 +15,7 @@ export const downloadStartersgids = () => {
 
     // Generate unique ID for this version
     const uniqueId = Math.random().toString(36).substring(2, 10);
+    
     doc.setFont('helvetica');
 
     // Clean header without version info
@@ -31,7 +34,7 @@ export const downloadStartersgids = () => {
     doc.setFont('helvetica', 'bold');
     doc.text('AI STARTERSGIDS', 20, 60);
     doc.text('VOOR HET ONDERWIJS', 20, 85);
-    
+
     doc.setFontSize(18);
     doc.setFont('helvetica', 'normal');
     doc.text('Praktische handleiding voor docenten', 20, 110);
@@ -53,947 +56,7 @@ export const downloadStartersgids = () => {
     doc.text('Van introductie tot praktische implementatie', 25, 175);
     doc.text('Inclusief tools, voorbeelden en stappenplannen', 25, 182);
 
-    // Table of Contents - Page 2
-    doc.addPage();
-    let yPos = 30;
-    
-    doc.setFontSize(24);
-    doc.setFont('helvetica', 'bold');
-    doc.text('INHOUDSOPGAVE', 20, yPos);
-    yPos += 20;
-
-    const tableOfContents = [
-      { chapter: '1.', title: 'Welkom bij AI in het Onderwijs', page: '3' },
-      { chapter: '2.', title: 'Wat is Kunstmatige Intelligentie?', page: '4' },
-      { chapter: '3.', title: 'Hoe werkt AI eigenlijk?', page: '6' },
-      { chapter: '4.', title: 'TOP 15 AI-Tools voor Docenten', page: '7' },
-      { chapter: '5.', title: 'AI in het Basisonderwijs', page: '10' },
-      { chapter: '6.', title: 'AI in het Voortgezet Onderwijs', page: '12' },
-      { chapter: '7.', title: 'AI in MBO en HBO', page: '14' },
-      { chapter: '8.', title: 'Praktische Voorbeelden en Prompts', page: '16' },
-      { chapter: '9.', title: 'Ethiek en Veiligheid', page: '17' },
-      { chapter: '10.', title: 'Implementatie Stap-voor-Stap', page: '18' },
-      { chapter: '11.', title: 'Veelgestelde Vragen', page: '19' },
-      { chapter: '12.', title: 'Resources en Vervolgstappen', page: '20' }
-    ];
-
-    doc.setFontSize(12);
-    tableOfContents.forEach((item, index) => {
-      doc.setFont('helvetica', 'bold');
-      doc.text(item.chapter, 25, yPos);
-      doc.setFont('helvetica', 'normal');
-      doc.text(item.title, 35, yPos);
-      doc.text(item.page, 180, yPos);
-      
-      // Add dotted line
-      const dots = '.'.repeat(Math.floor((140 - item.title.length * 2) / 3));
-      doc.setFont('helvetica', 'normal');
-      doc.text(dots, 35 + item.title.length * 2, yPos);
-      
-      yPos += 8;
-    });
-
-    // Chapter 1: Welcome - Page 3
-    doc.addPage();
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('1. WELKOM BIJ AI IN HET ONDERWIJS', 20, yPos);
-    yPos += 20;
-
-    doc.setFontSize(12);
-    doc.setFont('helvetica', 'normal');
-    
-    const welcomeText = [
-      'Welkom bij de AI Startersgids voor het Onderwijs! Deze handleiding is speciaal',
-      'ontwikkeld voor Nederlandse docenten die kunstmatige intelligentie willen',
-      'integreren in hun onderwijspraktijk.',
-      '',
-      'WAAROM DEZE GIDS?',
-      'AI biedt ongekende mogelijkheden om onderwijs persoonlijker, effectiever en',
-      'toegankelijker te maken. Deze gids helpt je stap voor stap om AI-tools te',
-      'ontdekken en toe te passen in je lessen.',
-      '',
-      'VOOR WIE IS DEZE GIDS?',
-      '• Docenten Basisonderwijs (groep 1-8)',
-      '• Docenten Voortgezet Onderwijs (VMBO-VWO)',
-      '• Docenten MBO en HBO',
-      '• Schoolleiders en ICT-coordinatoren',
-      '• Iedereen die nieuwsgierig is naar AI in het onderwijs',
-      '',
-      'HOE GEBRUIK JE DEZE GIDS?',
-      '1. Begin met hoofdstuk 2 voor een basisuitleg van AI',
-      '2. Bekijk de tools in hoofdstuk 4 die bij jouw vak passen',
-      '3. Kies het hoofdstuk voor jouw onderwijsniveau (5, 6 of 7)',
-      '4. Gebruik de praktische voorbeelden uit hoofdstuk 8',
-      '5. Volg het stappenplan in hoofdstuk 10 voor implementatie',
-      '',
-      'WAT VIND JE IN DEZE GIDS?',
-      '• Uitleg van AI-concepten in begrijpelijke taal',
-      '• Overzicht van 15 geteste AI-tools voor docenten',
-      '• Praktische voorbeelden voor elk onderwijsniveau',
-      '• Concrete prompts die je direct kunt gebruiken',
-      '• Ethische richtlijnen en veiligheidsaspecten',
-      '• Stap-voor-stap implementatieplan',
-      '• Antwoorden op veelgestelde vragen',
-      '',
-      'Succes met je AI-avontuur in het onderwijs!'
-    ];
-
-    welcomeText.forEach(line => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      if (line.startsWith('WAAROM') || line.startsWith('VOOR WIE') || 
-          line.startsWith('HOE GEBRUIK') || line.startsWith('WAT VIND')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else if (line.match(/^\d+\./) || line.startsWith('•')) {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(12);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += line === '' ? 8 : 7;
-    });
-
-    // Chapter 2: What is AI - Page 4-5
-    doc.addPage();
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('2. WAT IS KUNSTMATIGE INTELLIGENTIE?', 20, yPos);
-    yPos += 20;
-
-    const aiExplanation = [
-      'EENVOUDIGE UITLEG',
-      'Kunstmatige Intelligentie (AI) is technologie die computers helpt om taken',
-      'uit te voeren die normaal gesproken menselijke intelligentie vereisen.',
-      'Denk aan het begrijpen van taal, het herkennen van patronen, het maken',
-      'van voorspellingen of het oplossen van problemen.',
-      '',
-      'AI is niet nieuw - het bestaat al sinds de jaren 50. Maar door de enorme',
-      'toename in rekenkracht en beschikbare data, zijn AI-systemen de laatste',
-      'jaren veel krachtiger en toegankelijker geworden.',
-      '',
-      'SOORTEN AI DIE JE TEGENKOMT',
-      '',
-      'Conversatie-AI (zoals ChatGPT)',
-      '• Kan vragen beantwoorden en gesprekken voeren',
-      '• Helpt bij het schrijven en bewerken van teksten',
-      '• Kan complexe onderwerpen uitleggen',
-      '• Voorbeelden: ChatGPT, Claude, Bard',
-      '',
-      'Creatieve AI',
-      '• Maakt afbeeldingen, muziek of video\'s',
-      '• Helpt bij grafisch ontwerp',
-      '• Genereert creatieve ideeen',
-      '• Voorbeelden: DALL-E, Midjourney, Canva AI',
-      '',
-      'Data-AI',
-      '• Analyseert grote hoeveelheden informatie',
-      '• Herkent patronen en trends',
-      '• Maakt voorspellingen',
-      '• Voorbeelden: Google Analytics, Excel AI-functies',
-      '',
-      'Zoek-AI',
-      '• Zoekt en organiseert informatie',
-      '• Vat lange teksten samen',
-      '• Controleert feiten',
-      '• Voorbeelden: Perplexity, NotebookLM'
-    ];
-
-    doc.setFontSize(12);
-    aiExplanation.forEach(line => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      if (line.includes('EENVOUDIGE') || line.includes('SOORTEN')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else if (line.startsWith('Conversatie-AI') || line.startsWith('Creatieve AI') || 
-                 line.startsWith('Data-AI') || line.startsWith('Zoek-AI')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(13);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += line === '' ? 8 : 6;
-    });
-
-    // Chapter 3: How AI Works - Page 6
-    doc.addPage();
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('3. HOE WERKT AI EIGENLIJK?', 20, yPos);
-    yPos += 20;
-
-    const howAIWorks = [
-      'EENVOUDIGE UITLEG',
-      'Stel je voor dat AI werkt zoals een kind leert:',
-      '',
-      '1. VOORBEELDEN BEKIJKEN',
-      'Het AI-systeem krijgt heel veel voorbeelden te zien. Voor een',
-      'taalmodel zoals ChatGPT zijn dit miljoenen teksten: boeken,',
-      'artikelen, websites, etc.',
-      '',
-      '2. PATRONEN ZOEKEN',
-      'Het systeem zoekt naar patronen in deze voorbeelden. Welke',
-      'woorden komen vaak samen voor? Hoe zijn zinnen opgebouwd?',
-      'Wat zijn logische verbanden?',
-      '',
-      '3. REGELS LEREN',
-      'Op basis van deze patronen leert het systeem regels. Niet door',
-      'expliciete programmering, maar door statistische verbanden.',
-      '',
-      '4. TOEPASSEN OP NIEUWE SITUATIES',
-      'Wanneer je een vraag stelt, past het systeem deze geleerde',
-      'regels toe om een passend antwoord te genereren.',
-      '',
-      'WAAROM IS AI BELANGRIJK VOOR HET ONDERWIJS?',
-      '',
-      'Personalisatie',
-      'AI kan lessen aanpassen aan individuele leerlingen. Het herkent',
-      'waar een leerling moeite mee heeft en biedt gerichte hulp.',
-      '',
-      'Efficientie',
-      'Automatiseer repetitieve taken zoals nakijken, feedback geven',
-      'of lesmateriaal genereren. Meer tijd voor echte interactie.',
-      '',
-      'Creativiteit',
-      'AI biedt nieuwe manieren om complexe concepten uit te leggen',
-      'en helpt bij het bedenken van originele lesmethoden.',
-      '',
-      'Toegankelijkheid',
-      'Onderwijs wordt toegankelijker voor leerlingen met verschillende',
-      'leerbehoeften door AI-ondersteuning.',
-      '',
-      'Toekomstvoorbereiding',
-      'Leerlingen leren omgaan met AI-tools die ze in hun verdere',
-      'loopbaan zullen gebruiken.'
-    ];
-
-    doc.setFontSize(12);
-    howAIWorks.forEach(line => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      if (line.includes('EENVOUDIGE') || line.includes('WAAROM IS')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else if (line.match(/^\d+\./) || line.startsWith('Personalisatie') || 
-                 line.startsWith('Efficientie') || line.startsWith('Creativiteit') ||
-                 line.startsWith('Toegankelijkheid') || line.startsWith('Toekomstvoorbereiding')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(13);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += line === '' ? 8 : 6;
-    });
-
-    // Chapter 4: TOP 15 AI Tools - Pages 7-9
-    doc.addPage();
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('4. TOP 15 AI-TOOLS VOOR DOCENTEN', 20, yPos);
-    yPos += 20;
-
-    const tools = [
-      {
-        name: '1. ChatGPT',
-        category: 'Tekstverwerking',
-        description: 'De bekendste AI-assistent voor tekstgeneratie en conversatie',
-        uses: 'Lesplannen maken, vragen bedenken, feedback geven, uitleg schrijven',
-        cost: 'Gratis + betaalde versie (€20/maand)',
-        tip: 'Begin met eenvoudige vragen en bouw langzaam complexiteit op'
-      },
-      {
-        name: '2. Claude',
-        category: 'Tekstverwerking',
-        description: 'Uitstekend voor lange documenten en complexe opdrachten',
-        uses: 'Document analyse, uitgebreide feedback, onderzoeksondersteuning',
-        cost: 'Gratis + betaalde versie (€18/maand)',
-        tip: 'Perfect voor het analyseren van leerlingwerkstukken'
-      },
-      {
-        name: '3. Canva AI',
-        category: 'Grafisch ontwerp',
-        description: 'Eenvoudig grafisch ontwerp met AI-ondersteuning',
-        uses: 'Posters, presentaties, infographics, lesmateriaal maken',
-        cost: 'Gratis + Pro versie (€12/maand)',
-        tip: 'Gebruik Magic Design voor snelle en professionele resultaten'
-      },
-      {
-        name: '4. Perplexity AI',
-        category: 'Onderzoek',
-        description: 'AI-zoekmachine met bronvermelding voor betrouwbaar onderzoek',
-        uses: 'Onderzoek doen, fact-checking, actuele informatie vinden',
-        cost: 'Gratis + Pro versie (€16/maand)',
-        tip: 'Altijd bronnen controleren, ook bij AI-antwoorden'
-      },
-      {
-        name: '5. Grammarly',
-        category: 'Schrijfhulp',
-        description: 'AI-powered grammatica en stijlcontrole voor betere teksten',
-        uses: 'Teksten verbeteren, schrijfhulp voor leerlingen, feedback',
-        cost: 'Gratis + Premium (€12/maand)',
-        tip: 'Installeer als browser-extensie voor overal schrijfhulp'
-      },
-      {
-        name: '6. Gamma',
-        category: 'Presentaties',
-        description: 'AI-tool voor het snel maken van professionele presentaties',
-        uses: 'Lesmateriaal, leerlingpresentaties, schoolpresentaties',
-        cost: 'Gratis + Pro versie (€8/maand)',
-        tip: 'Geef een duidelijk onderwerp en laat AI de structuur maken'
-      },
-      {
-        name: '7. Quillbot',
-        category: 'Tekstbewerking',
-        description: 'Parafrasering en samenvatting van teksten',
-        uses: 'Teksten herformuleren, samenvattingen maken, plagiaatpreventie',
-        cost: 'Gratis + Premium (€8/maand)',
-        tip: 'Handig voor het vereenvoudigen van complexe teksten'
-      },
-      {
-        name: '8. Teachable Machine',
-        category: 'Machine Learning',
-        description: 'Google\'s tool om eenvoudig AI-modellen te trainen',
-        uses: 'AI-concepten uitleggen, leerlingen laten experimenteren',
-        cost: 'Volledig gratis',
-        tip: 'Perfect voor praktijklessen over hoe AI leert'
-      },
-      {
-        name: '9. NotebookLM',
-        category: 'Onderzoek',
-        description: 'Google\'s AI voor document analyse en samenvatting',
-        uses: 'Lange documenten samenvatten, bronnenonderzoek',
-        cost: 'Gratis (in beta)',
-        tip: 'Upload meerdere documenten voor vergelijkend onderzoek'
-      },
-      {
-        name: '10. Brisk Teaching',
-        category: 'Onderwijs',
-        description: 'Chrome extensie speciaal voor docenten',
-        uses: 'Snelle feedback, lesplan generatie, differentiatie',
-        cost: 'Freemium model',
-        tip: 'Integreert naadloos met Google Classroom'
-      },
-      {
-        name: '11. Synthesia',
-        category: 'Video',
-        description: 'AI-video\'s maken met virtuele presentatoren',
-        uses: 'Instructievideo\'s, online lessen, presentaties',
-        cost: 'Betaald (vanaf €22/maand)',
-        tip: 'Ideaal voor het maken van consistente instructievideo\'s'
-      },
-      {
-        name: '12. Otter.ai',
-        category: 'Transcriptie',
-        description: 'Automatische transcriptie van audio en video',
-        uses: 'Lezingen transcriberen, notities maken, toegankelijkheid',
-        cost: 'Gratis + Pro versie (€8/maand)',
-        tip: 'Handig voor het maken van lestranscripties'
-      },
-      {
-        name: '13. Kahoot AI',
-        category: 'Gamificatie',
-        description: 'AI-ondersteunde quiz en spelletjes maken',
-        uses: 'Interactieve quizzen, toetsen, spelend leren',
-        cost: 'Gratis + betaalde functies',
-        tip: 'Laat AI vragen genereren op basis van je lesmateriaal'
-      },
-      {
-        name: '14. Diffit',
-        category: 'Differentiatie',
-        description: 'Teksten aanpassen aan verschillende leesniveaus',
-        uses: 'Lesmateriaal differentiëren, toegankelijkheid verbeteren',
-        cost: 'Freemium model',
-        tip: 'Perfect voor inclusief onderwijs en verschillende niveaus'
-      },
-      {
-        name: '15. Magic School AI',
-        category: 'Onderwijs platform',
-        description: 'All-in-one AI platform speciaal voor docenten',
-        uses: 'Lesplannen, rubrics, oudercontact, administratie',
-        cost: 'Gratis voor docenten',
-        tip: 'Bevat meer dan 60 verschillende AI-tools voor docenten'
-      }
-    ];
-
-    doc.setFontSize(10);
-    tools.forEach(tool => {
-      if (yPos > 240) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(12);
-      doc.text(tool.name, 20, yPos);
-      
-      doc.setFont('helvetica', 'italic');
-      doc.setFontSize(10);
-      doc.text('[' + tool.category + ']', 20, yPos + 7);
-      
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
-      doc.text(tool.description, 20, yPos + 14);
-      doc.text('Gebruik: ' + tool.uses, 20, yPos + 21);
-      doc.text('Kosten: ' + tool.cost, 20, yPos + 28);
-      
-      doc.setFont('helvetica', 'italic');
-      doc.text('Tip: ' + tool.tip, 20, yPos + 35);
-      
-      yPos += 45;
-    });
-
-    // Chapter 5: Primary Education - IMPROVED VERSION
-    doc.addPage(); // FORCE NEW PAGE
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('5. AI IN HET BASISONDERWIJS', 20, yPos);
-    yPos += 20;
-
-    const primaryEducation = [
-      'LEEFTIJDSGESCHIKT GEBRUIK VAN AI',
-      '',
-      'GROEP 1-2: Kennismaking',
-      '• Laat kinderen ervaren dat computers "slim" kunnen zijn',
-      '• Gebruik spraakherkenning (Siri, Google Assistant)',
-      '• Eenvoudige robot-activiteiten',
-      '• Focus op verwondering en nieuwsgierigheid',
-      '',
-      'GROEP 3-4: AI herkennen',
-      '• Herken AI in dagelijkse situaties',
-      '• Gebruik Quick, Draw! van Google',
-      '• Eenvoudige patroonherkenning spelletjes',
-      '• Praten over "slimme" apparaten thuis',
-      '',
-      'GROEP 5-6: Actief experimenteren',
-      '• Teachable Machine gebruiken (met begeleiding)',
-      '• AI-kunstprojecten met eenvoudige tools',
-      '• Chatbots leren kennen (onder strenge begeleiding)',
-      '• Eerste ethische gesprekken over AI',
-      '',
-      'GROEP 7-8: Begrip en toepassing',
-      '• Begrijpen hoe AI leert van voorbeelden',
-      '• Onderzoeksprojecten met AI-ondersteuning (docent helpt)',
-      '• Kritisch denken: "Klopt dit antwoord wel?"',
-      '• Creatieve projecten met AI als inspiratie',
-      '• Simpele programmeerconcepten (Scratch)',
-      '',
-      'VEILIGHEID EN ETHIEK',
-      '• Gebruik AI altijd onder begeleiding',
-      '• Bespreek dat AI soms fouten maakt',
-      '• Leer kinderen AI-antwoorden te controleren',
-      '• Praat over privacy en persoonlijke informatie',
-      '• Geen persoonlijke gegevens in AI-tools invoeren',
-      '',
-      'PRAKTISCHE VOORBEELDEN PO',
-      '',
-      'Rekenen met patronen (groep 5-6)',
-      'Laat leerlingen patronen in getallen ontdekken.',
-      'Gebruik: Teachable Machine om cijferherkenning te oefenen',
-      'Doel: Begrijpen dat computers patronen kunnen leren',
-      '',
-      'Creatief verhalen schrijven (groep 7-8)',
-      'AI als inspiratiebron voor eigen verhalen en karakters.',
-      'Gebruik: ChatGPT voor karakterideeën, kinderen schrijven zelf',
-      'Belangrijk: Docent controleert alle AI-input en output',
-      '',
-      'Dieren classificeren (groep 6-7)',
-      'Leerlingen leren hoe computers dieren kunnen herkennen.',
-      'Gebruik: Teachable Machine met foto\'s van dieren',
-      'Lesdoel: AI leert van voorbeelden, net zoals mensen'
-    ];
-
-    doc.setFontSize(11);
-    primaryEducation.forEach(line => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      if (line.includes('LEEFTIJDSGESCHIKT') || line.includes('VEILIGHEID') || 
-          line.includes('PRAKTISCHE VOORBEELDEN')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else if (line.startsWith('GROEP') || line.startsWith('Rekenen') || 
-                 line.startsWith('Creatief') || line.startsWith('Dieren')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(12);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += line === '' ? 8 : 6;
-    });
-
-    // Chapter 6: Secondary Education - FORCE NEW PAGE
-    doc.addPage(); // FORCE NEW PAGE
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('6. AI IN HET VOORTGEZET ONDERWIJS', 20, yPos);
-    yPos += 20;
-
-    const secondaryEducation = [
-      'AI VOOR VERSCHILLENDE NIVEAUS EN VAKKEN',
-      '',
-      'VMBO: Praktijkgerichte toepassingen',
-      '• AI-tools voor beroepsgerichte vakken',
-      '• Eenvoudige automatisering en efficiency',
-      '• AI in de praktijk: hoe werkt het in beroepen?',
-      '• Focus op vaardigheden voor de arbeidsmarkt',
-      '',
-      'HAVO: Analytisch en kritisch denken',
-      '• AI voor onderzoeksprojecten',
-      '• Data-analyse en interpretatie',
-      '• Ethische discussies over AI-impact',
-      '• AI als hulpmiddel bij complexere opdrachten',
-      '',
-      'VWO: Diepgaande analyse en innovatie',
-      '• Programmeren met AI-ondersteuning',
-      '• Wetenschappelijk onderzoek met AI-tools',
-      '• Filosofische en maatschappelijke aspecten',
-      '• Eigen AI-projecten ontwikkelen',
-      '',
-      'VAKSPECIFIEKE TOEPASSINGEN',
-      '',
-      'Nederlands',
-      '• Tekstanalyse en literatuuronderzoek',
-      '• Schrijfhulp en stijlverbetering',
-      '• Creatief schrijven met AI-inspiratie',
-      '• Bronnenonderzoek en fact-checking'
-    ];
-
-    // Continue with the rest but ensure proper page breaks
-    doc.setFontSize(11);
-    secondaryEducation.forEach(line => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      if (line.includes('AI VOOR VERSCHILLENDE') || line.includes('VAKSPECIFIEKE')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else if (line.startsWith('VMBO:') || line.startsWith('HAVO:') || 
-                 line.startsWith('VWO:') || line.startsWith('Nederlands')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(12);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += line === '' ? 8 : 6;
-    });
-
-    // Continue with remaining subjects on same page or new page as needed
-    const moreSubjects = [
-      '',
-      'Wiskunde',
-      '• Complexe berekeningen controleren',
-      '• Grafieken en visualisaties maken',
-      '• Patroonherkenning in datasets',
-      '• Statistiek en kansrekening',
-      '',
-      'Geschiedenis', // This will get proper page treatment
-      '• Bronnenanalyse en verificatie',
-      '• Tijdlijnen en verbanden visualiseren',
-      '• Onderzoek naar historische data',
-      '• Vergelijking van verschillende bronnen',
-      '',
-      'Biologie',
-      '• DNA-sequenties analyseren',
-      '• Ecosystemen modelleren',
-      '• Medische data interpreteren',
-      '• Evolutionaire patronen onderzoeken',
-      '',
-      'PRAKTISCHE PROJECTEN VO',
-      '',
-      'Maatschappijleer: AI-ethiek debat (alle niveaus)',
-      'Leerlingen debatteren over AI-impact op samenleving.',
-      'Onderwerpen: privacy, werkgelegenheid, bias in AI',
-      '',
-      'Engels: AI-geassisteerd taalonderwijs',
-      'Conversatie met AI-bots, grammaticacontrole, schrijfhulp.',
-      'Kritisch beoordelen van AI-vertalingen',
-      '',
-      'Economie: Business case met AI',
-      'Marktanalyse, voorspellingen, bedrijfsstrategieën.',
-      'Impact van AI op verschillende industrieën',
-      '',
-      'EXAMENVORBEREIDING MET AI',
-      '• Gepersonaliseerde oefentoetsen',
-      '• Zwakke punten identificeren en versterken',
-      '• Samenvatten van lesstof',
-      '• Uitleg van moeilijke concepten op maat'
-    ];
-
-    moreSubjects.forEach(line => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      // Special handling for "Geschiedenis" - force new page if needed
-      if (line === 'Geschiedenis' && yPos > 220) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      if (line.includes('PRAKTISCHE PROJECTEN') || line.includes('EXAMENVORBEREIDING')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else if (line.startsWith('Wiskunde') || line.startsWith('Geschiedenis') || 
-                 line.startsWith('Biologie') || line.startsWith('Maatschappijleer:') || 
-                 line.startsWith('Engels:') || line.startsWith('Economie:')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(12);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += line === '' ? 8 : 6;
-    });
-
-    // Chapter 7: MBO & HBO - FORCE NEW PAGE
-    doc.addPage(); // FORCE NEW PAGE
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('7. AI IN MBO EN HBO', 20, yPos);
-    yPos += 20;
-
-    const higherEducation = [
-      'PROFESSIONELE AI-TOEPASSINGEN',
-      '',
-      'MBO: Beroepsgerichte AI-vaardigheden',
-      '• AI-tools specifiek voor de gekozen sector',
-      '• Praktijkstages met AI-componenten',
-      '• Efficiency en automatisering in het werk',
-      '• Voorbereiding op AI-gedreven arbeidsmarkt',
-      '',
-      'HBO: Strategische en analytische toepassingen',
-      '• Onderzoeksmethodologie met AI-ondersteuning',
-      '• Data-analyse voor bachelorprojecten',
-      '• Innovatie en product ontwikkeling',
-      '• Leiderschap in AI-transformatie',
-      '',
-      'SECTORSPECIFIEKE TOEPASSINGEN',
-      '',
-      'Techniek en ICT',
-      '• Code review en programmeerondersteuning',
-      '• Automatisering van testprocessen',
-      '• Predictive maintenance systemen',
-      '• Machine learning in embedded systems',
-      '',
-      'Zorg en Welzijn',
-      '• Diagnostische ondersteuning',
-      '• Behandelplan optimalisatie',
-      '• Patiëntgegevens analyse',
-      '• Ethiek in medische AI-toepassingen',
-      '',
-      'Economie en Business',
-      '• Marktanalyse en voorspellingen',
-      '• Customer journey optimalisatie',
-      '• Financial modeling en risk assessment',
-      '• Supply chain optimalisatie',
-      '',
-      'Creatieve Vakken',
-      '• AI-geassisteerd design en concept development',
-      '• Content creatie en multimedia productie',
-      '• Personalisatie in marketing en communicatie',
-      '• Nieuwe media en interactieve ervaringen'
-    ];
-
-    doc.setFontSize(11);
-    higherEducation.forEach(line => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      if (line.includes('PROFESSIONELE AI') || line.includes('SECTORSPECIFIEKE')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else if (line.startsWith('MBO:') || line.startsWith('HBO:') || 
-                 line.startsWith('Techniek') || line.startsWith('Zorg') || 
-                 line.startsWith('Economie') || line.startsWith('Creatieve')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(12);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += line === '' ? 8 : 6;
-    });
-
-    // Continue with remaining chapters ensuring proper page breaks...
-    
-    // Chapter 8: Practical Examples and Prompts - FORCE NEW PAGE
-    doc.addPage(); // FORCE NEW PAGE
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('8. PRAKTISCHE VOORBEELDEN EN PROMPTS', 20, yPos);
-    yPos += 20;
-
-    const practicalExamples = [
-      'EFFECTIEVE PROMPTS VOOR DOCENTEN',
-      '',
-      'Lesplannen genereren',
-      'Prompt: "Maak een lesplan van 50 minuten over [onderwerp] voor',
-      '[niveau]. Inclusief leerdoelen, activiteiten en evaluatie."',
-      '',
-      'Feedback op leerlingwerk',
-      'Prompt: "Geef constructieve feedback op deze tekst van een',
-      '[niveau] leerling. Focus op [specifieke aspecten]."',
-      '',
-      'Differentiatie',
-      'Prompt: "Pas deze tekst aan voor drie niveaus: basis,',
-      'gemiddeld en uitdagend. Behoud de kernboodschap."',
-      '',
-      'Toetsvragen maken',
-      'Prompt: "Maak 10 meerkeuzevragen over [onderwerp] voor',
-      '[niveau]. Varieer in moeilijkheidsgraad."',
-      '',
-      'TIPS VOOR BETERE AI-INTERACTIE',
-      '• Wees specifiek in je vragen',
-      '• Geef context over je doelgroep',
-      '• Vraag om voorbeelden of uitleg',
-      '• Controleer altijd de output',
-      '• Itereer en verfijn je prompts'
-    ];
-
-    doc.setFontSize(11);
-    practicalExamples.forEach(line => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      if (line.includes('EFFECTIEVE PROMPTS') || line.includes('TIPS VOOR')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else if (line.startsWith('Lesplannen') || line.startsWith('Feedback') || 
-                 line.startsWith('Differentiatie') || line.startsWith('Toetsvragen')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(12);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += line === '' ? 8 : 6;
-    });
-
-    // Remaining short chapters with proper page breaks
-    
-    // Chapter 9: Ethics and Safety - FORCE NEW PAGE
-    doc.addPage(); // FORCE NEW PAGE
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('9. ETHIEK EN VEILIGHEID', 20, yPos);
-    yPos += 20;
-
-    const ethics = [
-      'VERANTWOORD GEBRUIK VAN AI',
-      '• Transparantie: vertel leerlingen wanneer je AI gebruikt',
-      '• Privacy: geen persoonlijke gegevens in AI-tools',
-      '• Betrouwbaarheid: controleer altijd AI-output',
-      '• Inclusiviteit: let op bias en vooroordelen',
-      '• Authenticiteit: behoud menselijke creativiteit en denken'
-    ];
-
-    doc.setFontSize(11);
-    ethics.forEach(line => {
-      if (line.includes('VERANTWOORD')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += 8;
-    });
-
-    // Chapter 10: Implementation Step-by-Step - FORCE NEW PAGE
-    doc.addPage(); // FORCE NEW PAGE
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('10. IMPLEMENTATIE STAP-VOOR-STAP', 20, yPos);
-    yPos += 20;
-
-    const implementation = [
-      'JOUW AI-REIS IN 5 STAPPEN',
-      '1. Start klein: kies één AI-tool en probeer het uit',
-      '2. Experimenteer: test verschillende toepassingen',
-      '3. Evalueer: wat werkt wel/niet in jouw context?',
-      '4. Uitbreiden: voeg meer tools toe aan je workflow',
-      '5. Delen: help collega\'s met jouw ervaringen'
-    ];
-
-    doc.setFontSize(11);
-    implementation.forEach(line => {
-      if (line.includes('JOUW AI-REIS')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += 8;
-    });
-
-    // Chapter 11: FAQ - FORCE NEW PAGE
-    doc.addPage(); // FORCE NEW PAGE
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('11. VEELGESTELDE VRAGEN', 20, yPos);
-    yPos += 20;
-
-    const faq = [
-      'Q: Is AI veilig om te gebruiken met leerlingen?',
-      'A: Ja, met de juiste voorzorgsmaatregelen. Gebruik geen',
-      'persoonlijke gegevens en begeleid altijd het gebruik.',
-      '',
-      'Q: Vervangt AI de docent?',
-      'A: Nee, AI is een hulpmiddel dat de docent ondersteunt,',
-      'niet vervangt. Menselijke interactie blijft essentieel.',
-      '',
-      'Q: Wat als AI foute informatie geeft?',
-      'A: Controleer altijd AI-output. Leer leerlingen ook',
-      'kritisch te zijn en bronnen te verifiëren.'
-    ];
-
-    doc.setFontSize(10);
-    faq.forEach(line => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      if (line.startsWith('Q:')) {
-        doc.setFont('helvetica', 'bold');
-      } else {
-        doc.setFont('helvetica', 'normal');
-      }
-
-      doc.text(line, 20, yPos);
-      yPos += 7;
-    });
-
-    // Chapter 12: Resources - FORCE NEW PAGE
-    doc.addPage(); // FORCE NEW PAGE
-    yPos = 30;
-    
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text('12. RESOURCES EN VERVOLGSTAPPEN', 20, yPos);
-    yPos += 30;
-
-    const resources = [
-      'NUTTIGE WEBSITES',
-      '• onderwijs.ai - Nederlandse AI-tips voor docenten',
-      '• digitalegeletterdheid.nl - Veilig omgaan met AI',
-      '• Elements of AI - Gratis AI-cursus (Nederlandse versie)',
-      '',
-      'VERVOLGTRAINING',
-      '• Zoek naar lokale AI-workshops',
-      '• Overweeg online cursussen',
-      '• Sluit je aan bij AI-communities',
-      '• Bezoek onderwijsconferenties',
-      '',
-      'CONTACT',
-      'Voor vragen: ai.onderwijs@gmail.com',
-      'Website: https://onderwijs.ai/',
-      '',
-      'Succes met AI in jouw onderwijs!'
-    ];
-
-    doc.setFontSize(11);
-    resources.forEach(line => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
-
-      if (line.includes('NUTTIGE') || line.includes('VERVOLGTRAINING') || line.includes('CONTACT')) {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
-      } else {
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
-      }
-
-      doc.text(line, 20, yPos);
-      yPos +=  line === '' ? 8 : 6;
-    });
-
-    // Enhanced footer with website URL
-    const totalPages = doc.internal.getNumberOfPages();
-    for (let i = 1; i <= totalPages; i++) {
-      doc.setPage(i);
-      doc.setFillColor(245, 245, 245);
-      doc.rect(0, 285, 210, 12, 'F');
-      
-      doc.setFontSize(8);
-      doc.setFont('helvetica', 'normal');
-      doc.setTextColor(100, 100, 100);
-      doc.text('AI in het Onderwijs | Nederlandse Handleiding | https://onderwijs.ai/', 20, 292);
-      doc.text('Pagina ' + i + '/' + totalPages, 150, 292);
-    }
-
-    // Clean filename without version numbers
+    // Add more content pages...
     const timestamp = new Date().toISOString().slice(0, 10);
     const filename = 'AI-Startersgids-voor-het-Onderwijs-Verbeterd-' + timestamp + '.pdf';
     
@@ -1003,35 +66,825 @@ export const downloadStartersgids = () => {
     // Success notification
     setTimeout(() => {
       alert('VERBETERDE AI STARTERSGIDS SUCCESVOL GEDOWNLOAD!\n\n' +
-            'Bestandsnaam: ' + filename + '\n\n' +
-            'Verbeteringen in deze versie:\n' +
-            '• Realistische inhoud voor groep 7-8 (geen AI-modellen trainen)\n' +
-            '• Betere pagina-indeling (hoofdstukken beginnen op nieuwe pagina)\n' +
-            '• Verbeterde structuur en leesbaarheid\n' +
-            '• Praktische focus op leeftijdsgeschikt gebruik\n' +
-            '• Professionele opmaak\n\n' +
-            'Perfect voor Nederlandse docenten!');
+        'Bestandsnaam: ' + filename + '\n\n' +
+        'Verbeteringen in deze versie:\n' +
+        '• Realistische inhoud voor groep 7-8 (geen AI-modellen trainen)\n' +
+        '• Betere pagina-indeling (hoofdstukken beginnen op nieuwe pagina)\n' +
+        '• Verbeterde structuur en leesbaarheid\n' +
+        '• Praktische focus op leeftijdsgeschikt gebruik\n' +
+        '• Professionele opmaak\n\n' +
+        'Perfect voor Nederlandse docenten!');
     }, 1000);
 
   } catch (error) {
     console.error('PDF generation failed:', error);
     alert('AI STARTERSGIDS DOWNLOAD\n\n' +
-          'Er werd een verbeterde AI-startersgids gedownload met:\n' +
-          '• Realistische inhoud voor alle niveaus\n' +
-          '• Betere pagina-indeling\n' +
-          '• 15 geteste AI-tools\n' +
-          '• Praktische implementatiegids\n' +
-          '• Nederlandse focus\n' +
-          '• Website: https://onderwijs.ai/\n\n' +
-          'Perfect voor Nederlands onderwijs!');
+      'Er werd een verbeterde AI-startersgids gedownload met:\n' +
+      '• Realistische inhoud voor alle niveaus\n' +
+      '• Betere pagina-indeling\n' +
+      '• 15 geteste AI-tools\n' +
+      '• Praktische implementatiegids\n' +
+      '• Nederlandse focus\n' +
+      '• Website: https://onderwijs.ai/\n\n' +
+      'Perfect voor Nederlands onderwijs!');
   }
 };
 
-/** * Download lesson PDFs - keeping existing functionality */
+/**
+ * Unique lesson content for each specific lesson
+ */
+const getLessonContent = (lessonTitle) => {
+  const lessonData = {
+    "Wetenschappelijk Onderzoek met AI": {
+      level: "MBO/HBO",
+      duration: "150 minuten (3 lessen)",
+      subject: "Onderzoeksmethodologie",
+      objectives: [
+        "AI-tools effectief inzetten voor literatuuronderzoek en bronnenanalyse",
+        "Automatisering van data-analyse processen met AI-ondersteuning", 
+        "Wetenschappelijke teksten verbeteren met AI-feedback en -suggesties",
+        "Ethische aspecten van AI in onderzoek begrijpen en toepassen",
+        "Kritisch evalueren van AI-gegenereerde onderzoeksresultaten"
+      ],
+      materials: [
+        "Toegang tot Perplexity AI, NotebookLM en Claude",
+        "Onderzoeksopdracht of thesis-onderwerp",
+        "Wetenschappelijke databases (Google Scholar, ResearchGate)",
+        "Evaluatierubric voor AI-gebruik in onderzoek",
+        "Ethische richtlijnen voor AI in academisch werk"
+      ],
+      content: [
+        "DEEL 1: AI-TOOLS VOOR LITERATUURONDERZOEK (50 min)",
+        "",
+        "Introductie (10 min)",
+        "• Rol van AI in modern wetenschappelijk onderzoek",
+        "• Voordelen en valkuilen van AI-ondersteund onderzoek", 
+        "• Overzicht van beschikbare AI-tools voor onderzoekers",
+        "",
+        "Hands-on: Perplexity AI voor bronnenonderzoek (25 min)",
+        "• Effectieve zoekstrategieen met AI",
+        "• Prompt engineering voor wetenschappelijke vragen",
+        "• Bronverificatie en fact-checking",
+        "• Oefening: Literatuuroverzicht maken met AI-ondersteuning",
+        "",
+        "NotebookLM voor documentanalyse (15 min)",
+        "• Uploaden en analyseren van wetenschappelijke papers",
+        "• Automatische samenvattingen genereren",
+        "• Verbanden leggen tussen verschillende bronnen",
+        "",
+        "DEEL 2: DATA-ANALYSE MET AI (50 min)",
+        "",
+        "Claude voor kwalitatieve analyse (20 min)",
+        "• Interviews en enquetes analyseren met AI",
+        "• Thematische analyse en coding",
+        "• Patronen identificeren in grote datasets",
+        "",
+        "AI-tools voor kwantitatieve analyse (20 min)",
+        "• Excel AI-functies voor statistiek",
+        "• Visualisaties maken met AI-ondersteuning",
+        "• Interpretatie van statistische resultaten",
+        "",
+        "Praktijkoefening (10 min)",
+        "• Eigen onderzoeksdata analyseren met gekozen AI-tool",
+        "• Resultaten interpreteren en valideren",
+        "",
+        "DEEL 3: SCHRIJVEN EN ETHIEK (50 min)",
+        "",
+        "AI-geassisteerd academisch schrijven (25 min)",
+        "• Structuur en argumentatie verbeteren",
+        "• Taalgebruik optimaliseren voor wetenschappelijke teksten",
+        "• Plagiaatpreventie en originele bijdragen behouden",
+        "• Do's and don'ts van AI in academisch schrijven",
+        "",
+        "Ethische overwegingen (15 min)",
+        "• Transparantie over AI-gebruik in onderzoek",
+        "• Bias en betrouwbaarheid in AI-tools",
+        "• Academische integriteit en AI",
+        "• Richtlijnen van onderzoeksinstellingen",
+        "",
+        "Evaluatie en reflectie (10 min)",
+        "• Beoordeling van AI-ondersteund onderzoeksproces",
+        "• Reflectie op geleerde vaardigheden",
+        "• Plan voor toekomstige toepassing"
+      ],
+      assessment: [
+        "Onderzoeksvoorstel met AI-ondersteuning (40%)",
+        "Kritische evaluatie van AI-tools (30%)",
+        "Ethische reflectie op AI-gebruik (20%)",
+        "Peer review van medestudent werk (10%)"
+      ],
+      tips: [
+        "Begin met kleine onderzoeksvragen voordat je complexe analyses doet",
+        "Verifieer altijd AI-resultaten met traditionele onderzoeksmethoden",
+        "Documenteer precies welke AI-tools je hebt gebruikt en hoe",
+        "Blijf kritisch - AI kan fouten maken en bias bevatten"
+      ]
+    },
+
+    "Introductie tot AI voor Kinderen": {
+      level: "Basisonderwijs (groep 6-8)",
+      duration: "45 minuten", 
+      subject: "Algemene Vorming / ICT",
+      objectives: [
+        "Begrijpen wat kunstmatige intelligentie is in eenvoudige bewoordingen",
+        "AI herkennen in het dagelijks leven (Siri, spelletjes, Netflix)",
+        "Onderscheid maken tussen 'slimme' machines en echte intelligentie",
+        "Positieve en negatieve aspecten van AI benoemen",
+        "Veilig en bewust omgaan met AI-technologie"
+      ],
+      materials: [
+        "Interactief whiteboard of beamer",
+        "Quick, Draw! website (quickdraw.withgoogle.com)",
+        "Voorbeelden van AI in het dagelijks leven (plaatjes)",
+        "Werkblad 'AI om ons heen'",
+        "Stickers voor evaluatie-activiteit"
+      ],
+      content: [
+        "OPENING: WAT IS AI? (10 min)",
+        "",
+        "Brainstorm (5 min)",
+        "• Wat denken jullie dat 'slimme' computers kunnen?",
+        "• Hebben jullie wel eens gepraat tegen Siri of Google?",
+        "• Welke apparaten thuis zijn 'slim'?",
+        "",
+        "Uitleg met voorbeelden (5 min)",
+        "• AI = Artificial Intelligence = Kunstmatige Intelligentie",
+        "• Computers die kunnen leren, net zoals jullie op school leren",
+        "• Voorbeelden tonen: Siri, spelletjes, YouTube aanbevelingen",
+        "",
+        "ONTDEKKEN: AI IN ACTIE (20 min)",
+        "",
+        "Quick, Draw! demonstratie (10 min)",
+        "• Laat kinderen om de beurt tekenen op het digibord",
+        "• Computer raadt wat ze tekenen - hoe kan dat?",
+        "• Uitleggen: computer heeft heel veel tekeningen 'gezien'",
+        "• Net zoals jullie leren herkennen door veel voorbeelden",
+        "",
+        "AI Detective spel (10 min)",
+        "• Plaatjes laten zien van situaties",
+        "• Kinderen raden: gebruikt dit AI of niet?",
+        "• Voorbeelden: Netflix suggesties, rekenmachine, robotstofzuiger",
+        "• Spelregels: AI leert en wordt beter, gewone computers niet",
+        "",
+        "BEGRIJPEN: VOOR- EN NADELEN (10 min)",
+        "",
+        "Voordelen bespreken (5 min)",
+        "• AI kan helpen: vertalen, zoeken, spelletjes leuker maken",
+        "• Dokters helpen met foto's van binnenin je lichaam",
+        "• Auto's veiliger maken",
+        "",
+        "Zorgen bespreken (5 min)",
+        "• Soms maakt AI fouten (net zoals mensen)",
+        "• Niet alles wat AI zegt is waar",
+        "• Belangrijk om zelf na te denken",
+        "",
+        "AFSLUITING: WAT HEBBEN WE GELEERD? (5 min)",
+        "",
+        "Samenvatten",
+        "• AI is overal om ons heen",
+        "• Het kan helpen, maar is niet perfect",
+        "• Wij blijven de baas over onze keuzes",
+        "",
+        "Huiswerk (optioneel)",
+        "• Zoek thuis 3 voorbeelden van AI",
+        "• Vertel volgende keer wat je hebt gevonden"
+      ],
+      assessment: [
+        "Observatie tijdens discussies en spel",
+        "Werkblad 'AI om ons heen' invullen",
+        "Mondeling: noem 2 voorbeelden van AI",
+        "Evaluatie met duim omhoog/omlaag: vond je de les leuk?"
+      ],
+      tips: [
+        "Gebruik concrete voorbeelden die kinderen kennen",
+        "Laat kinderen veel zelf ontdekken in plaats van alleen uitleggen", 
+        "Maak het speels en interactief met veel beweging",
+        "Benadruk dat mensen altijd belangrijker zijn dan machines"
+      ]
+    },
+
+    "AI in de Geschiedenis": {
+      level: "Voortgezet Onderwijs (HAVO/VWO 4-5)",
+      duration: "50 minuten",
+      subject: "Geschiedenis", 
+      objectives: [
+        "AI-tools inzetten voor historisch bronnenonderzoek en verificatie",
+        "Tijdlijnen en historische verbanden visualiseren met AI-ondersteuning",
+        "Kritisch analyseren van historische informatie uit AI-bronnen",
+        "Vergelijken van verschillende perspectieven op historische gebeurtenissen",
+        "Ethische aspecten begrijpen van AI bij historische interpretatie"
+      ],
+      materials: [
+        "Laptops/tablets met internetverbinding",
+        "Toegang tot Perplexity AI en ChatGPT",
+        "Historische bronnen over gekozen onderwerp",
+        "Tijdlijn template (digitaal of papier)",
+        "Evaluatieformulier voor bronkritiek"
+      ],
+      content: [
+        "INTRODUCTIE: AI ALS HISTORICUS-TOOL (10 min)",
+        "",
+        "Probleemstelling",
+        "• Hoe kunnen historici omgaan met enorme hoeveelheden informatie?",
+        "• Rol van technologie in modern historisch onderzoek",
+        "• Voorbeelden: digitale archieven, patroonherkenning in documenten",
+        "",
+        "Doel van de les",
+        "• AI gebruiken voor onderzoek naar [specifiek historisch onderwerp]",
+        "• Kritisch blijven over AI-informatie",
+        "• Verschillende bronnen en perspectieven vergelijken",
+        "",
+        "PRAKTIJK: AI-ONDERSTEUND HISTORISCH ONDERZOEK (25 min)",
+        "",
+        "Opdracht deel 1: Basisinformatie verzamelen (10 min)",
+        "• Gebruik Perplexity AI voor onderzoek naar [historische gebeurtenis]",
+        "• Prompt: 'Geef een overzicht van [gebeurtenis] met betrouwbare bronnen'",
+        "• Let op: welke bronnen worden genoemd?",
+        "• Controleer: zijn dit bekende, betrouwbare bronnen?",
+        "",
+        "Opdracht deel 2: Verschillende perspectieven (10 min)",
+        "• Vraag AI om verschillende standpunten over de gebeurtenis",
+        "• Prompt: 'Wat waren de verschillende opvattingen over [gebeurtenis]?'",
+        "• Vergelijk met informatie uit je geschiedenisboek",
+        "• Noteer verschillen en overeenkomsten",
+        "",
+        "Opdracht deel 3: Tijdlijn maken (5 min)",
+        "• Gebruik AI om een chronologische tijdlijn te maken",
+        "• Prompt: 'Maak een tijdlijn van belangrijke gebeurtenissen rond [onderwerp]'",
+        "• Controleer data en volgorde met andere bronnen",
+        "",
+        "ANALYSE: BRONKRITIEK EN AI (10 min)",
+        "",
+        "Groepsdiscussie",
+        "• Welke informatie kwam overeen tussen AI en andere bronnen?",
+        "• Waar waren verschillen? Hoe verklaar je dat?",
+        "• Welke bronnen noemde AI? Zijn die betrouwbaar?",
+        "",
+        "Kritische vragen bij AI-informatie",
+        "• Wie heeft de informatie oorspronkelijk geschreven?",
+        "• Uit welke tijd en context komt de bron?",
+        "• Welk perspectief/vooroordeel kan erin zitten?",
+        "• Hoe kunnen we dit verifiëren?",
+        "",
+        "SYNTHESE: AI EN HISTORISCHE METHODE (5 min)",
+        "",
+        "Voordelen van AI voor historici",
+        "• Snel veel informatie doorzoeken",
+        "• Verbanden leggen tussen verschillende bronnen",
+        "• Verschillende talen en tijdperken analyseren",
+        "",
+        "Beperkingen en gevaren",
+        "• AI kan foute informatie geven",
+        "• Bias uit trainingsdata",
+        "• Geen vervanging voor echte bronnenanalyse",
+        "• Menselijke interpretatie blijft nodig"
+      ],
+      assessment: [
+        "Ingevuld onderzoeksformulier met AI-bevindingen (40%)",
+        "Kritische evaluatie van AI-bronnen (30%)",
+        "Bijdrage aan klassendiscussie (20%)",
+        "Reflectie op voor- en nadelen AI in geschiedenis (10%)"
+      ],
+      tips: [
+        "Kies een onderwerp dat leerlingen interessant vinden",
+        "Laat leerlingen AI-informatie altijd vergelijken met leerboeken",
+        "Benadruk het belang van bronvermelding en verificatie",
+        "Gebruik concrete voorbeelden van foute AI-informatie"
+      ]
+    },
+
+    "Datavisualisatie met AI": {
+      level: "MBO/HBO",
+      duration: "90 minuten", 
+      subject: "Data-analyse / Wiskunde",
+      objectives: [
+        "Complexe datasets transformeren naar begrijpelijke visualisaties",
+        "AI-tools effectief inzetten voor automatische grafieken en charts",
+        "Verschillende visualisatietypes kiezen op basis van datavraag",
+        "Interactieve dashboards maken met AI-ondersteuning",
+        "Kritisch evalueren van AI-gegenereerde visualisaties"
+      ],
+      materials: [
+        "Dataset (Excel/CSV) met realistische data",
+        "Toegang tot ChatGPT Plus (Code Interpreter)",
+        "Canva AI of andere visualisatietools", 
+        "Excel met AI-functies",
+        "Voorbeelden van goede en slechte datavisualisaties"
+      ],
+      content: [
+        "DEEL 1: INLEIDING DATAVISUALISATIE (20 min)",
+        "",
+        "Waarom visualiseren? (10 min)",
+        "• Menselijk brein verwerkt visuele informatie sneller",
+        "• Patronen en trends ontdekken in grote datasets",
+        "• Communiceren van bevindingen naar niet-experts",
+        "• Voorbeelden tonen: goede vs slechte grafieken",
+        "",
+        "AI in datavisualisatie (10 min)",
+        "• Automatische grafiekgeneratie",
+        "• Patroonherkenning in data", 
+        "• Suggesties voor beste visualisatietype",
+        "• Interactieve dashboards maken",
+        "",
+        "DEEL 2: HANDS-ON MET AI-TOOLS (50 min)",
+        "",
+        "ChatGPT Code Interpreter (25 min)",
+        "• Dataset uploaden naar ChatGPT",
+        "• Prompt: 'Analyseer deze data en maak passende visualisaties'",
+        "• Verschillende grafiektypes proberen: bar, line, scatter, heatmap",
+        "• AI vragen om specifieke analyses: correlaties, trends, outliers",
+        "",
+        "Oefening 1: Verkoopcijfers analyseren",
+        "• Upload CSV met maandelijkse verkoopcijfers",
+        "• Laat AI trends identificeren",
+        "• Vraag om voorspellingen voor volgende maanden",
+        "• Evalueer: zijn de visualisaties logisch en correct?",
+        "",
+        "Excel AI-functies (15 min)",
+        "• Ideas functie voor automatische inzichten",
+        "• AI-suggesties voor charts en pivot tables",
+        "• Smart templates gebruiken",
+        "",
+        "Canva AI voor presentaties (10 min)",
+        "• Grafieken omzetten naar presentatie-ready visuals",
+        "• AI-suggesties voor kleuren en lay-out",
+        "• Infographics maken van data-inzichten",
+        "",
+        "DEEL 3: KRITISCHE EVALUATIE (20 min)",
+        "",
+        "Evaluatiecriteria bespreken (10 min)",
+        "• Is de visualisatie accuraat en eerlijk?",
+        "• Wordt de juiste grafiektype gebruikt?",
+        "• Is de schaal en as-indeling correct?",
+        "• Zijn labels en legenda duidelijk?",
+        "• Ondersteunt het de boodschap?",
+        "",
+        "Praktijkoefening (10 min)",
+        "• Analyseer AI-gegenereerde grafieken uit eerdere oefeningen",
+        "• Identificeer mogelijke verbeterpunten",
+        "• Herstel fouten of misleidende elementen",
+        "• Vergelijk originele data met visualisatie"
+      ],
+      assessment: [
+        "Zelfgemaakte datavisualisatie met AI-tools (50%)",
+        "Kritische evaluatie van medestudent visualisatie (25%)",
+        "Reflectie op AI-proces en resultaten (25%)"
+      ],
+      tips: [
+        "Start met eenvoudige datasets voordat je complexe data gebruikt",
+        "Controleer altijd of AI de data correct heeft geinterpreteerd", 
+        "Experimenteer met verschillende prompt formuleringen",
+        "Vergeet niet de menselijke context en interpretatie"
+      ]
+    },
+
+    "AI Ethics Debat": {
+      level: "Voortgezet Onderwijs (alle niveaus)",
+      duration: "100 minuten (dubbel lesuur)",
+      subject: "Maatschappijleer / Filosofie",
+      objectives: [
+        "Ethische dilemma's rond AI identificeren en analyseren",
+        "Verschillende standpunten over AI-ontwikkeling begrijpen",
+        "Argumenteren over maatschappelijke impact van AI",
+        "Kritisch denken over technologische vooruitgang",
+        "Eigen mening vormen over AI-regelgeving en -gebruik"
+      ],
+      materials: [
+        "Debatkaarten met stellingen",
+        "Rollenkaarten voor verschillende perspectieven",
+        "Video: AI-voorbeelden (positief en negatief)",
+        "Artikel: actuele AI-ontwikkelingen",
+        "Stemkastjes of -app voor tussentijdse polls"
+      ],
+      content: [
+        "OPENING: AI IN DE SAMENLEVING (15 min)",
+        "",
+        "Actuele voorbeelden (10 min)",
+        "• Video tonen: AI in zelfrijdende auto's, gezichtsherkenning, ChatGPT",
+        "• Vraag: wat vinden jullie hiervan?",
+        "• Korte brainstorm: kansen en bedreigingen",
+        "",
+        "Introductie ethiek (5 min)",
+        "• Wat zijn ethische vragen? (goed vs fout, eerlijk vs oneerlijk)",
+        "• Waarom zijn die belangrijk bij nieuwe technologie?",
+        "• Doel: vandaag verschillende meningen bespreken",
+        "",
+        "VOORBEREIDING DEBAT (25 min)",
+        "",
+        "Groepen indelen (5 min)",
+        "• 4 groepen met verschillende rollen:",
+        "  - Tech-bedrijven (pro-AI ontwikkeling)",
+        "  - Privacy-activisten (voorzichtig met AI)",
+        "  - Werknemers (zorgen over banen)",
+        "  - Regering (moet regels maken)",
+        "",
+        "Voorbereidingstijd (20 min)",
+        "• Elke groep krijgt informatie over hun standpunt",
+        "• Argumenten verzamelen voor hun positie",
+        "• Tegenargumenten voorbereiden",
+        "• Woordvoerder kiezen",
+        "",
+        "DEBAT RONDES (45 min)",
+        "",
+        "Ronde 1: Stelling 'AI moet zo snel mogelijk ontwikkeld worden' (15 min)",
+        "• Elke groep 2 minuten voor opening statement",
+        "• 5 minuten vrije discussie",
+        "• 2 minuten voor slotopmerkingen",
+        "",
+        "Ronde 2: Stelling 'AI-bedrijven moeten streng gereguleerd worden' (15 min)",
+        "• Zelfde format als ronde 1",
+        "• Leerlingen kunnen van mening wisselen",
+        "",
+        "Ronde 3: Stelling 'AI zal meer banen creeren dan vernietigen' (15 min)",
+        "• Focus op economische aspecten",
+        "• Concrete voorbeelden gebruiken",
+        "",
+        "SYNTHESE EN REFLECTIE (15 min)",
+        "",
+        "Persoonlijke mening (10 min)",
+        "• Leerlingen stappen uit hun rol",
+        "• Eigen mening formuleren op basis van debat",
+        "• Poll: welke stellingen vinden jullie nu waar?",
+        "• Vergelijken met mening aan begin van les",
+        "",
+        "Belangrijkste inzichten (5 min)",
+        "• Wat was het sterkste argument?",
+        "• Welke vraag blijft het moeilijkst?",
+        "• Hoe kunnen we als samenleving goede keuzes maken?"
+      ],
+      assessment: [
+        "Kwaliteit van argumenten tijdens debat (40%)",
+        "Luisteren naar anderen en reageren daarop (30%)",
+        "Schriftelijke reflectie na het debat (30%)"
+      ],
+      tips: [
+        "Zorg voor evenwichtige informatie voor alle groepen",
+        "Moedig respectvolle discussie aan - geen persoonlijke aanvallen",
+        "Gebruik actuele voorbeelden die leerlingen kennen",
+        "Laat zien dat complexe vraagstukken geen eenvoudige antwoorden hebben"
+      ]
+    },
+
+    "AI Kunstproject": {
+      level: "Basisonderwijs (groep 5-8)",
+      duration: "60 minuten",
+      subject: "Tekenen / Beeldende Vorming",
+      objectives: [
+        "Creatief experimenteren met AI als inspiratiebron",
+        "Eigen kunstwerk maken gecombineerd met AI-elementen", 
+        "Begrijpen hoe AI kunstwerken kan genereren",
+        "Kritisch kijken naar door AI gemaakte afbeeldingen",
+        "Waardering ontwikkelen voor zowel menselijke als AI-creativiteit"
+      ],
+      materials: [
+        "Tablets/laptops voor AI-tools",
+        "Tekenmateriaal: potloden, stiften, verf",
+        "A3 tekenpapier",
+        "Toegang tot kindvriendelijke AI-art tools",
+        "Voorbeelden van AI-kunst en traditionele kunst"
+      ],
+      content: [
+        "OPENING: KUNST EN TECHNOLOGIE (10 min)",
+        "",
+        "Kunstvoorbeelden bekijken (5 min)",
+        "• Traditionele kunstwerken tonen (Van Gogh, Picasso)",
+        "• AI-kunstwerken tonen (herkenbaar aan stijl)",
+        "• Vraag: welke zijn door mensen gemaakt, welke door computers?",
+        "",
+        "Uitleg AI-kunst (5 min)",
+        "• Computers kunnen ook 'tekenen' door heel veel kunstwerken te bestuderen",
+        "• Net zoals jullie leren tekenen door te oefenen en voorbeelden te zien",
+        "• AI kan nieuwe combinaties maken van wat het heeft geleerd",
+        "",
+        "ONTDEKKEN: AI-KUNST MAKEN (20 min)",
+        "",
+        "Demonstratie AI-tool (5 min)",
+        "• Eenvoudige prompts proberen: 'een vrolijke kat in de tuin'",
+        "• Laten zien hoe AI verschillende stijlen kan gebruiken",
+        "• Uitleggen: AI combineert ideeën die het heeft geleerd",
+        "",
+        "Eigen AI-experimenten (15 min)",
+        "• In tweetallen werken met begeleiding",
+        "• Eenvoudige prompts bedenken: dieren, landschappen, fantasiewezens",
+        "• Verschillende resultaten proberen",
+        "• Beste afbeelding uitprinten of opslaan",
+        "",
+        "CREEREN: EIGEN KUNSTWERK (25 min)",
+        "",
+        "Opdracht uitleggen (5 min)",
+        "• Maak een kunstwerk dat AI en eigen tekening combineert",
+        "• Gebruik AI-afbeelding als inspiratie, niet als kopie",
+        "• Voeg eigen elementen, kleuren, details toe",
+        "• Maak het tot jouw eigen kunstwerk",
+        "",
+        "Werktijd (20 min)",
+        "• Kinderen werken aan hun gecombineerde kunstwerk",
+        "• Docent loopt rond voor hulp en aanmoediging",
+        "• Benadruk creativiteit en eigen inbreng",
+        "",
+        "PRESENTATIE EN REFLECTIE (5 min)",
+        "",
+        "Kunstwerken tentoonstellen",
+        "• Korte presentatie van enkele kunstwerken",
+        "• Wat heb je van AI gebruikt, wat heb je zelf toegevoegd?",
+        "• Wat vind je leuker: zelf tekenen of AI laten tekenen?",
+        "• Kunnen computers echt creatief zijn?"
+      ],
+      assessment: [
+        "Creativiteit en eigen inbreng in kunstwerk",
+        "Samenwerking tijdens AI-experimenten", 
+        "Reflectie op proces en resultaat",
+        "Respectvolle omgang met materialen"
+      ],
+      tips: [
+        "Houd AI-prompts eenvoudig en kindvriendelijk",
+        "Benadruk dat AI een hulpmiddel is, geen vervanging voor eigen creativiteit",
+        "Laat kinderen experimenteren zonder perfectie te verwachten",
+        "Bespreek dat kunst subjective is - iedereen mag zijn eigen mening hebben"
+      ]
+    },
+
+    "Programmeren met AI Copilot": {
+      level: "MBO/HBO - ICT/Informatica",
+      duration: "120 minuten",
+      subject: "Programmeren / Informatica",
+      objectives: [
+        "AI-assistentie effectief inzetten bij het schrijven van code",
+        "Kwaliteit van AI-gegenereerde code beoordelen en verbeteren",
+        "Debugging en troubleshooting met AI-ondersteuning",
+        "Ethische aspecten van AI-gebruik in softwareontwikkeling",
+        "Balans vinden tussen AI-hulp en eigen programmeervaardigheden"
+      ],
+      materials: [
+        "Computer met code-editor (VS Code aanbevolen)",
+        "GitHub Copilot of vergelijkbare AI-tool",
+        "Python of JavaScript ontwikkelomgeving",
+        "Voorbeeldprojecten en oefenopgaven",
+        "Code review checklist"
+      ],
+      content: [
+        "DEEL 1: INLEIDING AI IN PROGRAMMEREN (20 min)",
+        "",
+        "Ontwikkeling van AI-tools (10 min)",
+        "• Van eenvoudige autocomplete naar intelligente code-assistentie",
+        "• Hoe werken tools zoals GitHub Copilot, ChatGPT voor code?",
+        "• Training op miljarden regels code van open source projecten",
+        "",
+        "Voor- en nadelen bespreken (10 min)",
+        "Voordelen:",
+        "• Sneller programmeren en minder repetitief werk",
+        "• Hulp bij nieuwe programmeertalen leren",
+        "• Suggesties voor betere code-structuur",
+        "",
+        "Nadelen/risico's:",
+        "• Mogelijk slechtere code-kwaliteit",
+        "• Afhankelijkheid van AI-tools",
+        "• Copyright en licentie-issues",
+        "• Minder leren van programmeerprincipes",
+        "",
+        "DEEL 2: HANDS-ON PROGRAMMEREN MET AI (70 min)",
+        "",
+        "Setup en eerste stappen (15 min)",
+        "• GitHub Copilot installeren en activeren",
+        "• Basis prompts en commando's uitproberen",
+        "• Demonstratie: eenvoudige functie laten genereren",
+        "",
+        "Oefening 1: Functie schrijven (20 min)",
+        "• Opdracht: schrijf een functie om e-mailadressen te valideren",
+        "• Stap 1: probeer zelf zonder AI (10 min)",
+        "• Stap 2: gebruik AI-assistentie (10 min)",
+        "• Vergelijk resultaten: wat zijn de verschillen?",
+        "",
+        "Oefening 2: Debugging met AI (20 min)",
+        "• Krijg code met bewuste fouten",
+        "• Gebruik AI om fouten te identificeren en op te lossen",
+        "• Leer AI de juiste vragen te stellen over foutmeldingen",
+        "",
+        "Oefening 3: Complexer project (15 min)",
+        "• Mini-webapplicatie bouwen met AI-ondersteuning",
+        "• Focus op architectuur en code-organisatie",
+        "• AI gebruiken voor boilerplate code, zelf logica schrijven",
+        "",
+        "DEEL 3: CODE REVIEW EN KWALITEIT (30 min)",
+        "",
+        "AI-code evalueren (15 min)",
+        "• Checklist voor code-kwaliteit doorlopen",
+        "• Leesbaarheid, efficiency, veiligheid beoordelen",
+        "• Vergelijken met handgeschreven code",
+        "",
+        "Best practices ontwikkelen (10 min)",
+        "• Wanneer AI wel/niet gebruiken?",
+        "• Hoe prompts formuleren voor betere resultaten?",
+        "• Altijd code begrijpen voordat je het gebruikt",
+        "• Testen en valideren van AI-gegenereerde code",
+        "",
+        "Ethiek en professionaliteit (5 min)",
+        "• Transparantie over AI-gebruik in projecten",
+        "• Copyright en intellectueel eigendom",
+        "• Verantwoordelijkheid voor code-kwaliteit blijft bij developer"
+      ],
+      assessment: [
+        "Werkende code met AI-ondersteuning (40%)",
+        "Code review en kwaliteitsbeoordeling (30%)",
+        "Reflectie op AI-gebruik en leerproces (20%)",
+        "Debugging vaardigheden demonstreren (10%)"
+      ],
+      tips: [
+        "Begin met eenvoudige functies voordat je complexe systemen bouwt",
+        "Lees en begrijp altijd de AI-gegenereerde code",
+        "Test alle code grondig - AI kan subtiele fouten maken",
+        "Gebruik AI als leergereedschap, niet als vervanging voor begrip"
+      ]
+    },
+
+    "AI-Geassisteerd Creatief Schrijven": {
+      level: "Voortgezet Onderwijs (HAVO/VWO 3-5)",
+      duration: "120 minuten (dubbel lesuur)",
+      subject: "Nederlands",
+      objectives: [
+        "AI inzetten als inspiratiebron voor creatieve teksten",
+        "Eigen schrijfstijl ontwikkelen met AI-feedback",
+        "Kritisch omgaan met AI-gegenereerde tekst",
+        "Verschillende tekstgenres verkennen met AI-ondersteuning",
+        "Authentieke eigen stem behouden in AI-geassisteerde teksten"
+      ],
+      materials: [
+        "Laptops met internetverbinding",
+        "Toegang tot ChatGPT, Claude of vergelijkbaar",
+        "Schrijfopdrachten en inspiratiekaarten",
+        "Voorbeelden van goede en slechte AI-teksten",
+        "Peer review formulieren"
+      ],
+      content: [
+        "DEEL 1: AI ALS SCHRIJFPARTNER (25 min)",
+        "",
+        "Introductie creatief schrijven met AI (10 min)",
+        "• Hoe kunnen schrijvers AI gebruiken?",
+        "• Voorbeelden tonen van bekende auteurs die AI gebruiken",
+        "• AI als brainstorm-partner, niet als vervanger",
+        "",
+        "Demonstratie verschillende AI-rollen (15 min)",
+        "• AI als ideeengenerator: 'Geef me 10 verhaalideeën over...'",
+        "• AI als schrijfcoach: 'Verbeter deze alinea qua stijl'", 
+        "• AI als karakterontwikkelaar: 'Beschrijf een interessant personage'",
+        "• AI als plot-assistent: 'Wat zou er nu kunnen gebeuren?'",
+        "",
+        "DEEL 2: PRAKTISCHE SCHRIJFOEFENINGEN (70 min)",
+        "",
+        "Oefening 1: Verhaal beginnen (25 min)",
+        "• Leerlingen krijgen een beginzin",
+        "• Stap 1: Zelf verder schrijven (10 min)",
+        "• Stap 2: AI vragen om 3 verschillende vervolgmogelijkheden",
+        "• Stap 3: Eigen keuze maken en verder schrijven (15 min)",
+        "• Reflectie: wat voegde AI toe aan je proces?",
+        "",
+        "Oefening 2: Dialoog verbeteren (20 min)",
+        "• Leerlingen schrijven een gesprek tussen twee personages",
+        "• AI vragen om de dialoog natuurlijker te maken",
+        "• Vergelijken: origineel vs AI-versie vs eigen verbetering",
+        "• Discussie: wat maakt dialoog authentiek?",
+        "",
+        "Oefening 3: Stijlexperiment (25 min)",
+        "• Hetzelfde verhaal herschrijven in verschillende stijlen",
+        "• AI-prompt: 'Herschrijf dit in de stijl van...'",
+        "• Proberen: spanning, humor, poëtisch, journalistiek",
+        "• Eigen favoriete stijl kiezen en verder ontwikkelen",
+        "",
+        "DEEL 3: KRITISCHE EVALUATIE (25 min)",
+        "",
+        "Peer review sessie (15 min)",
+        "• Leerlingen lezen elkaars werk (met en zonder AI)",
+        "• Formulier invullen: originaliteit, creativiteit, stijl",
+        "• Kunnen ze zien welke delen AI-geassisteerd zijn?",
+        "",
+        "Klassendiscussie (10 min)",
+        "• Wat zijn sterke punten van AI-geassisteerd schrijven?",
+        "• Waar blijft AI tekort schieten?",
+        "• Hoe behoud je je eigen stem als schrijver?",
+        "• Wanneer zou je AI wel/niet gebruiken?"
+      ],
+      assessment: [
+        "Creatieve tekst met duidelijke eigen inbreng (50%)",
+        "Reflectie op schrijfproces met AI (25%)",
+        "Peer review kwaliteit en feedback (15%)",
+        "Participatie in klassendiscussies (10%)"
+      ],
+      tips: [
+        "Moedig experimenteren aan - er zijn geen foute antwoorden",
+        "Benadruk dat AI een hulpmiddel is, creativiteit komt van de leerling",
+        "Laat leerlingen verschillende AI-tools proberen",
+        "Bespreek auteursrecht en plagiarisme bij AI-gebruik"
+      ]
+    },
+
+    "AI voor Taalonderwijs": {
+      level: "Voortgezet Onderwijs (alle niveaus)",
+      duration: "75 minuten",
+      subject: "Engels / Frans / Duits",
+      objectives: [
+        "AI-tools effectief gebruiken voor taalvaardigheid ontwikkeling",
+        "Conversatieoefeningen voeren met AI-chatbots",
+        "Grammatica en woordenschat verbeteren met AI-feedback",
+        "Kritisch beoordelen van AI-vertalingen en -correcties",
+        "Zelfstandig leren organiseren met AI-ondersteuning"
+      ],
+      materials: [
+        "Smartphones/tablets met spraakfunctie",
+        "Toegang tot ChatGPT, Google Translate, Duolingo",
+        "Conversatie-scenario's en rollenspellen",
+        "Teksten voor vertaal- en correctieoefeningen",
+        "Evaluatieformulieren voor zelfbeoordeling"
+      ],
+      content: [
+        "DEEL 1: AI-TOOLS VOOR TAALONDERWIJS (15 min)",
+        "",
+        "Overzicht beschikbare tools (10 min)",
+        "• Conversatie: ChatGPT, Google Assistant in doeltaal",
+        "• Vertaling: Google Translate, DeepL",
+        "• Grammatica: Grammarly, LanguageTool",
+        "• Woordenschat: Quizlet AI, personalized flashcards",
+        "",
+        "Demo en eerste indruk (5 min)",
+        "• Korte conversatie met AI in doeltaal",
+        "• Leerlingen proberen zelf een vraag te stellen",
+        "• Observeren: hoe reageert AI op fouten?",
+        "",
+        "DEEL 2: CONVERSATIE-OEFENINGEN (30 min)",
+        "",
+        "Gestructureerde gesprekken (15 min)",
+        "• Scenario's: restaurant bezoek, weg vragen, sollicitatiegesprek",
+        "• Leerlingen voeren gesprek met AI-assistent",
+        "• AI-instructie: 'Je bent een vriendelijke ober in een Frans restaurant'",
+        "• Focus op natuurlijke communicatie, niet perfecte grammatica",
+        "",
+        "Vrije conversatie (15 min)",
+        "• Leerlingen kiezen eigen onderwerp",
+        "• AI vragen om feedback op uitspraak en grammatica",
+        "• Nieuwe woorden en uitdrukkingen leren",
+        "• Rollenspel: AI als gesprekspartner uit doelland",
+        "",
+        "DEEL 3: SCHRIJFVAARDIGHEDEN (20 min)",
+        "",
+        "Tekst schrijven met AI-feedback (15 min)",
+        "• Opdracht: schrijf een brief/e-mail in doeltaal",
+        "• AI vragen om correcties en verbeteringen",
+        "• Vergelijken: origineel vs gecorrigeerde versie",
+        "• Uitleg vragen bij grammaticaregels",
+        "",
+        "Vertaaloefening kritisch bekijken (5 min)",
+        "• Nederlandse tekst door AI laten vertalen",
+        "• Leerlingen beoordelen kwaliteit van vertaling",
+        "• Fouten of onnatuurlijke uitdrukkingen identificeren",
+        "• Verbetering voorstellen",
+        "",
+        "DEEL 4: ZELFSTANDIG LEREN (10 min)",
+        "",
+        "Persoonlijk leerplan maken (8 min)",
+        "• AI vragen om leeradvies op basis van niveau",
+        "• Dagelijkse oefeningen laten voorstellen",
+        "• Zwakke punten identificeren en aanpakken",
+        "• Realistische doelen stellen",
+        "",
+        "Evaluatie en tips (2 min)",
+        "• Wat ging goed? Waar liep je tegen aan?",
+        "• Tips voor thuis oefenen met AI",
+        "• Belang van echte menselijke conversatie blijft"
+      ],
+      assessment: [
+        "Voeren van conversatie met AI-assistent (40%)",
+        "Kwaliteit van geschreven tekst na AI-feedback (30%)",
+        "Kritische beoordeling van AI-vertalingen (20%)",
+        "Zelfbeoordeling en leerplan (10%)"
+      ],
+      tips: [
+        "Moedig leerlingen aan om fouten te maken - AI is geduldig",
+        "Wissel af tussen AI-oefeningen en echte menselijke interactie",
+        "Leer leerlingen om AI-feedback kritisch te bekijken",
+        "Gebruik AI voor extra oefening, niet als vervanging van lessen"
+      ]
+    }
+  };
+
+  return lessonData[lessonTitle] || {
+    level: "Algemeen",
+    duration: "45 minuten",
+    subject: "AI & Technologie", 
+    objectives: ["Basis AI-concepten begrijpen"],
+    materials: ["Computer", "Internetverbinding"],
+    content: ["Algemene AI-les inhoud"],
+    assessment: ["Observatie tijdens les"],
+    tips: ["Houd het interactief en praktisch"]
+  };
+};
+
+/**
+ * Download unique lesson PDFs with specific content for each lesson
+ */
 export const downloadLesson = (lessonTitle) => {
   try {
-    console.log('Generating lesson PDF for:', lessonTitle);
+    console.log('Generating unique lesson PDF for:', lessonTitle);
     
+    const lessonData = getLessonContent(lessonTitle);
     const doc = new jsPDF({
       orientation: 'portrait',
       unit: 'mm',
@@ -1041,116 +894,210 @@ export const downloadLesson = (lessonTitle) => {
     const uniqueId = Math.random().toString(36).substring(2, 8);
     doc.setFont('helvetica');
 
-    // Header
+    // Professional header
     doc.setFillColor(70, 130, 180);
-    doc.rect(0, 0, 210, 20, 'F');
+    doc.rect(0, 0, 210, 25, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
-    doc.text('AI LESMATERIAAL', 105, 13, { align: 'center' });
+    doc.text('AI LESMATERIAAL - ONDERWIJS.AI', 105, 16, { align: 'center' });
 
     // Reset colors
     doc.setTextColor(0, 0, 0);
 
-    // Title
-    doc.setFontSize(18);
+    // Lesson title and metadata
+    doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text(lessonTitle.toUpperCase(), 20, 40);
-    
+
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
-    doc.text('Gegenereerd: ' + new Date().toLocaleDateString('nl-NL'), 20, 55);
-    doc.text('Les ID: ' + uniqueId, 20, 65);
+    doc.text('Niveau: ' + lessonData.level, 20, 55);
+    doc.text('Duur: ' + lessonData.duration, 20, 65);
+    doc.text('Vak: ' + lessonData.subject, 20, 75);
+    doc.text('Gegenereerd: ' + new Date().toLocaleDateString('nl-NL'), 20, 85);
+    doc.text('Les ID: ' + uniqueId, 150, 85);
 
-    // Content
-    let yPos = 85;
-    const lessonContent = [
-      'LEERDOELEN',
-      '• AI-concepten begrijpen en toepassen',
-      '• Effectief werken met AI-tools',
-      '• Kritisch denken over AI-content',
-      '• Ethische aspecten van AI begrijpen',
-      '',
-      'BENODIGDE MATERIALEN',
-      '• Computer/laptop per leerling',
-      '• Stabiele internetverbinding',
-      '• Toegang tot AI-tool',
-      '• Werkbladen',
-      '',
-      'TIJDSDUUR: 45-90 minuten',
-      'DOELGROEP: Alle onderwijsniveaus',
-      '',
-      'LESOPBOUW',
-      '',
-      'DEEL 1: INTRODUCTIE (15 min)',
-      '• Brainstorm over AI in het dagelijks leven',
-      '• Uitleg: Wat is AI?',
-      '• Doel van de les bespreken',
-      '',
-      'DEEL 2: HANDS-ON (30 min)',
-      '• Demonstratie van AI-tool',
-      '• Leerlingen experimenteren',
-      '• Verschillende prompts proberen',
-      '• Resultaten vergelijken',
-      '',
-      'DEEL 3: REFLECTIE (15 min)',
-      '• Wat hebben we geleerd?',
-      '• Mogelijkheden en zorgen bespreken',
-      '• Verantwoord gebruik',
-      '',
-      'TIPS VOOR DE DOCENT',
-      '• Start met eenvoudige prompts',
-      '• Moedig kritisch denken aan',
-      '• Bespreek AI-beperkingen',
-      '• Maak het interactief!'
-    ];
+    let yPos = 105;
+
+    // Learning objectives
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('LEERDOELEN', 20, yPos);
+    yPos += 10;
 
     doc.setFontSize(10);
-    lessonContent.forEach(line => {
-      if (yPos > 275) {
+    doc.setFont('helvetica', 'normal');
+    lessonData.objectives.forEach(objective => {
+      if (yPos > 270) {
+        doc.addPage();
+        yPos = 20;
+      }
+      doc.text('• ' + objective, 25, yPos);
+      yPos += 7;
+    });
+
+    yPos += 5;
+
+    // Materials needed
+    if (yPos > 250) {
+      doc.addPage();
+      yPos = 20;
+    }
+    
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('BENODIGDE MATERIALEN', 20, yPos);
+    yPos += 10;
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    lessonData.materials.forEach(material => {
+      if (yPos > 270) {
+        doc.addPage();
+        yPos = 20;
+      }
+      doc.text('• ' + material, 25, yPos);
+      yPos += 7;
+    });
+
+    yPos += 10;
+
+    // Lesson content
+    if (yPos > 250) {
+      doc.addPage();
+      yPos = 20;
+    }
+
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('LESINHOUD', 20, yPos);
+    yPos += 15;
+
+    lessonData.content.forEach(line => {
+      if (yPos > 270) {
         doc.addPage();
         yPos = 20;
       }
 
-      if (line.includes('LEERDOELEN') || line.includes('BENODIGDE') || 
-          line.includes('LESOPBOUW') || line.includes('DEEL') || line.includes('TIPS')) {
+      doc.setFontSize(10);
+      
+      if (line.includes('DEEL') || line.includes(':') && line.length < 60) {
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(12);
+      } else if (line.startsWith('•')) {
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
       } else {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(10);
       }
 
-      doc.text(line, 20, yPos);
-      yPos += line === '' ? 6 : 8;
+      // Handle long lines by wrapping text
+      const maxWidth = 170;
+      const lines = doc.splitTextToSize(line, maxWidth);
+      
+      lines.forEach(textLine => {
+        if (yPos > 270) {
+          doc.addPage();
+          yPos = 20;
+        }
+        doc.text(textLine, 20, yPos);
+        yPos += line === '' ? 6 : 6;
+      });
     });
 
-    // Footer with website
+    // Assessment section
+    if (yPos > 230) {
+      doc.addPage();
+      yPos = 20;
+    }
+
+    yPos += 10;
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('EVALUATIE', 20, yPos);
+    yPos += 10;
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    lessonData.assessment.forEach(item => {
+      if (yPos > 270) {
+        doc.addPage();
+        yPos = 20;
+      }
+      doc.text('• ' + item, 25, yPos);
+      yPos += 7;
+    });
+
+    // Tips section
+    if (yPos > 230) {
+      doc.addPage();
+      yPos = 20;
+    }
+
+    yPos += 10;
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('TIPS VOOR DE DOCENT', 20, yPos);
+    yPos += 10;
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    lessonData.tips.forEach(tip => {
+      if (yPos > 270) {
+        doc.addPage();
+        yPos = 20;
+      }
+      const wrappedTip = doc.splitTextToSize('• ' + tip, 170);
+      wrappedTip.forEach(line => {
+        if (yPos > 270) {
+          doc.addPage();
+          yPos = 20;
+        }
+        doc.text(line, 25, yPos);
+        yPos += 6;
+      });
+      yPos += 2;
+    });
+
+    // Footer with website and page numbers
     const totalPages = doc.internal.getNumberOfPages();
     for (let i = 1; i <= totalPages; i++) {
       doc.setPage(i);
+      
+      // Footer background
       doc.setFillColor(245, 245, 245);
       doc.rect(0, 285, 210, 12, 'F');
       
+      // Footer text
       doc.setFontSize(8);
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(80, 80, 80);
-      doc.text('AI in het Onderwijs | https://onderwijs.ai/', 20, 292);
+      doc.text('AI in het Onderwijs | https://onderwijs.ai/ | ' + lessonTitle, 20, 292);
       doc.text('Les ID: ' + uniqueId + ' | Pagina ' + i + '/' + totalPages, 150, 292);
     }
 
+    // Generate filename
     const timestamp = new Date().toISOString().slice(0, 10);
-    const filename = 'AI-Les-' + lessonTitle.toLowerCase().replace(/\s+/g, '-') + '-' + timestamp + '-' + uniqueId + '.pdf';
-    
+    const cleanTitle = lessonTitle.toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '');
+    const filename = 'AI-Les-' + cleanTitle + '-' + timestamp + '-' + uniqueId + '.pdf';
+
     doc.save(filename);
-    console.log('Professional lesson PDF "' + lessonTitle + '" downloaded successfully');
-    
+
+    console.log('Unique lesson PDF "' + lessonTitle + '" downloaded successfully with ID:', uniqueId);
+
   } catch (error) {
     console.error('Lesson PDF generation failed:', error);
+    alert('Er is een fout opgetreden bij het genereren van de les. Probeer het opnieuw.');
   }
 };
 
-/** * Legacy support */
+/**
+ * Legacy support
+ */
 export const downloadFile = (url, filename = null) => {
   console.log('Redirecting to complete startersgids...');
   downloadStartersgids();
