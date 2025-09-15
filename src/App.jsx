@@ -1,35 +1,27 @@
-import React,{Suspense} from 'react';
-import {HashRouter as Router,Routes,Route} from 'react-router-dom';
-import {AnimatePresence} from 'framer-motion';
+import React from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-
-// Lazy load components for better performance
-const Home=React.lazy(()=> import('./pages/Home'));
-const PO=React.lazy(()=> import('./pages/docenten/PO'));
-const VO=React.lazy(()=> import('./pages/docenten/VO'));
-const MBOHBO=React.lazy(()=> import('./pages/docenten/MBOHBO'));
-const AITools=React.lazy(()=> import('./pages/AITools'));
-const Trainingen=React.lazy(()=> import('./pages/Trainingen'));
-const LesLab=React.lazy(()=> import('./pages/LesLab'));
-const Blog=React.lazy(()=> import('./pages/Blog'));
-const Nieuwsbrief=React.lazy(()=> import('./pages/Nieuwsbrief'));
-const OverOns=React.lazy(()=> import('./pages/OverOns'));
-const Privacy=React.lazy(()=> import('./pages/Privacy'));
-
-// Loading component
-const LoadingSpinner=()=> (
-  <div className="min-h-screen flex items-center justify-center bg-gray-50">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-  </div>
-);
+import Home from './pages/Home';
+import PO from './pages/docenten/PO';
+import VO from './pages/docenten/VO';
+import MBOHBO from './pages/docenten/MBOHBO';
+import AITools from './pages/AITools';
+import LesLab from './pages/LesLab';
+import Blog from './pages/Blog';
+import Trainingen from './pages/Trainingen';
+import Nieuwsbrief from './pages/Nieuwsbrief';
+import OverOns from './pages/OverOns';
+import Privacy from './pages/Privacy';
+import './App.css';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen flex flex-col">
         <Navbar />
-        <Suspense fallback={<LoadingSpinner />}>
+        <main className="flex-1">
           <AnimatePresence mode="wait">
             <Routes>
               <Route path="/" element={<Home />} />
@@ -37,17 +29,15 @@ function App() {
               <Route path="/voor-docenten/vo" element={<VO />} />
               <Route path="/voor-docenten/mbo-hbo" element={<MBOHBO />} />
               <Route path="/ai-tools" element={<AITools />} />
-              <Route path="/trainingen" element={<Trainingen />} />
               <Route path="/leslab" element={<LesLab />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/trainingen" element={<Trainingen />} />
               <Route path="/nieuwsbrief" element={<Nieuwsbrief />} />
-              <Route path="/nieuws" element={<Nieuwsbrief />} />
               <Route path="/over-ons" element={<OverOns />} />
               <Route path="/privacy" element={<Privacy />} />
-              <Route path="/contact" element={<OverOns />} />
             </Routes>
           </AnimatePresence>
-        </Suspense>
+        </main>
         <Footer />
       </div>
     </Router>
