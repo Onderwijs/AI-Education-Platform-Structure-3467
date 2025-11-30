@@ -4,7 +4,7 @@ import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const { FiEdit3, FiCopy, FiCheck, FiSettings, FiList, FiFileText, FiCpu, FiHelpCircle, FiToggleRight, FiType } = FiIcons;
+const { FiEdit3, FiCopy, FiCheck, FiSettings, FiList, FiFileText, FiCpu, FiType } = FiIcons;
 
 const TestQuestionMaker = () => {
   const [formData, setFormData] = useState({
@@ -51,7 +51,6 @@ const TestQuestionMaker = () => {
       .filter(([_, isActive]) => isActive)
       .map(([key]) => key);
 
-    let structure = [];
     const typeLabels = {
       multipleChoice: "Meerkeuzevragen",
       open: "Open vragen",
@@ -64,6 +63,7 @@ const TestQuestionMaker = () => {
       return;
     }
 
+    let structure = [];
     const totalQuestions = parseInt(formData.count) || 10;
     const baseCount = Math.floor(totalQuestions / activeTypes.length);
     let remainder = totalQuestions % activeTypes.length;

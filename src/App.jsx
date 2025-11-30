@@ -22,7 +22,8 @@ import ToolsOverview from './pages/tools/ToolsOverview';
 import ToolPlaceholder from './pages/tools/ToolPlaceholder';
 import LessonGenerator from './pages/tools/LessonGenerator';
 import RubricMaker from './pages/tools/RubricMaker';
-import TestQuestionMaker from './pages/tools/TestQuestionMaker'; // NIEUWE IMPORT
+import TestQuestionMaker from './pages/tools/TestQuestionMaker';
+import Taalcoach from './pages/tools/Taalcoach'; // NIEUWE IMPORT
 import Downloads from './pages/Downloads';
 import Kennisbank from './pages/kenniscentrum/Kennisbank';
 import TrainingDetail from './pages/trainingen/TrainingDetail';
@@ -46,12 +47,11 @@ function App() {
               <Route path="/tools" element={<ToolsOverview />} />
               <Route path="/tools/lesgenerator" element={<LessonGenerator />} />
               <Route path="/tools/rubriekmaker" element={<RubricMaker />} />
-              {/* NIEUWE TOETSVRAGENMAKER ROUTE */}
               <Route path="/tools/toetsvragenmaker" element={<TestQuestionMaker />} />
+              {/* NIEUWE TAALCOACH ROUTE */}
+              <Route path="/tools/taalcoach" element={<Taalcoach />} />
               
               {/* Overige Placeholders */}
-              <Route path="/tools/tekstherschrijver" element={<ToolPlaceholder title="Tekstherschrijver" description="Herschrijf teksten naar elk gewenst leesniveau (bijv. B1)." />} />
-              <Route path="/tools/taalcoach" element={<ToolPlaceholder title="Taalcoach" description="Interactieve gespreksoefeningen voor taalleerders." />} />
               <Route path="/tools/presentatiegenerator" element={<ToolPlaceholder title="Presentatiegenerator" description="Creëer outlines en slides voor je lessen." />} />
 
               {/* 3. Voor Docenten */}
