@@ -1,13 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {motion} from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const {FiSearch,FiCalendar,FiUser,FiTag,FiArrowRight,FiExternalLink,FiGlobe}=FiIcons;
+const { FiSearch, FiCalendar, FiUser, FiTag, FiArrowRight, FiExternalLink, FiGlobe } = FiIcons;
 
-const Blog=()=> {
-  const featuredPost={
+const Blog = () => {
+  const featuredPost = {
     title: "Google I/O 2025: AI en de toekomst van onderwijs",
     excerpt: "Ontdek de nieuwste AI-ontwikkelingen van Google I/O 2025 en wat dit betekent voor de toekomst van het onderwijs.",
     date: "15 mei 2025",
@@ -19,7 +19,40 @@ const Blog=()=> {
   };
 
   // Posts sorted by date (newest first) - Added Kennisnet articles
-  const posts=[
+  const posts = [
+    {
+      title: "Monitor Digitalisering Onderwijs 2025",
+      excerpt: "Een diepgaand onderzoek naar de digitaliseringskloof tussen beleidsmakers en docenten in de klas. Relevante inzichten voor AI-invoering op school.",
+      date: "15 juni 2025",
+      sortDate: "2025-06-15",
+      author: "Kennisnet",
+      category: "Onderzoek",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
+      readTime: "15 min",
+      url: "https://www.kennisnet.nl/onderzoek/monitor-digitalisering-onderwijs-2025-kloof-tussen-beleid-en-praktijk/"
+    },
+    {
+      title: "Een goede AI-strategie is voor iedere school een noodzaak",
+      excerpt: "Kennisnet beschrijft waarom scholen niet meer om een integrale en doordachte AI-strategie heen kunnen en hoe bestuurders hiermee aan de slag kunnen.",
+      date: "10 juni 2025",
+      sortDate: "2025-06-10",
+      author: "Kennisnet",
+      category: "Strategie",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=250&fit=crop",
+      readTime: "8 min",
+      url: "https://www.kennisnet.nl/opinie/een-goede-ai-strategie-is-voor-iedere-school-een-noodzaak/"
+    },
+    {
+      title: "AI: Hype of Adoptie?",
+      excerpt: "Een compacte analyse over de vraag of AI in het onderwijs een vluchtige hype is of blijvende verandering. Inclusief concrete voorbeelden uit Nederlandse scholen.",
+      date: "5 juni 2025",
+      sortDate: "2025-06-05",
+      author: "Onderwijs-AI",
+      category: "Opinie",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
+      readTime: "6 min",
+      url: "https://onderwijs-ai.nl/blog/ai-hype-of-adoptie"
+    },
     {
       title: "Schoolafspraken over het gebruik van generatieve AI",
       excerpt: "Praktische richtlijnen voor scholen om gezamenlijke afspraken te maken over het gebruik van generatieve AI-tools in het onderwijs.",
@@ -32,8 +65,8 @@ const Blog=()=> {
       url: "https://www.kennisnet.nl/artificial-intelligence/schoolafspraken-over-het-gebruik-van-generatieve-ai/"
     },
     {
-      title: "Maak aanpasbare grafieken,figuren en formules met AI",
-      excerpt: "Leer hoe je AI kunt gebruiken om dynamische en interactieve grafieken,figuren en formules te maken voor je lessen.",
+      title: "Maak aanpasbare grafieken, figuren en formules met AI",
+      excerpt: "Leer hoe je AI kunt gebruiken om dynamische en interactieve grafieken, figuren en formules te maken voor je lessen.",
       date: "10 mei 2025",
       sortDate: "2025-05-10",
       author: "AI voor Onderwijs",
@@ -124,10 +157,10 @@ const Blog=()=> {
   // Sort posts by date (newest first)
   const sortedPosts = posts.sort((a, b) => new Date(b.sortDate) - new Date(a.sortDate));
 
-  const internationalPosts=[
+  const internationalPosts = [
     {
-      title: "AI Teacher Assistants Promote Racial Bias,Study Finds",
-      excerpt: "A new study reveals concerning evidence that AI teacher assistants may perpetuate racial stereotypes and bias in educational settings,raising important questions about AI implementation in schools.",
+      title: "AI Teacher Assistants Promote Racial Bias, Study Finds",
+      excerpt: "A new study reveals concerning evidence that AI teacher assistants may perpetuate racial stereotypes and bias in educational settings, raising important questions about AI implementation in schools.",
       date: "6 augustus 2025",
       sortDate: "2025-08-06",
       author: "Chalkbeat",
@@ -139,7 +172,7 @@ const Blog=()=> {
     },
     {
       title: "AI in Finland Education: A Global Model",
-      excerpt: "How Finland has become a leader in ethical AI integration in education,offering lessons for countries worldwide on responsible implementation.",
+      excerpt: "How Finland has become a leader in ethical AI integration in education, offering lessons for countries worldwide on responsible implementation.",
       date: "15 juli 2025",
       sortDate: "2025-07-15",
       author: "The AI Track",
@@ -151,7 +184,7 @@ const Blog=()=> {
     },
     {
       title: "The Future is Already Here: AI and Education in 2025",
-      excerpt: "Stanford researchers examine how AI is transforming education today and what we can expect in the near future,with practical insights for educators.",
+      excerpt: "Stanford researchers examine how AI is transforming education today and what we can expect in the near future, with practical insights for educators.",
       date: "10 juni 2025",
       sortDate: "2025-06-10",
       author: "Stanford Accelerate Learning",
@@ -166,10 +199,10 @@ const Blog=()=> {
   // Sort international posts by date (newest first)
   const sortedInternationalPosts = internationalPosts.sort((a, b) => new Date(b.sortDate) - new Date(a.sortDate));
 
-  const categories=[
+  const categories = [
     "Alle categorieën",
     "AI Tools",
-    "AI Trends", 
+    "AI Trends",
     "Beleid",
     "Management",
     "Vaardigheden",
@@ -179,30 +212,30 @@ const Blog=()=> {
     "Privacy & Veiligheid"
   ];
 
-  const handleArticleClick=(url)=> {
-    window.open(url,'_blank','noopener,noreferrer');
+  const handleArticleClick = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
     <motion.div
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="min-h-screen"
     >
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0,y: 50}}
-            animate={{opacity: 1,y: 0}}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Blog: AI in het Onderwijs
             </h1>
             <p className="text-xl text-indigo-100 max-w-3xl mx-auto mb-8">
-              Praktische tips,inzichten en ervaringen over het gebruik van AI in het onderwijs
+              Praktische tips, inzichten en ervaringen over het gebruik van AI in het onderwijs
             </p>
             <div className="max-w-xl mx-auto relative">
               <SafeIcon icon={FiSearch} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -220,9 +253,9 @@ const Blog=()=> {
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0,y: 50}}
-            whileInView={{opacity: 1,y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="mb-6"
           >
             <h2 className="text-2xl font-bold text-gray-900">
@@ -232,13 +265,13 @@ const Blog=()=> {
 
           <div
             className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
-            onClick={()=> handleArticleClick(featuredPost.url)}
+            onClick={() => handleArticleClick(featuredPost.url)}
           >
             <div className="grid grid-cols-1 lg:grid-cols-2">
               <motion.div
-                initial={{opacity: 0,x: -50}}
-                whileInView={{opacity: 1,x: 0}}
-                viewport={{once: true}}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 className="relative h-64 lg:h-auto"
               >
                 <img
@@ -248,9 +281,9 @@ const Blog=()=> {
                 />
               </motion.div>
               <motion.div
-                initial={{opacity: 0,x: 50}}
-                whileInView={{opacity: 1,x: 0}}
-                viewport={{once: true}}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 className="p-8"
               >
                 <div className="flex items-center space-x-4 mb-4">
@@ -290,14 +323,10 @@ const Blog=()=> {
       <section className="py-8 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center space-x-3 overflow-x-auto py-2 scrollbar-hide">
-            {categories.map((category,index)=> (
+            {categories.map((category, index) => (
               <button
                 key={index}
-                className={`px-4 py-2 rounded-full whitespace-nowrap ${
-                  index===0
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-100'
-                }`}
+                className={`px-4 py-2 rounded-full whitespace-nowrap ${index === 0 ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
               >
                 {category}
               </button>
@@ -310,9 +339,9 @@ const Blog=()=> {
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0,y: 50}}
-            whileInView={{opacity: 1,y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="mb-12"
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -324,15 +353,15 @@ const Blog=()=> {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sortedPosts.map((post,index)=> (
+            {sortedPosts.map((post, index) => (
               <motion.div
                 key={index}
-                initial={{opacity: 0,y: 50}}
-                whileInView={{opacity: 1,y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all cursor-pointer"
-                onClick={()=> handleArticleClick(post.url)}
+                onClick={() => handleArticleClick(post.url)}
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -345,8 +374,8 @@ const Blog=()=> {
                       {post.category}
                     </span>
                   </div>
-                  {/* NEW badge for the newest post */}
-                  {index === 0 && (
+                  {/* NEW badge for the newest posts */}
+                  {index < 3 && (
                     <div className="absolute top-0 left-0 m-4">
                       <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
                         NIEUW
@@ -395,9 +424,9 @@ const Blog=()=> {
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{opacity: 0,y: 50}}
-            whileInView={{opacity: 1,y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="mb-12"
           >
             <div className="flex items-center space-x-3 mb-4">
@@ -412,15 +441,15 @@ const Blog=()=> {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sortedInternationalPosts.map((post,index)=> (
+            {sortedInternationalPosts.map((post, index) => (
               <motion.div
                 key={index}
-                initial={{opacity: 0,y: 50}}
-                whileInView={{opacity: 1,y: 0}}
-                viewport={{once: true}}
-                transition={{delay: index * 0.1}}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all cursor-pointer"
-                onClick={()=> handleArticleClick(post.url)}
+                onClick={() => handleArticleClick(post.url)}
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -486,9 +515,9 @@ const Blog=()=> {
       <section className="py-20 bg-indigo-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{opacity: 0,y: 50}}
-            whileInView={{opacity: 1,y: 0}}
-            viewport={{once: true}}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Blijf op de hoogte
