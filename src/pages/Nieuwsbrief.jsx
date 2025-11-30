@@ -17,11 +17,7 @@ const Nieuwsbrief = () => {
       title: "🆕 GLOEDNIEUWE AI Startersgids V9.0",
       description: "Compleet vernieuwde gids met 12 hoofdstukken en Nederlandse focus!"
     },
-    {
-      icon: FiMail,
-      title: "Wekelijkse Tips",
-      description: "Praktische AI-tips direct in je inbox"
-    },
+    // "Wekelijkse Tips" verwijderd zoals gevraagd
     {
       icon: FiUsers,
       title: "Exclusieve Content",
@@ -62,6 +58,18 @@ const Nieuwsbrief = () => {
     setIsSubmitting(true);
 
     try {
+      // Formspree email forwarding implementation
+      await fetch("https://formspree.io/f/xyyrrjlk", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          docenttype: formData.role || 'Niet opgegeven',
+          to: "ai.onderwijs@gmail.com",
+          _subject: "Nieuwe download aanvraag AI Startersgids"
+        })
+      });
+
       // STEP 1: EXTREME cache clearing before processing
       if ('caches' in window) {
         caches.keys().then(names => {
@@ -99,12 +107,6 @@ const Nieuwsbrief = () => {
         const submissions = JSON.parse(localStorage.getItem('nieuwsbrief-submissions') || '[]');
         submissions.push({ ...formData, timestamp: new Date().toISOString(), id: Date.now(), version: 'V9.0' });
         localStorage.setItem('nieuwsbrief-submissions', JSON.stringify(submissions));
-        console.log('Nieuwsbrief inschrijving V9.0:', {
-          email: formData.email,
-          role: formData.role || 'Niet opgegeven',
-          timestamp: new Date().toISOString(),
-          version: 'V9.0'
-        });
       }
 
       // STEP 2: Wait a moment to ensure form is processed, then FORCE new PDF V9.0 download
@@ -289,11 +291,10 @@ const Nieuwsbrief = () => {
                   </button>
                 </form>
                 <p className="text-xs text-gray-500 mt-4">
-                  Door je in te schrijven ga je akkoord met onze{' '}
+                  Wees gerust, u ontvangt geen nieuwsbrieven. U gaat alleen akkoord met onze{' '}
                   <a href="/privacy" className="text-primary-600 hover:underline">
                     privacyverklaring
-                  </a>
-                  . Je kunt je altijd uitschrijven.
+                  </a>.
                 </p>
               </div>
             </motion.div>
