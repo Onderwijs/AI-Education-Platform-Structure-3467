@@ -20,6 +20,8 @@ import Privacy from './pages/Privacy';
 // NEW Pages (Sitemap 2025)
 import ToolsOverview from './pages/tools/ToolsOverview';
 import ToolPlaceholder from './pages/tools/ToolPlaceholder';
+import LessonGenerator from './pages/tools/LessonGenerator';
+import RubricMaker from './pages/tools/RubricMaker'; // NIEUWE IMPORT
 import Downloads from './pages/Downloads';
 import Kennisbank from './pages/kenniscentrum/Kennisbank';
 import TrainingDetail from './pages/trainingen/TrainingDetail';
@@ -41,9 +43,12 @@ function App() {
               
               {/* 2. AI Tools (Interactive) */}
               <Route path="/tools" element={<ToolsOverview />} />
-              <Route path="/tools/lesgenerator" element={<ToolPlaceholder title="Lesgenerator" description="Genereer complete lesplannen op basis van leerdoelen en niveau." />} />
+              <Route path="/tools/lesgenerator" element={<LessonGenerator />} />
+              {/* NIEUWE RUBRIEKMAKER ROUTE */}
+              <Route path="/tools/rubriekmaker" element={<RubricMaker />} />
+              
+              {/* Overige Placeholders */}
               <Route path="/tools/toetsvragenmaker" element={<ToolPlaceholder title="Toetsvragenmaker" description="Maak automatisch multiple choice en open vragen voor je toetsen." />} />
-              <Route path="/tools/rubriekmaker" element={<ToolPlaceholder title="Rubriekmaker" description="Ontwerp gedetailleerde beoordelingsrubrieken in seconden." />} />
               <Route path="/tools/tekstherschrijver" element={<ToolPlaceholder title="Tekstherschrijver" description="Herschrijf teksten naar elk gewenst leesniveau (bijv. B1)." />} />
               <Route path="/tools/taalcoach" element={<ToolPlaceholder title="Taalcoach" description="Interactieve gespreksoefeningen voor taalleerders." />} />
               <Route path="/tools/presentatiegenerator" element={<ToolPlaceholder title="Presentatiegenerator" description="Creëer outlines en slides voor je lessen." />} />
@@ -56,10 +61,10 @@ function App() {
               {/* 4. Lesmateriaal & Downloads */}
               <Route path="/leslab" element={<LesLab />} />
               <Route path="/downloads" element={<Downloads />} />
-              <Route path="/lesmateriaal/downloads" element={<Downloads />} /> {/* Alias */}
+              <Route path="/lesmateriaal/downloads" element={<Downloads />} />
 
               {/* 5. Kenniscentrum */}
-              <Route path="/ai-tools" element={<AITools />} /> {/* Existing DB */}
+              <Route path="/ai-tools" element={<AITools />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/kennisbank" element={<Kennisbank />} />
 
@@ -70,7 +75,7 @@ function App() {
               <Route path="/trainingen/gemini-voor-docenten" element={<TrainingDetail title="Gemini voor Docenten" description="Haal het maximale uit Google's AI-modellen in je lespraktijk." />} />
               <Route path="/trainingen/ai-en-privacy-avg" element={<TrainingDetail title="AI, Privacy & AVG" description="Juridische en ethische kaders voor veilig gebruik van AI op school." />} />
 
-              {/* 7. Nieuwsbrief/Downloads (Legacy route support) */}
+              {/* 7. Nieuwsbrief/Downloads */}
               <Route path="/nieuwsbrief" element={<Nieuwsbrief />} />
 
               {/* 8. Juridisch */}
