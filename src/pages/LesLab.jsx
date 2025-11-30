@@ -18,7 +18,7 @@ const LesLab = () => {
   const currentLesson = {
     id: "wetenschappelijk-onderzoek-ai", // Toegevoegd voor robuustheid
     title: "Wetenschappelijk Onderzoek met AI",
-    month: "Augustus 2025",
+    month: "december 2025",
     level: "MBO/HBO",
     subject: "Onderzoek",
     duration: "150 minuten",
@@ -36,7 +36,7 @@ const LesLab = () => {
   const archive = [
     {
       title: "Introductie tot AI voor Kinderen",
-      month: "Augustus 2025",
+      month: "december 2025",
       level: "PO",
       subject: "Algemeen",
       duration: "45 min",
@@ -47,7 +47,7 @@ const LesLab = () => {
     },
     {
       title: "AI in de Geschiedenis",
-      month: "Augustus 2025",
+      month: "december 2025",
       level: "VO",
       subject: "Geschiedenis",
       duration: "50 min",
@@ -58,7 +58,7 @@ const LesLab = () => {
     },
     {
       title: "Datavisualisatie met AI",
-      month: "Augustus 2025",
+      month: "december 2025",
       level: "MBO/HBO",
       subject: "Wiskunde/Data",
       duration: "90 min",
@@ -69,7 +69,7 @@ const LesLab = () => {
     },
     {
       title: "AI Ethics Debat",
-      month: "Augustus 2025",
+      month: "december 2025",
       level: "VO",
       subject: "Maatschappijleer",
       duration: "100 min",
@@ -80,7 +80,7 @@ const LesLab = () => {
     },
     {
       title: "AI Kunstproject",
-      month: "Augustus 2025",
+      month: "december 2025",
       level: "PO",
       subject: "Tekenen",
       duration: "60 min",
@@ -91,7 +91,7 @@ const LesLab = () => {
     },
     {
       title: "Programmeren met AI Copilot",
-      month: "Augustus 2025",
+      month: "december 2025",
       level: "MBO/HBO",
       subject: "Informatica",
       duration: "120 min",
@@ -102,7 +102,7 @@ const LesLab = () => {
     },
     {
       title: "AI voor Taalonderwijs",
-      month: "Augustus 2025",
+      month: "december 2025",
       level: "VO",
       subject: "Engels/Frans",
       duration: "75 min",
@@ -181,7 +181,7 @@ const LesLab = () => {
               <img 
                 src={currentLesson.image} 
                 alt={currentLesson.title} 
-                className="rounded-2xl shadow-2xl" 
+                className="rounded-2xl shadow-2xl"
               />
             </motion.div>
             <motion.div
@@ -203,6 +203,7 @@ const LesLab = () => {
               <p className="text-gray-600 mb-6">
                 {currentLesson.description}
               </p>
+              
               <div className="mb-6">
                 <h4 className="font-semibold text-gray-900 mb-3">Leerdoelen:</h4>
                 <ul className="space-y-2">
@@ -214,19 +215,18 @@ const LesLab = () => {
                   ))}
                 </ul>
               </div>
+
               <div className="mb-8">
                 <h4 className="font-semibold text-gray-900 mb-3">Inclusief materialen:</h4>
                 <div className="flex flex-wrap gap-2">
                   {currentLesson.materials.map((material, index) => (
-                    <span 
-                      key={index}
-                      className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
-                    >
+                    <span key={index} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
                       {material}
                     </span>
                   ))}
                 </div>
               </div>
+
               <button 
                 onClick={() => handleDownload(currentLesson.title)}
                 disabled={downloadStarted}
@@ -262,7 +262,7 @@ const LesLab = () => {
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiFilter} className="text-gray-500" />
               <select 
-                value={selectedMonth}
+                value={selectedMonth} 
                 onChange={(e) => setSelectedMonth(e.target.value)}
                 className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               >
@@ -273,8 +273,8 @@ const LesLab = () => {
             </div>
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiUsers} className="text-gray-500" />
-              <select
-                value={selectedLevel}
+              <select 
+                value={selectedLevel} 
                 onChange={(e) => setSelectedLevel(e.target.value)}
                 className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               >
@@ -296,11 +296,7 @@ const LesLab = () => {
                 transition={{ delay: index * 0.1 }}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                <img 
-                  src={lesson.image} 
-                  alt={lesson.title} 
-                  className="w-full h-48 object-cover" 
-                />
+                <img src={lesson.image} alt={lesson.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs font-medium">
@@ -313,6 +309,7 @@ const LesLab = () => {
                   </h3>
                   <p className="text-sm text-gray-600 mb-3">{lesson.subject}</p>
                   <p className="text-gray-600 mb-4">{lesson.description}</p>
+                  
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                     <div className="flex items-center space-x-1">
                       <SafeIcon icon={FiClock} />
@@ -323,6 +320,7 @@ const LesLab = () => {
                       <span>{lesson.rating}</span>
                     </div>
                   </div>
+
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
                       {lesson.downloads} downloads
@@ -364,7 +362,7 @@ const LesLab = () => {
             <p className="text-xl text-emerald-100 mb-8">
               Laat weten welke les je graag toegevoegd zou zien. Suggereer een les.
             </p>
-            <button 
+            <button
               className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-not-allowed"
               disabled
             >
