@@ -1,70 +1,48 @@
 import React from 'react';
-import * as FiIcons from 'react-icons/fi';
+import SimpleHero from '../components/common/SimpleHero';
 import SafeIcon from '../common/SafeIcon';
+import * as FiIcons from 'react-icons/fi';
 import { downloadStartersgids } from '../utils/downloadUtils';
 
-const { FiDownload, FiFileText, FiPackage, FiCheck } = FiIcons;
+const { FiDownload, FiFileText, FiPackage } = FiIcons;
 
 const Downloads = () => {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Downloads & Materialen</h1>
-          <p className="text-xl text-gray-600">
-            De centrale plek voor al je AI-lesmateriaal en handleidingen.
-          </p>
-        </div>
-
-        {/* Featured Download */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-12 border border-primary-100">
-          <div className="bg-primary-600 p-8 text-center text-white">
-            <span className="inline-block bg-white/20 px-3 py-1 rounded-full text-sm font-semibold mb-4">MEEST POPULAIR</span>
-            <h2 className="text-3xl font-bold mb-2">AI Startersgids V9.0</h2>
-            <p className="opacity-90">De complete handleiding voor Nederlands onderwijs</p>
-          </div>
-          <div className="p-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-              <ul className="space-y-3 flex-1">
-                <li className="flex items-center text-gray-700">
-                  <SafeIcon icon={FiCheck} className="text-green-500 mr-2" /> 14+ Pagina's content
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <SafeIcon icon={FiCheck} className="text-green-500 mr-2" /> Inclusief stappenplannen
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <SafeIcon icon={FiCheck} className="text-green-500 mr-2" /> PO, VO, MBO & HBO specifiek
-                </li>
-              </ul>
-              <button 
-                onClick={downloadStartersgids}
-                className="w-full md:w-auto bg-primary-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2 shadow-lg"
-              >
-                <SafeIcon icon={FiDownload} className="text-xl" />
-                <span>Nu Downloaden</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Other Categories */}
+    <div className="min-h-screen bg-gray-50">
+      <SimpleHero title="Downloads & Resources" subtitle="Direct bruikbare materialen voor in de klas" color="from-green-600 to-emerald-600" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-6 rounded-xl shadow-sm">
-            <div className="flex items-center space-x-3 mb-4">
-              <SafeIcon icon={FiPackage} className="text-2xl text-emerald-600" />
-              <h3 className="text-xl font-bold">Lesbundels</h3>
+          {/* Main Download */}
+          <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-green-500">
+            <div className="flex items-start justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">AI Startersgids V9.0</h2>
+                <p className="text-gray-600 mb-4">De complete handleiding voor PO, VO en MBO/HBO. Inclusief stappenplannen en tools.</p>
+                <button 
+                  onClick={downloadStartersgids}
+                  className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center space-x-2"
+                >
+                  <SafeIcon icon={FiDownload} />
+                  <span>Download PDF</span>
+                </button>
+              </div>
+              <SafeIcon icon={FiFileText} className="text-5xl text-green-100" />
             </div>
-            <p className="text-gray-600 mb-4">Complete lessenreeksen over AI Ethiek en ChatGPT.</p>
-            <button disabled className="text-gray-400 font-medium cursor-not-allowed">Binnenkort beschikbaar</button>
           </div>
-          
-          <div className="bg-white p-6 rounded-xl shadow-sm">
-            <div className="flex items-center space-x-3 mb-4">
-              <SafeIcon icon={FiFileText} className="text-2xl text-blue-600" />
-              <h3 className="text-xl font-bold">Templates</h3>
+
+          {/* Placeholders */}
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 opacity-75">
+            <div className="flex items-start justify-between">
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">Lesbundels & Templates</h2>
+                <p className="text-gray-600 mb-4">Kant-en-klare werkbladen en prompts.</p>
+                <span className="inline-block bg-gray-100 text-gray-500 px-4 py-2 rounded-lg text-sm font-medium">
+                  Binnenkort beschikbaar
+                </span>
+              </div>
+              <SafeIcon icon={FiPackage} className="text-5xl text-gray-100" />
             </div>
-            <p className="text-gray-600 mb-4">Handige formats voor beleidsplannen en ouderbrieven.</p>
-            <button disabled className="text-gray-400 font-medium cursor-not-allowed">Binnenkort beschikbaar</button>
           </div>
         </div>
       </div>

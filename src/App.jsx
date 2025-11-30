@@ -1,15 +1,15 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+
+// Existing Components
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-
-// Pages
 import Home from './pages/Home';
 import PO from './pages/docenten/PO';
 import VO from './pages/docenten/VO';
 import MBOHBO from './pages/docenten/MBOHBO';
-import AITools from './pages/AITools'; // Dit is nu onderdeel van Kenniscentrum
+import AITools from './pages/AITools';
 import LesLab from './pages/LesLab';
 import Blog from './pages/Blog';
 import Trainingen from './pages/Trainingen';
@@ -17,62 +17,68 @@ import Nieuwsbrief from './pages/Nieuwsbrief';
 import OverOns from './pages/OverOns';
 import Privacy from './pages/Privacy';
 
-// New Pages
-import ToolsOverview from './pages/ToolsOverview';
-import ToolDetail from './pages/ToolDetail';
-import Kennisbank from './pages/Kennisbank';
+// NEW Pages (Sitemap 2025)
+import ToolsOverview from './pages/tools/ToolsOverview';
+import ToolPlaceholder from './pages/tools/ToolPlaceholder';
 import Downloads from './pages/Downloads';
+import Kennisbank from './pages/kenniscentrum/Kennisbank';
 import TrainingDetail from './pages/trainingen/TrainingDetail';
-import Cookies from './pages/legal/Cookies';
-import AVG from './pages/legal/AVG';
-import Terms from './pages/legal/Terms';
+import LegalPage from './pages/legal/LegalPage';
 
 import './App.css';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col font-sans text-gray-900 bg-slate-50">
+      <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-1 w-full">
+        <main className="flex-1">
           <AnimatePresence mode="wait">
             <Routes>
               {/* 1. Algemeen */}
               <Route path="/" element={<Home />} />
               <Route path="/over-ons" element={<OverOns />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/cookies" element={<Cookies />} />
-              <Route path="/avg" element={<AVG />} />
               
-              {/* Juridisch Submap */}
-              <Route path="/legal/privacy" element={<Privacy />} />
-              <Route path="/legal/terms" element={<Terms />} />
-
-              {/* 2. AI Tools (Interne tools) */}
+              {/* 2. AI Tools (Interactive) */}
               <Route path="/tools" element={<ToolsOverview />} />
-              <Route path="/tools/:toolId" element={<ToolDetail />} />
+              <Route path="/tools/lesgenerator" element={<ToolPlaceholder title="Lesgenerator" description="Genereer complete lesplannen op basis van leerdoelen en niveau." />} />
+              <Route path="/tools/toetsvragenmaker" element={<ToolPlaceholder title="Toetsvragenmaker" description="Maak automatisch multiple choice en open vragen voor je toetsen." />} />
+              <Route path="/tools/rubriekmaker" element={<ToolPlaceholder title="Rubriekmaker" description="Ontwerp gedetailleerde beoordelingsrubrieken in seconden." />} />
+              <Route path="/tools/tekstherschrijver" element={<ToolPlaceholder title="Tekstherschrijver" description="Herschrijf teksten naar elk gewenst leesniveau (bijv. B1)." />} />
+              <Route path="/tools/taalcoach" element={<ToolPlaceholder title="Taalcoach" description="Interactieve gespreksoefeningen voor taalleerders." />} />
+              <Route path="/tools/presentatiegenerator" element={<ToolPlaceholder title="Presentatiegenerator" description="Creëer outlines en slides voor je lessen." />} />
 
               {/* 3. Voor Docenten */}
               <Route path="/voor-docenten/po" element={<PO />} />
               <Route path="/voor-docenten/vo" element={<VO />} />
               <Route path="/voor-docenten/mbo-hbo" element={<MBOHBO />} />
 
-              {/* 4. Lesmateriaal */}
+              {/* 4. Lesmateriaal & Downloads */}
               <Route path="/leslab" element={<LesLab />} />
-              <Route path="/lesmateriaal/downloads" element={<Downloads />} />
-              
+              <Route path="/downloads" element={<Downloads />} />
+              <Route path="/lesmateriaal/downloads" element={<Downloads />} /> {/* Alias */}
+
               {/* 5. Kenniscentrum */}
-              <Route path="/ai-tools" element={<AITools />} /> {/* Database */}
+              <Route path="/ai-tools" element={<AITools />} /> {/* Existing DB */}
               <Route path="/blog" element={<Blog />} />
               <Route path="/kennisbank" element={<Kennisbank />} />
 
               {/* 6. Trainingen */}
               <Route path="/trainingen" element={<Trainingen />} />
-              <Route path="/trainingen/:slug" element={<TrainingDetail />} />
+              <Route path="/trainingen/chatgpt-in-de-klas" element={<TrainingDetail title="ChatGPT in de klas" description="Leer hoe je ChatGPT veilig en effectief inzet als onderwijsassistent." />} />
+              <Route path="/trainingen/ai-differentiatie" element={<TrainingDetail title="Differentiëren met AI" description="Maak onderwijs op maat voor elke leerling met behulp van AI-tools." />} />
+              <Route path="/trainingen/gemini-voor-docenten" element={<TrainingDetail title="Gemini voor Docenten" description="Haal het maximale uit Google's AI-modellen in je lespraktijk." />} />
+              <Route path="/trainingen/ai-en-privacy-avg" element={<TrainingDetail title="AI, Privacy & AVG" description="Juridische en ethische kaders voor veilig gebruik van AI op school." />} />
 
-              {/* 7. Downloads & Nieuwsbrief */}
-              <Route path="/downloads" element={<Downloads />} />
+              {/* 7. Nieuwsbrief/Downloads (Legacy route support) */}
               <Route path="/nieuwsbrief" element={<Nieuwsbrief />} />
+
+              {/* 8. Juridisch */}
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/legal/privacy" element={<Privacy />} />
+              <Route path="/cookies" element={<LegalPage title="Cookiebeleid" content={<p>Wij gebruiken functionele cookies om de website te laten werken. Analytische cookies worden anoniem verwerkt.</p>} />} />
+              <Route path="/avg" element={<LegalPage title="AVG Verklaring" content={<p>Wij voldoen aan de AVG richtlijnen. Gegevens worden niet gedeeld met derden zonder toestemming.</p>} />} />
+              <Route path="/legal/terms" element={<LegalPage title="Algemene Voorwaarden" content={<p>Op al onze diensten zijn onze algemene voorwaarden van toepassing.</p>} />} />
 
             </Routes>
           </AnimatePresence>

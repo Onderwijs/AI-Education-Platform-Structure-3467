@@ -1,181 +1,258 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import {Link} from 'react-router-dom';
+import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
-import { downloadStartersgids } from '../utils/downloadUtils';
+import {downloadStartersgids} from '../utils/downloadUtils';
 
-const { FiDownload, FiBook, FiUsers, FiTool, FiTrendingUp, FiArrowRight, FiCheck, FiStar } = FiIcons;
+const {FiDownload,FiBook,FiUsers,FiTool,FiTrendingUp,FiAward,FiPlay,FiArrowRight}=FiIcons;
 
-const Home = () => {
-  const topTools = [
-    { name: "ChatGPT", category: "Algemeen", desc: "De basis voor elke docent.", link: "/tools/chatgpt" },
-    { name: "Claude", category: "Analyse", desc: "Sterk in grote teksten.", link: "/tools/claude" },
-    { name: "Gamma", category: "Presentatie", desc: "Maak slides in seconden.", link: "/tools/gamma" }
+const Home=()=> {
+  const features=[ 
+    {icon: FiBook,title: "Praktische Lessen",description: "Direct toepasbare AI-lessen voor elke onderwijslaag"},
+    {icon: FiTool,title: "AI Tools Overzicht",description: "Uitgebreide database van geteste AI-tools voor docenten"},
+    {icon: FiUsers,title: "Trainingen & Workshops",description: "Persoonlijke begeleiding en teamtrainingen"}
   ];
 
-  const topLessons = [
-    { title: "Introductie AI", level: "PO/VO", link: "/leslab" },
-    { title: "ChatGPT Prompting", level: "VO/MBO", link: "/leslab" },
-    { title: "AI Ethiek", level: "Alle niveaus", link: "/leslab" }
+  const highlights=[ 
+    {category: "Voor Docenten",title: "AI in het Basisonderwijs",description: "Ontdek hoe AI het leren van jonge kinderen kan ondersteunen",link: "/voor-docenten/po",image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop"},
+    {category: "LesLab",title: "AI-Lessen",description: "Kant-en-klare AI-lessen voor jouw klas",link: "/leslab",image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop"},
+    {category: "AI Tools",title: "AI Tool Database",description: "Ontdek de beste AI-tools voor jouw vakgebied",link: "/ai-tools",image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop"}
   ];
 
-  return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-800 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-              <span className="inline-block py-1 px-3 rounded-full bg-primary-500/30 border border-primary-400 text-primary-100 text-sm font-semibold mb-6">
-                NIEUW: Lesmateriaal 2025
-              </span>
-              <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-                AI in het Onderwijs
-                <span className="block text-primary-200 text-3xl md:text-4xl mt-2 font-bold">Tools, Lessen & Trainingen</span>
-              </h1>
-              <p className="text-xl text-primary-100 mb-8 max-w-lg leading-relaxed">
-                Het centrale platform voor docenten. Ontdek praktische tools, download kant-en-klare lessen en volg professionele trainingen.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button 
-                  onClick={downloadStartersgids}
-                  className="bg-white text-primary-700 px-8 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl flex items-center justify-center space-x-3 transform hover:-translate-y-1"
-                >
-                  <SafeIcon icon={FiDownload} className="text-xl" />
-                  <span>Download Gids V9.0</span>
-                </button>
-                <Link 
-                  to="/tools" 
-                  className="bg-primary-800/50 backdrop-blur-sm border-2 border-primary-400 text-white px-8 py-4 rounded-xl font-bold hover:bg-primary-700/50 transition-all flex items-center justify-center space-x-3"
-                >
-                  <SafeIcon icon={FiTool} />
-                  <span>Probeer AI Tools</span>
-                </Link>
-              </div>
+  // ENHANCED download handler V2.0 with ultra-aggressive cache clearing 
+  const handleDownloadClick=()=> {
+    console.log('🚀 Home page download - FORCING COMPLETELY NEW PDF V2.0...');
+    
+    // ULTRA AGGRESSIVE cache clearing - prevent ANY old file delivery 
+    if ('caches' in window) {
+      caches.keys().then(names=> {
+        names.forEach(name=> {
+          caches.delete(name);
+        });
+      });
+    }
 
-              <div className="mt-10 flex items-center space-x-6 text-sm font-medium text-primary-100">
-                <div className="flex items-center"><SafeIcon icon={FiCheck} className="mr-2" /> 2.500+ Docenten</div>
-                <div className="flex items-center"><SafeIcon icon={FiCheck} className="mr-2" /> 100% Gratis materiaal</div>
-              </div>
-            </motion.div>
+    // Clear ALL localStorage items that could cache PDFs 
+    Object.keys(localStorage).forEach(key=> {
+      if (key.includes('pdf') || key.includes('startersgids') || key.includes('download')) {
+        localStorage.removeItem(key);
+      }
+    });
 
+    // Clear sessionStorage completely 
+    sessionStorage.clear();
+
+    // Clear any browser-specific caches 
+    if (window.caches) {
+      window.caches.keys().then(cacheNames=> {
+        cacheNames.forEach(cacheName=> {
+          window.caches.delete(cacheName);
+        });
+      });
+    }
+
+    // Add delay to ensure complete cache clearing 
+    setTimeout(()=> {
+      console.log('📥 Calling downloadStartersgids() V2.0 for GUARANTEED NEW PDF...');
+      downloadStartersgids();
+    },200);
+  };
+
+  return ( 
+    <motion.div 
+      initial={{opacity: 0}} 
+      animate={{opacity: 1}} 
+      exit={{opacity: 0}} 
+      className="min-h-screen" 
+    > 
+      {/* Hero Section */} 
+      <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 text-white"> 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"> 
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"> 
             <motion.div 
-              initial={{ opacity: 0, x: 50 }} 
-              animate={{ opacity: 1, x: 0 }} 
-              transition={{ delay: 0.2 }}
-              className="relative hidden lg:block"
-            >
-              <div className="absolute -inset-4 bg-primary-500/30 rounded-full blur-3xl"></div>
+              initial={{opacity: 0,x: -50}} 
+              animate={{opacity: 1,x: 0}} 
+              transition={{delay: 0.2}} 
+            > 
+              <h1 className="text-4xl md:text-6xl font-bold mb-6"> 
+                AI in het{' '} 
+                <span className="text-primary-200">Onderwijs</span> 
+              </h1> 
+              <p className="text-xl mb-8 text-primary-100"> 
+                Ontdek hoe kunstmatige intelligentie jouw onderwijs kan verbeteren. Praktische tools,lessen en trainingen voor moderne docenten. 
+              </p> 
+              {/* Enhanced CTA Buttons V2.0 */} 
+              <div className="flex flex-col sm:flex-row gap-4 mb-8"> 
+                <button 
+                  onClick={handleDownloadClick} 
+                  className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-lg border-2 border-white" 
+                > 
+                  <SafeIcon icon={FiDownload} /> 
+                  <span>AI Handleiding PDF</span> 
+                </button> 
+                <Link 
+                  to="/ai-tools" 
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2" 
+                > 
+                  <SafeIcon icon={FiTool} /> 
+                  <span>Bekijk AI Tools</span> 
+                </Link> 
+              </div> 
+              {/* Enhanced Stats */} 
+              <div className="grid grid-cols-3 gap-6"> 
+                <div className="text-center"> 
+                  <div className="text-3xl font-bold">2500+</div> 
+                  <div className="text-sm text-primary-200">Docenten</div> 
+                </div> 
+                <div className="text-center"> 
+                  <div className="text-3xl font-bold">75+</div> 
+                  <div className="text-sm text-primary-200">AI Tools</div> 
+                </div> 
+                <div className="text-center"> 
+                  <div className="text-3xl font-bold">150+</div> 
+                  <div className="text-sm text-primary-200">Lessen</div> 
+                </div> 
+              </div> 
+            </motion.div> 
+            <motion.div 
+              initial={{opacity: 0,x: 50}} 
+              animate={{opacity: 1,x: 0}} 
+              transition={{delay: 0.4}} 
+              className="relative" 
+            > 
               <img 
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
-                alt="AI in Education" 
-                className="rounded-2xl shadow-2xl border-4 border-primary-400/30 relative z-10 transform rotate-2 hover:rotate-0 transition-transform duration-500"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop" 
+                alt="AI in onderwijs" 
+                className="rounded-2xl shadow-2xl" 
+              /> 
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent rounded-2xl"></div> 
+            </motion.div> 
+          </div> 
+        </div> 
+      </section> 
 
-      {/* Top 3 Sections */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            
-            {/* Top 3 Tools */}
-            <div className="bg-indigo-50 rounded-3xl p-8 border border-indigo-100">
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 flex items-center">
-                  <span className="bg-indigo-600 p-2 rounded-lg mr-3">
-                    <SafeIcon icon={FiTool} className="text-white" />
-                  </span>
-                  Populaire AI Tools
-                </h2>
-                <Link to="/ai-tools" className="text-indigo-600 font-semibold hover:underline">Alle tools &rarr;</Link>
-              </div>
-              <div className="space-y-4">
-                {topTools.map((tool, idx) => (
-                  <div key={idx} className="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow flex items-center justify-between">
-                    <div>
-                      <h3 className="font-bold text-gray-900">{tool.name}</h3>
-                      <p className="text-sm text-gray-500">{tool.desc}</p>
-                    </div>
-                    <span className="text-xs font-semibold bg-indigo-100 text-indigo-700 px-2 py-1 rounded-md">{tool.category}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Features Section */} 
+      <section className="py-20 bg-white"> 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+          <motion.div 
+            initial={{opacity: 0,y: 50}} 
+            whileInView={{opacity: 1,y: 0}} 
+            viewport={{once: true}} 
+            className="text-center mb-16" 
+          > 
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"> 
+              Waarom AI in het Onderwijs? 
+            </h2> 
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto"> 
+              Kunstmatige intelligentie biedt ongekende mogelijkheden om onderwijs persoonlijker,effectiever en toegankelijker te maken. 
+            </p> 
+          </motion.div> 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8"> 
+            {features.map((feature,index)=> ( 
+              <motion.div 
+                key={index} 
+                initial={{opacity: 0,y: 50}} 
+                whileInView={{opacity: 1,y: 0}} 
+                viewport={{once: true}} 
+                transition={{delay: index * 0.1}} 
+                className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow" 
+              > 
+                <SafeIcon icon={feature.icon} className="text-4xl text-primary-600 mb-4" /> 
+                <h3 className="text-xl font-semibold text-gray-900 mb-3"> 
+                  {feature.title} 
+                </h3> 
+                <p className="text-gray-600">{feature.description}</p> 
+              </motion.div> 
+            ))} 
+          </div> 
+        </div> 
+      </section> 
 
-            {/* Top 3 Lessons */}
-            <div className="bg-emerald-50 rounded-3xl p-8 border border-emerald-100">
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 flex items-center">
-                  <span className="bg-emerald-600 p-2 rounded-lg mr-3">
-                    <SafeIcon icon={FiBook} className="text-white" />
-                  </span>
-                  Uitgelicht Lesmateriaal
-                </h2>
-                <Link to="/leslab" className="text-emerald-600 font-semibold hover:underline">Naar LesLab &rarr;</Link>
-              </div>
-              <div className="space-y-4">
-                {topLessons.map((lesson, idx) => (
-                  <div key={idx} className="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow flex items-center justify-between">
-                    <div>
-                      <h3 className="font-bold text-gray-900">{lesson.title}</h3>
-                      <div className="flex items-center mt-1">
-                        <SafeIcon icon={FiStar} className="text-yellow-400 text-xs mr-1" />
-                        <span className="text-sm text-gray-500">Meest gedownload</span>
-                      </div>
-                    </div>
-                    <span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md">{lesson.level}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Highlights Section */} 
+      <section className="py-20 bg-gray-50"> 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+          <motion.div 
+            initial={{opacity: 0,y: 50}} 
+            whileInView={{opacity: 1,y: 0}} 
+            viewport={{once: true}} 
+            className="text-center mb-16" 
+          > 
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"> 
+              Ontdek Onze Highlights 
+            </h2> 
+            <p className="text-xl text-gray-600"> 
+              Van praktische lessen tot complete trainingen 
+            </p> 
+          </motion.div> 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8"> 
+            {highlights.map((highlight,index)=> ( 
+              <motion.div 
+                key={index} 
+                initial={{opacity: 0,y: 50}} 
+                whileInView={{opacity: 1,y: 0}} 
+                viewport={{once: true}} 
+                transition={{delay: index * 0.1}} 
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" 
+              > 
+                <img 
+                  src={highlight.image} 
+                  alt={highlight.title} 
+                  className="w-full h-48 object-cover" 
+                /> 
+                <div className="p-6"> 
+                  <div className="text-sm text-primary-600 font-medium mb-2"> 
+                    {highlight.category} 
+                  </div> 
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3"> 
+                    {highlight.title} 
+                  </h3> 
+                  <p className="text-gray-600 mb-4">{highlight.description}</p> 
+                  <Link 
+                    to={highlight.link} 
+                    className="inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium" 
+                  > 
+                    <span>Meer info</span> 
+                    <SafeIcon icon={FiArrowRight} /> 
+                  </Link> 
+                </div> 
+              </motion.div> 
+            ))} 
+          </div> 
+        </div> 
+      </section> 
 
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Links Grid */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Direct aan de slag</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Link to="/tools" className="group bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all border-b-4 border-indigo-500">
-              <div className="bg-indigo-100 w-14 h-14 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <SafeIcon icon={FiTool} className="text-2xl text-indigo-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Interne Tools</h3>
-              <p className="text-gray-600 mb-4">Gebruik onze lesgenerator, toetsvragenmaker en meer.</p>
-              <span className="text-indigo-600 font-medium group-hover:translate-x-2 transition-transform inline-block">&rarr;</span>
-            </Link>
-
-            <Link to="/leslab" className="group bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all border-b-4 border-emerald-500">
-              <div className="bg-emerald-100 w-14 h-14 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <SafeIcon icon={FiBook} className="text-2xl text-emerald-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">LesLab</h3>
-              <p className="text-gray-600 mb-4">Download complete lesbrieven en werkbladen.</p>
-              <span className="text-emerald-600 font-medium group-hover:translate-x-2 transition-transform inline-block">&rarr;</span>
-            </Link>
-
-            <Link to="/trainingen" className="group bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all border-b-4 border-pink-500">
-              <div className="bg-pink-100 w-14 h-14 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <SafeIcon icon={FiUsers} className="text-2xl text-pink-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Trainingen</h3>
-              <p className="text-gray-600 mb-4">Professionaliseer jezelf en je team met AI kennis.</p>
-              <span className="text-pink-600 font-medium group-hover:translate-x-2 transition-transform inline-block">&rarr;</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-    </motion.div>
+      {/* Enhanced Newsletter CTA V2.0 */} 
+      <section className="py-20 bg-primary-600"> 
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"> 
+          <motion.div 
+            initial={{opacity: 0,y: 50}} 
+            whileInView={{opacity: 1,y: 0}} 
+            viewport={{once: true}} 
+          > 
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4"> 
+              Start vandaag met AI in jouw onderwijs 
+            </h2> 
+            <p className="text-xl text-primary-100 mb-8"> 
+              Download gratis onze AI-toolkit en ontvang nieuwe lessen en tips 
+            </p> 
+            {/* Enhanced download button V2.0 with visual indicators */} 
+            <div className="flex flex-col items-center space-y-4"> 
+              <button 
+                onClick={handleDownloadClick} 
+                className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 shadow-lg border-2 border-white" 
+              > 
+                <SafeIcon icon={FiDownload} /> 
+                <span>AI Handleiding PDF</span> 
+              </button> 
+              <div className="text-primary-200 text-sm"> 
+                ✨ Praktische gids • Nederlandse focus • Direct te gebruiken 
+              </div> 
+            </div> 
+          </motion.div> 
+        </div> 
+      </section> 
+    </motion.div> 
   );
 };
 
