@@ -21,7 +21,8 @@ import Privacy from './pages/Privacy';
 import ToolsOverview from './pages/tools/ToolsOverview';
 import ToolPlaceholder from './pages/tools/ToolPlaceholder';
 import LessonGenerator from './pages/tools/LessonGenerator';
-import RubricMaker from './pages/tools/RubricMaker'; // NIEUWE IMPORT
+import RubricMaker from './pages/tools/RubricMaker';
+import TestQuestionMaker from './pages/tools/TestQuestionMaker'; // NIEUWE IMPORT
 import Downloads from './pages/Downloads';
 import Kennisbank from './pages/kenniscentrum/Kennisbank';
 import TrainingDetail from './pages/trainingen/TrainingDetail';
@@ -44,11 +45,11 @@ function App() {
               {/* 2. AI Tools (Interactive) */}
               <Route path="/tools" element={<ToolsOverview />} />
               <Route path="/tools/lesgenerator" element={<LessonGenerator />} />
-              {/* NIEUWE RUBRIEKMAKER ROUTE */}
               <Route path="/tools/rubriekmaker" element={<RubricMaker />} />
+              {/* NIEUWE TOETSVRAGENMAKER ROUTE */}
+              <Route path="/tools/toetsvragenmaker" element={<TestQuestionMaker />} />
               
               {/* Overige Placeholders */}
-              <Route path="/tools/toetsvragenmaker" element={<ToolPlaceholder title="Toetsvragenmaker" description="Maak automatisch multiple choice en open vragen voor je toetsen." />} />
               <Route path="/tools/tekstherschrijver" element={<ToolPlaceholder title="Tekstherschrijver" description="Herschrijf teksten naar elk gewenst leesniveau (bijv. B1)." />} />
               <Route path="/tools/taalcoach" element={<ToolPlaceholder title="Taalcoach" description="Interactieve gespreksoefeningen voor taalleerders." />} />
               <Route path="/tools/presentatiegenerator" element={<ToolPlaceholder title="Presentatiegenerator" description="Creëer outlines en slides voor je lessen." />} />
