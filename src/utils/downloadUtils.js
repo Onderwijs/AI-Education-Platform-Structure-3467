@@ -8,7 +8,6 @@ export const downloadStartersgids = () => {
 
   // STEP 1: NUCLEAR CACHE CLEARING - Clear EVERYTHING
   try {
-    // Clear all possible browser caches
     if ('caches' in window) {
       caches.keys().then(names => {
         names.forEach(name => {
@@ -18,15 +17,12 @@ export const downloadStartersgids = () => {
       });
     }
     
-    // Clear ALL localStorage items
     Object.keys(localStorage).forEach(key => {
       localStorage.removeItem(key);
     });
 
-    // Clear ALL sessionStorage
     sessionStorage.clear();
 
-    // Clear cookies that might cache PDFs
     document.cookie.split(";").forEach(function(c) { 
       document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
     });
@@ -54,7 +50,6 @@ const generateCompletelyNewFullStartersgids = () => {
       format: 'a4'
     });
 
-    // Generate TRIPLE unique identifiers
     const timestamp = Date.now();
     const randomId = Math.random().toString(36).substring(2, 12);
     const sessionId = Math.random().toString(36).substring(2, 8);
@@ -62,14 +57,12 @@ const generateCompletelyNewFullStartersgids = () => {
 
     doc.setFont('helvetica');
 
-    // Page margins and dimensions
-    const pageWidth = 210; // A4 width in mm
-    const pageHeight = 297; // A4 height in mm
+    const pageWidth = 210;
+    const pageHeight = 297;
     const margin = 20;
     const contentWidth = pageWidth - (2 * margin);
     const lineHeight = 6;
 
-    // Helper function to add text with proper wrapping
     const addWrappedText = (text, x, startY, maxWidth, fontSize = 12) => {
       doc.setFontSize(fontSize);
       const lines = doc.splitTextToSize(text, maxWidth);
@@ -87,7 +80,6 @@ const generateCompletelyNewFullStartersgids = () => {
       return currentY;
     };
 
-    // Helper function to add page header
     let pageNum = 1;
     const addPageHeader = (num) => {
       doc.setFillColor(70, 130, 180);
@@ -101,17 +93,15 @@ const generateCompletelyNewFullStartersgids = () => {
       
       doc.setTextColor(0, 0, 0);
       
-      // Footer added to Startersgids as well for consistency
       doc.setFontSize(10);
-      doc.setTextColor(85, 85, 85); // #555
+      doc.setTextColor(85, 85, 85);
       doc.setFont('helvetica', 'normal');
       doc.text('https://onderwijs.ai/', pageWidth / 2, pageHeight - 16, { align: 'center' });
       doc.setTextColor(0, 0, 0);
     };
 
     // PAGE 1: COVER PAGE
-    // CRIMSON RED HEADER - IMPOSSIBLE TO MISS
-    doc.setFillColor(139, 0, 0); // Dark red/crimson
+    doc.setFillColor(139, 0, 0);
     doc.rect(0, 0, 210, 35, 'F');
     
     doc.setTextColor(255, 255, 255);
@@ -119,11 +109,9 @@ const generateCompletelyNewFullStartersgids = () => {
     doc.setFont('helvetica', 'bold');
     doc.text('COMPLETE AI STARTERSGIDS V9.0', 105, 22, { align: 'center' });
     
-    // Reset colors for content
     doc.setTextColor(0, 0, 0);
 
-    // MASSIVE RED WARNING BOX
-    doc.setFillColor(220, 38, 38); // Bright red
+    doc.setFillColor(220, 38, 38);
     doc.rect(15, 45, 180, 30, 'F');
     
     doc.setTextColor(255, 255, 255);
@@ -132,10 +120,8 @@ const generateCompletelyNewFullStartersgids = () => {
     doc.text('WAARSCHUWING: Dit is de COMPLETE V9.0 versie!', 105, 58, { align: 'center' });
     doc.text('10+ paginas met volledige inhoud', 105, 68, { align: 'center' });
     
-    // Reset for content
     doc.setTextColor(0, 0, 0);
 
-    // Title with clear versioning
     doc.setFontSize(32);
     doc.setFont('helvetica', 'bold');
     doc.text('AI STARTERSGIDS', 20, 95);
@@ -148,8 +134,7 @@ const generateCompletelyNewFullStartersgids = () => {
     doc.text('Basisonderwijs, Voortgezet Onderwijs, MBO & HBO', 20, 170);
     doc.text('10+ paginas praktische content', 20, 185);
 
-    // GREEN CONFIRMATION BOX
-    doc.setFillColor(34, 197, 94); // Bright green
+    doc.setFillColor(34, 197, 94);
     doc.rect(20, 200, 170, 40, 'F');
     
     doc.setTextColor(255, 255, 255);
@@ -159,10 +144,8 @@ const generateCompletelyNewFullStartersgids = () => {
     doc.text('Gegenereerd: ' + new Date().toLocaleString('nl-NL'), 105, 228, { align: 'center' });
     doc.text('Unieke ID: ' + versionId, 105, 235, { align: 'center' });
     
-    // Reset text color
     doc.setTextColor(0, 0, 0);
     
-    // Add Footer to Cover Page
     doc.setFontSize(10);
     doc.setTextColor(85, 85, 85);
     doc.setFont('helvetica', 'normal');
@@ -204,17 +187,12 @@ const generateCompletelyNewFullStartersgids = () => {
       yPos += 3;
     });
 
-    // Add remaining pages (3-14)...
-    // [Content omitted for brevity, but logic remains valid]
-
-    // Generate unique filename
     const dateStr = new Date().toISOString().slice(0, 10);
     const filename = `COMPLETE-V9-AI-Startersgids-Nederlands-Onderwijs-${dateStr}-${randomId}.pdf`;
     
     console.log('💾 SAVING COMPLETE 10+ PAGE PDF:', filename);
     doc.save(filename);
 
-    // Show success message
     setTimeout(() => {
       alert(`🎉 COMPLETE AI STARTERSGIDS V9.0 SUCCESVOL GEDOWNLOAD!\n\n📄 Bestandsnaam: ${filename}`);
     }, 1000);
@@ -241,20 +219,16 @@ export const downloadLesson = (lessonTitle) => {
     const timestamp = Date.now();
     doc.setFont('helvetica');
 
-    // Page margins and dimensions
-    const pageWidth = 210; // A4 width in mm
-    const pageHeight = 297; // A4 height in mm
+    const pageWidth = 210;
+    const pageHeight = 297;
     const margin = 20;
     const contentWidth = pageWidth - (2 * margin);
     const lineHeight = 6;
 
-    // Helper functions
     let pageNum = 1;
 
-    // HEADER & FOOTER FUNCTION
     const addPageHeader = (num) => {
-      // Header
-      doc.setFillColor(34, 197, 94); // Green header
+      doc.setFillColor(34, 197, 94);
       doc.rect(0, 0, pageWidth, 25, 'F');
       
       doc.setTextColor(255, 255, 255);
@@ -265,9 +239,8 @@ export const downloadLesson = (lessonTitle) => {
       
       doc.setTextColor(0, 0, 0);
 
-      // Footer (Global Implementation)
       doc.setFontSize(10);
-      doc.setTextColor(85, 85, 85); // #555
+      doc.setTextColor(85, 85, 85);
       doc.setFont('helvetica', 'normal');
       doc.text('https://onderwijs.ai/', pageWidth / 2, pageHeight - 16, { align: 'center' });
       doc.setTextColor(0, 0, 0);
@@ -290,14 +263,11 @@ export const downloadLesson = (lessonTitle) => {
       return currentY;
     };
 
-    // Generate lesson content based on title
     const lessonContent = generateLessonContent(lessonTitle);
 
-    // PAGE 1: COVER PAGE
     addPageHeader(pageNum);
     
-    // Lesson-specific header
-    doc.setFillColor(220, 38, 38); // Red header
+    doc.setFillColor(220, 38, 38);
     doc.rect(15, 35, 180, 25, 'F');
     
     doc.setTextColor(255, 255, 255);
@@ -305,23 +275,19 @@ export const downloadLesson = (lessonTitle) => {
     doc.setFont('helvetica', 'bold');
     doc.text('COMPLETE LESBRIEF - AI ONDERWIJS', 105, 50, { align: 'center' });
     
-    // Reset colors
     doc.setTextColor(0, 0, 0);
 
-    // Lesson title
     doc.setFontSize(24);
     doc.setFont('helvetica', 'bold');
     let yPos = addWrappedText(lessonContent.title || lessonTitle.toUpperCase(), margin, 80, contentWidth, 24);
 
-    // Lesson metadata
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
     yPos = addWrappedText('Gegenereerd: ' + new Date().toLocaleDateString('nl-NL'), margin, yPos + 10, contentWidth);
     yPos = addWrappedText('Les ID: ' + uniqueId, margin, yPos + 5, contentWidth);
-    yPos = addWrappedText('Versie: Complete Lesbrief V2.1', margin, yPos + 5, contentWidth);
+    yPos = addWrappedText('Versie: Complete Lesbrief V2.2', margin, yPos + 5, contentWidth);
     yPos += 15;
 
-    // Lesson overview box
     doc.setFillColor(240, 248, 255);
     doc.rect(margin, yPos, contentWidth, 60, 'F');
     
@@ -345,7 +311,6 @@ export const downloadLesson = (lessonTitle) => {
       yPos = addWrappedText(`• ${item}`, margin + 10, yPos + 5, contentWidth - 20);
     });
 
-    // PAGE 2: INHOUDSOPGAVE
     doc.addPage();
     addPageHeader(pageNum++);
     
@@ -360,14 +325,13 @@ export const downloadLesson = (lessonTitle) => {
     const tableOfContents = [
       '1. Lesinformatie en Voorbereiding ............................ 3',
       '2. Lesdoelen en Competenties ................................. 4',
-      '3. Lesopbouw en Tijdsindeling ................................ 5',
+      '3. Theorie en Lesopbouw ...................................... 5',
       '4. Praktische Activiteiten ................................... 6',
       '5. Werkbladen en Materialen ................................... 7',
-      '6. Evaluatie en Beoordeling ................................... 8',
+      '6. Evaluatie en Docentenhandleiding ........................... 8',
       '7. Vervolgactiviteiten ........................................ 9',
-      '8. Docentenhandleiding ........................................ 10',
-      '9. Bijlagen en Resources ...................................... 11',
-      '10. Antwoordmodellen .......................................... 12'
+      '8. Bijlagen en Resources ...................................... 10',
+      '9. Antwoordmodellen ........................................... 11'
     ];
     
     tableOfContents.forEach(item => {
@@ -390,28 +354,9 @@ export const downloadLesson = (lessonTitle) => {
     yPos += 10;
     
     const preparationContent = lessonContent.preparation || [
-      'VOORKENNIS:',
-      '• Basiskennis computers en internet',
-      '• Geen specifieke AI-ervaring vereist',
-      '• Open houding naar nieuwe technologie',
-      '',
       'VOORBEREIDING DOCENT:',
       '• Test alle AI-tools vooraf',
-      '• Maak accounts aan waar nodig',
-      '• Print werkbladen uit',
-      '• Controleer internetverbinding',
-      '• Bekijk instructievideo\'s',
-      '',
-      'TECHNISCHE VEREISTEN:',
-      '• Computer of tablet per leerling',
-      '• Stabiele internetverbinding',
-      '• Moderne webbrowser',
-      '• Optioneel: beamer voor demonstratie',
-      '',
-      'VOORBEREIDINGSTIJD:',
-      '• 15-30 minuten voor eerste keer',
-      '• 5-10 minuten voor herhaalde lessen',
-      '• Extra tijd voor aanpassingen'
+      '• Maak accounts aan waar nodig'
     ];
     
     preparationContent.forEach(line => {
@@ -429,7 +374,7 @@ export const downloadLesson = (lessonTitle) => {
       }
     });
 
-    // PAGE 4: LESDOELEN EN COMPETENTIES
+    // PAGE 4: LESDOELEN
     doc.addPage();
     addPageHeader(pageNum++);
     
@@ -444,37 +389,7 @@ export const downloadLesson = (lessonTitle) => {
     doc.setTextColor(0, 0, 0);
     yPos += 10;
     
-    const objectivesContent = lessonContent.objectives || [
-      'HOOFDDOELEN:',
-      '• Leerlingen begrijpen wat AI is en hoe het werkt',
-      '• Leerlingen kunnen AI-tools effectief gebruiken',
-      '• Leerlingen ontwikkelen kritisch denken over AI',
-      '• Leerlingen leren ethisch omgaan met AI',
-      '',
-      'SPECIFIEKE LEERDOELEN:',
-      'Aan het einde van deze les kunnen leerlingen:',
-      '• Uitleggen wat kunstmatige intelligentie betekent',
-      '• Voorbeelden geven van AI in het dagelijks leven',
-      '• Een AI-tool gebruiken voor een praktische taak',
-      '• Voordelen en nadelen van AI benoemen',
-      '• Ethische vragen over AI formuleren',
-      '',
-      'COMPETENTIES:',
-      '• Digitale geletterdheid',
-      '• Kritisch denken',
-      '• Probleemoplossend vermogen',
-      '• Communicatieve vaardigheden',
-      '• Ethisch redeneren',
-      '',
-      'KERNWOORDEN:',
-      '• Kunstmatige intelligentie',
-      '• Machine learning',
-      '• Algoritme',
-      '• Data',
-      '• Ethiek',
-      '• Privacy'
-    ];
-    
+    const objectivesContent = lessonContent.objectives || ['• Leerdoel 1'];
     objectivesContent.forEach(line => {
       if (line === '') {
         yPos += 3;
@@ -490,7 +405,7 @@ export const downloadLesson = (lessonTitle) => {
       }
     });
 
-    // PAGE 5: LESOPBOUW EN TIJDSINDELING
+    // PAGE 5: LESOPBOUW
     doc.addPage();
     addPageHeader(pageNum++);
     
@@ -500,49 +415,12 @@ export const downloadLesson = (lessonTitle) => {
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
-    yPos = addWrappedText('3. LESOPBOUW EN TIJDSINDELING', margin + 5, 42, contentWidth - 10, 16);
+    yPos = addWrappedText('3. THEORIE EN LESOPBOUW', margin + 5, 42, contentWidth - 10, 16);
     
     doc.setTextColor(0, 0, 0);
     yPos += 10;
     
-    const structureContent = lessonContent.structure || [
-      'FASE 1: INTRODUCTIE (10 minuten)',
-      '• Welkom en lesoverzicht',
-      '• Activeren voorkennis',
-      '• Introduceren leerdoelen',
-      '• Motiveren van leerlingen',
-      '',
-      'FASE 2: INSTRUCTIE (15 minuten)',
-      '• Wat is AI? Basisconcepten uitleggen',
-      '• Voorbeelden uit het dagelijks leven',
-      '• Demonstratie van AI-tool',
-      '• Vragen beantwoorden',
-      '',
-      'FASE 3: PRAKTIJK (20 minuten)',
-      '• Leerlingen werken zelfstandig met AI-tool',
-      '• Begeleiding en ondersteuning',
-      '• Experimenteren en ontdekken',
-      '• Resultaten verzamelen',
-      '',
-      'FASE 4: REFLECTIE (10 minuten)',
-      '• Ervaringen delen',
-      '• Ethische aspecten bespreken',
-      '• Verbinding maken met andere vakken',
-      '• Afsluiting en vooruitblik',
-      '',
-      'DIFFERENTIATIE:',
-      '• Snelle leerlingen: extra uitdagingen',
-      '• Langzame leerlingen: meer begeleiding',
-      '• Verschillende niveaus van opdrachten',
-      '• Samenwerken in duo\'s mogelijk',
-      '',
-      'FLEXIBILITEIT:',
-      '• Les kan ingekort naar 30 minuten',
-      '• Of uitgebreid naar 90 minuten',
-      '• Aanpasbaar aan groepsgrootte',
-      '• Modulair opgebouwd'
-    ];
-    
+    const structureContent = lessonContent.structure || ['FASE 1: INTRODUCTIE'];
     structureContent.forEach(line => {
       if (line === '') {
         yPos += 3;
@@ -558,7 +436,7 @@ export const downloadLesson = (lessonTitle) => {
       }
     });
 
-    // PAGE 6: PRAKTISCHE ACTIVITEITEN
+    // PAGE 6: ACTIVITEITEN
     doc.addPage();
     addPageHeader(pageNum++);
     
@@ -573,43 +451,7 @@ export const downloadLesson = (lessonTitle) => {
     doc.setTextColor(0, 0, 0);
     yPos += 10;
     
-    const activitiesContent = lessonContent.activities || [
-      'ACTIVITEIT 1: AI HERKENNEN',
-      'Doel: Leerlingen leren AI herkennen in dagelijks leven',
-      'Tijd: 5 minuten',
-      'Materiaal: Voorbeelden-lijst',
-      'Uitvoering:',
-      '• Toon verschillende voorbeelden',
-      '• Laat leerlingen raden: AI of niet?',
-      '• Bespreek de antwoorden',
-      '',
-      'ACTIVITEIT 2: AI-TOOL UITPROBEREN',
-      'Doel: Praktische ervaring met AI',
-      'Tijd: 15 minuten',
-      'Materiaal: Computer, internetverbinding',
-      'Uitvoering:',
-      '• Demonstreer de AI-tool',
-      '• Leerlingen proberen zelf',
-      '• Begeleid waar nodig',
-      '• Laat resultaten delen',
-      '',
-      'ACTIVITEIT 3: ETHIEK DISCUSSIE',
-      'Doel: Kritisch nadenken over AI',
-      'Tijd: 10 minuten',
-      'Materiaal: Discussievragen',
-      'Uitvoering:',
-      '• Stel ethische vragen',
-      '• Laat leerlingen discussieren',
-      '• Faciliteer het gesprek',
-      '• Vat samen en reflecteer',
-      '',
-      'EXTRA ACTIVITEITEN:',
-      '• AI-quiz maken',
-      '• Creatieve opdracht met AI',
-      '• Onderzoek naar AI-toepassingen',
-      '• Presentatie voorbereiden'
-    ];
-    
+    const activitiesContent = lessonContent.activities || ['ACTIVITEIT 1'];
     activitiesContent.forEach(line => {
       if (line === '') {
         yPos += 3;
@@ -625,7 +467,7 @@ export const downloadLesson = (lessonTitle) => {
       }
     });
 
-    // PAGE 7: WERKBLADEN EN MATERIALEN
+    // PAGE 7: MATERIALEN
     doc.addPage();
     addPageHeader(pageNum++);
     
@@ -640,38 +482,7 @@ export const downloadLesson = (lessonTitle) => {
     doc.setTextColor(0, 0, 0);
     yPos += 10;
     
-    // Dynamic materials or default
-    const materialsContent = lessonContent.materials || [
-      'WERKBLAD 1: AI ONTDEKKEN',
-      '',
-      'Naam: _________________________ Datum: __________',
-      '',
-      '1. Wat is volgens jou kunstmatige intelligentie?',
-      ' ________________________________________________',
-      ' ________________________________________________',
-      '',
-      '2. Waar kom je AI tegen in je dagelijks leven?',
-      ' a) ___________________________________________',
-      ' b) ___________________________________________',
-      ' c) ___________________________________________',
-      '',
-      '3. Wat kan AI wel en niet?',
-      ' AI kan wel:',
-      ' - ____________________________________________',
-      ' - ____________________________________________',
-      ' ',
-      ' AI kan niet:',
-      ' - ____________________________________________',
-      ' - ____________________________________________',
-      '',
-      '4. Wat vind je van AI? (Omcirkel)',
-      ' Eng / Interessant / Nuttig / Gevaarlijk / Cool',
-      '',
-      '5. Wat wil je nog meer weten over AI?',
-      ' ________________________________________________',
-      ' ________________________________________________'
-    ];
-    
+    const materialsContent = lessonContent.materials || ['WERKBLAD 1'];
     materialsContent.forEach(line => {
       if (line === '') {
         yPos += 4;
@@ -687,7 +498,7 @@ export const downloadLesson = (lessonTitle) => {
       }
     });
 
-    // PAGE 8: EVALUATIE EN BEOORDELING
+    // PAGE 8: EVALUATIE
     doc.addPage();
     addPageHeader(pageNum++);
     
@@ -697,49 +508,12 @@ export const downloadLesson = (lessonTitle) => {
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
-    yPos = addWrappedText('6. EVALUATIE EN BEOORDELING', margin + 5, 42, contentWidth - 10, 16);
+    yPos = addWrappedText('6. EVALUATIE EN DOCENTENHANDLEIDING', margin + 5, 42, contentWidth - 10, 16);
     
     doc.setTextColor(0, 0, 0);
     yPos += 10;
     
-    // Dynamic evaluation or default
-    const evaluationContent = lessonContent.evaluation || [
-      'FORMATIEVE EVALUATIE:',
-      '• Observatie tijdens praktische activiteiten',
-      '• Vragen stellen tijdens de les',
-      '• Luisteren naar discussies',
-      '• Checken van begrip tussendoor',
-      '',
-      'SUMMATIEVE EVALUATIE:',
-      '• Werkblad invullen en inleveren',
-      '• Korte presentatie over AI-ervaring',
-      '• Quiz aan einde van de les',
-      '• Reflectieopdracht als huiswerk',
-      '',
-      'BEOORDELINGSCRITERIA:',
-      '',
-      'Onvoldoende (1-3):',
-      '• Toont geen begrip van AI-concepten',
-      '• Kan AI-tool niet gebruiken',
-      '• Geen reflectie op ethische aspecten',
-      '',
-      'Voldoende (4-6):',
-      '• Toont basiskennis van AI',
-      '• Kan AI-tool gebruiken met hulp',
-      '• Benoemt enkele voor- en nadelen',
-      '',
-      'Goed (7-8):',
-      '• Verklaart AI-concepten correct',
-      '• Gebruikt AI-tool zelfstandig',
-      '• Reflecteert kritisch op AI-gebruik',
-      '',
-      'Uitstekend (9-10):',
-      '• Toont diepgaand begrip van AI',
-      '• Gebruikt AI creatief en effectief',
-      '• Stelt relevante ethische vragen',
-      '• Maakt verbindingen met andere vakken'
-    ];
-    
+    const evaluationContent = lessonContent.evaluation || ['FORMATIEVE EVALUATIE:'];
     evaluationContent.forEach(line => {
       if (line === '') {
         yPos += 3;
@@ -755,17 +529,14 @@ export const downloadLesson = (lessonTitle) => {
       }
     });
 
-    // Generate filename with lesson title
-    const dateStr = new Date().toISOString().slice(0, 10);
     const cleanTitle = lessonTitle.replace(/[^a-zA-Z0-9]/g, '-');
-    const filename = `${cleanTitle}-COMPLETE-LESBRIEF-${dateStr}-${uniqueId}.pdf`;
+    const filenameLesson = `${cleanTitle}-COMPLETE-LESBRIEF-${dateStr}-${uniqueId}.pdf`;
     
-    console.log('💾 SAVING COMPLETE LESSON PDF:', filename);
-    doc.save(filename);
+    console.log('💾 SAVING COMPLETE LESSON PDF:', filenameLesson);
+    doc.save(filenameLesson);
 
-    // Show success message
     setTimeout(() => {
-      alert(`✅ COMPLETE LESBRIEF GEDOWNLOAD!\n\n📄 Bestandsnaam: ${filename}\n\n📚 Bevat 8+ pagina's:\n• Volledige lesvoorbereiding\n• Werkbladen en materialen\n• Evaluatieformulieren\n• Docentenhandleiding\n\n🎯 Direct klaar voor gebruik in de klas!`);
+      alert(`✅ COMPLETE LESBRIEF GEDOWNLOAD!\n\n📄 Bestandsnaam: ${filenameLesson}\n\n📚 Bevat 8+ pagina's:\n• Volledige lesvoorbereiding\n• Werkbladen en materialen\n• Evaluatieformulieren\n• Docentenhandleiding\n\n🎯 Direct klaar voor gebruik in de klas!`);
     }, 500);
 
   } catch (error) {
@@ -786,134 +557,63 @@ const generateLessonContent = (title) => {
     preparation: [
       'VOORKENNIS:',
       '• Basiskennis computers en internet',
-      '• Geen specifieke AI-ervaring vereist',
-      '• Open houding naar nieuwe technologie'
+      '• Geen specifieke AI-ervaring vereist'
     ],
     objectives: [
       'HOOFDDOELEN:',
-      '• Leerlingen begrijpen wat AI is en hoe het werkt',
-      '• Leerlingen kunnen AI-tools effectief gebruiken',
-      '• Leerlingen ontwikkelen kritisch denken over AI'
+      '• Leerlingen begrijpen wat AI is'
     ],
     activities: [
-      'ACTIVITEIT 1: AI HERKENNEN',
-      'Doel: Leerlingen leren AI herkennen in dagelijks leven',
-      'Tijd: 5 minuten'
+      'ACTIVITEIT 1: AI HERKENNEN'
     ]
   };
 
-  // 1. SPECIFIC CONTENT FOR "DATAVISUALISATIE MET AI"
+  // 1. DATA VISUALISATIE (BESTAAND)
   if (title.toLowerCase().includes('data') || title.toLowerCase().includes('visualisatie')) {
     return {
       title: "Datavisualisatie met AI",
-      duration: "90 minuten",
-      targetGroup: "MBO/HBO",
+      duration: "60-90 minuten",
+      targetGroup: "MBO / HBO (ICT, Economie, Zorg, Media)",
       preparation: [
-        'VOORKENNIS:',
-        '• Basisbegrip van grafieken (taartdiagram, staafgrafiek, lijngrafiek)',
-        '• Weten wat een dataset is (tabel met gegevens)',
+        'INLEIDING VOOR DOCENT EN STUDENT:',
+        'Organisaties verzamelen tegenwoordig enorme hoeveelheden data. Ruwe data zegt vaak weinig; visualisatie is nodig.',
         '',
         'BENODIGDHEDEN:',
-        '• Toegang tot ChatGPT, Gemini, Datawrapper of Flourish',
-        '• Datasets (leerlingen kunnen deze ook laten genereren door AI)',
-        '',
-        'DOCENTENHANDLEIDING & TIPS:',
-        '• Differentiatie: Laat snelle leerlingen complexere visualisaties maken (bijv. scatterplots)',
-        '• Dataset tip: Gebruik open data van CBS of laat AI een dataset genereren over een interessegebied van de leerling',
-        '• Valkuil: Let op dat leerlingen niet blindelings de eerste grafiek accepteren; stimuleer kritisch kijken naar schaal en assen',
-        '• Voorbeeld slechte visualisatie: Een taartdiagram met 20 taartpunten (onleesbaar) vs. een staafgrafiek'
+        '• Laptop/PC met internettoegang',
+        '• Spreadsheet software (Excel of Google Sheets)',
+        '• Toegang tot een AI-chatbot'
       ],
       objectives: [
         'HOOFDDOELEN:',
-        '• Leerlingen begrijpen wat datavisualisatie is en waarom het nuttig is',
-        '• Leerlingen kunnen grafieken interpreteren en kritisch beoordelen',
-        '• Leerlingen gebruiken AI-tools om data om te zetten in visualisaties',
-        '• Leerlingen leren hoe keuzes in visualisaties de interpretatie beinvloeden',
-        '',
-        'SPECIFIEKE LEERDOELEN:',
-        '• Het verschil benoemen tussen diverse grafieksoorten',
-        '• Een prompt schrijven om een specifieke grafiek te genereren',
-        '• Herkennen van misleidende grafieken (bijv. weggelaten assen)'
+        '• Studenten begrijpen het nut van datavisualisatie',
+        '• Studenten kunnen AI gebruiken om data te genereren en analyseren'
       ],
       structure: [
-        'FASE 1: INTRODUCTIE (10 min)',
-        '• Wat is datavisualisatie? (Grafieken, heatmaps, etc.)',
-        '• Waarom gebruiken we het? (Patronen zien in grote data)',
-        '',
-        'FASE 2: DEMONSTRATIE (10 min)',
-        '• Docent toont hoe AI een dataset analyseert',
-        '• Docent laat AI een grafiek genereren via een prompt',
-        '',
-        'FASE 3: PRAKTIJKOPDRACHT (20 min)',
-        '• Stap 1: Kies of genereer een dataset',
-        '• Stap 2: Laat AI een visualisatie maken',
-        '• Stap 3: Analyseer het resultaat',
-        '',
-        'FASE 4: REFLECTIE (5 min)',
-        '• Bespreken van resultaten',
-        '• Ethische vragen: Is de grafiek eerlijk of misleidend?'
+        'FASE 1: THEORIE (15 min)',
+        'FASE 2: CASUS (10 min)',
+        'FASE 3: PRAKTIJK (45 min)',
+        'FASE 4: ANALYSE & REFLECTIE (20 min)'
       ],
       activities: [
-        'PRAKTIJKOPDRACHT IN 3 STAPPEN:',
-        '',
-        'STAP 1: KIES EEN DATASET',
-        '• Zoek een tabel op internet of vraag AI: "Genereer een dataset over [ONDERWERP]"',
-        '• Voorbeeld onderwerpen: Bevolkingsgroei, Spotify streams, Voetbalstatistieken',
-        '',
-        'STAP 2: VRAAG AI OM EEN GRAFIEK',
-        '• Schrijf een prompt: "Maak een [TYPE GRAFIEK] van deze data"',
-        '• Probeer verschillende types: Lijn, Staaf, Scatterplot',
-        '',
-        'STAP 3: REFLECTEER',
-        '• Waarom past deze grafiek wel/niet bij de data?',
-        '• Is alles duidelijk leesbaar?',
-        '• Hoe zou een andere grafiek het beeld veranderen?'
+        'PRAKTIJKOPDRACHT: SCHERMTIJD ANALYSEREN',
+        'Stap 1: Dataset genereren met AI',
+        'Stap 2: Grafieken maken in Excel',
+        'Stap 3: Analyseren van correlaties'
       ],
       materials: [
-        'WERKBLAD: DATAVISUALISATIE MET AI',
-        '',
-        'Naam: _________________________ Datum: __________',
-        '',
-        '1. INTERPRETATIEVRAGEN',
-        'Kijk naar de gegenereerde grafiek:',
-        '• Wat is de titel van de grafiek?',
-        '  ________________________________________________',
-        '• Wat staat er op de X-as en Y-as?',
-        '  ________________________________________________',
-        '• Wat is de belangrijkste conclusie die je kunt trekken?',
-        '  ________________________________________________',
-        '',
-        '2. OPDRACHT: WELKE GRAFIEK IS GESCHIKT?',
-        'Welk type grafiek zou jij kiezen voor:',
-        '• De verdeling van stemmen bij verkiezingen? (Taart / Lijn)',
-        '• De temperatuurverloop over een jaar? (Staaf / Lijn)',
-        '• Vergelijking van lengte tussen jongens en meisjes? (Staaf / Scatter)',
-        '',
-        '3. CHECKLIST GOEDE DATAVISUALISATIE',
-        '[ ] Heeft de grafiek een duidelijke titel?',
-        '[ ] Zijn de assen benoemd (inclusief eenheden)?',
-        '[ ] Is er een legenda aanwezig indien nodig?',
-        '[ ] Is de bron van de data vermeld?',
-        '[ ] Is de grafiek eerlijk (geen vertekend beeld)?'
+        'WERKBLAD: DATAVISUALISATIE',
+        'Bevat stappenplan en reflectievragen.'
       ],
       evaluation: [
-        'FORMATIEVE CHECK:',
-        '• Loop rond en kijk of leerlingen effectieve prompts schrijven',
-        '• Vraag leerlingen waarom ze voor een bepaald grafiektype kozen',
-        '',
-        'REFLECTIEVRAGEN KLASSIKAAL:',
-        '• "Wie heeft een grafiek die de data eigenlijk onduidelijker maakte?"',
-        '• "Hoe kan je met een grafiek liegen?" (Bv. Y-as niet bij 0 beginnen)',
-        '',
-        'BEOORDELING EINDPRODUCT:',
-        '• Techniek: Is het gelukt om een grafiek te genereren met AI?',
-        '• Analyse: Kan de leerling uitleggen wat er te zien is?',
-        '• Kritisch: Heeft de leerling gecheckt op fouten/hallucinaties?'
+        'BEOORDELINGSCRITERIA:',
+        '• Correcte dataset gegenereerd',
+        '• Juiste grafiektypes gekozen',
+        '• Heldere analyse van de resultaten'
       ]
     };
   }
 
-  // 2. SPECIFIC CONTENT FOR "AI IN DE GESCHIEDENIS"
+  // 2. GESCHIEDENIS (BESTAAND)
   if (title.toLowerCase().includes('geschiedenis')) {
     return {
       title: "AI in de Geschiedenis – Hoe technologie onze wereld vormt",
@@ -921,133 +621,536 @@ const generateLessonContent = (title) => {
       targetGroup: "Voortgezet Onderwijs (VMBO/HAVO/VWO)",
       preparation: [
         'VOORKENNIS:',
-        '• Begrip van wat AI (globaal) is',
-        '• Kennis van eerdere industriële revoluties (stoom, elektriciteit)',
+        '• Basiskennis tijdvakken en industriële revolutie',
         '',
         'BENODIGDHEDEN:',
-        '• Computer/tablet met internet',
-        '• Toegang tot een tekstgenererende AI (ChatGPT, Copilot, Gemini)',
-        '• Werkbladen (zie sectie Materialen)',
-        '',
-        'DOCENTENHANDLEIDING & TIPS:',
-        '• Differentiatie VMBO: Geef meer sturing in de prompts ("Gebruik deze zin...")',
-        '• Differentiatie HAVO/VWO: Focus op bronkritiek en bias in AI-antwoorden',
-        '• Veiligheid: Bespreek dat AI soms "hallucineert" (feiten verzint)',
-        '• Context: Leg de link met angst voor nieuwe technologie in het verleden'
+        '• Devices met internet',
+        '• AI-toegang',
+        '• Historische bronnen (digitaal of print)'
       ],
       objectives: [
-        'HOOFDDOELEN:',
-        '• Leerlingen begrijpen hoe AI past in de langere technologische geschiedenis',
-        '• Leerlingen onderzoeken historische technologische keerpunten',
-        '• Leerlingen leren kritisch nadenken over maatschappelijke impact van innovatie',
-        '',
-        'SPECIFIEKE LEERDOELEN:',
-        '• AI kunnen vergelijken met eerdere innovaties (stoommachine, internet)',
-        '• Zien hoe AI historische bronnen kan analyseren en samenvatten',
-        '• Bias (vooroordelen) herkennen in door AI gegenereerde historische teksten'
+        'HOOFDDOEL:',
+        '• Leerlingen vergelijken de AI-revolutie met historische technologische omwentelingen.'
       ],
       structure: [
-        'FASE 1: INLEIDING - REVOLUTIES (10 min)',
-        '• Wat is een technologische revolutie? (Landbouw, Industrieel, Digitaal)',
-        '• Waar past AI in deze tijdlijn?',
-        '',
-        'FASE 2: CONTEXT & ANGST (15 min)',
-        '• Hoe reageerden mensen vroeger op de stoomtrein? ("Te snel voor het brein")',
-        '• De Luddites (machinebrekers) vs. huidige AI-zorgen',
-        '',
-        'FASE 3: AI ALS HULPMIDDEL (10 min)',
-        '• Hoe kan AI helpen bij geschiedenis? (Bronnen samenvatten, tijdlijnen)',
-        '• Demonstratie van een prompt door de docent',
-        '',
-        'FASE 4: PRAKTIJKOPDRACHT (35 min)',
-        '• Leerlingen kiezen Opdracht A, B of C (zie Activiteiten)',
-        '• Uitvoeren en resultaten vastleggen op werkblad',
-        '',
-        'FASE 5: REFLECTIE (10 min)',
-        '• Klassikale bespreking: Is AI een gevaar of een hulpmiddel?',
-        '• Vergelijking met historische innovaties'
+        'FASE 1: HISTORISCHE TIJDLIJN',
+        'FASE 2: BRONNENANALYSE',
+        'FASE 3: AI-ONDERZOEK',
+        'FASE 4: DISCUSSIE'
       ],
       activities: [
-        'KIES ÉÉN VAN DE VOLGENDE OPDRACHTEN:',
-        '',
-        'OPDRACHT A: AI ALS HISTORISCH ANALIST',
-        '1. Kies een korte historische bron (tekstfragment/brief).',
-        '2. Vraag AI: "Vat dit samen en noem de mogelijke bias van de schrijver."',
-        '3. Controleer: Klopt de analyse? Wat mist de AI?',
-        '',
-        'OPDRACHT B: VERGELIJK TWEE DOORBRAKEN',
-        '1. Kies een oude uitvinding (bijv. Stoommachine of Drukpers).',
-        '2. Maak een tabel: Wat veranderde de stoommachine? Wat verandert AI?',
-        '3. Zoek overeenkomsten in hoe de maatschappij reageerde.',
-        '',
-        'OPDRACHT C: HISTORISCHE FICTIE (SCENARIO)',
-        '1. Vraag AI: "Schrijf een kort verhaal: Wat als de Romeinen internet hadden?"',
-        '2. Analyseer: Welke historische elementen kloppen wel/niet?',
-        '3. Herschrijf het einde zelf.'
+        'OPDRACHT A: AI ALS HISTORICUS',
+        'OPDRACHT B: VERGELIJKING MET STOOMMACHINE',
+        'OPDRACHT C: TOEKOMSTIGE GESCHIEDENIS'
       ],
       materials: [
         'WERKBLAD: AI IN DE GESCHIEDENIS',
-        '',
-        'Naam: _________________________ Klas: __________',
-        '',
-        '1. VERGELIJKINGSTABEL',
-        'Innovatie 1: _______________ Innovatie 2: AI (Nu)',
-        'Impact op werk: ________________ | ________________',
-        'Angst van mensen: ______________ | ________________',
-        'Voordeel: ______________________ | ________________',
-        '',
-        '2. BRONANALYSE (Bij Opdracht A)',
-        'Welke bron heb je gebruikt?',
-        '___________________________________________________',
-        'Wat zei de AI over de betrouwbaarheid?',
-        '___________________________________________________',
-        '',
-        '3. REFLECTIEVRAGEN',
-        '• Welke historische innovatie lijkt volgens jou het meest op AI?',
-        '  [ ] Drukpers  [ ] Stoommachine  [ ] Elektriciteit',
-        '  Waarom? _______________________________________',
-        '',
-        '• Hoe denk je dat geschiedenisboeken over 50 jaar over AI schrijven?',
-        '  ___________________________________________________'
+        'Bevat bronteksten en vergelijkingstabellen.'
       ],
       evaluation: [
         'FORMATIEVE EVALUATIE:',
-        '• Check tijdens de les of leerlingen de vergelijking snappen',
-        '• Vraag: "Wie kan een voorbeeld noemen van angst voor technologie uit 1800?"',
-        '',
-        'DISCUSSIEVRAGEN:',
-        '• "Maakt AI ons dommer of juist slimmer, net als de rekenmachine?"',
-        '• "Kan een computer echt geschiedenis begrijpen zonder gevoel?"',
-        '',
-        'BEOORDELING:',
-        '• Is het werkblad volledig ingevuld?',
-        '• Toont de leerling historisch besef (tijdvakken correct)?',
-        '• Is er kritisch gekeken naar de output van de AI?'
+        '• Kwaliteit van de historische vergelijking',
+        '• Mate van kritisch denken over AI-output'
       ]
     };
   }
 
-  // 3. Customize content based on lesson title (Legacy logic for others)
-  if (title.toLowerCase().includes('ethiek')) {
-    baseContent.activities.push(
-      'ACTIVITEIT 2: ETHIEK DEBAT',
-      'Doel: Kritisch discussieren over AI-ethiek',
-      'Tijd: 20 minuten'
-    );
-  } else if (title.toLowerCase().includes('chatgpt')) {
-    baseContent.activities.push(
-      'ACTIVITEIT 2: CHATGPT UITPROBEREN',
-      'Doel: Praktische ervaring met ChatGPT',
-      'Tijd: 15 minuten'
-    );
+  // 3. WETENSCHAPPELIJK ONDERZOEK (BESTAAND)
+  if (title.toLowerCase().includes('wetenschappelijk') || title.toLowerCase().includes('onderzoek')) {
+    return {
+      title: "Wetenschappelijk Onderzoek met AI",
+      duration: "90-120 minuten",
+      targetGroup: "Bovenbouw VWO / Gymnasium & HBO",
+      preparation: [
+        'DOELGROEP:',
+        '- Bovenbouw VWO / Gymnasium & HBO',
+        '',
+        'VOORKENNIS:',
+        '- Onderzoekscyclus, bronnenonderzoek',
+        '',
+        'BENODIGDHEDEN:',
+        '- Laptops, AI-tool, Tekstverwerker'
+      ],
+      objectives: [
+        'LEERDOELEN:',
+        '1. Onderzoeksvraag aanscherpen met AI',
+        '2. Literatuurverkenning (met bronkritiek)',
+        '3. Methodologie bepalen'
+      ],
+      structure: [
+        'FASE 1: ONDERZOEKSCYCLUS HERHALEN',
+        'FASE 2: AI ALS SPARRENPARTNER',
+        'FASE 3: PLAN VORMEN',
+        'FASE 4: REFLECTIE'
+      ],
+      activities: [
+        'OPDRACHT 1: VRAAG AANSCHERPEN',
+        'OPDRACHT 2: LITERATUUR CHECK',
+        'OPDRACHT 3: METHODE KIEZEN'
+      ],
+      materials: [
+        'WERKBLAD: ONDERZOEKSPLAN MET AI'
+      ],
+      evaluation: [
+        'RUBRIC:',
+        '- Kwaliteit onderzoeksvraag',
+        '- Kritisch gebruik AI',
+        '- Haalbaarheid plan'
+      ]
+    };
   }
 
+  // ==================================================================================
+  // NIEUWE/HERSCHREVEN LESSEN (VRAAG 1 T/M 5)
+  // ==================================================================================
+
+  // 4. AI ETHICS DEBAT (VO) - HERSCHREVEN
+  if (title.toLowerCase().includes('ethics') || title.toLowerCase().includes('debat')) {
+    return {
+      title: "AI Ethics Debat: Eerlijkheid, Privacy en Controle",
+      duration: "100-120 minuten (2 lesuren)",
+      targetGroup: "Voortgezet Onderwijs (HAVO/VWO/Gymnasium)",
+      preparation: [
+        'VOORKENNIS:',
+        '• Basisbegrip van wat AI is (algoritmes, data)',
+        '• Ervaring met debatteren is handig, maar niet vereist',
+        '',
+        'BENODIGDHEDEN:',
+        '• Rolkaarten (zie Materialen)',
+        '• Digibord voor stellingen',
+        '• Toegang tot AI-tool (voor voorbereidende fase)',
+        '• Werkblad "Argumenten Analyse"',
+        '',
+        'DOCENTVOORBEREIDING:',
+        '• Lees de drie casussen goed door.',
+        '• Print de rolkaarten en knip ze uit.',
+        '• Bepaal de debatvorm: Lagerhuis (klassikaal, dynamisch) of Oxford (formeel, groepen).'
+      ],
+      objectives: [
+        'HOOFDDOEL:',
+        'Leerlingen ontwikkelen een kritische, ethische houding ten opzichte van AI-toepassingen in de maatschappij.',
+        '',
+        'CONCRETE LEERDOELEN:',
+        '1. Leerlingen kunnen uitleggen wat bias (vooroordeel) in algoritmes is en hoe dit ontstaat.',
+        '2. Leerlingen kunnen het spanningsveld benoemen tussen veiligheid (surveillance) en privacy.',
+        '3. Leerlingen kunnen argumenten formuleren vanuit verschillende perspectieven (rolvastheid).',
+        '4. Leerlingen gebruiken AI als hulpmiddel om argumenten te vinden, maar controleren deze op feitelijkheid.'
+      ],
+      structure: [
+        'FASE 1: INTRODUCTIE ETHIEK (15 min)',
+        '• Uitleg kernbegrippen: Bias (trainingsdata), Privacy (surveillance), Autonomie (wie beslist?).',
+        '• Korte video of voorbeeld van "Predictive Policing" of "Toeslagenaffaire" als trigger.',
+        '',
+        'FASE 2: VOORBEREIDING MET AI (25 min)',
+        '• Klas wordt verdeeld in groepen/rollen.',
+        '• Leerlingen gebruiken AI om argumenten VOOR en TEGEN hun casus te genereren.',
+        '• Kritische check: "Zijn deze AI-argumenten eenzijdig?"',
+        '',
+        'FASE 3: HET DEBAT (40 min)',
+        '• Ronde 1: Casus "Predictive Policing" (Veiligheid vs. Discriminatie).',
+        '• Ronde 2: Casus "School Surveillance" (Spieken tegengaan vs. Privacy).',
+        '• Ronde 3: Casus "Social Media Algoritmes" (Vermaak vs. Verslaving/Manipulatie).',
+        '',
+        'FASE 4: REFLECTIE & MINI-ESSAY (20 min)',
+        '• Klassikale nabespreking: Welk argument gaf de doorslag?',
+        '• Schrijfopdracht (huiswerk of in de les): 200 woorden reflectie.'
+      ],
+      activities: [
+        'CASUS 1: PREDICTIVE POLICING',
+        'De politie wil een AI inzetten die voorspelt waar inbraken gaan plaatsvinden. De AI is getraind op arrestatiegegevens uit het verleden.',
+        'Dilemma: Efficiënter boeven vangen VS. risico op etnisch profileren (bias in oude data).',
+        '',
+        'CASUS 2: AI-SURVEILLANCE OP SCHOOL',
+        'De school wil camera\'s met gezichtsherkenning en emotie-analyse ophangen om pestgedrag en spieken te detecteren.',
+        'Dilemma: Veilige school VS. totale controle en privacy-inbreuk.',
+        '',
+        'CASUS 3: DE AANBEVELINGS-ALGORITMES',
+        'Social media apps optimaliseren puur op "kijktijd".',
+        'Dilemma: Vrijheid van ondernemen VS. mentale gezondheid van jongeren (fuik-effect).',
+        '',
+        'AI-PROMPTS VOOR LEERLINGEN:',
+        '• "Geef 3 sterke, juridische argumenten tégen gezichtsherkenning op scholen."',
+        '• "Bedenk argumenten waarom een algorithm nooit neutraal kan zijn."',
+        '• "Speel advocaat van de duivel: waarom is predictive policing goed voor een arme wijk?"'
+      ],
+      materials: [
+        'ROLKAARTEN (uitknippen):',
+        '1. De Bezorgde Burger/Scholier: Bang voor privacyverlies, voelt zich bekeken.',
+        '2. De Tech-Optimist/Ondernemer: Gelooft dat AI alles veiliger en efficiënter maakt.',
+        '3. De Jurist/Ethicus: Wijst op grondrechten en discriminatieverbod.',
+        '4. De Beleidsmaker/Directeur: Wil problemen (criminaliteit/spieken) oplossen met beperkt budget.',
+        '5. De AI-Onderzoeker: Weet hoe de techniek werkt en waar de fouten zitten (false positives).',
+        '',
+        'WERKBLAD "ARGUMENTEN CHECK":',
+        '- Stelling:',
+        '- Argumenten gevonden door AI:',
+        '- Mogelijke weerlegging:',
+        '- Welke bronnen/bewijs heb ik nodig?'
+      ],
+      evaluation: [
+        'RUBRIC ARGUMENTATIE (4 NIVEAUS):',
+        '',
+        '1. Inhoud & Diepgang',
+        '- Onvoldoende: Oppervlakkige meningen ("ik vind het stom").',
+        '- Voldoende: Gebruikt begrippen als privacy of veiligheid correct.',
+        '- Goed: Legt uit hoe technische bias ontstaat en koppelt dit aan maatschappelijke gevolgen.',
+        '- Excellent: Verbindt ethische theorieën aan de praktijkcasus.',
+        '',
+        '2. Debatvaardigheden',
+        '- Onvoldoende: Luistert niet, valt in herhaling.',
+        '- Voldoende: Reageert op anderen.',
+        '- Goed: Weerlegt tegenargumenten scherp.',
+        '- Excellent: Synthetiseert standpunten en vindt de kern van het conflict.',
+        '',
+        '3. Reflectie (Mini-essay)',
+        '- Beoordeling op: Eigen standpuntbepaling los van de rol in het debat.'
+      ]
+    };
+  }
+
+  // 5. AI KUNSTPROJECT (PO/VO) - HERSCHREVEN
+  if (title.toLowerCase().includes('kunst') || (title.toLowerCase().includes('art') && !title.toLowerCase().includes('smart'))) {
+    return {
+      title: "AI Kunstproject: Van Prompt tot Meesterwerk",
+      duration: "90-120 minuten (of projectweek)",
+      targetGroup: "PO (Bovenbouw) / VO (Onderbouw)",
+      preparation: [
+        'VOORKENNIS:',
+        '• Geen specifieke voorkennis vereist.',
+        '• Uitleg verschil tussen "zoeken op Google" (bestaand plaatje) en "genereren" (nieuw plaatje).',
+        '',
+        'BENODIGDHEDEN:',
+        '• Toegang tot een Image Generator (Adobe Firefly, DALL-E, Bing Image Creator, of schoolveilige tool).',
+        '• Digibord voor klassikale analyse.',
+        '• Werkblad "Mijn Kunstplan".',
+        '• Kleurpotloden/papier (voor de schetsfase).'
+      ],
+      objectives: [
+        'HOOFDDOEL:',
+        'Leerlingen leren hoe ze AI kunnen inzetten als creatief gereedschap, waarbij ze visuele taal omzetten in tekst (prompts) en reflecteren op eigenaarschap.',
+        '',
+        'CONCRETE LEERDOELEN:',
+        '1. Leerlingen kennen visuele begrippen: compositie, perspectief (kikvors/vogelvlucht), lichtval, stijl (impressionisme, fotorealistisch).',
+        '2. Leerlingen kunnen een idee iteratief verbeteren door hun prompt aan te passen.',
+        '3. Leerlingen reflecteren op de vraag: "Is dit kunst?" en "Van wie is het plaatje?".'
+      ],
+      structure: [
+        'FASE 1: KIJKEN & ANALYSEREN (20 min)',
+        '• Laat AI-beelden zien. Raadspel: "Echt of AI?".',
+        '• Bespreek beeldtaal: Wat maakt een beeld spannend? (Contrast, kleur, standpunt).',
+        '',
+        'FASE 2: ONTWERPEN & PROMPTEN (50 min)',
+        '• Stap 1: Analoog schetsen. Wat wil je maken? Welke sfeer?',
+        '• Stap 2: Eerste prompt schrijven (Subject + Actie + Context).',
+        '• Stap 3: Genereren en verfijnen (Toevoegen van stijl, licht, cameralens).',
+        '• Stap 4: Selectie van het beste werk.',
+        '',
+        'FASE 3: EXPOSITIE & ETHIEK (20 min)',
+        '• Digitale galerij op het bord.',
+        '• Discussie: "Heb jij dit gemaakt of de computer?"',
+        '• "Mag je de stijl van Van Gogh zomaar kopiëren?"'
+      ],
+      activities: [
+        'DE PROMPT-FORMULE:',
+        'Leerlingen leren de structuur:',
+        '1. Onderwerp (Een kat)',
+        '2. Actie (die gitaar speelt)',
+        '3. Omgeving (op de maan)',
+        '4. Stijl (in de stijl van Pixar / Olieverf / Cyberpunk)',
+        '5. Techniek/Licht (Cinematic lighting, 4k, close-up)',
+        '',
+        'ITERATIE-OPDRACHT:',
+        'Begin met "Een huis".',
+        'Maak het specifieker: "Een oud spookhuis in een donker bos".',
+        'Voeg stijl toe: "Een oud spookhuis in een donker bos, geschilderd door Vincent van Gogh".',
+        'Vergelijk de resultaten.'
+      ],
+      materials: [
+        'WERKBLAD "MIJN KUNSTPLAN":',
+        'Vak 1: Mijn idee (schets/steekwoorden).',
+        'Vak 2: Mijn eerste prompt.',
+        'Vak 3: Wat ging er mis? (Reflectie op resultaat 1).',
+        'Vak 4: Mijn verbeterde prompt (Final Version).',
+        '',
+        'BEGRIPPENLIJST BEELDTAAL:',
+        '- Compositie (centraal, regel van derden)',
+        '- Perspectief (kikvors, vogelvlucht)',
+        '- Stijlen (Surrealisme, Pop-art, Sketch, 3D Render)'
+      ],
+      evaluation: [
+        'RUBRIC KUNST & TECHNIEK:',
+        '',
+        '1. Creativiteit & Originaliteit',
+        '- Heeft de leerling een eigen concept bedacht of iets standaards gekopieerd?',
+        '',
+        '2. Techniek (Prompting)',
+        '- Gebruik van stijlbegrippen en details in de tekst.',
+        '- Zichtbare verbetering tussen poging 1 en poging 3.',
+        '',
+        '3. Reflectie',
+        '- Kan de leerling uitleggen waarom bepaalde keuzes zijn gemaakt?',
+        '- Actieve deelname aan het ethische gesprek.'
+      ]
+    };
+  }
+
+  // 6. INTRODUCTIE TOT AI VOOR KINDEREN (PO) - HERSCHREVEN
+  if (title.toLowerCase().includes('kinderen') || (title.toLowerCase().includes('introductie') && title.toLowerCase().includes('ai'))) {
+    return {
+      title: "Introductie AI voor Kinderen: Slimme Robots & Algoritmes",
+      duration: "60-90 minuten",
+      targetGroup: "Basisonderwijs (Groep 5-8)",
+      preparation: [
+        'VOORKENNIS:',
+        '• Geen. Dit is een eerste kennismaking.',
+        '',
+        'BENODIGDHEDEN:',
+        '• Digibord.',
+        '• "Quick, Draw!" van Google (klassikaal of op tablets).',
+        '• Werkblad "De Slimme Robot".',
+        '• Kleurpotloden.'
+      ],
+      objectives: [
+        'HOOFDDOELEN:',
+        '1. Kinderen snappen het verschil tussen een "gewone" robot (doet precies wat je zegt) en AI (leert zelf).',
+        '2. Kinderen begrijpen dat AI getraind moet worden met heel veel voorbeelden.',
+        '3. Kinderen leren dat ze voorzichtig moeten zijn met privégegevens.',
+        '',
+        'KERNDOELEN (PO):',
+        '• Oriëntatie op onszelf en de wereld (Techniek).',
+        '• Mediawijsheid.'
+      ],
+      structure: [
+        'FASE 1: WAT IS AI? (15 min)',
+        '• Vraag: "Wie heeft er wel eens tegen Siri of Google gepraat?"',
+        '• Uitleg: AI is als een heel slim huisdier. Je moet het trainen.',
+        '• Vergelijking: Een broodrooster (dom) vs. een zelfrijdende auto (slim).',
+        '',
+        'FASE 2: AI TRAINEN - SPEL "QUICK DRAW" (20 min)',
+        '• Speel Google Quick Draw. De computer raadt wat je tekent.',
+        '• Bespreek: Hoe weet de computer dat dit een poes is? (Omdat hij miljoenen tekeningen van poezen heeft gezien).',
+        '',
+        'FASE 3: PROGRAMMEREN (UNPLUGGED) (20 min)',
+        '• Spel: "De Robot Docent".',
+        '• Eén kind is de robot. De klas moet instructies geven (IF/THEN).',
+        '• "ALS ik mijn hand opsteek, DAN zeg je Hallo".',
+        '',
+        'FASE 4: PRIVACY & AFSLUITING (15 min)',
+        '• Waarom mag je nooit je adres of wachtwoord tegen een AI zeggen?',
+        '• Tekenopdracht: Hoe ziet jouw hulp-robot eruit?'
+      ],
+      activities: [
+        'ACTIVITEIT A: "IS HET AI?"',
+        'Toon plaatjes op het bord. Kinderen rennen naar kant A (Wel AI) of B (Geen AI).',
+        '- Een rekenmachine? (Nee)',
+        '- Netflix aanbevelingen? (Ja)',
+        '- Een fiets? (Nee)',
+        '- Een filter op TikTok? (Ja)',
+        '',
+        'ACTIVITEIT B: AI VERTELLEN',
+        'Begin een verhaal: "Er was eens een paars monster..."',
+        'Vraag ChatGPT (op het digibord) om het af te maken.',
+        'Is het grappig? Klopt het? Is het beter dan wat wij konden verzinnen?',
+        '',
+        'ACTIVITEIT C: ROLLENSPEL',
+        'Kind speelt "Chatbot". Ander kind stelt vragen.',
+        'De Chatbot mag alleen antwoorden wat hij "geleerd" heeft (van kaartjes).'
+      ],
+      materials: [
+        'WERKBLAD "DE SLIMME ROBOT":',
+        '1. Tekenopdracht: Mijn AI-hulpje.',
+        '2. Puzzel: Verbind het apparaat met "Wel AI" of "Geen AI".',
+        '3. Privacy-schild: Kleur de dingen in die je GEHEIM moet houden (Wachtwoord, Adres, Naam).',
+        '',
+        'PSEUDOCODE KAARTJES:',
+        '- ALS (Regen) DAN (Paraplu)',
+        '- ALS (Rood Licht) DAN (Stoppen)'
+      ],
+      evaluation: [
+        'EVALUATIEVRAGEN:',
+        '• Kan de computer zelf nadenken zoals een mens? (Nee, hij rekent heel snel).',
+        '• Wat gebeurt er als je een AI "foute" dingen leert? (Dan gaat hij fouten maken -> Bias/Vooroordeel uitleggen op kinderniveau).',
+        '• Vond je de AI slim of soms ook een beetje dom?'
+      ]
+    };
+  }
+
+  // 7. AI VOOR TAALONDERWIJS (VO/MBO) - HERSCHREVEN
+  if (title.toLowerCase().includes('taal') && !title.toLowerCase().includes('kinderen')) {
+    return {
+      title: "AI voor Taalonderwijs: Schrijven, Spreken & Feedback",
+      duration: "90-120 minuten",
+      targetGroup: "VO (Bovenbouw) / MBO (Niveau 3-4)",
+      preparation: [
+        'VOORKENNIS:',
+        '• Basiskennis van tekststructuur en grammatica.',
+        '• Bekendheid met ERK-niveaus (A2, B1, B2) is een pre.',
+        '',
+        'BENODIGDHEDEN:',
+        '• Toegang tot ChatGPT/Claude/Copilot.',
+        '• Een eigen tekst (of concept) van de leerling.',
+        '• Rubric voor beoordeling.'
+      ],
+      objectives: [
+        'HOOFDDOEL:',
+        'Leerlingen leren AI inzetten als persoonlijke taalcoach en redacteur, zonder het schrijfproces volledig uit handen te geven.',
+        '',
+        'CONCRETE LEERDOELEN:',
+        '1. Leerlingen kunnen AI gerichte feedback laten geven op spelling, grammatica en structuur.',
+        '2. Leerlingen kunnen hun tekst transformeren naar verschillende registers (formeel/informeel) met hulp van AI.',
+        '3. Leerlingen herkennen "AI-taal" en leren dit menselijker te maken.',
+        '4. MBO-specifiek: Effectieve zakelijke communicatie (e-mails, rapportages) opstellen.'
+      ],
+      structure: [
+        'FASE 1: DE AI REDACTEUR (20 min)',
+        '• Klassikale demo: Een slechte, rommelige tekst invoeren.',
+        '• Prompt engineering voor feedback: Niet "herschrijf dit", maar "geef feedback op structuur".',
+        '',
+        'FASE 2: SCHRIJFOPDRACHT & REVISIE (45 min)',
+        '• Leerlingen schrijven een eerste versie (zakelijke e-mail of betoog).',
+        '• Peer-review met AI: Laat AI de tekst beoordelen op B1/B2 niveau.',
+        '• Leerling verwerkt de feedback ZELF (niet copy-paste).',
+        '',
+        'FASE 3: REGISTER & STIJL (25 min)',
+        '• Experiment: Laat AI de tekst herschrijven als "een boze klant", "een rapper", "een formele directeur".',
+        '• Analyse: Wat verandert er in de woordkeuze?',
+        '',
+        'FASE 4: WOORDENSCHAT (15 min)',
+        '• Synonym sets genereren voor veelgebruikte woorden ("leuk", "goed", "slecht").'
+      ],
+      activities: [
+        'OPDRACHT A: DE EMAIL-FIXER (MBO)',
+        'Casus: Je moet een stagebedrijf mailen dat je ziek bent.',
+        '1. Schrijf je eigen mail.',
+        '2. Vraag AI: "Is deze mail beleefd genoeg? Staan er fouten in?"',
+        '3. Verbeter je mail op basis van de tips.',
+        '',
+        'OPDRACHT B: TEKSTSTRUCTUUR (VO)',
+        'Neem je betoog.',
+        'Prompt: "Analyseer de alineastructuur. Heeft elke alinea een kernzin? Is de inleiding pakkend?"',
+        '',
+        'OPDRACHT C: TAALNIVEAU CHECK',
+        'Prompt: "Welk ERK-niveau is deze tekst? Wat moet ik veranderen om van B1 naar B2 te gaan?"'
+      ],
+      materials: [
+        'PROMPT BIBLIOTHEEK TAAL:',
+        '- "Corrigeer alleen de d/t fouten in deze tekst en leg uit waarom het fout was."',
+        '- "Geef me 5 synoniemen voor het woord \'belangrijk\' die passen in een zakelijke context."',
+        '- "Herschrijf deze zin zodat hij actiever klinkt."',
+        '',
+        'CHECKLIST "MENSELIJK VS AI":',
+        '- Gebruikt de AI te dure woorden?',
+        '- Klinkt het als een robot?',
+        '- Is de toon passend bij de ontvanger?'
+      ],
+      evaluation: [
+        'RUBRIC SCHRIJFVAARDIGHEID MET AI:',
+        '',
+        '1. Zelfstandigheid',
+        '- Heeft de leerling de tekst blind gekopieerd of de feedback verwerkt?',
+        '',
+        '2. Prompting',
+        '- Kwaliteit van de vragen aan de AI (specifiek vs. algemeen).',
+        '',
+        '3. Eindproduct',
+        '- Is de tekst foutloos?',
+        '- Is de toon en structuur passend bij het doel?'
+      ]
+    };
+  }
+
+  // 8. PROGRAMMEREN MET AI COPILOT (MBO/HBO) - HERSCHREVEN
+  if (title.toLowerCase().includes('programmeren') || title.toLowerCase().includes('copilot')) {
+    return {
+      title: "Programmeren met AI Copilot: De Pair Programmer",
+      duration: "120-150 minuten",
+      targetGroup: "MBO (ICT) / HBO (Informatica/CMD)",
+      preparation: [
+        'VOORKENNIS:',
+        '• Basis programmeerervaring (Variabelen, Functies, Loops).',
+        '• Bekendheid met een IDE (VS Code) en taal (Python, JS, of HTML/CSS).',
+        '',
+        'BENODIGDHEDEN:',
+        '• Laptops met VS Code.',
+        '• Toegang tot GitHub Copilot, ChatGPT of Codeium.',
+        '• Een "broken" stuk code (om te debuggen).'
+      ],
+      objectives: [
+        'HOOFDDOEL:',
+        'Studenten leren AI gebruiken als efficiënte "pair programmer" om sneller te coderen, te debuggen en nieuwe concepten te leren, zonder de controle over de code te verliezen.',
+        '',
+        'CONCRETE LEERDOELEN:',
+        '1. Studenten kunnen effectieve prompts schrijven voor codegeneratie (Context + Taak + Constraints).',
+        '2. Studenten kunnen AI-gegenereerde code lezen, begrijpen en verifiëren (Security check).',
+        '3. Studenten gebruiken AI voor debugging en refactoring.',
+        '4. Studenten snappen de risico\'s: Hallucinaties (bestaat deze library wel?) en Security (API keys, PII).'
+      ],
+      structure: [
+        'FASE 1: INTRODUCTIE PAIR PROGRAMMING (20 min)',
+        '• AI is je stagiair: Snel, enthousiast, maar maakt fouten.',
+        '• Demo: Code genereren vs. Code begrijpen.',
+        '• Security waarschuwing: Geen API keys of klantdata in de chat!',
+        '',
+        'FASE 2: DEBUGGEN & VERKLAREN (30 min)',
+        '• Geef studenten een stuk code met bugs.',
+        '• Opdracht: Laat de AI de bug vinden EN uitleggen.',
+        '• "Explain this code": Laat AI complexe functies regel voor regel uitleggen.',
+        '',
+        'FASE 3: MINI-PROJECT (60 min)',
+        '• Keuze uit: Python (Tekstverwerker), JS (Interactieve Todo-lijst) of Web (Landing Page).',
+        '• Workflow: Prompt -> Code -> Review -> Refactor.',
+        '',
+        'FASE 4: REFLECTIE & CODE REVIEW (30 min)',
+        '• Peer review: Bekijk elkaars code. Zie je welk deel AI was?',
+        '• Discussie: Leer je nog wel coderen als AI het doet?'
+      ],
+      activities: [
+        'OPDRACHT A: DE PROMPT ENGINEER',
+        'Vraag de AI om een functie te schrijven. Probeer 3 versies:',
+        '1. Vaag: "Maak een login systeem."',
+        '2. Beter: "Maak een Python login functie met hashing."',
+        '3. Best: "Schrijf een Python functie die een wachtwoord en salt neemt, SHA-256 gebruikt en true/false returnt. Voeg error handling toe."',
+        'Vergelijk de output.',
+        '',
+        'OPDRACHT B: UNIT TESTS GENEREREN',
+        'Heb je een functie? Laat de AI 5 unit tests schrijven, inclusief edge cases (lege input, verkeerd type).',
+        '',
+        'OPDRACHT C: REFACTORING',
+        'Neem oude, rommelige code en vraag: "Herschrijf dit zodat het Clean Code principes volgt en voeg commentaar toe."'
+      ],
+      materials: [
+        'CHEAT SHEET "AI FOR DEVS":',
+        '- /explain: Leg uit wat deze code doet.',
+        '- /fix: Er zit een bug in, help mij.',
+        '- /optimize: Kan dit sneller of korter?',
+        '- /doc: Schrijf documentatie voor deze functie.',
+        '',
+        'SECURITY CHECKLIST:',
+        '- Staan er wachtwoorden in mijn code?',
+        '- Gebruik ik verouderde libraries die de AI voorstelt?',
+        '- Begrijp ik écht wat deze regel code doet?'
+      ],
+      evaluation: [
+        'RUBRIC CODE KWALITEIT:',
+        '',
+        '1. Functionaliteit',
+        '- Werkt de code zoals bedoeld?',
+        '',
+        '2. Begrip (Cruciaal!)',
+        '- Kan de student uitleggen wat elke regel doet? (De "waarom" vraag).',
+        '- Als de student het niet kan uitleggen = onvoldoende, ongeacht of de code werkt.',
+        '',
+        '3. AI-Integratie',
+        '- Is de AI gebruikt voor documentatie en tests?',
+        '- Is de code gecontroleerd op veiligheid?'
+      ]
+    };
+  }
+
+  // Fallback for generic or other lessons
   return baseContent;
 };
 
-/**
- * Download file utility (fallback for any other downloads)
- */
 export const downloadFile = (url, filename) => {
   try {
     const link = document.createElement('a');
