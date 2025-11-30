@@ -23,7 +23,7 @@ const LesLab = () => {
     description: "Studenten leren hoe ze AI-tools kunnen gebruiken voor literatuuronderzoek, data-analyse en het schrijven van wetenschappelijke rapporten.",
     objectives: [
       "AI-tools effectief inzetten voor literatuuronderzoek",
-      "Data-analyse automatiseren met AI-ondersteuning", 
+      "Data-analyse automatiseren met AI-ondersteuning",
       "Wetenschappelijke teksten verbeteren met AI-feedback",
       "Ethische aspecten van AI in onderzoek begrijpen"
     ],
@@ -44,7 +44,7 @@ const LesLab = () => {
       image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=200&fit=crop"
     },
     {
-      title: "AI in de Geschiedenis", 
+      title: "AI in de Geschiedenis",
       month: "Augustus 2025",
       level: "VO",
       subject: "Geschiedenis",
@@ -56,7 +56,7 @@ const LesLab = () => {
     },
     {
       title: "Datavisualisatie met AI",
-      month: "Augustus 2025", 
+      month: "Augustus 2025",
       level: "MBO/HBO",
       subject: "Wiskunde/Data",
       duration: "90 min",
@@ -68,7 +68,7 @@ const LesLab = () => {
     {
       title: "AI Ethics Debat",
       month: "Augustus 2025",
-      level: "VO", 
+      level: "VO",
       subject: "Maatschappijleer",
       duration: "100 min",
       rating: 4.6,
@@ -80,7 +80,7 @@ const LesLab = () => {
       title: "AI Kunstproject",
       month: "Augustus 2025",
       level: "PO",
-      subject: "Tekenen", 
+      subject: "Tekenen",
       duration: "60 min",
       rating: 4.5,
       downloads: 800,
@@ -92,25 +92,14 @@ const LesLab = () => {
       month: "Augustus 2025",
       level: "MBO/HBO",
       subject: "Informatica",
-      duration: "120 min", 
+      duration: "120 min",
       rating: 4.9,
       downloads: 750,
       description: "Leren programmeren met AI-assistentie",
       image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=300&h=200&fit=crop"
     },
     {
-      title: "AI-Geassisteerd Creatief Schrijven",
-      month: "Juli 2025",
-      level: "VO",
-      subject: "Nederlands",
-      duration: "120 min",
-      rating: 4.8,
-      downloads: 980,
-      description: "Leerlingen gebruiken AI-tools om hun creativiteit te stimuleren en betere verhalen te schrijven",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=200&fit=crop"
-    },
-    {
-      title: "AI voor Taalonderwijs", 
+      title: "AI voor Taalonderwijs",
       month: "Augustus 2025",
       level: "VO",
       subject: "Engels/Frans",
@@ -131,6 +120,7 @@ const LesLab = () => {
   const handleDownload = (lessonTitle) => {
     setDownloadStarted(true);
     downloadLesson(lessonTitle);
+    
     // Reset the download state after a delay for UI feedback
     setTimeout(() => {
       setDownloadStarted(false);
@@ -178,7 +168,7 @@ const LesLab = () => {
               Vers uit het LesLab en direct te gebruiken
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -191,7 +181,6 @@ const LesLab = () => {
                 className="rounded-2xl shadow-2xl"
               />
             </motion.div>
-            
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -205,11 +194,9 @@ const LesLab = () => {
                 <span className="text-gray-500">•</span>
                 <span className="text-gray-500">{currentLesson.duration}</span>
               </div>
-              
               <h3 className="text-3xl font-bold text-gray-900 mb-4">
                 {currentLesson.title}
               </h3>
-              
               <p className="text-gray-600 mb-6">
                 {currentLesson.description}
               </p>
@@ -225,7 +212,7 @@ const LesLab = () => {
                   ))}
                 </ul>
               </div>
-              
+
               <div className="mb-8">
                 <h4 className="font-semibold text-gray-900 mb-3">Inclusief materialen:</h4>
                 <div className="flex flex-wrap gap-2">
@@ -239,13 +226,11 @@ const LesLab = () => {
                   ))}
                 </div>
               </div>
-              
-              <button
+
+              <button 
                 onClick={() => handleDownload(currentLesson.title)}
                 disabled={downloadStarted}
-                className={`bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center space-x-2 ${
-                  downloadStarted ? 'opacity-75' : ''
-                }`}
+                className={`bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center space-x-2 ${downloadStarted ? 'opacity-75' : ''}`}
               >
                 <SafeIcon icon={downloadStarted ? FiCheck : FiDownload} />
                 <span>{downloadStarted ? 'Download gestart...' : 'Download Complete Les'}</span>
@@ -286,7 +271,6 @@ const LesLab = () => {
                 ))}
               </select>
             </div>
-            
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiUsers} className="text-gray-500" />
               <select
@@ -324,7 +308,6 @@ const LesLab = () => {
                     </span>
                     <span className="text-sm text-gray-500">{lesson.month}</span>
                   </div>
-                  
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {lesson.title}
                   </h3>
@@ -341,12 +324,12 @@ const LesLab = () => {
                       <span>{lesson.rating}</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
                       {lesson.downloads} downloads
                     </span>
-                    <button
+                    <button 
                       onClick={() => handleDownload(lesson.title)}
                       className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors flex items-center space-x-2"
                     >
