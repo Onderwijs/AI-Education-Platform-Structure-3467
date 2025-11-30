@@ -16,17 +16,13 @@ export const downloadStartersgids = () => {
         });
       });
     }
-    
     Object.keys(localStorage).forEach(key => {
       localStorage.removeItem(key);
     });
-
     sessionStorage.clear();
-
-    document.cookie.split(";").forEach(function(c) { 
-      document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+    document.cookie.split(";").forEach(function(c) {
+      document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     });
-
     console.log('✅ NUCLEAR CACHE CLEARING COMPLETED');
   } catch (error) {
     console.log('Cache clearing had issues, but continuing...');
@@ -56,33 +52,18 @@ const generateCompletelyNewFullStartersgids = () => {
     const versionId = 'V9-COMPLETE-' + timestamp + '-' + randomId + '-' + sessionId;
 
     doc.setFont('helvetica');
-
     const pageWidth = 210;
     const pageHeight = 297;
     const margin = 20;
     const contentWidth = pageWidth - (2 * margin);
     const lineHeight = 6;
 
-    const addWrappedText = (text, x, startY, maxWidth, fontSize = 12) => {
-      doc.setFontSize(fontSize);
-      const lines = doc.splitTextToSize(text, maxWidth);
-      let currentY = startY;
-
-      lines.forEach(line => {
-        if (currentY > pageHeight - 30) {
-          doc.addPage();
-          addPageHeader(pageNum++);
-          currentY = 40;
-        }
-        doc.text(line, x, currentY);
-        currentY += lineHeight;
-      });
-      return currentY;
-    };
-
     let pageNum = 1;
+
+    // Helper: Header & Footer op elke pagina
     const addPageHeader = (num) => {
-      doc.setFillColor(70, 130, 180);
+      // Header balk
+      doc.setFillColor(70, 130, 180); // SteelBlue
       doc.rect(0, 0, pageWidth, 25, 'F');
       
       doc.setTextColor(255, 255, 255);
@@ -91,8 +72,8 @@ const generateCompletelyNewFullStartersgids = () => {
       doc.text('AI STARTERSGIDS V9.0 - NEDERLANDS ONDERWIJS', 20, 16);
       doc.text(`Pagina ${num}`, pageWidth - 20, 16, { align: 'right' });
       
+      // Footer
       doc.setTextColor(0, 0, 0);
-      
       doc.setFontSize(10);
       doc.setTextColor(85, 85, 85);
       doc.setFont('helvetica', 'normal');
@@ -100,26 +81,44 @@ const generateCompletelyNewFullStartersgids = () => {
       doc.setTextColor(0, 0, 0);
     };
 
-    // PAGE 1: COVER PAGE
-    doc.setFillColor(139, 0, 0);
+    // Helper: Tekst wrappen en pagina's toevoegen indien nodig
+    const addWrappedText = (text, x, startY, maxWidth, fontSize = 11, fontStyle = 'normal') => {
+      doc.setFont('helvetica', fontStyle);
+      doc.setFontSize(fontSize);
+      doc.setTextColor(50, 50, 50);
+
+      const lines = doc.splitTextToSize(text, maxWidth);
+      let currentY = startY;
+
+      lines.forEach(line => {
+        // Check of we over de pagina grens gaan (rekening houdend met footer marge)
+        if (currentY > pageHeight - 30) {
+          doc.addPage();
+          addPageHeader(pageNum++);
+          currentY = 40; // Startpositie op nieuwe pagina
+        }
+        doc.text(line, x, currentY);
+        currentY += lineHeight;
+      });
+      return currentY;
+    };
+
+    // --- PAGE 1: COVER ---
+    doc.setFillColor(139, 0, 0); // DarkRed
     doc.rect(0, 0, 210, 35, 'F');
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('COMPLETE AI STARTERSGIDS V9.0', 105, 22, { align: 'center' });
-    
     doc.setTextColor(0, 0, 0);
 
-    doc.setFillColor(220, 38, 38);
+    doc.setFillColor(220, 38, 38); // Red warning box style
     doc.rect(15, 45, 180, 30, 'F');
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
-    doc.text('WAARSCHUWING: Dit is de COMPLETE V9.0 versie!', 105, 58, { align: 'center' });
-    doc.text('10+ paginas met volledige inhoud', 105, 68, { align: 'center' });
-    
+    doc.text('OFFICIËLE VERSIE: V9.0', 105, 58, { align: 'center' });
+    doc.text('Complete handleiding voor PO, VO, MBO & HBO', 105, 68, { align: 'center' });
     doc.setTextColor(0, 0, 0);
 
     doc.setFontSize(32);
@@ -127,74 +126,219 @@ const generateCompletelyNewFullStartersgids = () => {
     doc.text('AI STARTERSGIDS', 20, 95);
     doc.text('VOOR HET NEDERLANDSE', 20, 115);
     doc.text('ONDERWIJS', 20, 135);
-    
+
     doc.setFontSize(18);
     doc.setFont('helvetica', 'normal');
-    doc.text('Complete handleiding V9.0', 20, 155);
-    doc.text('Basisonderwijs, Voortgezet Onderwijs, MBO & HBO', 20, 170);
-    doc.text('10+ paginas praktische content', 20, 185);
+    doc.text('Praktische gids voor docenten en schoolleiders', 20, 155);
+    doc.text('Inclusief lesideeën, beleidstips en tools', 20, 170);
 
-    doc.setFillColor(34, 197, 94);
+    doc.setFillColor(34, 197, 94); // Green success box
     doc.rect(20, 200, 170, 40, 'F');
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
-    doc.text('BEVESTIGING: COMPLETE V9.0 STARTERSGIDS', 105, 215, { align: 'center' });
-    doc.text('Gegenereerd: ' + new Date().toLocaleString('nl-NL'), 105, 228, { align: 'center' });
-    doc.text('Unieke ID: ' + versionId, 105, 235, { align: 'center' });
-    
+    doc.text('GEGENEREERD VOOR JOU', 105, 215, { align: 'center' });
+    doc.text('Datum: ' + new Date().toLocaleDateString('nl-NL'), 105, 228, { align: 'center' });
+    doc.text('Versie ID: ' + versionId, 105, 235, { align: 'center' });
     doc.setTextColor(0, 0, 0);
-    
+
+    // Footer Page 1
     doc.setFontSize(10);
     doc.setTextColor(85, 85, 85);
     doc.setFont('helvetica', 'normal');
     doc.text('https://onderwijs.ai/', pageWidth / 2, pageHeight - 16, { align: 'center' });
     doc.setTextColor(0, 0, 0);
 
-    // PAGE 2: TABLE OF CONTENTS
+    // --- PAGE 2: INHOUDSOPGAVE ---
     doc.addPage();
     addPageHeader(pageNum++);
     
     doc.setFontSize(24);
     doc.setFont('helvetica', 'bold');
-    let yPos = addWrappedText('INHOUDSOPGAVE', margin, 50, contentWidth, 24);
+    let yPos = addWrappedText('INHOUDSOPGAVE', margin, 50, contentWidth, 24, 'bold');
     
     doc.setFillColor(240, 248, 255);
-    doc.rect(margin, yPos + 5, contentWidth, 5, 'F');
+    doc.rect(margin, yPos + 5, contentWidth, 2, 'F');
     yPos += 15;
-    
-    doc.setFontSize(14);
-    doc.setFont('helvetica', 'normal');
-    
-    const chapters = [
-      '1. Introductie tot AI in het Onderwijs .......................... 3',
-      '2. AI-tools voor het Basisonderwijs (PO) ........................ 4',
-      '3. AI in het Voortgezet Onderwijs (VO) .......................... 5',
-      '4. MBO en HBO: Geavanceerde AI-toepassingen ..................... 6',
-      '5. Praktische Implementatiegids .................................. 7',
-      '6. Ethiek en Veiligheid in AI-onderwijs ......................... 8',
-      '7. Nederlandse AI-tools en Resources ............................. 9',
-      '8. Stappenplan voor Schoolleiders ................................ 10',
-      '9. Evaluatie en Assessment met AI ................................ 11',
-      '10. Toekomst van AI in het Onderwijs ............................. 12',
-      '11. Veelgestelde Vragen (FAQ) .................................... 13',
-      '12. Bronnen en Verdere Verdieping ................................ 14'
+
+    const toc = [
+      '1. Introductie tot AI in het Onderwijs',
+      '2. AI-tools voor het Basisonderwijs (PO)',
+      '3. AI in het Voortgezet Onderwijs (VO)',
+      '4. MBO en HBO: Geavanceerde AI-toepassingen',
+      '5. Praktische Implementatiegids',
+      '6. Ethiek en Veiligheid in AI-onderwijs',
+      '7. Nederlandse AI-tools en Resources',
+      '8. Stappenplan voor Schoolleiders',
+      '9. Evaluatie en Assessment met AI',
+      '10. Toekomst van AI in het Onderwijs',
+      '11. Veelgestelde Vragen (FAQ)',
+      '12. Bronnen en Verdere Verdieping'
     ];
-    
-    chapters.forEach(chapter => {
-      yPos = addWrappedText(chapter, margin + 10, yPos, contentWidth - 20);
-      yPos += 3;
+
+    toc.forEach((chapter) => {
+      yPos = addWrappedText(chapter, margin + 5, yPos, contentWidth - 10, 13, 'normal');
+      yPos += 4;
     });
 
+    // --- DEFINITIE CONTENT (12 HOOFDSTUKKEN) ---
+    const chapters = [
+      {
+        title: "1. Introductie tot AI in het Onderwijs",
+        content: [
+          { subtitle: "Wat is AI eigenlijk?", text: "Kunstmatige Intelligentie (AI) is geen magie, maar wiskunde. Het zijn computersystemen die taken uitvoeren waar normaal menselijke intelligentie voor nodig is, zoals patronen herkennen, taal begrijpen of problemen oplossen. In het onderwijs hebben we het vaak over 'Generatieve AI' (zoals ChatGPT, Copilot of Midjourney): systemen die nieuwe content kunnen maken op basis van wat ze geleerd hebben uit enorme hoeveelheden data." },
+          { subtitle: "Verschil met 'gewone' software", text: "Traditionele software doet precies wat jij programmeert (bijv. een rekenmachine: 2+2 is altijd 4). Generatieve AI is voorspellend en creatief. Het berekent welk woord waarschijnlijk volgt op het vorige. Hierdoor is de uitkomst soms verrassend, maar soms ook feitelijk onjuist ('hallucinaties')." },
+          { subtitle: "Waarom relevant voor het onderwijs?", text: "AI biedt kansen voor differentiatie (onderwijs op maat), efficiëntie (minder nakijkwerk, snellere lesvoorbereiding) en inclusie (hulp voor leerlingen met taalbarrières of dyslexie). Het doel is niet om de docent te vervangen, maar om de docent te versterken en meer tijd vrij te maken voor het menselijke contact." },
+          { subtitle: "Hoe gebruik je deze gids?", text: "Deze gids is geschreven voor docenten in het PO, VO en MBO/HBO. Blader direct naar het hoofdstuk dat relevant is voor jouw sector. We bieden concrete handvatten, geen vage theorie. \n\nQuick Start in 3 stappen:\n1. Maak een account aan bij een veilige AI-tool (zie hoofdstuk 7).\n2. Probeer één lesidee uit deze gids uit in de klas.\n3. Bespreek de ervaring met een collega." }
+        ]
+      },
+      {
+        title: "2. AI-tools voor het Basisonderwijs (PO)",
+        content: [
+          { subtitle: "Focus: Spelenderwijs Leren & Ondersteuning", text: "In het PO staat ontdekken centraal. AI kan helpen bij taalontwikkeling, creativiteit en mediawijsheid. Belangrijk: gebruik in de onderbouw (groep 1-4) AI vooral als 'leerkracht-assistent' (jij bedient de knoppen). In de bovenbouw (5-8) kunnen leerlingen onder begeleiding zelf kennismaken." },
+          { subtitle: "Lesidee 1: Het Levende Verhaal (Taal/Creatief)", text: "Doelgroep: Groep 5-8.\nDoel: Creatief schrijven stimuleren.\nWerkvorm: Laat de klas een hoofdpersoon en een probleem bedenken. Voer dit in een AI-tool in en laat de AI het begin van het verhaal schrijven. Laat leerlingen daarna zelf het einde schrijven of tekenen. Bespreek: 'Vond je het verhaal van de computer leuker of dat van jezelf?'" },
+          { subtitle: "Lesidee 2: De Praatplaat (Woordenschat)", text: "Doelgroep: Groep 3-8 (ook NT2).\nDoel: Woordenschat vergroten.\nWerkvorm: Genereer met een image-tool een plaat over een thema (bijv. 'een stad in de toekomst' of 'een middeleeuwse markt'). Bespreek klassikaal wat er te zien is. Dit is geweldig voor NT2-leerlingen om visueel ondersteund te praten zonder dat je uren moet zoeken naar de perfecte afbeelding op Google." },
+          { subtitle: "Differentiatie & Veiligheid", text: "Gebruik AI om teksten te vereenvoudigen voor zwakke lezers ('Herschrijf dit artikel op niveau AVI-M4'). \nVeiligheidstip: Laat leerlingen in het PO nooit zelf accounts aanmaken. Projecteer de tool op het digibord en bedien deze zelf, of laat ze werken op tablets waar jij bent ingelogd (onder toezicht)." }
+        ]
+      },
+      {
+        title: "3. AI in het Voortgezet Onderwijs (VO)",
+        content: [
+          { subtitle: "Vakoverstijgende Toepassingen", text: "In het VO draait het om vakinhoud en kritisch denken. AI kan dienen als sparringpartner, tutor en feedback-coach. Het is essentieel dat leerlingen leren hoe ze goede vragen (prompts) stellen." },
+          { subtitle: "Scenario 1: AI als Feedbackcoach (Talen)", text: "Laat leerlingen hun eerste versie van een opstel in een AI-tool plakken met de prompt: 'Geef feedback op de structuur en argumentatie, maar herschrijf de tekst NIET.' De leerling verbetert daarna zelf het stuk. Dit leert hen redigeren en kritisch kijken naar eigen werk." },
+          { subtitle: "Scenario 2: De Repetitie-Trainer (Bèta/Zaakvakken)", text: "Leerlingen kunnen een AI vragen: 'Ik heb morgen een toets over de Franse Revolutie. Stel mij 5 meerkeuzevragen en 2 open vragen om te oefenen.' Dit bevordert zelfregulerend leren en geeft leerlingen controle over hun studieproces." },
+          { subtitle: "Kunst & CKV", text: "Bij kunstvakken kan AI gebruikt worden voor moodboards of het genereren van decor-ideeën. Discussieer over auteursrecht: is kunst gemaakt door een computer echte kunst?" },
+          { subtitle: "Do's en Don'ts", text: "DO: Leerlingen leren hoe ze bronnen checken die AI noemt.\nDON'T: Toestaan dat leerlingen AI gebruiken om huiswerk blind te genereren. Maak hier duidelijke afspraken over (zie hoofdstuk 6)." }
+        ]
+      },
+      {
+        title: "4. MBO en HBO: Geavanceerde Toepassingen",
+        content: [
+          { subtitle: "Beroepsgerichte Producten", text: "Studenten in het MBO en HBO moeten voorbereid worden op een arbeidsmarkt waar AI de norm is. Laat ze AI gebruiken voor het opstellen van zakelijke e-mails, marketingplannen, code of beleidsstukken, maar beoordeel hen op de kwaliteit van de output, de aanpassingen die ze doen en hun verantwoording." },
+          { subtitle: "Praktijkvoorbeeld: Rollenspellen & Simulaties", text: "Gebruik AI om een 'lastige klant', 'patiënt' of 'opdrachtgever' te simuleren in een chat. De student oefent gesprekstechnieken en krijgt direct feedback van de AI op hun communicatiestijl (empathie, duidelijkheid, professionaliteit)." },
+          { subtitle: "Onderzoek en Betrouwbaarheid", text: "Bij afstudeeronderzoek kan AI helpen bij het brainstormen over deelvragen of het vinden van structuren. Waarschuw studenten echter voor 'hallucinaties' (verzonnen feiten en niet-bestaande bronnen). Eis altijd dat ze de originele bronnen opzoeken en lezen." },
+          { subtitle: "Portfolio", text: "Laat studenten in hun portfolio reflecteren op hun AI-gebruik: 'Welke prompt heb ik gebruikt? Wat was het resultaat? Hoe heb ik dit verbeterd?' Dit maakt het proces transparant." }
+        ]
+      },
+      {
+        title: "5. Praktische Implementatiegids",
+        content: [
+          { subtitle: "Stappenplan voor de Docent/Team", text: "Stap 1: Verkenning. Speel zelf een avond met tools als ChatGPT of Claude. Wat kan het wel/niet?\nStap 2: Kleine Pilot. Kies één les of werkvorm uit om te testen. Verwacht niet dat het perfect gaat.\nStap 3: Didactische afspraken. Bespreek met je sectie: wat vinden we fraude? Wat vinden we slim gebruik?\nStap 4: Scholing. Volg een webinar of workshop (of organiseer er een).\nStap 5: Evaluatie. Vraag leerlingen wat zij ervan vonden. Vaak weten zij al meer dan wij denken." },
+          { subtitle: "Checklist voor in de les", text: "• Heb ik een duidelijk doel voor het AI-gebruik?\n• Weten de leerlingen wat wel en niet mag?\n• Heb ik nagedacht over leerlingen zonder device?\n• Weet ik hoe ik de geschiedenis wis (privacy)?" }
+        ]
+      },
+      {
+        title: "6. Ethiek en Veiligheid in AI-onderwijs",
+        content: [
+          { subtitle: "Privacy en AVG (GDPR)", text: "De gouden regel: Voer NOOIT persoonsgegevens van leerlingen (namen, adressen, cijferlijsten) in een openbare AI-tool in. De data wordt vaak gebruikt om het model te trainen. Gebruik anonimisering (bijv. 'Leerling A' of fictieve casussen)." },
+          { subtitle: "Bias en Discriminatie", text: "AI is getraind op het internet. Dat betekent dat het vooroordelen kan bevatten (gender, afkomst, culturele bias). Leer leerlingen dat AI niet neutraal is. Gebruik dit als lesmateriaal: laat de AI een 'succesvolle CEO' genereren en bespreek het resultaat (is het altijd een man in pak?)." },
+          { subtitle: "10 Richtlijnen voor Veilig AI-gebruik", text: "1. Wees transparant over AI-gebruik.\n2. Check altijd de feiten (fact-checking).\n3. Respecteer auteursrecht.\n4. Bescherm je privacy (geen persoonsdata).\n5. Blijf kritisch nadenken.\n6. Gebruik AI als hulpmiddel, niet als vervanging.\n7. Meld ongepaste output bij de docent.\n8. Ken de leeftijdslimieten van tools (vaak 13+).\n9. Deel geen wachtwoorden.\n10. De mens blijft eindverantwoordelijk." }
+        ]
+      },
+      {
+        title: "7. Nederlandse AI-tools en Resources",
+        content: [
+          { subtitle: "Tekst & Taal", text: "Naast de grote internationale spelers (OpenAI, Microsoft, Google) zijn er tools die specifiek goed zijn in Nederlands of gericht op het onderwijs. Denk aan vertaaltools (DeepL) of tools die helpen bij dyslexie." },
+          { subtitle: "Beeld & Creatie", text: "Tools voor het genereren van afbeeldingen (zoals Adobe Firefly, Bing Image Creator) kunnen in de kunstles of bij projecten gebruikt worden. Let op: veel van deze tools vereisen een account (13+)." },
+          { subtitle: "Toetsing & Quizzen", text: "Er zijn tools die op basis van een tekst automatisch meerkeuzevragen genereren (bijv. in Forms of Kahoot). Dit bespaart docenten enorm veel tijd. Controleer wel altijd de antwoordsleutel, want AI maakt fouten!" },
+          { subtitle: "Waarop letten?", text: "• Kosten: Is er een gratis versie?\n• Privacy: Wat gebeurt er met de data?\n• Taal: Werkt het goed in het Nederlands?\n• Reclame: Is de tool vrij van afleidende advertenties?" }
+        ]
+      },
+      {
+        title: "8. Stappenplan voor Schoolleiders",
+        content: [
+          { subtitle: "Visie en Beleid", text: "AI is geen IT-feestje, maar raakt de kern van het onderwijs. Formuleer een visie: leiden we op vòòr AI, mèt AI, of ondanks AI? Betrek de MR, ouders en het team hierbij." },
+          { subtitle: "Beslisboom: Waar te beginnen?", text: "Start -> Is er draagvlak? -> JA: Vorm een werkgroep. NEE: Organiseer inspiratiesessie.\nWerkgroep -> Is er beleid op fraude? -> JA: Update met AI-paragraaf. NEE: Stel kaders op.\nInfrastructuur -> Zijn er devices? -> JA: Regel accounts/licenties. NEE: Start met klassikale demo's." },
+          { subtitle: "Professionalisering", text: "Faciliteer tijd en ruimte voor docenten om te experimenteren. Fouten maken mag. Zorg voor een veilige cultuur waarin docenten elkaar durven bevragen." },
+          { subtitle: "Infrastructuur", text: "Denk na over filters op het wifi-netwerk, maar blokkeer niet alles. 'Walled gardens' (afgeschermde AI-omgevingen) zijn voor scholen vaak veiliger dan openbare tools." }
+        ]
+      },
+      {
+        title: "9. Evaluatie en Assessment met AI",
+        content: [
+          { subtitle: "Het einde van het opstel?", text: "Niet per se, maar het 'thuis schrijven van een verslag' is fraudegevoelig geworden. Verplaats schrijfopdrachten naar de les (toezicht), of focus meer op het proces, de presentatie en de mondelinge toelichting." },
+          { subtitle: "Rubrics met AI", text: "Je kunt AI vragen om een rubric te maken. Prompt voorbeeld: 'Maak een rubric voor een betoog in 4 HAVO, beoordeel op structuur, argumentatie en spelling, in tabelvorm.' Dit geeft een prima startpunt dat je zelf kunt verfijnen." },
+          { subtitle: "Formatief Handelen", text: "AI is koning in formatief handelen. Het kan onvermoeibaar feedback geven aan 30 leerlingen tegelijk, zodat jij als docent je kunt richten op de leerlingen die vastlopen. Gebruik AI om oefentoetsen te genereren voor leerlingen." }
+        ]
+      },
+      {
+        title: "10. Toekomst van AI in het Onderwijs",
+        content: [
+          { subtitle: "Adaptieve Leerpaden", text: "We gaan toe naar systemen die real-time zien wat een leerling moeilijk vindt en de stof daarop aanpassen. De 'one size fits all' lesmethode zal langzaam verdwijnen ten gunste van gepersonaliseerde routes." },
+          { subtitle: "Rol van de Docent", text: "De docent wordt minder 'kenniszender' en meer coach, mentor en curator van informatie. De menselijke relatie wordt juist belangrijker in een technologische wereld. Empathie en pedagogisch contact kan AI niet vervangen." },
+          { subtitle: "Wat kun je nu doen?", text: "Blijf nieuwsgierig. De ontwikkelingen gaan snel, maar de basisprincipes van goed onderwijs (relatie, competentie, autonomie) blijven overeind. Omarm de tools die jouw werk lichter maken, zodat jij je op de leerling kunt richten." }
+        ]
+      },
+      {
+        title: "11. Veelgestelde Vragen (FAQ)",
+        content: [
+          { subtitle: "Vraag 1: Mag een leerling AI gebruiken voor huiswerk?", text: "Dat bepaal jij. Het advies is: ja, mits transparant en als hulpmiddel. 'Ik heb AI gebruikt om ideeën te genereren, maar de tekst zelf geschreven' is een prima werkwijze." },
+          { subtitle: "Vraag 2: Hoe herken ik AI-plagiaat?", text: "AI-detectors zijn onbetrouwbaar. Kijk liever naar het proces (versies, bronnen) en ga het gesprek aan. Als een leerling woorden gebruikt die hij/zij niet kent, is dat een signaal." },
+          { subtitle: "Vraag 3: Wat zeg ik tegen ouders die bezorgd zijn?", text: "Leg uit dat jullie school stuurt op 'AI-geletterdheid': we leren kinderen om er verantwoord en kritisch mee om te gaan, zodat ze voorbereid zijn op de toekomst." },
+          { subtitle: "Vraag 4: Hoe ga ik om met leerlingen die verder zijn dan ik?", text: "Maak gebruik van hun kennis! Laat ze expert zijn en demo's geven in de klas. Je hoeft niet alles zelf te weten." }
+        ]
+      },
+      {
+        title: "12. Bronnen en Verdere Verdieping",
+        content: [
+          { subtitle: "Betrouwbare Bronnen", text: "• Kennisnet (Technologie & Onderwijs)\n• Nederlandse AI Coalitie (NLAIC)\n• Surf (voor MBO/HBO/WO)\n• Vakverenigingen" },
+          { subtitle: "Collegiaal Leren", text: "De beste bron is je collega. Organiseer eens een 'AI-café' op school waar iedereen zijn favoriete tool of blunder deelt. Samen leer je sneller." },
+          { subtitle: "Online Cursussen", text: "Zoek naar gratis MOOC's over 'AI in Education' of de 'Nationale AI Cursus' (ook versies voor kinderen/jongeren)." }
+        ]
+      }
+    ];
+
+    // --- LOOP DOOR HOOFDSTUKKEN EN RENDER ZE ---
+    chapters.forEach((chapter, index) => {
+      // Nieuwe pagina voor elk hoofdstuk
+      doc.addPage();
+      addPageHeader(pageNum++);
+      
+      let currentY = 40;
+
+      // Hoofdstuktitel
+      doc.setFillColor(240, 240, 240); // Light gray background for title
+      doc.rect(margin, currentY - 6, contentWidth, 14, 'F');
+      
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(16);
+      doc.setTextColor(0, 51, 102); // Dark blue text
+      doc.text(chapter.title, margin + 2, currentY + 4);
+      
+      currentY += 20;
+
+      // Secties binnen het hoofdstuk
+      chapter.content.forEach(section => {
+        // Check of we ruimte hebben voor de subtitel + een beetje tekst
+        if (currentY > pageHeight - 40) {
+          doc.addPage();
+          addPageHeader(pageNum++);
+          currentY = 40;
+        }
+
+        // Subtitel
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(13);
+        doc.setTextColor(0, 0, 0); // Zwart
+        doc.text(section.subtitle, margin, currentY);
+        currentY += 6;
+
+        // Body Text
+        // addWrappedText regelt zelf page breaks als de tekst te lang is
+        currentY = addWrappedText(section.text, margin, currentY, contentWidth, 11, 'normal');
+        currentY += 8; // Witruimte na paragraaf
+      });
+    });
+
+    // --- OPSLAAN ---
     const dateStr = new Date().toISOString().slice(0, 10);
-    const filename = `COMPLETE-V9-AI-Startersgids-Nederlands-Onderwijs-${dateStr}-${randomId}.pdf`;
+    const filename = `NIEUWE-V9-AI-Startersgids-Nederlandse-Versie-${dateStr}-${randomId}.pdf`;
     
     console.log('💾 SAVING COMPLETE 10+ PAGE PDF:', filename);
     doc.save(filename);
-
+    
     setTimeout(() => {
-      alert(`🎉 COMPLETE AI STARTERSGIDS V9.0 SUCCESVOL GEDOWNLOAD!\n\n📄 Bestandsnaam: ${filename}`);
+      alert(`🎉 COMPLETE AI STARTERSGIDS V9.0 SUCCESVOL GEDOWNLOAD!\n\n📄 Bestandsnaam: ${filename}\n\n✅ Bevat alle 12 hoofdstukken met didactische inhoud.\n✅ Aantal pagina's: ${pageNum}`);
     }, 1000);
 
   } catch (error) {
@@ -205,6 +349,7 @@ const generateCompletelyNewFullStartersgids = () => {
 
 /**
  * COMPLETE LESSON PDF GENERATOR - GENERATES 8-12 PAGE LESSONS
+ * (Deze functie blijft ongewijzigd en werkt zoals voorheen)
  */
 export const downloadLesson = (lessonTitle) => {
   try {
@@ -217,8 +362,8 @@ export const downloadLesson = (lessonTitle) => {
 
     const uniqueId = Math.random().toString(36).substring(2, 8);
     const timestamp = Date.now();
-    doc.setFont('helvetica');
 
+    doc.setFont('helvetica');
     const pageWidth = 210;
     const pageHeight = 297;
     const margin = 20;
@@ -238,7 +383,6 @@ export const downloadLesson = (lessonTitle) => {
       doc.text(`Pagina ${num}`, pageWidth - 20, 16, { align: 'right' });
       
       doc.setTextColor(0, 0, 0);
-
       doc.setFontSize(10);
       doc.setTextColor(85, 85, 85);
       doc.setFont('helvetica', 'normal');
@@ -265,22 +409,20 @@ export const downloadLesson = (lessonTitle) => {
 
     const lessonContent = generateLessonContent(lessonTitle);
 
+    // PAGE 1: COVER
     addPageHeader(pageNum);
-    
     doc.setFillColor(220, 38, 38);
     doc.rect(15, 35, 180, 25, 'F');
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
     doc.text('COMPLETE LESBRIEF - AI ONDERWIJS', 105, 50, { align: 'center' });
-    
     doc.setTextColor(0, 0, 0);
 
     doc.setFontSize(24);
     doc.setFont('helvetica', 'bold');
     let yPos = addWrappedText(lessonContent.title || lessonTitle.toUpperCase(), margin, 80, contentWidth, 24);
-
+    
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
     yPos = addWrappedText('Gegenereerd: ' + new Date().toLocaleDateString('nl-NL'), margin, yPos + 10, contentWidth);
@@ -290,14 +432,12 @@ export const downloadLesson = (lessonTitle) => {
 
     doc.setFillColor(240, 248, 255);
     doc.rect(margin, yPos, contentWidth, 60, 'F');
-    
     doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
     yPos = addWrappedText('LESOVERZICHT', margin + 10, yPos + 15, contentWidth - 20, 14);
     
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
-    
     const lessonOverview = [
       `Titel: ${lessonContent.title || lessonTitle}`,
       `Duur: ${lessonContent.duration || '45-90 minuten'}`,
@@ -306,22 +446,20 @@ export const downloadLesson = (lessonTitle) => {
       'Leerdoelen: Praktische AI-vaardigheden ontwikkelen',
       'Materialen: Werkbladen, voorbeelden, evaluatieformulier'
     ];
-    
+
     lessonOverview.forEach(item => {
       yPos = addWrappedText(`• ${item}`, margin + 10, yPos + 5, contentWidth - 20);
     });
 
+    // PAGE 2: TOC
     doc.addPage();
     addPageHeader(pageNum++);
-    
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     yPos = addWrappedText('INHOUDSOPGAVE', margin, 50, contentWidth, 20);
     yPos += 10;
-    
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
-    
     const tableOfContents = [
       '1. Lesinformatie en Voorbereiding ............................ 3',
       '2. Lesdoelen en Competenties ................................. 4',
@@ -333,7 +471,6 @@ export const downloadLesson = (lessonTitle) => {
       '8. Bijlagen en Resources ...................................... 10',
       '9. Antwoordmodellen ........................................... 11'
     ];
-    
     tableOfContents.forEach(item => {
       yPos = addWrappedText(item, margin + 10, yPos + 3, contentWidth - 20);
     });
@@ -341,15 +478,12 @@ export const downloadLesson = (lessonTitle) => {
     // PAGE 3: LESINFORMATIE EN VOORBEREIDING
     doc.addPage();
     addPageHeader(pageNum++);
-    
     doc.setFillColor(70, 130, 180);
     doc.rect(margin, 35, contentWidth, 8, 'F');
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
     yPos = addWrappedText('1. LESINFORMATIE EN VOORBEREIDING', margin + 5, 42, contentWidth - 10, 16);
-    
     doc.setTextColor(0, 0, 0);
     yPos += 10;
     
@@ -358,7 +492,6 @@ export const downloadLesson = (lessonTitle) => {
       '• Test alle AI-tools vooraf',
       '• Maak accounts aan waar nodig'
     ];
-    
     preparationContent.forEach(line => {
       if (line === '') {
         yPos += 3;
@@ -377,18 +510,15 @@ export const downloadLesson = (lessonTitle) => {
     // PAGE 4: LESDOELEN
     doc.addPage();
     addPageHeader(pageNum++);
-    
     doc.setFillColor(34, 197, 94);
     doc.rect(margin, 35, contentWidth, 8, 'F');
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
     yPos = addWrappedText('2. LESDOELEN EN COMPETENTIES', margin + 5, 42, contentWidth - 10, 16);
-    
     doc.setTextColor(0, 0, 0);
     yPos += 10;
-    
+
     const objectivesContent = lessonContent.objectives || ['• Leerdoel 1'];
     objectivesContent.forEach(line => {
       if (line === '') {
@@ -408,18 +538,15 @@ export const downloadLesson = (lessonTitle) => {
     // PAGE 5: LESOPBOUW
     doc.addPage();
     addPageHeader(pageNum++);
-    
     doc.setFillColor(147, 51, 234);
     doc.rect(margin, 35, contentWidth, 8, 'F');
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
     yPos = addWrappedText('3. THEORIE EN LESOPBOUW', margin + 5, 42, contentWidth - 10, 16);
-    
     doc.setTextColor(0, 0, 0);
     yPos += 10;
-    
+
     const structureContent = lessonContent.structure || ['FASE 1: INTRODUCTIE'];
     structureContent.forEach(line => {
       if (line === '') {
@@ -439,18 +566,15 @@ export const downloadLesson = (lessonTitle) => {
     // PAGE 6: ACTIVITEITEN
     doc.addPage();
     addPageHeader(pageNum++);
-    
     doc.setFillColor(220, 38, 38);
     doc.rect(margin, 35, contentWidth, 8, 'F');
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
     yPos = addWrappedText('4. PRAKTISCHE ACTIVITEITEN', margin + 5, 42, contentWidth - 10, 16);
-    
     doc.setTextColor(0, 0, 0);
     yPos += 10;
-    
+
     const activitiesContent = lessonContent.activities || ['ACTIVITEIT 1'];
     activitiesContent.forEach(line => {
       if (line === '') {
@@ -470,18 +594,15 @@ export const downloadLesson = (lessonTitle) => {
     // PAGE 7: MATERIALEN
     doc.addPage();
     addPageHeader(pageNum++);
-    
     doc.setFillColor(234, 179, 8);
     doc.rect(margin, 35, contentWidth, 8, 'F');
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
     yPos = addWrappedText('5. WERKBLADEN EN MATERIALEN', margin + 5, 42, contentWidth - 10, 16);
-    
     doc.setTextColor(0, 0, 0);
     yPos += 10;
-    
+
     const materialsContent = lessonContent.materials || ['WERKBLAD 1'];
     materialsContent.forEach(line => {
       if (line === '') {
@@ -501,18 +622,15 @@ export const downloadLesson = (lessonTitle) => {
     // PAGE 8: EVALUATIE
     doc.addPage();
     addPageHeader(pageNum++);
-    
     doc.setFillColor(185, 28, 28);
     doc.rect(margin, 35, contentWidth, 8, 'F');
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
     yPos = addWrappedText('6. EVALUATIE EN DOCENTENHANDLEIDING', margin + 5, 42, contentWidth - 10, 16);
-    
     doc.setTextColor(0, 0, 0);
     yPos += 10;
-    
+
     const evaluationContent = lessonContent.evaluation || ['FORMATIEVE EVALUATIE:'];
     evaluationContent.forEach(line => {
       if (line === '') {
@@ -534,7 +652,7 @@ export const downloadLesson = (lessonTitle) => {
     
     console.log('💾 SAVING COMPLETE LESSON PDF:', filenameLesson);
     doc.save(filenameLesson);
-
+    
     setTimeout(() => {
       alert(`✅ COMPLETE LESBRIEF GEDOWNLOAD!\n\n📄 Bestandsnaam: ${filenameLesson}\n\n📚 Bevat 8+ pagina's:\n• Volledige lesvoorbereiding\n• Werkbladen en materialen\n• Evaluatieformulieren\n• Docentenhandleiding\n\n🎯 Direct klaar voor gebruik in de klas!`);
     }, 500);
@@ -545,9 +663,21 @@ export const downloadLesson = (lessonTitle) => {
   }
 };
 
-/**
- * Generate lesson-specific content based on lesson title
- */
+export const downloadFile = (url, filename) => {
+  try {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename || 'download';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error('Download failed:', error);
+    window.open(url, '_blank');
+  }
+};
+
+// ... Rest van de helperfuncties voor specifieke lesinhoud (ongewijzigd) ...
 const generateLessonContent = (title) => {
   // Base content for generic lessons
   const baseContent = {
@@ -700,11 +830,7 @@ const generateLessonContent = (title) => {
     };
   }
 
-  // ==================================================================================
-  // NIEUWE/HERSCHREVEN LESSEN (VRAAG 1 T/M 5)
-  // ==================================================================================
-
-  // 4. AI ETHICS DEBAT (VO) - HERSCHREVEN
+  // 4. AI ETHICS DEBAT (VO)
   if (title.toLowerCase().includes('ethics') || title.toLowerCase().includes('debat')) {
     return {
       title: "AI Ethics Debat: Eerlijkheid, Privacy en Controle",
@@ -808,7 +934,7 @@ const generateLessonContent = (title) => {
     };
   }
 
-  // 5. AI KUNSTPROJECT (PO/VO) - HERSCHREVEN
+  // 5. AI KUNSTPROJECT (PO/VO)
   if (title.toLowerCase().includes('kunst') || (title.toLowerCase().includes('art') && !title.toLowerCase().includes('smart'))) {
     return {
       title: "AI Kunstproject: Van Prompt tot Meesterwerk",
@@ -894,7 +1020,7 @@ const generateLessonContent = (title) => {
     };
   }
 
-  // 6. INTRODUCTIE TOT AI VOOR KINDEREN (PO) - HERSCHREVEN
+  // 6. INTRODUCTIE TOT AI VOOR KINDEREN (PO)
   if (title.toLowerCase().includes('kinderen') || (title.toLowerCase().includes('introductie') && title.toLowerCase().includes('ai'))) {
     return {
       title: "Introductie AI voor Kinderen: Slimme Robots & Algoritmes",
@@ -975,7 +1101,7 @@ const generateLessonContent = (title) => {
     };
   }
 
-  // 7. AI VOOR TAALONDERWIJS (VO/MBO) - HERSCHREVEN
+  // 7. AI VOOR TAALONDERWIJS (VO/MBO)
   if (title.toLowerCase().includes('taal') && !title.toLowerCase().includes('kinderen')) {
     return {
       title: "AI voor Taalonderwijs: Schrijven, Spreken & Feedback",
@@ -1059,7 +1185,7 @@ const generateLessonContent = (title) => {
     };
   }
 
-  // 8. PROGRAMMEREN MET AI COPILOT (MBO/HBO) - HERSCHREVEN
+  // 8. PROGRAMMEREN MET AI COPILOT (MBO/HBO)
   if (title.toLowerCase().includes('programmeren') || title.toLowerCase().includes('copilot')) {
     return {
       title: "Programmeren met AI Copilot: De Pair Programmer",
@@ -1149,18 +1275,4 @@ const generateLessonContent = (title) => {
 
   // Fallback for generic or other lessons
   return baseContent;
-};
-
-export const downloadFile = (url, filename) => {
-  try {
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename || 'download';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  } catch (error) {
-    console.error('Download failed:', error);
-    window.open(url, '_blank');
-  }
 };
