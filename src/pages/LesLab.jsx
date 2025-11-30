@@ -14,7 +14,9 @@ const LesLab = () => {
   const months = ['Alle', 'Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus'];
   const levels = ['Alle', 'PO', 'VO', 'MBO/HBO'];
 
+  // FIX: Zorg dat deze titel exact overeenkomt met de logic in downloadUtils.js
   const currentLesson = {
+    id: "wetenschappelijk-onderzoek-ai", // Toegevoegd voor robuustheid
     title: "Wetenschappelijk Onderzoek met AI",
     month: "Augustus 2025",
     level: "MBO/HBO",
@@ -119,6 +121,7 @@ const LesLab = () => {
 
   const handleDownload = (lessonTitle) => {
     setDownloadStarted(true);
+    // Ervoor zorgen dat we exact de titel doorgeven die in de generator bekend is
     downloadLesson(lessonTitle);
     
     // Reset the download state after a delay for UI feedback
@@ -175,10 +178,10 @@ const LesLab = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <img
-                src={currentLesson.image}
-                alt={currentLesson.title}
-                className="rounded-2xl shadow-2xl"
+              <img 
+                src={currentLesson.image} 
+                alt={currentLesson.title} 
+                className="rounded-2xl shadow-2xl" 
               />
             </motion.div>
             <motion.div
@@ -200,7 +203,6 @@ const LesLab = () => {
               <p className="text-gray-600 mb-6">
                 {currentLesson.description}
               </p>
-              
               <div className="mb-6">
                 <h4 className="font-semibold text-gray-900 mb-3">Leerdoelen:</h4>
                 <ul className="space-y-2">
@@ -212,12 +214,11 @@ const LesLab = () => {
                   ))}
                 </ul>
               </div>
-
               <div className="mb-8">
                 <h4 className="font-semibold text-gray-900 mb-3">Inclusief materialen:</h4>
                 <div className="flex flex-wrap gap-2">
                   {currentLesson.materials.map((material, index) => (
-                    <span
+                    <span 
                       key={index}
                       className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
                     >
@@ -226,7 +227,6 @@ const LesLab = () => {
                   ))}
                 </div>
               </div>
-
               <button 
                 onClick={() => handleDownload(currentLesson.title)}
                 disabled={downloadStarted}
@@ -261,7 +261,7 @@ const LesLab = () => {
           <div className="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiFilter} className="text-gray-500" />
-              <select
+              <select 
                 value={selectedMonth}
                 onChange={(e) => setSelectedMonth(e.target.value)}
                 className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
@@ -296,10 +296,10 @@ const LesLab = () => {
                 transition={{ delay: index * 0.1 }}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                <img
-                  src={lesson.image}
-                  alt={lesson.title}
-                  className="w-full h-48 object-cover"
+                <img 
+                  src={lesson.image} 
+                  alt={lesson.title} 
+                  className="w-full h-48 object-cover" 
                 />
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
@@ -313,7 +313,6 @@ const LesLab = () => {
                   </h3>
                   <p className="text-sm text-gray-600 mb-3">{lesson.subject}</p>
                   <p className="text-gray-600 mb-4">{lesson.description}</p>
-                  
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                     <div className="flex items-center space-x-1">
                       <SafeIcon icon={FiClock} />
@@ -324,7 +323,6 @@ const LesLab = () => {
                       <span>{lesson.rating}</span>
                     </div>
                   </div>
-
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
                       {lesson.downloads} downloads
@@ -366,7 +364,7 @@ const LesLab = () => {
             <p className="text-xl text-emerald-100 mb-8">
               Laat weten welke les je graag toegevoegd zou zien. Suggereer een les.
             </p>
-            <button
+            <button 
               className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-not-allowed"
               disabled
             >
