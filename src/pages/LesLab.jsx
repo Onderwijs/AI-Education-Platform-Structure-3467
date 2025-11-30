@@ -3,118 +3,27 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import { downloadLesson } from '../utils/downloadUtils';
+import { lessons } from '../data/lessons'; // Importeer de centrale data
 
-const { FiBook, FiDownload, FiCalendar, FiFilter, FiStar, FiClock, FiUsers, FiCheck } = FiIcons;
+const { FiBook, FiDownload, FiCalendar, FiFilter, FiStar, FiClock, FiUsers, FiCheck, FiList, FiActivity } = FiIcons;
 
 const LesLab = () => {
   const [selectedMonth, setSelectedMonth] = useState('Alle');
   const [selectedLevel, setSelectedLevel] = useState('Alle');
   const [downloadStarted, setDownloadStarted] = useState(false);
 
-  const months = ['Alle', 'Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus'];
+  const months = ['Alle', 'oktober 2025', 'november 2025', 'december 2025', 'januari 2025'];
   const levels = ['Alle', 'PO', 'VO', 'MBO/HBO'];
 
-  // FIX: Zorg dat deze titel exact overeenkomt met de logic in downloadUtils.js
-  const currentLesson = {
-    id: "wetenschappelijk-onderzoek-ai", // Toegevoegd voor robuustheid
-    title: "Wetenschappelijk Onderzoek met AI",
-    month: "december 2025",
-    level: "MBO/HBO",
-    subject: "Onderzoek",
-    duration: "150 minuten",
-    description: "Studenten leren hoe ze AI-tools kunnen gebruiken voor literatuuronderzoek, data-analyse en het schrijven van wetenschappelijke rapporten.",
-    objectives: [
-      "AI-tools effectief inzetten voor literatuuronderzoek",
-      "Data-analyse automatiseren met AI-ondersteuning",
-      "Wetenschappelijke teksten verbeteren met AI-feedback",
-      "Ethische aspecten van AI in onderzoek begrijpen"
-    ],
-    materials: ["Uitgebreid lesplan", "Onderzoekswerkbladen", "AI-tool handleidingen", "Beoordelingsrubric", "Voorbeeldprojecten"],
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop"
-  };
-
-  const archive = [
-    {
-      title: "Introductie tot AI voor Kinderen",
-      month: "december 2025",
-      level: "PO",
-      subject: "Algemeen",
-      duration: "45 min",
-      rating: 4.9,
-      downloads: 1250,
-      description: "Speelse kennismaking met AI-concepten voor groep 6-8",
-      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=200&fit=crop"
-    },
-    {
-      title: "AI in de Geschiedenis",
-      month: "december 2025",
-      level: "VO",
-      subject: "Geschiedenis",
-      duration: "50 min",
-      rating: 4.7,
-      downloads: 890,
-      description: "Hoe AI historisch onderzoek kan ondersteunen",
-      image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop"
-    },
-    {
-      title: "Datavisualisatie met AI",
-      month: "december 2025",
-      level: "MBO/HBO",
-      subject: "Wiskunde/Data",
-      duration: "90 min",
-      rating: 4.8,
-      downloads: 650,
-      description: "Complexe data begrijpelijk maken met AI-tools",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop"
-    },
-    {
-      title: "AI Ethics Debat",
-      month: "december 2025",
-      level: "VO",
-      subject: "Maatschappijleer",
-      duration: "100 min",
-      rating: 4.6,
-      downloads: 1100,
-      description: "Discussie over ethische aspecten van AI",
-      image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=300&h=200&fit=crop"
-    },
-    {
-      title: "AI Kunstproject",
-      month: "december 2025",
-      level: "PO",
-      subject: "Tekenen",
-      duration: "60 min",
-      rating: 4.5,
-      downloads: 800,
-      description: "Creatieve kunstwerken maken met AI-ondersteuning",
-      image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&h=200&fit=crop"
-    },
-    {
-      title: "Programmeren met AI Copilot",
-      month: "december 2025",
-      level: "MBO/HBO",
-      subject: "Informatica",
-      duration: "120 min",
-      rating: 4.9,
-      downloads: 750,
-      description: "Leren programmeren met AI-assistentie",
-      image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=300&h=200&fit=crop"
-    },
-    {
-      title: "AI voor Taalonderwijs",
-      month: "december 2025",
-      level: "VO",
-      subject: "Engels/Frans",
-      duration: "75 min",
-      rating: 4.7,
-      downloads: 920,
-      description: "AI-tools voor het leren van vreemde talen",
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=300&h=200&fit=crop"
-    }
-  ];
+  // Haal de "Hero" les op (de eerste in de array, of specifiek op ID)
+  // We gebruiken hier de eerste les uit de data file als 'Uitgelicht'
+  const currentLesson = lessons[0];
+  
+  // De rest van de lessen voor het archief (alles behalve de eerste)
+  const archive = lessons.slice(1);
 
   const filteredLessons = archive.filter(lesson => {
-    const matchesMonth = selectedMonth === 'Alle' || lesson.month.includes(selectedMonth);
+    const matchesMonth = selectedMonth === 'Alle' || (lesson.month && lesson.month.includes(selectedMonth));
     const matchesLevel = selectedLevel === 'Alle' || lesson.level === selectedLevel;
     return matchesMonth && matchesLevel;
   });
@@ -149,7 +58,7 @@ const LesLab = () => {
               LesLab: AI-Lessen
             </h1>
             <p className="text-xl text-emerald-100 max-w-3xl mx-auto">
-              Kant-en-klare AI-lessen. Compleet met lesplan, materialen en docentenhandleiding.
+              Professioneel lesmateriaal voor PO, VO en MBO/HBO. Didactisch onderbouwd en direct inzetbaar.
             </p>
           </motion.div>
         </div>
@@ -165,25 +74,48 @@ const LesLab = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Uitgelicht: Nieuwe Les
+              Uitgelicht: Onderzoek & AI
             </h2>
             <p className="text-xl text-gray-600">
-              Vers uit het LesLab en direct te gebruiken
+              Een diepgaande module voor MBO/HBO over bronverificatie en methodologie
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <img 
-                src={currentLesson.image} 
-                alt={currentLesson.title} 
-                className="rounded-2xl shadow-2xl"
+              <img
+                src={currentLesson.image}
+                alt={currentLesson.title}
+                className="rounded-2xl shadow-2xl mb-6 w-full object-cover"
               />
+              
+              {/* Extra Lesson Phases Preview for the Hero Lesson */}
+              {currentLesson.lessonPhases && (
+                <div className="bg-emerald-50 rounded-xl p-6 border border-emerald-100">
+                  <h4 className="font-bold text-emerald-900 mb-4 flex items-center gap-2">
+                    <SafeIcon icon={FiList} /> Lesopbouw
+                  </h4>
+                  <div className="space-y-4">
+                    {currentLesson.lessonPhases.slice(0, 3).map((phase, i) => (
+                      <div key={i} className="flex gap-3 text-sm">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-200 text-emerald-800 flex items-center justify-center font-bold text-xs mt-0.5">
+                          {i + 1}
+                        </div>
+                        <div>
+                          <span className="font-bold text-gray-900 block">{phase.title}</span>
+                          <span className="text-gray-600">{phase.description}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -197,43 +129,51 @@ const LesLab = () => {
                 <span className="text-gray-500">•</span>
                 <span className="text-gray-500">{currentLesson.duration}</span>
               </div>
+              
               <h3 className="text-3xl font-bold text-gray-900 mb-4">
                 {currentLesson.title}
               </h3>
-              <p className="text-gray-600 mb-6">
+              
+              <p className="text-gray-600 mb-6 text-lg leading-relaxed">
                 {currentLesson.description}
               </p>
-              
-              <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3">Leerdoelen:</h4>
-                <ul className="space-y-2">
-                  {currentLesson.objectives.map((objective, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-600">{objective}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
 
-              <div className="mb-8">
-                <h4 className="font-semibold text-gray-900 mb-3">Inclusief materialen:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {currentLesson.materials.map((material, index) => (
-                    <span key={index} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                      {material}
-                    </span>
-                  ))}
+              {currentLesson.objectives && (
+                <div className="mb-6">
+                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <SafeIcon icon={FiActivity} className="text-emerald-600" /> Leerdoelen:
+                  </h4>
+                  <ul className="space-y-2">
+                    {currentLesson.objectives.map((objective, index) => (
+                      <li key={index} className="flex items-start space-x-2">
+                        <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2.5 flex-shrink-0"></div>
+                        <span className="text-gray-700">{objective}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
+              )}
 
-              <button 
+              {currentLesson.materials && (
+                <div className="mb-8">
+                  <h4 className="font-semibold text-gray-900 mb-3">Inclusief materialen:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {currentLesson.materials.map((material, index) => (
+                      <span key={index} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm border border-gray-200">
+                        {material}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <button
                 onClick={() => handleDownload(currentLesson.title)}
                 disabled={downloadStarted}
-                className={`bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center space-x-2 ${downloadStarted ? 'opacity-75' : ''}`}
+                className={`bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 ${downloadStarted ? 'opacity-75' : ''}`}
               >
                 <SafeIcon icon={downloadStarted ? FiCheck : FiDownload} />
-                <span>{downloadStarted ? 'Download gestart...' : 'Download Complete Les'}</span>
+                <span>{downloadStarted ? 'Download gestart...' : 'Download Complete Lesbrief (PDF)'}</span>
               </button>
             </motion.div>
           </div>
@@ -253,7 +193,7 @@ const LesLab = () => {
               Lesarchief
             </h2>
             <p className="text-xl text-gray-600">
-              Alle voorgaande lessen uit het LesLab
+              Alle beschikbare lessen uit het LesLab
             </p>
           </motion.div>
 
@@ -261,10 +201,10 @@ const LesLab = () => {
           <div className="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiFilter} className="text-gray-500" />
-              <select 
-                value={selectedMonth} 
+              <select
+                value={selectedMonth}
                 onChange={(e) => setSelectedMonth(e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
               >
                 {months.map(month => (
                   <option key={month} value={month}>{month}</option>
@@ -273,10 +213,10 @@ const LesLab = () => {
             </div>
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiUsers} className="text-gray-500" />
-              <select 
-                value={selectedLevel} 
+              <select
+                value={selectedLevel}
                 onChange={(e) => setSelectedLevel(e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
               >
                 {levels.map(level => (
                   <option key={level} value={level}>{level}</option>
@@ -294,23 +234,34 @@ const LesLab = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all border border-gray-100 flex flex-col h-full"
               >
-                <img src={lesson.image} alt={lesson.title} className="w-full h-48 object-cover" />
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs font-medium">
-                      {lesson.level}
-                    </span>
-                    <span className="text-sm text-gray-500">{lesson.month}</span>
+                <div className="relative h-48 overflow-hidden flex-shrink-0">
+                  <img
+                    src={lesson.image}
+                    alt={lesson.title}
+                    className="w-full h-full object-cover transition-transform hover:scale-105"
+                  />
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold text-gray-700 shadow-sm">
+                    {lesson.level}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                </div>
+                
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex items-center justify-between mb-3 text-xs text-gray-500 uppercase tracking-wide font-semibold">
+                    <span>{lesson.subject}</span>
+                    <span>{lesson.month}</span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {lesson.title}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-3">{lesson.subject}</p>
-                  <p className="text-gray-600 mb-4">{lesson.description}</p>
                   
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                  <p className="text-gray-600 mb-4 text-sm line-clamp-3 flex-grow">
+                    {lesson.summary || lesson.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4 pt-4 border-t border-gray-50">
                     <div className="flex items-center space-x-1">
                       <SafeIcon icon={FiClock} />
                       <span>{lesson.duration}</span>
@@ -320,19 +271,14 @@ const LesLab = () => {
                       <span>{lesson.rating}</span>
                     </div>
                   </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">
-                      {lesson.downloads} downloads
-                    </span>
-                    <button 
-                      onClick={() => handleDownload(lesson.title)}
-                      className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors flex items-center space-x-2"
-                    >
-                      <SafeIcon icon={FiDownload} />
-                      <span>Download</span>
-                    </button>
-                  </div>
+                  
+                  <button
+                    onClick={() => handleDownload(lesson.title)}
+                    className="w-full bg-emerald-50 text-emerald-700 px-4 py-2 rounded-lg hover:bg-emerald-100 transition-colors flex items-center justify-center space-x-2 font-medium border border-emerald-100"
+                  >
+                    <SafeIcon icon={FiDownload} />
+                    <span>Download Lesbrief</span>
+                  </button>
                 </div>
               </motion.div>
             ))}
