@@ -4,7 +4,7 @@ import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid } = FiIcons;
+const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid, FiUsers } = FiIcons;
 
 const ToolsOverview = () => {
   const tools = [
@@ -36,7 +36,13 @@ const ToolsOverview = () => {
       name: "Presentatiegenerator",
       path: "/tools/presentatiegenerator",
       icon: FiMonitor,
-      desc: "Maak outlines voor presentaties."
+      desc: "Maak outlines en dia-indelingen voor presentaties."
+    },
+    {
+      name: "Mentorlesplanner",
+      path: "/tools/mentorles",
+      icon: FiUsers,
+      desc: "Bedenk snel een veilige en gestructureerde mentorles."
     },
   ];
 

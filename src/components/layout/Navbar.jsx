@@ -56,6 +56,8 @@ const Navbar = () => {
         { path: '/tools/rubriekmaker', label: 'Rubriekmaker', color: 'hover:bg-indigo-50 text-gray-700' },
         { path: '/tools/toetsvragenmaker', label: 'Toetsvragenmaker', color: 'hover:bg-indigo-50 text-gray-700' },
         { path: '/tools/taalcoach', label: 'Taalcoach', color: 'hover:bg-indigo-50 text-gray-700' },
+        { path: '/tools/presentatiegenerator', label: 'Presentatiegenerator', color: 'hover:bg-indigo-50 text-gray-700' },
+        { path: '/tools/mentorles', label: 'Mentorlesplanner', color: 'hover:bg-indigo-50 text-gray-700' },
       ]
     },
     { 

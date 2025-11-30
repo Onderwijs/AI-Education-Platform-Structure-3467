@@ -23,7 +23,10 @@ import ToolPlaceholder from './pages/tools/ToolPlaceholder';
 import LessonGenerator from './pages/tools/LessonGenerator';
 import RubricMaker from './pages/tools/RubricMaker';
 import TestQuestionMaker from './pages/tools/TestQuestionMaker';
-import Taalcoach from './pages/tools/Taalcoach'; // NIEUWE IMPORT
+import Taalcoach from './pages/tools/Taalcoach';
+import PresentatieGenerator from './pages/tools/PresentatieGenerator';
+import MentorLessonPlanner from './pages/tools/MentorLessonPlanner'; // NIEUWE IMPORT
+
 import Downloads from './pages/Downloads';
 import Kennisbank from './pages/kenniscentrum/Kennisbank';
 import TrainingDetail from './pages/trainingen/TrainingDetail';
@@ -48,12 +51,11 @@ function App() {
               <Route path="/tools/lesgenerator" element={<LessonGenerator />} />
               <Route path="/tools/rubriekmaker" element={<RubricMaker />} />
               <Route path="/tools/toetsvragenmaker" element={<TestQuestionMaker />} />
-              {/* NIEUWE TAALCOACH ROUTE */}
               <Route path="/tools/taalcoach" element={<Taalcoach />} />
+              <Route path="/tools/presentatiegenerator" element={<PresentatieGenerator />} />
+              {/* NIEUWE MENTORLES ROUTE */}
+              <Route path="/tools/mentorles" element={<MentorLessonPlanner />} />
               
-              {/* Overige Placeholders */}
-              <Route path="/tools/presentatiegenerator" element={<ToolPlaceholder title="Presentatiegenerator" description="Creëer outlines en slides voor je lessen." />} />
-
               {/* 3. Voor Docenten */}
               <Route path="/voor-docenten/po" element={<PO />} />
               <Route path="/voor-docenten/vo" element={<VO />} />
