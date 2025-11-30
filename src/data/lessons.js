@@ -16,7 +16,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
     summary: "Een gevorderde module waarin studenten leren hoe ze Generatieve AI (zoals ChatGPT, Consensus en Elicit) ethisch en methodologisch correct inzetten voor literatuuronderzoek, zonder hun kritische blik te verliezen.",
     description: "In deze module transformeren we de rol van de student van 'informatiezoeker' naar 'research director'. We behandelen het trechteren van onderzoeksvragen, het genereren van een Literature Matrix en het kritisch verifiëren van bronnen om hallucinaties te voorkomen.",
-    objectives: [
+    goals: [
       "De student kan AI-tools (zoals Consensus/Perplexity) inzetten om relevante, peer-reviewed bronnen te vinden.",
       "De student kan een 'Literature Matrix' genereren om patronen en hiaten in de literatuur te identificeren.",
       "De student kan 'AI-hallucinaties' (gefingeerde bronnen) herkennen door DOI-verificatie toe te passen.",
@@ -30,30 +30,30 @@ export const lessons = [
     ],
     lessonPhases: [
       {
-        title: "Fase 1: De AI-Onderzoeksvraag (30 min)",
+        title: "Fase 1: De AI-Onderzoeksvraag",
+        time: "30 min",
         description: "Van interesse naar onderzoekbare vraag. Studenten gebruiken AI als sparringpartner om hun onderwerp af te bakenen.",
-        timingMinutes: 30,
         teacherActions: "Demonstreer live hoe je een brede vraag (bijv. 'iets met duurzaamheid') via prompts kunt trechteren naar een specifieke hoofdvraag. Bespreek de criteria van een goede onderzoeksvraag.",
         studentActivities: "Studenten voeren een dialoog met de AI om hun onderzoeksvraag SMART te maken. Ze pitchen de aangescherpte vraag aan hun buurman/vrouw."
       },
       {
-        title: "Fase 2: Bronnenjacht & Hallucinatie-Check (60 min)",
+        title: "Fase 2: Bronnenjacht & Hallucinatie-Check",
+        time: "60 min",
         description: "Het verschil tussen 'AI Search' en academische databases. Focus op validatie.",
-        timingMinutes: 60,
         teacherActions: "Leg het risico van hallucinaties uit (AI die titels verzint). Introduceer tools die gelinkt zijn aan echte databases (zoals Consensus).",
         studentActivities: "Studenten zoeken 5-10 bronnen via AI. Cruciale stap: Ze moeten van elke bron de DOI (Digital Object Identifier) verifiëren in een echte database. Bron niet gevonden? Dan wordt deze gemarkeerd als hallucinatie."
       },
       {
-        title: "Fase 3: Synthese & Matrix (45 min)",
+        title: "Fase 3: Synthese & Matrix",
+        time: "45 min",
         description: "Informatie verwerken tot inzichten. Niet kopiëren, maar synthetiseren.",
-        timingMinutes: 45,
         teacherActions: "Leg de Literature Matrix uit (Auteurs verticaal, Concepten horizontaal). Toon hoe je AI kunt vragen om samenvattingen te maken per concept.",
         studentActivities: "Studenten vullen de matrix, deels met AI-hulp voor samenvattingen, maar schrijven zelf de overkoepelende conclusie (synthesis) in hun eigen woorden."
       },
       {
-        title: "Fase 4: Verantwoording (15 min)",
+        title: "Fase 4: Verantwoording",
+        time: "15 min",
         description: "Ethisch kader en transparantie.",
-        timingMinutes: 15,
         teacherActions: "Bespreek het plagiaatbeleid van de instelling. Hoe citeer je AI?",
         studentActivities: "Studenten schrijven een concept-paragraaf voor hun methodologiehoofdstuk: 'Gebruik van Generatieve AI', waarin ze hun werkwijze en verificatiestappen toelichten."
       }
@@ -93,7 +93,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=200&fit=crop",
     summary: "Een basisles waarin leerlingen op een speelse manier ontdekken dat computers niet 'slim' zijn zoals mensen, maar leren door heel veel voorbeelden te bekijken (patroonherkenning).",
     description: "Leerlingen ontdekken wat AI wel en niet is. We gebruiken de analogie van een 'slimme papegaai' of een huisdier dat je kunstjes leert. De les bevat een unplugged activiteit (sorteren) en een digitale demo.",
-    objectives: [
+    goals: [
       "De leerling kan in eigen woorden uitleggen dat AI leert van voorbeelden (data).",
       "De leerling kan drie voorbeelden noemen van apparaten die 'slim' lijken.",
       "De leerling begrijpt dat een computer alleen doet wat hem is geleerd (geen eigen wil)."
@@ -105,30 +105,30 @@ export const lessons = [
     ],
     lessonPhases: [
       {
-        title: "Intro: De Robotquiz (10 min)",
+        title: "Intro: De Robotquiz",
+        time: "10 min",
         description: "Voorkennis activeren.",
-        timingMinutes: 10,
         teacherActions: "Toon plaatjes op het bord (wasmachine, smartphone, zelfrijdende auto). Vraag: 'Wie of wat is hier slim?'",
         studentActivities: "Leerlingen steken handen op en discussiëren. Is een rekenmachine slim? Waarom wel/niet?"
       },
       {
-        title: "Kern 1: Hoe leert een computer? (15 min)",
+        title: "Kern 1: Hoe leert een computer?",
+        time: "15 min",
         description: "Analogie uitleg.",
-        timingMinutes: 15,
         teacherActions: "Leg uit: Een computer is als een puppy. Je moet hem 1000 keer een bal laten zien voordat hij snapt wat een bal is.",
         studentActivities: "Luisteren en voorbeelden bedenken van dingen die zij hebben moeten leren door veel te oefenen (fietsen, lezen)."
       },
       {
-        title: "Kern 2: Quick, Draw! (25 min)",
+        title: "Kern 2: Quick, Draw!",
+        time: "25 min",
         description: "Actieve werkvorm met Google's Quick, Draw!",
-        timingMinutes: 25,
         teacherActions: "Open de website 'Quick, Draw!'. Laat zien hoe de computer probeert te raden wat je tekent.",
         studentActivities: "Leerlingen spelen (in duo's op tablets of klassikaal op digibord) het spel. Ze ervaren dat de AI patronen herkent in hun tekeningen."
       },
       {
-        title: "Afsluiting: De slimme papegaai (10 min)",
+        title: "Afsluiting: De slimme papegaai",
+        time: "10 min",
         description: "Reflectie.",
-        timingMinutes: 10,
         teacherActions: "Conclusie: De computer raadt het, omdat hij miljoenen tekeningen heeft gezien. Niet omdat hij weet wat een 'fiets' echt is.",
         studentActivities: "Invullen van een korte exit-ticket: Eén ding dat ik heb geleerd over computers."
       }
@@ -167,7 +167,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=200&fit=crop",
     summary: "Leerlingen worden zich bewust van de onzichtbare AI om hen heen (YouTube aanbevelingen, filters, Siri) en leren dat deze systemen bedoeld zijn om hun aandacht vast te houden.",
     description: "AI is niet alleen robots in films; het zit in onze broekzak. In deze les gaan leerlingen op 'AI Safari' in hun eigen belevingswereld. We bespreken aanbevelingsalgoritmen (Netflix/TikTok) en spraakassistenten.",
-    objectives: [
+    goals: [
       "De leerling herkent AI in dagelijkse apps (YouTube, TikTok, Games).",
       "De leerling begrijpt waarom apps 'aanbevelingen' doen (om je langer te laten kijken).",
       "De leerling kan kritisch nadenken over of een aanbeveling echt leuk is, of alleen maar verslavend."
@@ -179,30 +179,30 @@ export const lessons = [
     ],
     lessonPhases: [
       {
-        title: "Start: De AI Safari (10 min)",
+        title: "Start: De AI Safari",
+        time: "10 min",
         description: "Brainstorm.",
-        timingMinutes: 10,
         teacherActions: "Vraag: 'Wie heeft er vandaag al een computer of app gebruikt?'",
         studentActivities: "Leerlingen noemen voorbeelden. Docent vraagt door: 'Wist die app wat jij leuk vond?'"
       },
       {
-        title: "Kern: Het YouTube-raadsel (20 min)",
+        title: "Kern: Het YouTube-raadsel",
+        time: "20 min",
         description: "Uitleg algoritmes.",
-        timingMinutes: 20,
         teacherActions: "Leg uit: 'Het Algoritme'. Als jij kattenfilmpjes kijkt, geeft de app er nòg 10. Waarom? (Reclame/geld).",
         studentActivities: "Opdracht in duo's: Bedenk wat het algoritme jou zou aanraden als je gisteren de hele dag naar voetbal hebt gekeken."
       },
       {
-        title: "Verwerking: Ontwerp je eigen app (10 min)",
+        title: "Verwerking: Ontwerp je eigen app",
+        time: "10 min",
         description: "Creatieve opdracht.",
-        timingMinutes: 10,
         teacherActions: "Daag uit: Bedenk een app die NIET probeert je verslaafd te maken.",
         studentActivities: "Leerlingen tekenen/schrijven een idee voor een 'Eerlijke App'."
       },
       {
-        title: "Afsluiting (5 min)",
+        title: "Afsluiting",
+        time: "5 min",
         description: "Korte kringgesprek.",
-        timingMinutes: 5,
         teacherActions: "Samenvatten: Jij bent de baas, niet het algoritme.",
         studentActivities: "Hand opsteken: Wie gaat er vandaag opletten of YouTube een trucje uithaalt?"
       }
@@ -239,7 +239,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
     summary: "Een creatieve les waarin leerlingen nadenken over wat robots wel en niet mogen doen. Ze ontwerpen een 'Hulp-Robot' en stellen regels op (bijv. 'Een robot mag nooit pesten').",
     description: "Kinderen hebben vaak een magisch beeld van robots. In deze les koppelen we techniek aan gedragsregels. Wat als een robot jouw kamer moet opruimen, maar per ongeluk je favoriete tekening weggooit? We introduceren simpele ethische regels (zoals de wetten van Asimov, maar dan voor kinderen).",
-    objectives: [
+    goals: [
       "De leerling kan een taak bedenken die een robot goed zou kunnen overnemen.",
       "De leerling kan één regel bedenken waaraan een robot zich moet houden (veiligheid/aardig zijn).",
       "De leerling kan uitleggen dat een robot geen gevoelens heeft, ook al lijkt dat zo."
@@ -251,23 +251,23 @@ export const lessons = [
     ],
     lessonPhases: [
       {
-        title: "Start: Robot Emoties? (10 min)",
+        title: "Start: Robot Emoties?",
+        time: "10 min",
         description: "Filosofisch gesprek.",
-        timingMinutes: 10,
         teacherActions: "Toon een plaatje van een zielige robot (bijv. Wall-E). Vraag: 'Heeft hij verdriet?'",
         studentActivities: "Gesprek. Conclusie: Wij projecteren gevoelens op de robot, maar het is metaal en code."
       },
       {
-        title: "Kern: De Hulp-Robot Ontwerpen (25 min)",
+        title: "Kern: De Hulp-Robot Ontwerpen",
+        time: "25 min",
         description: "Ontwerpopdracht.",
-        timingMinutes: 25,
         teacherActions: "Opdracht: Ontwerp een robot die een klusje in huis doet. Maar... hij mag niks kapot maken!",
         studentActivities: "Leerlingen tekenen hun robot. Ze schrijven erbij: 1. Wat doet hij? 2. Wat is de belangrijkste regel voor de robot?"
       },
       {
-        title: "Presentatie: De Robot-Regels (15 min)",
+        title: "Presentatie: De Robot-Regels",
+        time: "15 min",
         description: "Delen en bespreken.",
-        timingMinutes: 15,
         teacherActions: "Laat een paar leerlingen vertellen. Vraag bijv: 'Wat als de robot de kat wil aaien, maar hij is te sterk?'",
         studentActivities: "Presenteren en meedenken over elkaars regels."
       }
@@ -304,7 +304,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop",
     summary: "Leerlingen 'interviewen' een historisch figuur via AI en controleren de antwoorden aan de hand van primaire bronnen en het schoolboek om anachronismen en hallucinaties te betrappen.",
     description: "Generatieve AI kan geweldige rollenspellen spelen, maar maakt ook historische fouten (anachronismen). In deze les simuleren leerlingen een gesprek met bijvoorbeeld Napoleon, Cleopatra of Willem van Oranje. Ze moeten de AI betrappen op onwaarheden door fysieke bronnen te raadplegen.",
-    objectives: [
+    goals: [
       "De leerling kan een effectieve 'persona prompt' schrijven om een historische simulatie te starten.",
       "De leerling kan kritisch analyseren of de AI-output historisch accuraat is (fact-checking).",
       "De leerling herkent anachronismen (zaken die niet in de tijd passen) in de gegenereerde tekst.",
@@ -317,30 +317,30 @@ export const lessons = [
     ],
     lessonPhases: [
       {
-        title: "Start: Wie ben ik? (10 min)",
+        title: "Start: Wie ben ik?",
+        time: "10 min",
         description: "Introductie Persona.",
-        timingMinutes: 10,
         teacherActions: "Laat een AI-chat zien op het bord met een mysterieus figuur (zonder de naam te noemen). De klas raadt wie het is o.b.v. antwoorden.",
         studentActivities: "Observeren, analyseren van taalgebruik en historische hints."
       },
       {
-        title: "Kern 1: Het Interview (20 min)",
+        title: "Kern 1: Het Interview",
+        time: "20 min",
         description: "Chat-opdracht.",
-        timingMinutes: 20,
         teacherActions: "Geef de prompt-structuur: 'Jij bent [NAAM], de datum is [JAARTAL]. Ik interview je over [GEBEURTENIS]. Weet alleen wat je toen kon weten.'",
         studentActivities: "Leerlingen kiezen een figuur uit het huidige hoofdstuk. Ze stellen 5 dieptevragen. Ze proberen de AI te 'tricksen' (bijv. vragen naar een telefoon of auto)."
       },
       {
-        title: "Kern 2: De Factcheck (15 min)",
+        title: "Kern 2: De Factcheck",
+        time: "15 min",
         description: "Verificatie met boek.",
-        timingMinutes: 15,
         teacherActions: "Opdracht: Leg het schoolboek ernaast. Klopt de datum? Klopt de redenatie?",
         studentActivities: "Leerlingen markeren in de chat-tekst: Groen = Feit (gevonden in boek), Rood = Fout/Hallucinatie, Geel = Twijfel."
       },
       {
-        title: "Afsluiting (5 min)",
+        title: "Afsluiting",
+        time: "5 min",
         description: "Klassikale oogst.",
-        timingMinutes: 5,
         teacherActions: "Vraag naar de gekste AI-fouten.",
         studentActivities: "Delen van anachronismen (bijv. 'Napoleon had het over pizza')."
       }
@@ -377,7 +377,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=300&h=200&fit=crop",
     summary: "Een Lagerhuis-debat waarin leerlingen AI gebruiken om argumenten te verzamelen, maar zelf het debat voeren. Ze ervaren hoe AI nuance kan missen of juist nieuwe perspectieven biedt.",
     description: "Leerlingen bereiden zich voor met behulp van AI (om argumenten vóór en tegen te genereren over stellingen als 'AI-kunst is diefstal' of 'Robots mogen rechters vervangen') en gaan daarna 'offline' het debat aan. Het doel is om nuance te vinden en eigen oordeelsvorming te trainen.",
-    objectives: [
+    goals: [
       "De leerling kan ethische dilemma's rondom AI (privacy, bias, autonomie) benoemen.",
       "De leerling kan AI inzetten als research-tool om snel diverse perspectieven te verzamelen.",
       "De leerling kan een eigen, onderbouwde mening formuleren en verdedigen, los van de AI-output.",
@@ -390,30 +390,30 @@ export const lessons = [
     ],
     lessonPhases: [
       {
-        title: "Prep: AI als Sparringpartner (30 min)",
+        title: "Prep: AI als Sparringpartner",
+        time: "30 min",
         description: "Argumenten verzamelen.",
-        timingMinutes: 30,
         teacherActions: "Verdeel de klas in VOOR en TEGEN groepen per stelling. Geef instructie: 'Vraag ChatGPT om 5 sterke argumenten voor jouw kant, én 3 tegenargumenten om te weerleggen'.",
         studentActivities: "Prompts schrijven, argumenten selecteren en vertalen naar eigen spreektaal."
       },
       {
-        title: "Human Touch: Het 'Killer Argument' (15 min)",
+        title: "Human Touch: Het 'Killer Argument'",
+        time: "15 min",
         description: "Eigen inbreng.",
-        timingMinutes: 15,
         teacherActions: "Opdracht: Bedenk nu ZELF één emotioneel of persoonlijk argument dat de AI niet heeft genoemd.",
         studentActivities: "Brainstormen in groepjes. Wat raakt mensen echt?"
       },
       {
-        title: "Action: Het Debat (40 min)",
+        title: "Action: Het Debat",
+        time: "40 min",
         description: "Debatteren zonder schermen.",
-        timingMinutes: 40,
         teacherActions: "Leid het debat (Lagerhuis of Amerikaans parlementair). Let op drogredenen.",
         studentActivities: "Debatteren. Luisteren naar de tegenpartij. Reageren."
       },
       {
-        title: "Evaluatie (15 min)",
+        title: "Evaluatie",
+        time: "15 min",
         description: "AI vs Mens.",
-        timingMinutes: 15,
         teacherActions: "Nabespreking: Welke argumenten werkten het best? Die van de AI of de eigen verzonnen argumenten?",
         studentActivities: "Klassikale reflectie."
       }
@@ -450,7 +450,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=300&h=200&fit=crop",
     summary: "Leerlingen gebruiken de 'Voice Mode' of chat-functie van AI om spreek- en schrijfvaardigheid te oefenen in een veilige omgeving, met directe feedback op grammatica en woordenschat.",
     description: "Spreekangst is een groot probleem bij Moderne Vreemde Talen. AI oordeelt niet. In deze les simuleren leerlingen een situatie (bijv. in een restaurant of bij de dokter) met een AI-bot die de rol van local speelt. De AI geeft na afloop feedback op fouten.",
-    objectives: [
+    goals: [
       "De leerling kan een gesprek voeren in de doeltaal over een alledaags onderwerp.",
       "De leerling durft vrijer te oefenen omdat de gesprekspartner een machine is (verlaging drempel).",
       "De leerling kan feedback van de AI (op grammatica/vocabulaire) begrijpen en toepassen in een tweede poging."
@@ -462,30 +462,30 @@ export const lessons = [
     ],
     lessonPhases: [
       {
-        title: "Instructie: De Prompt (15 min)",
+        title: "Instructie: De Prompt",
+        time: "15 min",
         description: "Setting the scene.",
-        timingMinutes: 15,
         teacherActions: "Leg uit hoe je de AI instrueert: 'Wil je met mij in het Frans oefenen? Jij bent de ober, ik ben de klant. Verbeter me pas áchteraf.'",
         studentActivities: "Leerlingen installeren zich in duo's of individueel (in stilteruimte of met koptelefoon)."
       },
       {
-        title: "Oefening: Het Gesprek (30 min)",
+        title: "Oefening: Het Gesprek",
+        time: "30 min",
         description: "Roleplay.",
-        timingMinutes: 30,
         teacherActions: "Rondlopen en helpen bij technische issues of drempelvrees.",
         studentActivities: "Leerlingen voeren het gesprek (mondeling of schriftelijk). Ze proberen het gesprek 5 minuten gaande te houden."
       },
       {
-        title: "Analyse: De Feedback (15 min)",
+        title: "Analyse: De Feedback",
+        time: "15 min",
         description: "Leren van fouten.",
-        timingMinutes: 15,
         teacherActions: "Laat leerlingen vragen: 'Welke 3 fouten maakte ik? En hoe zeg ik het beter?'",
         studentActivities: "Leerlingen noteren hun fouten en de verbetering in hun schrift."
       },
       {
-        title: "Herkansing (15 min)",
+        title: "Herkansing",
+        time: "15 min",
         description: "Toepassen.",
-        timingMinutes: 15,
         teacherActions: "Opdracht: Doe het gesprek opnieuw, maar nu foutloos.",
         studentActivities: "Tweede ronde roleplay."
       }
@@ -522,7 +522,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop",
     summary: "Studenten leren hoe ze ruwe datasets kunnen uploaden in AI-tools (zoals ChatGPT Data Analyst) om snel inzichten te krijgen, en leren kritisch kijken naar de gegenereerde grafieken.",
     description: "Data is het nieuwe goud, maar ruwe Excel-sheets zijn saai. In deze les leren studenten hoe ze met één druk op de knop (en een goede prompt) data kunnen visualiseren. Maar let op: is de schaalverdeling wel eerlijk? Kiest de AI de juiste grafiekvorm?",
-    objectives: [
+    goals: [
       "De student kan een dataset (CSV/Excel) opschonen en uploaden in een AI-analysetool.",
       "De student kan gerichte prompts schrijven om specifieke visualisaties te genereren (bijv. scatterplot, bar chart).",
       "De student kan kritisch beoordelen of een grafiek een eerlijk beeld geeft van de data (misleiding herkennen).",
@@ -535,30 +535,30 @@ export const lessons = [
     ],
     lessonPhases: [
       {
-        title: "Intro: Data Storytelling (15 min)",
+        title: "Intro: Data Storytelling",
+        time: "15 min",
         description: "Waarom visualiseren?",
-        timingMinutes: 15,
         teacherActions: "Toon een saaie tabel en een flitsende grafiek van dezelfde data. Welke overtuigt?",
         studentActivities: "Analyseren van voorbeelden."
       },
       {
-        title: "Instructie: Upload & Prompt (20 min)",
+        title: "Instructie: Upload & Prompt",
+        time: "20 min",
         description: "Hands-on demo.",
-        timingMinutes: 20,
         teacherActions: "Demonstreer hoe je een file uploadt en vraagt: 'Geef me 3 interessante inzichten en visualiseer deze'.",
         studentActivities: "Meekijken en notities maken over de prompts."
       },
       {
-        title: "Uitvoering: De Analyst (40 min)",
+        title: "Uitvoering: De Analyst",
+        time: "40 min",
         description: "Zelf aan de slag.",
-        timingMinutes: 40,
         teacherActions: "Deel de dataset. Opdracht: Maak een dashboard voor de directie met 3 grafieken.",
         studentActivities: "Studenten werken met de AI. Ze moeten de AI corrigeren ('Pas de kleur aan', 'Zet de jaartallen op de x-as')."
       },
       {
-        title: "Presentatie & Kritiek (15 min)",
+        title: "Presentatie & Kritiek",
+        time: "15 min",
         description: "Peer review.",
-        timingMinutes: 15,
         teacherActions: "Laat studenten elkaars grafieken beoordelen. Is de as-indeling correct?",
         studentActivities: "Feedback geven."
       }
@@ -595,7 +595,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=300&h=200&fit=crop",
     summary: "Studenten leren de rol van 'Senior Developer' aan te nemen terwijl AI (Copilot/ChatGPT) de 'Junior' is. Focus op code review, security en debugging.",
     description: "Programmeren verandert. Het gaat minder om syntax typen en meer om architectuur en controle. In deze les bouwen studenten een eenvoudige webpagina of script, maar... ze mogen zelf bijna niet typen. Ze moeten de AI aansturen. Werkt de code? Is hij veilig? Is hij efficiënt?",
-    objectives: [
+    goals: [
       "De student kan code genereren met natuurlijke taal (prompts).",
       "De student kan AI-gegenereerde code lezen, begrijpen en uitleggen (niet blind copy-pasten).",
       "De student herkent beveiligingsrisico's (zoals SQL injection) in gegenereerde code.",
@@ -608,30 +608,30 @@ export const lessons = [
     ],
     lessonPhases: [
       {
-        title: "Intro: De Junior Developer (15 min)",
+        title: "Intro: De Junior Developer",
+        time: "15 min",
         description: "De nieuwe werkwijze.",
-        timingMinutes: 15,
         teacherActions: "Leg uit: AI is je stagiair. Hij werkt snel, maar maakt fouten en let niet op veiligheid.",
         studentActivities: "Discussie: Wat zijn de risico's van copy-paste code?"
       },
       {
-        title: "Opdracht 1: The Bug Hunt (30 min)",
+        title: "Opdracht 1: The Bug Hunt",
+        time: "30 min",
         description: "Debuggen met AI.",
-        timingMinutes: 30,
         teacherActions: "Geef een stuk code met een logische fout (geen syntax fout).",
         studentActivities: "Vraag de AI om de fout te vinden. Klopt de uitleg? Repareer het."
       },
       {
-        title: "Opdracht 2: Build it (60 min)",
+        title: "Opdracht 2: Build it",
+        time: "60 min",
         description: "Genereren en verfijnen.",
-        timingMinutes: 60,
         teacherActions: "Opdracht: Bouw een 'To-Do list app' in HTML/JS.",
         studentActivities: "Studenten prompten de structuur. Ze moeten de code regel voor regel commentariëren (laten uitleggen door AI) om te bewijzen dat ze het snappen."
       },
       {
-        title: "Code Review (15 min)",
+        title: "Code Review",
+        time: "15 min",
         description: "Kwaliteitscontrole.",
-        timingMinutes: 15,
         teacherActions: "Bekijk klassikaal één oplossing. Is de code DRY (Don't Repeat Yourself)?",
         studentActivities: "Peer review bij de buurman."
       }
@@ -667,7 +667,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&h=200&fit=crop",
     summary: "Creatieve kunstwerken maken met prompts. Wat is 'stijl'?",
     description: "Leerlingen leren beschrijvende woorden (adjectieven) gebruiken om beelden te genereren.",
-    objectives: ["Creativiteit stimuleren", "Leren prompten"],
+    goals: ["Creativiteit stimuleren", "Leren prompten"],
     lessonPhases: [],
     materials: ["Tablets", "Bing Image Creator"]
   }

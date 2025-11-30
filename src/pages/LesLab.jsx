@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import { downloadLesson } from '../utils/downloadUtils';
-import { lessons } from '../data/lessons'; // Importeer de centrale data
+import { lessons } from '../data/lessons';
 
 const { FiBook, FiDownload, FiCalendar, FiFilter, FiStar, FiClock, FiUsers, FiCheck, FiList, FiActivity } = FiIcons;
 
@@ -16,10 +16,9 @@ const LesLab = () => {
   const levels = ['Alle', 'PO', 'VO', 'MBO/HBO'];
 
   // Haal de "Hero" les op (de eerste in de array, of specifiek op ID)
-  // We gebruiken hier de eerste les uit de data file als 'Uitgelicht'
   const currentLesson = lessons[0];
-  
-  // De rest van de lessen voor het archief (alles behalve de eerste)
+
+  // De rest van de lessen voor het archief
   const archive = lessons.slice(1);
 
   const filteredLessons = archive.filter(lesson => {
@@ -30,10 +29,9 @@ const LesLab = () => {
 
   const handleDownload = (lessonTitle) => {
     setDownloadStarted(true);
-    // Ervoor zorgen dat we exact de titel doorgeven die in de generator bekend is
+    // Nu roepen we de geüpdatete functie aan die de CONTENT ophaalt
     downloadLesson(lessonTitle);
     
-    // Reset the download state after a delay for UI feedback
     setTimeout(() => {
       setDownloadStarted(false);
     }, 2000);
@@ -49,7 +47,7 @@ const LesLab = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-emerald-600 to-teal-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
@@ -67,7 +65,7 @@ const LesLab = () => {
       {/* Current Lesson Spotlight */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -82,18 +80,17 @@ const LesLab = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <motion.div
+            <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <img
-                src={currentLesson.image}
-                alt={currentLesson.title}
+              <img 
+                src={currentLesson.image} 
+                alt={currentLesson.title} 
                 className="rounded-2xl shadow-2xl mb-6 w-full object-cover"
               />
-              
-              {/* Extra Lesson Phases Preview for the Hero Lesson */}
+              {/* Preview of Phases */}
               {currentLesson.lessonPhases && (
                 <div className="bg-emerald-50 rounded-xl p-6 border border-emerald-100">
                   <h4 className="font-bold text-emerald-900 mb-4 flex items-center gap-2">
@@ -116,7 +113,7 @@ const LesLab = () => {
               )}
             </motion.div>
 
-            <motion.div
+            <motion.div 
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -138,13 +135,13 @@ const LesLab = () => {
                 {currentLesson.description}
               </p>
 
-              {currentLesson.objectives && (
+              {currentLesson.goals && (
                 <div className="mb-6">
                   <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <SafeIcon icon={FiActivity} className="text-emerald-600" /> Leerdoelen:
                   </h4>
                   <ul className="space-y-2">
-                    {currentLesson.objectives.map((objective, index) => (
+                    {currentLesson.goals.map((objective, index) => (
                       <li key={index} className="flex items-start space-x-2">
                         <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2.5 flex-shrink-0"></div>
                         <span className="text-gray-700">{objective}</span>
@@ -167,7 +164,7 @@ const LesLab = () => {
                 </div>
               )}
 
-              <button
+              <button 
                 onClick={() => handleDownload(currentLesson.title)}
                 disabled={downloadStarted}
                 className={`bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 ${downloadStarted ? 'opacity-75' : ''}`}
@@ -183,7 +180,7 @@ const LesLab = () => {
       {/* Archive Section */}
       <section className="py-20 bg-gray-50 pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -201,7 +198,7 @@ const LesLab = () => {
           <div className="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiFilter} className="text-gray-500" />
-              <select
+              <select 
                 value={selectedMonth}
                 onChange={(e) => setSelectedMonth(e.target.value)}
                 className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
@@ -213,7 +210,7 @@ const LesLab = () => {
             </div>
             <div className="flex items-center space-x-2">
               <SafeIcon icon={FiUsers} className="text-gray-500" />
-              <select
+              <select 
                 value={selectedLevel}
                 onChange={(e) => setSelectedLevel(e.target.value)}
                 className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
@@ -225,10 +222,10 @@ const LesLab = () => {
             </div>
           </div>
 
-          {/* Lessons Grid with extra bottom margin */}
+          {/* Lessons Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
             {filteredLessons.map((lesson, index) => (
-              <motion.div
+              <motion.div 
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -237,26 +234,19 @@ const LesLab = () => {
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all border border-gray-100 flex flex-col h-full"
               >
                 <div className="relative h-48 overflow-hidden flex-shrink-0">
-                  <img
-                    src={lesson.image}
-                    alt={lesson.title}
-                    className="w-full h-full object-cover transition-transform hover:scale-105"
-                  />
+                  <img src={lesson.image} alt={lesson.title} className="w-full h-full object-cover transition-transform hover:scale-105" />
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold text-gray-700 shadow-sm">
                     {lesson.level}
                   </div>
                 </div>
-                
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center justify-between mb-3 text-xs text-gray-500 uppercase tracking-wide font-semibold">
                     <span>{lesson.subject}</span>
                     <span>{lesson.month}</span>
                   </div>
-                  
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {lesson.title}
                   </h3>
-                  
                   <p className="text-gray-600 mb-4 text-sm line-clamp-3 flex-grow">
                     {lesson.summary || lesson.description}
                   </p>
@@ -271,8 +261,8 @@ const LesLab = () => {
                       <span>{lesson.rating}</span>
                     </div>
                   </div>
-                  
-                  <button
+
+                  <button 
                     onClick={() => handleDownload(lesson.title)}
                     className="w-full bg-emerald-50 text-emerald-700 px-4 py-2 rounded-lg hover:bg-emerald-100 transition-colors flex items-center justify-center space-x-2 font-medium border border-emerald-100"
                   >
@@ -294,10 +284,10 @@ const LesLab = () => {
         </div>
       </section>
 
-      {/* Subscription CTA with extra top padding */}
+      {/* Subscription CTA */}
       <section className="py-20 pt-32 bg-emerald-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -308,10 +298,7 @@ const LesLab = () => {
             <p className="text-xl text-emerald-100 mb-8">
               Laat weten welke les je graag toegevoegd zou zien. Suggereer een les.
             </p>
-            <button
-              className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-not-allowed"
-              disabled
-            >
+            <button className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cursor-not-allowed" disabled>
               ai.onderwijs@gmail.com
             </button>
           </motion.div>
