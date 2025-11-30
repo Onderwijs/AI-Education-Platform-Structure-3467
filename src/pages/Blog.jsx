@@ -20,6 +20,7 @@ const Blog = () => {
 
   // Posts sorted by date (newest first)
   const posts = [
+    // NIEUWE ARTIKELEN (Juni 2025)
     {
       title: "Monitor Digitalisering Onderwijs 2025",
       excerpt: "Een diepgaand onderzoek naar de digitaliseringskloof tussen beleidsmakers en docenten in de klas. Relevante inzichten voor AI-invoering op school.",
@@ -53,6 +54,7 @@ const Blog = () => {
       readTime: "6 min",
       url: "https://onderwijs-ai.nl/blog/ai-hype-of-adoptie"
     },
+    // BESTAANDE ARTIKELEN
     {
       title: "Schoolafspraken over het gebruik van generatieve AI",
       excerpt: "Praktische richtlijnen voor scholen om gezamenlijke afspraken te maken over het gebruik van generatieve AI-tools in het onderwijs.",
