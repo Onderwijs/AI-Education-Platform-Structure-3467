@@ -54,7 +54,7 @@ const Blog = () => {
       readTime: "6 min",
       url: "https://onderwijs-ai.nl/blog/ai-hype-of-adoptie"
     },
-    // BESTAANDE ARTIKELEN
+    // BESTAANDE ARTIKELEN (Mei - April 2025)
     {
       title: "Schoolafspraken over het gebruik van generatieve AI",
       excerpt: "Praktische richtlijnen voor scholen om gezamenlijke afspraken te maken over het gebruik van generatieve AI-tools in het onderwijs.",
@@ -87,28 +87,6 @@ const Blog = () => {
       image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=250&fit=crop",
       readTime: "9 min",
       url: "https://aivooronderwijs.nl/category/onderwijsbeleid-en-regelgeving/"
-    },
-    {
-      title: "Privacy en AI: hier moeten scholen op letten",
-      excerpt: "Uitgebreide gids over privacy-aspecten bij het gebruik van AI in het onderwijs en welke maatregelen scholen moeten nemen.",
-      date: "20 juni 2024",
-      sortDate: "2024-06-20",
-      author: "Kennisnet",
-      category: "Privacy & Veiligheid",
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop",
-      readTime: "10 min",
-      url: "https://www.kennisnet.nl/artificial-intelligence/privacy-en-ai-hier-moeten-scholen-op-letten/"
-    },
-    {
-      title: "Problemen met generatieve AI in het onderwijs",
-      excerpt: "Een uitgebreid overzicht van de uitdagingen en problemen die generatieve AI met zich meebrengt in onderwijsomgevingen en hoe deze aan te pakken.",
-      date: "20 mei 2024",
-      sortDate: "2024-05-20",
-      author: "Universiteit Utrecht",
-      category: "Uitdagingen",
-      image: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1757628282057-universiteit-utrecht.jpg",
-      readTime: "8 min",
-      url: "https://www.uu.nl/onderwijs/onderwijsadvies-training/kennisdossiers/themadossier-generatieve-ai-in-het-onderwijs/problemen-met-generatieve-ai-in-het-onderwijs"
     },
     {
       title: "AI voor schoolleiders: strategische implementatie",
@@ -153,6 +131,29 @@ const Blog = () => {
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
       readTime: "7 min",
       url: "https://www.advantive.nl/ai-in-het-onderwijs/"
+    },
+    // OUDERE ARTIKELEN (Maart 2025 - Geüpdatet van 2024 voor consistentie)
+    {
+      title: "Privacy en AI: hier moeten scholen op letten",
+      excerpt: "Uitgebreide gids over privacy-aspecten bij het gebruik van AI in het onderwijs en welke maatregelen scholen moeten nemen.",
+      date: "20 maart 2025",
+      sortDate: "2025-03-20",
+      author: "Kennisnet",
+      category: "Privacy & Veiligheid",
+      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop",
+      readTime: "10 min",
+      url: "https://www.kennisnet.nl/artificial-intelligence/privacy-en-ai-hier-moeten-scholen-op-letten/"
+    },
+    {
+      title: "Problemen met generatieve AI in het onderwijs",
+      excerpt: "Een uitgebreid overzicht van de uitdagingen en problemen die generatieve AI met zich meebrengt in onderwijsomgevingen en hoe deze aan te pakken.",
+      date: "5 maart 2025",
+      sortDate: "2025-03-05",
+      author: "Universiteit Utrecht",
+      category: "Uitdagingen",
+      image: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1757628282057-universiteit-utrecht.jpg",
+      readTime: "8 min",
+      url: "https://www.uu.nl/onderwijs/onderwijsadvies-training/kennisdossiers/themadossier-generatieve-ai-in-het-onderwijs/problemen-met-generatieve-ai-in-het-onderwijs"
     }
   ];
 
