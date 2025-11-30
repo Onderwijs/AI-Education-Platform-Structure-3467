@@ -20,12 +20,23 @@ const Blog = () => {
 
   // Posts sorted by date (newest first)
   const posts = [
-    // NIEUWE ARTIKELEN (Juni 2025)
+    // NIEUWE ARTIKELEN (Najaar 2025)
+    {
+      title: "AI: Hype of Adoptie?",
+      excerpt: "Een compacte analyse over de vraag of AI in het onderwijs een vluchtige hype is of blijvende verandering. Inclusief concrete voorbeelden uit Nederlandse scholen.",
+      date: "17 november 2025",
+      sortDate: "2025-11-17",
+      author: "Onderwijs-AI",
+      category: "Opinie",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
+      readTime: "6 min",
+      url: "https://onderwijs-ai.nl/blog/ai-hype-of-adoptie"
+    },
     {
       title: "Monitor Digitalisering Onderwijs 2025",
       excerpt: "Een diepgaand onderzoek naar de digitaliseringskloof tussen beleidsmakers en docenten in de klas. Relevante inzichten voor AI-invoering op school.",
-      date: "15 juni 2025",
-      sortDate: "2025-06-15",
+      date: "13 november 2025",
+      sortDate: "2025-11-13",
       author: "Kennisnet",
       category: "Onderzoek",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
@@ -35,24 +46,13 @@ const Blog = () => {
     {
       title: "Een goede AI-strategie is voor iedere school een noodzaak",
       excerpt: "Kennisnet beschrijft waarom scholen niet meer om een integrale en doordachte AI-strategie heen kunnen en hoe bestuurders hiermee aan de slag kunnen.",
-      date: "10 juni 2025",
-      sortDate: "2025-06-10",
+      date: "1 oktober 2025",
+      sortDate: "2025-10-01",
       author: "Kennisnet",
       category: "Strategie",
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=250&fit=crop",
       readTime: "8 min",
       url: "https://www.kennisnet.nl/opinie/een-goede-ai-strategie-is-voor-iedere-school-een-noodzaak/"
-    },
-    {
-      title: "AI: Hype of Adoptie?",
-      excerpt: "Een compacte analyse over de vraag of AI in het onderwijs een vluchtige hype is of blijvende verandering. Inclusief concrete voorbeelden uit Nederlandse scholen.",
-      date: "5 juni 2025",
-      sortDate: "2025-06-05",
-      author: "Onderwijs-AI",
-      category: "Opinie",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
-      readTime: "6 min",
-      url: "https://onderwijs-ai.nl/blog/ai-hype-of-adoptie"
     },
     // BESTAANDE ARTIKELEN (Mei - April 2025)
     {
