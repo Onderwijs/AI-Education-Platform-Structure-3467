@@ -7,18 +7,15 @@ import { downloadStartersgids } from '../utils/downloadUtils';
 const { FiMail, FiDownload, FiCheck, FiGift, FiUsers, FiTrendingUp, FiAlertTriangle } = FiIcons;
 
 const Nieuwsbrief = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    role: ''
-  });
+  const [formData, setFormData] = useState({ email: '', role: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   const benefits = [
     {
       icon: FiDownload,
-      title: "🆕 GLOEDNIEUWE AI Startersgids V7.0",
-      description: "Compleet vernieuwde gids met EXTREME cache busting en Nederlandse focus!"
+      title: "🆕 GLOEDNIEUWE AI Startersgids V9.0",
+      description: "Compleet vernieuwde gids met 12 hoofdstukken en Nederlandse focus!"
     },
     {
       icon: FiMail,
@@ -57,10 +54,7 @@ const Nieuwsbrief = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -83,7 +77,6 @@ const Nieuwsbrief = () => {
           localStorage.removeItem(key);
         }
       });
-
       // Clear sessionStorage completely
       sessionStorage.clear();
 
@@ -94,7 +87,7 @@ const Nieuwsbrief = () => {
         formDataNetlify.append('email', formData.email);
         formDataNetlify.append('role', formData.role || 'Niet opgegeven');
         formDataNetlify.append('timestamp', new Date().toISOString());
-        formDataNetlify.append('source', 'onderwijs.ai nieuwsbrief pagina V7.0');
+        formDataNetlify.append('source', 'onderwijs.ai nieuwsbrief pagina V9.0');
 
         await fetch('/', {
           method: 'POST',
@@ -104,25 +97,19 @@ const Nieuwsbrief = () => {
       } else {
         // Method 2: Fallback - Store in localStorage
         const submissions = JSON.parse(localStorage.getItem('nieuwsbrief-submissions') || '[]');
-        submissions.push({
-          ...formData,
-          timestamp: new Date().toISOString(),
-          id: Date.now(),
-          version: 'V7.0'
-        });
+        submissions.push({ ...formData, timestamp: new Date().toISOString(), id: Date.now(), version: 'V9.0' });
         localStorage.setItem('nieuwsbrief-submissions', JSON.stringify(submissions));
-        
-        console.log('Nieuwsbrief inschrijving V7.0:', {
+        console.log('Nieuwsbrief inschrijving V9.0:', {
           email: formData.email,
           role: formData.role || 'Niet opgegeven',
           timestamp: new Date().toISOString(),
-          version: 'V7.0'
+          version: 'V9.0'
         });
       }
 
-      // STEP 2: Wait a moment to ensure form is processed, then FORCE new PDF V7.0 download
+      // STEP 2: Wait a moment to ensure form is processed, then FORCE new PDF V9.0 download
       setTimeout(() => {
-        console.log('🔄 Form processed, now FORCING completely NEW PDF V7.0 download...');
+        console.log('🔄 Form processed, now FORCING completely NEW PDF V9.0 download...');
         downloadStartersgids();
         setIsSubscribed(true);
       }, 500);
@@ -130,7 +117,7 @@ const Nieuwsbrief = () => {
     } catch (error) {
       console.error('Error submitting form:', error);
       // Still download the NEW guide even if submission fails
-      console.log('📥 Fallback: Starting GUARANTEED NEW PDF V7.0 download...');
+      console.log('📥 Fallback: Starting GUARANTEED NEW PDF V9.0 download...');
       downloadStartersgids();
       setIsSubscribed(true);
     } finally {
@@ -154,60 +141,38 @@ const Nieuwsbrief = () => {
           >
             <SafeIcon icon={FiCheck} className="text-3xl text-white" />
           </motion.div>
-          
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            🆕 GLOEDNIEUWE V7.0 PDF Download gestart!
+            🆕 GLOEDNIEUWE V9.0 PDF Download gestart!
           </h1>
-          
           <div className="bg-green-100 border border-green-300 rounded-lg p-4 mb-6">
             <div className="flex items-center space-x-2 mb-2">
               <SafeIcon icon={FiCheck} className="text-green-600" />
-              <span className="font-semibold text-green-800">VERSIE 7.0 WORDT GEDOWNLOAD!</span>
+              <span className="font-semibold text-green-800">VERSIE 9.0 WORDT GEDOWNLOAD!</span>
             </div>
             <p className="text-sm text-green-700">
-              Je ontvangt nu de volledig vernieuwde AI Startersgids V7.0 als professionele PDF. 
-              EXTREME cache busting, Nederlandse focus en GEGARANDEERD NIET het oude bestand!
+              Je ontvangt nu de volledig vernieuwde AI Startersgids V9.0 als professionele PDF. Compleet inhoudelijk handboek met 12 hoofdstukken.
             </p>
           </div>
-          
           <p className="text-gray-600 mb-6">
-            De nieuwe AI Startersgids V7.0 wordt nu gedownload met extreme cache busting, 
-            rode en groene waarschuwingsboxen en Nederlandse voorbeelden.
+            De nieuwe AI Startersgids V9.0 wordt nu gedownload. Controleer je downloadmap.
           </p>
-          
           <div className="space-y-4">
             <button
               onClick={() => {
-                console.log('🔄 Manual NEW PDF V7.0 download requested...');
+                console.log('🔄 Manual NEW PDF V9.0 download requested...');
                 downloadStartersgids();
               }}
               className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
             >
               <SafeIcon icon={FiDownload} />
-              <span>Download V7.0 PDF opnieuw</span>
+              <span>Download V9.0 PDF opnieuw</span>
             </button>
-            
             <button
               onClick={() => setIsSubscribed(false)}
               className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors"
             >
               Terug naar overzicht
             </button>
-          </div>
-          
-          <div className="mt-6 p-4 bg-red-100 border border-red-300 rounded-lg">
-            <div className="flex items-center space-x-2 mb-2">
-              <SafeIcon icon={FiAlertTriangle} className="text-red-600" />
-              <span className="font-semibold text-red-800">HERKEN HET V7.0 BESTAND:</span>
-            </div>
-            <p className="text-sm text-red-800">
-              ✅ Crimson rode header: "🚨 NIEUWE VERSIE V7.0"<br/>
-              ✅ Rode waarschuwingsbox: "⚠️ Dit is NIET ai-startersgids-complete.pdf"<br/>
-              ✅ Groene bevestigingsbox: "✅ U heeft de NIEUWE V7.0 versie"<br/>
-              ✅ Unieke ID nummers voor verificatie<br/>
-              ✅ Nederlandse voorbeelden en focus<br/>
-              ❌ NOOIT meer "ai-startersgids-complete.pdf"
-            </p>
           </div>
         </div>
       </motion.div>
@@ -230,11 +195,10 @@ const Nieuwsbrief = () => {
           >
             <SafeIcon icon={FiGift} className="text-6xl mx-auto mb-6 text-primary-200" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              🆕 GLOEDNIEUWE AI Startersgids V7.0
+              🆕 GLOEDNIEUWE AI Startersgids V9.0
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Ontvang direct onze volledig vernieuwde AI-toolkit V7.0 als professionele PDF. 
-              EXTREME cache busting, Nederlandse focus en impossible-to-confuse design!
+              Ontvang direct onze volledig vernieuwde AI-toolkit V9.0 als professionele PDF. Het complete handboek voor de Nederlandse docent.
             </p>
           </motion.div>
         </div>
@@ -252,18 +216,17 @@ const Nieuwsbrief = () => {
             >
               <div className="bg-gray-50 p-8 rounded-2xl">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Download de 🆕 GLOEDNIEUWE AI Startersgids V7.0
+                  Download de 🆕 GLOEDNIEUWE AI Startersgids V9.0
                 </h2>
                 
-                {/* Enhanced Important Notice V7.0 */}
-                <div className="mb-6 p-4 bg-red-100 border border-red-300 rounded-lg">
+                {/* Enhanced Important Notice V9.0 */}
+                <div className="mb-6 p-4 bg-blue-100 border border-blue-300 rounded-lg">
                   <div className="flex items-center space-x-2">
-                    <SafeIcon icon={FiAlertTriangle} className="text-red-600" />
-                    <span className="font-semibold text-red-800">🚨 VERSIE 7.0 - EXTREME CACHE BUSTING!</span>
+                    <SafeIcon icon={FiTrendingUp} className="text-blue-600" />
+                    <span className="font-semibold text-blue-800">🚀 NU MET 12 HOOFDSTUKKEN!</span>
                   </div>
-                  <p className="text-sm text-red-700 mt-1">
-                    V7.0 features: Crimson rode header, rode/groene waarschuwingsboxen, Nederlandse focus, 
-                    EXTREME cache busting, triple unieke IDs - ABSOLUUT ONMOGELIJK te verwarren met het oude bestand!
+                  <p className="text-sm text-blue-700 mt-1">
+                    V9.0 features: Praktische handleidingen voor PO, VO en MBO/HBO, ethische richtlijnen, assessment voorbeelden en een stappenplan voor schoolleiders.
                   </p>
                 </div>
 
@@ -321,11 +284,10 @@ const Nieuwsbrief = () => {
                   >
                     <SafeIcon icon={FiDownload} />
                     <span>
-                      {isSubmitting ? 'V7.0 wordt voorbereid...' : '🆕 Download GLOEDNIEUWE PDF V7.0'}
+                      {isSubmitting ? 'V9.0 wordt voorbereid...' : '🆕 Download GLOEDNIEUWE PDF V9.0'}
                     </span>
                   </button>
                 </form>
-
                 <p className="text-xs text-gray-500 mt-4">
                   Door je in te schrijven ga je akkoord met onze{' '}
                   <a href="/privacy" className="text-primary-600 hover:underline">
@@ -343,7 +305,7 @@ const Nieuwsbrief = () => {
               transition={{ delay: 0.4 }}
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                Wat krijg je in V7.0?
+                Wat krijg je in V9.0?
               </h3>
               <div className="space-y-6">
                 {benefits.map((benefit, index) => (
@@ -373,7 +335,6 @@ const Nieuwsbrief = () => {
         </div>
       </section>
 
-      {/* Rest of the component remains the same... */}
       {/* Freebies Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -384,13 +345,12 @@ const Nieuwsbrief = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Binnenkort meer Gratis PDF Downloads V7.0
+              Binnenkort meer Gratis PDF Downloads V9.0
             </h2>
             <p className="text-xl text-gray-600">
-              Exclusieve materialen met extreme cache busting (allemaal als professionele PDFs!)
+              Exclusieve materialen met diepgaande inhoud (allemaal als professionele PDFs!)
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {freebies.map((freebie, index) => (
               <motion.div
@@ -444,8 +404,7 @@ const Nieuwsbrief = () => {
               </div>
             </div>
             <blockquote className="text-xl text-gray-600 italic mb-4">
-              "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding gehalveerd 
-              en mijn leerlingen zijn veel meer betrokken."
+              "Dankzij de AI-tips van deze nieuwsbrief heb ik mijn lesvoorbereiding gehalveerd en mijn leerlingen zijn veel meer betrokken."
             </blockquote>
             <cite className="text-gray-500">- Marieke, VO Docent Nederlands</cite>
           </motion.div>
@@ -461,7 +420,7 @@ const Nieuwsbrief = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Klaar om te beginnen met V7.0?
+              Klaar om te beginnen met V9.0?
             </h2>
             <p className="text-xl text-primary-100 mb-8">
               Stuur een berichtje voor vragen over de nieuwe versie.

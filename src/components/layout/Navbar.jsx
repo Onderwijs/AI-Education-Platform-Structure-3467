@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../common/SafeIcon';
@@ -10,6 +10,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const dropdownRefs = useRef({});
   const buttonRefs = useRef({});
 
@@ -24,7 +25,6 @@ const Navbar = () => {
         }
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [activeDropdown]);
@@ -36,7 +36,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const isActive = (path) => location.pathname === path;
-  
+
   const isParentActive = (item) => {
     if (item.dropdown) {
       return item.dropdown.some(sub => location.pathname.startsWith(sub.path));
@@ -44,12 +44,11 @@ const Navbar = () => {
     return location.pathname === item.path;
   };
 
-  // NIEUWE NAVIGATIE STRUCTUUR 2025
   const navItems = [
     { path: '/', label: 'Home' },
-    { 
-      id: 'tools', 
-      label: 'Tools', 
+    {
+      id: 'tools',
+      label: 'Tools',
       dropdown: [
         { path: '/tools', label: 'Interactieve Tools (Overzicht)', color: 'bg-indigo-50 text-indigo-600' },
         { path: '/tools/lesgenerator', label: 'Lesgenerator', color: 'hover:bg-indigo-50 text-gray-700' },
@@ -60,26 +59,26 @@ const Navbar = () => {
         { path: '/tools/mentorles', label: 'Mentorlesplanner', color: 'hover:bg-indigo-50 text-gray-700' },
       ]
     },
-    { 
-      id: 'voor-docenten', 
-      label: 'Voor Docenten', 
+    {
+      id: 'voor-docenten',
+      label: 'Voor Docenten',
       dropdown: [
         { path: '/voor-docenten/po', label: 'Basisonderwijs (PO)', color: 'hover:bg-blue-50 hover:text-blue-600' },
         { path: '/voor-docenten/vo', label: 'Voortgezet Onderwijs (VO)', color: 'hover:bg-purple-50 hover:text-purple-600' },
         { path: '/voor-docenten/mbo-hbo', label: 'MBO & HBO', color: 'hover:bg-green-50 hover:text-green-600' },
       ]
     },
-    { 
-      id: 'leslab', 
-      label: 'Lesmateriaal', 
+    {
+      id: 'leslab',
+      label: 'Lesmateriaal',
       dropdown: [
         { path: '/leslab', label: 'LesLab (Archief)', color: 'hover:bg-emerald-50 hover:text-emerald-600' },
         { path: '/downloads', label: 'Downloads & Startersgids', color: 'hover:bg-emerald-50 hover:text-emerald-600' },
       ]
     },
-    { 
-      id: 'kenniscentrum', 
-      label: 'Kenniscentrum', 
+    {
+      id: 'kenniscentrum',
+      label: 'Kenniscentrum',
       dropdown: [
         { path: '/ai-tools', label: 'AI Tool Database', color: 'hover:bg-yellow-50 hover:text-yellow-600' },
         { path: '/blog', label: 'Blog & Nieuws', color: 'hover:bg-yellow-50 hover:text-yellow-600' },
@@ -97,8 +96,9 @@ const Navbar = () => {
     setActiveDropdown(activeDropdown === id ? null : id);
   };
 
+  // Navigeer correct via React Router ipv window.open
   const handleDownloadClick = () => {
-    window.open('/downloads', '_self');
+    navigate('/downloads');
   };
 
   return (
@@ -117,7 +117,7 @@ const Navbar = () => {
               <div key={index} className="relative">
                 {item.dropdown ? (
                   <div>
-                    <button 
+                    <button
                       ref={el => buttonRefs.current[`desktop-${item.id}`] = el}
                       onClick={(e) => toggleDropdown(`desktop-${item.id}`, e)}
                       className={`flex items-center space-x-1 transition-colors py-2 px-2 rounded-md hover:bg-gray-50 ${isParentActive(item) ? 'text-primary-600 font-medium' : 'text-gray-700'}`}
@@ -125,7 +125,6 @@ const Navbar = () => {
                       <span>{item.label}</span>
                       <SafeIcon icon={FiChevronDown} className={`transition-transform duration-200 ${activeDropdown === `desktop-${item.id}` ? 'rotate-180' : ''}`} />
                     </button>
-                    
                     <AnimatePresence>
                       {activeDropdown === `desktop-${item.id}` && (
                         <motion.div
@@ -137,9 +136,9 @@ const Navbar = () => {
                           className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
                         >
                           {item.dropdown.map((subItem, subIndex) => (
-                            <Link 
-                              key={subIndex} 
-                              to={subItem.path} 
+                            <Link
+                              key={subIndex}
+                              to={subItem.path}
                               className={`block px-4 py-3 text-sm transition-colors hover:bg-gray-50 ${subItem.color || ''}`}
                               onClick={() => setActiveDropdown(null)}
                             >
@@ -151,8 +150,8 @@ const Navbar = () => {
                     </AnimatePresence>
                   </div>
                 ) : (
-                  <Link 
-                    to={item.path} 
+                  <Link
+                    to={item.path}
                     className={`transition-colors py-2 px-2 rounded-md hover:bg-gray-50 ${isActive(item.path) ? 'text-primary-600 font-medium' : 'text-gray-700 hover:text-primary-600'}`}
                   >
                     {item.label}
@@ -160,8 +159,7 @@ const Navbar = () => {
                 )}
               </div>
             ))}
-            
-            <button 
+            <button
               onClick={handleDownloadClick}
               className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors text-sm font-semibold shadow-sm"
             >
@@ -170,7 +168,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <button 
+          <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
           >
@@ -191,7 +189,7 @@ const Navbar = () => {
                 <div key={index} className="py-2">
                   {item.dropdown ? (
                     <div>
-                      <button 
+                      <button
                         ref={el => buttonRefs.current[`mobile-${item.id}`] = el}
                         className="flex items-center w-full text-left text-gray-700 font-medium px-4 py-2 hover:bg-gray-50 rounded-md transition-colors"
                         onClick={(e) => toggleDropdown(`mobile-${item.id}`, e)}
@@ -199,10 +197,9 @@ const Navbar = () => {
                         <span>{item.label}</span>
                         <SafeIcon icon={FiChevronDown} className={`ml-2 transition-transform duration-200 ${activeDropdown === `mobile-${item.id}` ? 'rotate-180' : ''}`} />
                       </button>
-                      
                       <AnimatePresence>
                         {activeDropdown === `mobile-${item.id}` && (
-                          <motion.div 
+                          <motion.div
                             ref={el => dropdownRefs.current[`mobile-${item.id}`] = el}
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
@@ -210,14 +207,11 @@ const Navbar = () => {
                             className="bg-gray-50 rounded-md mx-2 mt-2"
                           >
                             {item.dropdown.map((subItem, subIndex) => (
-                              <Link 
-                                key={subIndex} 
-                                to={subItem.path} 
+                              <Link
+                                key={subIndex}
+                                to={subItem.path}
                                 className="block px-6 py-3 text-sm text-gray-600 hover:text-primary-600"
-                                onClick={() => {
-                                  setActiveDropdown(null);
-                                  setIsOpen(false);
-                                }}
+                                onClick={() => { setActiveDropdown(null); setIsOpen(false); }}
                               >
                                 {subItem.label}
                               </Link>
@@ -227,8 +221,8 @@ const Navbar = () => {
                       </AnimatePresence>
                     </div>
                   ) : (
-                    <Link 
-                      to={item.path} 
+                    <Link
+                      to={item.path}
                       className="block px-4 py-2 text-gray-700 hover:text-primary-600 font-medium"
                       onClick={() => setIsOpen(false)}
                     >
@@ -237,12 +231,8 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
-              
-              <button 
-                onClick={() => {
-                  handleDownloadClick();
-                  setIsOpen(false);
-                }}
+              <button
+                onClick={() => { handleDownloadClick(); setIsOpen(false); }}
                 className="block mx-4 mt-4 bg-primary-600 text-white px-4 py-3 rounded-lg text-center font-semibold w-auto"
               >
                 Downloads
