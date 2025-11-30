@@ -17,7 +17,7 @@ const LesLab = () => {
 
   // Haal de "Hero" les op (de eerste in de array, of specifiek op ID)
   const currentLesson = lessons[0];
-
+  
   // De rest van de lessen voor het archief
   const archive = lessons.slice(1);
 
@@ -31,7 +31,6 @@ const LesLab = () => {
     setDownloadStarted(true);
     // Nu roepen we de geüpdatete functie aan die de CONTENT ophaalt
     downloadLesson(lessonTitle);
-    
     setTimeout(() => {
       setDownloadStarted(false);
     }, 2000);
@@ -72,10 +71,10 @@ const LesLab = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Uitgelicht: Onderzoek & AI
+              Uitgelicht: {currentLesson.title}
             </h2>
             <p className="text-xl text-gray-600">
-              Een diepgaande module voor MBO/HBO over bronverificatie en methodologie
+              {currentLesson.summary}
             </p>
           </motion.div>
 
@@ -90,6 +89,7 @@ const LesLab = () => {
                 alt={currentLesson.title} 
                 className="rounded-2xl shadow-2xl mb-6 w-full object-cover"
               />
+              
               {/* Preview of Phases */}
               {currentLesson.lessonPhases && (
                 <div className="bg-emerald-50 rounded-xl p-6 border border-emerald-100">
@@ -131,8 +131,9 @@ const LesLab = () => {
                 {currentLesson.title}
               </h3>
               
+              {/* FIX: Gebruik introduction of summary, want description bestaat niet meer op root niveau */}
               <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                {currentLesson.description}
+                {currentLesson.introduction || currentLesson.summary}
               </p>
 
               {currentLesson.goals && (
@@ -234,21 +235,28 @@ const LesLab = () => {
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all border border-gray-100 flex flex-col h-full"
               >
                 <div className="relative h-48 overflow-hidden flex-shrink-0">
-                  <img src={lesson.image} alt={lesson.title} className="w-full h-full object-cover transition-transform hover:scale-105" />
+                  <img 
+                    src={lesson.image} 
+                    alt={lesson.title} 
+                    className="w-full h-full object-cover transition-transform hover:scale-105"
+                  />
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold text-gray-700 shadow-sm">
                     {lesson.level}
                   </div>
                 </div>
+                
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center justify-between mb-3 text-xs text-gray-500 uppercase tracking-wide font-semibold">
                     <span>{lesson.subject}</span>
                     <span>{lesson.month}</span>
                   </div>
+                  
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {lesson.title}
                   </h3>
+                  
                   <p className="text-gray-600 mb-4 text-sm line-clamp-3 flex-grow">
-                    {lesson.summary || lesson.description}
+                    {lesson.summary || lesson.introduction}
                   </p>
                   
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4 pt-4 border-t border-gray-50">
@@ -261,7 +269,7 @@ const LesLab = () => {
                       <span>{lesson.rating}</span>
                     </div>
                   </div>
-
+                  
                   <button 
                     onClick={() => handleDownload(lesson.title)}
                     className="w-full bg-emerald-50 text-emerald-700 px-4 py-2 rounded-lg hover:bg-emerald-100 transition-colors flex items-center justify-center space-x-2 font-medium border border-emerald-100"
