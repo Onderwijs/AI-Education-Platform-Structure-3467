@@ -19,14 +19,9 @@ const clearCache = () => {
 };
 
 /**
- * STARTERSGIDS DOWNLOAD (Behouden zoals het was, maar met schone output)
+ * STARTERSGIDS DOWNLOAD
  */
 export const downloadStartersgids = () => {
-  // ... (Bestaande code voor startersgids, kortheidshalve hier even weggelaten of 
-  // gebruik de code uit de vorige stap als je die functionaliteit ook nodig hebt. 
-  // Voor nu focus ik op de LESGENERATOR fix).
-  // Als je de volledige file wilt vervangen, laat het weten. 
-  // Ik zal hieronder een simpele versie zetten zodat de file valide blijft.
   console.log("Download Startersgids placeholder");
   const doc = new jsPDF();
   doc.text("AI Startersgids V9.0", 20, 20);
@@ -112,9 +107,11 @@ export const downloadLesson = (lessonTitle) => {
     doc.text(`Vak: ${lesson.subject || 'Algemeen'}`, margin + 120, yPos);
     yPos += 15;
 
-    // --- SAMENVATTING ---
-    addSectionHeader("Samenvatting");
-    addText(lesson.description || lesson.summary || "Geen beschrijving beschikbaar.");
+    // --- INTRODUCTIE (NIEUW) ---
+    // We gebruiken nu introduction voor de PDF, en summary als fallback
+    addSectionHeader("Inleiding");
+    const introText = lesson.introduction || lesson.summary || "Geen inleiding beschikbaar.";
+    addText(introText);
 
     // --- LEERDOELEN ---
     if (lesson.goals && lesson.goals.length > 0) {
