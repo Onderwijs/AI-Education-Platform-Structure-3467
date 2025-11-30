@@ -16,7 +16,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
     summary: "Een gevorderde module waarin studenten leren hoe ze Generatieve AI (zoals ChatGPT, Consensus en Elicit) ethisch en methodologisch correct inzetten voor literatuuronderzoek, zonder hun kritische blik te verliezen.",
     description: "In deze module transformeren we de rol van de student van 'informatiezoeker' naar 'research director'. We behandelen het trechteren van onderzoeksvragen, het genereren van een Literature Matrix en het kritisch verifiëren van bronnen om hallucinaties te voorkomen.",
-    goals: [
+    objectives: [
       "De student kan AI-tools (zoals Consensus/Perplexity) inzetten om relevante, peer-reviewed bronnen te vinden.",
       "De student kan een 'Literature Matrix' genereren om patronen en hiaten in de literatuur te identificeren.",
       "De student kan 'AI-hallucinaties' (gefingeerde bronnen) herkennen door DOI-verificatie toe te passen.",
@@ -93,7 +93,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=200&fit=crop",
     summary: "Een basisles waarin leerlingen op een speelse manier ontdekken dat computers niet 'slim' zijn zoals mensen, maar leren door heel veel voorbeelden te bekijken (patroonherkenning).",
     description: "Leerlingen ontdekken wat AI wel en niet is. We gebruiken de analogie van een 'slimme papegaai' of een huisdier dat je kunstjes leert. De les bevat een unplugged activiteit (sorteren) en een digitale demo.",
-    goals: [
+    objectives: [
       "De leerling kan in eigen woorden uitleggen dat AI leert van voorbeelden (data).",
       "De leerling kan drie voorbeelden noemen van apparaten die 'slim' lijken.",
       "De leerling begrijpt dat een computer alleen doet wat hem is geleerd (geen eigen wil)."
@@ -167,7 +167,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=200&fit=crop",
     summary: "Leerlingen worden zich bewust van de onzichtbare AI om hen heen (YouTube aanbevelingen, filters, Siri) en leren dat deze systemen bedoeld zijn om hun aandacht vast te houden.",
     description: "AI is niet alleen robots in films; het zit in onze broekzak. In deze les gaan leerlingen op 'AI Safari' in hun eigen belevingswereld. We bespreken aanbevelingsalgoritmen (Netflix/TikTok) en spraakassistenten.",
-    goals: [
+    objectives: [
       "De leerling herkent AI in dagelijkse apps (YouTube, TikTok, Games).",
       "De leerling begrijpt waarom apps 'aanbevelingen' doen (om je langer te laten kijken).",
       "De leerling kan kritisch nadenken over of een aanbeveling echt leuk is, of alleen maar verslavend."
@@ -239,7 +239,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
     summary: "Een creatieve les waarin leerlingen nadenken over wat robots wel en niet mogen doen. Ze ontwerpen een 'Hulp-Robot' en stellen regels op (bijv. 'Een robot mag nooit pesten').",
     description: "Kinderen hebben vaak een magisch beeld van robots. In deze les koppelen we techniek aan gedragsregels. Wat als een robot jouw kamer moet opruimen, maar per ongeluk je favoriete tekening weggooit? We introduceren simpele ethische regels (zoals de wetten van Asimov, maar dan voor kinderen).",
-    goals: [
+    objectives: [
       "De leerling kan een taak bedenken die een robot goed zou kunnen overnemen.",
       "De leerling kan één regel bedenken waaraan een robot zich moet houden (veiligheid/aardig zijn).",
       "De leerling kan uitleggen dat een robot geen gevoelens heeft, ook al lijkt dat zo."
@@ -304,7 +304,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop",
     summary: "Leerlingen 'interviewen' een historisch figuur via AI en controleren de antwoorden aan de hand van primaire bronnen en het schoolboek om anachronismen en hallucinaties te betrappen.",
     description: "Generatieve AI kan geweldige rollenspellen spelen, maar maakt ook historische fouten (anachronismen). In deze les simuleren leerlingen een gesprek met bijvoorbeeld Napoleon, Cleopatra of Willem van Oranje. Ze moeten de AI betrappen op onwaarheden door fysieke bronnen te raadplegen.",
-    goals: [
+    objectives: [
       "De leerling kan een effectieve 'persona prompt' schrijven om een historische simulatie te starten.",
       "De leerling kan kritisch analyseren of de AI-output historisch accuraat is (fact-checking).",
       "De leerling herkent anachronismen (zaken die niet in de tijd passen) in de gegenereerde tekst.",
@@ -377,7 +377,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=300&h=200&fit=crop",
     summary: "Een Lagerhuis-debat waarin leerlingen AI gebruiken om argumenten te verzamelen, maar zelf het debat voeren. Ze ervaren hoe AI nuance kan missen of juist nieuwe perspectieven biedt.",
     description: "Leerlingen bereiden zich voor met behulp van AI (om argumenten vóór en tegen te genereren over stellingen als 'AI-kunst is diefstal' of 'Robots mogen rechters vervangen') en gaan daarna 'offline' het debat aan. Het doel is om nuance te vinden en eigen oordeelsvorming te trainen.",
-    goals: [
+    objectives: [
       "De leerling kan ethische dilemma's rondom AI (privacy, bias, autonomie) benoemen.",
       "De leerling kan AI inzetten als research-tool om snel diverse perspectieven te verzamelen.",
       "De leerling kan een eigen, onderbouwde mening formuleren en verdedigen, los van de AI-output.",
@@ -450,7 +450,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=300&h=200&fit=crop",
     summary: "Leerlingen gebruiken de 'Voice Mode' of chat-functie van AI om spreek- en schrijfvaardigheid te oefenen in een veilige omgeving, met directe feedback op grammatica en woordenschat.",
     description: "Spreekangst is een groot probleem bij Moderne Vreemde Talen. AI oordeelt niet. In deze les simuleren leerlingen een situatie (bijv. in een restaurant of bij de dokter) met een AI-bot die de rol van local speelt. De AI geeft na afloop feedback op fouten.",
-    goals: [
+    objectives: [
       "De leerling kan een gesprek voeren in de doeltaal over een alledaags onderwerp.",
       "De leerling durft vrijer te oefenen omdat de gesprekspartner een machine is (verlaging drempel).",
       "De leerling kan feedback van de AI (op grammatica/vocabulaire) begrijpen en toepassen in een tweede poging."
@@ -522,7 +522,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop",
     summary: "Studenten leren hoe ze ruwe datasets kunnen uploaden in AI-tools (zoals ChatGPT Data Analyst) om snel inzichten te krijgen, en leren kritisch kijken naar de gegenereerde grafieken.",
     description: "Data is het nieuwe goud, maar ruwe Excel-sheets zijn saai. In deze les leren studenten hoe ze met één druk op de knop (en een goede prompt) data kunnen visualiseren. Maar let op: is de schaalverdeling wel eerlijk? Kiest de AI de juiste grafiekvorm?",
-    goals: [
+    objectives: [
       "De student kan een dataset (CSV/Excel) opschonen en uploaden in een AI-analysetool.",
       "De student kan gerichte prompts schrijven om specifieke visualisaties te genereren (bijv. scatterplot, bar chart).",
       "De student kan kritisch beoordelen of een grafiek een eerlijk beeld geeft van de data (misleiding herkennen).",
@@ -595,7 +595,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=300&h=200&fit=crop",
     summary: "Studenten leren de rol van 'Senior Developer' aan te nemen terwijl AI (Copilot/ChatGPT) de 'Junior' is. Focus op code review, security en debugging.",
     description: "Programmeren verandert. Het gaat minder om syntax typen en meer om architectuur en controle. In deze les bouwen studenten een eenvoudige webpagina of script, maar... ze mogen zelf bijna niet typen. Ze moeten de AI aansturen. Werkt de code? Is hij veilig? Is hij efficiënt?",
-    goals: [
+    objectives: [
       "De student kan code genereren met natuurlijke taal (prompts).",
       "De student kan AI-gegenereerde code lezen, begrijpen en uitleggen (niet blind copy-pasten).",
       "De student herkent beveiligingsrisico's (zoals SQL injection) in gegenereerde code.",
@@ -667,7 +667,7 @@ export const lessons = [
     image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&h=200&fit=crop",
     summary: "Creatieve kunstwerken maken met prompts. Wat is 'stijl'?",
     description: "Leerlingen leren beschrijvende woorden (adjectieven) gebruiken om beelden te genereren.",
-    goals: ["Creativiteit stimuleren", "Leren prompten"],
+    objectives: ["Creativiteit stimuleren", "Leren prompten"],
     lessonPhases: [],
     materials: ["Tablets", "Bing Image Creator"]
   }
