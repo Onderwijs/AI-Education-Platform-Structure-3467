@@ -17,7 +17,7 @@ import Nieuwsbrief from './pages/Nieuwsbrief';
 import OverOns from './pages/OverOns';
 import Privacy from './pages/Privacy';
 
-// NEW Pages (Sitemap 2025)
+// Tools
 import ToolsOverview from './pages/tools/ToolsOverview';
 import ToolPlaceholder from './pages/tools/ToolPlaceholder';
 import LessonGenerator from './pages/tools/LessonGenerator';
@@ -25,10 +25,15 @@ import RubricMaker from './pages/tools/RubricMaker';
 import TestQuestionMaker from './pages/tools/TestQuestionMaker';
 import Taalcoach from './pages/tools/Taalcoach';
 import PresentatieGenerator from './pages/tools/PresentatieGenerator';
-import MentorLessonPlanner from './pages/tools/MentorLessonPlanner'; // NIEUWE IMPORT
+import MentorLessonPlanner from './pages/tools/MentorLessonPlanner';
+
+// Kenniscentrum (NEW IMPORTS)
+import Kennisbank from './pages/kenniscentrum/Kennisbank';
+import WatIsAI from './pages/kenniscentrum/WatIsAI';
+import ChatGPTInDeKlas from './pages/kenniscentrum/ChatGPTInDeKlas';
+import PromptBibliotheek from './pages/kenniscentrum/PromptBibliotheek';
 
 import Downloads from './pages/Downloads';
-import Kennisbank from './pages/kenniscentrum/Kennisbank';
 import TrainingDetail from './pages/trainingen/TrainingDetail';
 import LegalPage from './pages/legal/LegalPage';
 
@@ -53,7 +58,6 @@ function App() {
               <Route path="/tools/toetsvragenmaker" element={<TestQuestionMaker />} />
               <Route path="/tools/taalcoach" element={<Taalcoach />} />
               <Route path="/tools/presentatiegenerator" element={<PresentatieGenerator />} />
-              {/* NIEUWE MENTORLES ROUTE */}
               <Route path="/tools/mentorles" element={<MentorLessonPlanner />} />
               
               {/* 3. Voor Docenten */}
@@ -70,6 +74,11 @@ function App() {
               <Route path="/ai-tools" element={<AITools />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/kennisbank" element={<Kennisbank />} />
+              
+              {/* NIEUWE KENNISBANK ROUTES */}
+              <Route path="/kennisbank/wat-is-ai" element={<WatIsAI />} />
+              <Route path="/kennisbank/chatgpt-in-de-klas" element={<ChatGPTInDeKlas />} />
+              <Route path="/kennisbank/prompt-bibliotheek" element={<PromptBibliotheek />} />
 
               {/* 6. Trainingen */}
               <Route path="/trainingen" element={<Trainingen />} />
