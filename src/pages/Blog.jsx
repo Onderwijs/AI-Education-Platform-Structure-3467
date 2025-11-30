@@ -18,7 +18,7 @@ const Blog = () => {
     url: "https://aivooronderwijs.nl/google-i-o-2025-ai-en-de-toekomst-van-onderwijs/"
   };
 
-  // Posts sorted by date (newest first) - Added Kennisnet articles
+  // Posts sorted by date (newest first)
   const posts = [
     {
       title: "Monitor Digitalisering Onderwijs 2025",
