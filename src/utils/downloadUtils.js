@@ -403,7 +403,7 @@ export const downloadStartersgids = () => {
     // PAGINA 10: CHECKLIST (Aangepast Layout)
     // ==========================================
     addSectionHeader("10. AI-Checklist voor de Docent", true);
-    addParagraph("Print deze pagina uit en hang hem boven uw bureau of in de personeelskamer.");
+    addParagraph("Print deze pagina uit en hang hem boven uw bureau."); // AANGEPAST: Tekst verkort zoals gevraagd
 
     // Verbeterde Layout voor de Checklist
     const boxHeight = 150;
