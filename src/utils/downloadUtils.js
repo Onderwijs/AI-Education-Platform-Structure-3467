@@ -400,17 +400,23 @@ export const downloadStartersgids = () => {
     addParagraph("A: De basisversies van ChatGPT, Gemini en Claude zijn gratis en voor 90% van de onderwijstaken goed genoeg. Betaalde versies zijn sneller en kunnen betere afbeeldingen maken.");
 
     // ==========================================
-    // PAGINA 10: CHECKLIST
+    // PAGINA 10: CHECKLIST (Aangepast Layout)
     // ==========================================
     addSectionHeader("10. AI-Checklist voor de Docent", true);
     addParagraph("Print deze pagina uit en hang hem boven uw bureau of in de personeelskamer.");
 
+    // Verbeterde Layout voor de Checklist
+    const boxHeight = 150;
+    
     doc.setFillColor(240, 253, 244); // Green-50
-    doc.rect(marginX, cursorY, contentWidth, 140, 'F');
+    // Teken box met afgeronde hoeken
+    doc.roundedRect(marginX, cursorY, contentWidth, boxHeight, 3, 3, 'F');
     
-    cursorY += 10;
+    // Sla startpositie op voor notities later
+    const boxStartY = cursorY;
+    cursorY += 12; // Eerste padding in de box
     
-    const checklist = [
+    const checklistItems = [
       "PRIVACY CHECK: Heb ik alle namen van leerlingen verwijderd?",
       "FACT CHECK: Heb ik de output gecontroleerd op onzin/fouten?",
       "DOEL CHECK: Helpt dit het leerproces of is het een 'trucje'?",
@@ -421,11 +427,28 @@ export const downloadStartersgids = () => {
       "MENSELIJKE MAAT: Heb ik mijn eigen 'tone of voice' toegevoegd?"
     ];
 
-    checklist.forEach(item => {
-      addCheckboxItem(item);
+    checklistItems.forEach(item => {
+      // Handmatige rendering van checkboxes om pageBreaks in de box te voorkomen
+      // en om zeker te zijn van schone tekst zonder %¡
+      
+      doc.setDrawColor(22, 101, 52); // Groene rand (Green-800)
+      doc.setFillColor(255, 255, 255); // Wit vlak
+      doc.rect(marginX + 6, cursorY - 4, 5, 5, 'FD'); // Checkbox tekenen
+
+      // Extra beveiliging tegen %¡ tekens
+      const cleanText = normalizeLessonText(item).replace(/%¡/g, "");
+      
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
+      doc.setTextColor(22, 101, 52); // Groene tekst
+      doc.text(cleanText, marginX + 16, cursorY);
+      
+      cursorY += 14; // Ruimere regelafstand voor A4 formaat
     });
 
-    cursorY += 20;
+    // Cursor onder de box plaatsen voor de notities
+    cursorY = boxStartY + boxHeight + 10;
+
     addParagraph("Notities:", 12, "bold");
     doc.setDrawColor(150, 150, 150);
     doc.line(marginX, cursorY + 10, contentWidth + marginX, cursorY + 10);
