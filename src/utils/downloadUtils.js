@@ -208,7 +208,8 @@ export const downloadStartersgids = () => {
     // ==========================================
     addSectionHeader("2. AI Basisbegrippen voor Docenten");
     
-    addParagraph("Om AI goed te gebruiken, moet u de basis begrijpen:", "bold");
+    // FIX: Expliciet font size '11' doorgegeven i.p.v. alleen 'bold'
+    addParagraph("Om AI goed te gebruiken, moet u de basis begrijpen:", 11, "bold");
     addBulletList([
       "LLM (Large Language Model): Een systeem getraind op enorme hoeveelheden tekst (zoals ChatGPT of Claude). Het 'begrijpt' geen tekst, maar voorspelt het volgende woord.",
       "Prompt: De instructie die u aan de AI geeft. Hoe specifieker de prompt, hoe beter het resultaat.",
@@ -262,19 +263,22 @@ export const downloadStartersgids = () => {
     // ==========================================
     addSectionHeader("7. Werkvormen per Onderwijsniveau");
     
-    addParagraph("Primair Onderwijs (PO):", "bold");
+    // FIX: Expliciet font size '11' doorgegeven
+    addParagraph("Primair Onderwijs (PO):", 11, "bold");
     addBulletList([
       "De 'Weet-niet-alles' machine: Laat AI een fout antwoord geven en laat leerlingen het corrigeren.",
       "Verhalenbouwer: Leerlingen bedenken personages, AI genereert het verhaal."
     ]);
 
-    addParagraph("Voortgezet Onderwijs (VO):", "bold");
+    // FIX: Expliciet font size '11' doorgegeven
+    addParagraph("Voortgezet Onderwijs (VO):", 11, "bold");
     addBulletList([
       "Socratisch Gesprek: Leerlingen debatteren met de AI over een stelling.",
       "Fact-Checker: Laat AI een tekst genereren over een historisch event en laat leerlingen de fouten zoeken met hun boek."
     ]);
 
-    addParagraph("MBO / HBO:", "bold");
+    // FIX: Expliciet font size '11' doorgegeven
+    addParagraph("MBO / HBO:", 11, "bold");
     addBulletList([
       "Code Review: Laat AI code genereren en laat studenten deze optimaliseren en beveiligen.",
       "Sollicitatie-training: Simuleer een sollicitatiegesprek met AI als recruiter."
