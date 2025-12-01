@@ -47,7 +47,7 @@ const clearCache = () => {
 };
 
 /**
- * STARTERSGIDS DOWNLOAD V9.0 (VOLLEDIGE VERSIE)
+ * STARTERSGIDS DOWNLOAD V9.0 (VOLLEDIGE UITGEBREIDE VERSIE)
  */
 export const downloadStartersgids = () => {
   clearCache();
@@ -55,7 +55,7 @@ export const downloadStartersgids = () => {
   try {
     const doc = new jsPDF();
     
-    // CONFIGURATIE (Identiek aan lesbrieven)
+    // CONFIGURATIE (Identiek aan lesbrieven layout)
     const marginX = 20;       
     const marginTop = 20;
     const marginBottom = 25;  
@@ -104,7 +104,7 @@ export const downloadStartersgids = () => {
       checkPageBreak(30);
       cursorY += 5;
       
-      // Blauwe balk ipv groen voor Startersgids onderscheid
+      // Blauwe balk voor Startersgids stijl
       doc.setFillColor(239, 246, 255); // Blue-50
       doc.rect(marginX, cursorY, contentWidth, 10, 'F');
       
@@ -114,6 +114,18 @@ export const downloadStartersgids = () => {
       doc.text(title.toUpperCase(), marginX + 3, cursorY + 7);
       
       cursorY += 16;
+      resetFont();
+    };
+
+    // HELPER: Subkop
+    const addSubHeader = (title) => {
+      checkPageBreak(15);
+      cursorY += 2;
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
+      doc.setTextColor(0, 0, 0);
+      doc.text(title, marginX, cursorY);
+      cursorY += 6;
       resetFont();
     };
 
@@ -181,123 +193,227 @@ export const downloadStartersgids = () => {
     
     doc.setFontSize(16);
     doc.setFont("helvetica", "normal");
-    doc.text("Versie 9.0 - Handboek voor PO, VO, MBO & HBO", marginX, 45);
+    doc.text("Versie 9.0 - Het complete handboek voor docenten", marginX, 45);
 
     cursorY = 80;
 
-    // Inleiding
     resetFont();
-    addParagraph("Welkom bij de vernieuwde AI Startersgids. Kunstmatige Intelligentie (AI) ontwikkelt zich razendsnel. Voor het onderwijs biedt dit enorme kansen, maar ook uitdagingen. Deze gids biedt concrete handvatten, prompts en kaders om AI verantwoord en effectief in te zetten in uw lespraktijk.");
+    addParagraph("Welkom bij de vernieuwde AI Startersgids. Deze gids is speciaal ontwikkeld voor docenten in het PO, VO, en MBO/HBO die op zoek zijn naar praktische handvatten om Kunstmatige Intelligentie (AI) veilig en effectief in te zetten. Geen ingewikkelde theorie, maar direct toepasbare scenario's, prompts en workflows.");
     
     cursorY += 10;
 
     // ==========================================
-    // SECTIE 1: WAAROM AI IN HET ONDERWIJS?
+    // HOOFDSTUK 1: INLEIDING - WAT IS AI?
     // ==========================================
-    addSectionHeader("1. Introductie: Waarom AI?");
-    addParagraph("AI is geen tijdelijke hype, maar een fundamentele technologische verschuiving vergelijkbaar met de komst van het internet. Voor docenten betekent dit:");
-    addBulletList([
-      "Tijdsbesparing: Automatiseer administratie, lesvoorbereiding en basis-feedback.",
-      "Differentiatie: Genereer met één klik materiaal op drie verschillende niveaus.",
-      "Inspiratie: Gebruik AI als sparringpartner voor werkvormen en projecten.",
-      "Toekomstgerichtheid: Leerlingen moeten leren werken met de tools van hun toekomst."
-    ]);
-
-    // ==========================================
-    // SECTIE 2: BASISBEGRIPPEN
-    // ==========================================
-    addSectionHeader("2. AI Basisbegrippen voor Docenten");
+    addSectionHeader("1. Inleiding: Wat is AI precies?");
     
-    // FIX: Expliciet font size '11' doorgegeven i.p.v. alleen 'bold'
-    addParagraph("Om AI goed te gebruiken, moet u de basis begrijpen:", 11, "bold");
+    addSubHeader("Wat AI wel en niet is");
+    addParagraph("Veel mensen dichten menselijke eigenschappen toe aan AI, maar in de kern is het statistiek. Een Large Language Model (zoals ChatGPT) is eigenlijk een zeer geavanceerde 'woord-voorspeller'. Het berekent op basis van miljarden teksten welk woord logischerwijs volgt op het vorige.");
     addBulletList([
-      "LLM (Large Language Model): Een systeem getraind op enorme hoeveelheden tekst (zoals ChatGPT of Claude). Het 'begrijpt' geen tekst, maar voorspelt het volgende woord.",
-      "Prompt: De instructie die u aan de AI geeft. Hoe specifieker de prompt, hoe beter het resultaat.",
-      "Hallucinaties: AI kan feiten verzinnen die zeer overtuigend klinken. Controleer altijd de output!",
-      "Biases (Vooroordelen): AI neemt de vooroordelen over uit de data waarop het getraind is."
+      "AI is GEEN kennisbank: Het 'weet' niets feitelijk, maar genereert tekst die waarschijnlijk klinkt.",
+      "AI is GEEN mens: Het heeft geen normen, waarden, gevoelens of bewustzijn.",
+      "AI is WEL een patroonherkenner: Het is extreem goed in het herkennen en repliceren van structuren in taal, code en beeld."
+    ]);
+
+    addSubHeader("Waarom is dit relevant voor u?");
+    addParagraph("De impact van AI op het onderwijs is vergelijkbaar met de introductie van het internet. Het verandert hoe we informatie zoeken, verwerken en creëren. Voor docenten biedt dit kansen voor:");
+    addBulletList([
+      "Enorme tijdsbesparing bij administratie en voorbereiding.",
+      "Personalisatie van lesmateriaal (differentiatie).",
+      "Het voorbereiden van leerlingen op een veranderende arbeidsmarkt."
     ]);
 
     // ==========================================
-    // SECTIE 3: PRAKTISCHE CLASSROOM PROMPTS
+    // HOOFDSTUK 2: AI IN DE DAGELIJKSE PRAKTIJK
     // ==========================================
-    addSectionHeader("3. Praktische Classroom Prompts");
-    addParagraph("Kopieer en pas deze prompts aan voor uw eigen vak:");
-
-    addPromptBox("Lesvoorbereiding (Algemeen)", "Je bent een ervaren onderwijskundige. Ontwerp een lesplan van 50 minuten voor [NIVEAU/KLAS] over [ONDERWERP]. Zorg voor: 1) Een pakkende introductie, 2) Een activerende werkvorm, 3) Een formatieve check aan het einde.");
+    addSectionHeader("2. AI in de dagelijkse praktijk: 5 Scenario's");
     
-    addPromptBox("Differentiatie (Taal/Zaakvakken)", "Ik heb een tekst over [ONDERWERP]. Herschrijf deze tekst op drie niveaus: 1) Voor leerlingen met een taalachterstand (A2), 2) Gemiddeld niveau, 3) Uitdagend niveau met academisch taalgebruik.");
+    addParagraph("Hoe gebruikt u AI morgen in de les? Hier zijn 5 realistische scenario's.");
+
+    // Scenario 1
+    addSubHeader("Scenario 1: De Creatieve Lesstarter");
+    addParagraph("U zoekt een originele manier om een saai onderwerp te introduceren.");
+    addPromptBox("Prompt: Lesidee", "Bedenk 3 creatieve, activerende werkvormen van max 10 minuten om de les over [ONDERWERP] te starten voor [DOELGROEP]. Gebruik geen beeldschermen, maar focus op beweging of discussie.");
     
-    addPromptBox("Toetsvragen (Wiskunde/Exact)", "Genereer 5 meerkeuzevragen over [ONDERWERP]. Geef bij elke vraag aan wat het juiste antwoord is én waarom de foute antwoorden veelgemaakte denkfouten zijn.");
+    // Scenario 2
+    addSubHeader("Scenario 2: Differentiatie in een handomdraai");
+    addParagraph("U heeft een complexe tekst, maar enkele leerlingen beheersen de taal nog niet goed.");
+    addPromptBox("Prompt: Vereenvoudigen", "Herschrijf de onderstaande tekst naar taanniveau A2/1F. Behoud de vakspecifieke termen [TERM 1, TERM 2], maar leg deze tussen haakjes uit. Zorg voor korte zinnen.");
+
+    // Scenario 3
+    addSubHeader("Scenario 3: Rubrics & Beoordeling");
+    addParagraph("Het maken van een goede rubric kost vaak uren. Met AI minuten.");
+    addPromptBox("Prompt: Rubric", "Maak een beoordelingsrubriek in tabelvorm voor een [OPDRACHT TYPE]. Criteria: Inhoud, Vormgeving, Samenwerking. Niveaus: Onvoldoende, Voldoende, Goed, Excellent. Maak de beschrijvingen concreet en observeerbaar.");
+
+    // Scenario 4
+    addSubHeader("Scenario 4: Oudercommunicatie");
+    addParagraph("Een lastige mail sturen vraagt om de juiste toon.");
+    addPromptBox("Prompt: E-mail", "Schrijf een concept-mail aan ouders over [SITUATIE]. De toon moet professioneel, empathisch maar duidelijk zijn. Nodig uit voor een gesprek, maar geef aan dat de grens bereikt is.");
+
+    // Scenario 5
+    addSubHeader("Scenario 5: Toetsvragen Genereren");
+    addParagraph("Snel een formatieve check of quiz maken.");
+    addPromptBox("Prompt: Quiz", "Genereer 5 meerkeuzevragen over [HOOFDSTUK]. Geef bij elke vraag aan wat het goede antwoord is én waarom de foute antwoorden aannemelijke denkfouten zijn.");
 
     // ==========================================
-    // SECTIE 4: AI IN HET LESONTWERP
+    // HOOFDSTUK 3: AI-WIJZER (ETHIEK & GRENZEN)
     // ==========================================
-    addSectionHeader("4. AI in het Lesontwerp");
-    addParagraph("Gebruik het 'Backward Design' principe in combinatie met AI:");
-    addBulletList([
-      "Stap 1: Doelen bepalen. Vraag AI: 'Wat zijn de kerndoelen voor [VAK] in leerjaar [X]?'",
-      "Stap 2: Evaluatie bepalen. Vraag AI: 'Maak een rubriek om [VAARDIGHEID] te beoordelen.'",
-      "Stap 3: Leeractiviteiten. Vraag AI: 'Bedenk 3 creatieve werkvormen om dit doel te bereiken zonder beeldscherm.'"
-    ]);
-
-    // ==========================================
-    // SECTIE 5: FORMATIEF EVALUEREN
-    // ==========================================
-    addSectionHeader("5. AI voor Formatief Evalueren");
-    addParagraph("AI is een krachtige feedback-assistent. Laat AI nooit het cijfer bepalen, maar gebruik het voor snelle feedback loops.");
-    addPromptBox("Feedback Prompt", "Hier is een essay van een leerling. Geef feedback op: 1) Structuur, 2) Argumentatie. Geef GEEN cijfer, maar geef 3 concrete tips ter verbetering.");
-
-    // ==========================================
-    // SECTIE 6: ETHISCHE RICHTLIJNEN
-    // ==========================================
-    addSectionHeader("6. Ethische Richtlijnen & Veiligheid");
-    addBulletList([
-      "Geen persoonsgegevens: Voer nooit namen of privégegevens van leerlingen in.",
-      "Transparantie: Wees open naar leerlingen wanneer u AI gebruikt.",
-      "Menselijke eindverantwoordelijkheid: U bent de expert. Accepteer geen AI-output zonder review.",
-      "Bronvermelding: Leer leerlingen dat 'ChatGPT' geen bron is, maar een hulpmiddel."
-    ]);
-
-    // ==========================================
-    // SECTIE 7: WERKVORMEN PER NIVEAU
-    // ==========================================
-    addSectionHeader("7. Werkvormen per Onderwijsniveau");
+    addSectionHeader("3. AI-Wijzer: Ethiek & Grenzen");
     
-    // FIX: Expliciet font size '11' doorgegeven
-    addParagraph("Primair Onderwijs (PO):", 11, "bold");
+    addParagraph("Als docent heeft u een voorbeeldfunctie. Gebruik AI verantwoord.");
+
+    addSubHeader("Privacy: De Gouden Regel");
+    addParagraph("Voer NOOIT persoonsgegevens van leerlingen in (namen, adressen, specifieke situaties). AI-modellen kunnen deze data gebruiken voor training. Anonimiseer altijd: gebruik 'Leerling A' of 'de klas'.");
+
+    addSubHeader("Hallucinaties & Fact-checking");
+    addParagraph("AI kan zeer overtuigend liegen. Dit noemen we 'hallucineren'. Controleer altijd:");
     addBulletList([
-      "De 'Weet-niet-alles' machine: Laat AI een fout antwoord geven en laat leerlingen het corrigeren.",
-      "Verhalenbouwer: Leerlingen bedenken personages, AI genereert het verhaal."
+      "Feitelijke data (jaartallen, formules, namen).",
+      "Bronnen (AI verzint vaak niet-bestaande boektitels).",
+      "Biases (AI kan stereotyperende voorbeelden geven)."
     ]);
 
-    // FIX: Expliciet font size '11' doorgegeven
-    addParagraph("Voortgezet Onderwijs (VO):", 11, "bold");
+    addSubHeader("De Menselijke Maat");
+    addParagraph("Laat AI nooit beslissingen nemen over beoordeling of overgang. AI is een adviseur, u bent de beslisser.");
+
+    // ==========================================
+    // HOOFDSTUK 4: OVERZICHT VAN AI TOOLS
+    // ==========================================
+    addSectionHeader("4. Overzicht van AI Tools");
+    addParagraph("Welke tool gebruikt u waarvoor? Een kort overzicht van de marktleiders.");
+
+    addSubHeader("1. ChatGPT (OpenAI) / Claude (Anthropic)");
+    addParagraph("De 'alleskunners'. Ideaal voor tekstgeneratie, brainstormen, vertalen en programmeren. Claude staat bekend om een natuurlijkere schrijfstijl en grotere veiligheid.");
+
+    addSubHeader("2. Google Gemini");
+    addParagraph("Sterk geïntegreerd met Google Workspace. Kan direct informatie uit uw Google Docs of Drive halen (let op privacy-instellingen!).");
+
+    addSubHeader("3. NotebookLM (Google)");
+    addParagraph("Revolutionair voor bronnenonderzoek. U uploadt uw eigen PDF's (bijv. schoolbeleid of lesboek) en u kunt vragen stellen puur op basis van DIE bronnen. Geen hallucinaties buiten de bron om.");
+
+    addSubHeader("4. Beeldgeneratoren (DALL-E, Midjourney)");
+    addParagraph("Voor het maken van uniek beeldmateriaal voor presentaties, zonder auteursrechtproblemen.");
+
+    // ==========================================
+    // HOOFDSTUK 5: PROMPTBIBLIOTHEEK
+    // ==========================================
+    addSectionHeader("5. Promptbibliotheek voor Docenten");
+    addParagraph("Goede output begint met een goede input. Gebruik de formule: ROL + TAAK + CONTEXT + FORMAAT.");
+
+    addPromptBox("Uitleg met Analogie", "Je bent een docent natuurkunde. Leg het concept 'elektrische stroom' uit aan een brugklasser. Gebruik een analogie van water dat door buizen stroomt. Eindig met 3 controle-vragen.");
+
+    addPromptBox("Dyslexie-ondersteuning", "Herschrijf deze tekst zodat hij makkelijker leesbaar is voor leerlingen met dyslexie. Gebruik kortere zinnen, actieve vorm en duidelijke tussenkopjes.");
+
+    addPromptBox("NT2-ondersteuning", "Maak een woordenlijst van de 10 moeilijkste woorden uit deze tekst. Geef per woord: de definitie in eenvoudig Nederlands, een voorbeeldzin, en de vertaling naar het [TAAL].");
+
+    addPromptBox("Socratische Coach", "Ik ben een leerling en ik snap [ONDERWERP] niet. Geef niet direct het antwoord, maar stel mij vragen waardoor ik zelf tot de oplossing kom. Coach mij stap voor stap.");
+
+    // ==========================================
+    // HOOFDSTUK 6: AI-WORKFLOWS VOOR TIJDSWINST
+    // ==========================================
+    addSectionHeader("6. AI-Workflows voor Tijdswinst");
+
+    addSubHeader("Workflow A: Een volledige les in 5 minuten");
     addBulletList([
-      "Socratisch Gesprek: Leerlingen debatteren met de AI over een stelling.",
-      "Fact-Checker: Laat AI een tekst genereren over een historisch event en laat leerlingen de fouten zoeken met hun boek."
+      "Stap 1: Vraag ChatGPT om leerdoelen voor [ONDERWERP].",
+      "Stap 2: Vraag om een lesopzet (opening, kern, slot) op basis van die doelen.",
+      "Stap 3: Vraag om een directe instructie-tekst voor de kern.",
+      "Stap 4: Vraag om een verwerkingsopdracht + antwoordmodel.",
+      "Stap 5: Kopieer alles naar een document en pas aan waar nodig."
     ]);
 
-    // FIX: Expliciet font size '11' doorgegeven
-    addParagraph("MBO / HBO:", 11, "bold");
+    addSubHeader("Workflow B: SE/Profielwerkstuk Begeleiden");
     addBulletList([
-      "Code Review: Laat AI code genereren en laat studenten deze optimaliseren en beveiligen.",
-      "Sollicitatie-training: Simuleer een sollicitatiegesprek met AI als recruiter."
+      "Stap 1: Laat de leerling zijn hoofdvraag invoeren in AI voor feedback (niet voor het antwoord).",
+      "Stap 2: Gebruik AI om de structuur van het verslag te controleren.",
+      "Stap 3: Laat AI kritische tegenvragen genereren om de leerling voor te bereiden op de verdediging."
     ]);
 
     // ==========================================
-    // SECTIE 8: CHECKLIST VOOR SCHOLEN
+    // HOOFDSTUK 7: AI & LEERLINGEN
     // ==========================================
-    addSectionHeader("8. Checklist voor Implementatie");
+    addSectionHeader("7. AI & Leerlingen");
+    
+    addParagraph("Het verbieden van AI is een achterhoedegevecht. We moeten leerlingen leren er mee om te gaan.");
+
+    addSubHeader("Veilige Introductie");
+    addParagraph("Bespreek AI openlijk. Laat zien hoe het fouten maakt. Doe een 'mens vs machine' wedstrijdje in de klas.");
+
+    addSubHeader("Wat mag wel/niet?");
+    addParagraph("Stel duidelijke regels:");
     addBulletList([
-      "Is er een duidelijk AI-beleid (wat mag wel/niet)?",
-      "Zijn docenten getraind in basis-prompting?",
-      "Zijn leerlingen/studenten op de hoogte van de privacy-regels?",
-      "Wordt er niet alleen gefocust op tools, maar ook op didactiek?",
-      "Is er ruimte voor experimenteren en fouten maken?"
+      "AI als ideeëngenerator: JA.",
+      "AI als eindredacteur (feedback op taal): JA.",
+      "AI als schrijver van je hele werkstuk: NEE.",
+      "Bronvermelding: Verplicht (Bijv: 'Gegenereerd met ChatGPT op [DATUM], prompt: ...')."
     ]);
+
+    addSubHeader("Misbruik Detecteren");
+    addParagraph("AI-detectoren werken slecht en geven vaak valse beschuldigingen. Focus op het proces: vraag leerlingen om tussenversies, of laat ze hun werk mondeling toelichten. Als ze het niet kunnen uitleggen, hebben ze het niet zelf begrepen.");
+
+    // ==========================================
+    // HOOFDSTUK 8: STAP-VOOR-STAP OPDRACHT
+    // ==========================================
+    addSectionHeader("8. Stap-voor-stap Opdracht: Uw Eerste Assistent");
+    
+    addParagraph("Heeft u nog nooit echt met AI gewerkt? Doe dit nu:");
+    addBulletList([
+      "1. Maak een account aan op ChatGPT (OpenAI) of gebruik Gemini (Google).",
+      "2. Start een nieuwe chat en typ: 'Ik wil dat je mijn onderwijsassistent bent. Ik geef het vak [VAK]. Stel mij 5 vragen om mijn stijl en leerlingen beter te leren kennen.'",
+      "3. Beantwoord de vragen.",
+      "4. Vraag nu: 'Bedankt. Bedenk nu 3 lesideeën voor volgende week over [ONDERWERP].'",
+      "5. Kies de leukste en vraag: 'Werk idee 2 uit tot een stappenplan van 50 minuten.'",
+      "6. Print het uit en probeer het in de klas!"
+    ]);
+
+    // ==========================================
+    // HOOFDSTUK 9: FAQ VOOR DOCENTEN
+    // ==========================================
+    addSectionHeader("9. Veelgestelde Vragen (FAQ)");
+
+    addSubHeader("Gaat AI mijn baan overnemen?");
+    addParagraph("Nee. Onderwijs draait om relatie, motivatie en pedagogisch contact. Dat kan AI niet. AI neemt wel het saaie werk over (administratie, nakijken), zodat u meer tijd heeft voor de leerling.");
+
+    addSubHeader("Is het gebruik van AI fraude?");
+    addParagraph("Niet als het transparant gebeurt en binnen de afgesproken kaders. Het is fraude als een leerling doet alsof AI-werk zijn eigen werk is.");
+
+    addSubHeader("Kost het geld?");
+    addParagraph("De basisversies van ChatGPT, Gemini en Claude zijn gratis. Voor geavanceerde functies (zoals afbeeldingen maken of grote documenten uploaden) is soms een betaald abonnement nodig.");
+
+    // ==========================================
+    // HOOFDSTUK 10: CHECKLIST (1 PAGINA)
+    // ==========================================
+    addSectionHeader("10. AI-Checklist voor de Docent");
+    
+    addParagraph("Print deze pagina uit en hang hem boven uw bureau.");
+    
+    doc.setFillColor(240, 253, 244); // Green-50
+    doc.rect(marginX, cursorY, contentWidth, 60, 'F');
+    cursorY += 5;
+    
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(22, 101, 52);
+    doc.text("CHECKLIST VOOR GEBRUIK", marginX + 5, cursorY + 5);
+    
+    cursorY += 10;
+    resetFont();
+    doc.setTextColor(22, 101, 52);
+    
+    const checklistItems = [
+      "□ PRIVACY: Heb ik alle namen en persoonsgegevens verwijderd?",
+      "□ CHECK: Heb ik de output gecontroleerd op feitelijke onjuistheden?",
+      "□ DOEL: Helpt dit het leerproces, of is het een 'trucje'?",
+      "□ TRANSPARANTIE: Weten mijn leerlingen/collega's dat ik AI gebruik?",
+      "□ MENS: Ben ik nog steeds de eindverantwoordelijke voor de inhoud?"
+    ];
+
+    checklistItems.forEach(item => {
+      doc.text(item, marginX + 5, cursorY);
+      cursorY += 8;
+    });
 
     cursorY += 10;
-    addParagraph("Deze gids is met zorg samengesteld door Onderwijs.ai. Blijf kritisch, blijf leren en zet de mens altijd centraal.", 10, "italic", [80, 80, 80]);
+    addParagraph("Deze gids is een levend document. AI verandert snel. Blijf nieuwsgierig, experimenteer, en deel uw ervaringen met collega's.", 11, "italic", [100, 100, 100]);
 
     // ==========================================
     // FOOTER (Paginanummering)
