@@ -4,7 +4,7 @@ import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid, FiUsers } = FiIcons;
+const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid, FiUsers, FiMail } = FiIcons;
 
 const ToolsOverview = () => {
   const tools = [
@@ -44,16 +44,22 @@ const ToolsOverview = () => {
       icon: FiUsers,
       desc: "Bedenk snel een veilige en gestructureerde mentorles."
     },
+    {
+      name: "Ouder-mailgenerator",
+      path: "/tools/oudermailgenerator",
+      icon: FiMail,
+      desc: "Genereer snel een duidelijke en professionele e-mail voor ouders over schoolactiviteiten."
+    }
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       <SimpleHero 
         title="Interactieve AI Tools" 
-        subtitle="Genereer direct content voor je lessen" 
-        color="from-indigo-600 to-cyan-600" 
+        subtitle="Genereer direct content voor je lessen"
+        color="from-indigo-600 to-cyan-600"
       />
-
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tools.map((tool, index) => (
