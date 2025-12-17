@@ -4,13 +4,14 @@ import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const { FiMail, FiUsers, FiCalendar, FiMapPin, FiList, FiUser, FiEdit3, FiCopy, FiCheck, FiSend } = FiIcons;
+const { FiMail, FiUsers, FiCalendar, FiMapPin, FiList, FiUser, FiEdit3, FiCopy, FiCheck, FiSend, FiClock } = FiIcons;
 
 const ParentEmailGenerator = () => {
   const [formData, setFormData] = useState({
     activityName: '',
     groups: '',
-    dateTime: '',
+    date: '',
+    time: '',
     location: '',
     itemsToBring: '',
     contactPerson: '',
@@ -29,7 +30,7 @@ const ParentEmailGenerator = () => {
     e.preventDefault();
 
     // 1. Lokale Email Generatie
-    const emailSubject = `Informatie: ${formData.activityName} - ${formData.dateTime}`;
+    const emailSubject = `Informatie: ${formData.activityName} - ${formData.date}`;
     const emailBody = `Beste ouders/verzorgers,
 
 Hierbij ontvangt u belangrijke informatie over de komende activiteit: ${formData.activityName}. Deze activiteit is bedoeld voor ${formData.groups}.
@@ -38,7 +39,8 @@ ${formData.description ? formData.description : `We kijken er erg naar uit om me
 
 Hieronder vindt u de praktische informatie op een rij:
 
-📅 Datum & Tijd: ${formData.dateTime}
+📅 Datum: ${formData.date}
+🕒 Tijd: ${formData.time}
 📍 Locatie: ${formData.location}
 👤 Contactpersoon: ${formData.contactPerson}
 
@@ -56,7 +58,8 @@ ${formData.contactPerson}`;
 
 Activiteit: ${formData.activityName}
 Doelgroep: ${formData.groups}
-Datum & Tijd: ${formData.dateTime}
+Datum: ${formData.date}
+Tijd: ${formData.time}
 Locatie: ${formData.location}
 Meenemen/Actie voor ouders: ${formData.itemsToBring}
 Contactpersoon: ${formData.contactPerson}
@@ -147,19 +150,36 @@ Vereisten:
                     />
                   </div>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Datum & Tijd</label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-2.5 text-gray-400"><SafeIcon icon={FiCalendar} /></span>
-                    <input 
-                      type="text" 
-                      name="dateTime" 
-                      required 
-                      placeholder="12 mei, 09:00 - 14:00" 
-                      value={formData.dateTime}
-                      onChange={handleChange}
-                      className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
-                    />
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Datum</label>
+                    <div className="relative">
+                      <span className="absolute left-3 top-2.5 text-gray-400"><SafeIcon icon={FiCalendar} /></span>
+                      <input 
+                        type="text" 
+                        name="date" 
+                        required 
+                        placeholder="12 mei" 
+                        value={formData.date}
+                        onChange={handleChange}
+                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Tijd</label>
+                    <div className="relative">
+                      <span className="absolute left-3 top-2.5 text-gray-400"><SafeIcon icon={FiClock} /></span>
+                      <input 
+                        type="text" 
+                        name="time" 
+                        required 
+                        placeholder="09:00 - 14:00" 
+                        value={formData.time}
+                        onChange={handleChange}
+                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
