@@ -4,7 +4,7 @@ import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid, FiUsers, FiMail } = FiIcons;
+const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid, FiUsers, FiMail, FiActivity } = FiIcons;
 
 const ToolsOverview = () => {
   const tools = [
@@ -49,6 +49,12 @@ const ToolsOverview = () => {
       path: "/tools/oudermailgenerator",
       icon: FiMail,
       desc: "Genereer snel een duidelijke en professionele e-mail voor ouders over schoolactiviteiten."
+    },
+    {
+      name: "Interactief Sociogram",
+      path: "/tools/sociogram",
+      icon: FiActivity,
+      desc: "Maak een netwerkvisualisatie van klaskeuzes (gezellig, niet gezellig, samenwerken, niet samenwerken)."
     }
   ];
 

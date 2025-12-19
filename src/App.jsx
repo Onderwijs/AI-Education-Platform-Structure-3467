@@ -27,6 +27,7 @@ import Taalcoach from './pages/tools/Taalcoach';
 import PresentatieGenerator from './pages/tools/PresentatieGenerator';
 import MentorLessonPlanner from './pages/tools/MentorLessonPlanner';
 import ParentEmailGenerator from './pages/tools/ParentEmailGenerator';
+import Sociogram from './pages/tools/Sociogram';
 
 // Kenniscentrum (NEW IMPORTS)
 import Kennisbank from './pages/kenniscentrum/Kennisbank';
@@ -60,6 +61,7 @@ function App() {
               <Route path="/tools/presentatiegenerator" element={<PresentatieGenerator />} />
               <Route path="/tools/mentorles" element={<MentorLessonPlanner />} />
               <Route path="/tools/oudermailgenerator" element={<ParentEmailGenerator />} />
+              <Route path="/tools/sociogram" element={<Sociogram />} />
               
               {/* 3. Voor Docenten */}
               <Route path="/voor-docenten/po" element={<PO />} />
