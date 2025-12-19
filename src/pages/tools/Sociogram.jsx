@@ -81,7 +81,7 @@ const Sociogram = () => {
     // Check of de ID geldig is (geen placeholder en niet leeg)
     if (!SHEET_ID || SHEET_ID === "PLAATS_HIER_JOUW_SHEET_ID") {
       // Gebruikersvriendelijke melding (B1 niveau), geen technische details
-      alert("⚠️ De Google Sheets-template is tijdelijk niet beschikbaar.\n\nGebruik de Excel-template of probeer het later opnieuw.");
+      alert("⚠️ De Google Sheets-template is tijdelijk niet beschikbaar.\n\nGebruik de Excel-template of upload dit bestand later in Google Sheets.");
       return;
     }
 
