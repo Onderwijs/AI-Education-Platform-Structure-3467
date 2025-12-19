@@ -10,7 +10,7 @@ const {
   FiUpload, FiClipboard, FiSettings, FiActivity, 
   FiDownload, FiSearch, FiEye, FiAlertTriangle, 
   FiCheck, FiUsers, FiGrid, FiXCircle, FiInfo,
-  FiFileText, FiHelpCircle, FiDatabase
+  FiFileText, FiHelpCircle, FiDatabase, FiExternalLink
 } = FiIcons;
 
 const Sociogram = () => {
