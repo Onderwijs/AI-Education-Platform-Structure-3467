@@ -53,7 +53,7 @@ const Sociogram = () => {
     // We genereren de Excel on-the-fly zodat hij direct werkt zonder server assets
     const wb = XLSX.utils.book_new();
     const headers = [
-      "Naam", 
+      "Hoe heet je?", 
       "Met wie vind je het gezellig?", 
       "Met wie vind je het niet zo gezellig?", 
       "Met wie kan je goed samenwerken?", 
@@ -74,9 +74,8 @@ const Sociogram = () => {
 
   const handleGoogleSheetOpen = () => {
     // 🔑 HOOFDREGEL: Link naar een specifieke template die een KOPIE forceert.
-    // TODO: Vervang 'YOUR_TEMPLATE_ID' hieronder met de ID van jouw definitieve Google Sheet template.
-    // De template moet publiek (view only) zijn en de headers bevatten: "Hoe heet je?", "Met wie vind je het gezellig?", etc.
-    const templateId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"; 
+    // VERVANG DEZE ID DOOR DE DEFINITIEVE SHEET ID
+    const templateId = "REPLACE_WITH_YOUR_SHEET_ID"; 
     
     // Gebruik /copy om direct een kopie te forceren in het account van de gebruiker
     const url = `https://docs.google.com/spreadsheets/d/${templateId}/copy`;
@@ -86,7 +85,8 @@ const Sociogram = () => {
   };
 
   const handleLoadExample = () => {
-    const exampleCSV = `Naam,Gezellig met,Niet gezellig met,Met wie kan je goed samenwerken?,Met wie kan je niet zo goed samenwerken?
+    // Aangepast voorbeeld zodat het matcht met de nieuwe headers
+    const exampleCSV = `Hoe heet je?,Met wie vind je het gezellig?,Met wie vind je het niet zo gezellig?,Met wie kan je goed samenwerken?,Met wie kan je niet zo goed samenwerken?
 Anna,Pietje,Klaasje,Pietje,
 Pietje,Anna,Jantje,Anna,
 Klaasje,Pietje,,,
@@ -240,12 +240,12 @@ Tom,Jantje,,Tom,`;
       return idx !== -1 ? availableHeaders[idx] : '';
     };
 
-    // Updated: Include 'hoe heet je' for Google Sheets template compatibility
-    if (!newMapping.name) newMapping.name = findMatch(['naam', 'leerling', 'student', 'name', 'hoe heet je', 'wie ben je']);
-    if (!newMapping.socialPos) newMapping.socialPos = findMatch(['gezellig met', 'vriend', 'social+', 'leuk']);
-    if (!newMapping.socialNeg) newMapping.socialNeg = findMatch(['niet gezellig', 'niet leuk', 'social-']);
-    if (!newMapping.workPos) newMapping.workPos = findMatch(['samenwerken', 'werk+', 'goed werken']);
-    if (!newMapping.workNeg) newMapping.workNeg = findMatch(['niet samenwerken', 'werk-', 'niet goed werken']);
+    // Updated: Include EXACT phrases from the sociogram template
+    if (!newMapping.name) newMapping.name = findMatch(['hoe heet je', 'naam', 'leerling', 'student']);
+    if (!newMapping.socialPos) newMapping.socialPos = findMatch(['met wie vind je het gezellig', 'gezellig met', 'social+']);
+    if (!newMapping.socialNeg) newMapping.socialNeg = findMatch(['met wie vind je het niet zo gezellig', 'niet gezellig', 'social-']);
+    if (!newMapping.workPos) newMapping.workPos = findMatch(['met wie kan je goed samenwerken', 'samenwerken', 'work+']);
+    if (!newMapping.workNeg) newMapping.workNeg = findMatch(['met wie kan je niet zo goed samenwerken', 'niet samenwerken', 'work-']);
 
     setMapping(newMapping);
   };
@@ -526,7 +526,7 @@ Tom,Jantje,,Tom,`;
                  </div>
                  {/* 3️⃣ Instructie tekst (gevraagde B1 regel) */}
                  <p className="text-xs text-gray-500 mt-2 text-center sm:text-right">
-                   De link maakt automatisch een kopie in jouw Google Drive. Vul daarna de kolommen in en upload of plak de data in Onderwijs.ai.
+                   Deze link maakt automatisch een kopie van het sociogram-template in jouw Google Drive. Vul de kolommen in en plak of upload de data in Onderwijs.ai.
                  </p>
                </div>
              </div>
@@ -572,7 +572,7 @@ Tom,Jantje,,Tom,`;
                   <label className="block text-sm font-medium text-gray-700 mb-2">Plak hier CSV of tab-gescheiden data</label>
                   <textarea 
                     className="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-sm"
-                    placeholder={`Naam,Gezellig met,Niet gezellig met\nAnna,Pietje,Klaasje\nPietje,Anna,Jantje`}
+                    placeholder={`Hoe heet je?,Met wie vind je het gezellig?,Met wie vind je het niet zo gezellig?\nAnna,Pietje,Klaasje\nPietje,Anna,Jantje`}
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                     onBlur={handlePasteProcess}
