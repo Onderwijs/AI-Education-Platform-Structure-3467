@@ -74,8 +74,9 @@ const Sociogram = () => {
 
   const handleGoogleSheetOpen = () => {
     // 🔑 HOOFDREGEL: Link naar een specifieke template die een KOPIE forceert.
-    // Dit ID moet verwijzen naar de sheet met de headers: "Hoe heet je?", "Met wie vind je het gezellig?", etc.
-    const templateId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"; // Vervang door definitief ID indien nodig
+    // TODO: Vervang 'YOUR_TEMPLATE_ID' hieronder met de ID van jouw definitieve Google Sheet template.
+    // De template moet publiek (view only) zijn en de headers bevatten: "Hoe heet je?", "Met wie vind je het gezellig?", etc.
+    const templateId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"; 
     
     // Gebruik /copy om direct een kopie te forceren in het account van de gebruiker
     const url = `https://docs.google.com/spreadsheets/d/${templateId}/copy`;
@@ -523,7 +524,7 @@ Tom,Jantje,,Tom,`;
                      <span>Open in Google Sheets</span>
                    </button>
                  </div>
-                 {/* 3️⃣ Instructie tekst */}
+                 {/* 3️⃣ Instructie tekst (gevraagde B1 regel) */}
                  <p className="text-xs text-gray-500 mt-2 text-center sm:text-right">
                    De link maakt automatisch een kopie in jouw Google Drive. Vul daarna de kolommen in en upload of plak de data in Onderwijs.ai.
                  </p>
