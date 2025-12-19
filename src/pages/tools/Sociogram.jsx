@@ -74,12 +74,14 @@ const Sociogram = () => {
   };
 
   const handleGoogleSheetOpen = () => {
-    // ⚠️ BELANGRIJK: Vervang onderstaande ID door de ID van jouw publieke Google Sheet
-    // De sheet moet gedeeld zijn als "Iedereen met de link" -> "Lezer" (Viewer)
+    // Config: ID van de publieke Google Sheet Template
+    // Indien nog niet ingesteld ("PLAATS_HIER..."), tonen we een vriendelijke melding.
     const SHEET_ID = "PLAATS_HIER_JOUW_SHEET_ID"; 
     
-    if (SHEET_ID === "PLAATS_HIER_JOUW_SHEET_ID") {
-      alert("⚠️ Let op: De Google Sheet ID is nog niet ingesteld in de code. Vervang 'PLAATS_HIER_JOUW_SHEET_ID' in Sociogram.jsx.");
+    // Check of de ID geldig is (geen placeholder en niet leeg)
+    if (!SHEET_ID || SHEET_ID === "PLAATS_HIER_JOUW_SHEET_ID") {
+      // Gebruikersvriendelijke melding (B1 niveau), geen technische details
+      alert("⚠️ De Google Sheets-template is tijdelijk niet beschikbaar.\n\nGebruik de Excel-template of probeer het later opnieuw.");
       return;
     }
 
