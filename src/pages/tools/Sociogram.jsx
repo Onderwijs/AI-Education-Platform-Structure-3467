@@ -52,6 +52,7 @@ const Sociogram = () => {
   const handleDownloadTemplate = () => {
     // We genereren de Excel on-the-fly zodat hij direct werkt zonder server assets
     const wb = XLSX.utils.book_new();
+    // Headers exact gelijk aan Google Sheets template
     const headers = [
       "Hoe heet je?", 
       "Met wie vind je het gezellig?", 
@@ -73,12 +74,17 @@ const Sociogram = () => {
   };
 
   const handleGoogleSheetOpen = () => {
-    // 🔑 HOOFDREGEL: Link naar een specifieke template die een KOPIE forceert.
-    // VERVANG DEZE ID DOOR DE DEFINITIEVE SHEET ID
-    const templateId = "REPLACE_WITH_YOUR_SHEET_ID"; 
+    // ⚠️ BELANGRIJK: Vervang onderstaande ID door de ID van jouw publieke Google Sheet
+    // De sheet moet gedeeld zijn als "Iedereen met de link" -> "Lezer" (Viewer)
+    const SHEET_ID = "PLAATS_HIER_JOUW_SHEET_ID"; 
     
+    if (SHEET_ID === "PLAATS_HIER_JOUW_SHEET_ID") {
+      alert("⚠️ Let op: De Google Sheet ID is nog niet ingesteld in de code. Vervang 'PLAATS_HIER_JOUW_SHEET_ID' in Sociogram.jsx.");
+      return;
+    }
+
     // Gebruik /copy om direct een kopie te forceren in het account van de gebruiker
-    const url = `https://docs.google.com/spreadsheets/d/${templateId}/copy`;
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/copy`;
     
     // Open in nieuw tabblad met veilige rel attributen
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -524,9 +530,9 @@ Tom,Jantje,,Tom,`;
                      <span>Open in Google Sheets</span>
                    </button>
                  </div>
-                 {/* 3️⃣ Instructie tekst (gevraagde B1 regel) */}
+                 {/* 3️⃣ Instructie tekst - AANGEPAST */}
                  <p className="text-xs text-gray-500 mt-2 text-center sm:text-right">
-                   Deze link maakt automatisch een kopie van het sociogram-template in jouw Google Drive. Vul de kolommen in en plak of upload de data in Onderwijs.ai.
+                   De link maakt automatisch een kopie van het sociogram-template in jouw Google Drive.
                  </p>
                </div>
              </div>
