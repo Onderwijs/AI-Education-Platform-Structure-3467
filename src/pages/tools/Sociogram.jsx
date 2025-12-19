@@ -72,6 +72,18 @@ const Sociogram = () => {
     XLSX.writeFile(wb, "sociogram-template.xlsx");
   };
 
+  const handleGoogleSheetOpen = () => {
+    // 🔑 HOOFDREGEL: Link naar een specifieke template die een KOPIE forceert.
+    // Dit ID moet verwijzen naar de sheet met de headers: "Hoe heet je?", "Met wie vind je het gezellig?", etc.
+    const templateId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"; // Vervang door definitief ID indien nodig
+    
+    // Gebruik /copy om direct een kopie te forceren in het account van de gebruiker
+    const url = `https://docs.google.com/spreadsheets/d/${templateId}/copy`;
+    
+    // Open in nieuw tabblad met veilige rel attributen
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   const handleLoadExample = () => {
     const exampleCSV = `Naam,Gezellig met,Niet gezellig met,Met wie kan je goed samenwerken?,Met wie kan je niet zo goed samenwerken?
 Anna,Pietje,Klaasje,Pietje,
@@ -227,7 +239,8 @@ Tom,Jantje,,Tom,`;
       return idx !== -1 ? availableHeaders[idx] : '';
     };
 
-    if (!newMapping.name) newMapping.name = findMatch(['naam', 'leerling', 'student', 'name']);
+    // Updated: Include 'hoe heet je' for Google Sheets template compatibility
+    if (!newMapping.name) newMapping.name = findMatch(['naam', 'leerling', 'student', 'name', 'hoe heet je', 'wie ben je']);
     if (!newMapping.socialPos) newMapping.socialPos = findMatch(['gezellig met', 'vriend', 'social+', 'leuk']);
     if (!newMapping.socialNeg) newMapping.socialNeg = findMatch(['niet gezellig', 'niet leuk', 'social-']);
     if (!newMapping.workPos) newMapping.workPos = findMatch(['samenwerken', 'werk+', 'goed werken']);
@@ -493,21 +506,27 @@ Tom,Jantje,,Tom,`;
                    Download de Excel-template en vul per leerling de namen in. Meerdere namen in één cel scheid je met komma’s.
                  </p>
                </div>
-               <div className="flex flex-col sm:flex-row gap-3">
-                 <button 
-                   onClick={handleDownloadTemplate}
-                   className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center space-x-2 font-medium text-sm shadow-sm"
-                 >
-                   <SafeIcon icon={FiDownload} />
-                   <span>Download Excel-template</span>
-                 </button>
-                 <button 
-                   onClick={() => window.open('https://docs.google.com/spreadsheets/u/0/create', '_blank')}
-                   className="text-blue-600 hover:text-blue-700 px-4 py-2 rounded-lg transition-colors flex items-center justify-center space-x-2 font-medium text-sm"
-                 >
-                   <SafeIcon icon={FiExternalLink} />
-                   <span>Open Google Sheets</span>
-                 </button>
+               <div className="flex flex-col gap-2">
+                 <div className="flex flex-col sm:flex-row gap-3">
+                   <button 
+                     onClick={handleDownloadTemplate}
+                     className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center space-x-2 font-medium text-sm shadow-sm"
+                   >
+                     <SafeIcon icon={FiDownload} />
+                     <span>Download Excel-template</span>
+                   </button>
+                   <button 
+                     onClick={handleGoogleSheetOpen}
+                     className="text-blue-600 hover:text-blue-700 px-4 py-2 rounded-lg transition-colors flex items-center justify-center space-x-2 font-medium text-sm"
+                   >
+                     <SafeIcon icon={FiExternalLink} />
+                     <span>Open in Google Sheets</span>
+                   </button>
+                 </div>
+                 {/* 3️⃣ Instructie tekst */}
+                 <p className="text-xs text-gray-500 mt-2 text-center sm:text-right">
+                   De link maakt automatisch een kopie in jouw Google Drive. Vul daarna de kolommen in en upload of plak de data in Onderwijs.ai.
+                 </p>
                </div>
              </div>
 
