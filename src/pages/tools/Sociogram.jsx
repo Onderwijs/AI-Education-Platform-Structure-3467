@@ -30,6 +30,9 @@ const Sociogram = () => {
     workPos: '',
     workNeg: ''
   });
+  
+  // UX State
+  const [showExamples, setShowExamples] = useState(false); // Default hidden (Clean UI)
 
   // Graph Data & View
   const [graphData, setGraphData] = useState({ nodes: [], links: [] });
@@ -430,8 +433,8 @@ Tom,Jantje,,Tom,`;
   // Render helpers
   const activeStats = (selectedNode || hoverNode) ? getStats()[selectedNode || hoverNode] : null;
   const sortedList = getSortedStats();
-  const topList = sortedList.slice(0, 5); // Vaak gekozen
-  const bottomList = sortedList.filter(s => s.incoming <= 1).slice(0, 5); // Minder vaak gekozen
+  const topList = sortedList.slice(0, 5);
+  const bottomList = sortedList.filter(s => s.incoming <= 1).slice(0, 5);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -583,10 +586,18 @@ Tom,Jantje,,Tom,`;
               {/* Preview & Mapping */}
               {headers.length > 0 && (
                 <div className="mt-8 pt-8 border-t border-gray-100">
-                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <SafeIcon icon={FiSettings} />
-                    Stap 2: Kolommen Koppelen
-                  </h3>
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="font-bold text-gray-900 flex items-center gap-2">
+                      <SafeIcon icon={FiSettings} />
+                      Stap 2: Kolommen Koppelen
+                    </h3>
+                    <button 
+                      onClick={() => setShowExamples(!showExamples)}
+                      className="text-xs text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                    >
+                      {showExamples ? 'Verberg voorbeelden' : 'Bekijk voorbeeldwaarden (optioneel)'}
+                    </button>
+                  </div>
                   
                   {parseMessage && (
                     <div className={`mb-6 border rounded-lg p-4 flex items-start gap-3 ${parseMessage.type === 'error' ? 'bg-red-50 border-red-200' : 'bg-yellow-50 border-yellow-200'}`}>
@@ -613,6 +624,11 @@ Tom,Jantje,,Tom,`;
                         <option value="">-- Selecteer kolom --</option>
                         {headers.map(h => <option key={h} value={h}>{h}</option>)}
                       </select>
+                      {showExamples && mapping.name && parsedData.length > 0 && (
+                        <p className="mt-1 text-xs text-gray-500 truncate">
+                          <span className="font-medium">Voorbeeld:</span> {parsedData[0][mapping.name]}
+                        </p>
+                      )}
                     </div>
                     
                     <div>
@@ -625,6 +641,11 @@ Tom,Jantje,,Tom,`;
                         <option value="">-- Selecteer kolom --</option>
                         {headers.map(h => <option key={h} value={h}>{h}</option>)}
                       </select>
+                      {showExamples && mapping.socialPos && parsedData.length > 0 && (
+                        <p className="mt-1 text-xs text-gray-500 truncate">
+                          <span className="font-medium">Voorbeeld:</span> {parsedData[0][mapping.socialPos]}
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -637,6 +658,11 @@ Tom,Jantje,,Tom,`;
                         <option value="">-- Selecteer kolom --</option>
                         {headers.map(h => <option key={h} value={h}>{h}</option>)}
                       </select>
+                      {showExamples && mapping.socialNeg && parsedData.length > 0 && (
+                        <p className="mt-1 text-xs text-gray-500 truncate">
+                          <span className="font-medium">Voorbeeld:</span> {parsedData[0][mapping.socialNeg]}
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -649,6 +675,11 @@ Tom,Jantje,,Tom,`;
                         <option value="">-- Selecteer kolom --</option>
                         {headers.map(h => <option key={h} value={h}>{h}</option>)}
                       </select>
+                      {showExamples && mapping.workPos && parsedData.length > 0 && (
+                        <p className="mt-1 text-xs text-gray-500 truncate">
+                          <span className="font-medium">Voorbeeld:</span> {parsedData[0][mapping.workPos]}
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -661,6 +692,11 @@ Tom,Jantje,,Tom,`;
                         <option value="">-- Selecteer kolom --</option>
                         {headers.map(h => <option key={h} value={h}>{h}</option>)}
                       </select>
+                      {showExamples && mapping.workNeg && parsedData.length > 0 && (
+                        <p className="mt-1 text-xs text-gray-500 truncate">
+                          <span className="font-medium">Voorbeeld:</span> {parsedData[0][mapping.workNeg]}
+                        </p>
+                      )}
                     </div>
                   </div>
 
