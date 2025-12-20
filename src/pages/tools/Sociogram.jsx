@@ -10,7 +10,8 @@ const {
   FiUpload, FiClipboard, FiSettings, FiActivity, 
   FiDownload, FiSearch, FiEye, FiAlertTriangle, 
   FiCheck, FiUsers, FiGrid, FiXCircle, FiInfo,
-  FiFileText, FiHelpCircle, FiDatabase, FiExternalLink
+  FiFileText, FiHelpCircle, FiDatabase, FiExternalLink,
+  FiFilter
 } = FiIcons;
 
 const Sociogram = () => {
@@ -50,9 +51,7 @@ const Sociogram = () => {
 
   // --- LOGIC: TEMPLATE & EXAMPLE ---
   const handleDownloadTemplate = () => {
-    // We genereren de Excel on-the-fly zodat hij direct werkt zonder server assets
     const wb = XLSX.utils.book_new();
-    // Headers exact gelijk aan Google Sheets template
     const headers = [
       "Hoe heet je?", 
       "Met wie vind je het gezellig?", 
@@ -62,38 +61,25 @@ const Sociogram = () => {
     ];
     const data = [
       headers,
-      ["Vul hier een naam in", "Naam 1, Naam 2", "", "Naam 3", ""], // Voorbeeld rij
+      ["Vul hier een naam in", "Naam 1, Naam 2", "", "Naam 3", ""], 
     ];
     const ws = XLSX.utils.aoa_to_sheet(data);
-    
-    // Kolombreedtes voor leesbaarheid
     ws['!cols'] = [{wch: 20}, {wch: 30}, {wch: 30}, {wch: 30}, {wch: 30}];
-    
     XLSX.utils.book_append_sheet(wb, ws, "Sociogram Template");
     XLSX.writeFile(wb, "sociogram-template.xlsx");
   };
 
   const handleGoogleSheetOpen = () => {
-    // Config: ID van de publieke Google Sheet Template
-    // Indien nog niet ingesteld ("PLAATS_HIER..."), tonen we een vriendelijke melding.
     const SHEET_ID = "PLAATS_HIER_JOUW_SHEET_ID"; 
-    
-    // Check of de ID geldig is (geen placeholder en niet leeg)
     if (!SHEET_ID || SHEET_ID === "PLAATS_HIER_JOUW_SHEET_ID") {
-      // Gebruikersvriendelijke melding (B1 niveau), geen technische details
       alert("⚠️ De Google Sheets-template is tijdelijk niet beschikbaar.\n\nGebruik de Excel-template of upload dit bestand later in Google Sheets.");
       return;
     }
-
-    // Gebruik /copy om direct een kopie te forceren in het account van de gebruiker
     const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/copy`;
-    
-    // Open in nieuw tabblad met veilige rel attributen
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const handleLoadExample = () => {
-    // Aangepast voorbeeld zodat het matcht met de nieuwe headers
     const exampleCSV = `Hoe heet je?,Met wie vind je het gezellig?,Met wie vind je het niet zo gezellig?,Met wie kan je goed samenwerken?,Met wie kan je niet zo goed samenwerken?
 Anna,Pietje,Klaasje,Pietje,
 Pietje,Anna,Jantje,Anna,
@@ -101,12 +87,9 @@ Klaasje,Pietje,,,
 Jantje,Anna,Klaasje,,
 Lisa,Anna,Pietje,Lisa,
 Tom,Jantje,,Tom,`;
-    
     setInputText(exampleCSV);
     setActiveTab('paste');
-    // Trigger process direct na state update (via timeout om render te wachten)
     setTimeout(() => {
-      // We roepen de process functie aan met de nieuwe tekst
       processText(exampleCSV);
     }, 100);
   };
@@ -127,16 +110,13 @@ Tom,Jantje,,Tom,`;
         const wb = XLSX.read(bstr, { type: 'binary' });
         const wsname = wb.SheetNames[0];
         const ws = wb.Sheets[wsname];
-        // header:1 zorgt voor array van arrays
         const data = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
 
         if (data && data.length > 0) {
-          // Headers verwerken
           const headersRaw = data[0];
           const validHeaders = headersRaw.map((h, i) => (h && String(h).trim()) ? String(h).trim() : `Kolom ${i + 1}`);
           setHeaders(validHeaders);
 
-          // Rijen verwerken
           const rows = data.slice(1).map(row => {
             let obj = {};
             validHeaders.forEach((key, i) => {
@@ -146,8 +126,6 @@ Tom,Jantje,,Tom,`;
             return obj;
           });
           setParsedData(rows);
-
-          // Auto-map poging
           autoMapHeaders(validHeaders);
 
           if (rows.length === 0) {
@@ -179,20 +157,16 @@ Tom,Jantje,,Tom,`;
     if (!textToProcess.trim()) return;
 
     try {
-      // 1. Ruwe regels ophalen
       const rawLines = textToProcess.trim().split('\n');
       const lines = rawLines.filter(line => line.trim().length > 0);
       if (lines.length === 0) return;
 
-      // 2. Separator Detectie (Heuristiek)
       const firstLine = lines[0];
       const candidates = [',', '\t', ';', '|'];
-      // Volgorde van voorkeur
       let bestSeparator = ',';
       let maxCount = -1;
 
       candidates.forEach(sep => {
-        // -1 want split geeft n+1 segmenten voor n separators
         const count = firstLine.split(sep).length - 1;
         if (count > maxCount) {
           maxCount = count;
@@ -200,19 +174,14 @@ Tom,Jantje,,Tom,`;
         }
       });
 
-      // 3. Headers parsen
       let headersRaw = firstLine.split(bestSeparator).map(h => h.trim());
-      
-      // Fallback als er geen separators zijn gevonden (1 kolom)
       if (headersRaw.length === 0 && firstLine.length > 0) {
         headersRaw = [firstLine];
       }
 
-      // Valideer headers: vul lege headers op
       const validHeaders = headersRaw.map((h, i) => h ? h : `Kolom ${i + 1}`);
       setHeaders(validHeaders);
 
-      // 4. Rijen parsen
       const rows = lines.slice(1).map(line => {
         const values = line.split(bestSeparator).map(v => v.trim());
         let obj = {};
@@ -222,11 +191,8 @@ Tom,Jantje,,Tom,`;
         return obj;
       });
       setParsedData(rows);
-      
-      // Auto-map poging
       autoMapHeaders(validHeaders);
 
-      // Feedback geven (niet blokkerend, Stap 2 blijft zichtbaar)
       if (maxCount === 0 && lines.length > 0) {
         setParseMessage({ type: 'warning', text: "⚠️ We konden je data niet automatisch splitsen. Koppel hieronder handmatig de kolommen." });
       } else if (rows.length === 0) {
@@ -248,7 +214,6 @@ Tom,Jantje,,Tom,`;
       return idx !== -1 ? availableHeaders[idx] : '';
     };
 
-    // Updated: Include EXACT phrases from the sociogram template
     if (!newMapping.name) newMapping.name = findMatch(['hoe heet je', 'naam', 'leerling', 'student']);
     if (!newMapping.socialPos) newMapping.socialPos = findMatch(['met wie vind je het gezellig', 'gezellig met', 'social+']);
     if (!newMapping.socialNeg) newMapping.socialNeg = findMatch(['met wie vind je het niet zo gezellig', 'niet gezellig', 'social-']);
@@ -269,7 +234,6 @@ Tom,Jantje,,Tom,`;
 
   const parseChoices = (cellValue) => {
     if (!cellValue) return [];
-    // Normaliseer: vervang ; en | door , en split daarna op ,
     return String(cellValue)
       .replace(/[;|]/g, ',')
       .split(',')
@@ -278,7 +242,6 @@ Tom,Jantje,,Tom,`;
   };
 
   const generateGraph = () => {
-    // Validatie is nu disabled-state op de button, maar dubbele check:
     if (!mapping.name) return;
 
     const nodes = [];
@@ -286,7 +249,6 @@ Tom,Jantje,,Tom,`;
     const newWarnings = [];
     const studentNamesSet = new Set();
 
-    // 1. Create Nodes
     parsedData.forEach(row => {
       const name = cleanName(row[mapping.name]);
       if (name) {
@@ -301,10 +263,8 @@ Tom,Jantje,,Tom,`;
       }
     });
 
-    // 2. Create Links
     parsedData.forEach(row => {
       const source = cleanName(row[mapping.name]);
-      // Bron moet bestaan en een geldige naam zijn
       if (!source || !studentNamesSet.has(source)) return;
 
       const processLinkType = (colName, type) => {
@@ -328,12 +288,10 @@ Tom,Jantje,,Tom,`;
       if (mapping.workNeg) processLinkType(mapping.workNeg, 'workNeg');
     });
 
-    // 3. Set Data
     setGraphData({ nodes, links });
     setWarnings(newWarnings);
     setIsGenerated(true);
 
-    // Reset view
     setTimeout(() => {
       if(graphRef.current) {
         graphRef.current.d3Force('link').distance(linkDistance);
@@ -388,11 +346,11 @@ Tom,Jantje,,Tom,`;
     setSelectedNode(selectedNode === node.id ? null : node.id);
   };
 
-  // --- LOGIC: STATS & EXPORT ---
+  // --- LOGIC: STATS & INSIGHTS ---
   const getStats = () => {
     const stats = {};
     graphData.nodes.forEach(n => {
-      stats[n.id] = { incoming: 0, outgoing: 0 };
+      stats[n.id] = { incoming: 0, outgoing: 0, incomingNames: [], outgoingNames: [] };
     });
 
     graphData.links.forEach(link => {
@@ -400,10 +358,21 @@ Tom,Jantje,,Tom,`;
       const sId = typeof link.source === 'object' ? link.source.id : link.source;
       const tId = typeof link.target === 'object' ? link.target.id : link.target;
       
-      if (stats[sId]) stats[sId].outgoing++;
-      if (stats[tId]) stats[tId].incoming++;
+      if (stats[sId]) {
+        stats[sId].outgoing++;
+        stats[sId].outgoingNames.push(tId);
+      }
+      if (stats[tId]) {
+        stats[tId].incoming++;
+        stats[tId].incomingNames.push(sId);
+      }
     });
 
+    return stats;
+  };
+
+  const getSortedStats = () => {
+    const stats = getStats();
     return Object.entries(stats)
       .map(([name, data]) => ({ name, ...data }))
       .sort((a, b) => b.incoming - a.incoming);
@@ -420,7 +389,7 @@ Tom,Jantje,,Tom,`;
   };
 
   const downloadCSV = () => {
-    const stats = getStats();
+    const stats = getSortedStats();
     const csvContent = "data:text/csv;charset=utf-8," 
       + "Naam,Gekozen (Incoming),Heeft Gekozen (Outgoing)\n"
       + stats.map(e => `${e.name},${e.incoming},${e.outgoing}`).join("\n");
@@ -454,10 +423,15 @@ Tom,Jantje,,Tom,`;
     }
   };
 
-  // Validatie voor button: Naam + minstens 1 relatie
   const hasName = !!mapping.name;
   const hasRelation = !!(mapping.socialPos || mapping.socialNeg || mapping.workPos || mapping.workNeg);
   const isFormValid = hasName && hasRelation;
+
+  // Render helpers
+  const activeStats = (selectedNode || hoverNode) ? getStats()[selectedNode || hoverNode] : null;
+  const sortedList = getSortedStats();
+  const topList = sortedList.slice(0, 5); // Vaak gekozen
+  const bottomList = sortedList.filter(s => s.incoming <= 1).slice(0, 5); // Minder vaak gekozen
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -532,7 +506,6 @@ Tom,Jantje,,Tom,`;
                      <span>Open in Google Sheets</span>
                    </button>
                  </div>
-                 {/* 3️⃣ Instructie tekst - AANGEPAST */}
                  <p className="text-xs text-gray-500 mt-2 text-center sm:text-right">
                    De link maakt automatisch een kopie van het sociogram-template in jouw Google Drive.
                  </p>
@@ -564,7 +537,6 @@ Tom,Jantje,,Tom,`;
                   </button>
                 </div>
                 
-                {/* 4️⃣ Voorbeelddata Knop */}
                 <button 
                   onClick={handleLoadExample}
                   className="flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors text-sm bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 ml-auto"
@@ -585,7 +557,6 @@ Tom,Jantje,,Tom,`;
                     onChange={(e) => setInputText(e.target.value)}
                     onBlur={handlePasteProcess}
                   ></textarea>
-                  {/* 5️⃣ Micro-hints */}
                   <p className="text-xs text-gray-400 mt-2 flex items-center gap-1">
                     <SafeIcon icon={FiInfo} />
                     Tip: gebruik deze tool met antwoorden uit een vragenlijst. Namen in één cel scheid je met komma’s.
@@ -609,7 +580,7 @@ Tom,Jantje,,Tom,`;
                 </div>
               )}
 
-              {/* Preview & Mapping - Zichtbaar zodra er headers zijn (wat vrijwel altijd zo is na input) */}
+              {/* Preview & Mapping */}
               {headers.length > 0 && (
                 <div className="mt-8 pt-8 border-t border-gray-100">
                   <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
@@ -714,7 +685,7 @@ Tom,Jantje,,Tom,`;
           </motion.div>
         )}
 
-        {/* SECTION 2: VISUALIZATION */}
+        {/* SECTION 3: VISUALIZATION (Stap 3) */}
         {isGenerated && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* MAIN COLUMN: Graph */}
@@ -723,7 +694,7 @@ Tom,Jantje,,Tom,`;
               animate={{ opacity: 1, x: 0 }}
               className="lg:col-span-8 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-[800px]"
             >
-              {/* Toolbar */}
+              {/* Toolbar with Filters */}
               <div className="p-4 border-b border-gray-100 flex flex-wrap gap-4 justify-between items-center bg-gray-50">
                 <div className="flex space-x-2 overflow-x-auto pb-1">
                   {['all', 'socialPos', 'socialNeg', 'workPos', 'workNeg'].map(mode => (
@@ -766,7 +737,7 @@ Tom,Jantje,,Tom,`;
               <div className="flex-grow relative bg-slate-50 cursor-move">
                 <ForceGraph2D
                   ref={graphRef}
-                  width={800} // Responsive wrapper handles this usually, but fixed for simplicity
+                  width={800} 
                   height={700}
                   graphData={graphData}
                   nodeLabel="id"
@@ -778,7 +749,6 @@ Tom,Jantje,,Tom,`;
                   linkDirectionalArrowRelPos={1}
                   onNodeHover={node => {
                     setHoverNode(node ? node.id : null);
-                    // Reset cursor
                     document.body.style.cursor = node ? 'pointer' : null;
                   }}
                   onNodeClick={handleNodeClick}
@@ -786,7 +756,7 @@ Tom,Jantje,,Tom,`;
                   cooldownTicks={100}
                 />
                 
-                {/* Search Overlay */}
+                {/* Search & Legend Overlays */}
                 <div className="absolute top-4 left-4 w-64">
                   <div className="relative">
                     <SafeIcon icon={FiSearch} className="absolute left-3 top-2.5 text-gray-400" />
@@ -800,7 +770,6 @@ Tom,Jantje,,Tom,`;
                   </div>
                 </div>
 
-                {/* Legenda Overlay */}
                 <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur p-3 rounded-lg shadow-sm border border-gray-200 text-xs">
                   <div className="font-bold mb-2 text-gray-700">Legenda</div>
                   {['socialPos', 'socialNeg', 'workPos', 'workNeg'].map(mode => (
@@ -811,41 +780,59 @@ Tom,Jantje,,Tom,`;
                   ))}
                 </div>
               </div>
+              
+              {/* Disclaimer Footer - Essential for Step 3 */}
+              <div className="bg-gray-50 p-3 text-center border-t border-gray-100">
+                <p className="text-xs text-gray-500 italic">
+                  Dit sociogram geeft een visueel overzicht van keuzes. Gebruik het als gespreksondersteuning, niet als oordeel.
+                </p>
+              </div>
             </motion.div>
 
-            {/* SIDEBAR: Stats */}
+            {/* SIDEBAR: Stats & Insights */}
             <motion.div 
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               className="lg:col-span-4 space-y-6"
             >
-              {/* Selected Node Details */}
+              {/* 1. Details Panel (Hover/Select) */}
               <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                 <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
                   <SafeIcon icon={FiUsers} className="text-blue-500" />
-                  Details
+                  Details {selectedNode ? '(Vastgezet)' : ''}
                 </h3>
-                {selectedNode || hoverNode ? (
+                {activeStats ? (
                   <div>
                     <div className="text-2xl font-bold text-gray-800 mb-4">{selectedNode || hoverNode}</div>
                     
                     <div className="grid grid-cols-2 gap-4 mb-4">
                       <div className="bg-blue-50 p-3 rounded-lg text-center">
                         <span className="block text-xs text-blue-600 font-bold uppercase">Gekozen door</span>
-                        <span className="text-xl font-bold text-blue-900">
-                          {graphData.links.filter(l => (typeof l.target === 'object' ? l.target.id : l.target) === (selectedNode || hoverNode) && (viewMode === 'all' || l.type === viewMode)).length}
-                        </span>
+                        <span className="text-xl font-bold text-blue-900">{activeStats.incoming}</span>
                       </div>
                       <div className="bg-green-50 p-3 rounded-lg text-center">
                         <span className="block text-xs text-green-600 font-bold uppercase">Heeft gekozen</span>
-                        <span className="text-xl font-bold text-green-900">
-                          {graphData.links.filter(l => (typeof l.source === 'object' ? l.source.id : l.source) === (selectedNode || hoverNode) && (viewMode === 'all' || l.type === viewMode)).length}
-                        </span>
+                        <span className="text-xl font-bold text-green-900">{activeStats.outgoing}</span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 pt-2 border-t border-gray-100">
+                      <div>
+                        <span className="text-xs font-bold text-gray-500 uppercase block mb-1">Is gekozen door:</span>
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          {activeStats.incomingNames.length > 0 ? activeStats.incomingNames.join(', ') : <span className="text-gray-400 italic">Niemand</span>}
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-xs font-bold text-gray-500 uppercase block mb-1">Heeft gekozen:</span>
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          {activeStats.outgoingNames.length > 0 ? activeStats.outgoingNames.join(', ') : <span className="text-gray-400 italic">Niemand</span>}
+                        </p>
                       </div>
                     </div>
                     
-                    <p className="text-xs text-gray-500 italic">
-                      {selectedNode ? "Selectie vastgezet (klik nogmaals om los te laten)" : "Hover weergave"}
+                    <p className="text-xs text-gray-400 italic mt-4">
+                      {selectedNode ? "Klik nogmaals op de bol om de selectie los te laten." : "Klik op een bol om deze vast te zetten."}
                     </p>
                   </div>
                 ) : (
@@ -855,46 +842,55 @@ Tom,Jantje,,Tom,`;
                 )}
               </div>
 
-              {/* Ranking List */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 flex flex-col max-h-[500px]">
+              {/* 2. Insights Blok (Neutral) */}
+              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="font-bold text-gray-900 flex items-center gap-2">
                     <SafeIcon icon={FiActivity} className="text-orange-500" />
-                    Meest Gekozen
+                    Overzicht Keuzes
                   </h3>
                   <button onClick={downloadCSV} className="text-xs text-blue-600 hover:underline flex items-center gap-1">
                     <SafeIcon icon={FiDownload} /> CSV
                   </button>
                 </div>
-                <div className="overflow-y-auto pr-2 flex-grow space-y-2 custom-scrollbar">
-                  {getStats().map((stat, idx) => (
-                    <div key={stat.name} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg text-sm border border-transparent hover:border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <span className={`w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold ${idx < 3 ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-500'}`}>
-                          {idx + 1}
-                        </span>
-                        <span className="font-medium text-gray-700">{stat.name}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <span className="font-bold text-gray-900">{stat.incoming}</span>
-                        <span className="text-xs text-gray-400">Keuzes</span>
-                      </div>
+                
+                <div className="space-y-6">
+                  {/* Vaak Gekozen */}
+                  <div>
+                    <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Vaak gekozen ({viewMode === 'all' ? 'Totaal' : getLegendLabel(viewMode)})</h4>
+                    <div className="space-y-2">
+                      {topList.map((stat, idx) => (
+                        <div key={stat.name} className="flex justify-between items-center text-sm p-1.5 hover:bg-gray-50 rounded">
+                          <span className="font-medium text-gray-700">{idx + 1}. {stat.name}</span>
+                          <span className="bg-green-100 text-green-800 text-xs font-bold px-2 py-0.5 rounded-full">{stat.incoming}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Minder Vaak Gekozen */}
+                  <div>
+                    <h4 className="text-xs font-bold text-gray-500 uppercase mb-2 border-t pt-4">Minder vaak of niet gekozen</h4>
+                    {bottomList.length > 0 ? (
+                      <div className="space-y-1">
+                        {bottomList.map((stat) => (
+                          <div key={stat.name} className="flex justify-between items-center text-sm p-1.5 hover:bg-gray-50 rounded">
+                            <span className="text-gray-600">{stat.name}</span>
+                            <span className="text-gray-400 text-xs">{stat.incoming}</span>
+                          </div>
+                        ))}
+                        {bottomList.length === 5 && <div className="text-xs text-gray-400 italic pl-1.5">...en mogelijk anderen</div>}
+                      </div>
+                    ) : (
+                      <p className="text-sm text-gray-400 italic">Geen leerlingen met 0 of 1 keuze in dit filter.</p>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
           </div>
         )}
       </div>
-      
-      {/* 7️⃣ Tech Choice Note (Internal) */}
-      {/* 
-        Tech choice (richtinggevend):
-        Gebruik een client-side force-directed graph (bijv. D3-force of react-force-graph).
-        Alles draait in de browser.
-        Performance geschikt voor ±25–30 leerlingen met hover-highlighting.
-      */}
     </div>
   );
 };
