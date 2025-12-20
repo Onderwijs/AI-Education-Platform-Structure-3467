@@ -92,6 +92,7 @@ Lisa,Anna,Pietje,Lisa,
 Tom,Jantje,,Tom,`;
     setInputText(exampleCSV);
     setActiveTab('paste');
+    setShowExamples(true); // Bij voorbeelddata mag het wel zichtbaar zijn ter educatie
     setTimeout(() => {
       processText(exampleCSV);
     }, 100);
@@ -102,6 +103,7 @@ Tom,Jantje,,Tom,`;
     setParseMessage(null);
     setHeaders([]);
     setParsedData([]);
+    setShowExamples(false); // Reset examples bij nieuwe upload
     
     const file = e.target.files[0];
     if (!file) return;
@@ -149,6 +151,7 @@ Tom,Jantje,,Tom,`;
   };
 
   const handlePasteProcess = () => {
+    setShowExamples(false); // Reset examples bij nieuwe plakactie
     processText(inputText);
   };
 
