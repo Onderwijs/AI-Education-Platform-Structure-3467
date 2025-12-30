@@ -33,36 +33,29 @@ const Sociogram = () => {
   // UX State
   const [isExampleData, setIsExampleData] = useState(false);
   const [isStep2Expanded, setIsStep2Expanded] = useState(true);
-  const [showExamples, setShowExamples] = useState(false);
 
   // Graph Data & View
   const [graphData, setGraphData] = useState({ nodes: [], links: [] });
   const [viewMode, setViewMode] = useState('all');
   const [isGenerated, setIsGenerated] = useState(false);
-  const [warnings, setWarnings] = useState([]);
 
   // Interaction & Graph
   const [hoverNode, setHoverNode] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
   const [highlightNodes, setHighlightNodes] = useState(new Set());
-  const [highlightLinks, setHighlightLinks] = useState(new Set());
+  const [highlightLinks, setHighlightLinks] =Set(new Set());
   const graphRef = useRef();
 
-  const [showLabels, setShowLabels] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
   // --- LOGIC: TEMPLATE & EXAMPLE ---
   const handleDownloadTemplate = () => {
     const wb = XLSX.utils.book_new();
     const headers = ["Hoe heet je?", "Met wie vind je het gezellig?", "Met wie vind je het niet zo gezellig?", "Met wie kan je goed samenwerken?", "Met wie kan je niet zo goed samenwerken?"];
-    const data = [headers, ["Vul hier een naam in", "Naam 1, Naam 2", "", "Naam 3", ""]];
+    const data = [headers, ["Anna", "Pietje, Lisa", "Klaasje", "Pietje", ""]];
     const ws = XLSX.utils.aoa_to_sheet(data);
     XLSX.utils.book_append_sheet(wb, ws, "Sociogram Template");
     XLSX.writeFile(wb, "sociogram-template.xlsx");
-  };
-
-  const handleGoogleSheetOpen = () => {
-    alert("⚠️ De Google Sheets-template is tijdelijk niet beschikbaar.");
   };
 
   const handleLoadExample = () => {
@@ -77,10 +70,10 @@ Tom,Jantje,,Tom,`;
     setInputText(exampleCSV);
     setActiveTab('paste');
     setIsExampleData(true);
-    setIsStep2Expanded(false); // Visueel rustiger maken
+    setIsStep2Expanded(false); // Visueel rustiger voor de test-modus
     
     setTimeout(() => {
-      processText(exampleCSV, true); // Direct koppelen voor voorbeeld
+      processText(exampleCSV, true);
     }, 100);
   };
 
@@ -88,8 +81,6 @@ Tom,Jantje,,Tom,`;
   const handleFileUpload = (e) => {
     setIsExampleData(false);
     setIsStep2Expanded(true);
-    setParseMessage(null);
-    
     const file = e.target.files[0];
     if (!file) return;
 
@@ -120,7 +111,6 @@ Tom,Jantje,,Tom,`;
   };
 
   const handlePasteProcess = () => {
-    // Als de tekst handmatig wordt gewijzigd, is het geen "voorbeelddata" meer
     if (inputText.length > 0 && !inputText.includes("Anna,Pietje,Klaasje")) {
       setIsExampleData(false);
       setIsStep2Expanded(true);
@@ -131,7 +121,6 @@ Tom,Jantje,,Tom,`;
   const processText = (textToProcess, allowAutoMap = true) => {
     setHeaders([]);
     setParsedData([]);
-
     if (!textToProcess.trim()) return;
 
     try {
@@ -156,9 +145,7 @@ Tom,Jantje,,Tom,`;
         return obj;
       });
       setParsedData(rows);
-      
       if (allowAutoMap) autoMapHeaders(validHeaders);
-
     } catch (err) {
       setParseMessage({ type: 'error', text: "Kon de tekst niet verwerken." });
     }
@@ -184,7 +171,6 @@ Tom,Jantje,,Tom,`;
     setMapping(prev => ({ ...prev, [field]: value }));
   };
 
-  // --- LOGIC: GENERATION ---
   const generateGraph = () => {
     if (!mapping.name) return;
     const nodes = [];
@@ -221,7 +207,6 @@ Tom,Jantje,,Tom,`;
     setIsGenerated(true);
   };
 
-  // --- LOGIC: VISUALIZATION ---
   const getLinkColor = (link) => {
     if (viewMode !== 'all' && link.type !== viewMode) return 'rgba(0,0,0,0)';
     if (highlightLinks.size > 0 && !highlightLinks.has(link)) return 'rgba(200,200,200,0.1)';
@@ -271,35 +256,30 @@ Tom,Jantje,,Tom,`;
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {!isGenerated && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-             {/* Uitlegblok */}
-             <div className="bg-white rounded-2xl shadow-lg p-6 border border-blue-100 mb-8">
-               <div className="flex items-start gap-4">
-                 <div className="bg-blue-100 p-3 rounded-full hidden sm:block">
-                   <SafeIcon icon={FiHelpCircle} className="text-2xl text-blue-600" />
-                 </div>
-                 <div>
-                   <h2 className="text-xl font-bold text-gray-900 mb-3">Hoe gebruik je dit sociogram?</h2>
-                   <div className="prose prose-sm text-gray-600">
-                     <p className="mb-2">Deze tool werkt met antwoorden van leerlingen op een korte vragenlijst.</p>
-                     <ul className="list-none space-y-2 pl-0">
-                       <li className="flex items-start gap-2">
-                         <span className="font-bold text-blue-600">Stap 1 –</span>
-                         <span>Plak of upload de antwoorden uit je vragenlijst (Excel/CSV).</span>
-                       </li>
-                       <li className="flex items-start gap-2">
-                         <span className="font-bold text-blue-600">Stap 2 –</span>
-                         <span>Controleer of de kolommen correct zijn gekoppeld.</span>
-                       </li>
-                       <li className="flex items-start gap-2">
-                         <span className="font-bold text-blue-600">Stap 3 –</span>
-                         <span>Bekijk het interactieve netwerk van je klas.</span>
-                       </li>
-                     </ul>
-                   </div>
-                 </div>
-               </div>
-             </div>
+            
+            {/* 1. Template Sectie (ALTIJD ZICHTBAAR) */}
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-8 shadow-sm">
+              <div className="flex flex-col md:flex-row md:items-center gap-6">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <SafeIcon icon={FiFileText} className="text-blue-600 text-xl" />
+                    <h3 className="font-bold text-gray-900 leading-tight">Gebruik de standaard sociogram-template</h3>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Download de Excel-template en vul per leerling de namen in. Meerdere namen in één cel scheid je met komma’s.
+                  </p>
+                </div>
+                <button 
+                  onClick={handleDownloadTemplate}
+                  className="bg-white text-blue-600 border border-blue-200 px-6 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-100 transition-colors shadow-sm shrink-0"
+                >
+                  <SafeIcon icon={FiDownload} />
+                  <span>Download Excel-template</span>
+                </button>
+              </div>
+            </div>
 
+            {/* 2. Stap 1: Data Invoeren */}
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 mb-8">
               <div className="flex items-center space-x-2 mb-6 pb-4 border-b">
                 <SafeIcon icon={FiGrid} className="text-2xl text-blue-600" />
@@ -316,16 +296,25 @@ Tom,Jantje,,Tom,`;
                   </button>
                 </div>
                 
-                <button onClick={handleLoadExample} className="flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors text-sm bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 ml-auto">
-                  <SafeIcon icon={FiDatabase} /> <span>Gebruik voorbeelddata</span>
-                </button>
+                <div className="ml-auto text-right">
+                  <button 
+                    onClick={handleLoadExample} 
+                    className="flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors text-sm bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200"
+                  >
+                    <SafeIcon icon={FiDatabase} /> 
+                    <span>Test met voorbeelddata</span>
+                  </button>
+                  <p className="text-[10px] text-gray-400 mt-1 max-w-[220px] leading-tight">
+                    Dit vult tijdelijke voorbeelddata in om de tool te testen. Gebruik voor echte data de Excel-template hierboven.
+                  </p>
+                </div>
               </div>
 
               {activeTab === 'paste' ? (
-                <div className="mb-6">
+                <div className="mb-6 text-sm">
                   <textarea 
-                    className="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-sm"
-                    placeholder="Plak hier je tabel met antwoorden..."
+                    className="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-sm bg-gray-50"
+                    placeholder="Plak hier je tabel met antwoorden uit Excel..."
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                     onBlur={handlePasteProcess}
@@ -338,6 +327,7 @@ Tom,Jantje,,Tom,`;
                 </div>
               )}
 
+              {/* 3. Stap 2: Kolommen Koppelen */}
               {headers.length > 0 && (
                 <div className="mt-8 pt-8 border-t border-gray-100">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
@@ -351,14 +341,14 @@ Tom,Jantje,,Tom,`;
                           <span>Kolommen zijn automatisch gekoppeld (voorbeelddata).</span>
                           <button 
                             onClick={() => setIsStep2Expanded(!isStep2Expanded)}
-                            className="ml-2 text-blue-600 hover:underline flex items-center gap-1"
+                            className="ml-2 text-blue-600 hover:underline flex items-center gap-1 text-xs"
                           >
                             {isStep2Expanded ? 'Verberg details' : 'Toon kolomkoppeling'}
                             <SafeIcon icon={isStep2Expanded ? FiChevronUp : FiChevronDown} />
                           </button>
                         </div>
                       ) : (
-                        <p className="text-sm text-gray-500 mt-1">Controleer hieronder of de kolommen correct zijn gekoppeld.</p>
+                        <p className="text-sm text-gray-500 mt-1">Controleer of de kolommen uit je bestand correct zijn gekoppeld.</p>
                       )}
                     </div>
                     
@@ -387,17 +377,22 @@ Tom,Jantje,,Tom,`;
                             { id: 'workNeg', label: 'Niet Samenwerken (Work -)' }
                           ].map(field => (
                             <div key={field.id}>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">
+                              <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">
                                 {field.label} {field.req && <span className="text-red-500">*</span>}
                               </label>
                               <select 
-                                className={`w-full p-2 border rounded-lg bg-white ${mapping[field.id] ? 'border-blue-300 ring-1 ring-blue-100' : 'border-gray-300'}`}
+                                className={`w-full p-2.5 border rounded-lg bg-white text-sm ${mapping[field.id] ? 'border-blue-300 ring-1 ring-blue-100' : 'border-gray-300'}`}
                                 value={mapping[field.id]}
                                 onChange={(e) => handleMapChange(field.id, e.target.value)}
                               >
                                 <option value="">-- Selecteer kolom --</option>
                                 {headers.map(h => <option key={h} value={h}>{h}</option>)}
                               </select>
+                              {mapping[field.id] && parsedData.length > 0 && (
+                                <p className="mt-1 text-[10px] text-gray-400 italic truncate">
+                                  Voorbeeld: {parsedData[0][mapping[field.id]]}
+                                </p>
+                              )}
                             </div>
                           ))}
                         </div>
