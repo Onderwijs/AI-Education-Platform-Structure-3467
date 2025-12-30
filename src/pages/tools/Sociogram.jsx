@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
@@ -11,7 +11,7 @@ const {
   FiDownload, FiSearch, FiEye, FiAlertTriangle, 
   FiCheck, FiUsers, FiGrid, FiXCircle, FiInfo,
   FiFileText, FiHelpCircle, FiDatabase, FiExternalLink,
-  FiFilter
+  FiChevronDown, FiChevronUp
 } = FiIcons;
 
 const Sociogram = () => {
@@ -30,12 +30,18 @@ const Sociogram = () => {
     workNeg: ''
   });
   
+  // UX State
+  const [isExampleData, setIsExampleData] = useState(false);
+  const [isStep2Expanded, setIsStep2Expanded] = useState(true);
   const [showExamples, setShowExamples] = useState(false);
+
+  // Graph Data & View
   const [graphData, setGraphData] = useState({ nodes: [], links: [] });
   const [viewMode, setViewMode] = useState('all');
   const [isGenerated, setIsGenerated] = useState(false);
   const [warnings, setWarnings] = useState([]);
 
+  // Interaction & Graph
   const [hoverNode, setHoverNode] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
   const [highlightNodes, setHighlightNodes] = useState(new Set());
@@ -43,37 +49,20 @@ const Sociogram = () => {
   const graphRef = useRef();
 
   const [showLabels, setShowLabels] = useState(true);
-  const [linkDistance, setLinkDistance] = useState(50);
   const [searchTerm, setSearchTerm] = useState('');
 
   // --- LOGIC: TEMPLATE & EXAMPLE ---
   const handleDownloadTemplate = () => {
     const wb = XLSX.utils.book_new();
-    const headers = [
-      "Hoe heet je?", 
-      "Met wie vind je het gezellig?", 
-      "Met wie vind je het niet zo gezellig?", 
-      "Met wie kan je goed samenwerken?", 
-      "Met wie kan je niet zo goed samenwerken?"
-    ];
-    const data = [
-      headers,
-      ["Vul hier een naam in", "Naam 1, Naam 2", "", "Naam 3", ""], 
-    ];
+    const headers = ["Hoe heet je?", "Met wie vind je het gezellig?", "Met wie vind je het niet zo gezellig?", "Met wie kan je goed samenwerken?", "Met wie kan je niet zo goed samenwerken?"];
+    const data = [headers, ["Vul hier een naam in", "Naam 1, Naam 2", "", "Naam 3", ""]];
     const ws = XLSX.utils.aoa_to_sheet(data);
-    ws['!cols'] = [{wch: 20}, {wch: 30}, {wch: 30}, {wch: 30}, {wch: 30}];
     XLSX.utils.book_append_sheet(wb, ws, "Sociogram Template");
     XLSX.writeFile(wb, "sociogram-template.xlsx");
   };
 
   const handleGoogleSheetOpen = () => {
-    const SHEET_ID = "PLAATS_HIER_JOUW_SHEET_ID"; 
-    if (!SHEET_ID || SHEET_ID === "PLAATS_HIER_JOUW_SHEET_ID") {
-      alert("⚠️ De Google Sheets-template is tijdelijk niet beschikbaar.");
-      return;
-    }
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/copy`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+    alert("⚠️ De Google Sheets-template is tijdelijk niet beschikbaar.");
   };
 
   const handleLoadExample = () => {
@@ -87,24 +76,19 @@ Tom,Jantje,,Tom,`;
     
     setInputText(exampleCSV);
     setActiveTab('paste');
-    setShowExamples(false);
+    setIsExampleData(true);
+    setIsStep2Expanded(false); // Visueel rustiger maken
     
-    // Reset mapping om verwarring te voorkomen (Geen automatische activatie in Stap 2)
-    setMapping({ name: '', socialPos: '', socialNeg: '', workPos: '', workNeg: '' });
-    
-    // We verwerken alleen de headers zodat de dropdowns verschijnen, 
-    // maar we laten de keuzes leeg voor de gebruiker.
     setTimeout(() => {
-      processText(exampleCSV, false); // false = skip auto-mapping
+      processText(exampleCSV, true); // Direct koppelen voor voorbeeld
     }, 100);
   };
 
   // --- LOGIC: PARSING ---
   const handleFileUpload = (e) => {
+    setIsExampleData(false);
+    setIsStep2Expanded(true);
     setParseMessage(null);
-    setHeaders([]);
-    setParsedData([]);
-    setShowExamples(false);
     
     const file = e.target.files[0];
     if (!file) return;
@@ -114,30 +98,19 @@ Tom,Jantje,,Tom,`;
       try {
         const bstr = evt.target.result;
         const wb = XLSX.read(bstr, { type: 'binary' });
-        const wsname = wb.SheetNames[0];
-        const ws = wb.Sheets[wsname];
+        const ws = wb.Sheets[wb.SheetNames[0]];
         const data = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
 
         if (data && data.length > 0) {
-          const headersRaw = data[0];
-          const validHeaders = headersRaw.map((h, i) => (h && String(h).trim()) ? String(h).trim() : `Kolom ${i + 1}`);
+          const validHeaders = data[0].map((h, i) => (h && String(h).trim()) ? String(h).trim() : `Kolom ${i + 1}`);
           setHeaders(validHeaders);
-
           const rows = data.slice(1).map(row => {
             let obj = {};
-            validHeaders.forEach((key, i) => {
-              const val = row[i];
-              obj[key] = (val !== undefined && val !== null) ? String(val).trim() : '';
-            });
+            validHeaders.forEach((key, i) => obj[key] = (row[i] !== undefined) ? String(row[i]).trim() : '');
             return obj;
           });
           setParsedData(rows);
-          // Bij upload doen we wel auto-mapping als service
           autoMapHeaders(validHeaders);
-
-          if (rows.length === 0) {
-            setParseMessage({ type: 'warning', text: "Het bestand bevat headers, maar geen datarijen." });
-          }
         }
       } catch (err) {
         setParseMessage({ type: 'error', text: "Kon het bestand niet lezen." });
@@ -147,52 +120,44 @@ Tom,Jantje,,Tom,`;
   };
 
   const handlePasteProcess = () => {
-    setShowExamples(false);
-    processText(inputText, true); // true = allow auto-mapping voor eigen data
+    // Als de tekst handmatig wordt gewijzigd, is het geen "voorbeelddata" meer
+    if (inputText.length > 0 && !inputText.includes("Anna,Pietje,Klaasje")) {
+      setIsExampleData(false);
+      setIsStep2Expanded(true);
+    }
+    processText(inputText, true);
   };
 
   const processText = (textToProcess, allowAutoMap = true) => {
-    setParseMessage(null);
     setHeaders([]);
     setParsedData([]);
 
     if (!textToProcess.trim()) return;
 
     try {
-      const rawLines = textToProcess.trim().split('\n');
-      const lines = rawLines.filter(line => line.trim().length > 0);
+      const lines = textToProcess.trim().split('\n').filter(l => l.trim().length > 0);
       if (lines.length === 0) return;
 
-      const firstLine = lines[0];
       const candidates = [',', '\t', ';', '|'];
-      let bestSeparator = ',';
+      let bestSep = ',';
       let maxCount = -1;
-
       candidates.forEach(sep => {
-        const count = firstLine.split(sep).length - 1;
-        if (count > maxCount) {
-          maxCount = count;
-          bestSeparator = sep;
-        }
+        const count = lines[0].split(sep).length - 1;
+        if (count > maxCount) { maxCount = count; bestSep = sep; }
       });
 
-      let headersRaw = firstLine.split(bestSeparator).map(h => h.trim());
-      const validHeaders = headersRaw.map((h, i) => h ? h : `Kolom ${i + 1}`);
+      const validHeaders = lines[0].split(bestSep).map((h, i) => h.trim() || `Kolom ${i + 1}`);
       setHeaders(validHeaders);
 
       const rows = lines.slice(1).map(line => {
-        const values = line.split(bestSeparator).map(v => v.trim());
+        const values = line.split(bestSep).map(v => v.trim());
         let obj = {};
-        validHeaders.forEach((key, i) => {
-          obj[key] = values[i] || '';
-        });
+        validHeaders.forEach((key, i) => obj[key] = values[i] || '');
         return obj;
       });
       setParsedData(rows);
       
-      if (allowAutoMap) {
-        autoMapHeaders(validHeaders);
-      }
+      if (allowAutoMap) autoMapHeaders(validHeaders);
 
     } catch (err) {
       setParseMessage({ type: 'error', text: "Kon de tekst niet verwerken." });
@@ -200,21 +165,19 @@ Tom,Jantje,,Tom,`;
   };
 
   const autoMapHeaders = (availableHeaders) => {
-    const newMapping = { ...mapping };
     const lowerHeaders = availableHeaders.map(h => h.toLowerCase());
-
     const findMatch = (keywords) => {
       const idx = lowerHeaders.findIndex(h => keywords.some(k => h.includes(k)));
       return idx !== -1 ? availableHeaders[idx] : '';
     };
 
-    if (!newMapping.name) newMapping.name = findMatch(['hoe heet je', 'naam', 'leerling', 'student']);
-    if (!newMapping.socialPos) newMapping.socialPos = findMatch(['met wie vind je het gezellig', 'gezellig met', 'social+']);
-    if (!newMapping.socialNeg) newMapping.socialNeg = findMatch(['met wie vind je het niet zo gezellig', 'niet gezellig', 'social-']);
-    if (!newMapping.workPos) newMapping.workPos = findMatch(['met wie kan je goed samenwerken', 'samenwerken', 'work+']);
-    if (!newMapping.workNeg) newMapping.workNeg = findMatch(['met wie kan je niet zo goed samenwerken', 'niet samenwerken', 'work-']);
-
-    setMapping(newMapping);
+    setMapping({
+      name: findMatch(['hoe heet je', 'naam', 'leerling']),
+      socialPos: findMatch(['met wie vind je het gezellig', 'social+']),
+      socialNeg: findMatch(['met wie vind je het niet zo gezellig', 'social-']),
+      workPos: findMatch(['met wie kan je goed samenwerken', 'work+']),
+      workNeg: findMatch(['met wie kan je niet zo goed samenwerken', 'work-'])
+    });
   };
 
   const handleMapChange = (field, value) => {
@@ -224,19 +187,15 @@ Tom,Jantje,,Tom,`;
   // --- LOGIC: GENERATION ---
   const generateGraph = () => {
     if (!mapping.name) return;
-
     const nodes = [];
     const links = [];
-    const newWarnings = [];
     const studentNamesSet = new Set();
 
     parsedData.forEach(row => {
       const name = row[mapping.name]?.trim();
-      if (name) {
-        if (!studentNamesSet.has(name)) {
-          studentNamesSet.add(name);
-          nodes.push({ id: name, val: 1 });
-        }
+      if (name && !studentNamesSet.has(name)) {
+        studentNamesSet.add(name);
+        nodes.push({ id: name, val: 1 });
       }
     });
 
@@ -244,29 +203,25 @@ Tom,Jantje,,Tom,`;
       const source = row[mapping.name]?.trim();
       if (!source || !studentNamesSet.has(source)) return;
 
-      const processLinkType = (colName, type) => {
-        if (!colName) return;
-        const targets = String(row[colName] || '').replace(/[;|]/g, ',').split(',').map(s => s.trim()).filter(s => s.length > 0);
-        
+      const processLink = (col, type) => {
+        if (!col) return;
+        const targets = String(row[col] || '').replace(/[;|]/g, ',').split(',').map(s => s.trim()).filter(s => s.length > 0);
         targets.forEach(target => {
-          if (studentNamesSet.has(target)) {
-            links.push({ source, target, type });
-          }
+          if (studentNamesSet.has(target)) links.push({ source, target, type });
         });
       };
 
-      if (mapping.socialPos) processLinkType(mapping.socialPos, 'socialPos');
-      if (mapping.socialNeg) processLinkType(mapping.socialNeg, 'socialNeg');
-      if (mapping.workPos) processLinkType(mapping.workPos, 'workPos');
-      if (mapping.workNeg) processLinkType(mapping.workNeg, 'workNeg');
+      processLink(mapping.socialPos, 'socialPos');
+      processLink(mapping.socialNeg, 'socialNeg');
+      processLink(mapping.workPos, 'workPos');
+      processLink(mapping.workNeg, 'workNeg');
     });
 
     setGraphData({ nodes, links });
-    setWarnings(newWarnings);
     setIsGenerated(true);
   };
 
-  // --- LOGIC: VISUALIZATION HELPERS ---
+  // --- LOGIC: VISUALIZATION ---
   const getLinkColor = (link) => {
     if (viewMode !== 'all' && link.type !== viewMode) return 'rgba(0,0,0,0)';
     if (highlightLinks.size > 0 && !highlightLinks.has(link)) return 'rgba(200,200,200,0.1)';
@@ -301,50 +256,9 @@ Tom,Jantje,,Tom,`;
 
   useEffect(() => { updateHighlight(); }, [updateHighlight]);
 
-  const handleNodeClick = (node) => {
-    setSelectedNode(selectedNode === node.id ? null : node.id);
-  };
-
-  const getStats = () => {
-    const stats = {};
-    graphData.nodes.forEach(n => { stats[n.id] = { incoming: 0, outgoing: 0, incomingNames: [], outgoingNames: [] }; });
-    graphData.links.forEach(link => {
-      if (viewMode !== 'all' && link.type !== viewMode) return;
-      const sId = typeof link.source === 'object' ? link.source.id : link.source;
-      const tId = typeof link.target === 'object' ? link.target.id : link.target;
-      if (stats[sId]) { stats[sId].outgoing++; stats[sId].outgoingNames.push(tId); }
-      if (stats[tId]) { stats[tId].incoming++; stats[tId].incomingNames.push(sId); }
-    });
-    return stats;
-  };
-
-  const getLegendColor = (mode) => {
-    switch(mode) {
-      case 'socialPos': return 'bg-green-500';
-      case 'socialNeg': return 'bg-red-500';
-      case 'workPos': return 'bg-blue-500';
-      case 'workNeg': return 'bg-orange-500';
-      default: return 'bg-gray-500';
-    }
-  };
-
-  const getLegendLabel = (mode) => {
-    switch(mode) {
-      case 'socialPos': return 'Gezellig';
-      case 'socialNeg': return 'Niet gezellig';
-      case 'workPos': return 'Samenwerken';
-      case 'workNeg': return 'Niet samenwerken';
-      default: return '';
-    }
-  };
-
   const hasName = !!mapping.name;
   const hasRelation = !!(mapping.socialPos || mapping.socialNeg || mapping.workPos || mapping.workNeg);
   const isFormValid = hasName && hasRelation;
-
-  const stats = getStats();
-  const sortedList = Object.entries(stats).map(([name, data]) => ({ name, ...data })).sort((a, b) => b.incoming - a.incoming);
-  const activeStats = (selectedNode || hoverNode) ? stats[selectedNode || hoverNode] : null;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -357,6 +271,7 @@ Tom,Jantje,,Tom,`;
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {!isGenerated && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+             {/* Uitlegblok */}
              <div className="bg-white rounded-2xl shadow-lg p-6 border border-blue-100 mb-8">
                <div className="flex items-start gap-4">
                  <div className="bg-blue-100 p-3 rounded-full hidden sm:block">
@@ -365,7 +280,7 @@ Tom,Jantje,,Tom,`;
                  <div>
                    <h2 className="text-xl font-bold text-gray-900 mb-3">Hoe gebruik je dit sociogram?</h2>
                    <div className="prose prose-sm text-gray-600">
-                     <p className="mb-2"><strong>Je vult hier geen eigen inschattingen in.</strong> Deze tool werkt met antwoorden van leerlingen op een vragenlijst.</p>
+                     <p className="mb-2">Deze tool werkt met antwoorden van leerlingen op een korte vragenlijst.</p>
                      <ul className="list-none space-y-2 pl-0">
                        <li className="flex items-start gap-2">
                          <span className="font-bold text-blue-600">Stap 1 –</span>
@@ -373,7 +288,7 @@ Tom,Jantje,,Tom,`;
                        </li>
                        <li className="flex items-start gap-2">
                          <span className="font-bold text-blue-600">Stap 2 –</span>
-                         <span>Koppel de juiste kolommen aan de categorieën (bijv. "Naam" aan "Naam Leerling").</span>
+                         <span>Controleer of de kolommen correct zijn gekoppeld.</span>
                        </li>
                        <li className="flex items-start gap-2">
                          <span className="font-bold text-blue-600">Stap 3 –</span>
@@ -408,7 +323,6 @@ Tom,Jantje,,Tom,`;
 
               {activeTab === 'paste' ? (
                 <div className="mb-6">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Plak hier CSV of tab-gescheiden data</label>
                   <textarea 
                     className="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-sm"
                     placeholder="Plak hier je tabel met antwoorden..."
@@ -426,57 +340,77 @@ Tom,Jantje,,Tom,`;
 
               {headers.length > 0 && (
                 <div className="mt-8 pt-8 border-t border-gray-100">
-                  <div className="flex justify-between items-center mb-6">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
                     <div>
                       <h3 className="font-bold text-gray-900 flex items-center gap-2">
                         <SafeIcon icon={FiSettings} /> Stap 2: Kolommen Koppelen
                       </h3>
-                      <p className="text-sm text-blue-600 font-medium mt-1">
-                        Controleer hieronder of de kolommen correct zijn gekoppeld.
-                      </p>
+                      {isExampleData ? (
+                        <div className="flex items-center gap-2 mt-1 text-green-600 font-medium text-sm">
+                          <SafeIcon icon={FiCheck} />
+                          <span>Kolommen zijn automatisch gekoppeld (voorbeelddata).</span>
+                          <button 
+                            onClick={() => setIsStep2Expanded(!isStep2Expanded)}
+                            className="ml-2 text-blue-600 hover:underline flex items-center gap-1"
+                          >
+                            {isStep2Expanded ? 'Verberg details' : 'Toon kolomkoppeling'}
+                            <SafeIcon icon={isStep2Expanded ? FiChevronUp : FiChevronDown} />
+                          </button>
+                        </div>
+                      ) : (
+                        <p className="text-sm text-gray-500 mt-1">Controleer hieronder of de kolommen correct zijn gekoppeld.</p>
+                      )}
                     </div>
-                    <button onClick={() => setShowExamples(!showExamples)} className="text-xs text-blue-600 hover:text-blue-700 font-medium transition-colors">
-                      {showExamples ? 'Verberg voorbeelden' : 'Bekijk voorbeeldwaarden (optioneel)'}
-                    </button>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[
-                      { id: 'name', label: 'Naam Leerling', req: true },
-                      { id: 'socialPos', label: 'Gezellig (Social +)' },
-                      { id: 'socialNeg', label: 'Niet Gezellig (Social -)' },
-                      { id: 'workPos', label: 'Samenwerken (Work +)' },
-                      { id: 'workNeg', label: 'Niet Samenwerken (Work -)' }
-                    ].map(field => (
-                      <div key={field.id}>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          {field.label} {field.req && <span className="text-red-500">*</span>}
-                        </label>
-                        <select 
-                          className={`w-full p-2 border rounded-lg bg-white ${mapping[field.id] ? 'border-blue-300 ring-1 ring-blue-100' : 'border-gray-300'}`}
-                          value={mapping[field.id]}
-                          onChange={(e) => handleMapChange(field.id, e.target.value)}
-                        >
-                          <option value="">-- Selecteer kolom --</option>
-                          {headers.map(h => <option key={h} value={h}>{h}</option>)}
-                        </select>
-                        {showExamples && mapping[field.id] && parsedData.length > 0 && (
-                          <p className="mt-1 text-xs text-gray-500 truncate italic">
-                            Waarde: {parsedData[0][mapping[field.id]]}
-                          </p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-8 flex justify-end items-center gap-4">
-                    {!isFormValid && (
-                      <span className="text-sm text-gray-500 italic">Selecteer minimaal een naam en één relatie.</span>
+                    
+                    {!isStep2Expanded && isFormValid && (
+                       <button onClick={generateGraph} className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold flex items-center justify-center space-x-2 hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200">
+                         <SafeIcon icon={FiActivity} />
+                         <span>Genereer Sociogram</span>
+                       </button>
                     )}
-                    <button onClick={generateGraph} disabled={!isFormValid} className={`px-6 py-3 rounded-lg font-bold flex items-center space-x-2 transition-colors ${isFormValid ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}>
-                      <SafeIcon icon={FiActivity} /> <span>Genereer Sociogram</span>
-                    </button>
                   </div>
+
+                  <AnimatePresence>
+                    {isStep2Expanded && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
+                          {[
+                            { id: 'name', label: 'Naam Leerling', req: true },
+                            { id: 'socialPos', label: 'Gezellig (Social +)' },
+                            { id: 'socialNeg', label: 'Niet Gezellig (Social -)' },
+                            { id: 'workPos', label: 'Samenwerken (Work +)' },
+                            { id: 'workNeg', label: 'Niet Samenwerken (Work -)' }
+                          ].map(field => (
+                            <div key={field.id}>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">
+                                {field.label} {field.req && <span className="text-red-500">*</span>}
+                              </label>
+                              <select 
+                                className={`w-full p-2 border rounded-lg bg-white ${mapping[field.id] ? 'border-blue-300 ring-1 ring-blue-100' : 'border-gray-300'}`}
+                                value={mapping[field.id]}
+                                onChange={(e) => handleMapChange(field.id, e.target.value)}
+                              >
+                                <option value="">-- Selecteer kolom --</option>
+                                {headers.map(h => <option key={h} value={h}>{h}</option>)}
+                              </select>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        <div className="flex justify-end items-center gap-4 pt-4 border-t border-gray-50">
+                          <button onClick={generateGraph} disabled={!isFormValid} className={`px-8 py-3 rounded-xl font-bold flex items-center space-x-2 transition-all ${isFormValid ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}>
+                            <SafeIcon icon={FiActivity} />
+                            <span>Genereer Sociogram</span>
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               )}
             </div>
@@ -485,79 +419,37 @@ Tom,Jantje,,Tom,`;
 
         {isGenerated && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="lg:col-span-8 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-[800px]">
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="lg:col-span-8 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-[700px]">
               <div className="p-4 border-b border-gray-100 flex flex-wrap gap-4 justify-between items-center bg-gray-50">
-                <div className="flex space-x-2 overflow-x-auto pb-1">
+                <div className="flex space-x-2">
                   {['all', 'socialPos', 'socialNeg', 'workPos', 'workNeg'].map(mode => (
-                    <button key={mode} onClick={() => setViewMode(mode)} className={`px-3 py-1.5 text-sm rounded-lg font-medium transition-colors whitespace-nowrap ${viewMode === mode ? 'bg-white shadow text-gray-900 ring-1 ring-gray-200' : 'text-gray-600 hover:bg-gray-200'}`}>
-                      {mode === 'all' ? 'Alles' : getLegendLabel(mode)}
+                    <button key={mode} onClick={() => setViewMode(mode)} className={`px-3 py-1.5 text-xs rounded-lg font-medium transition-colors ${viewMode === mode ? 'bg-white shadow text-gray-900' : 'text-gray-600 hover:bg-gray-200'}`}>
+                      {mode === 'all' ? 'Alles' : mode}
                     </button>
                   ))}
                 </div>
-                <div className="flex items-center space-x-2">
-                  <button onClick={() => setIsGenerated(false)} className="px-3 py-1.5 text-xs bg-gray-200 text-gray-700 rounded hover:bg-gray-300">Nieuwe Data</button>
-                </div>
+                <button onClick={() => setIsGenerated(false)} className="px-3 py-1.5 text-xs bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Nieuwe Data</button>
               </div>
-
-              <div className="flex-grow relative bg-slate-50 cursor-move">
+              <div className="flex-grow relative bg-slate-50">
                 <ForceGraph2D
                   ref={graphRef}
-                  width={800} height={700}
+                  width={800} height={600}
                   graphData={graphData}
-                  nodeLabel="id"
                   nodeColor={node => (highlightNodes.has(node.id) ? '#2563eb' : '#64748b')}
                   nodeRelSize={6}
                   linkColor={getLinkColor}
                   linkWidth={link => highlightLinks.has(link) ? 2 : 1}
-                  linkDirectionalArrowLength={3.5}
-                  linkDirectionalArrowRelPos={1}
-                  onNodeHover={node => { setHoverNode(node ? node.id : null); document.body.style.cursor = node ? 'pointer' : null; }}
-                  onNodeClick={handleNodeClick}
+                  onNodeHover={node => setHoverNode(node ? node.id : null)}
                   d3VelocityDecay={0.3}
                 />
-                
-                <div className="absolute top-4 left-4 w-64">
-                  <div className="relative">
-                    <SafeIcon icon={FiSearch} className="absolute left-3 top-2.5 text-gray-400" />
-                    <input type="text" placeholder="Zoek leerling..." className="w-full pl-10 pr-4 py-2 bg-white/90 backdrop-blur border border-gray-200 rounded-lg shadow-sm text-sm" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-                  </div>
-                </div>
-
-                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur p-3 rounded-lg shadow-sm border border-gray-200 text-xs">
-                  <div className="font-bold mb-2 text-gray-700">Legenda</div>
-                  {['socialPos', 'socialNeg', 'workPos', 'workNeg'].map(mode => (
-                    <div key={mode} className={`flex items-center gap-2 mb-1 ${viewMode !== 'all' && viewMode !== mode ? 'opacity-30' : ''}`}>
-                      <div className={`w-3 h-3 rounded-full ${getLegendColor(mode)}`}></div>
-                      <span>{getLegendLabel(mode)}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </motion.div>
-
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:col-span-4 space-y-6">
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <SafeIcon icon={FiUsers} className="text-blue-500" /> Details
-                </h3>
-                {activeStats ? (
-                  <div>
-                    <div className="text-2xl font-bold text-gray-800 mb-4">{selectedNode || hoverNode}</div>
-                    <div className="grid grid-cols-2 gap-4 mb-4">
-                      <div className="bg-blue-50 p-3 rounded-lg text-center">
-                        <span className="block text-xs text-blue-600 font-bold uppercase">Gekozen door</span>
-                        <span className="text-xl font-bold text-blue-900">{activeStats.incoming}</span>
-                      </div>
-                      <div className="bg-green-50 p-3 rounded-lg text-center">
-                        <span className="block text-xs text-green-600 font-bold uppercase">Keuzes gemaakt</span>
-                        <span className="text-xl font-bold text-green-900">{activeStats.outgoing}</span>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="text-gray-400 text-sm text-center py-8">Klik op een leerling voor details.</div>
-                )}
-              </div>
+            
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:col-span-4 bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+               <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                 <SafeIcon icon={FiUsers} className="text-blue-500" /> Details
+               </h3>
+               <p className="text-sm text-gray-500 italic">Selecteer een leerling in het netwerk links om keuzes en relaties te bekijken.</p>
             </motion.div>
           </div>
         )}
