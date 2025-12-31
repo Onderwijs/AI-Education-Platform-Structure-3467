@@ -7,12 +7,12 @@ import * as XLSX from 'xlsx';
 import ForceGraph2D from 'react-force-graph-2d';
 
 const { 
-  FiUpload, FiClipboard, FiSettings, FiActivity, 
-  FiDownload, FiSearch, FiEye, FiAlertTriangle, 
-  FiCheck, FiUsers, FiGrid, FiXCircle, FiInfo,
-  FiFileText, FiHelpCircle, FiDatabase, FiExternalLink,
-  FiChevronDown, FiChevronUp, FiFilter, FiMaximize2,
-  FiSend, FiCheckCircle, FiCopy, FiTerminal, FiShare2
+  FiUpload, FiClipboard, FiSettings, FiActivity, FiDownload, 
+  FiSearch, FiEye, FiAlertTriangle, FiCheck, FiUsers, 
+  FiGrid, FiXCircle, FiInfo, FiFileText, FiHelpCircle, 
+  FiDatabase, FiExternalLink, FiChevronDown, FiChevronUp, 
+  FiFilter, FiMaximize2, FiSend, FiCheckCircle, FiCopy, 
+  FiTerminal, FiShare2 
 } = FiIcons;
 
 const Sociogram = () => {
@@ -28,7 +28,7 @@ const Sociogram = () => {
     workPos: '',
     workNeg: ''
   });
-  
+
   // UI State
   const [isExampleData, setIsExampleData] = useState(false);
   const [isStep2Expanded, setIsStep2Expanded] = useState(true);
@@ -48,12 +48,22 @@ const Sociogram = () => {
   const [highlightLinks, setHighlightLinks] = useState(new Set());
   const graphRef = useRef();
 
+  // --- AUTO FOCUS LOGIC ---
+  useEffect(() => {
+    if (isGenerated && graphRef.current) {
+      // Wacht een kort moment tot de simulatie stabiel is voor een betere zoom
+      setTimeout(() => {
+        graphRef.current.zoomToFit(600, 80);
+      }, 300);
+    }
+  }, [isGenerated, graphData]);
+
   // --- GOOGLE APPS SCRIPT CODE ---
   const googleScript = `function createSociogramForm() {
   var form = FormApp.create('Interactief Sociogram Vragenlijst');
   form.setTitle('Sociogram: Hoe werken we samen in de klas?')
       .setDescription('Vul deze vragenlijst eerlijk in. Je antwoorden zijn alleen zichtbaar voor de leraar.');
-
+  
   form.addTextItem().setTitle('Hoe heet je?').setRequired(true);
   form.addTextItem().setTitle('Met wie vind je het gezellig?').setHelpText('Meerdere namen scheiden met een komma.');
   form.addTextItem().setTitle('Met wie vind je het niet zo gezellig?');
@@ -62,7 +72,6 @@ const Sociogram = () => {
 
   Logger.log('Link naar het formulier: ' + form.getEditUrl());
   Logger.log('Link om te delen met leerlingen: ' + form.getPublishedUrl());
-  
   Browser.msgBox('Klaar! Het formulier is aangemaakt in je Google Drive. Open het nu om het te delen met je klas.');
 }`;
 
@@ -95,7 +104,6 @@ Tom,Jantje,,Tom,`;
     setActiveTab('paste');
     setIsExampleData(true);
     setIsStep2Expanded(false);
-    
     setTimeout(() => {
       processText(exampleCSV, true);
     }, 100);
@@ -104,6 +112,7 @@ Tom,Jantje,,Tom,`;
   // --- LOGIC: DATA PROCESSING ---
   const processText = (textToProcess, allowAutoMap = true) => {
     if (!textToProcess.trim()) return;
+
     try {
       const lines = textToProcess.trim().split('\n').filter(l => l.trim().length > 0);
       if (lines.length === 0) return;
@@ -111,22 +120,27 @@ Tom,Jantje,,Tom,`;
       const candidates = [',', '\t', ';', '|'];
       let bestSep = ',';
       let maxCount = -1;
+
       candidates.forEach(sep => {
         const count = lines[0].split(sep).length - 1;
-        if (count > maxCount) { maxCount = count; bestSep = sep; }
+        if (count > maxCount) {
+          maxCount = count;
+          bestSep = sep;
+        }
       });
 
       const validHeaders = lines[0].split(bestSep).map((h, i) => h.trim().replace(/^"|"$/g, '') || `Kolom ${i + 1}`);
       setHeaders(validHeaders);
 
       const rows = lines.slice(1).map(line => {
-        const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[, \t;|]|\s*$)/g) || [];
+        const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
         let obj = {};
         validHeaders.forEach((key, i) => {
           obj[key] = values[i] ? values[i].trim().replace(/^"|"$/g, '') : '';
         });
         return obj;
       });
+
       setParsedData(rows);
       if (allowAutoMap) autoMapHeaders(validHeaders);
     } catch (err) {
@@ -167,11 +181,13 @@ Tom,Jantje,,Tom,`;
         if (data && data.length > 0) {
           const validHeaders = data[0].map((h, i) => (h && String(h).trim()) ? String(h).trim() : `Kolom ${i + 1}`);
           setHeaders(validHeaders);
+
           const rows = data.slice(1).map(row => {
             let obj = {};
             validHeaders.forEach((key, i) => obj[key] = (row[i] !== undefined) ? String(row[i]).trim() : '');
             return obj;
           });
+
           setParsedData(rows);
           autoMapHeaders(validHeaders);
         }
@@ -184,6 +200,7 @@ Tom,Jantje,,Tom,`;
 
   const generateGraph = () => {
     if (!mapping.name) return;
+
     const nodes = [];
     const links = [];
     const studentNamesSet = new Set();
@@ -204,7 +221,6 @@ Tom,Jantje,,Tom,`;
         if (!col) return;
         const val = String(row[col] || '');
         const targets = val.split(/[,\n;]/).map(s => s.trim()).filter(s => s.length > 0);
-        
         targets.forEach(target => {
           if (studentNamesSet.has(target)) {
             links.push({ source, target, type });
@@ -226,13 +242,13 @@ Tom,Jantje,,Tom,`;
     if (viewMode !== 'all' && link.type !== viewMode) return 'transparent';
     const isHighlighted = highlightLinks.size > 0 && highlightLinks.has(link);
     const opacity = highlightLinks.size > 0 && !isHighlighted ? '0.05' : '0.6';
-    
+
     switch(link.type) {
-      case 'socialPos': return `rgba(34, 197, 94, ${opacity})`;
-      case 'socialNeg': return `rgba(239, 68, 68, ${opacity})`;
-      case 'workPos': return `rgba(59, 130, 246, ${opacity})`;
-      case 'workNeg': return `rgba(249, 115, 22, ${opacity})`;
-      default: return `rgba(156, 163, 175, ${opacity})`;
+      case 'socialPos': return `rgba(34,197,94,${opacity})`;
+      case 'socialNeg': return `rgba(239,68,68,${opacity})`;
+      case 'workPos': return `rgba(59,130,246,${opacity})`;
+      case 'workNeg': return `rgba(249,115,22,${opacity})`;
+      default: return `rgba(156,163,175,${opacity})`;
     }
   };
 
@@ -254,11 +270,14 @@ Tom,Jantje,,Tom,`;
         }
       });
     }
+
     setHighlightNodes(hNodes);
     setHighlightLinks(hLinks);
   }, [hoverNode, selectedNode, graphData, viewMode]);
 
-  useEffect(() => { updateHighlight(); }, [updateHighlight]);
+  useEffect(() => {
+    updateHighlight();
+  }, [updateHighlight]);
 
   const isFormValid = !!mapping.name && (!!mapping.socialPos || !!mapping.socialNeg || !!mapping.workPos || !!mapping.workNeg);
 
@@ -266,8 +285,8 @@ Tom,Jantje,,Tom,`;
     <div className="min-h-screen bg-gray-50">
       <SimpleHero 
         title="Interactief Sociogram" 
-        subtitle="Visualiseer de sociale dynamiek en samenwerkingsvoorkeuren in jouw klas." 
-        color="from-blue-600 to-indigo-700" 
+        subtitle="Visualiseer de sociale dynamiek en samenwerkingsvoorkeuren in jouw klas."
+        color="from-blue-600 to-indigo-700"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -296,7 +315,6 @@ Tom,Jantje,,Tom,`;
 
         {!isGenerated ? (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            
             {/* NEW SECTION: STAP 1 */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6">
@@ -322,11 +340,13 @@ Tom,Jantje,,Tom,`;
                     </div>
                     <SafeIcon icon={isScriptExpanded ? FiChevronUp : FiChevronDown} className="text-gray-400" />
                   </button>
-                  
+
                   <AnimatePresence>
                     {isScriptExpanded && (
                       <motion.div 
-                        initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}
+                        initial={{ height: 0 }} 
+                        animate={{ height: 'auto' }} 
+                        exit={{ height: 0 }} 
                         className="overflow-hidden"
                       >
                         <div className="p-6 pt-0 border-t border-gray-100 bg-gray-50/50">
@@ -337,7 +357,7 @@ Tom,Jantje,,Tom,`;
                             <p className="text-sm text-gray-600 mb-6 leading-relaxed">
                               Met onderstaand script maakt Google automatisch een kant-en-klaar formulier voor u aan. De antwoorden van uw leerlingen worden automatisch verzameld in een Google Sheet, die u later als Excel-bestand kunt gebruiken in deze tool. <strong>Geen zorgen:</strong> u hoeft zelf niet te programmeren, alleen te kopiëren en te plakken.
                             </p>
-
+                            
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                               <div>
                                 <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-3">Volg deze 6 simpele stappen:</h5>
@@ -350,7 +370,6 @@ Tom,Jantje,,Tom,`;
                                   <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">6</span> <span>Het formulier staat nu in uw Google Drive. <strong>Deel de link</strong> met de klas!</span></li>
                                 </ol>
                               </div>
-                              
                               <div className="relative group">
                                 <div className="absolute top-3 right-3 z-10">
                                   <button 
@@ -392,7 +411,6 @@ Tom,Jantje,,Tom,`;
                     </div>
                     <SafeIcon icon={isManualExpanded ? FiChevronUp : FiChevronDown} className="text-gray-400" />
                   </button>
-
                   <AnimatePresence>
                     {isManualExpanded && (
                       <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} className="overflow-hidden">
@@ -427,8 +445,7 @@ Tom,Jantje,,Tom,`;
               </div>
               <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
                 <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                  Heeft u het Google Formulier gebruikt? Open dan het bijbehorende <strong>Google Sheet</strong> (het overzicht met antwoorden). 
-                  Controleer of de namen van de leerlingen consistent zijn geschreven (bijv. 'Piet' en 'Pietje' moet dezelfde naam worden).
+                  Heeft u het Google Formulier gebruikt? Open dan het bijbehorende <strong>Google Sheet</strong> (het overzicht met antwoorden). Controleer of de namen van de leerlingen consistent zijn geschreven (bijv. 'Piet' en 'Pietje' moet dezelfde naam worden).
                 </p>
                 <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 flex items-start gap-3">
                   <SafeIcon icon={FiDownload} className="text-blue-600 mt-1" />
@@ -449,20 +466,28 @@ Tom,Jantje,,Tom,`;
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 font-sans">
                 <div className="flex flex-wrap gap-4 mb-6">
                   <div className="flex space-x-2 p-1 bg-gray-100 rounded-lg">
-                    <button onClick={() => setActiveTab('paste')} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'paste' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
-                      <SafeIcon icon={FiClipboard} /> <span>Plakken</span>
+                    <button 
+                      onClick={() => setActiveTab('paste')}
+                      className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'paste' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}
+                    >
+                      <SafeIcon icon={FiClipboard} />
+                      <span>Plakken</span>
                     </button>
-                    <button onClick={() => setActiveTab('upload')} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'upload' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
-                      <SafeIcon icon={FiUpload} /> <span>Uploaden</span>
+                    <button 
+                      onClick={() => setActiveTab('upload')}
+                      className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'upload' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}
+                    >
+                      <SafeIcon icon={FiUpload} />
+                      <span>Uploaden</span>
                     </button>
                   </div>
                   
                   <div className="ml-auto text-right">
                     <button 
-                      onClick={handleLoadExample} 
+                      onClick={handleLoadExample}
                       className="flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors text-sm bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200"
                     >
-                      <SafeIcon icon={FiDatabase} /> 
+                      <SafeIcon icon={FiDatabase} />
                       <span>Test met voorbeelddata</span>
                     </button>
                   </div>
@@ -479,7 +504,12 @@ Tom,Jantje,,Tom,`;
                 ) : (
                   <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-10 text-center">
                     <SafeIcon icon={FiUpload} className="text-4xl text-gray-400 mx-auto mb-4" />
-                    <input type="file" accept=".csv, .xlsx" onChange={handleFileUpload} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                    <input 
+                      type="file" 
+                      accept=".csv,.xlsx" 
+                      onChange={handleFileUpload}
+                      className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
                   </div>
                 )}
 
@@ -493,16 +523,24 @@ Tom,Jantje,,Tom,`;
                         <p className="text-sm text-gray-500 mt-1">Geef aan welke kolom welke informatie bevat.</p>
                       </div>
                       {!isStep2Expanded && isFormValid && (
-                         <button onClick={generateGraph} className="bg-blue-600 text-white px-10 py-4 rounded-xl font-bold flex items-center justify-center space-x-2 hover:bg-blue-700 transition-all shadow-xl hover:shadow-blue-200">
-                           <SafeIcon icon={FiActivity} />
-                           <span>Genereer Sociogram</span>
-                         </button>
+                        <button 
+                          onClick={generateGraph}
+                          className="bg-blue-600 text-white px-10 py-4 rounded-xl font-bold flex items-center justify-center space-x-2 hover:bg-blue-700 transition-all shadow-xl hover:shadow-blue-200"
+                        >
+                          <SafeIcon icon={FiActivity} />
+                          <span>Genereer Sociogram</span>
+                        </button>
                       )}
                     </div>
 
                     <AnimatePresence>
                       {isStep2Expanded && (
-                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                        <motion.div 
+                          initial={{ height: 0, opacity: 0 }} 
+                          animate={{ height: 'auto', opacity: 1 }} 
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden"
+                        >
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
                             {[
                               { id: 'name', label: 'Naam Leerling', req: true },
@@ -532,7 +570,11 @@ Tom,Jantje,,Tom,`;
                             ))}
                           </div>
                           <div className="flex justify-end items-center gap-4 pt-6 border-t border-gray-100">
-                            <button onClick={generateGraph} disabled={!isFormValid} className={`px-12 py-4 rounded-xl font-bold flex items-center space-x-2 transition-all shadow-lg ${isFormValid ? 'bg-blue-600 text-white hover:bg-blue-700 transform hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}>
+                            <button 
+                              onClick={generateGraph}
+                              disabled={!isFormValid}
+                              className={`px-12 py-4 rounded-xl font-bold flex items-center space-x-2 transition-all shadow-lg ${isFormValid ? 'bg-blue-600 text-white hover:bg-blue-700 transform hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                            >
                               <SafeIcon icon={FiActivity} />
                               <span>Genereer Sociogram</span>
                             </button>
@@ -546,9 +588,13 @@ Tom,Jantje,,Tom,`;
             </div>
           </motion.div>
         ) : (
-          /* RESULTATEN SECTIE (Unchanged logic) */
+          /* RESULTATEN SECTIE */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="lg:col-span-8 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col h-[750px] relative">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }} 
+              animate={{ opacity: 1, scale: 1 }}
+              className="lg:col-span-8 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col h-[750px] relative"
+            >
               <div className="p-4 border-b border-gray-100 flex flex-wrap gap-4 justify-between items-center bg-gray-50/50 backdrop-blur-md z-10">
                 <div className="flex bg-white p-1 rounded-xl shadow-sm border border-gray-200">
                   {[
@@ -558,12 +604,19 @@ Tom,Jantje,,Tom,`;
                     { id: 'workPos', label: 'Werk+', color: 'text-blue-600' },
                     { id: 'workNeg', label: 'Werk-', color: 'text-orange-600' }
                   ].map(mode => (
-                    <button key={mode.id} onClick={() => setViewMode(mode.id)} className={`px-4 py-2 text-xs rounded-lg font-bold transition-all ${viewMode === mode.id ? 'bg-gray-900 text-white shadow-md' : `hover:bg-gray-100 ${mode.color}`}`}>
+                    <button 
+                      key={mode.id}
+                      onClick={() => setViewMode(mode.id)}
+                      className={`px-4 py-2 text-xs rounded-lg font-bold transition-all ${viewMode === mode.id ? 'bg-gray-900 text-white shadow-md' : `hover:bg-gray-100 ${mode.color}`}`}
+                    >
                       {mode.label}
                     </button>
                   ))}
                 </div>
-                <button onClick={() => setIsGenerated(false)} className="px-4 py-2 text-xs bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 font-bold flex items-center gap-2">
+                <button 
+                  onClick={() => { setIsGenerated(false); setIsExampleData(false); }}
+                  className="px-4 py-2 text-xs bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 font-bold flex items-center gap-2"
+                >
                   <SafeIcon icon={FiGrid} /> Andere Data
                 </button>
               </div>
@@ -587,6 +640,26 @@ Tom,Jantje,,Tom,`;
                   onNodeClick={node => setSelectedNode(node)}
                   d3VelocityDecay={0.4}
                   cooldownTicks={100}
+                  nodeCanvasObject={(node, ctx, globalScale) => {
+                    const label = node.name;
+                    const fontSize = 12/globalScale;
+                    ctx.font = `${fontSize}px Sans-Serif`;
+                    
+                    // Teken de cirkel (node)
+                    const r = 5;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, r, 0, 2 * Math.PI, false);
+                    ctx.fillStyle = selectedNode?.id === node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8');
+                    ctx.fill();
+
+                    // Teken de naam (label) - altijd bij voorbeelddata of bij voldoende zoom
+                    if (isExampleData || globalScale > 1.5) {
+                      ctx.textAlign = 'center';
+                      ctx.textBaseline = 'middle';
+                      ctx.fillStyle = '#1e293b';
+                      ctx.fillText(label, node.x, node.y + r + fontSize + 1);
+                    }
+                  }}
                 />
                 
                 <div className="absolute bottom-6 left-6 bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-gray-200 text-[10px] space-y-2 pointer-events-none shadow-sm">
@@ -597,20 +670,24 @@ Tom,Jantje,,Tom,`;
                 </div>
               </div>
             </motion.div>
-            
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:col-span-4 flex flex-col gap-6">
+
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }} 
+              animate={{ opacity: 1, x: 0 }}
+              className="lg:col-span-4 flex flex-col gap-6"
+            >
               <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 flex-shrink-0">
                 <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2 text-lg">
                   <SafeIcon icon={FiUsers} className="text-blue-500" /> Details Leerling
                 </h3>
-                
+
                 {selectedNode ? (
                   <div className="space-y-6">
                     <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100">
                       <div className="text-xs text-blue-600 font-bold uppercase mb-1">Geselecteerd</div>
                       <div className="text-2xl font-black text-gray-900">{selectedNode.name}</div>
                     </div>
-                    
+
                     <div className="space-y-4">
                       <h4 className="text-sm font-bold text-gray-700 border-b pb-2">Gekozen door anderen:</h4>
                       <div className="grid grid-cols-2 gap-3">
@@ -624,12 +701,22 @@ Tom,Jantje,,Tom,`;
                         </div>
                       </div>
                     </div>
-                    <button onClick={() => setSelectedNode(null)} className="w-full py-2 text-sm text-gray-500 hover:text-gray-700 transition-colors">Deselecteer leerling</button>
+
+                    <button 
+                      onClick={() => setSelectedNode(null)} 
+                      className="w-full py-2 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                    >
+                      Deselecteer leerling
+                    </button>
                   </div>
                 ) : (
                   <div className="py-10 text-center text-gray-400">
                     <SafeIcon icon={FiMaximize2} className="text-4xl mx-auto mb-4 opacity-20" />
-                    <p className="text-sm italic">Klik op een leerling in het netwerk om relaties en statistieken te bekijken.</p>
+                    <p className="text-sm italic">
+                      {graphData.nodes.length > 0 
+                        ? "Klik op een leerling in het netwerk om relaties en statistieken te bekijken."
+                        : "Geen data beschikbaar."}
+                    </p>
                   </div>
                 )}
               </div>
