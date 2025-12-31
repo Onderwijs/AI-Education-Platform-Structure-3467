@@ -19,88 +19,75 @@ const Privacy = () => {
 
           <div className="prose prose-indigo max-w-none text-gray-600 leading-relaxed">
             <p className="text-lg">
-              Bij <strong>Onderwijs.ai</strong> vinden we privacy en de zorgvuldige omgang met gegevens essentieel, zeker in een onderwijscontext. Wij streven ernaar om zo min mogelijk gegevens te verwerken zodat docenten veilig gebruik kunnen maken van onze hulpmiddelen.
+              Bij <strong>Onderwijs.ai</strong> vinden we privacy essentieel, zeker in een onderwijscontext. 
+              Daarom verwerken en bewaren wij zo min mogelijk gegevens. Onze tools zijn ontworpen met privacy-by-design als uitgangspunt.
             </p>
 
-            <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">1. Verwerking van persoonsgegevens</h2>
+            <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">1. Persoonsgegevens</h2>
             <p>
-              Onderwijs.ai verwerkt geen leerlinggegevens en slaat geen persoonsgegevens op bij het gebruik van de tools. 
+              Onderwijs.ai verwerkt geen persoonsgegevens en slaat geen leerlinggegevens op. 
               Wij slaan onder andere <strong>niet</strong> op:
             </p>
             <ul className="list-disc pl-6 space-y-1 mb-4">
               <li>Namen van leerlingen</li>
               <li>Klassenlijsten</li>
-              <li>Sociogramgegevens</li>
-              <li>Sociale relaties</li>
+              <li>Sociogramgegevens en sociale relaties</li>
               <li>Ingevoerde tooldata</li>
+              <li>E-mailadressen</li>
+              <li>Accounts of gebruikersprofielen</li>
             </ul>
             <p>
-              Ingevoerde gegevens worden uitsluitend tijdelijk in het geheugen van je eigen browser gebruikt om een resultaat (zoals een plattegrond of netwerk) te tonen en worden niet bewaard op onze systemen.
+              Ingevoerde gegevens worden uitsluitend tijdelijk in het werkgeheugen van je browser gebruikt om een resultaat te tonen en worden niet bewaard op onze systemen.
             </p>
 
             <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">2. Gebruik van tools</h2>
             <p>
-              Onze interactieve tools (zoals de sociogram-visualisatie en klassenplattegrond) werken zonder gebruikersaccount en zonder centrale opslag van gegevens.
+              Onze tools (zoals het sociogram en de klassenplattegrond) werken volledig zonder account. Wij bouwen geen dossiers op over leerlingen of docenten.
             </p>
             <p>Wanneer je werkt met een sociogram in Google Sheets:</p>
             <ul className="list-disc pl-6 space-y-1 mb-4">
               <li>Blijft dit bestand volledig in je eigen Google Drive-omgeving staan.</li>
-              <li>Behouden wij geen kopie van de inhoud.</li>
-              <li>Worden gegevens niet opgeslagen op de servers van Onderwijs.ai.</li>
+              <li>Maakt Onderwijs.ai geen kopie van de inhoud.</li>
+              <li>Worden de gegevens niet opgeslagen op onze servers.</li>
             </ul>
-            <p>Onderwijs.ai fungeert uitsluitend als lokaal hulpmiddel voor visuele weergave, niet als opslag- of dossiersysteem.</p>
+            <p>Onderwijs.ai fungeert puur als hulpmiddel voor visuele weergave, niet als opslagsysteem.</p>
 
-            <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">3. Websitebezoek</h2>
+            <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">3. Websitegebruik</h2>
             <p>
-              Bij het bezoeken van de website kunnen beperkte technische gegevens automatisch worden verwerkt om de site goed te laten functioneren, zoals:
+              Bij het bezoeken van de website verzamelen wij geen persoonsgegevens. Wij maken geen gebruik van tracking-software of externe marketing- en analysesystemen. De website functioneert volledig zonder gebruikersregistratie of dataverzameling voor profielopbouw.
             </p>
-            <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li>Type browser en apparaat</li>
-              <li>Geanonimiseerd IP-adres</li>
-              <li>Tijdstip van bezoek</li>
-              <li>Functionele cookies</li>
-            </ul>
-            <p>Deze technische gegevens zijn niet herleidbaar tot individuele personen.</p>
 
             <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">4. Cookies</h2>
-            <p>Onderwijs.ai maakt gebruik van:</p>
-            <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li><strong>Functionele cookies:</strong> Noodzakelijk voor het technisch functioneren van de website.</li>
-              <li><strong>Beperkte analytische cookies:</strong> Om anoniem inzicht te krijgen in het algemene gebruik van de site.</li>
-            </ul>
-            <p>Wij gebruiken geen marketing- of trackingcookies voor commerciële doeleinden.</p>
+            <p>
+              <strong>Onderwijs.ai gebruikt geen cookies.</strong> Wij plaatsen geen functionele, analytische of trackingcookies op je apparaat.
+            </p>
 
             <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">5. Delen van gegevens</h2>
             <p>Onderwijs.ai:</p>
             <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li>Verkoopt geen gegevens aan derden.</li>
-              <li>Deelt geen persoonsgegevens met externe partijen.</li>
-              <li>Bouwt geen gebruikersprofielen op.</li>
+              <li>Deelt geen gegevens met derden.</li>
+              <li>Verkoopt geen gegevens.</li>
+              <li>Gebruikt geen externe marketing-, advertentie- of e-maildiensten.</li>
             </ul>
 
             <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">6. Bewaartermijnen</h2>
             <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li><strong>Tool-invoer:</strong> Wordt niet opgeslagen en verdwijnt zodra de pagina wordt gesloten of ververst.</li>
-              <li><strong>Technische en analytische gegevens:</strong> Maximaal 2 jaar, uitsluitend in geanonimiseerde vorm.</li>
+              <li><strong>Tool-invoer:</strong> Niet opgeslagen (wordt gewist bij het sluiten van de pagina).</li>
+              <li><strong>Persoonsgegevens:</strong> Niet opgeslagen.</li>
             </ul>
 
             <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">7. Jouw rechten</h2>
             <p>
-              Omdat wij nauwelijks persoonsgegevens verwerken, is identificatie vaak niet mogelijk. Echter heb je altijd het recht om:
+              Omdat Onderwijs.ai geen persoonsgegevens opslaat, zijn er in de praktijk geen gegevens om in te zien, te corrigeren of te verwijderen. 
             </p>
-            <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li>Inzage te vragen in persoonsgegevens (voor zover van toepassing).</li>
-              <li>Gegevens te laten corrigeren of verwijderen.</li>
-              <li>Bezwaar te maken tegen verwerking.</li>
-            </ul>
             <p className="mt-4">
-              Vragen over privacy kun je stellen via: <br />
+              Heb je toch vragen over privacy of de werking van onze tools? Neem dan contact op via: <br />
               <a href="mailto:ai.onderwijs@gmail.com" className="text-indigo-600 font-bold hover:underline">ai.onderwijs@gmail.com</a>
             </p>
 
             <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">8. Wijzigingen</h2>
             <p>
-              Deze privacyverklaring kan worden aangepast wanneer onze diensten of relevante wetgeving veranderen. De meest actuele versie is altijd beschikbaar op deze website.
+              Deze privacyverklaring kan worden aangepast wanneer de website of onze diensten veranderen. De meest actuele versie is altijd op deze pagina beschikbaar.
             </p>
 
             <p className="mt-8 pt-8 border-t border-gray-100 text-sm text-gray-400 italic">
