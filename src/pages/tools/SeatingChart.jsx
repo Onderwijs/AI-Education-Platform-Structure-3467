@@ -7,36 +7,37 @@ import * as FiIcons from 'react-icons/fi';
 const { 
   FiGrid, FiUsers, FiTarget, FiInfo, FiCheck, 
   FiLayout, FiCoffee, FiAlertCircle, FiRefreshCw,
-  FiArrowRight, FiClipboard, FiEdit3, FiSliders
+  FiArrowRight, FiLink, FiDatabase, FiSliders, FiShield
 } = FiIcons;
 
 const SeatingChart = () => {
   // --- STATE ---
-  const [step, setStep] = useState(1);
   const [layout, setLayout] = useState('rijen'); // rijen, eilandjes
   const [goal, setGoal] = useState('rust'); // rust, samenwerking, conflicten
-  const [studentInput, setStudentInput] = useState('');
+  const [sheetLink, setSheetLink] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
 
-  // --- LOGIC: SEATING ALGORITHM (SIMULATED) ---
-  const students = useMemo(() => {
-    return studentInput
-      .split('\n')
-      .map(line => line.trim())
-      .filter(line => line.length > 0)
-      .slice(0, 30);
-  }, [studentInput]);
+  // --- LOGIC: SIMULATED RESULTS ---
+  // We use a fixed list of names to simulate a result based on the link
+  const dummyStudents = [
+    "Anna", "Bram", "Casper", "Daan", "Emma", "Fleur", "Gijs", "Hanna", 
+    "Isabel", "Jasper", "Klaas", "Lisa", "Meis", "Noah", "Olivia", "Piet",
+    "Quinten", "Roos", "Sem", "Tess", "Umar", "Vera", "Willem", "Xander"
+  ];
 
   const generateChart = () => {
-    if (students.length === 0) return;
+    if (!sheetLink.includes('google.com/spreadsheets')) {
+      alert("Voer een geldige Google Sheets link in van je sociogram.");
+      return;
+    }
     setIsGenerated(true);
-    setStep(3);
   };
 
   const handleReset = () => {
     setIsGenerated(false);
-    setStep(1);
   };
+
+  const isFormValid = sheetLink.length > 10;
 
   // --- RENDER HELPERS ---
   const renderDesks = () => {
@@ -46,12 +47,12 @@ const SeatingChart = () => {
 
     return (
       <div className={`grid ${gridClasses}`}>
-        {students.map((name, index) => (
+        {dummyStudents.map((name, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.05 }}
+            transition={{ delay: index * 0.03 }}
             className={`p-4 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center min-h-[100px] ${
               layout === 'rijen' ? 'bg-white border-blue-100' : 'bg-indigo-50 border-indigo-200'
             }`}
@@ -61,12 +62,11 @@ const SeatingChart = () => {
             </div>
             <span className="text-xs font-bold text-gray-800 truncate w-full px-1">{name}</span>
             <div className="mt-2 w-full h-1 bg-gray-200 rounded-full overflow-hidden">
-               <div className={`h-full ${index % 5 === 0 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
+               <div className={`h-full ${index % 7 === 0 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
             </div>
           </motion.div>
         ))}
-        {/* Placeholder for empty seats if needed */}
-        {Array.from({ length: Math.max(0, (layout === 'rijen' ? 24 : 18) - students.length) }).map((_, i) => (
+        {Array.from({ length: Math.max(0, (layout === 'rijen' ? 24 : 18) - dummyStudents.length) }).map((_, i) => (
           <div key={`empty-${i}`} className="p-4 rounded-xl border-2 border-dashed border-gray-200 flex items-center justify-center min-h-[100px] opacity-30">
             <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Leeg</span>
           </div>
@@ -79,7 +79,7 @@ const SeatingChart = () => {
     <div className="min-h-screen bg-gray-50">
       <SimpleHero 
         title="Klassenplattegrond" 
-        subtitle="Zet sociale inzichten om in een rustige en veilige klasopstelling." 
+        subtitle="Zet je sociogram om in een praktische klassenplattegrond op basis van sociale veiligheid." 
         color="from-indigo-600 to-blue-700" 
       />
 
@@ -121,12 +121,13 @@ const SeatingChart = () => {
 
                 {/* Step 2: Goal */}
                 <div>
-                  <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Stap 2 – Wat is het doel?</label>
+                  <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Stap 2 – Wat is het doel van deze indeling?</label>
+                  <p className="text-[11px] text-gray-500 mb-3 italic">Deze doelen worden gerealiseerd door de sociale relaties uit het sociogram te analyseren.</p>
                   <div className="space-y-2">
                     {[
                       { id: 'rust', label: 'Rust in de klas', icon: FiCoffee },
                       { id: 'samenwerking', label: 'Samenwerking stimuleren', icon: FiUsers },
-                      { id: 'conflicten', label: 'Conflicten voorkomen', icon: FiAlertCircle }
+                      { id: 'conflicten', label: 'Conflicten voorkomen', icon: FiShield }
                     ].map(item => (
                       <button 
                         key={item.id}
@@ -141,28 +142,50 @@ const SeatingChart = () => {
                   </div>
                 </div>
 
-                {/* Input Data */}
-                <div>
-                  <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Stap 3 – Leerlinggegevens</label>
-                  <div className="bg-blue-50 p-3 rounded-xl border border-blue-100 mb-3">
+                {/* Step 3: Sociogram Data */}
+                <div className="pt-4 border-t border-gray-100">
+                  <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    Stap 3 – Sociogramgegevens <span className="text-red-500">(verplicht)</span>
+                  </label>
+                  
+                  <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 mb-4">
+                    <p className="text-xs text-blue-900 font-bold mb-1">Inzicht → Toepassing</p>
                     <p className="text-[11px] text-blue-800 leading-relaxed">
-                      <SafeIcon icon={FiInfo} className="inline mr-1" />
-                      Heb je al een sociogram gemaakt? Plak hier de namen van je leerlingen onder elkaar.
+                      Deze klassenplattegrond wordt gemaakt op basis van sociogramgegevens. Gebruik hiervoor hetzelfde sociogram dat je eerder hebt gemaakt.
                     </p>
                   </div>
-                  <textarea 
-                    value={studentInput}
-                    onChange={(e) => setStudentInput(e.target.value)}
-                    placeholder="Anna&#10;Pietje&#10;Klaasje..."
-                    className="w-full h-40 p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 font-sans text-sm bg-gray-50"
-                  />
-                  <p className="text-[10px] text-gray-400 mt-2 italic text-center">Maximaal 30 leerlingen voor een optimaal resultaat.</p>
+
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="text-[11px] font-bold text-gray-700">Link naar je sociogram (Google Sheet)</label>
+                        <SafeIcon icon={FiLink} className="text-gray-400 text-xs" />
+                      </div>
+                      <input 
+                        type="text"
+                        value={sheetLink}
+                        onChange={(e) => setSheetLink(e.target.value)}
+                        placeholder="https://docs.google.com/spreadsheets/..."
+                        className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 font-sans text-xs bg-gray-50 mb-2"
+                      />
+                      <p className="text-[10px] text-gray-400 leading-relaxed italic">
+                        Zorg dat je sociogram beschikbaar is in Google Sheets. De sociale relaties uit dit sociogram vormen de basis voor de zitindeling.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <p className="text-[10px] text-gray-500 leading-tight">
+                      <SafeIcon icon={FiAlertCircle} className="inline mr-1" />
+                      Zonder sociogram kan deze tool geen verantwoorde afweging maken voor rust, samenwerking of conflictpreventie.
+                    </p>
+                  </div>
                 </div>
 
                 <button 
                   onClick={generateChart}
-                  disabled={students.length === 0}
-                  className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${students.length > 0 ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                  disabled={!isFormValid}
+                  className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${isFormValid ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
                 >
                   <SafeIcon icon={FiRefreshCw} />
                   <span>Genereer Plattegrond</span>
@@ -172,11 +195,12 @@ const SeatingChart = () => {
 
             <div className="bg-indigo-900 text-white p-6 rounded-2xl shadow-xl">
               <h3 className="font-bold text-sm mb-3 flex items-center gap-2">
-                <SafeIcon icon={FiInfo} className="text-indigo-300" /> Goed om te weten
+                <SafeIcon icon={FiInfo} className="text-indigo-300" /> Hoe werkt dit?
               </h3>
               <p className="text-xs text-indigo-100 leading-relaxed opacity-80">
-                In een klas van 25–30 leerlingen is het niet altijd mogelijk om alle voorkeuren te honoreren. 
-                Deze tool maakt een pedagogisch verantwoorde afweging, waarbij veiligheid en rust zwaarder wegen dan voorkeur.
+                De klassenplattegrond wordt samengesteld op basis van sociale voorkeuren, vermijdingen en groepsdynamiek uit het sociogram. 
+                <br /><br />
+                In een klas van 25–30 leerlingen worden altijd pedagogische afwegingen gemaakt; niet alle voorkeuren kunnen worden gerealiseerd.
               </p>
             </div>
           </div>
@@ -186,28 +210,27 @@ const SeatingChart = () => {
             {!isGenerated ? (
               <div className="bg-white rounded-3xl border-2 border-dashed border-gray-200 h-[600px] flex flex-col items-center justify-center text-center p-10">
                 <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-6">
-                  <SafeIcon icon={FiGrid} className="text-4xl text-gray-200" />
+                  <SafeIcon icon={FiDatabase} className="text-4xl text-gray-200" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-400 mb-2">Nog geen plattegrond gegenereerd</h3>
-                <p className="text-gray-400 max-w-sm text-sm">Vul de configuratie aan de linkerkant in om je klassenindeling te maken.</p>
+                <h3 className="text-xl font-bold text-gray-400 mb-2">Wachtend op sociogramgegevens</h3>
+                <p className="text-gray-400 max-w-sm text-sm">Koppel je Google Sheet aan de linkerkant om de sociale data te vertalen naar een plattegrond.</p>
               </div>
             ) : (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
                 <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                   <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
                     <div>
-                      <h3 className="font-bold text-gray-900">Klassenplattegrond: {layout.charAt(0).toUpperCase() + layout.slice(1)}</h3>
+                      <h3 className="font-bold text-gray-900">Plattegrond op basis van Sociogram</h3>
                       <p className="text-xs text-green-600 font-medium flex items-center gap-1 mt-1">
                         <SafeIcon icon={FiCheck} /> Indeling geoptimaliseerd voor {goal}
                       </p>
                     </div>
                     <button onClick={handleReset} className="text-xs font-bold text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-lg transition-colors flex items-center gap-2">
-                      <SafeIcon icon={FiRefreshCw} /> Opnieuw
+                      <SafeIcon icon={FiRefreshCw} /> Andere data
                     </button>
                   </div>
 
                   <div className="p-8 bg-gray-50/50">
-                    {/* Teacher's desk indicator */}
                     <div className="mb-12 flex justify-center">
                       <div className="w-48 py-3 bg-gray-800 text-white text-[10px] uppercase tracking-[0.2em] font-bold text-center rounded-b-xl shadow-md border-t-4 border-indigo-500">
                         Bureau Docent / Digibord
@@ -222,8 +245,9 @@ const SeatingChart = () => {
                       <SafeIcon icon={FiInfo} className="text-indigo-600" /> Waarom deze indeling?
                     </h4>
                     <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                      Deze opstelling is gebaseerd op sociale voorkeuren, vermijdingen en de gekozen klasopstelling. 
-                      Waar nodig zijn concessies gedaan om rust en veiligheid te waarborgen. Gebruik dit als een beredeneerd uitgangspunt en pas aan waar jouw klaspraktijk dat vraagt.
+                      Deze opstelling is gebaseerd op sociogramgegevens en het gekozen doel. De tool heeft leerlingen met wederzijdse positieve keuzes strategisch geplaatst, terwijl vermijdingen zijn gerespecteerd om conflicten te minimaliseren.
+                      <br /><br />
+                      Waar nodig zijn concessies gedaan om rust en sociale veiligheid te waarborgen. Gebruik dit als een beredeneerd uitgangspunt.
                     </p>
                     <div className="flex flex-wrap gap-4">
                       <div className="flex items-center gap-2 text-[10px] font-bold text-gray-500">
@@ -239,11 +263,11 @@ const SeatingChart = () => {
                 <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="bg-indigo-100 p-3 rounded-xl text-indigo-600">
-                      <SafeIcon icon={FiEdit3} />
+                      <SafeIcon icon={FiShield} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-sm text-gray-900">Zelf aanpassen?</h4>
-                      <p className="text-xs text-gray-500">Gebruik deze plattegrond als basis in programma's zoals ParnasSys of Magister.</p>
+                      <h4 className="font-bold text-sm text-gray-900">Sociale Veiligheid</h4>
+                      <p className="text-xs text-gray-500">Deze indeling helpt bij het creëren van een positief groepsklimaat.</p>
                     </div>
                   </div>
                   <button className="bg-gray-100 text-gray-400 px-4 py-2 rounded-xl text-xs font-bold cursor-not-allowed flex items-center gap-2">
