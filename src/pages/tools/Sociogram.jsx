@@ -37,7 +37,6 @@ const Sociogram = () => {
 
   // Guidance UI State
   const [isScriptExpanded, setIsScriptExpanded] = useState(true);
-  const [isManualExpanded, setIsManualExpanded] = useState(false);
   const [scriptCopied, setScriptCopied] = useState(false);
 
   // Graph Data & Interaction
@@ -49,16 +48,17 @@ const Sociogram = () => {
   const graphRef = useRef();
 
   // --- AUTO FOCUS & CENTER LOGIC ---
-  // Deze effect zorgt ervoor dat bij elke nieuwe generatie het netwerk gecentreerd en passend wordt gemaakt.
   useEffect(() => {
     if (isGenerated && graphRef.current) {
-      // We wachten 400ms om de physics engine de kans te geven een basis-layout te vormen
+      // Directe fit voor voorbeelddata, lichte vertraging voor stabiliteit bij andere data
+      const delay = isExampleData ? 100 : 400;
       const timer = setTimeout(() => {
-        graphRef.current.zoomToFit(800, 100); // 800ms animatie, 100px padding
-      }, 400);
+        graphRef.current.zoomToFit(800, 120); // Ruime padding voor namen
+        graphRef.current.centerAt(0, 0, 400);
+      }, delay);
       return () => clearTimeout(timer);
     }
-  }, [isGenerated, graphData]);
+  }, [isGenerated, graphData, isExampleData]);
 
   // --- GOOGLE APPS SCRIPT CODE ---
   const googleScript = `function createSociogramForm() {
@@ -84,15 +84,6 @@ const Sociogram = () => {
     setTimeout(() => setScriptCopied(false), 2000);
   };
 
-  const handleDownloadTemplate = () => {
-    const wb = XLSX.utils.book_new();
-    const headers = ["Hoe heet je?", "Met wie vind je het gezellig?", "Met wie vind je het niet zo gezellig?", "Met wie kan je goed samenwerken?", "Met wie kan je niet zo goed samenwerken?"];
-    const data = [headers, ["Anna", "Pietje, Lisa", "Klaasje", "Pietje", ""]];
-    const ws = XLSX.utils.aoa_to_sheet(data);
-    XLSX.utils.book_append_sheet(wb, ws, "Sociogram Template");
-    XLSX.writeFile(wb, "sociogram-template.xlsx");
-  };
-
   const handleLoadExample = () => {
     const exampleCSV = `Hoe heet je?,Met wie vind je het gezellig?,Met wie vind je het niet zo gezellig?,Met wie kan je goed samenwerken?,Met wie kan je niet zo goed samenwerken?
 Anna,"Pietje, Jantje",Klaasje,Pietje,
@@ -105,15 +96,73 @@ Tom,Jantje,,Tom,`;
     setInputText(exampleCSV);
     setActiveTab('paste');
     setIsExampleData(true);
-    setIsStep2Expanded(true); // Zorg dat de mapping zichtbaar is voor consistentie
+    setIsStep2Expanded(false); // VERBERG mapping UI voor voorbeelddata
+    
+    // Direct verwerken en genereren
+    const lines = exampleCSV.trim().split('\n');
+    const validHeaders = lines[0].split(',').map(h => h.trim());
+    setHeaders(validHeaders);
+    
+    const rows = lines.slice(1).map(line => {
+      const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
+      let obj = {};
+      validHeaders.forEach((key, i) => obj[key] = values[i] ? values[i].trim().replace(/^"|"$/g, '') : '');
+      return obj;
+    });
+
+    setParsedData(rows);
+    
+    // Directe mapping voor voorbeelddata
+    const exampleMapping = {
+      name: validHeaders[0],
+      socialPos: validHeaders[1],
+      socialNeg: validHeaders[2],
+      workPos: validHeaders[3],
+      workNeg: validHeaders[4]
+    };
+    setMapping(exampleMapping);
+
+    // Trigger generatie na een korte state-update cycle
     setTimeout(() => {
-      processText(exampleCSV, true);
+      const nodes = [];
+      const links = [];
+      const studentNamesSet = new Set();
+
+      rows.forEach(row => {
+        const name = row[exampleMapping.name]?.trim();
+        if (name && !studentNamesSet.has(name)) {
+          studentNamesSet.add(name);
+          nodes.push({ id: name, name: name });
+        }
+      });
+
+      rows.forEach(row => {
+        const source = row[exampleMapping.name]?.trim();
+        if (!source) return;
+        
+        const processLink = (col, type) => {
+          if (!col) return;
+          const val = String(row[col] || '');
+          const targets = val.split(/[,\n;]/).map(s => s.trim()).filter(s => s.length > 0);
+          targets.forEach(target => {
+            if (studentNamesSet.has(target)) links.push({ source, target, type });
+          });
+        };
+
+        processLink(exampleMapping.socialPos, 'socialPos');
+        processLink(exampleMapping.socialNeg, 'socialNeg');
+        processLink(exampleMapping.workPos, 'workPos');
+        processLink(exampleMapping.workNeg, 'workNeg');
+      });
+
+      setGraphData({ nodes, links });
+      setIsGenerated(true);
     }, 100);
   };
 
-  // --- LOGIC: DATA PROCESSING ---
+  // --- LOGIC: DATA PROCESSING (REGULAR DATA) ---
   const processText = (textToProcess, allowAutoMap = true) => {
-    if (!textToProcess.trim()) return;
+    if (!textToProcess.trim() || isExampleData) return;
 
     try {
       const lines = textToProcess.trim().split('\n').filter(l => l.trim().length > 0);
@@ -346,14 +395,14 @@ Tom,Jantje,,Tom,`;
                           <div className="mt-6 bg-white p-6 rounded-xl border border-gray-200">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                               <div>
-                                <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-3">Volg deze 6 simpele stappen:</h5>
+                                <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-3">Stappenplan voor docenten:</h5>
                                 <ol className="space-y-3 text-sm text-gray-700">
                                   <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">1</span> <span>Ga naar <strong>script.google.com</strong></span></li>
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">2</span> <span>Klik op de blauwe knop <strong>'Nieuw project'</strong></span></li>
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">3</span> <span>Verwijder de tekst en <strong>plak het script</strong></span></li>
+                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">2</span> <span>Klik op <strong>'Nieuw project'</strong></span></li>
+                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">3</span> <span>Plak het script hiernaast</span></li>
                                   <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">4</span> <span>Klik op <strong>Opslaan</strong> en daarna op <strong>'Run'</strong></span></li>
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">5</span> <span>Google vraagt om toestemming; klik op <strong>'Allow'</strong></span></li>
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">6</span> <span>Het formulier staat nu in uw Google Drive!</span></li>
+                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">5</span> <span>Akkoord gaan met machtigingen</span></li>
+                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">6</span> <span>Je formulier staat nu klaar in Google Drive!</span></li>
                                 </ol>
                               </div>
                               <div className="relative group">
@@ -385,57 +434,66 @@ Tom,Jantje,,Tom,`;
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 font-sans">
                 <div className="flex flex-wrap gap-4 mb-6">
                   <div className="flex space-x-2 p-1 bg-gray-100 rounded-lg">
-                    <button onClick={() => setActiveTab('paste')} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'paste' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
-                      <SafeIcon icon={FiClipboard} />
-                      <span>Plakken</span>
+                    <button onClick={() => { setActiveTab('paste'); setIsExampleData(false); }} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'paste' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
+                      <SafeIcon icon={FiClipboard} /> <span>Plakken</span>
                     </button>
-                    <button onClick={() => setActiveTab('upload')} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'upload' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
-                      <SafeIcon icon={FiUpload} />
-                      <span>Uploaden</span>
+                    <button onClick={() => { setActiveTab('upload'); setIsExampleData(false); }} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'upload' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
+                      <SafeIcon icon={FiUpload} /> <span>Uploaden</span>
                     </button>
                   </div>
                   <div className="ml-auto text-right">
                     <button onClick={handleLoadExample} className="flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors text-sm bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200">
-                      <SafeIcon icon={FiDatabase} />
-                      <span>Test met voorbeelddata</span>
+                      <SafeIcon icon={FiDatabase} /> <span>Test met voorbeelddata</span>
                     </button>
                   </div>
                 </div>
 
-                {activeTab === 'paste' ? (
-                  <textarea className="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-sm bg-gray-50" placeholder="Plak hier de kolommen uit uw Excel..." value={inputText} onChange={(e) => setInputText(e.target.value)} onBlur={() => processText(inputText, true)}></textarea>
-                ) : (
-                  <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-10 text-center">
-                    <input type="file" accept=".csv,.xlsx" onChange={handleFileUpload} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
-                  </div>
+                {!isExampleData && (
+                  <>
+                    {activeTab === 'paste' ? (
+                      <textarea className="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-sm bg-gray-50" placeholder="Plak hier de kolommen uit uw Excel..." value={inputText} onChange={(e) => setInputText(e.target.value)} onBlur={() => processText(inputText, true)}></textarea>
+                    ) : (
+                      <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-10 text-center">
+                        <input type="file" accept=".csv,.xlsx" onChange={handleFileUpload} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                      </div>
+                    )}
+
+                    {headers.length > 0 && isStep2Expanded && (
+                      <div className="mt-10 pt-8 border-t border-gray-100">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
+                          {[
+                            { id: 'name', label: 'Naam Leerling', req: true },
+                            { id: 'socialPos', label: 'Gezellig (Social +)' },
+                            { id: 'socialNeg', label: 'Niet Gezellig (Social -)' },
+                            { id: 'workPos', label: 'Samenwerken (Work +)' },
+                            { id: 'workNeg', label: 'Niet Samenwerken (Work -)' }
+                          ].map(field => (
+                            <div key={field.id} className="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                              <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{field.label} {field.req && <span className="text-red-500">*</span>}</label>
+                              <select className={`w-full p-2.5 border rounded-lg bg-white text-sm focus:ring-2 focus:ring-blue-500 ${mapping[field.id] ? 'border-blue-300' : 'border-gray-300'}`} value={mapping[field.id]} onChange={(e) => setMapping(prev => ({ ...prev, [field.id]: e.target.value }))}>
+                                <option value="">-- Kies kolom --</option>
+                                {headers.map(h => <option key={h} value={h}>{h}</option>)}
+                              </select>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="flex justify-end pt-6 border-t border-gray-100">
+                          <button onClick={generateGraph} disabled={!isFormValid} className={`px-12 py-4 rounded-xl font-bold flex items-center space-x-2 transition-all shadow-lg ${isFormValid ? 'bg-blue-600 text-white hover:bg-blue-700 transform hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}>
+                            <SafeIcon icon={FiActivity} /> <span>Genereer Sociogram</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </>
                 )}
 
-                {headers.length > 0 && (
-                  <div className="mt-10 pt-8 border-t border-gray-100">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
-                      {[
-                        { id: 'name', label: 'Naam Leerling', req: true },
-                        { id: 'socialPos', label: 'Gezellig (Social +)' },
-                        { id: 'socialNeg', label: 'Niet Gezellig (Social -)' },
-                        { id: 'workPos', label: 'Samenwerken (Work +)' },
-                        { id: 'workNeg', label: 'Niet Samenwerken (Work -)' }
-                      ].map(field => (
-                        <div key={field.id} className="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                          <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{field.label} {field.req && <span className="text-red-500">*</span>}</label>
-                          <select className={`w-full p-2.5 border rounded-lg bg-white text-sm focus:ring-2 focus:ring-blue-500 ${mapping[field.id] ? 'border-blue-300' : 'border-gray-300'}`} value={mapping[field.id]} onChange={(e) => setMapping(prev => ({ ...prev, [field.id]: e.target.value }))}>
-                            <option value="">-- Kies kolom --</option>
-                            {headers.map(h => <option key={h} value={h}>{h}</option>)}
-                          </select>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex justify-end pt-6 border-t border-gray-100">
-                      <button onClick={generateGraph} disabled={!isFormValid} className={`px-12 py-4 rounded-xl font-bold flex items-center space-x-2 transition-all shadow-lg ${isFormValid ? 'bg-blue-600 text-white hover:bg-blue-700 transform hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}>
-                        <SafeIcon icon={FiActivity} />
-                        <span>Genereer Sociogram</span>
-                      </button>
-                    </div>
-                  </div>
+                {isExampleData && (
+                   <div className="p-12 text-center bg-purple-50 rounded-2xl border border-purple-100">
+                      <SafeIcon icon={FiCheckCircle} className="text-4xl text-purple-600 mx-auto mb-4" />
+                      <h3 className="text-xl font-bold text-purple-900 mb-2">Voorbeelddata geladen</h3>
+                      <p className="text-purple-700 mb-6 max-w-md mx-auto">De tool heeft de kolommen automatisch herkend. De visualisatie staat hieronder klaar.</p>
+                      <div className="w-16 h-1 bg-purple-200 mx-auto rounded-full"></div>
+                   </div>
                 )}
               </div>
             </div>
@@ -452,7 +510,7 @@ Tom,Jantje,,Tom,`;
                     </button>
                   ))}
                 </div>
-                <button onClick={() => { setIsGenerated(false); setIsExampleData(false); }} className="px-4 py-2 text-xs bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 font-bold flex items-center gap-2">
+                <button onClick={() => { setIsGenerated(false); setIsExampleData(false); setHeaders([]); setParsedData([]); }} className="px-4 py-2 text-xs bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 font-bold flex items-center gap-2">
                   <SafeIcon icon={FiGrid} /> Andere Data
                 </button>
               </div>
@@ -474,26 +532,24 @@ Tom,Jantje,,Tom,`;
                   cooldownTicks={100}
                   nodeCanvasObject={(node, ctx, globalScale) => {
                     const label = node.name;
-                    // Iets grotere basis font size voor betere leesbaarheid
                     const fontSize = 14 / globalScale; 
                     ctx.font = `${fontSize}px Sans-Serif`;
                     
-                    const r = 6; // Iets grotere nodes voor docent-vriendelijkheid
+                    const r = 6; // Genormaliseerde nodegrootte
                     ctx.beginPath();
                     ctx.arc(node.x, node.y, r, 0, 2 * Math.PI, false);
                     ctx.fillStyle = selectedNode?.id === node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8');
                     ctx.fill();
 
-                    // LABELS: Standaard altijd tonen, tenzij extreem ver uitgezoomd
-                    if (globalScale > 0.4) {
+                    // LABELS: Altijd zichtbaar bij voorbeelddata of bij voldoende zoom
+                    if (isExampleData || globalScale > 0.4) {
                       ctx.textAlign = 'center';
                       ctx.textBaseline = 'middle';
                       ctx.fillStyle = '#1e293b';
-                      // Voeg lichte witte gloed toe achter tekst voor betere leesbaarheid op lijnen
-                      ctx.strokeStyle = 'rgba(255,255,255,0.8)';
-                      ctx.lineWidth = 2 / globalScale;
-                      ctx.strokeText(label, node.x, node.y + r + fontSize + 1);
-                      ctx.fillText(label, node.x, node.y + r + fontSize + 1);
+                      ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+                      ctx.lineWidth = 3 / globalScale;
+                      ctx.strokeText(label, node.x, node.y + r + fontSize + 2);
+                      ctx.fillText(label, node.x, node.y + r + fontSize + 2);
                     }
                   }}
                 />
