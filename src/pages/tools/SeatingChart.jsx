@@ -1,24 +1,24 @@
-import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
 const { 
-  FiGrid, FiUsers, FiTarget, FiInfo, FiCheck, 
+  FiGrid, FiUsers, FiInfo, FiCheck, 
   FiLayout, FiCoffee, FiAlertCircle, FiRefreshCw,
-  FiArrowRight, FiLink, FiDatabase, FiSliders, FiShield
+  FiArrowRight, FiLink, FiDatabase, FiSliders, FiShield, FiLock
 } = FiIcons;
 
 const SeatingChart = () => {
   // --- STATE ---
-  const [layout, setLayout] = useState('rijen'); // rijen, eilandjes
-  const [goal, setGoal] = useState('rust'); // rust, samenwerking, conflicten
+  const [layout, setLayout] = useState('rijen');
+  const [goal, setGoal] = useState('rust');
   const [sheetLink, setSheetLink] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
+  const [showPrivacyInfo, setShowPrivacyInfo] = useState(false);
 
-  // --- LOGIC: SIMULATED RESULTS ---
-  // We use a fixed list of names to simulate a result based on the link
+  // --- LOGIC ---
   const dummyStudents = [
     "Anna", "Bram", "Casper", "Daan", "Emma", "Fleur", "Gijs", "Hanna", 
     "Isabel", "Jasper", "Klaas", "Lisa", "Meis", "Noah", "Olivia", "Piet",
@@ -65,11 +65,6 @@ const SeatingChart = () => {
                <div className={`h-full ${index % 7 === 0 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
             </div>
           </motion.div>
-        ))}
-        {Array.from({ length: Math.max(0, (layout === 'rijen' ? 24 : 18) - dummyStudents.length) }).map((_, i) => (
-          <div key={`empty-${i}`} className="p-4 rounded-xl border-2 border-dashed border-gray-200 flex items-center justify-center min-h-[100px] opacity-30">
-            <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Leeg</span>
-          </div>
         ))}
       </div>
     );
@@ -122,7 +117,6 @@ const SeatingChart = () => {
                 {/* Step 2: Goal */}
                 <div>
                   <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Stap 2 – Wat is het doel van deze indeling?</label>
-                  <p className="text-[11px] text-gray-500 mb-3 italic">Deze doelen worden gerealiseerd door de sociale relaties uit het sociogram te analyseren.</p>
                   <div className="space-y-2">
                     {[
                       { id: 'rust', label: 'Rust in de klas', icon: FiCoffee },
@@ -144,22 +138,34 @@ const SeatingChart = () => {
 
                 {/* Step 3: Sociogram Data */}
                 <div className="pt-4 border-t border-gray-100">
-                  <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-                    Stap 3 – Sociogramgegevens <span className="text-red-500">(verplicht)</span>
-                  </label>
-                  
-                  <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 mb-4">
-                    <p className="text-xs text-blue-900 font-bold mb-1">Inzicht → Toepassing</p>
-                    <p className="text-[11px] text-blue-800 leading-relaxed">
-                      Deze klassenplattegrond wordt gemaakt op basis van sociogramgegevens. Gebruik hiervoor hetzelfde sociogram dat je eerder hebt gemaakt.
-                    </p>
+                  <div className="flex items-center justify-between mb-3">
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                      Stap 3 – Sociogramgegevens <span className="text-red-500">(verplicht)</span>
+                    </label>
+                    <div className="relative">
+                      <button 
+                        onMouseEnter={() => setShowPrivacyInfo(true)}
+                        onMouseLeave={() => setShowPrivacyInfo(false)}
+                        className="text-gray-400 hover:text-indigo-600 transition-colors"
+                      >
+                        <SafeIcon icon={FiInfo} />
+                      </button>
+                      {showPrivacyInfo && (
+                        <div className="absolute bottom-full right-0 mb-2 w-64 bg-gray-900 text-white text-[10px] p-3 rounded-xl shadow-xl z-20 leading-relaxed border border-gray-700">
+                          <p className="font-bold mb-1 flex items-center gap-1 text-indigo-400 uppercase tracking-wider">
+                            <SafeIcon icon={FiLock} /> Privacy & gegevens
+                          </p>
+                          Je sociogram blijft in je eigen Google Drive. Wij slaan geen leerlingnamen of sociale relaties op.
+                        </div>
+                      )}
+                    </div>
                   </div>
-
+                  
                   <div className="space-y-4">
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <label className="text-[11px] font-bold text-gray-700">Link naar je sociogram (Google Sheet)</label>
-                        <SafeIcon icon={FiLink} className="text-gray-400 text-xs" />
+                        <label className="text-[11px] font-bold text-gray-700 leading-tight">Link naar je sociogram (Google Sheet – alleen bekijken)</label>
+                        <SafeIcon icon={FiLink} className="text-gray-400 text-xs shrink-0 ml-2" />
                       </div>
                       <input 
                         type="text"
@@ -168,17 +174,16 @@ const SeatingChart = () => {
                         placeholder="https://docs.google.com/spreadsheets/..."
                         className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 font-sans text-xs bg-gray-50 mb-2"
                       />
-                      <p className="text-[10px] text-gray-400 leading-relaxed italic">
-                        Zorg dat je sociogram beschikbaar is in Google Sheets. De sociale relaties uit dit sociogram vormen de basis voor de zitindeling.
-                      </p>
+                      <div className="space-y-2">
+                        <p className="text-[10px] text-gray-500 leading-relaxed italic">
+                          Deel hier de bekijklink van je sociogram in Google Sheets. Het bestand hoeft niet openbaar te zijn — alleen toegankelijk via de link.
+                        </p>
+                        <p className="text-[10px] text-indigo-600 font-medium leading-relaxed bg-indigo-50 p-2 rounded-lg border border-indigo-100/50">
+                          <SafeIcon icon={FiShield} className="inline mr-1" />
+                          Onderwijs.ai slaat geen leerlinggegevens op. De sociogramgegevens worden alleen gebruikt om deze klassenplattegrond te maken en worden niet bewaard.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                    <p className="text-[10px] text-gray-500 leading-tight">
-                      <SafeIcon icon={FiAlertCircle} className="inline mr-1" />
-                      Zonder sociogram kan deze tool geen verantwoorde afweging maken voor rust, samenwerking of conflictpreventie.
-                    </p>
                   </div>
                 </div>
 
@@ -192,17 +197,6 @@ const SeatingChart = () => {
                 </button>
               </div>
             </motion.div>
-
-            <div className="bg-indigo-900 text-white p-6 rounded-2xl shadow-xl">
-              <h3 className="font-bold text-sm mb-3 flex items-center gap-2">
-                <SafeIcon icon={FiInfo} className="text-indigo-300" /> Hoe werkt dit?
-              </h3>
-              <p className="text-xs text-indigo-100 leading-relaxed opacity-80">
-                De klassenplattegrond wordt samengesteld op basis van sociale voorkeuren, vermijdingen en groepsdynamiek uit het sociogram. 
-                <br /><br />
-                In een klas van 25–30 leerlingen worden altijd pedagogische afwegingen gemaakt; niet alle voorkeuren kunnen worden gerealiseerd.
-              </p>
-            </div>
           </div>
 
           {/* RIGHT: Results */}
@@ -236,7 +230,6 @@ const SeatingChart = () => {
                         Bureau Docent / Digibord
                       </div>
                     </div>
-
                     {renderDesks()}
                   </div>
 
@@ -249,30 +242,7 @@ const SeatingChart = () => {
                       <br /><br />
                       Waar nodig zijn concessies gedaan om rust en sociale veiligheid te waarborgen. Gebruik dit als een beredeneerd uitgangspunt.
                     </p>
-                    <div className="flex flex-wrap gap-4">
-                      <div className="flex items-center gap-2 text-[10px] font-bold text-gray-500">
-                        <div className="w-3 h-3 bg-green-400 rounded-full"></div> Match met voorkeur
-                      </div>
-                      <div className="flex items-center gap-2 text-[10px] font-bold text-gray-500">
-                        <div className="w-3 h-3 bg-orange-400 rounded-full"></div> Pedagogische plaatsing
-                      </div>
-                    </div>
                   </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="bg-indigo-100 p-3 rounded-xl text-indigo-600">
-                      <SafeIcon icon={FiShield} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-sm text-gray-900">Sociale Veiligheid</h4>
-                      <p className="text-xs text-gray-500">Deze indeling helpt bij het creëren van een positief groepsklimaat.</p>
-                    </div>
-                  </div>
-                  <button className="bg-gray-100 text-gray-400 px-4 py-2 rounded-xl text-xs font-bold cursor-not-allowed flex items-center gap-2">
-                    <SafeIcon icon={FiArrowRight} /> Binnenkort: Verslepen
-                  </button>
                 </div>
               </motion.div>
             )}
