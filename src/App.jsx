@@ -28,8 +28,9 @@ import PresentatieGenerator from './pages/tools/PresentatieGenerator';
 import MentorLessonPlanner from './pages/tools/MentorLessonPlanner';
 import ParentEmailGenerator from './pages/tools/ParentEmailGenerator';
 import Sociogram from './pages/tools/Sociogram';
+import SeatingChart from './pages/tools/SeatingChart';
 
-// Kenniscentrum (NEW IMPORTS)
+// Kenniscentrum
 import Kennisbank from './pages/kenniscentrum/Kennisbank';
 import WatIsAI from './pages/kenniscentrum/WatIsAI';
 import ChatGPTInDeKlas from './pages/kenniscentrum/ChatGPTInDeKlas';
@@ -37,7 +38,6 @@ import PromptBibliotheek from './pages/kenniscentrum/PromptBibliotheek';
 import Downloads from './pages/Downloads';
 import TrainingDetail from './pages/trainingen/TrainingDetail';
 import LegalPage from './pages/legal/LegalPage';
-
 import './App.css';
 
 function App() {
@@ -51,7 +51,7 @@ function App() {
               {/* 1. Algemeen */}
               <Route path="/" element={<Home />} />
               <Route path="/over-ons" element={<OverOns />} />
-              
+
               {/* 2. AI Tools (Interactive) */}
               <Route path="/tools" element={<ToolsOverview />} />
               <Route path="/tools/lesgenerator" element={<LessonGenerator />} />
@@ -62,7 +62,8 @@ function App() {
               <Route path="/tools/mentorles" element={<MentorLessonPlanner />} />
               <Route path="/tools/oudermailgenerator" element={<ParentEmailGenerator />} />
               <Route path="/tools/sociogram" element={<Sociogram />} />
-              
+              <Route path="/tools/klassenplattegrond" element={<SeatingChart />} />
+
               {/* 3. Voor Docenten */}
               <Route path="/voor-docenten/po" element={<PO />} />
               <Route path="/voor-docenten/vo" element={<VO />} />
@@ -77,30 +78,16 @@ function App() {
               <Route path="/ai-tools" element={<AITools />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/kennisbank" element={<Kennisbank />} />
-              
-              {/* NIEUWE KENNISBANK ROUTES */}
               <Route path="/kennisbank/wat-is-ai" element={<WatIsAI />} />
               <Route path="/kennisbank/chatgpt-in-de-klas" element={<ChatGPTInDeKlas />} />
               <Route path="/kennisbank/prompt-bibliotheek" element={<PromptBibliotheek />} />
 
               {/* 6. Trainingen */}
               <Route path="/trainingen" element={<Trainingen />} />
-              <Route path="/trainingen/chatgpt-in-de-klas" element={<TrainingDetail 
-                title="ChatGPT in de klas" 
-                description="Leer hoe je ChatGPT veilig en effectief inzet als onderwijsassistent." 
-              />} />
-              <Route path="/trainingen/ai-differentiatie" element={<TrainingDetail 
-                title="Differentiëren met AI" 
-                description="Maak onderwijs op maat voor elke leerling met behulp van AI-tools." 
-              />} />
-              <Route path="/trainingen/gemini-voor-docenten" element={<TrainingDetail 
-                title="Gemini voor Docenten" 
-                description="Haal het maximale uit Google's AI-modellen in je lespraktijk." 
-              />} />
-              <Route path="/trainingen/ai-en-privacy-avg" element={<TrainingDetail 
-                title="AI, Privacy & AVG" 
-                description="Juridische en ethische kaders voor veilig gebruik van AI op school." 
-              />} />
+              <Route path="/trainingen/chatgpt-in-de-klas" element={<TrainingDetail title="ChatGPT in de klas" description="Leer hoe je ChatGPT veilig en effectief inzet als onderwijsassistent." />} />
+              <Route path="/trainingen/ai-differentiatie" element={<TrainingDetail title="Differentiëren met AI" description="Maak onderwijs op maat voor elke leerling met behulp van AI-tools." />} />
+              <Route path="/trainingen/gemini-voor-docenten" element={<TrainingDetail title="Gemini voor Docenten" description="Haal het maximale uit Google's AI-modellen in je lespraktijk." />} />
+              <Route path="/trainingen/ai-en-privacy-avg" element={<TrainingDetail title="AI, Privacy & AVG" description="Juridische en ethische kaders voor veilig gebruik van AI op school." />} />
 
               {/* 7. Nieuwsbrief/Downloads */}
               <Route path="/nieuwsbrief" element={<Nieuwsbrief />} />
