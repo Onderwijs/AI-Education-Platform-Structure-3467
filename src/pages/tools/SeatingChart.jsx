@@ -243,22 +243,22 @@ const SeatingChart=()=> {
                   <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
                     <div>
                       <h3 className="font-bold text-gray-900">Gegenereerde Plattegrond</h3>
-                      <p className="text-xs text-indigo-600 font-medium mt-1">2–2–2 Tafelopstelling</p>
+                      <p className="text-xs text-indigo-600 font-medium mt-1">Vaste 2–2–2 Tafelopstelling</p>
                     </div>
                     <button onClick={handleReset} className="text-xs font-bold text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-lg transition-colors flex items-center gap-2" >
                       <SafeIcon icon={FiRefreshCw} /> Andere data
                     </button>
                   </div>
-                  <div className="p-8 bg-gray-50/50">
-                    <div className="mb-12 flex justify-center">
+                  <div className="p-8 bg-gray-50/50 overflow-x-auto">
+                    <div className="mb-12 flex justify-center min-w-[800px]">
                       <div className="w-48 py-3 bg-gray-800 text-white text-[10px] uppercase tracking-[0.2em] font-bold text-center rounded-b-xl shadow-md border-t-4 border-indigo-500"> Bureau Docent / Digibord </div>
                     </div>
                     
-                    {/* GRID RENDER LOGIC WITH 2-2-2 SPACING */}
-                    <div className={`grid ${layout==='rijen' ? "grid-cols-6 gap-0" : "grid-cols-3 gap-8"}`}>
+                    {/* GRID RENDER LOGIC WITH UNIFORM FIXED CARDS */}
+                    <div className={`grid min-w-[800px] ${layout==='rijen' ? "grid-cols-6 gap-y-6 gap-x-0" : "grid-cols-3 gap-8"}`}>
                       {displayStudents.map((name,index)=> {
                         const isRowLayout = layout === 'rijen';
-                        // Add margin after 2nd and 4th table in a row of 6
+                        // Add spacing after 2nd and 4th table in a row of 6 for 2-2-2 effect
                         const hasGap = isRowLayout && (index % 6 === 1 || index % 6 === 3);
                         
                         return (
@@ -267,16 +267,17 @@ const SeatingChart=()=> {
                             initial={{opacity: 0,scale: 0.8}} 
                             animate={{opacity: 1,scale: 1}} 
                             transition={{delay: index * 0.01}} 
-                            className={`p-4 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center min-h-[100px] transition-all 
+                            className={`p-3 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center transition-all
+                              w-full h-28 shrink-0
                               ${layout==='rijen' ? 'bg-white border-blue-100' : 'bg-indigo-50 border-indigo-200'}
                               ${hasGap ? 'mr-12' : 'mr-0'}
                             `}
                           >
-                            <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mb-2">
+                            <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mb-3">
                               <SafeIcon icon={FiUsers} className="text-gray-400 text-[10px]" />
                             </div>
-                            <span className="text-[11px] font-bold text-gray-800 truncate w-full px-1">{name}</span>
-                            <div className="mt-2 w-full h-1 bg-gray-100 rounded-full overflow-hidden">
+                            <span className="text-[11px] font-bold text-gray-800 truncate w-full px-1 mb-3">{name}</span>
+                            <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden mt-auto">
                               <div className={`h-full ${index % 7===0 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
                             </div>
                           </motion.div>
