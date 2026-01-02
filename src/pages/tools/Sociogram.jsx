@@ -6,14 +6,7 @@ import * as FiIcons from 'react-icons/fi';
 import * as XLSX from 'xlsx';
 import ForceGraph2D from 'react-force-graph-2d';
 
-const { 
-  FiUpload, FiClipboard, FiSettings, FiActivity, FiDownload, 
-  FiSearch, FiEye, FiAlertTriangle, FiCheck, FiUsers, 
-  FiGrid, FiXCircle, FiInfo, FiFileText, FiHelpCircle, 
-  FiDatabase, FiExternalLink, FiChevronDown, FiChevronUp, 
-  FiFilter, FiMaximize2, FiSend, FiCheckCircle, FiCopy, 
-  FiTerminal, FiShare2 
-} = FiIcons;
+const { FiUpload, FiClipboard, FiSettings, FiActivity, FiDownload, FiSearch, FiEye, FiAlertTriangle, FiCheck, FiUsers, FiGrid, FiXCircle, FiInfo, FiFileText, FiHelpCircle, FiDatabase, FiExternalLink, FiChevronDown, FiChevronUp, FiFilter, FiMaximize2, FiSend, FiCheckCircle, FiCopy, FiTerminal, FiShare2 } = FiIcons;
 
 const Sociogram = () => {
   // --- STATE ---
@@ -21,13 +14,7 @@ const Sociogram = () => {
   const [inputText, setInputText] = useState('');
   const [parsedData, setParsedData] = useState([]);
   const [headers, setHeaders] = useState([]);
-  const [mapping, setMapping] = useState({
-    name: '',
-    socialPos: '',
-    socialNeg: '',
-    workPos: '',
-    workNeg: ''
-  });
+  const [mapping, setMapping] = useState({ name: '', socialPos: '', socialNeg: '', workPos: '', workNeg: '' });
 
   // UI State
   const [isExampleData, setIsExampleData] = useState(false);
@@ -50,10 +37,9 @@ const Sociogram = () => {
   // --- AUTO FOCUS & CENTER LOGIC ---
   useEffect(() => {
     if (isGenerated && graphRef.current) {
-      // Directe fit voor voorbeelddata, lichte vertraging voor stabiliteit bij andere data
       const delay = isExampleData ? 100 : 400;
       const timer = setTimeout(() => {
-        graphRef.current.zoomToFit(800, 120); // Ruime padding voor namen
+        graphRef.current.zoomToFit(800, 120);
         graphRef.current.centerAt(0, 0, 400);
       }, delay);
       return () => clearTimeout(timer);
@@ -65,19 +51,16 @@ const Sociogram = () => {
   var form = FormApp.create('Interactief Sociogram Vragenlijst');
   form.setTitle('Sociogram: Hoe werken we samen in de klas?')
       .setDescription('Vul deze vragenlijst eerlijk in. Je antwoorden zijn alleen zichtbaar voor de leraar.');
-  
   form.addTextItem().setTitle('Hoe heet je?').setRequired(true);
   form.addTextItem().setTitle('Met wie vind je het gezellig?').setHelpText('Meerdere namen scheiden met een komma.');
   form.addTextItem().setTitle('Met wie vind je het niet zo gezellig?');
   form.addTextItem().setTitle('Met wie kan je goed samenwerken?');
   form.addTextItem().setTitle('Met wie kan je niet zo goed samenwerken?');
-
   Logger.log('Link naar het formulier: ' + form.getEditUrl());
   Logger.log('Link om te delen met leerlingen: ' + form.getPublishedUrl());
   Browser.msgBox('Klaar! Het formulier is aangemaakt in je Google Drive. Open het nu om het te delen met je klas.');
 }`;
 
-  // --- LOGIC: HELPERS ---
   const copyScript = () => {
     navigator.clipboard.writeText(googleScript);
     setScriptCopied(true);
@@ -92,42 +75,26 @@ Klaasje,Pietje,,,
 Jantje,Anna,Klaasje,,
 Lisa,Anna,Pietje,Lisa,
 Tom,Jantje,,Tom,`;
-    
     setInputText(exampleCSV);
     setActiveTab('paste');
     setIsExampleData(true);
-    setIsStep2Expanded(false); // VERBERG mapping UI voor voorbeelddata
-    
-    // Direct verwerken en genereren
+    setIsStep2Expanded(false);
     const lines = exampleCSV.trim().split('\n');
     const validHeaders = lines[0].split(',').map(h => h.trim());
     setHeaders(validHeaders);
-    
     const rows = lines.slice(1).map(line => {
       const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
       let obj = {};
       validHeaders.forEach((key, i) => obj[key] = values[i] ? values[i].trim().replace(/^"|"$/g, '') : '');
       return obj;
     });
-
     setParsedData(rows);
-    
-    // Directe mapping voor voorbeelddata
-    const exampleMapping = {
-      name: validHeaders[0],
-      socialPos: validHeaders[1],
-      socialNeg: validHeaders[2],
-      workPos: validHeaders[3],
-      workNeg: validHeaders[4]
-    };
+    const exampleMapping = { name: validHeaders[0], socialPos: validHeaders[1], socialNeg: validHeaders[2], workPos: validHeaders[3], workNeg: validHeaders[4] };
     setMapping(exampleMapping);
-
-    // Trigger generatie na een korte state-update cycle
     setTimeout(() => {
       const nodes = [];
       const links = [];
       const studentNamesSet = new Set();
-
       rows.forEach(row => {
         const name = row[exampleMapping.name]?.trim();
         if (name && !studentNamesSet.has(name)) {
@@ -135,11 +102,9 @@ Tom,Jantje,,Tom,`;
           nodes.push({ id: name, name: name });
         }
       });
-
       rows.forEach(row => {
         const source = row[exampleMapping.name]?.trim();
         if (!source) return;
-        
         const processLink = (col, type) => {
           if (!col) return;
           const val = String(row[col] || '');
@@ -148,30 +113,24 @@ Tom,Jantje,,Tom,`;
             if (studentNamesSet.has(target)) links.push({ source, target, type });
           });
         };
-
         processLink(exampleMapping.socialPos, 'socialPos');
         processLink(exampleMapping.socialNeg, 'socialNeg');
         processLink(exampleMapping.workPos, 'workPos');
         processLink(exampleMapping.workNeg, 'workNeg');
       });
-
       setGraphData({ nodes, links });
       setIsGenerated(true);
     }, 100);
   };
 
-  // --- LOGIC: DATA PROCESSING (REGULAR DATA) ---
   const processText = (textToProcess, allowAutoMap = true) => {
     if (!textToProcess.trim() || isExampleData) return;
-
     try {
       const lines = textToProcess.trim().split('\n').filter(l => l.trim().length > 0);
       if (lines.length === 0) return;
-
       const candidates = [',', '\t', ';', '|'];
       let bestSep = ',';
       let maxCount = -1;
-
       candidates.forEach(sep => {
         const count = lines[0].split(sep).length - 1;
         if (count > maxCount) {
@@ -179,10 +138,8 @@ Tom,Jantje,,Tom,`;
           bestSep = sep;
         }
       });
-
       const validHeaders = lines[0].split(bestSep).map((h, i) => h.trim().replace(/^"|"$/g, '') || `Kolom ${i + 1}`);
       setHeaders(validHeaders);
-
       const rows = lines.slice(1).map(line => {
         const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
         let obj = {};
@@ -191,7 +148,6 @@ Tom,Jantje,,Tom,`;
         });
         return obj;
       });
-
       setParsedData(rows);
       if (allowAutoMap) autoMapHeaders(validHeaders);
     } catch (err) {
@@ -205,7 +161,6 @@ Tom,Jantje,,Tom,`;
       const idx = lowerHeaders.findIndex(h => keywords.some(k => h.includes(k)));
       return idx !== -1 ? availableHeaders[idx] : '';
     };
-
     setMapping({
       name: findMatch(['hoe heet je', 'naam', 'leerling', 'student']),
       socialPos: findMatch(['gezellig', 'social+', 'vrienden']),
@@ -220,7 +175,6 @@ Tom,Jantje,,Tom,`;
     setIsStep2Expanded(true);
     const file = e.target.files[0];
     if (!file) return;
-
     const reader = new FileReader();
     reader.onload = (evt) => {
       try {
@@ -228,17 +182,14 @@ Tom,Jantje,,Tom,`;
         const wb = XLSX.read(bstr, { type: 'binary' });
         const ws = wb.Sheets[wb.SheetNames[0]];
         const data = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
-
         if (data && data.length > 0) {
           const validHeaders = data[0].map((h, i) => (h && String(h).trim()) ? String(h).trim() : `Kolom ${i + 1}`);
           setHeaders(validHeaders);
-
           const rows = data.slice(1).map(row => {
             let obj = {};
             validHeaders.forEach((key, i) => obj[key] = (row[i] !== undefined) ? String(row[i]).trim() : '');
             return obj;
           });
-
           setParsedData(rows);
           autoMapHeaders(validHeaders);
         }
@@ -251,11 +202,9 @@ Tom,Jantje,,Tom,`;
 
   const generateGraph = () => {
     if (!mapping.name) return;
-
     const nodes = [];
     const links = [];
     const studentNamesSet = new Set();
-
     parsedData.forEach(row => {
       const name = row[mapping.name]?.trim();
       if (name && !studentNamesSet.has(name)) {
@@ -263,11 +212,9 @@ Tom,Jantje,,Tom,`;
         nodes.push({ id: name, name: name });
       }
     });
-
     parsedData.forEach(row => {
       const source = row[mapping.name]?.trim();
       if (!source || !studentNamesSet.has(source)) return;
-
       const processLink = (col, type) => {
         if (!col) return;
         const val = String(row[col] || '');
@@ -278,13 +225,11 @@ Tom,Jantje,,Tom,`;
           }
         });
       };
-
       processLink(mapping.socialPos, 'socialPos');
       processLink(mapping.socialNeg, 'socialNeg');
       processLink(mapping.workPos, 'workPos');
       processLink(mapping.workNeg, 'workNeg');
     });
-
     setGraphData({ nodes, links });
     setIsGenerated(true);
   };
@@ -293,13 +238,12 @@ Tom,Jantje,,Tom,`;
     if (viewMode !== 'all' && link.type !== viewMode) return 'transparent';
     const isHighlighted = highlightLinks.size > 0 && highlightLinks.has(link);
     const opacity = highlightLinks.size > 0 && !isHighlighted ? '0.05' : '0.6';
-
-    switch(link.type) {
-      case 'socialPos': return `rgba(34,197,94,${opacity})`;
-      case 'socialNeg': return `rgba(239,68,68,${opacity})`;
-      case 'workPos': return `rgba(59,130,246,${opacity})`;
-      case 'workNeg': return `rgba(249,115,22,${opacity})`;
-      default: return `rgba(156,163,175,${opacity})`;
+    switch (link.type) {
+      case 'socialPos': return `rgba(34, 197, 94, ${opacity})`;
+      case 'socialNeg': return `rgba(239, 68, 68, ${opacity})`;
+      case 'workPos': return `rgba(59, 130, 246, ${opacity})`;
+      case 'workNeg': return `rgba(249, 115, 22, ${opacity})`;
+      default: return `rgba(156, 163, 175, ${opacity})`;
     }
   };
 
@@ -307,7 +251,6 @@ Tom,Jantje,,Tom,`;
     const hNodes = new Set();
     const hLinks = new Set();
     const activeId = hoverNode || (selectedNode ? selectedNode.id : null);
-
     if (activeId) {
       hNodes.add(activeId);
       graphData.links.forEach(link => {
@@ -321,7 +264,6 @@ Tom,Jantje,,Tom,`;
         }
       });
     }
-
     setHighlightNodes(hNodes);
     setHighlightLinks(hLinks);
   }, [hoverNode, selectedNode, graphData, viewMode]);
@@ -334,14 +276,8 @@ Tom,Jantje,,Tom,`;
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SimpleHero 
-        title="Interactief Sociogram" 
-        subtitle="Visualiseer de sociale dynamiek en samenwerkingsvoorkeuren in jouw klas."
-        color="from-blue-600 to-indigo-700"
-      />
-
+      <SimpleHero title="Interactief Sociogram" subtitle="Visualiseer de sociale dynamiek en samenwerkingsvoorkeuren in jouw klas." color="from-blue-600 to-indigo-700" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        
         {!isGenerated && (
           <div className="flex flex-wrap justify-center items-center gap-4 md:gap-12 mb-12">
             {[
@@ -373,10 +309,7 @@ Tom,Jantje,,Tom,`;
               </div>
               <div className="space-y-4">
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                  <button 
-                    onClick={() => setIsScriptExpanded(!isScriptExpanded)}
-                    className="w-full p-6 flex items-center justify-between hover:bg-gray-50 transition-colors text-left"
-                  >
+                  <button onClick={() => setIsScriptExpanded(!isScriptExpanded)} className="w-full p-6 flex items-center justify-between hover:bg-gray-50 transition-colors text-left" >
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center shrink-0">
                         <SafeIcon icon={FiShare2} />
@@ -384,6 +317,7 @@ Tom,Jantje,,Tom,`;
                       <div>
                         <h3 className="font-bold text-gray-900">Optie A: Automatisch een Google Form genereren <span className="text-green-600 text-xs font-medium ml-2 bg-green-50 px-2 py-0.5 rounded-full">(Aanbevolen)</span></h3>
                         <p className="text-sm text-gray-500">De makkelijkste manier om veilig en anoniem data van je klas te verzamelen.</p>
+                        <p className="text-sm text-gray-600 mt-2 font-medium">Na het aanmaken deel je dit Google Form met je leerlingen. Alle antwoorden worden automatisch opgeslagen in een gekoppelde Google Sheet in je Google Drive.</p>
                       </div>
                     </div>
                     <SafeIcon icon={isScriptExpanded ? FiChevronUp : FiChevronDown} className="text-gray-400" />
@@ -407,8 +341,7 @@ Tom,Jantje,,Tom,`;
                               </div>
                               <div className="relative group">
                                 <button onClick={copyScript} className={`absolute top-3 right-3 z-10 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-all ${scriptCopied ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}>
-                                  <SafeIcon icon={scriptCopied ? FiCheck : FiCopy} />
-                                  {scriptCopied ? 'Gekopieerd!' : 'Kopieer Script'}
+                                  <SafeIcon icon={scriptCopied ? FiCheck : FiCopy} /> {scriptCopied ? 'Gekopieerd!' : 'Kopieer Script'}
                                 </button>
                                 <div className="bg-gray-900 rounded-xl p-4 pt-12 h-full max-h-[250px] overflow-y-auto shadow-inner border border-gray-800">
                                   <pre className="text-[10px] font-mono text-blue-300 leading-relaxed">{googleScript}</pre>
@@ -422,6 +355,9 @@ Tom,Jantje,,Tom,`;
                   </AnimatePresence>
                 </div>
               </div>
+              <p className="mt-6 text-sm text-gray-600 border-l-4 border-blue-500 pl-4 py-1 bg-blue-50 rounded-r-lg font-medium">
+                Gebruik deze Google Sheet als invoer voor deze tool: download het bestand of kopieer de gegevens en upload deze hier om het sociogram te visualiseren.
+              </p>
             </div>
 
             {/* STAP 3 – UPLOAD & VISUALISEER */}
@@ -430,7 +366,6 @@ Tom,Jantje,,Tom,`;
                 <div className="bg-blue-100 p-2 rounded-lg text-blue-600"><SafeIcon icon={FiGrid} className="text-xl" /></div>
                 <h2 className="text-2xl font-bold text-gray-900">Stap 3 – Upload & visualiseer</h2>
               </div>
-
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 font-sans">
                 <div className="flex flex-wrap gap-4 mb-6">
                   <div className="flex space-x-2 p-1 bg-gray-100 rounded-lg">
@@ -488,12 +423,12 @@ Tom,Jantje,,Tom,`;
                 )}
 
                 {isExampleData && (
-                   <div className="p-12 text-center bg-purple-50 rounded-2xl border border-purple-100">
-                      <SafeIcon icon={FiCheckCircle} className="text-4xl text-purple-600 mx-auto mb-4" />
-                      <h3 className="text-xl font-bold text-purple-900 mb-2">Voorbeelddata geladen</h3>
-                      <p className="text-purple-700 mb-6 max-w-md mx-auto">De tool heeft de kolommen automatisch herkend. De visualisatie staat hieronder klaar.</p>
-                      <div className="w-16 h-1 bg-purple-200 mx-auto rounded-full"></div>
-                   </div>
+                  <div className="p-12 text-center bg-purple-50 rounded-2xl border border-purple-100">
+                    <SafeIcon icon={FiCheckCircle} className="text-4xl text-purple-600 mx-auto mb-4" />
+                    <h3 className="text-xl font-bold text-purple-900 mb-2">Voorbeelddata geladen</h3>
+                    <p className="text-purple-700 mb-6 max-w-md mx-auto">De tool heeft de kolommen automatisch herkend. De visualisatie staat hieronder klaar.</p>
+                    <div className="w-16 h-1 bg-purple-200 mx-auto rounded-full"></div>
+                  </div>
                 )}
               </div>
             </div>
@@ -514,7 +449,6 @@ Tom,Jantje,,Tom,`;
                   <SafeIcon icon={FiGrid} /> Andere Data
                 </button>
               </div>
-
               <div className="flex-grow bg-slate-50 relative cursor-grab active:cursor-grabbing">
                 <ForceGraph2D
                   ref={graphRef}
@@ -532,16 +466,13 @@ Tom,Jantje,,Tom,`;
                   cooldownTicks={100}
                   nodeCanvasObject={(node, ctx, globalScale) => {
                     const label = node.name;
-                    const fontSize = 14 / globalScale; 
+                    const fontSize = 14 / globalScale;
                     ctx.font = `${fontSize}px Sans-Serif`;
-                    
-                    const r = 6; // Genormaliseerde nodegrootte
+                    const r = 6;
                     ctx.beginPath();
                     ctx.arc(node.x, node.y, r, 0, 2 * Math.PI, false);
                     ctx.fillStyle = selectedNode?.id === node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8');
                     ctx.fill();
-
-                    // LABELS: Altijd zichtbaar bij voorbeelddata of bij voldoende zoom
                     if (isExampleData || globalScale > 0.4) {
                       ctx.textAlign = 'center';
                       ctx.textBaseline = 'middle';
@@ -584,6 +515,7 @@ Tom,Jantje,,Tom,`;
                   </div>
                 )}
               </div>
+
               <div className="bg-indigo-900 text-white rounded-3xl shadow-xl p-8">
                 <h3 className="font-bold mb-4 flex items-center gap-2"><SafeIcon icon={FiInfo} className="text-indigo-300" /> Interpretatie</h3>
                 <ul className="text-xs space-y-3 text-indigo-100">
