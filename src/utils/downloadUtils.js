@@ -36,7 +36,7 @@ const clearCache = () => {
 
 /**
  * KLASSENPLATTEGROND PDF GENERATOR
- * Genereert een A4 PDF van de klassenplattegrond met echte data
+ * Genereert een A4 PDF die visueel identiek is aan de interface
  */
 export const downloadSeatingChartPDF = (students, layout, goal) => {
   if (!students || students.length === 0) {
@@ -63,70 +63,98 @@ export const downloadSeatingChartPDF = (students, layout, goal) => {
       year: 'numeric'
     });
 
-    // 1. Header (Clean & Professional)
+    // 1. Header (MATCH UI)
     doc.setFont("helvetica", "bold");
     doc.setFontSize(16);
-    doc.setTextColor(31, 41, 55); 
-    doc.text(`Klassenplattegrond – ${today}`, margin, cursorY);
+    doc.setTextColor(17, 24, 39); // Gray-900
+    doc.text("Klassenplattegrond", margin, cursorY);
     
-    cursorY += 7;
+    cursorY += 6;
     doc.setFont("helvetica", "normal");
     doc.setFontSize(9);
-    doc.setTextColor(107, 114, 128); 
-    doc.text(`Indeling: ${layout.charAt(0).toUpperCase() + layout.slice(1)} | Doel: ${goal}`, margin, cursorY);
+    doc.setTextColor(75, 85, 99); // Gray-600
+    doc.text(`Datum: ${today} | Indeling: ${layout.charAt(0).toUpperCase() + layout.slice(1)} | Optimalisatie: ${goal}`, margin, cursorY);
 
-    cursorY += 12;
+    cursorY += 10;
 
-    // 2. Front of Classroom Marker
-    doc.setFillColor(243, 244, 246);
-    doc.setDrawColor(209, 213, 219);
-    doc.roundedRect(pageWidth / 2 - 35, cursorY, 70, 9, 1, 1, 'FD');
+    // 2. Teacher Desk (MATCH UI EXACTLY)
+    doc.setFillColor(31, 41, 55); // Gray-800
+    doc.roundedRect(pageWidth / 2 - 25, cursorY, 50, 10, 2, 2, 'F');
+    // Indigo accent line on top of desk
+    doc.setFillColor(79, 70, 229); // Indigo-600
+    doc.rect(pageWidth / 2 - 25, cursorY, 50, 1, 'F');
+    
     doc.setFont("helvetica", "bold");
     doc.setFontSize(7);
-    doc.setTextColor(75, 85, 99);
-    doc.text("BUREAU DOCENT / DIGIBORD", pageWidth / 2, cursorY + 5.5, { align: 'center' });
+    doc.setTextColor(255, 255, 255);
+    doc.text("BUREAU DOCENT / DIGIBORD", pageWidth / 2, cursorY + 6.5, { align: 'center' });
 
-    cursorY += 20;
+    cursorY += 22;
 
-    // 3. Render Student Grid
-    const cols = layout === 'rijen' ? 4 : 3;
-    const spacing = 4;
-    const deskWidth = (contentWidth - (cols - 1) * spacing) / cols;
-    const deskHeight = 20;
+    // 3. Grid Calculation
+    const cols = layout === 'rijen' ? 6 : 3;
+    const rows = Math.ceil(students.length / cols);
+    const spacing = layout === 'rijen' ? 4 : 8;
     
-    doc.setFontSize(9);
-    doc.setTextColor(17, 24, 39);
+    // Calculate sizes to fit page
+    const availableHeight = pageHeight - cursorY - 20;
+    const baseDeskWidth = (contentWidth - (cols - 1) * spacing) / cols;
+    const baseDeskHeight = layout === 'rijen' ? 22 : 30;
+    
+    // Scale factor if content is too tall
+    const totalNeededHeight = (rows * baseDeskHeight) + ((rows - 1) * spacing);
+    const scale = totalNeededHeight > availableHeight ? availableHeight / totalNeededHeight : 1;
+    
+    const deskWidth = baseDeskWidth;
+    const deskHeight = baseDeskHeight * scale;
+    const gridSpacing = spacing * scale;
 
+    // 4. Render Student Cards (MATCH UI CARDS)
     students.forEach((name, index) => {
       const col = index % cols;
       const row = Math.floor(index / cols);
       
       const x = margin + (col * (deskWidth + spacing));
-      const y = cursorY + (row * (deskHeight + spacing));
+      const y = cursorY + (row * (deskHeight + gridSpacing));
 
-      // Check if item fits on page, if not, could add page but usually one A4 is requested
-      if (y + deskHeight > pageHeight - 15) return;
+      // Card Background & Border
+      if (layout === 'rijen') {
+        doc.setDrawColor(219, 234, 254); // blue-100
+        doc.setFillColor(255, 255, 255);
+      } else {
+        doc.setDrawColor(199, 210, 254); // indigo-200
+        doc.setFillColor(238, 242, 255); // indigo-50
+      }
+      doc.roundedRect(x, y, deskWidth, deskHeight, 2, 2, 'FD');
 
-      // Desk Border
-      doc.setDrawColor(226, 232, 240); 
-      doc.setFillColor(255, 255, 255);
-      doc.roundedRect(x, y, deskWidth, deskHeight, 1, 1, 'FD');
+      // User Icon Placeholder (Simple circle like UI)
+      doc.setFillColor(243, 244, 246); // Gray-100
+      doc.circle(x + (deskWidth / 2), y + (deskHeight * 0.3), 3 * scale, 'F');
 
       // Student Name
-      const cleanName = normalizeLessonText(name);
-      // Truncate name if too long
-      const displayName = cleanName.length > 20 ? cleanName.substring(0, 18) + "..." : cleanName;
-      doc.text(displayName, x + (deskWidth / 2), y + (deskHeight / 2) + 1.5, { align: 'center' });
+      doc.setFont("helvetica", "bold");
+      const fontSize = Math.max(6, 9 * scale);
+      doc.setFontSize(fontSize);
+      doc.setTextColor(31, 41, 55);
       
-      // Bottom accent line
-      doc.setFillColor(index % 7 === 0 ? 251 : 74, index % 7 === 0 ? 146 : 222, index % 7 === 0 ? 60 : 128);
-      doc.rect(x + 1, y + deskHeight - 1.5, deskWidth - 2, 0.4, 'F');
+      const cleanName = normalizeLessonText(name);
+      const displayName = cleanName.length > 15 ? cleanName.substring(0, 13) + ".." : cleanName;
+      doc.text(displayName, x + (deskWidth / 2), y + (deskHeight * 0.65), { align: 'center' });
+      
+      // Bottom accent line (The "Progress bar" from UI)
+      const isOrange = index % 7 === 0;
+      doc.setFillColor(229, 231, 235); // gray-200 (track)
+      doc.rect(x + 4, y + deskHeight - 5 * scale, deskWidth - 8, 1.2 * scale, 'F');
+      
+      doc.setFillColor(isOrange ? 251 : 74, isOrange ? 146 : 222, isOrange ? 60 : 128); // orange-400 or green-400
+      const barWidth = isOrange ? (deskWidth - 8) / 3 : (deskWidth - 8);
+      doc.rect(x + 4, y + deskHeight - 5 * scale, barWidth, 1.2 * scale, 'F');
     });
 
-    // 4. Footer
+    // 5. Footer
     doc.setFontSize(7);
     doc.setTextColor(156, 163, 175);
-    doc.text("Gegenereerd via Onderwijs.ai – Praktische AI voor Docenten", pageWidth / 2, pageHeight - 10, { align: 'center' });
+    doc.text("Gegenereerd door Onderwijs.ai – De plattegrond is lokaal verwerkt voor privacy.", pageWidth / 2, pageHeight - 10, { align: 'center' });
 
     const timestamp = new Date().getTime();
     doc.save(`Klassenplattegrond-${timestamp}.pdf`);
@@ -410,7 +438,7 @@ export const downloadStartersgids = () => {
     addSubHeader("Workflow A: De '5-minuten-lesvoorbereiding'");
     addCheckboxItem("Stap 1: Vraag AI om de leerdoelen voor [ONDERWERP].");
     addCheckboxItem("Stap 2: Vraag om een lesopzet (opening, kern, slot) o.b.v. die doelen.");
-    addCheckboxItem("Stap 3: Vraag om een 'directe instructie' tekst voor de kern.");
+    addCheckboxItem("Stap 3: Vraag om een 'directe instructie' tekst voor the kern.");
     addCheckboxItem("Stap 4: Vraag om 3 verwerkingsopdrachten (makkelijk/gemiddeld/moeilijk).");
     addCheckboxItem("Stap 5: Kopieer alles naar Word/Docs en maak het definitief.");
 
@@ -485,7 +513,7 @@ export const downloadStartersgids = () => {
     ];
 
     checklistItems.forEach(item => {
-      // Handmatige rendering van checkboxes om pageBreaks in de box te voorkomen
+      // Handmatige rendering van checkboxes om pageBreaks in the box te voorkomen
       // en om zeker te zijn van schone tekst zonder %¡
       doc.setDrawColor(22, 101, 52); // Groene rand (Green-800)
       doc.setFillColor(255, 255, 255); // Wit vlak
