@@ -36,7 +36,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const isActive = (path) => location.pathname === path;
-
+  
   const isParentActive = (item) => {
     if (item.dropdown) {
       return item.dropdown.some(sub => location.pathname.startsWith(sub.path));
@@ -46,9 +46,9 @@ const Navbar = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
-    {
-      id: 'tools',
-      label: 'Tools',
+    { 
+      id: 'tools', 
+      label: 'Tools', 
       dropdown: [
         { path: '/tools', label: 'Interactieve Tools (Overzicht)', color: 'bg-indigo-50 text-indigo-600' },
         { path: '/tools/lesgenerator', label: 'Lesgenerator', color: 'hover:bg-indigo-50 text-gray-700' },
@@ -59,27 +59,28 @@ const Navbar = () => {
         { path: '/tools/mentorles', label: 'Mentorlesplanner', color: 'hover:bg-indigo-50 text-gray-700' },
       ]
     },
-    {
-      id: 'voor-docenten',
-      label: 'Voor Docenten',
+    { 
+      id: 'voor-docenten', 
+      label: 'Voor Docenten', 
       dropdown: [
         { path: '/voor-docenten/po', label: 'Basisonderwijs (PO)', color: 'hover:bg-blue-50 hover:text-blue-600' },
         { path: '/voor-docenten/vo', label: 'Voortgezet Onderwijs (VO)', color: 'hover:bg-purple-50 hover:text-purple-600' },
         { path: '/voor-docenten/mbo-hbo', label: 'MBO & HBO', color: 'hover:bg-green-50 hover:text-green-600' },
       ]
     },
-    {
-      id: 'leslab',
-      label: 'Lesmateriaal',
+    { 
+      id: 'leslab', 
+      label: 'Lesmateriaal', 
       dropdown: [
         { path: '/leslab', label: 'LesLab (Archief)', color: 'hover:bg-emerald-50 hover:text-emerald-600' },
         { path: '/downloads', label: 'Downloads & Startersgids', color: 'hover:bg-emerald-50 hover:text-emerald-600' },
       ]
     },
-    {
-      id: 'kenniscentrum',
-      label: 'Kenniscentrum',
+    { 
+      id: 'kenniscentrum', 
+      label: 'Kenniscentrum', 
       dropdown: [
+        { path: '/framework', label: 'Onderwijs-AI Framework™', color: 'bg-indigo-50 text-indigo-700 font-bold' },
         { path: '/ai-tools', label: 'AI Tool Database', color: 'hover:bg-yellow-50 hover:text-yellow-600' },
         { path: '/blog', label: 'Blog & Nieuws', color: 'hover:bg-yellow-50 hover:text-yellow-600' },
         { path: '/kennisbank', label: 'Kennisbank', color: 'hover:bg-yellow-50 hover:text-yellow-600' },
@@ -96,7 +97,6 @@ const Navbar = () => {
     setActiveDropdown(activeDropdown === id ? null : id);
   };
 
-  // Navigeer correct via React Router ipv window.open
   const handleDownloadClick = () => {
     navigate('/downloads');
   };
@@ -117,7 +117,7 @@ const Navbar = () => {
               <div key={index} className="relative">
                 {item.dropdown ? (
                   <div>
-                    <button
+                    <button 
                       ref={el => buttonRefs.current[`desktop-${item.id}`] = el}
                       onClick={(e) => toggleDropdown(`desktop-${item.id}`, e)}
                       className={`flex items-center space-x-1 transition-colors py-2 px-2 rounded-md hover:bg-gray-50 ${isParentActive(item) ? 'text-primary-600 font-medium' : 'text-gray-700'}`}
@@ -127,7 +127,7 @@ const Navbar = () => {
                     </button>
                     <AnimatePresence>
                       {activeDropdown === `desktop-${item.id}` && (
-                        <motion.div
+                        <motion.div 
                           ref={el => dropdownRefs.current[`desktop-${item.id}`] = el}
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -136,7 +136,7 @@ const Navbar = () => {
                           className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
                         >
                           {item.dropdown.map((subItem, subIndex) => (
-                            <Link
+                            <Link 
                               key={subIndex}
                               to={subItem.path}
                               className={`block px-4 py-3 text-sm transition-colors hover:bg-gray-50 ${subItem.color || ''}`}
@@ -150,7 +150,7 @@ const Navbar = () => {
                     </AnimatePresence>
                   </div>
                 ) : (
-                  <Link
+                  <Link 
                     to={item.path}
                     className={`transition-colors py-2 px-2 rounded-md hover:bg-gray-50 ${isActive(item.path) ? 'text-primary-600 font-medium' : 'text-gray-700 hover:text-primary-600'}`}
                   >
@@ -159,7 +159,7 @@ const Navbar = () => {
                 )}
               </div>
             ))}
-            <button
+            <button 
               onClick={handleDownloadClick}
               className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors text-sm font-semibold shadow-sm"
             >
@@ -168,79 +168,85 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <button
+          <button 
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
           >
             <SafeIcon icon={isOpen ? FiX : FiMenu} className="text-xl" />
           </button>
         </div>
-
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden py-4 border-t border-gray-200 overflow-hidden"
-            >
-              {navItems.map((item, index) => (
-                <div key={index} className="py-2">
-                  {item.dropdown ? (
-                    <div>
-                      <button
-                        ref={el => buttonRefs.current[`mobile-${item.id}`] = el}
-                        className="flex items-center w-full text-left text-gray-700 font-medium px-4 py-2 hover:bg-gray-50 rounded-md transition-colors"
-                        onClick={(e) => toggleDropdown(`mobile-${item.id}`, e)}
-                      >
-                        <span>{item.label}</span>
-                        <SafeIcon icon={FiChevronDown} className={`ml-2 transition-transform duration-200 ${activeDropdown === `mobile-${item.id}` ? 'rotate-180' : ''}`} />
-                      </button>
-                      <AnimatePresence>
-                        {activeDropdown === `mobile-${item.id}` && (
-                          <motion.div
-                            ref={el => dropdownRefs.current[`mobile-${item.id}`] = el}
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="bg-gray-50 rounded-md mx-2 mt-2"
-                          >
-                            {item.dropdown.map((subItem, subIndex) => (
-                              <Link
-                                key={subIndex}
-                                to={subItem.path}
-                                className="block px-6 py-3 text-sm text-gray-600 hover:text-primary-600"
-                                onClick={() => { setActiveDropdown(null); setIsOpen(false); }}
-                              >
-                                {subItem.label}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <Link
-                      to={item.path}
-                      className="block px-4 py-2 text-gray-700 hover:text-primary-600 font-medium"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
-              <button
-                onClick={() => { handleDownloadClick(); setIsOpen(false); }}
-                className="block mx-4 mt-4 bg-primary-600 text-white px-4 py-3 rounded-lg text-center font-semibold w-auto"
-              >
-                Downloads
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
+
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden py-4 border-t border-gray-200 overflow-hidden"
+          >
+            {navItems.map((item, index) => (
+              <div key={index} className="py-2">
+                {item.dropdown ? (
+                  <div>
+                    <button 
+                      ref={el => buttonRefs.current[`mobile-${item.id}`] = el}
+                      className="flex items-center w-full text-left text-gray-700 font-medium px-4 py-2 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={(e) => toggleDropdown(`mobile-${item.id}`, e)}
+                    >
+                      <span>{item.label}</span>
+                      <SafeIcon icon={FiChevronDown} className={`ml-2 transition-transform duration-200 ${activeDropdown === `mobile-${item.id}` ? 'rotate-180' : ''}`} />
+                    </button>
+                    <AnimatePresence>
+                      {activeDropdown === `mobile-${item.id}` && (
+                        <motion.div 
+                          ref={el => dropdownRefs.current[`mobile-${item.id}`] = el}
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="bg-gray-50 rounded-md mx-2 mt-2"
+                        >
+                          {item.dropdown.map((subItem, subIndex) => (
+                            <Link 
+                              key={subIndex}
+                              to={subItem.path}
+                              className="block px-6 py-3 text-sm text-gray-600 hover:text-primary-600"
+                              onClick={() => {
+                                setActiveDropdown(null);
+                                setIsOpen(false);
+                              }}
+                            >
+                              {subItem.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link 
+                    to={item.path}
+                    className="block px-4 py-2 text-gray-700 hover:text-primary-600 font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+              </div>
+            ))}
+            <button 
+              onClick={() => {
+                handleDownloadClick();
+                setIsOpen(false);
+              }}
+              className="block mx-4 mt-4 bg-primary-600 text-white px-4 py-3 rounded-lg text-center font-semibold w-auto"
+            >
+              Downloads
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

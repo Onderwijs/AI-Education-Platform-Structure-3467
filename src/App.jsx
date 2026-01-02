@@ -35,9 +35,11 @@ import Kennisbank from './pages/kenniscentrum/Kennisbank';
 import WatIsAI from './pages/kenniscentrum/WatIsAI';
 import ChatGPTInDeKlas from './pages/kenniscentrum/ChatGPTInDeKlas';
 import PromptBibliotheek from './pages/kenniscentrum/PromptBibliotheek';
+import Framework from './pages/Framework';
 import Downloads from './pages/Downloads';
 import TrainingDetail from './pages/trainingen/TrainingDetail';
 import LegalPage from './pages/legal/LegalPage';
+
 import './App.css';
 
 function App() {
@@ -81,6 +83,7 @@ function App() {
               <Route path="/kennisbank/wat-is-ai" element={<WatIsAI />} />
               <Route path="/kennisbank/chatgpt-in-de-klas" element={<ChatGPTInDeKlas />} />
               <Route path="/kennisbank/prompt-bibliotheek" element={<PromptBibliotheek />} />
+              <Route path="/framework" element={<Framework />} />
 
               {/* 6. Trainingen */}
               <Route path="/trainingen" element={<Trainingen />} />
