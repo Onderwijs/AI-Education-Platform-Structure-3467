@@ -301,7 +301,7 @@ Tom,Jantje,,Tom,`;
         )}
 
         {!isGenerated ? (
-          <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             {/* STAP 1 – VERZAMELEN */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6">
