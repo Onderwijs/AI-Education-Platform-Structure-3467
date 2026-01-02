@@ -15,7 +15,7 @@ const normalizeLessonText=(raw)=> {
 
 /**
  * KLASSENPLATTEGROND PDF GENERATOR
- * Strikte 2-2-2 layout voor A4 download
+ * Ondersteunt Strikte 2-2-2 layout en 2x2 Eilandjes
  */
 export const downloadSeatingChartPDF=(students,layout,goal)=> {
   if (!students || students.length === 0) return;
@@ -53,47 +53,58 @@ export const downloadSeatingChartPDF=(students,layout,goal)=> {
 
     cursorY += 20;
 
-    // 3. Grid Logic (2-2-2 Pattern)
+    // 3. Grid Logic
     const isRowLayout = layout === 'rijen';
-    const cols = isRowLayout ? 6 : 3;
+    const isIslandLayout = layout === 'eilandjes';
+    
+    // Config per layout
+    const cols = isRowLayout ? 6 : 4;
     const rows = Math.ceil(students.length / cols);
     
     // Gaps in mm
-    const horizontalGapBetweenPairs = isRowLayout ? 10 : 8; // De "loopruimte"
-    const verticalGap = isRowLayout ? 5 : 10;
+    const horizontalGapBetweenIslands = isRowLayout ? 10 : 12; // De "loopruimte"
+    const verticalGapBetweenIslands = isRowLayout ? 5 : 12;
+    const miniGap = 1.5; // Binnen een eiland of duo
     
     // Calculate desk width
-    // contentWidth = (6 * deskWidth) + (2 * gapBetweenPairs)
+    // Voor rijen: contentWidth = (6 * deskWidth) + (2 * gap)
+    // Voor eilanden: contentWidth = (4 * deskWidth) + (1 * gap) + (2 * miniGap)
     const deskWidth = isRowLayout 
-      ? (contentWidth - (2 * horizontalGapBetweenPairs)) / 6
-      : (contentWidth - (2 * horizontalGapBetweenPairs)) / 3;
+      ? (contentWidth - (2 * horizontalGapBetweenIslands)) / 6
+      : (contentWidth - (1 * horizontalGapBetweenIslands) - (2 * miniGap)) / 4;
 
-    const baseDeskHeight = isRowLayout ? 18 : 26;
+    const baseDeskHeight = isRowLayout ? 18 : 24;
     
     // Scaling to fit page
-    const totalNeededHeight = (rows * baseDeskHeight) + ((rows - 1) * verticalGap);
+    const totalNeededHeight = (rows * baseDeskHeight) + ((rows / 2) * verticalGapBetweenIslands);
     const availableHeight = pageHeight - cursorY - 15;
     const scale = totalNeededHeight > availableHeight ? availableHeight / totalNeededHeight : 1;
     
     const finalDeskHeight = baseDeskHeight * scale;
-    const finalVerticalGap = verticalGap * scale;
 
     // 4. Render Tables
     students.forEach((name, index) => {
       const col = index % cols;
       const row = Math.floor(index / cols);
       
-      // Calculate X with 2-2-2 grouping
       let xOffset = 0;
+      let yOffset = 0;
+
       if (isRowLayout) {
         const pairIndex = Math.floor(col / 2); // 0, 1, or 2
-        xOffset = pairIndex * horizontalGapBetweenPairs;
-      } else {
-        xOffset = col * horizontalGapBetweenPairs;
+        xOffset = pairIndex * horizontalGapBetweenIslands;
+      } else if (isIslandLayout) {
+        // Horizontal: Pair desks (0,1) and (2,3)
+        const islandGroupX = Math.floor(col / 2); // 0 or 1
+        xOffset = (islandGroupX * horizontalGapBetweenIslands) + ((col % 2) * miniGap);
+        
+        // Vertical: Pair rows (0,1) and (2,3)
+        const islandGroupY = Math.floor(row / 2);
+        yOffset = (islandGroupY * verticalGapBetweenIslands) + ((row % 2) * miniGap);
       }
       
       const x = margin + (col * deskWidth) + xOffset;
-      const y = cursorY + (row * (finalDeskHeight + finalVerticalGap));
+      const y = cursorY + (row * finalDeskHeight) + yOffset;
 
       // Table Shape
       doc.setDrawColor(219, 234, 254);
@@ -121,13 +132,13 @@ export const downloadSeatingChartPDF=(students,layout,goal)=> {
     doc.setTextColor(156, 163, 175);
     doc.text("Gegenereerd door Onderwijs.ai - Alle data wordt uitsluitend lokaal verwerkt.", pageWidth / 2, pageHeight - 10, { align: 'center' });
 
-    doc.save(`Klassenplattegrond-222-${new Date().getTime()}.pdf`);
+    doc.save(`Klassenplattegrond-${layout}-${new Date().getTime()}.pdf`);
   } catch (e) {
     console.error(e);
     alert("Fout bij PDF export.");
   }
 };
 
-export const downloadStartersgids=()=> { /* ... bestaande code ... */ };
-export const downloadFile=(url,filename)=> { /* ... bestaande code ... */ };
-export const downloadLesson=(lessonTitle)=> { /* ... bestaande code ... */ };
+export const downloadStartersgids=()=> { /* ... */ };
+export const downloadFile=(url,filename)=> { /* ... */ };
+export const downloadLesson=(lessonTitle)=> { /* ... */ };

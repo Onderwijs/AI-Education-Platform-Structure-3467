@@ -22,7 +22,7 @@ const SeatingChart=()=> {
   const applySeatingLogic=(names,relations,currentGoal,currentLayout)=> {
     if (!names.length) return [];
     let sorted=[...names];
-    const cols=currentLayout==='rijen' ? 6 : 3;
+    const cols=currentLayout==='rijen' ? 6 : 4; // Eilanden werkt in blokken van 4 (2x2)
 
     if (currentGoal==='samenwerking') {
       const placed=new Set();
@@ -175,7 +175,7 @@ const SeatingChart=()=> {
                     <button onClick={()=> setLayout('eilandjes')} className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col gap-2 ${layout==='eilandjes' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-100 hover:border-indigo-200'}`} >
                       <SafeIcon icon={FiGrid} className={layout==='eilandjes' ? 'text-indigo-600' : 'text-gray-400'} />
                       <span className={`text-sm font-bold ${layout==='eilandjes' ? 'text-indigo-900' : 'text-gray-600'}`}>Eilandjes</span>
-                      <span className="text-[10px] text-gray-400 leading-tight">Samenwerking</span>
+                      <span className="text-[10px] text-gray-400 leading-tight">Vaste 2×2 groepen</span>
                     </button>
                   </div>
                 </div>
@@ -243,7 +243,9 @@ const SeatingChart=()=> {
                   <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
                     <div>
                       <h3 className="font-bold text-gray-900">Gegenereerde Plattegrond</h3>
-                      <p className="text-xs text-indigo-600 font-medium mt-1">Vaste 2–2–2 Tafelopstelling</p>
+                      <p className="text-xs text-indigo-600 font-medium mt-1">
+                        {layout === 'rijen' ? 'Vaste 2–2–2 Tafelopstelling' : 'Vaste 2×2 Eilandjes'}
+                      </p>
                     </div>
                     <button onClick={handleReset} className="text-xs font-bold text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-lg transition-colors flex items-center gap-2" >
                       <SafeIcon icon={FiRefreshCw} /> Andere data
@@ -254,12 +256,20 @@ const SeatingChart=()=> {
                       <div className="w-48 py-3 bg-gray-800 text-white text-[10px] uppercase tracking-[0.2em] font-bold text-center rounded-b-xl shadow-md border-t-4 border-indigo-500"> Bureau Docent / Digibord </div>
                     </div>
                     
-                    {/* GRID RENDER LOGIC WITH UNIFORM FIXED CARDS */}
-                    <div className={`grid min-w-[800px] ${layout==='rijen' ? "grid-cols-6 gap-y-6 gap-x-0" : "grid-cols-3 gap-8"}`}>
+                    {/* GRID RENDER LOGIC WITH UNIFORM FIXED CARDS AND ISLAND SPACING */}
+                    <div className={`grid min-w-[800px] ${layout==='rijen' ? "grid-cols-6 gap-y-6 gap-x-0" : "grid-cols-4 gap-2"}`}>
                       {displayStudents.map((name,index)=> {
                         const isRowLayout = layout === 'rijen';
-                        // Add spacing after 2nd and 4th table in a row of 6 for 2-2-2 effect
-                        const hasGap = isRowLayout && (index % 6 === 1 || index % 6 === 3);
+                        const isIslandLayout = layout === 'eilandjes';
+                        
+                        // Spacing for 2-2-2 Rows
+                        const rowGapX = isRowLayout && (index % 6 === 1 || index % 6 === 3);
+                        
+                        // Spacing for 2x2 Islands
+                        // Horizontal gap between islands (after every 2nd card in a row of 4)
+                        const islandGapX = isIslandLayout && (index % 4 === 1);
+                        // Vertical gap between islands (after every 2nd row)
+                        const islandGapY = isIslandLayout && (Math.floor(index / 4) % 2 === 1);
                         
                         return (
                           <motion.div 
@@ -270,7 +280,9 @@ const SeatingChart=()=> {
                             className={`p-3 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center transition-all
                               w-full h-28 shrink-0
                               ${layout==='rijen' ? 'bg-white border-blue-100' : 'bg-indigo-50 border-indigo-200'}
-                              ${hasGap ? 'mr-12' : 'mr-0'}
+                              ${rowGapX ? 'mr-12' : ''}
+                              ${islandGapX ? 'mr-12' : ''}
+                              ${islandGapY ? 'mb-12' : ''}
                             `}
                           >
                             <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mb-3">
