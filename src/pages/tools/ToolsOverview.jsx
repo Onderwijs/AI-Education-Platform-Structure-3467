@@ -8,29 +8,97 @@ const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid, FiUsers, FiMail, FiA
 
 const ToolsOverview = () => {
   const tools = [
-    { name: "Lesgenerator", path: "/tools/lesgenerator", icon: FiCpu, desc: "Genereer complete lesplannen met AI." },
-    { name: "Toetsvragenmaker", path: "/tools/toetsvragenmaker", icon: FiEdit3, desc: "Maak toetsvragen op elk niveau." },
-    { name: "Rubriekmaker", path: "/tools/rubriekmaker", icon: FiGrid, desc: "Stel beoordelingsrubrieken samen." },
-    { name: "Taalcoach", path: "/tools/taalcoach", icon: FiMessageSquare, desc: "Ontwerp taalactiviteiten en oefeningen." },
-    { name: "Presentatiegenerator", path: "/tools/presentatiegenerator", icon: FiMonitor, desc: "Maak outlines en dia-indelingen voor presentaties." },
-    { name: "Mentorlesplanner", path: "/tools/mentorles", icon: FiUsers, desc: "Bedenk snel een veilige en gestructureerde mentorles." },
-    { name: "Ouder-mailgenerator", path: "/tools/oudermailgenerator", icon: FiMail, desc: "Genereer snel een duidelijke en professionele e-mail voor ouders over schoolactiviteiten." },
-    { name: "Interactief Sociogram", path: "/tools/sociogram", icon: FiActivity, desc: "Maak een netwerkvisualisatie van klaskeuzes (gezellig, niet gezellig, samenwerken, niet samenwerken)." },
-    { name: "Klassenplattegrond", path: "/tools/klassenplattegrond", icon: FiLayout, desc: "Zet je sociogram om in een praktische klassenplattegrond op basis van sociale veiligheid." }
+    {
+      name: "Lesgenerator",
+      path: "/tools/lesgenerator",
+      icon: FiCpu,
+      desc: "Genereer complete lesplannen met AI.",
+      level: "Level 2–3"
+    },
+    {
+      name: "Toetsvragenmaker",
+      path: "/tools/toetsvragenmaker",
+      icon: FiEdit3,
+      desc: "Maak toetsvragen op elk niveau.",
+      level: "Level 2–3"
+    },
+    {
+      name: "Rubriekmaker",
+      path: "/tools/rubriekmaker",
+      icon: FiGrid,
+      desc: "Stel beoordelingsrubrieken samen.",
+      level: "Level 2–3"
+    },
+    {
+      name: "Taalcoach",
+      path: "/tools/taalcoach",
+      icon: FiMessageSquare,
+      desc: "Ontwerp taalactiviteiten en oefeningen.",
+      level: "Level 2–3"
+    },
+    {
+      name: "Presentatiegenerator",
+      path: "/tools/presentatiegenerator",
+      icon: FiMonitor,
+      desc: "Maak outlines en dia-indelingen voor presentaties.",
+      level: "Level 2"
+    },
+    {
+      name: "Mentorlesplanner",
+      path: "/tools/mentorles",
+      icon: FiUsers,
+      desc: "Bedenk snel een veilige en gestructureerde mentorles.",
+      level: "Level 3"
+    },
+    {
+      name: "Ouder-mailgenerator",
+      path: "/tools/oudermailgenerator",
+      icon: FiMail,
+      desc: "Genereer snel een duidelijke en professionele e-mail voor ouders.",
+      level: "Level 2"
+    },
+    {
+      name: "Interactief Sociogram",
+      path: "/tools/sociogram",
+      icon: FiActivity,
+      desc: "Maak een netwerkvisualisatie van klaskeuzes.",
+      level: "Level 3–4"
+    },
+    {
+      name: "Klassenplattegrond",
+      path: "/tools/klassenplattegrond",
+      icon: FiLayout,
+      desc: "Zet je sociogram om in een praktische plattegrond.",
+      level: "Level 3–4"
+    }
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SimpleHero title="Interactieve AI Tools" subtitle="Genereer direct content voor je lessen" color="from-indigo-600 to-cyan-600" />
+      <SimpleHero 
+        title="Interactieve AI Tools" 
+        subtitle="Genereer direct content voor je lessen"
+        color="from-indigo-600 to-cyan-600"
+      />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tools.map((tool, index) => (
-            <Link key={index} to={tool.path} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100" >
-              <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4 text-indigo-600">
-                <SafeIcon icon={tool.icon} className="text-2xl" />
+            <Link 
+              key={index} 
+              to={tool.path}
+              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col"
+            >
+              <div className="flex justify-between items-start mb-4">
+                <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600">
+                  <SafeIcon icon={tool.icon} className="text-2xl" />
+                </div>
+                <span className="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-1 rounded">
+                  {tool.level}
+                </span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">{tool.name}</h3>
-              <p className="text-gray-600">{tool.desc}</p>
+              <p className="text-gray-600 text-sm">{tool.desc}</p>
             </Link>
           ))}
         </div>
