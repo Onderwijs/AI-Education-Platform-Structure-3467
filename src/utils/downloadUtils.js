@@ -36,9 +36,14 @@ const clearCache = () => {
 
 /**
  * KLASSENPLATTEGROND PDF GENERATOR
- * Genereert een A4 PDF van de klassenplattegrond
+ * Genereert een A4 PDF van de klassenplattegrond met echte data
  */
 export const downloadSeatingChartPDF = (students, layout, goal) => {
+  if (!students || students.length === 0) {
+    alert("Geen data om te downloaden.");
+    return;
+  }
+
   try {
     const doc = new jsPDF({
       orientation: 'portrait',
@@ -48,50 +53,49 @@ export const downloadSeatingChartPDF = (students, layout, goal) => {
 
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
-    const margin = 20;
+    const margin = 15;
     const contentWidth = pageWidth - (margin * 2);
     let cursorY = margin;
 
-    // Datum ophalen
     const today = new Date().toLocaleDateString('nl-NL', {
       day: 'numeric',
       month: 'long',
       year: 'numeric'
     });
 
-    // 1. Header
+    // 1. Header (Clean & Professional)
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(18);
-    doc.setTextColor(31, 41, 55); // Slate-800
+    doc.setFontSize(16);
+    doc.setTextColor(31, 41, 55); 
     doc.text(`Klassenplattegrond – ${today}`, margin, cursorY);
     
-    cursorY += 8;
+    cursorY += 7;
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.setTextColor(107, 114, 128); // Gray-500
-    doc.text(`Indeling geoptimaliseerd voor: ${goal}`, margin, cursorY);
+    doc.setFontSize(9);
+    doc.setTextColor(107, 114, 128); 
+    doc.text(`Indeling: ${layout.charAt(0).toUpperCase() + layout.slice(1)} | Doel: ${goal}`, margin, cursorY);
 
-    cursorY += 15;
+    cursorY += 12;
 
-    // 2. Docentenbureau / Digibord marker
-    doc.setFillColor(243, 244, 246); // Gray-100
-    doc.setDrawColor(209, 213, 219); // Gray-300
-    doc.roundedRect(pageWidth / 2 - 30, cursorY, 60, 10, 2, 2, 'FD');
+    // 2. Front of Classroom Marker
+    doc.setFillColor(243, 244, 246);
+    doc.setDrawColor(209, 213, 219);
+    doc.roundedRect(pageWidth / 2 - 35, cursorY, 70, 9, 1, 1, 'FD');
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(8);
-    doc.setTextColor(75, 85, 99); // Gray-600
-    doc.text("BUREAU DOCENT / DIGIBORD", pageWidth / 2, cursorY + 6.5, { align: 'center' });
+    doc.setFontSize(7);
+    doc.setTextColor(75, 85, 99);
+    doc.text("BUREAU DOCENT / DIGIBORD", pageWidth / 2, cursorY + 5.5, { align: 'center' });
 
-    cursorY += 25;
+    cursorY += 20;
 
-    // 3. Teken Leerlingen (Grid)
+    // 3. Render Student Grid
     const cols = layout === 'rijen' ? 4 : 3;
-    const spacing = 5;
+    const spacing = 4;
     const deskWidth = (contentWidth - (cols - 1) * spacing) / cols;
-    const deskHeight = 22;
+    const deskHeight = 20;
     
-    doc.setFontSize(10);
-    doc.setTextColor(17, 24, 39); // Gray-900
+    doc.setFontSize(9);
+    doc.setTextColor(17, 24, 39);
 
     students.forEach((name, index) => {
       const col = index % cols;
@@ -100,24 +104,29 @@ export const downloadSeatingChartPDF = (students, layout, goal) => {
       const x = margin + (col * (deskWidth + spacing));
       const y = cursorY + (row * (deskHeight + spacing));
 
-      // Desk box
-      doc.setDrawColor(226, 232, 240); // Slate-200
-      doc.setFillColor(255, 255, 255);
-      doc.roundedRect(x, y, deskWidth, deskHeight, 1.5, 1.5, 'FD');
+      // Check if item fits on page, if not, could add page but usually one A4 is requested
+      if (y + deskHeight > pageHeight - 15) return;
 
-      // Naam centreren
+      // Desk Border
+      doc.setDrawColor(226, 232, 240); 
+      doc.setFillColor(255, 255, 255);
+      doc.roundedRect(x, y, deskWidth, deskHeight, 1, 1, 'FD');
+
+      // Student Name
       const cleanName = normalizeLessonText(name);
-      doc.text(cleanName, x + (deskWidth / 2), y + (deskHeight / 2) + 1.5, { align: 'center' });
+      // Truncate name if too long
+      const displayName = cleanName.length > 20 ? cleanName.substring(0, 18) + "..." : cleanName;
+      doc.text(displayName, x + (deskWidth / 2), y + (deskHeight / 2) + 1.5, { align: 'center' });
       
-      // Indicatielijn onderaan desk
-      doc.setFillColor(index % 7 === 0 ? 251 : 74, index % 7 === 0 ? 146 : 222, index % 7 === 0 ? 60 : 128); // Orange or Green
-      doc.rect(x + 2, y + deskHeight - 2, deskWidth - 4, 0.5, 'F');
+      // Bottom accent line
+      doc.setFillColor(index % 7 === 0 ? 251 : 74, index % 7 === 0 ? 146 : 222, index % 7 === 0 ? 60 : 128);
+      doc.rect(x + 1, y + deskHeight - 1.5, deskWidth - 2, 0.4, 'F');
     });
 
     // 4. Footer
-    doc.setFontSize(8);
+    doc.setFontSize(7);
     doc.setTextColor(156, 163, 175);
-    doc.text("Gegenereerd via Onderwijs.ai", pageWidth / 2, pageHeight - 10, { align: 'center' });
+    doc.text("Gegenereerd via Onderwijs.ai – Praktische AI voor Docenten", pageWidth / 2, pageHeight - 10, { align: 'center' });
 
     const timestamp = new Date().getTime();
     doc.save(`Klassenplattegrond-${timestamp}.pdf`);

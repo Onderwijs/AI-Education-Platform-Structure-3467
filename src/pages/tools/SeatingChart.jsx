@@ -5,7 +5,7 @@ import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 import { downloadSeatingChartPDF } from '../../utils/downloadUtils';
 
-const { FiGrid, FiUsers, FiInfo, FiCheck, FiLayout, FiCoffee, FiAlertCircle, FiRefreshCw, FiArrowRight, FiLink, FiDatabase, FiSliders, FiShield, FiLock, FiDownload } = FiIcons;
+const { FiGrid, FiUsers, FiInfo, FiCheck, FiLayout, FiCoffee, FiAlertCircle, FiRefreshCw, FiArrowRight, FiLink, FiDatabase, FiSliders, FiShield, FiLock, FiDownload, FiLoader } = FiIcons;
 
 const SeatingChart = () => {
   // --- STATE ---
@@ -13,31 +13,80 @@ const SeatingChart = () => {
   const [goal, setGoal] = useState('rust');
   const [sheetLink, setSheetLink] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [students, setStudents] = useState([]);
   const [showPrivacyInfo, setShowPrivacyInfo] = useState(false);
 
   // --- LOGIC ---
-  const dummyStudents = [
-    "Anna", "Bram", "Casper", "Daan", "Emma", "Fleur",
-    "Gijs", "Hanna", "Isabel", "Jasper", "Klaas", "Lisa",
-    "Meis", "Noah", "Olivia", "Piet", "Quinten", "Roos",
-    "Sem", "Tess", "Umar", "Vera", "Willem", "Xander"
-  ];
+  const extractId = (url) => {
+    const match = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+    return match ? match[1] : null;
+  };
 
-  const generateChart = () => {
-    if (!sheetLink.includes('google.com/spreadsheets')) {
-      alert("Voer een geldige Google Sheets link in van je sociogram.");
-      return;
+  const fetchSheetData = async (url) => {
+    const id = extractId(url);
+    if (!id) throw new Error("Ongeldige Google Sheets link. Zorg dat de URL de volledige link bevat.");
+    
+    // We gebruiken de CSV export van Google Sheets voor directe data-toegang zonder API-key
+    const csvUrl = `https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
+    
+    const response = await fetch(csvUrl);
+    if (!response.ok) throw new Error("Kon de gegevens niet ophalen. Is de sheet gedeeld via de optie 'Iedereen met de link'?");
+    
+    const text = await response.text();
+    const lines = text.split('\n').filter(l => l.trim().length > 0);
+    if (lines.length < 2) throw new Error("De sheet lijkt leeg te zijn.");
+
+    const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/"/g, ''));
+    
+    // Zoek naar de kolom met namen
+    const nameKeywords = ['naam', 'leerling', 'student', 'hoe heet je', 'voornaam', 'first name'];
+    const nameColIndex = headers.findIndex(h => nameKeywords.some(k => h.includes(k)));
+
+    if (nameColIndex === -1) {
+      throw new Error("Kon geen kolom met leerlingnamen vinden. Zorg dat een kolom de titel 'Naam' of 'Leerling' heeft.");
     }
-    setIsGenerated(true);
+
+    const studentNames = lines.slice(1).map(line => {
+      // Simpele CSV split die rekening houdt met quotes
+      const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
+      const val = values[nameColIndex];
+      return val ? val.trim().replace(/"/g, '') : null;
+    }).filter(n => n && n.length > 1);
+
+    if (studentNames.length === 0) throw new Error("Geen leerlingnamen gevonden in de geselecteerde kolom.");
+    
+    return studentNames;
+  };
+
+  const generateChart = async () => {
+    setIsLoading(true);
+    setIsGenerated(false);
+    
+    try {
+      if (!sheetLink.includes('google.com/spreadsheets')) {
+        throw new Error("Voer een geldige Google Sheets link in.");
+      }
+
+      const fetchedStudents = await fetchSheetData(sheetLink);
+      setStudents(fetchedStudents);
+      setIsGenerated(true);
+    } catch (err) {
+      alert(err.message);
+      setStudents([]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleReset = () => {
     setIsGenerated(false);
+    setStudents([]);
   };
 
   const handleDownload = () => {
     const goalText = goal === 'rust' ? 'Rust in de klas' : goal === 'samenwerking' ? 'Samenwerking stimuleren' : 'Conflicten voorkomen';
-    downloadSeatingChartPDF(dummyStudents, layout, goalText);
+    downloadSeatingChartPDF(students, layout, goalText);
   };
 
   const isFormValid = sheetLink.length > 10;
@@ -47,18 +96,18 @@ const SeatingChart = () => {
     const gridClasses = layout === 'rijen' ? "grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" : "grid-cols-2 md:grid-cols-3 gap-8";
     return (
       <div className={`grid ${gridClasses}`}>
-        {dummyStudents.map((name, index) => (
+        {students.map((name, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.03 }}
+            transition={{ delay: index * 0.02 }}
             className={`p-4 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center min-h-[100px] ${layout === 'rijen' ? 'bg-white border-blue-100' : 'bg-indigo-50 border-indigo-200'}`}
           >
             <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mb-2">
               <SafeIcon icon={FiUsers} className="text-gray-400 text-xs" />
             </div>
-            <span className="text-xs font-bold text-gray-800 truncate w-full px-1">{name}</span>
+            <span className="text-sm font-bold text-gray-800 truncate w-full px-1">{name}</span>
             <div className="mt-2 w-full h-1 bg-gray-200 rounded-full overflow-hidden">
               <div className={`h-full ${index % 7 === 0 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
             </div>
@@ -182,7 +231,7 @@ const SeatingChart = () => {
                           Deel hier de bekijklink van je sociogram in Google Sheets. Het bestand hoeft niet openbaar te zijn — alleen toegankelijk via de link.
                         </p>
                         <p className="text-[10px] text-indigo-600 font-medium leading-relaxed bg-indigo-50 p-2 rounded-lg border border-indigo-100/50">
-                          <SafeIcon icon={FiShield} className="inline mr-1" /> Onderwijs.ai slaat geen leerlinggegevens op. De sociogramgegevens worden alleen gebruikt om deze klassenplattegrond te maken en worden niet bewaard.
+                          <SafeIcon icon={FiShield} className="inline mr-1" /> Onderwijs.ai slaat geen leerlinggegevens op. Uw data wordt uitsluitend in de browser gebruikt.
                         </p>
                       </div>
                     </div>
@@ -191,11 +240,11 @@ const SeatingChart = () => {
 
                 <button
                   onClick={generateChart}
-                  disabled={!isFormValid}
-                  className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${isFormValid ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                  disabled={!isFormValid || isLoading}
+                  className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${isFormValid && !isLoading ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
                 >
-                  <SafeIcon icon={FiRefreshCw} />
-                  <span>Genereer Plattegrond</span>
+                  {isLoading ? <SafeIcon icon={FiLoader} className="animate-spin" /> : <SafeIcon icon={FiRefreshCw} />}
+                  <span>{isLoading ? 'Gegevens ophalen...' : 'Genereer Plattegrond'}</span>
                 </button>
               </div>
             </motion.div>
@@ -209,7 +258,7 @@ const SeatingChart = () => {
                   <SafeIcon icon={FiDatabase} className="text-4xl text-gray-200" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-400 mb-2">Wachtend op sociogramgegevens</h3>
-                <p className="text-gray-400 max-w-sm text-sm">Koppel je Google Sheet aan de linkerkant om de sociale data te vertalen naar een plattegrond.</p>
+                <p className="text-gray-400 max-w-sm text-sm">Koppel je Google Sheet aan de linkerkant om de echte namen te vertalen naar een plattegrond.</p>
               </div>
             ) : (
               <motion.div
@@ -248,9 +297,7 @@ const SeatingChart = () => {
                       Waarom deze indeling?
                     </h4>
                     <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                      Deze opstelling is gebaseerd op sociogramgegevens en het gekozen doel. De tool heeft leerlingen met wederzijdse positieve keuzes strategisch geplaatst, terwijl vermijdingen zijn gerespecteerd om conflicten te minimaliseren.
-                      <br /><br />
-                      Waar nodig zijn concessies gedaan om rust en sociale veiligheid te waarborgen. Gebruik dit als een beredeneerd uitgangspunt.
+                      Deze opstelling is gebaseerd op de namen uit uw Google Sheet en het gekozen doel. De tool plaatst leerlingen op basis van hun positie in de lijst. Voor volledige sociogram-integratie (vriendschappen/conflicten), zorg dat de relaties in de sheet kloppen.
                     </p>
                   </div>
                 </div>
