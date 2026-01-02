@@ -301,7 +301,7 @@ Tom,Jantje,,Tom,`;
         )}
 
         {!isGenerated ? (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}}>
             {/* STAP 1 – VERZAMELEN */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6">
@@ -368,7 +368,7 @@ Tom,Jantje,,Tom,`;
                         <h3 className="font-bold text-gray-900">Optie B: Gebruik de Google Sheet template</h3>
                         <p className="text-sm text-gray-500">Download de Google Sheet template en vul de antwoorden in. Gebruik dit bestand als invoer in stap 3 om het sociogram te visualiseren.</p>
                         <div className="mt-3">
-                          <a href="https://docs.google.com/spreadsheets/d/1-u-9D_0_E-7_4KqE_m9h5X6u_mX9E/copy" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700" >
+                          <a href="https://docs.google.com/spreadsheets/d/1Qc5Ow3lAWUCWjBW61MKPPVvUMTOPBHAz/copy" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700" >
                             <SafeIcon icon={FiDownload} /> <span>Download Template (Google Sheets)</span>
                           </a>
                         </div>
