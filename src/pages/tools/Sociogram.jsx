@@ -6,12 +6,14 @@ import * as FiIcons from 'react-icons/fi';
 import * as XLSX from 'xlsx';
 import ForceGraph2D from 'react-force-graph-2d';
 
-const { FiUpload, FiClipboard, FiSettings, FiActivity, FiDownload, FiSearch, FiEye, FiAlertTriangle, FiCheck, FiUsers, FiGrid, FiXCircle, FiInfo, FiFileText, FiHelpCircle, FiDatabase, FiExternalLink, FiChevronDown, FiChevronUp, FiFilter, FiMaximize2, FiSend, FiCheckCircle, FiCopy, FiTerminal, FiShare2 } = FiIcons;
+const { FiUpload, FiClipboard, FiSettings, FiActivity, FiDownload, FiSearch, FiEye, FiAlertTriangle, FiCheck, FiUsers, FiGrid, FiXCircle, FiInfo, FiFileText, FiHelpCircle, FiDatabase, FiExternalLink, FiChevronDown, FiChevronUp, FiFilter, FiMaximize2, FiSend, FiCheckCircle, FiCopy, FiTerminal, FiShare2, FiLink, FiLoader } = FiIcons;
 
 const Sociogram = () => {
   // --- STATE ---
-  const [activeTab, setActiveTab] = useState('paste');
+  const [activeTab, setActiveTab] = useState('sheet'); // Default to sheet as it is recommended
   const [inputText, setInputText] = useState('');
+  const [sheetLink, setSheetLink] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [parsedData, setParsedData] = useState([]);
   const [headers, setHeaders] = useState([]);
   const [mapping, setMapping] = useState({ name: '', socialPos: '', socialNeg: '', workPos: '', workNeg: '' });
@@ -51,11 +53,13 @@ const Sociogram = () => {
   var form = FormApp.create('Interactief Sociogram Vragenlijst');
   form.setTitle('Sociogram: Hoe werken we samen in de klas?')
       .setDescription('Vul deze vragenlijst eerlijk in. Je antwoorden zijn alleen zichtbaar voor de leraar.');
+  
   form.addTextItem().setTitle('Hoe heet je?').setRequired(true);
   form.addTextItem().setTitle('Met wie vind je het gezellig?').setHelpText('Meerdere namen scheiden met een komma.');
   form.addTextItem().setTitle('Met wie vind je het niet zo gezellig?');
   form.addTextItem().setTitle('Met wie kan je goed samenwerken?');
   form.addTextItem().setTitle('Met wie kan je niet zo goed samenwerken?');
+  
   Logger.log('Link naar het formulier: ' + form.getEditUrl());
   Logger.log('Link om te delen met leerlingen: ' + form.getPublishedUrl());
   Browser.msgBox('Klaar! Het formulier is aangemaakt in je Google Drive. Open het nu om het te delen met je klas.');
@@ -67,60 +71,15 @@ const Sociogram = () => {
     setTimeout(() => setScriptCopied(false), 2000);
   };
 
-  const handleLoadExample = () => {
-    const exampleCSV = `Hoe heet je?,Met wie vind je het gezellig?,Met wie vind je het niet zo gezellig?,Met wie kan je goed samenwerken?,Met wie kan je niet zo goed samenwerken?
-Anna,"Pietje, Jantje",Klaasje,Pietje,
-Pietje,Anna,Jantje,Anna,
-Klaasje,Pietje,,,
-Jantje,Anna,Klaasje,,
-Lisa,Anna,Pietje,Lisa,
-Tom,Jantje,,Tom,`;
-    setInputText(exampleCSV);
-    setActiveTab('paste');
-    setIsExampleData(true);
-    setIsStep2Expanded(false);
-    const lines = exampleCSV.trim().split('\n');
-    const validHeaders = lines[0].split(',').map(h => h.trim());
-    setHeaders(validHeaders);
-    const rows = lines.slice(1).map(line => {
-      const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
-      let obj = {};
-      validHeaders.forEach((key, i) => obj[key] = values[i] ? values[i].trim().replace(/^"|"$/g, '') : '');
-      return obj;
-    });
-    setParsedData(rows);
-    const exampleMapping = { name: validHeaders[0], socialPos: validHeaders[1], socialNeg: validHeaders[2], workPos: validHeaders[3], workNeg: validHeaders[4] };
-    setMapping(exampleMapping);
-    setTimeout(() => {
-      const nodes = [];
-      const links = [];
-      const studentNamesSet = new Set();
-      rows.forEach(row => {
-        const name = row[exampleMapping.name]?.trim();
-        if (name && !studentNamesSet.has(name)) {
-          studentNamesSet.add(name);
-          nodes.push({ id: name, name: name });
-        }
-      });
-      rows.forEach(row => {
-        const source = row[exampleMapping.name]?.trim();
-        if (!source) return;
-        const processLink = (col, type) => {
-          if (!col) return;
-          const val = String(row[col] || '');
-          const targets = val.split(/[,\n;]/).map(s => s.trim()).filter(s => s.length > 0);
-          targets.forEach(target => {
-            if (studentNamesSet.has(target)) links.push({ source, target, type });
-          });
-        };
-        processLink(exampleMapping.socialPos, 'socialPos');
-        processLink(exampleMapping.socialNeg, 'socialNeg');
-        processLink(exampleMapping.workPos, 'workPos');
-        processLink(exampleMapping.workNeg, 'workNeg');
-      });
-      setGraphData({ nodes, links });
-      setIsGenerated(true);
-    }, 100);
+  // --- DATA FETCHING LOGIC ---
+  const fetchSheetData = async (url) => {
+    const id = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+    if (!id) throw new Error("Ongeldige link. Zorg dat de link verwijst naar een Google Sheet.");
+    const csvUrl = `https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
+    const response = await fetch(csvUrl);
+    if (!response.ok) throw new Error("Kon data niet ophalen. Is de sheet openbaar of gedeeld met 'Iedereen met de link'?");
+    const text = await response.text();
+    return text;
   };
 
   const processText = (textToProcess, allowAutoMap = true) => {
@@ -128,6 +87,7 @@ Tom,Jantje,,Tom,`;
     try {
       const lines = textToProcess.trim().split('\n').filter(l => l.trim().length > 0);
       if (lines.length === 0) return;
+
       const candidates = [',', '\t', ';', '|'];
       let bestSep = ',';
       let maxCount = -1;
@@ -138,8 +98,10 @@ Tom,Jantje,,Tom,`;
           bestSep = sep;
         }
       });
+
       const validHeaders = lines[0].split(bestSep).map((h, i) => h.trim().replace(/^"|"$/g, '') || `Kolom ${i + 1}`);
       setHeaders(validHeaders);
+
       const rows = lines.slice(1).map(line => {
         const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
         let obj = {};
@@ -148,11 +110,27 @@ Tom,Jantje,,Tom,`;
         });
         return obj;
       });
+
       setParsedData(rows);
       if (allowAutoMap) autoMapHeaders(validHeaders);
     } catch (err) {
       console.error("Parse error:", err);
     }
+  };
+
+  const handleLoadExample = () => {
+    const exampleCSV = `Hoe heet je?,Met wie vind je het gezellig?,Met wie vind je het niet zo gezellig?,Met wie kan je goed samenwerken?,Met wie kan je niet zo goed samenwerken?
+Anna,"Pietje, Jantje",Klaasje,Pietje,Pietje
+Anna,Jantje,Anna,Klaasje,Pietje
+,,,Jantje,Anna
+Klaasje,,Lisa,Anna,Pietje
+Lisa,Tom,Jantje,,Tom,`;
+    setInputText(exampleCSV);
+    setActiveTab('paste');
+    setIsExampleData(true);
+    setIsStep2Expanded(false);
+    processText(exampleCSV, true);
+    setTimeout(() => generateGraph(), 200);
   };
 
   const autoMapHeaders = (availableHeaders) => {
@@ -200,6 +178,30 @@ Tom,Jantje,,Tom,`;
     reader.readAsBinaryString(file);
   };
 
+  const handleGenerateClick = async () => {
+    if (activeTab === 'sheet') {
+      if (!sheetLink.includes('google.com/spreadsheets')) {
+        alert("Voer een geldige Google Sheets link in.");
+        return;
+      }
+      setIsLoading(true);
+      try {
+        const csvText = await fetchSheetData(sheetLink);
+        processText(csvText, true);
+        setIsStep2Expanded(true);
+      } catch (err) {
+        alert(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    } else if (activeTab === 'paste') {
+      processText(inputText, true);
+      generateGraph();
+    } else {
+      generateGraph();
+    }
+  };
+
   const generateGraph = () => {
     if (!mapping.name) return;
     const nodes = [];
@@ -239,11 +241,11 @@ Tom,Jantje,,Tom,`;
     const isHighlighted = highlightLinks.size > 0 && highlightLinks.has(link);
     const opacity = highlightLinks.size > 0 && !isHighlighted ? '0.05' : '0.6';
     switch (link.type) {
-      case 'socialPos': return `rgba(34, 197, 94, ${opacity})`;
-      case 'socialNeg': return `rgba(239, 68, 68, ${opacity})`;
-      case 'workPos': return `rgba(59, 130, 246, ${opacity})`;
-      case 'workNeg': return `rgba(249, 115, 22, ${opacity})`;
-      default: return `rgba(156, 163, 175, ${opacity})`;
+      case 'socialPos': return `rgba(34,197,94,${opacity})`;
+      case 'socialNeg': return `rgba(239,68,68,${opacity})`;
+      case 'workPos': return `rgba(59,130,246,${opacity})`;
+      case 'workNeg': return `rgba(249,115,22,${opacity})`;
+      default: return `rgba(156,163,175,${opacity})`;
     }
   };
 
@@ -273,7 +275,7 @@ Tom,Jantje,,Tom,`;
   }, [updateHighlight]);
 
   const isFormValid = !!mapping.name && (!!mapping.socialPos || !!mapping.socialNeg || !!mapping.workPos || !!mapping.workNeg);
-  const hasData = inputText.trim().length > 0 || parsedData.length > 0;
+  const hasData = inputText.trim().length > 0 || parsedData.length > 0 || sheetLink.trim().length > 0;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -356,7 +358,6 @@ Tom,Jantje,,Tom,`;
                     )}
                   </AnimatePresence>
                 </div>
-
                 {/* OPTION B (STABLE LINK) */}
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                   <div className="p-6 flex items-center justify-between">
@@ -377,9 +378,6 @@ Tom,Jantje,,Tom,`;
                   </div>
                 </div>
               </div>
-              <p className="mt-6 text-sm text-gray-600 border-l-4 border-blue-500 pl-4 py-1 bg-blue-50 rounded-r-lg font-medium">
-                Gebruik deze Google Sheet als invoer voor deze tool: download het bestand of kopieer de gegevens en upload deze hier om het sociogram te visualiseren.
-              </p>
             </div>
 
             {/* STAP 3 – UPLOAD & VISUALISEER */}
@@ -391,6 +389,9 @@ Tom,Jantje,,Tom,`;
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 font-sans">
                 <div className="flex flex-wrap gap-4 mb-6">
                   <div className="flex space-x-2 p-1 bg-gray-100 rounded-lg">
+                    <button onClick={() => { setActiveTab('sheet'); setIsExampleData(false); }} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'sheet' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
+                      <SafeIcon icon={FiLink} /> <span>Google Sheet Link</span>
+                    </button>
                     <button onClick={() => { setActiveTab('paste'); setIsExampleData(false); }} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'paste' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
                       <SafeIcon icon={FiClipboard} /> <span>Plakken</span>
                     </button>
@@ -407,26 +408,50 @@ Tom,Jantje,,Tom,`;
 
                 {!isExampleData && (
                   <>
-                    {activeTab === 'paste' ? (
+                    {activeTab === 'sheet' && (
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl">
+                          <p className="text-sm text-blue-800 font-medium">
+                            Gebruik deze optie als je antwoorden hebt verzameld via Google Forms. 
+                            Leestoegang is voldoende. De data wordt niet opgeslagen.
+                          </p>
+                        </div>
+                        <div className="relative">
+                          <SafeIcon icon={FiLink} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                          <input 
+                            type="text" 
+                            className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-sans text-sm bg-gray-50" 
+                            placeholder="Plak hier de link naar je Google Sheet (aanbevolen)..." 
+                            value={sheetLink} 
+                            onChange={(e) => setSheetLink(e.target.value)} 
+                          />
+                        </div>
+                      </div>
+                    )}
+                    {activeTab === 'paste' && (
                       <textarea className="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-sm bg-gray-50" placeholder="Plak hier de kolommen uit uw Excel..." value={inputText} onChange={(e) => setInputText(e.target.value)} onBlur={() => processText(inputText, true)}></textarea>
-                    ) : (
+                    )}
+                    {activeTab === 'upload' && (
                       <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-10 text-center">
                         <input type="file" accept=".csv,.xlsx" onChange={handleFileUpload} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
                       </div>
                     )}
-
                     <div className="mt-6">
-                      <button
-                        onClick={generateGraph}
-                        disabled={!hasData}
-                        className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${hasData ? 'bg-blue-600 text-white hover:bg-blue-700 transform hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
-                      >
-                        <SafeIcon icon={FiActivity} /> <span>Genereer sociogram</span>
+                      <button onClick={handleGenerateClick} disabled={!hasData || isLoading} className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${hasData && !isLoading ? 'bg-blue-600 text-white hover:bg-blue-700 transform hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`} >
+                        {isLoading ? <SafeIcon icon={FiLoader} className="animate-spin" /> : <SafeIcon icon={FiActivity} />}
+                        <span>{isLoading ? 'Gegevens ophalen...' : 'Gegevens verwerken'}</span>
                       </button>
                     </div>
 
                     {headers.length > 0 && isStep2Expanded && (
                       <div className="mt-10 pt-8 border-t border-gray-100">
+                        <div className="mb-6">
+                          <h4 className="font-bold text-gray-900 flex items-center gap-2">
+                             <SafeIcon icon={FiSettings} className="text-blue-600" /> 
+                             Koppel de kolommen
+                          </h4>
+                          <p className="text-xs text-gray-500 mt-1">Geef aan welke kolom in je bronbestand overeenkomt met de juiste sociogramvraag.</p>
+                        </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
                           {[
                             { id: 'name', label: 'Naam Leerling', req: true },
@@ -477,48 +502,32 @@ Tom,Jantje,,Tom,`;
                     </button>
                   ))}
                 </div>
-                <button onClick={() => { setIsGenerated(false); setIsExampleData(false); setHeaders([]); setParsedData([]); }} className="px-4 py-2 text-xs bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 font-bold flex items-center gap-2">
+                <button onClick={() => { setIsGenerated(false); setIsExampleData(false); setHeaders([]); setParsedData([]); setSheetLink(''); setInputText(''); }} className="px-4 py-2 text-xs bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 font-bold flex items-center gap-2">
                   <SafeIcon icon={FiGrid} /> Andere Data
                 </button>
               </div>
               <div className="flex-grow bg-slate-50 relative cursor-grab active:cursor-grabbing">
-                <ForceGraph2D
-                  ref={graphRef}
-                  graphData={graphData}
-                  nodeLabel="name"
-                  nodeColor={node => selectedNode?.id === node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8')}
-                  nodeRelSize={7}
-                  linkColor={getLinkColor}
-                  linkWidth={link => (highlightLinks.has(link) ? 3 : 1.5)}
-                  linkDirectionalArrowLength={4}
-                  linkDirectionalArrowRelPos={1}
-                  onNodeHover={node => setHoverNode(node ? node.id : null)}
-                  onNodeClick={node => setSelectedNode(node)}
-                  d3VelocityDecay={0.4}
-                  cooldownTicks={100}
-                  nodeCanvasObject={(node, ctx, globalScale) => {
-                    const label = node.name;
-                    const fontSize = 14 / globalScale;
-                    ctx.font = `${fontSize}px Sans-Serif`;
-                    const r = 6;
-                    ctx.beginPath();
-                    ctx.arc(node.x, node.y, r, 0, 2 * Math.PI, false);
-                    ctx.fillStyle = selectedNode?.id === node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8');
-                    ctx.fill();
-                    if (isExampleData || globalScale > 0.4) {
-                      ctx.textAlign = 'center';
-                      ctx.textBaseline = 'middle';
-                      ctx.fillStyle = '#1e293b';
-                      ctx.strokeStyle = 'rgba(255,255,255,0.9)';
-                      ctx.lineWidth = 3 / globalScale;
-                      ctx.strokeText(label, node.x, node.y + r + fontSize + 2);
-                      ctx.fillText(label, node.x, node.y + r + fontSize + 2);
-                    }
-                  }}
-                />
+                <ForceGraph2D ref={graphRef} graphData={graphData} nodeLabel="name" nodeColor={node => selectedNode?.id === node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8')} nodeRelSize={7} linkColor={getLinkColor} linkWidth={link => (highlightLinks.size > 0 && highlightLinks.has(link) ? 3 : 1.5)} linkDirectionalArrowLength={4} linkDirectionalArrowRelPos={1} onNodeHover={node => setHoverNode(node ? node.id : null)} onNodeClick={node => setSelectedNode(node)} d3VelocityDecay={0.4} cooldownTicks={100} nodeCanvasObject={(node, ctx, globalScale) => {
+                  const label = node.name;
+                  const fontSize = 14 / globalScale;
+                  ctx.font = `${fontSize}px Sans-Serif`;
+                  const r = 6;
+                  ctx.beginPath();
+                  ctx.arc(node.x, node.y, r, 0, 2 * Math.PI, false);
+                  ctx.fillStyle = selectedNode?.id === node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8');
+                  ctx.fill();
+                  if (globalScale > 0.4) {
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillStyle = '#1e293b';
+                    ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+                    ctx.lineWidth = 3 / globalScale;
+                    ctx.strokeText(label, node.x, node.y + r + fontSize + 2);
+                    ctx.fillText(label, node.x, node.y + r + fontSize + 2);
+                  }
+                }} />
               </div>
             </motion.div>
-
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:col-span-4 flex flex-col gap-6">
               <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 flex-shrink-0">
                 <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2 text-lg">
@@ -542,17 +551,15 @@ Tom,Jantje,,Tom,`;
                     <button onClick={() => setSelectedNode(null)} className="w-full py-2 text-sm text-gray-400 hover:text-gray-600 transition-colors">Deselecteer</button>
                   </div>
                 ) : (
-                  <div className="py-10 text-center text-gray-400 italic text-sm">
-                    Klik op een leerling in het netwerk om relaties te bekijken.
-                  </div>
+                  <div className="py-10 text-center text-gray-400 italic text-sm"> Klik op een leerling in het netwerk om relaties te bekijken. </div>
                 )}
               </div>
-
               <div className="bg-indigo-900 text-white rounded-3xl shadow-xl p-8">
                 <h3 className="font-bold mb-4 flex items-center gap-2"><SafeIcon icon={FiInfo} className="text-indigo-300" /> Interpretatie</h3>
                 <ul className="text-xs space-y-3 text-indigo-100">
                   <li><strong>Isolatie:</strong> Leerlingen met weinig inkomende lijnen hebben extra aandacht nodig.</li>
                   <li><strong>Wederkerigheid:</strong> Dubbele pijlen duiden op sterke vriendschappen.</li>
+                  <li><strong>Groepsvorming:</strong> Clusters van leerlingen geven inzicht in subgroepen in de klas.</li>
                 </ul>
               </div>
             </motion.div>
