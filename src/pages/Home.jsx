@@ -11,48 +11,15 @@ const Home = () => {
   const navigate = useNavigate();
 
   const features = [
-    {
-      icon: FiBook,
-      title: "Praktische Lessen",
-      description: "Direct toepasbare AI-lessen voor elke onderwijslaag. Voor Levels 1–3 van het Onderwijs-AI Framework™",
-      path: "/leslab"
-    },
-    {
-      icon: FiTool,
-      title: "AI Tools Overzicht",
-      description: "Uitgebreide database van geteste AI-tools voor docenten. Voor Levels 2–4 van het Onderwijs-AI Framework™",
-      path: "/tools"
-    },
-    {
-      icon: FiUsers,
-      title: "Trainingen & Workshops",
-      description: "Persoonlijke begeleiding en teamtrainingen. Voor Levels 3–5 van het Onderwijs-AI Framework™",
-      path: "/trainingen"
-    }
+    { icon: FiBook, title: "Praktische Lessen", description: "Direct toepasbare AI-lessen voor elke onderwijslaag. Voor Levels 1–3 van het Onderwijs-AI Framework™", path: "/leslab" },
+    { icon: FiTool, title: "AI Tools Overzicht", description: "Uitgebreide database van geteste AI-tools voor docenten. Voor Levels 2–4 van het Onderwijs-AI Framework™", path: "/tools" },
+    { icon: FiUsers, title: "Trainingen & Workshops", description: "Persoonlijke begeleiding en teamtrainingen. Voor Levels 3–5 van het Onderwijs-AI Framework™", path: "/trainingen" }
   ];
 
   const highlights = [
-    {
-      category: "Voor Docenten",
-      title: "AI in het Basisonderwijs",
-      description: "Ontdek hoe AI het leren van jonge kinderen kan ondersteunen",
-      link: "/voor-docenten/po",
-      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop"
-    },
-    {
-      category: "LesLab",
-      title: "AI-Lessen",
-      description: "Kant-en-klare AI-lessen voor jouw klas",
-      link: "/leslab",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop"
-    },
-    {
-      category: "AI Tools",
-      title: "AI Tool Database",
-      description: "Ontdek the beste AI-tools voor jouw vakgebied",
-      link: "/ai-tools",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop"
-    }
+    { category: "Voor Docenten", title: "AI in het Basisonderwijs", description: "Ontdek hoe AI het leren van jonge kinderen kan ondersteunen", link: "/voor-docenten/po", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop" },
+    { category: "LesLab", title: "AI-Lessen", description: "Kant-en-klare AI-lessen voor jouw klas", link: "/leslab", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop" },
+    { category: "AI Tools", title: "AI Tool Database", description: "Ontdek the beste AI-tools voor jouw vakgebied", link: "/ai-tools", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop" }
   ];
 
   const handleDownloadClick = () => {
@@ -73,16 +40,19 @@ const Home = () => {
                 Praktische tools, lessen en trainingen, ingebed in een helder onderwijsframework voor docenten, teams en scholen.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link 
+                <Link
                   to="/framework"
                   className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-lg border-2 border-white"
                 >
                   <SafeIcon icon={FiTrendingUp} />
                   <span>Ontdek het Onderwijs-AI Framework™</span>
                 </Link>
-                <Link to="/ai-tools" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2">
+                <Link
+                  to="/ai-tools"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2"
+                >
                   <SafeIcon icon={FiTool} />
-                  <span>Bekijk AI Tools</span>
+                  <span>AI-tools overzicht</span>
                 </Link>
               </div>
               <div className="grid grid-cols-3 gap-6">
@@ -130,7 +100,15 @@ const Home = () => {
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow cursor-pointer" onClick={() => navigate(feature.path)}>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => navigate(feature.path)}
+              >
                 <SafeIcon icon={feature.icon} className="text-4xl text-primary-600 mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
                   {feature.title}
@@ -155,7 +133,14 @@ const Home = () => {
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {highlights.map((highlight, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+              >
                 <img src={highlight.image} alt={highlight.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <div className="text-sm text-primary-600 font-medium mb-2">
@@ -187,7 +172,7 @@ const Home = () => {
               Download gratis onze AI-toolkit en ontvang nieuwe lessen en tips
             </p>
             <div className="flex flex-col items-center space-y-4">
-              <button 
+              <button
                 onClick={handleDownloadClick}
                 className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 shadow-lg border-2 border-white"
               >
