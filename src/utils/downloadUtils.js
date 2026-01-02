@@ -1,23 +1,23 @@
 import jsPDF from 'jspdf';
-import {lessons} from '../data/lessons';
+import { lessons } from '../data/lessons';
 
-const normalizeLessonText=(raw)=> {
+const normalizeLessonText = (raw) => {
   if (!raw) return "";
-  let text=String(raw);
-  text=text.replace(/%¡/g,"");
-  text=text.replace(/!’/g,"");
-  text=text.replace(/^\s*\?\s*/,"");
-  text=text.replace(/^\s*[-•]\s*/,"");
-  text=text.replace(/[\u0000-\u0008\u000B-\u001F\u007F-\u009F]/g,"");
-  text=text.replace(/\s{2,}/g," ");
+  let text = String(raw);
+  text = text.replace(/%¡/g, "");
+  text = text.replace(/!’/g, "");
+  text = text.replace(/^\s*\?\s*/, "");
+  text = text.replace(/^\s*[-•]\s*/, "");
+  text = text.replace(/[\u0000-\u0008\u000B-\u001F\u007F-\u009F]/g, "");
+  text = text.replace(/\s{2,}/g, " ");
   return text.trim();
 };
 
 /**
  * KLASSENPLATTEGROND PDF GENERATOR
- * Ondersteunt Strikte 2-2-2 layout en 2x2 Eilandjes
+ * Ondersteunt Strikte 2-2-2 layout en 2x2 Eilandjes met Restgroep logica
  */
-export const downloadSeatingChartPDF=(students,layout,goal)=> {
+export const downloadSeatingChartPDF = (students, layout, goal) => {
   if (!students || students.length === 0) return;
 
   try {
@@ -51,81 +51,88 @@ export const downloadSeatingChartPDF=(students,layout,goal)=> {
     doc.setFontSize(6);
     doc.text("BUREAU DOCENT / DIGIBORD", pageWidth / 2, cursorY + 5, { align: 'center' });
 
-    cursorY += 20;
+    cursorY += 15;
 
-    // 3. Grid Logic
-    const isRowLayout = layout === 'rijen';
-    const isIslandLayout = layout === 'eilandjes';
-    
-    // Config per layout
-    const cols = isRowLayout ? 6 : 4;
-    const rows = Math.ceil(students.length / cols);
-    
-    // Gaps in mm
-    const horizontalGapBetweenIslands = isRowLayout ? 10 : 12; // De "loopruimte"
-    const verticalGapBetweenIslands = isRowLayout ? 5 : 12;
-    const miniGap = 1.5; // Binnen een eiland of duo
-    
-    // Calculate desk width
-    // Voor rijen: contentWidth = (6 * deskWidth) + (2 * gap)
-    // Voor eilanden: contentWidth = (4 * deskWidth) + (1 * gap) + (2 * miniGap)
-    const deskWidth = isRowLayout 
-      ? (contentWidth - (2 * horizontalGapBetweenIslands)) / 6
-      : (contentWidth - (1 * horizontalGapBetweenIslands) - (2 * miniGap)) / 4;
+    // 3. Render Logic
+    if (layout === 'rijen') {
+      const cols = 6;
+      const horizontalGap = 10;
+      const deskWidth = (contentWidth - (2 * horizontalGap)) / 6;
+      const deskHeight = 18;
 
-    const baseDeskHeight = isRowLayout ? 18 : 24;
-    
-    // Scaling to fit page
-    const totalNeededHeight = (rows * baseDeskHeight) + ((rows / 2) * verticalGapBetweenIslands);
-    const availableHeight = pageHeight - cursorY - 15;
-    const scale = totalNeededHeight > availableHeight ? availableHeight / totalNeededHeight : 1;
-    
-    const finalDeskHeight = baseDeskHeight * scale;
-
-    // 4. Render Tables
-    students.forEach((name, index) => {
-      const col = index % cols;
-      const row = Math.floor(index / cols);
-      
-      let xOffset = 0;
-      let yOffset = 0;
-
-      if (isRowLayout) {
-        const pairIndex = Math.floor(col / 2); // 0, 1, or 2
-        xOffset = pairIndex * horizontalGapBetweenIslands;
-      } else if (isIslandLayout) {
-        // Horizontal: Pair desks (0,1) and (2,3)
-        const islandGroupX = Math.floor(col / 2); // 0 or 1
-        xOffset = (islandGroupX * horizontalGapBetweenIslands) + ((col % 2) * miniGap);
+      students.forEach((name, index) => {
+        const col = index % cols;
+        const row = Math.floor(index / cols);
+        const pairIndex = Math.floor(col / 2);
+        const xOffset = pairIndex * horizontalGap;
         
-        // Vertical: Pair rows (0,1) and (2,3)
-        const islandGroupY = Math.floor(row / 2);
-        yOffset = (islandGroupY * verticalGapBetweenIslands) + ((row % 2) * miniGap);
-      }
+        const x = margin + (col * deskWidth) + xOffset;
+        const y = cursorY + (row * (deskHeight + 4));
+
+        doc.setDrawColor(219, 234, 254);
+        doc.setFillColor(255, 255, 255);
+        doc.roundedRect(x, y, deskWidth, deskHeight, 1.5, 1.5, 'FD');
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(7);
+        doc.setTextColor(31, 41, 55);
+        const cleanName = normalizeLessonText(name);
+        const truncated = cleanName.length > 12 ? cleanName.substring(0, 10) + ".." : cleanName;
+        doc.text(truncated, x + (deskWidth / 2), y + (deskHeight * 0.55), { align: 'center' });
+      });
+    } else {
+      // ISLANDS LAYOUT (2x2 Chunks)
+      const islandSize = 4;
+      const desksPerRow = 2; // 2 islands per row
+      const islandWidth = 45; // Width of one 2x2 block
+      const islandHeight = 40;
+      const gapBetweenIslands = 15;
+      const miniGap = 1.5;
       
-      const x = margin + (col * deskWidth) + xOffset;
-      const y = cursorY + (row * finalDeskHeight) + yOffset;
+      const deskWidth = (islandWidth - miniGap) / 2;
+      const deskHeight = (islandHeight - miniGap) / 2;
 
-      // Table Shape
-      doc.setDrawColor(219, 234, 254);
-      doc.setFillColor(255, 255, 255);
-      doc.roundedRect(x, y, deskWidth, finalDeskHeight, 1.5, 1.5, 'FD');
+      for (let i = 0; i < students.length; i += islandSize) {
+        const island = students.slice(i, i + islandSize);
+        const islandIndex = Math.floor(i / islandSize);
+        const isRestIsland = island.length < 4;
+        
+        const islandCol = islandIndex % desksPerRow;
+        const islandRow = Math.floor(islandIndex / desksPerRow);
+        
+        const islandX = margin + (islandCol * (islandWidth + gapBetweenIslands));
+        const islandY = cursorY + (islandRow * (islandHeight + gapBetweenIslands));
 
-      // Name
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(Math.max(5, 7 * scale));
-      doc.setTextColor(31, 41, 55);
-      const cleanName = normalizeLessonText(name);
-      const truncated = cleanName.length > 12 ? cleanName.substring(0, 10) + ".." : cleanName;
-      doc.text(truncated, x + (deskWidth / 2), y + (finalDeskHeight * 0.55), { align: 'center' });
+        // Optional: Draw rest island indicator
+        if (isRestIsland) {
+          doc.setDrawColor(200, 200, 200);
+          doc.setLineDash([2, 2]);
+          doc.roundedRect(islandX - 2, islandY - 2, islandWidth + 4, islandHeight + 4, 3, 3, 'D');
+          doc.setLineDash([]);
+          doc.setFontSize(5);
+          doc.setTextColor(150, 150, 150);
+          doc.text("RESTGROEP", islandX + (islandWidth / 2), islandY - 4, { align: 'center' });
+        }
 
-      // Mini progress line
-      const isOrange = index % 7 === 0;
-      doc.setFillColor(229, 231, 235);
-      doc.rect(x + 2, y + finalDeskHeight - 3, deskWidth - 4, 0.8, 'F');
-      doc.setFillColor(isOrange ? 251 : 74, isOrange ? 146 : 222, isOrange ? 60 : 128);
-      doc.rect(x + 2, y + finalDeskHeight - 3, isOrange ? (deskWidth - 4) / 3 : (deskWidth - 4), 0.8, 'F');
-    });
+        island.forEach((name, sIdx) => {
+          const deskCol = sIdx % 2;
+          const deskRow = Math.floor(sIdx / 2);
+          
+          const x = islandX + (deskCol * (deskWidth + miniGap));
+          const y = islandY + (deskRow * (deskHeight + miniGap));
+
+          doc.setDrawColor(isRestIsland ? 229 : 219, isRestIsland ? 231 : 234, isRestIsland ? 235 : 254);
+          doc.setFillColor(isRestIsland ? 249 : 255, isRestIsland ? 250 : 255, isRestIsland ? 251 : 255);
+          doc.roundedRect(x, y, deskWidth, deskHeight, 1.5, 1.5, 'FD');
+
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(6);
+          doc.setTextColor(31, 41, 55);
+          const truncated = name.length > 10 ? name.substring(0, 8) + ".." : name;
+          doc.text(truncated, x + (deskWidth / 2), y + (deskHeight * 0.6), { align: 'center' });
+        });
+      }
+    }
 
     // 5. Footer
     doc.setFontSize(6);
@@ -139,6 +146,6 @@ export const downloadSeatingChartPDF=(students,layout,goal)=> {
   }
 };
 
-export const downloadStartersgids=()=> { /* ... */ };
-export const downloadFile=(url,filename)=> { /* ... */ };
-export const downloadLesson=(lessonTitle)=> { /* ... */ };
+export const downloadStartersgids = () => { /* ... */ };
+export const downloadFile = (url, filename) => { /* ... */ };
+export const downloadLesson = (lessonTitle) => { /* ... */ };

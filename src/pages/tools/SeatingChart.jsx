@@ -1,133 +1,142 @@
-import React,{useState,useEffect} from 'react';
-import {motion,AnimatePresence} from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
-import {downloadSeatingChartPDF} from '../../utils/downloadUtils';
+import { downloadSeatingChartPDF } from '../../utils/downloadUtils';
 
-const {FiGrid,FiUsers,FiInfo,FiCheck,FiLayout,FiCoffee,FiAlertCircle,FiRefreshCw,FiArrowRight,FiLink,FiDatabase,FiSliders,FiShield,FiLock,FiDownload,FiLoader}=FiIcons;
+const { FiGrid, FiUsers, FiInfo, FiCheck, FiLayout, FiCoffee, FiAlertCircle, FiRefreshCw, FiArrowRight, FiLink, FiDatabase, FiSliders, FiShield, FiLock, FiDownload, FiLoader } = FiIcons;
 
-const SeatingChart=()=> {
+const SeatingChart = () => {
   // --- STATE ---
-  const [layout,setLayout]=useState('rijen');
-  const [goal,setGoal]=useState('rust');
-  const [sheetLink,setSheetLink]=useState('');
-  const [isGenerated,setIsGenerated]=useState(false);
-  const [isLoading,setIsLoading]=useState(false);
-  const [originalData,setOriginalData]=useState({names: [],relations: {}});
-  const [displayStudents,setDisplayStudents]=useState([]);
-  const [showPrivacyInfo,setShowPrivacyInfo]=useState(false);
+  const [layout, setLayout] = useState('rijen');
+  const [goal, setGoal] = useState('rust');
+  const [sheetLink, setSheetLink] = useState('');
+  const [isGenerated, setIsGenerated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [originalData, setOriginalData] = useState({ names: [], relations: {} });
+  const [displayStudents, setDisplayStudents] = useState([]);
+  const [showPrivacyInfo, setShowPrivacyInfo] = useState(false);
+
+  // Helper function to chunk array for Islands
+  const chunkArray = (arr, size) => {
+    const chunks = [];
+    for (let i = 0; i < arr.length; i += size) {
+      chunks.push(arr.slice(i, i + size));
+    }
+    return chunks;
+  };
 
   // --- SEATING LOGIC ALGORITHM ---
-  const applySeatingLogic=(names,relations,currentGoal,currentLayout)=> {
+  const applySeatingLogic = (names, relations, currentGoal, currentLayout) => {
     if (!names.length) return [];
-    let sorted=[...names];
-    const cols=currentLayout==='rijen' ? 6 : 4; // Eilanden werkt in blokken van 4 (2x2)
+    let sorted = [...names];
+    const cols = currentLayout === 'rijen' ? 6 : 4;
 
-    if (currentGoal==='samenwerking') {
-      const placed=new Set();
-      const newOrder=[];
-      sorted.forEach(name=> {
+    if (currentGoal === 'samenwerking') {
+      const placed = new Set();
+      const newOrder = [];
+      sorted.forEach(name => {
         if (placed.has(name)) return;
         newOrder.push(name);
         placed.add(name);
-        const friends=relations[name]?.pos || [];
-        const bestFriend=friends.find(f=> !placed.has(f));
+        const friends = relations[name]?.pos || [];
+        const bestFriend = friends.find(f => !placed.has(f));
         if (bestFriend) {
           newOrder.push(bestFriend);
           placed.add(bestFriend);
         }
       });
-      sorted=newOrder;
-    } else if (currentGoal==='rust') {
-      const tensionScores=names.map(name=> {
-        const negCount=(relations[name]?.neg?.length || 0) + Object.values(relations).filter(r=> r.neg.includes(name)).length;
-        return {name,score: negCount};
-      }).sort((a,b)=> b.score - a.score);
-      
-      const highTension=tensionScores.filter(s=> s.score > 0).map(s=> s.name);
-      const lowTension=tensionScores.filter(s=> s.score===0).map(s=> s.name);
-      const result=new Array(names.length).fill(null);
-      const cornerIndices=[0,cols - 1,names.length - 1,names.length - cols];
-      let cornerIdx=0;
-      highTension.forEach(name=> {
+      sorted = newOrder;
+    } else if (currentGoal === 'rust') {
+      const tensionScores = names.map(name => {
+        const negCount = (relations[name]?.neg?.length || 0) + Object.values(relations).filter(r => r.neg.includes(name)).length;
+        return { name, score: negCount };
+      }).sort((a, b) => b.score - a.score);
+
+      const highTension = tensionScores.filter(s => s.score > 0).map(s => s.name);
+      const lowTension = tensionScores.filter(s => s.score === 0).map(s => s.name);
+      const result = new Array(names.length).fill(null);
+      const cornerIndices = [0, cols - 1, names.length - 1, names.length - cols];
+      let cornerIdx = 0;
+      highTension.forEach(name => {
         if (cornerIdx < cornerIndices.length) {
-          result[cornerIndices[cornerIdx]]=name;
+          result[cornerIndices[cornerIdx]] = name;
           cornerIdx++;
         } else {
           lowTension.push(name);
         }
       });
-      let lowIdx=0;
-      for (let i=0;i < result.length;i++) {
-        if (result[i]===null) {
-          result[i]=lowTension[lowIdx] || "";
+      let lowIdx = 0;
+      for (let i = 0; i < result.length; i++) {
+        if (result[i] === null) {
+          result[i] = lowTension[lowIdx] || "";
           lowIdx++;
         }
       }
-      sorted=result.filter(n=> n !=="");
-    } else if (currentGoal==='conflicten') {
-      const result=[];
-      const remaining=[...names];
+      sorted = result.filter(n => n !== "");
+    } else if (currentGoal === 'conflicten') {
+      const result = [];
+      const remaining = [...names];
       while (remaining.length > 0) {
-        const current=remaining.shift();
+        const current = remaining.shift();
         result.push(current);
         if (remaining.length > 0) {
-          const next=remaining[0];
-          const hasConflict=(relations[current]?.neg || []).includes(next) || (relations[next]?.neg || []).includes(current);
+          const next = remaining[0];
+          const hasConflict = (relations[current]?.neg || []).includes(next) || (relations[next]?.neg || []).includes(current);
           if (hasConflict) {
-            const conflict=remaining.shift();
+            const conflict = remaining.shift();
             remaining.push(conflict);
           }
         }
       }
-      sorted=result;
+      sorted = result;
     }
     return sorted;
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     if (isGenerated && originalData.names.length > 0) {
-      const newOrder=applySeatingLogic(originalData.names,originalData.relations,goal,layout);
+      const newOrder = applySeatingLogic(originalData.names, originalData.relations, goal, layout);
       setDisplayStudents(newOrder);
     }
-  },[goal,layout,isGenerated]);
+  }, [goal, layout, isGenerated]);
 
-  const fetchSheetData=async (url)=> {
-    const id=url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+  const fetchSheetData = async (url) => {
+    const id = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)?.[1];
     if (!id) throw new Error("Ongeldige link.");
-    const csvUrl=`https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
-    const response=await fetch(csvUrl);
+    const csvUrl = `https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
+    const response = await fetch(csvUrl);
     if (!response.ok) throw new Error("Kon data niet ophalen. Is de sheet openbaar?");
-    const text=await response.text();
-    const lines=text.split('\n').filter(l=> l.trim().length > 0);
-    const headers=lines[0].split(',').map(h=> h.trim().toLowerCase().replace(/"/g,''));
-    const nameIdx=headers.findIndex(h=> ['naam','leerling','student','hoe heet je'].some(k=> h.includes(k)));
-    const posIdx=headers.findIndex(h=> ['vriend','positief','gezellig','samenwerken'].some(k=> h.includes(k)));
-    const negIdx=headers.findIndex(h=> ['niet','negatief','lastig','vermijden'].some(k=> h.includes(k)));
-    if (nameIdx===-1) throw new Error("Geen kolom 'Naam' gevonden.");
-    const names=[];
-    const relations={};
-    lines.slice(1).forEach(line=> {
-      const values=line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
-      const name=values[nameIdx]?.trim().replace(/"/g,'');
+    const text = await response.text();
+    const lines = text.split('\n').filter(l => l.trim().length > 0);
+    const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/"/g, ''));
+    const nameIdx = headers.findIndex(h => ['naam', 'leerling', 'student', 'hoe heet je'].some(k => h.includes(k)));
+    const posIdx = headers.findIndex(h => ['vriend', 'positief', 'gezellig', 'samenwerken'].some(k => h.includes(k)));
+    const negIdx = headers.findIndex(h => ['niet', 'negatief', 'lastig', 'vermijden'].some(k => h.includes(k)));
+    if (nameIdx === -1) throw new Error("Geen kolom 'Naam' gevonden.");
+    const names = [];
+    const relations = {};
+    lines.slice(1).forEach(line => {
+      const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
+      const name = values[nameIdx]?.trim().replace(/"/g, '');
       if (name) {
         names.push(name);
-        relations[name]={
-          pos: posIdx !==-1 ? (values[posIdx]?.replace(/"/g,'').split(',').map(s=> s.trim()) || []) : [],
-          neg: negIdx !==-1 ? (values[negIdx]?.replace(/"/g,'').split(',').map(s=> s.trim()) || []) : []
+        relations[name] = {
+          pos: posIdx !== -1 ? (values[posIdx]?.replace(/"/g, '').split(',').map(s => s.trim()) || []) : [],
+          neg: negIdx !== -1 ? (values[negIdx]?.replace(/"/g, '').split(',').map(s => s.trim()) || []) : []
         };
       }
     });
-    return {names,relations};
+    return { names, relations };
   };
 
-  const generateChart=async ()=> {
+  const generateChart = async () => {
     setIsLoading(true);
     try {
-      const data=await fetchSheetData(sheetLink);
+      const data = await fetchSheetData(sheetLink);
       setOriginalData(data);
-      const initialOrder=applySeatingLogic(data.names,data.relations,goal,layout);
+      const initialOrder = applySeatingLogic(data.names, data.relations, goal, layout);
       setDisplayStudents(initialOrder);
       setIsGenerated(true);
     } catch (err) {
@@ -137,17 +146,17 @@ const SeatingChart=()=> {
     }
   };
 
-  const handleReset=()=> {
+  const handleReset = () => {
     setIsGenerated(false);
     setDisplayStudents([]);
   };
 
-  const handleDownload=()=> {
-    const goalLabel=goal==='rust' ? 'Rust in de klas' : goal==='samenwerking' ? 'Samenwerking stimuleren' : 'Conflicten voorkomen';
-    downloadSeatingChartPDF(displayStudents,layout,goalLabel);
+  const handleDownload = () => {
+    const goalLabel = goal === 'rust' ? 'Rust in de klas' : goal === 'samenwerking' ? 'Samenwerking stimuleren' : 'Conflicten voorkomen';
+    downloadSeatingChartPDF(displayStudents, layout, goalLabel);
   };
 
-  const isFormValid=sheetLink.includes('google.com/spreadsheets');
+  const isFormValid = sheetLink.includes('google.com/spreadsheets');
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -156,7 +165,7 @@ const SeatingChart=()=> {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* LEFT: Configuration */}
           <div className="lg:col-span-4 space-y-6">
-            <motion.div initial={{opacity: 0,x: -20}} animate={{opacity: 1,x: 0}} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" >
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" >
               <div className="p-6 border-b border-gray-50 bg-indigo-50/30">
                 <h2 className="font-bold text-gray-900 flex items-center gap-2">
                   <SafeIcon icon={FiSliders} className="text-indigo-600" /> Configuratie
@@ -167,14 +176,14 @@ const SeatingChart=()=> {
                 <div>
                   <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Stap 1 – Kies je klasopstelling</label>
                   <div className="grid grid-cols-2 gap-3">
-                    <button onClick={()=> setLayout('rijen')} className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col gap-2 ${layout==='rijen' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-100 hover:border-indigo-200'}`} >
-                      <SafeIcon icon={FiLayout} className={layout==='rijen' ? 'text-indigo-600' : 'text-gray-400'} />
-                      <span className={`text-sm font-bold ${layout==='rijen' ? 'text-indigo-900' : 'text-gray-600'}`}>Rijen</span>
+                    <button onClick={() => setLayout('rijen')} className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col gap-2 ${layout === 'rijen' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-100 hover:border-indigo-200'}`} >
+                      <SafeIcon icon={FiLayout} className={layout === 'rijen' ? 'text-indigo-600' : 'text-gray-400'} />
+                      <span className={`text-sm font-bold ${layout === 'rijen' ? 'text-indigo-900' : 'text-gray-600'}`}>Rijen</span>
                       <span className="text-[10px] text-gray-400 leading-tight">2–2–2 Opstelling</span>
                     </button>
-                    <button onClick={()=> setLayout('eilandjes')} className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col gap-2 ${layout==='eilandjes' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-100 hover:border-indigo-200'}`} >
-                      <SafeIcon icon={FiGrid} className={layout==='eilandjes' ? 'text-indigo-600' : 'text-gray-400'} />
-                      <span className={`text-sm font-bold ${layout==='eilandjes' ? 'text-indigo-900' : 'text-gray-600'}`}>Eilandjes</span>
+                    <button onClick={() => setLayout('eilandjes')} className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col gap-2 ${layout === 'eilandjes' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-100 hover:border-indigo-200'}`} >
+                      <SafeIcon icon={FiGrid} className={layout === 'eilandjes' ? 'text-indigo-600' : 'text-gray-400'} />
+                      <span className={`text-sm font-bold ${layout === 'eilandjes' ? 'text-indigo-900' : 'text-gray-600'}`}>Eilandjes</span>
                       <span className="text-[10px] text-gray-400 leading-tight">Vaste 2×2 groepen</span>
                     </button>
                   </div>
@@ -185,14 +194,14 @@ const SeatingChart=()=> {
                   <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Stap 2 – Wat is het doel?</label>
                   <div className="space-y-2">
                     {[
-                      {id: 'rust',label: 'Rust in de klas',icon: FiCoffee},
-                      {id: 'samenwerking',label: 'Samenwerking stimuleren',icon: FiUsers},
-                      {id: 'conflicten',label: 'Conflicten voorkomen',icon: FiShield}
-                    ].map(item=> (
-                      <button key={item.id} onClick={()=> setGoal(item.id)} className={`w-full p-3 rounded-xl border-2 transition-all flex items-center gap-3 text-left ${goal===item.id ? 'border-indigo-600 bg-indigo-50 text-indigo-900' : 'border-gray-50 hover:border-indigo-100 text-gray-600'}`} >
+                      { id: 'rust', label: 'Rust in de klas', icon: FiCoffee },
+                      { id: 'samenwerking', label: 'Samenwerking stimuleren', icon: FiUsers },
+                      { id: 'conflicten', label: 'Conflicten voorkomen', icon: FiShield }
+                    ].map(item => (
+                      <button key={item.id} onClick={() => setGoal(item.id)} className={`w-full p-3 rounded-xl border-2 transition-all flex items-center gap-3 text-left ${goal === item.id ? 'border-indigo-600 bg-indigo-50 text-indigo-900' : 'border-gray-50 hover:border-indigo-100 text-gray-600'}`} >
                         <SafeIcon icon={item.icon} className="shrink-0" />
                         <span className="text-sm font-bold">{item.label}</span>
-                        {goal===item.id && <SafeIcon icon={FiCheck} className="ml-auto text-indigo-600" />}
+                        {goal === item.id && <SafeIcon icon={FiCheck} className="ml-auto text-indigo-600" />}
                       </button>
                     ))}
                   </div>
@@ -203,7 +212,7 @@ const SeatingChart=()=> {
                   <div className="flex items-center justify-between mb-3">
                     <label className="block text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2"> Stap 3 – Sociogramgegevens </label>
                     <div className="relative">
-                      <button onMouseEnter={()=> setShowPrivacyInfo(true)} onMouseLeave={()=> setShowPrivacyInfo(false)} className="text-gray-400 hover:text-indigo-600 transition-colors" >
+                      <button onMouseEnter={() => setShowPrivacyInfo(true)} onMouseLeave={() => setShowPrivacyInfo(false)} className="text-gray-400 hover:text-indigo-600 transition-colors" >
                         <SafeIcon icon={FiInfo} />
                       </button>
                       {showPrivacyInfo && (
@@ -216,7 +225,7 @@ const SeatingChart=()=> {
                       )}
                     </div>
                   </div>
-                  <input type="text" value={sheetLink} onChange={(e)=> setSheetLink(e.target.value)} placeholder="Google Sheets link..." className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 font-sans text-xs bg-gray-50 mb-2" />
+                  <input type="text" value={sheetLink} onChange={(e) => setSheetLink(e.target.value)} placeholder="Google Sheets link..." className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 font-sans text-xs bg-gray-50 mb-2" />
                 </div>
 
                 <button onClick={generateChart} disabled={!isFormValid || isLoading} className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${isFormValid && !isLoading ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`} >
@@ -238,13 +247,13 @@ const SeatingChart=()=> {
                 <p className="text-gray-400 max-w-sm text-sm">Koppel je Google Sheet aan de linkerkant om de echte namen te vertalen naar een plattegrond.</p>
               </div>
             ) : (
-              <motion.div initial={{opacity: 0,y: 20}} animate={{opacity: 1,y: 0}} className="space-y-6" >
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6" >
                 <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                   <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
                     <div>
                       <h3 className="font-bold text-gray-900">Gegenereerde Plattegrond</h3>
                       <p className="text-xs text-indigo-600 font-medium mt-1">
-                        {layout === 'rijen' ? 'Vaste 2–2–2 Tafelopstelling' : 'Vaste 2×2 Eilandjes'}
+                        {layout === 'rijen' ? 'Vaste 2–2–2 Tafelopstelling' : 'Vaste 2×2 Eilandjes met Restgroep'}
                       </p>
                     </div>
                     <button onClick={handleReset} className="text-xs font-bold text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-lg transition-colors flex items-center gap-2" >
@@ -256,46 +265,63 @@ const SeatingChart=()=> {
                       <div className="w-48 py-3 bg-gray-800 text-white text-[10px] uppercase tracking-[0.2em] font-bold text-center rounded-b-xl shadow-md border-t-4 border-indigo-500"> Bureau Docent / Digibord </div>
                     </div>
                     
-                    {/* GRID RENDER LOGIC WITH UNIFORM FIXED CARDS AND ISLAND SPACING */}
-                    <div className={`grid min-w-[800px] ${layout==='rijen' ? "grid-cols-6 gap-y-6 gap-x-0" : "grid-cols-4 gap-2"}`}>
-                      {displayStudents.map((name,index)=> {
-                        const isRowLayout = layout === 'rijen';
-                        const isIslandLayout = layout === 'eilandjes';
-                        
-                        // Spacing for 2-2-2 Rows
-                        const rowGapX = isRowLayout && (index % 6 === 1 || index % 6 === 3);
-                        
-                        // Spacing for 2x2 Islands
-                        // Horizontal gap between islands (after every 2nd card in a row of 4)
-                        const islandGapX = isIslandLayout && (index % 4 === 1);
-                        // Vertical gap between islands (after every 2nd row)
-                        const islandGapY = isIslandLayout && (Math.floor(index / 4) % 2 === 1);
-                        
-                        return (
-                          <motion.div 
-                            key={`${name}-${index}`} 
-                            initial={{opacity: 0,scale: 0.8}} 
-                            animate={{opacity: 1,scale: 1}} 
-                            transition={{delay: index * 0.01}} 
-                            className={`p-3 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center transition-all
-                              w-full h-28 shrink-0
-                              ${layout==='rijen' ? 'bg-white border-blue-100' : 'bg-indigo-50 border-indigo-200'}
-                              ${rowGapX ? 'mr-12' : ''}
-                              ${islandGapX ? 'mr-12' : ''}
-                              ${islandGapY ? 'mb-12' : ''}
-                            `}
-                          >
+                    {layout === 'rijen' ? (
+                      /* ROWS LAYOUT: 6 columns, spacing for pairs */
+                      <div className="grid grid-cols-6 gap-y-6 gap-x-0 min-w-[800px]">
+                        {displayStudents.map((name, index) => (
+                           <motion.div 
+                           key={`${name}-${index}`} 
+                           initial={{ opacity: 0, scale: 0.8 }} 
+                           animate={{ opacity: 1, scale: 1 }} 
+                           transition={{ delay: index * 0.01 }} 
+                           className={`p-3 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center transition-all w-full h-28 shrink-0 bg-white border-blue-100 ${ (index % 6 === 1 || index % 6 === 3) ? 'mr-12' : ''}`}
+                         >
                             <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mb-3">
                               <SafeIcon icon={FiUsers} className="text-gray-400 text-[10px]" />
                             </div>
                             <span className="text-[11px] font-bold text-gray-800 truncate w-full px-1 mb-3">{name}</span>
                             <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden mt-auto">
-                              <div className={`h-full ${index % 7===0 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
+                              <div className={`h-full ${index % 7 === 0 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
                             </div>
-                          </motion.div>
-                        );
-                      })}
-                    </div>
+                         </motion.div>
+                        ))}
+                      </div>
+                    ) : (
+                      /* ISLANDS LAYOUT: Chunked into islands of 4 */
+                      <div className="flex flex-wrap gap-12 justify-center min-w-[800px]">
+                        {chunkArray(displayStudents, 4).map((island, islandIdx, allIslands) => {
+                          const isRestIsland = island.length < 4;
+                          
+                          return (
+                            <div key={`island-${islandIdx}`} className="relative">
+                              {isRestIsland && (
+                                <div className="absolute -top-6 left-0 right-0 text-center">
+                                  <span className="text-[9px] font-black uppercase text-gray-400 tracking-widest">Restgroep</span>
+                                </div>
+                              )}
+                              <div className={`grid grid-cols-2 gap-2 p-3 rounded-2xl transition-all ${isRestIsland ? 'bg-gray-100/50 border-2 border-dashed border-gray-300' : 'bg-indigo-50/30'}`}>
+                                {island.map((name, sIdx) => (
+                                  <motion.div 
+                                    key={`${name}-${sIdx}`} 
+                                    initial={{ opacity: 0, scale: 0.8 }} 
+                                    animate={{ opacity: 1, scale: 1 }} 
+                                    className={`p-3 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center transition-all w-32 h-28 shrink-0 ${isRestIsland ? 'bg-gray-50 border-gray-200 opacity-90' : 'bg-white border-indigo-100'}`}
+                                  >
+                                    <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mb-3">
+                                      <SafeIcon icon={FiUsers} className="text-gray-400 text-[10px]" />
+                                    </div>
+                                    <span className="text-[11px] font-bold text-gray-800 truncate w-full px-1 mb-3">{name}</span>
+                                    <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden mt-auto">
+                                      <div className={`h-full ${Math.random() > 0.8 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
+                                    </div>
+                                  </motion.div>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 </div>
 
