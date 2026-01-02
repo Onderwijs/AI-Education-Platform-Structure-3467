@@ -309,6 +309,7 @@ Tom,Jantje,,Tom,`;
                 <h2 className="text-2xl font-bold text-gray-900">Stap 1 – Verzamel antwoorden van leerlingen</h2>
               </div>
               <div className="space-y-4">
+                {/* OPTION A */}
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                   <button onClick={() => setIsScriptExpanded(!isScriptExpanded)} className="w-full p-6 flex items-center justify-between hover:bg-gray-50 transition-colors text-left" >
                     <div className="flex items-center gap-4">
@@ -354,6 +355,26 @@ Tom,Jantje,,Tom,`;
                       </motion.div>
                     )}
                   </AnimatePresence>
+                </div>
+
+                {/* OPTION B (STABLE LINK) */}
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                  <div className="p-6 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                        <SafeIcon icon={FiFileText} />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-gray-900">Optie B: Gebruik de Google Sheet template</h3>
+                        <p className="text-sm text-gray-500">Download de Google Sheet template en vul de antwoorden in. Gebruik dit bestand als invoer in stap 3 om het sociogram te visualiseren.</p>
+                        <div className="mt-3">
+                          <a href="https://docs.google.com/spreadsheets/d/1-u-9D_0_E-7_4KqE_m9h5X6u_mX9E/copy" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700" >
+                            <SafeIcon icon={FiDownload} /> <span>Download Template (Google Sheets)</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <p className="mt-6 text-sm text-gray-600 border-l-4 border-blue-500 pl-4 py-1 bg-blue-50 rounded-r-lg font-medium">
