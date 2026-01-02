@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
@@ -14,66 +14,153 @@ const SeatingChart = () => {
   const [sheetLink, setSheetLink] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [students, setStudents] = useState([]);
+  const [originalData, setOriginalData] = useState({ names: [], relations: {} });
+  const [displayStudents, setDisplayStudents] = useState([]);
   const [showPrivacyInfo, setShowPrivacyInfo] = useState(false);
 
-  // --- LOGIC ---
-  const extractId = (url) => {
-    const match = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
-    return match ? match[1] : null;
+  // --- SEATING LOGIC ALGORITHM ---
+  const applySeatingLogic = (names, relations, currentGoal, currentLayout) => {
+    if (!names.length) return [];
+    
+    let sorted = [...names];
+    const cols = currentLayout === 'rijen' ? 4 : 3;
+
+    if (currentGoal === 'samenwerking') {
+      // Greedy clustering: probeer positieve relaties naast elkaar te zetten
+      const placed = new Set();
+      const newOrder = [];
+      
+      sorted.forEach(name => {
+        if (placed.has(name)) return;
+        newOrder.push(name);
+        placed.add(name);
+        
+        // Zoek een vriend die nog niet geplaatst is
+        const friends = relations[name]?.pos || [];
+        const bestFriend = friends.find(f => !placed.has(f));
+        if (bestFriend) {
+          newOrder.push(bestFriend);
+          placed.add(bestFriend);
+        }
+      });
+      sorted = newOrder;
+    } 
+    else if (currentGoal === 'rust') {
+      // Plaats leerlingen met veel negatieve relaties (onruststokers/gevoelig) aan de randen
+      const tensionScores = names.map(name => {
+        const negCount = (relations[name]?.neg?.length || 0) + 
+                         Object.values(relations).filter(r => r.neg.includes(name)).length;
+        return { name, score: negCount };
+      }).sort((a, b) => b.score - a.score);
+
+      const highTension = tensionScores.filter(s => s.score > 0).map(s => s.name);
+      const lowTension = tensionScores.filter(s => s.score === 0).map(s => s.name);
+      
+      // Verdeel highTension over hoek-indices (0, cols-1, etc)
+      const result = new Array(names.length).fill(null);
+      const cornerIndices = [0, cols - 1, names.length - 1, names.length - cols];
+      
+      let cornerIdx = 0;
+      highTension.forEach(name => {
+        if (cornerIdx < cornerIndices.length) {
+          result[cornerIndices[cornerIdx]] = name;
+          cornerIdx++;
+        } else {
+          lowTension.push(name); // De rest vult de gaten
+        }
+      });
+
+      let lowIdx = 0;
+      for (let i = 0; i < result.length; i++) {
+        if (result[i] === null) {
+          result[i] = lowTension[lowIdx] || "";
+          lowIdx++;
+        }
+      }
+      sorted = result.filter(n => n !== "");
+    }
+    else if (currentGoal === 'conflicten') {
+      // Zorg voor afstand tussen negatieve relaties
+      const result = [];
+      const remaining = [...names];
+      
+      while (remaining.length > 0) {
+        const current = remaining.shift();
+        result.push(current);
+        
+        // Als de volgende in de rij een conflict heeft met de huidige, verplaats naar achteren
+        if (remaining.length > 0) {
+          const next = remaining[0];
+          const hasConflict = (relations[current]?.neg || []).includes(next) || 
+                              (relations[next]?.neg || []).includes(current);
+          
+          if (hasConflict) {
+            const conflict = remaining.shift();
+            remaining.push(conflict); // Verplaats naar het einde van de wachtrij
+          }
+        }
+      }
+      sorted = result;
+    }
+
+    return sorted;
   };
 
+  // Re-run logic when goal or layout changes
+  useEffect(() => {
+    if (isGenerated && originalData.names.length > 0) {
+      const newOrder = applySeatingLogic(originalData.names, originalData.relations, goal, layout);
+      setDisplayStudents(newOrder);
+    }
+  }, [goal, layout, isGenerated]);
+
+  // --- DATA FETCHING ---
   const fetchSheetData = async (url) => {
-    const id = extractId(url);
-    if (!id) throw new Error("Ongeldige Google Sheets link. Zorg dat de URL de volledige link bevat.");
+    const id = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+    if (!id) throw new Error("Ongeldige link.");
     
-    // We gebruiken de CSV export van Google Sheets voor directe data-toegang zonder API-key
     const csvUrl = `https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
-    
     const response = await fetch(csvUrl);
-    if (!response.ok) throw new Error("Kon de gegevens niet ophalen. Is de sheet gedeeld via de optie 'Iedereen met de link'?");
+    if (!response.ok) throw new Error("Kon data niet ophalen. Is de sheet openbaar?");
     
     const text = await response.text();
     const lines = text.split('\n').filter(l => l.trim().length > 0);
-    if (lines.length < 2) throw new Error("De sheet lijkt leeg te zijn.");
-
     const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/"/g, ''));
     
-    // Zoek naar de kolom met namen
-    const nameKeywords = ['naam', 'leerling', 'student', 'hoe heet je', 'voornaam', 'first name'];
-    const nameColIndex = headers.findIndex(h => nameKeywords.some(k => h.includes(k)));
+    const nameIdx = headers.findIndex(h => ['naam', 'leerling', 'student', 'hoe heet je'].some(k => h.includes(k)));
+    const posIdx = headers.findIndex(h => ['vriend', 'positief', 'gezellig', 'samenwerken'].some(k => h.includes(k)));
+    const negIdx = headers.findIndex(h => ['niet', 'negatief', 'lastig', 'vermijden'].some(k => h.includes(k)));
 
-    if (nameColIndex === -1) {
-      throw new Error("Kon geen kolom met leerlingnamen vinden. Zorg dat een kolom de titel 'Naam' of 'Leerling' heeft.");
-    }
+    if (nameIdx === -1) throw new Error("Geen kolom 'Naam' gevonden.");
 
-    const studentNames = lines.slice(1).map(line => {
-      // Simpele CSV split die rekening houdt met quotes
+    const names = [];
+    const relations = {};
+
+    lines.slice(1).forEach(line => {
       const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
-      const val = values[nameColIndex];
-      return val ? val.trim().replace(/"/g, '') : null;
-    }).filter(n => n && n.length > 1);
+      const name = values[nameIdx]?.trim().replace(/"/g, '');
+      if (name) {
+        names.push(name);
+        relations[name] = {
+          pos: posIdx !== -1 ? (values[posIdx]?.replace(/"/g, '').split(',').map(s => s.trim()) || []) : [],
+          neg: negIdx !== -1 ? (values[negIdx]?.replace(/"/g, '').split(',').map(s => s.trim()) || []) : []
+        };
+      }
+    });
 
-    if (studentNames.length === 0) throw new Error("Geen leerlingnamen gevonden in de geselecteerde kolom.");
-    
-    return studentNames;
+    return { names, relations };
   };
 
   const generateChart = async () => {
     setIsLoading(true);
-    setIsGenerated(false);
-    
     try {
-      if (!sheetLink.includes('google.com/spreadsheets')) {
-        throw new Error("Voer een geldige Google Sheets link in.");
-      }
-
-      const fetchedStudents = await fetchSheetData(sheetLink);
-      setStudents(fetchedStudents);
+      const data = await fetchSheetData(sheetLink);
+      setOriginalData(data);
+      const initialOrder = applySeatingLogic(data.names, data.relations, goal, layout);
+      setDisplayStudents(initialOrder);
       setIsGenerated(true);
     } catch (err) {
       alert(err.message);
-      setStudents([]);
     } finally {
       setIsLoading(false);
     }
@@ -81,41 +168,15 @@ const SeatingChart = () => {
 
   const handleReset = () => {
     setIsGenerated(false);
-    setStudents([]);
+    setDisplayStudents([]);
   };
 
   const handleDownload = () => {
-    const goalText = goal === 'rust' ? 'Rust in de klas' : goal === 'samenwerking' ? 'Samenwerking stimuleren' : 'Conflicten voorkomen';
-    downloadSeatingChartPDF(students, layout, goalText);
+    const goalLabel = goal === 'rust' ? 'Rust in de klas' : goal === 'samenwerking' ? 'Samenwerking stimuleren' : 'Conflicten voorkomen';
+    downloadSeatingChartPDF(displayStudents, layout, goalLabel);
   };
 
-  const isFormValid = sheetLink.length > 10;
-
-  // --- RENDER HELPERS ---
-  const renderDesks = () => {
-    const gridClasses = layout === 'rijen' ? "grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" : "grid-cols-2 md:grid-cols-3 gap-8";
-    return (
-      <div className={`grid ${gridClasses}`}>
-        {students.map((name, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.02 }}
-            className={`p-4 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center min-h-[100px] ${layout === 'rijen' ? 'bg-white border-blue-100' : 'bg-indigo-50 border-indigo-200'}`}
-          >
-            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mb-2">
-              <SafeIcon icon={FiUsers} className="text-gray-400 text-xs" />
-            </div>
-            <span className="text-sm font-bold text-gray-800 truncate w-full px-1">{name}</span>
-            <div className="mt-2 w-full h-1 bg-gray-200 rounded-full overflow-hidden">
-              <div className={`h-full ${index % 7 === 0 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    );
-  };
+  const isFormValid = sheetLink.includes('google.com/spreadsheets');
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -228,10 +289,10 @@ const SeatingChart = () => {
                       />
                       <div className="space-y-2">
                         <p className="text-[10px] text-gray-500 leading-relaxed italic">
-                          Deel hier de bekijklink van je sociogram in Google Sheets. Het bestand hoeft niet openbaar te zijn — alleen toegankelijk via de link.
+                          Koppel een Google Sheet met minimaal een kolom 'Naam'. Voor betere resultaten voeg kolommen toe voor 'Vrienden' en 'Niet samenwerken'.
                         </p>
                         <p className="text-[10px] text-indigo-600 font-medium leading-relaxed bg-indigo-50 p-2 rounded-lg border border-indigo-100/50">
-                          <SafeIcon icon={FiShield} className="inline mr-1" /> Onderwijs.ai slaat geen leerlinggegevens op. Uw data wordt uitsluitend in de browser gebruikt.
+                          <SafeIcon icon={FiShield} className="inline mr-1" /> Onderwijs.ai slaat geen leerlinggegevens op. Uw data wordt uitsluitend lokaal in de browser gebruikt.
                         </p>
                       </div>
                     </div>
@@ -269,9 +330,9 @@ const SeatingChart = () => {
                 <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                   <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
                     <div>
-                      <h3 className="font-bold text-gray-900">Plattegrond op basis van Sociogram</h3>
+                      <h3 className="font-bold text-gray-900">Gegenereerde Plattegrond</h3>
                       <p className="text-xs text-green-600 font-medium flex items-center gap-1 mt-1">
-                        <SafeIcon icon={FiCheck} /> Indeling geoptimaliseerd voor {goal}
+                        <SafeIcon icon={FiCheck} /> Indeling geoptimaliseerd voor {goal === 'rust' ? 'Rust' : goal === 'samenwerking' ? 'Samenwerking' : 'Conflictpreventie'}
                       </p>
                     </div>
                     <button
@@ -288,16 +349,37 @@ const SeatingChart = () => {
                         Bureau Docent / Digibord
                       </div>
                     </div>
-                    {renderDesks()}
+                    
+                    <div className={`grid ${layout === 'rijen' ? "grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" : "grid-cols-2 md:grid-cols-3 gap-8"}`}>
+                      {displayStudents.map((name, index) => (
+                        <motion.div
+                          key={`${name}-${index}`}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: index * 0.02 }}
+                          className={`p-4 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center min-h-[100px] ${layout === 'rijen' ? 'bg-white border-blue-100' : 'bg-indigo-50 border-indigo-200'}`}
+                        >
+                          <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mb-2">
+                            <SafeIcon icon={FiUsers} className="text-gray-400 text-xs" />
+                          </div>
+                          <span className="text-sm font-bold text-gray-800 truncate w-full px-1">{name}</span>
+                          <div className="mt-2 w-full h-1 bg-gray-200 rounded-full overflow-hidden">
+                            <div className={`h-full ${index % 7 === 0 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="p-6 border-t border-gray-100 bg-indigo-50/20">
                     <h4 className="font-bold text-gray-900 text-sm mb-2 flex items-center gap-2">
                       <SafeIcon icon={FiInfo} className="text-indigo-600" />
-                      Waarom deze indeling?
+                      Toelichting bij deze indeling
                     </h4>
-                    <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                      Deze opstelling is gebaseerd op de namen uit uw Google Sheet en het gekozen doel. De tool plaatst leerlingen op basis van hun positie in de lijst. Voor volledige sociogram-integratie (vriendschappen/conflicten), zorg dat de relaties in de sheet kloppen.
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      {goal === 'rust' && "Leerlingen met een hogere sociale dynamiek zijn naar de buitenranden verplaatst om de rust in het midden van de groep te maximaliseren."}
+                      {goal === 'samenwerking' && "De tool heeft groepjes gevormd op basis van de positieve voorkeuren in uw sociogram, voor een betere interactie."}
+                      {goal === 'conflicten' && "Er is extra afstand gecreëerd tussen leerlingen die als negatieve keuze zijn gemarkeerd in de brongegevens."}
                     </p>
                   </div>
                 </div>
