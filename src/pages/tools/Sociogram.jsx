@@ -273,6 +273,7 @@ Tom,Jantje,,Tom,`;
   }, [updateHighlight]);
 
   const isFormValid = !!mapping.name && (!!mapping.socialPos || !!mapping.socialNeg || !!mapping.workPos || !!mapping.workNeg);
+  const hasData = inputText.trim().length > 0 || parsedData.length > 0;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -392,6 +393,16 @@ Tom,Jantje,,Tom,`;
                         <input type="file" accept=".csv,.xlsx" onChange={handleFileUpload} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
                       </div>
                     )}
+
+                    <div className="mt-6">
+                      <button
+                        onClick={generateGraph}
+                        disabled={!hasData}
+                        className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${hasData ? 'bg-blue-600 text-white hover:bg-blue-700 transform hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                      >
+                        <SafeIcon icon={FiActivity} /> <span>Genereer sociogram</span>
+                      </button>
+                    </div>
 
                     {headers.length > 0 && isStep2Expanded && (
                       <div className="mt-10 pt-8 border-t border-gray-100">
