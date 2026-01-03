@@ -84,6 +84,35 @@ const Framework = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
+        {/* Nieuwe Sectie: Voor organisaties & besluitvormers */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-3xl mx-auto mb-16 p-8 bg-indigo-50 rounded-2xl border border-indigo-100 shadow-sm"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Voor organisaties & besluitvormers</h2>
+          <p className="text-gray-700 mb-6 leading-relaxed">
+            Het Onderwijs.ai Didactisch AI-Framework is ontwikkeld als overdraagbaar kader voor de verantwoorde inzet van AI binnen het onderwijs.
+          </p>
+          <ul className="space-y-3 mb-6">
+            {[
+              "Biedt een helder groeimodel van oriëntatie (niveau 0) tot borging en doorontwikkeling (niveau 5)",
+              "Verbindt AI-toepassing expliciet aan didactiek, beleid en onderwijspraktijk",
+              "Ondersteunt scholen bij visievorming, professionalisering en implementatie",
+              "Onafhankelijk inzetbaar binnen trainingen, platforms of onderwijsorganisaties",
+              "Ontwikkeld vanuit de onderwijspraktijk, toepasbaar op schaal"
+            ].map((item, i) => (
+              <li key={i} className="flex gap-3 text-sm text-gray-600">
+                <SafeIcon icon={FiCheckCircle} className="text-indigo-600 mt-0.5 shrink-0" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-sm font-bold text-indigo-900 border-t border-indigo-100 pt-4">
+            Kernkwaliteit: dit framework maakt AI-gebruik in onderwijs concreet, overdraagbaar en bestuurbaar.
+          </p>
+        </motion.div>
+
         {/* Introductie */}
         <div className="max-w-3xl mx-auto text-center mb-20">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Waarom een framework?</h2>
@@ -195,6 +224,9 @@ const Framework = () => {
                   <span><strong>Dialoog:</strong> Hoe betrekken we leerlingen bij deze ontwikkeling?</span>
                 </li>
               </ul>
+              <p className="text-sm text-slate-400 italic pt-6 border-t border-slate-800 mt-6">
+                Dit framework en de bijbehorende structuur zijn ontwikkeld voor gebruik binnen onderwijsorganisaties en kunnen worden toegepast via samenwerking, licentie of overname.
+              </p>
             </div>
           </div>
         </section>
