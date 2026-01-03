@@ -29,6 +29,26 @@ const Trainingen=()=> {
       organizer: "Zeeprof"
     },
     {
+      title: "AI voor het Onderwijs - Basiscursus",
+      level: "Beginner",
+      duration: "1 dag",
+      format: "Live op locatie",
+      audience: "Docenten (alle niveaus)",
+      topics: [ 
+        "Basisbegrippen van AI in het onderwijs",
+        "AI-tools voor efficiënte lesvoorbereiding",
+        "Ethische kaders en privacy op school",
+        "Hands-on oefenen met AI-toepassingen" 
+      ],
+      price: "€395",
+      priceNote: "BTW vrijgesteld, inclusief lunch",
+      nextDates: ["13 februari 2026", "8 mei 2026", "4 september 2026"],
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=250&fit=crop",
+      link: "https://www.fontys.nl/Opleidingen/AI-voor-het-Onderwijs-Basis-cursus.htm",
+      isExternal: true,
+      organizer: "Fontys"
+    },
+    {
       title: "Werk slim met AI",
       level: "Beginner",
       duration: "3 dagen",
@@ -55,7 +75,7 @@ const Trainingen=()=> {
       audience: "Docenten alle niveaus",
       topics: [ 
         "Praktische toepassing van ChatGPT",
-        "AI-tools voor lesvoorbere iding",
+        "AI-tools voor lesvoorbereiding",
         "Veilig gebruik van AI in onderwijs",
         "Hands-on oefeningen en voorbeelden" 
       ],
@@ -130,9 +150,9 @@ const Trainingen=()=> {
           </motion.div> 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8"> 
             {trainings.map((training,index)=> ( 
-              <motion.div key={index} initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} transition={{delay: index * 0.1}} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" > 
+              <motion.div key={index} initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} transition={{delay: index * 0.1}} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow flex flex-col h-full" > 
                 <img src={training.image} alt={training.title} className="w-full h-48 object-cover" /> 
-                <div className="p-6"> 
+                <div className="p-6 flex flex-col flex-grow"> 
                   <div className="flex items-center justify-between mb-3"> 
                     <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"> {training.level} </span> 
                     <div className="flex items-center space-x-2 text-sm text-gray-500"> 
@@ -150,7 +170,7 @@ const Trainingen=()=> {
                       ))} 
                     </ul> 
                   </div> 
-                  <div className="mb-4"> 
+                  <div className="mb-4 flex-grow"> 
                     <div className="text-sm font-medium text-gray-700 mb-2">Komende data:</div> 
                     <ul className="space-y-1"> 
                       {training.nextDates.map((date,dateIndex)=> ( 
@@ -158,9 +178,9 @@ const Trainingen=()=> {
                       ))} 
                     </ul> 
                   </div> 
-                  <div className="flex items-center justify-between pt-4 border-t"> 
-                    <div className="text-xl font-bold text-gray-900"> 
-                      {training.price} {training.isExternal && training.price !=="Prijs op aanvraag" && ( <span className="text-sm text-gray-500 block">excl. BTW</span> )} 
+                  <div className="flex items-center justify-between pt-4 border-t mt-auto"> 
+                    <div className="text-xl font-bold text-gray-900 leading-tight"> 
+                      {training.price} {training.isExternal && training.price !=="Prijs op aanvraag" && ( <span className="text-[10px] text-gray-500 block font-normal">excl. BTW</span> )} 
                     </div> 
                     {training.isExternal ? ( 
                       <button onClick={()=> handleExternalLink(training.link)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2" > 
@@ -170,10 +190,10 @@ const Trainingen=()=> {
                     )} 
                   </div> 
                   {training.priceNote && (
-                    <div className="text-[10px] text-gray-400 mt-1">{training.priceNote}</div>
+                    <div className="text-[10px] text-gray-400 mt-1 italic">{training.priceNote}</div>
                   )}
                   {training.organizer && ( 
-                    <div className="mt-3 text-sm text-gray-500"> Georganiseerd door {training.organizer} </div> 
+                    <div className="mt-3 text-sm text-gray-500 font-medium"> Georganiseerd door {training.organizer} </div> 
                   )} 
                 </div> 
               </motion.div> 
