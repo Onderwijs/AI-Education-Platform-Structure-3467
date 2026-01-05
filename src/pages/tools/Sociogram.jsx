@@ -48,7 +48,7 @@ const Sociogram=()=> {
     }
   },[isGenerated,graphData,isExampleData]);
 
-  // --- GOOGLE APPS SCRIPT CODE (DEFINITIEF & FAIL-SAFE) ---
+  // --- GOOGLE APPS SCRIPT CODE (STRIKT ZONDER BROWSER.MSGBOX) ---
   const googleScript=`function createSociogramForm() {
   var form = FormApp.create('Interactief Sociogram Vragenlijst');
   form.setTitle('Sociogram: Hoe werken we samen in de klas?')
@@ -60,11 +60,9 @@ const Sociogram=()=> {
   form.addTextItem().setTitle('Met wie kan je goed samenwerken?');
   form.addTextItem().setTitle('Met wie kan je niet zo goed samenwerken?');
 
-  Logger.log('--- SOCIOGRAM FORMULIER SUCCESVOL AANGEMAAKT ---');
-  Logger.log('1. Link voor de docent (Bewerken/Resultaten): ' + form.getEditUrl());
-  Logger.log('2. Link voor de leerlingen (Invullen): ' + form.getPublishedUrl());
-  Logger.log('------------------------------------------------');
-  Logger.log('Kopieer de bovenstaande links uit het Uitvoeringslogboek.');
+  Logger.log('Bevestiging: Het sociogramformulier is succesvol aangemaakt.');
+  Logger.log('Docent-link (bewerken): ' + form.getEditUrl());
+  Logger.log('Leerling-link (invullen): ' + form.getPublishedUrl());
 }`;
 
   const copyScript=()=> {
