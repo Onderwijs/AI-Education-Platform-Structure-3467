@@ -48,7 +48,7 @@ const Sociogram=()=> {
     }
   },[isGenerated,graphData,isExampleData]);
 
-  // --- GOOGLE APPS SCRIPT CODE (UPDATED) ---
+  // --- GOOGLE APPS SCRIPT CODE (DEFINITIEF & FAIL-SAFE) ---
   const googleScript=`function createSociogramForm() {
   var form = FormApp.create('Interactief Sociogram Vragenlijst');
   form.setTitle('Sociogram: Hoe werken we samen in de klas?')
@@ -64,7 +64,7 @@ const Sociogram=()=> {
   Logger.log('1. Link voor de docent (Bewerken/Resultaten): ' + form.getEditUrl());
   Logger.log('2. Link voor de leerlingen (Invullen): ' + form.getPublishedUrl());
   Logger.log('------------------------------------------------');
-  Logger.log('Kopieer de bovenstaande links uit dit logboek.');
+  Logger.log('Kopieer de bovenstaande links uit het Uitvoeringslogboek.');
 }`;
 
   const copyScript=()=> {
