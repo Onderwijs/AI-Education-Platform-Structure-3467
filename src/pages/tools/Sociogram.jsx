@@ -324,20 +324,69 @@ Lisa,Tom,Jantje,,Tom,`;
                           <div className="mt-6 bg-white p-6 rounded-xl border border-gray-200">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                               <div>
-                                <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-3">Stappenplan voor docenten:</h5>
-                                <ol className="space-y-3 text-sm text-gray-700">
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">1</span> <span>Ga naar <strong>script.google.com</strong></span></li>
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">2</span> <span>Klik op <strong>'Nieuw project'</strong></span></li>
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">3</span> <span>Plak het script hiernaast</span></li>
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">4</span> <span>Klik op <strong>Opslaan</strong> en daarna op <strong>'Run'</strong></span></li>
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">5</span> <span>Bekijk de links in het <strong>Uitvoeringslogboek</strong> onderaan!</span></li>
+                                <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-4">Stappenplan Sociogram (Google Form automatisch aanmaken)</h5>
+                                <ol className="space-y-4 text-sm text-gray-700">
+                                  <li className="flex gap-3">
+                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">1</span>
+                                    <div>
+                                      <strong className="block text-gray-900">Ga naar Google Apps Script</strong>
+                                      <span>Ga naar <a href="https://script.google.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">script.google.com</a> en klik op <strong>Nieuw project</strong>.</span>
+                                    </div>
+                                  </li>
+                                  <li className="flex gap-3">
+                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">2</span>
+                                    <div>
+                                      <strong className="block text-gray-900">Verwijder de standaardcode (belangrijk!)</strong>
+                                      <span>In het nieuwe project staat standaard code (<code>function myFunction() &#123; &#125;</code>). Selecteer alle code en verwijder deze volledig.</span>
+                                    </div>
+                                  </li>
+                                  <li className="flex gap-3">
+                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">3</span>
+                                    <div>
+                                      <strong className="block text-gray-900">Plak het sociogram-script</strong>
+                                      <span>Plak nu het volledige Sociogram-script (hiernaast) in het lege venster.</span>
+                                    </div>
+                                  </li>
+                                  <li className="flex gap-3">
+                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">4</span>
+                                    <div>
+                                      <strong className="block text-gray-900">Opslaan</strong>
+                                      <span>Klik op <strong>Opslaan</strong> (Ctrl/Cmd + S).</span>
+                                    </div>
+                                  </li>
+                                  <li className="flex gap-3">
+                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">5</span>
+                                    <div>
+                                      <strong className="block text-gray-900">Script uitvoeren</strong>
+                                      <span>Selecteer bovenin de functie <code>createSociogramForm</code> en klik op <strong>Uitvoeren</strong>.</span>
+                                    </div>
+                                  </li>
+                                  <li className="flex gap-3">
+                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">6</span>
+                                    <div>
+                                      <strong className="block text-gray-900">Machtigingen goedkeuren</strong>
+                                      <span>Sta Google toe om het formulier aan te maken in je Drive. (Kies account &rarr; Geavanceerd &rarr; Ga naar ... (onveilig)).</span>
+                                    </div>
+                                  </li>
+                                  <li className="flex gap-3">
+                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">7</span>
+                                    <div>
+                                      <strong className="block text-gray-900">Open het Uitvoeringslogboek (essentieel)</strong>
+                                      <span>Klik op <strong>Uitvoeringslogboek</strong>. Je ziet daar twee links:</span>
+                                      <ul className="mt-1 list-disc pl-4 space-y-1 text-xs">
+                                        <li><strong>Docent-link (bewerken)</strong> &rarr; alleen voor jou</li>
+                                        <li><strong>Leerling-link (invullen)</strong> &rarr; deel deze met je klas</li>
+                                      </ul>
+                                      <p className="mt-1 text-xs italic text-blue-600">Tip: de leerling-link eindigt altijd op /viewform</p>
+                                    </div>
+                                  </li>
                                 </ol>
                               </div>
                               <div className="relative group">
                                 <button onClick={copyScript} className={`absolute top-3 right-3 z-10 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-all ${scriptCopied ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}>
                                   <SafeIcon icon={scriptCopied ? FiCheck : FiCopy} /> {scriptCopied ? 'Gekopieerd!' : 'Kopieer Script'}
                                 </button>
-                                <div className="bg-gray-900 rounded-xl p-4 pt-12 h-full max-h-[250px] overflow-y-auto shadow-inner border border-gray-800">
+                                <div className="bg-gray-900 rounded-xl p-4 pt-12 h-full max-h-[400px] overflow-y-auto shadow-inner border border-gray-800">
                                   <pre className="text-[10px] font-mono text-blue-300 leading-relaxed">{googleScript}</pre>
                                 </div>
                               </div>
