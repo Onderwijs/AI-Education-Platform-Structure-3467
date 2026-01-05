@@ -108,7 +108,7 @@ const Sociogram=()=> {
         return obj;
       });
       setParsedData(rows);
-      if (allowAutoMap) autoMapHeaders(validHeaders);
+      if (allowAutoMap) allowAutoMapHeaders(validHeaders);
     } catch (err) {
       console.error("Parse error:",err);
     }
@@ -381,13 +381,60 @@ Lisa,Tom,Jantje,,Tom,`;
                                     </div>
                                   </li>
                                 </ol>
+
+                                {/* EXTRA SECTION: GOOGLE SHEET STORAGE */}
+                                <div className="mt-10 pt-8 border-t border-gray-100">
+                                  <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-4">Antwoorden opslaan en gebruiken in Google Sheet</h5>
+                                  <div className="bg-green-50/50 rounded-xl p-5 border border-green-100">
+                                    <h6 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                                      <SafeIcon icon={FiDatabase} className="text-green-600" />
+                                      Antwoorden opslaan in Google Sheet
+                                    </h6>
+                                    <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                                      Nadat leerlingen het sociogram hebben ingevuld, worden de antwoorden automatisch opgeslagen in het formulier. Zo zet je de antwoorden om naar een Google Sheet:
+                                    </p>
+                                    <ul className="space-y-2 text-sm text-gray-700 mb-4">
+                                      <li className="flex items-start gap-2">
+                                        <SafeIcon icon={FiCheckCircle} className="text-green-500 mt-1 shrink-0" />
+                                        <span>Open het formulier via de <strong>docent-link (bewerken)</strong></span>
+                                      </li>
+                                      <li className="flex items-start gap-2">
+                                        <SafeIcon icon={FiCheckCircle} className="text-green-500 mt-1 shrink-0" />
+                                        <span>Klik bovenin op <strong>Antwoorden</strong></span>
+                                      </li>
+                                      <li className="flex items-start gap-2">
+                                        <SafeIcon icon={FiCheckCircle} className="text-green-500 mt-1 shrink-0" />
+                                        <span>Klik op het <strong>groene spreadsheet-icoon</strong></span>
+                                      </li>
+                                      <li className="flex items-start gap-2">
+                                        <SafeIcon icon={FiCheckCircle} className="text-green-500 mt-1 shrink-0" />
+                                        <span>Kies <strong>Nieuwe spreadsheet maken</strong></span>
+                                      </li>
+                                    </ul>
+                                    <p className="text-sm text-gray-600 mb-4 italic leading-relaxed bg-white/60 p-3 rounded-lg border border-green-50">
+                                      De antwoorden staan nu overzichtelijk in een Google Sheet in je Google Drive. Elke nieuwe inzending wordt automatisch toegevoegd als nieuwe rij.
+                                    </p>
+                                    <div className="space-y-3">
+                                      <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">Waarom dit handig is:</div>
+                                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-gray-600">
+                                        <li className="flex items-center gap-2">• Je kunt de antwoorden filteren en analyseren</li>
+                                        <li className="flex items-center gap-2">• Je behoudt overzicht per leerling</li>
+                                        <li className="flex items-center gap-2">• Direct te gebruiken voor de klassenplattegrond</li>
+                                      </ul>
+                                    </div>
+                                    <div className="mt-4 flex items-center gap-2 text-xs text-blue-700 bg-blue-50 p-2 rounded-lg font-medium">
+                                      <SafeIcon icon={FiInfo} />
+                                      <span><strong>Tip:</strong> Je hoeft dit maar één keer in te stellen. Daarna worden alle nieuwe antwoorden automatisch opgeslagen.</span>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                               <div className="relative group">
                                 <button onClick={copyScript} className={`absolute top-3 right-3 z-10 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-all ${scriptCopied ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}>
                                   <SafeIcon icon={scriptCopied ? FiCheck : FiCopy} /> {scriptCopied ? 'Gekopieerd!' : 'Kopieer Script'}
                                 </button>
-                                <div className="bg-gray-900 rounded-xl p-4 pt-12 h-full max-h-[400px] overflow-y-auto shadow-inner border border-gray-800">
-                                  <pre className="text-[10px] font-mono text-blue-300 leading-relaxed">{googleScript}</pre>
+                                <div className="bg-gray-900 rounded-xl p-4 pt-12 h-full max-h-[600px] overflow-y-auto shadow-inner border border-gray-800">
+                                  <pre className="text-[10px] font-mono text-blue-300 leading-relaxed font-normal">{googleScript}</pre>
                                 </div>
                               </div>
                             </div>
@@ -588,7 +635,7 @@ Lisa,Tom,Jantje,,Tom,`;
                 <ul className="text-xs space-y-3 text-indigo-100">
                   <li><strong>Isolatie:</strong> Leerlingen met weinig inkomende lijnen hebben extra aandacht nodig.</li>
                   <li><strong>Wederkerigheid:</strong> Dubbele pijlen duiden op sterke vriendschappen.</li>
-                  <li><strong>Groepsvorming:</strong> Clusters van leerlingen geven inzicht in subgroepen.</li>
+                  <li><strong>Groepsvorming:</strong> Clusters van leerlingen geven inzicht in subgruepen.</li>
                 </ul>
               </div>
             </motion.div>
