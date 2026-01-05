@@ -1,55 +1,55 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React,{useState,useRef,useEffect,useCallback} from 'react';
+import {motion,AnimatePresence} from 'framer-motion';
 import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 import * as XLSX from 'xlsx';
 import ForceGraph2D from 'react-force-graph-2d';
 
-const { FiUpload, FiClipboard, FiSettings, FiActivity, FiDownload, FiSearch, FiEye, FiAlertTriangle, FiCheck, FiUsers, FiGrid, FiXCircle, FiInfo, FiFileText, FiHelpCircle, FiDatabase, FiExternalLink, FiChevronDown, FiChevronUp, FiFilter, FiMaximize2, FiSend, FiCheckCircle, FiCopy, FiTerminal, FiShare2, FiLink, FiLoader } = FiIcons;
+const {FiUpload,FiClipboard,FiSettings,FiActivity,FiDownload,FiSearch,FiEye,FiAlertTriangle,FiCheck,FiUsers,FiGrid,FiXCircle,FiInfo,FiFileText,FiHelpCircle,FiDatabase,FiExternalLink,FiChevronDown,FiChevronUp,FiFilter,FiMaximize2,FiSend,FiCheckCircle,FiCopy,FiTerminal,FiShare2,FiLink,FiLoader}=FiIcons;
 
-const Sociogram = () => {
+const Sociogram=()=> {
   // --- STATE ---
-  const [activeTab, setActiveTab] = useState('sheet'); // Default to sheet as it is recommended
-  const [inputText, setInputText] = useState('');
-  const [sheetLink, setSheetLink] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [parsedData, setParsedData] = useState([]);
-  const [headers, setHeaders] = useState([]);
-  const [mapping, setMapping] = useState({ name: '', socialPos: '', socialNeg: '', workPos: '', workNeg: '' });
+  const [activeTab,setActiveTab]=useState('sheet');
+  const [inputText,setInputText]=useState('');
+  const [sheetLink,setSheetLink]=useState('');
+  const [isLoading,setIsLoading]=useState(false);
+  const [parsedData,setParsedData]=useState([]);
+  const [headers,setHeaders]=useState([]);
+  const [mapping,setMapping]=useState({name: '',socialPos: '',socialNeg: '',workPos: '',workNeg: ''});
 
   // UI State
-  const [isExampleData, setIsExampleData] = useState(false);
-  const [isStep2Expanded, setIsStep2Expanded] = useState(true);
-  const [isGenerated, setIsGenerated] = useState(false);
-  const [viewMode, setViewMode] = useState('all');
+  const [isExampleData,setIsExampleData]=useState(false);
+  const [isStep2Expanded,setIsStep2Expanded]=useState(true);
+  const [isGenerated,setIsGenerated]=useState(false);
+  const [viewMode,setViewMode]=useState('all');
 
   // Guidance UI State
-  const [isScriptExpanded, setIsScriptExpanded] = useState(true);
-  const [scriptCopied, setScriptCopied] = useState(false);
+  const [isScriptExpanded,setIsScriptExpanded]=useState(true);
+  const [scriptCopied,setScriptCopied]=useState(false);
 
   // Graph Data & Interaction
-  const [graphData, setGraphData] = useState({ nodes: [], links: [] });
-  const [hoverNode, setHoverNode] = useState(null);
-  const [selectedNode, setSelectedNode] = useState(null);
-  const [highlightNodes, setHighlightNodes] = useState(new Set());
-  const [highlightLinks, setHighlightLinks] = useState(new Set());
-  const graphRef = useRef();
+  const [graphData,setGraphData]=useState({nodes: [],links: []});
+  const [hoverNode,setHoverNode]=useState(null);
+  const [selectedNode,setSelectedNode]=useState(null);
+  const [highlightNodes,setHighlightNodes]=useState(new Set());
+  const [highlightLinks,setHighlightLinks]=useState(new Set());
+  const graphRef=useRef();
 
   // --- AUTO FOCUS & CENTER LOGIC ---
-  useEffect(() => {
+  useEffect(()=> {
     if (isGenerated && graphRef.current) {
-      const delay = isExampleData ? 100 : 400;
-      const timer = setTimeout(() => {
-        graphRef.current.zoomToFit(800, 120);
-        graphRef.current.centerAt(0, 0, 400);
-      }, delay);
-      return () => clearTimeout(timer);
+      const delay=isExampleData ? 100 : 400;
+      const timer=setTimeout(()=> {
+        graphRef.current.zoomToFit(800,120);
+        graphRef.current.centerAt(0,0,400);
+      },delay);
+      return ()=> clearTimeout(timer);
     }
-  }, [isGenerated, graphData, isExampleData]);
+  },[isGenerated,graphData,isExampleData]);
 
-  // --- GOOGLE APPS SCRIPT CODE ---
-  const googleScript = `function createSociogramForm() {
+  // --- GOOGLE APPS SCRIPT CODE (UPDATED) ---
+  const googleScript=`function createSociogramForm() {
   var form = FormApp.create('Interactief Sociogram Vragenlijst');
   form.setTitle('Sociogram: Hoe werken we samen in de klas?')
       .setDescription('Vul deze vragenlijst eerlijk in. Je antwoorden zijn alleen zichtbaar voor de leraar.');
@@ -59,113 +59,111 @@ const Sociogram = () => {
   form.addTextItem().setTitle('Met wie vind je het niet zo gezellig?');
   form.addTextItem().setTitle('Met wie kan je goed samenwerken?');
   form.addTextItem().setTitle('Met wie kan je niet zo goed samenwerken?');
-  
-  Logger.log('Link naar het formulier: ' + form.getEditUrl());
-  Logger.log('Link om te delen met leerlingen: ' + form.getPublishedUrl());
-  Browser.msgBox('Klaar! Het formulier is aangemaakt in je Google Drive. Open het nu om het te delen met je klas.');
+
+  Logger.log('--- SOCIOGRAM FORMULIER SUCCESVOL AANGEMAAKT ---');
+  Logger.log('1. Link voor de docent (Bewerken/Resultaten): ' + form.getEditUrl());
+  Logger.log('2. Link voor de leerlingen (Invullen): ' + form.getPublishedUrl());
+  Logger.log('------------------------------------------------');
+  Logger.log('Kopieer de bovenstaande links uit dit logboek.');
 }`;
 
-  const copyScript = () => {
+  const copyScript=()=> {
     navigator.clipboard.writeText(googleScript);
     setScriptCopied(true);
-    setTimeout(() => setScriptCopied(false), 2000);
+    setTimeout(()=> setScriptCopied(false),2000);
   };
 
   // --- DATA FETCHING LOGIC ---
-  const fetchSheetData = async (url) => {
-    const id = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+  const fetchSheetData=async (url)=> {
+    const id=url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)?.[1];
     if (!id) throw new Error("Ongeldige link. Zorg dat de link verwijst naar een Google Sheet.");
-    const csvUrl = `https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
-    const response = await fetch(csvUrl);
+    const csvUrl=`https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
+    const response=await fetch(csvUrl);
     if (!response.ok) throw new Error("Kon data niet ophalen. Is de sheet openbaar of gedeeld met 'Iedereen met de link'?");
-    const text = await response.text();
+    const text=await response.text();
     return text;
   };
 
-  const processText = (textToProcess, allowAutoMap = true) => {
+  const processText=(textToProcess,allowAutoMap=true)=> {
     if (!textToProcess.trim() || isExampleData) return;
     try {
-      const lines = textToProcess.trim().split('\n').filter(l => l.trim().length > 0);
-      if (lines.length === 0) return;
-
-      const candidates = [',', '\t', ';', '|'];
-      let bestSep = ',';
-      let maxCount = -1;
-      candidates.forEach(sep => {
-        const count = lines[0].split(sep).length - 1;
+      const lines=textToProcess.trim().split('\n').filter(l=> l.trim().length > 0);
+      if (lines.length===0) return;
+      const candidates=[',','\t',';','|'];
+      let bestSep=',';
+      let maxCount=-1;
+      candidates.forEach(sep=> {
+        const count=lines[0].split(sep).length - 1;
         if (count > maxCount) {
-          maxCount = count;
-          bestSep = sep;
+          maxCount=count;
+          bestSep=sep;
         }
       });
-
-      const validHeaders = lines[0].split(bestSep).map((h, i) => h.trim().replace(/^"|"$/g, '') || `Kolom ${i + 1}`);
+      const validHeaders=lines[0].split(bestSep).map((h,i)=> h.trim().replace(/^"|"$/g,'') || `Kolom ${i + 1}`);
       setHeaders(validHeaders);
-
-      const rows = lines.slice(1).map(line => {
-        const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
-        let obj = {};
-        validHeaders.forEach((key, i) => {
-          obj[key] = values[i] ? values[i].trim().replace(/^"|"$/g, '') : '';
+      const rows=lines.slice(1).map(line=> {
+        const values=line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
+        let obj={};
+        validHeaders.forEach((key,i)=> {
+          obj[key]=values[i] ? values[i].trim().replace(/^"|"$/g,'') : '';
         });
         return obj;
       });
-
       setParsedData(rows);
       if (allowAutoMap) autoMapHeaders(validHeaders);
     } catch (err) {
-      console.error("Parse error:", err);
+      console.error("Parse error:",err);
     }
   };
 
-  const handleLoadExample = () => {
-    const exampleCSV = `Hoe heet je?,Met wie vind je het gezellig?,Met wie vind je het niet zo gezellig?,Met wie kan je goed samenwerken?,Met wie kan je niet zo goed samenwerken?
-Anna,"Pietje, Jantje",Klaasje,Pietje,Pietje
+  const handleLoadExample=()=> {
+    const exampleCSV=`Hoe heet je?,Met wie vind je het gezellig?,Met wie vind je het niet zo gezellig?,Met wie kan je goed samenwerken?,Met wie kan je niet zo goed samenwerken?
+Anna,"Pietje,Jantje",Klaasje,Pietje,Pietje
 Anna,Jantje,Anna,Klaasje,Pietje
-,,,Jantje,Anna
+,,,,Jantje,Anna
 Klaasje,,Lisa,Anna,Pietje
 Lisa,Tom,Jantje,,Tom,`;
     setInputText(exampleCSV);
     setActiveTab('paste');
     setIsExampleData(true);
     setIsStep2Expanded(false);
-    processText(exampleCSV, true);
-    setTimeout(() => generateGraph(), 200);
+    processText(exampleCSV,true);
+    setTimeout(()=> generateGraph(),200);
   };
 
-  const autoMapHeaders = (availableHeaders) => {
-    const lowerHeaders = availableHeaders.map(h => h.toLowerCase());
-    const findMatch = (keywords) => {
-      const idx = lowerHeaders.findIndex(h => keywords.some(k => h.includes(k)));
-      return idx !== -1 ? availableHeaders[idx] : '';
+  const autoMapHeaders=(availableHeaders)=> {
+    const lowerHeaders=availableHeaders.map(h=> h.toLowerCase());
+    const findMatch=(keywords)=> {
+      const idx=lowerHeaders.findIndex(h=> keywords.some(k=> h.includes(k)));
+      return idx !==-1 ? availableHeaders[idx] : '';
     };
     setMapping({
-      name: findMatch(['hoe heet je', 'naam', 'leerling', 'student']),
-      socialPos: findMatch(['gezellig', 'social+', 'vrienden']),
-      socialNeg: findMatch(['niet gezellig', 'social-', 'liever niet']),
-      workPos: findMatch(['samenwerken', 'work+', 'groepje']),
-      workNeg: findMatch(['niet samenwerken', 'work-', 'lastig'])
+      name: findMatch(['hoe heet je','naam','leerling','student']),
+      socialPos: findMatch(['gezellig','social+','vrienden']),
+      socialNeg: findMatch(['niet gezellig','social-','liever niet']),
+      workPos: findMatch(['samenwerken','work+','groepje']),
+      workNeg: findMatch(['niet samenwerken','work-','lastig'])
     });
   };
 
-  const handleFileUpload = (e) => {
+  const handleFileUpload=(e)=> {
     setIsExampleData(false);
     setIsStep2Expanded(true);
-    const file = e.target.files[0];
+    const file=e.target.files[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (evt) => {
+    const reader=new FileReader();
+    reader.onload=(evt)=> {
       try {
-        const bstr = evt.target.result;
-        const wb = XLSX.read(bstr, { type: 'binary' });
-        const ws = wb.Sheets[wb.SheetNames[0]];
-        const data = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
+        const bstr=evt.target.result;
+        const wb=XLSX.read(bstr,{type: 'binary'});
+        const ws=wb.Sheets[wb.SheetNames[0]];
+        const data=XLSX.utils.sheet_to_json(ws,{header: 1,defval: ""});
         if (data && data.length > 0) {
-          const validHeaders = data[0].map((h, i) => (h && String(h).trim()) ? String(h).trim() : `Kolom ${i + 1}`);
+          const validHeaders=data[0].map((h,i)=> (h && String(h).trim()) ? String(h).trim() : `Kolom ${i + 1}`);
           setHeaders(validHeaders);
-          const rows = data.slice(1).map(row => {
-            let obj = {};
-            validHeaders.forEach((key, i) => obj[key] = (row[i] !== undefined) ? String(row[i]).trim() : '');
+          const rows=data.slice(1).map(row=> {
+            let obj={};
+            validHeaders.forEach((key,i)=> obj[key]=(row[i] !==undefined) ? String(row[i]).trim() : '');
             return obj;
           });
           setParsedData(rows);
@@ -178,68 +176,68 @@ Lisa,Tom,Jantje,,Tom,`;
     reader.readAsBinaryString(file);
   };
 
-  const handleGenerateClick = async () => {
-    if (activeTab === 'sheet') {
+  const handleGenerateClick=async ()=> {
+    if (activeTab==='sheet') {
       if (!sheetLink.includes('google.com/spreadsheets')) {
         alert("Voer een geldige Google Sheets link in.");
         return;
       }
       setIsLoading(true);
       try {
-        const csvText = await fetchSheetData(sheetLink);
-        processText(csvText, true);
+        const csvText=await fetchSheetData(sheetLink);
+        processText(csvText,true);
         setIsStep2Expanded(true);
       } catch (err) {
         alert(err.message);
       } finally {
         setIsLoading(false);
       }
-    } else if (activeTab === 'paste') {
-      processText(inputText, true);
+    } else if (activeTab==='paste') {
+      processText(inputText,true);
       generateGraph();
     } else {
       generateGraph();
     }
   };
 
-  const generateGraph = () => {
+  const generateGraph=()=> {
     if (!mapping.name) return;
-    const nodes = [];
-    const links = [];
-    const studentNamesSet = new Set();
-    parsedData.forEach(row => {
-      const name = row[mapping.name]?.trim();
+    const nodes=[];
+    const links=[];
+    const studentNamesSet=new Set();
+    parsedData.forEach(row=> {
+      const name=row[mapping.name]?.trim();
       if (name && !studentNamesSet.has(name)) {
         studentNamesSet.add(name);
-        nodes.push({ id: name, name: name });
+        nodes.push({id: name,name: name});
       }
     });
-    parsedData.forEach(row => {
-      const source = row[mapping.name]?.trim();
+    parsedData.forEach(row=> {
+      const source=row[mapping.name]?.trim();
       if (!source || !studentNamesSet.has(source)) return;
-      const processLink = (col, type) => {
+      const processLink=(col,type)=> {
         if (!col) return;
-        const val = String(row[col] || '');
-        const targets = val.split(/[,\n;]/).map(s => s.trim()).filter(s => s.length > 0);
-        targets.forEach(target => {
+        const val=String(row[col] || '');
+        const targets=val.split(/[,\n;]/).map(s=> s.trim()).filter(s=> s.length > 0);
+        targets.forEach(target=> {
           if (studentNamesSet.has(target)) {
-            links.push({ source, target, type });
+            links.push({source,target,type});
           }
         });
       };
-      processLink(mapping.socialPos, 'socialPos');
-      processLink(mapping.socialNeg, 'socialNeg');
-      processLink(mapping.workPos, 'workPos');
-      processLink(mapping.workNeg, 'workNeg');
+      processLink(mapping.socialPos,'socialPos');
+      processLink(mapping.socialNeg,'socialNeg');
+      processLink(mapping.workPos,'workPos');
+      processLink(mapping.workNeg,'workNeg');
     });
-    setGraphData({ nodes, links });
+    setGraphData({nodes,links});
     setIsGenerated(true);
   };
 
-  const getLinkColor = (link) => {
-    if (viewMode !== 'all' && link.type !== viewMode) return 'transparent';
-    const isHighlighted = highlightLinks.size > 0 && highlightLinks.has(link);
-    const opacity = highlightLinks.size > 0 && !isHighlighted ? '0.05' : '0.6';
+  const getLinkColor=(link)=> {
+    if (viewMode !=='all' && link.type !==viewMode) return 'transparent';
+    const isHighlighted=highlightLinks.size > 0 && highlightLinks.has(link);
+    const opacity=highlightLinks.size > 0 && !isHighlighted ? '0.05' : '0.6';
     switch (link.type) {
       case 'socialPos': return `rgba(34,197,94,${opacity})`;
       case 'socialNeg': return `rgba(239,68,68,${opacity})`;
@@ -249,17 +247,17 @@ Lisa,Tom,Jantje,,Tom,`;
     }
   };
 
-  const updateHighlight = useCallback(() => {
-    const hNodes = new Set();
-    const hLinks = new Set();
-    const activeId = hoverNode || (selectedNode ? selectedNode.id : null);
+  const updateHighlight=useCallback(()=> {
+    const hNodes=new Set();
+    const hLinks=new Set();
+    const activeId=hoverNode || (selectedNode ? selectedNode.id : null);
     if (activeId) {
       hNodes.add(activeId);
-      graphData.links.forEach(link => {
-        if (viewMode !== 'all' && link.type !== viewMode) return;
-        const sId = typeof link.source === 'object' ? link.source.id : link.source;
-        const tId = typeof link.target === 'object' ? link.target.id : link.target;
-        if (sId === activeId || tId === activeId) {
+      graphData.links.forEach(link=> {
+        if (viewMode !=='all' && link.type !==viewMode) return;
+        const sId=typeof link.source==='object' ? link.source.id : link.source;
+        const tId=typeof link.target==='object' ? link.target.id : link.target;
+        if (sId===activeId || tId===activeId) {
           hLinks.add(link);
           hNodes.add(sId);
           hNodes.add(tId);
@@ -268,14 +266,14 @@ Lisa,Tom,Jantje,,Tom,`;
     }
     setHighlightNodes(hNodes);
     setHighlightLinks(hLinks);
-  }, [hoverNode, selectedNode, graphData, viewMode]);
+  },[hoverNode,selectedNode,graphData,viewMode]);
 
-  useEffect(() => {
+  useEffect(()=> {
     updateHighlight();
-  }, [updateHighlight]);
+  },[updateHighlight]);
 
-  const isFormValid = !!mapping.name && (!!mapping.socialPos || !!mapping.socialNeg || !!mapping.workPos || !!mapping.workNeg);
-  const hasData = inputText.trim().length > 0 || parsedData.length > 0 || sheetLink.trim().length > 0;
+  const isFormValid=!!mapping.name && (!!mapping.socialPos || !!mapping.socialNeg || !!mapping.workPos || !!mapping.workNeg);
+  const hasData=inputText.trim().length > 0 || parsedData.length > 0 || sheetLink.trim().length > 0;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -283,15 +281,13 @@ Lisa,Tom,Jantje,,Tom,`;
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {!isGenerated && (
           <div className="flex flex-wrap justify-center items-center gap-4 md:gap-12 mb-12">
-            {[
-              { num: 1, label: 'Verzamel antwoorden', icon: FiSend },
-              { num: 2, label: 'Controleer & exporteer', icon: FiDownload },
-              { num: 3, label: 'Upload & visualiseer', icon: FiEye }
-            ].map((step, i) => (
+            {[ 
+              {num: 1,label: 'Verzamel antwoorden',icon: FiSend},
+              {num: 2,label: 'Controleer & exporteer',icon: FiDownload},
+              {num: 3,label: 'Upload & visualiseer',icon: FiEye} 
+            ].map((step,i)=> (
               <div key={i} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shadow-md">
-                  {step.num}
-                </div>
+                <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shadow-md"> {step.num} </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Stap {step.num}</span>
                   <span className="text-sm font-bold text-gray-700">{step.label}</span>
@@ -303,7 +299,7 @@ Lisa,Tom,Jantje,,Tom,`;
         )}
 
         {!isGenerated ? (
-          <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}}>
+          <motion.div initial={{opacity: 0,y: 20}} animate={{opacity: 1,y: 0}}>
             {/* STAP 1 – VERZAMELEN */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6">
@@ -313,22 +309,19 @@ Lisa,Tom,Jantje,,Tom,`;
               <div className="space-y-4">
                 {/* OPTION A */}
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                  <button onClick={() => setIsScriptExpanded(!isScriptExpanded)} className="w-full p-6 flex items-center justify-between hover:bg-gray-50 transition-colors text-left" >
+                  <button onClick={()=> setIsScriptExpanded(!isScriptExpanded)} className="w-full p-6 flex items-center justify-between hover:bg-gray-50 transition-colors text-left" >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center shrink-0">
-                        <SafeIcon icon={FiShare2} />
-                      </div>
+                      <div className="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center shrink-0"> <SafeIcon icon={FiShare2} /> </div>
                       <div>
                         <h3 className="font-bold text-gray-900">Optie A: Automatisch een Google Form genereren <span className="text-green-600 text-xs font-medium ml-2 bg-green-50 px-2 py-0.5 rounded-full">(Aanbevolen)</span></h3>
                         <p className="text-sm text-gray-500">De makkelijkste manier om veilig en anoniem data van je klas te verzamelen.</p>
-                        <p className="text-sm text-gray-600 mt-2 font-medium">Na het aanmaken deel je dit Google Form met je leerlingen. Alle antwoorden worden automatisch opgeslagen in een gekoppelde Google Sheet in je Google Drive.</p>
                       </div>
                     </div>
                     <SafeIcon icon={isScriptExpanded ? FiChevronUp : FiChevronDown} className="text-gray-400" />
                   </button>
                   <AnimatePresence>
                     {isScriptExpanded && (
-                      <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} className="overflow-hidden">
+                      <motion.div initial={{height: 0}} animate={{height: 'auto'}} exit={{height: 0}} className="overflow-hidden">
                         <div className="p-6 pt-0 border-t border-gray-100 bg-gray-50/50">
                           <div className="mt-6 bg-white p-6 rounded-xl border border-gray-200">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -339,8 +332,7 @@ Lisa,Tom,Jantje,,Tom,`;
                                   <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">2</span> <span>Klik op <strong>'Nieuw project'</strong></span></li>
                                   <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">3</span> <span>Plak het script hiernaast</span></li>
                                   <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">4</span> <span>Klik op <strong>Opslaan</strong> en daarna op <strong>'Run'</strong></span></li>
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">5</span> <span>Akkoord gaan met machtigingen</span></li>
-                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">6</span> <span>Je formulier staat nu klaar in Google Drive!</span></li>
+                                  <li className="flex gap-3"><span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-[10px] font-bold">5</span> <span>Bekijk de links in het <strong>Uitvoeringslogboek</strong> onderaan!</span></li>
                                 </ol>
                               </div>
                               <div className="relative group">
@@ -358,16 +350,14 @@ Lisa,Tom,Jantje,,Tom,`;
                     )}
                   </AnimatePresence>
                 </div>
-                {/* OPTION B (STABLE LINK) */}
+                {/* OPTION B */}
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                   <div className="p-6 flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-                        <SafeIcon icon={FiFileText} />
-                      </div>
+                      <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0"> <SafeIcon icon={FiFileText} /> </div>
                       <div>
                         <h3 className="font-bold text-gray-900">Optie B: Gebruik de Google Sheet template</h3>
-                        <p className="text-sm text-gray-500">Download de Google Sheet template en vul de antwoorden in. Gebruik dit bestand als invoer in stap 3 om het sociogram te visualiseren.</p>
+                        <p className="text-sm text-gray-500">Download de Google Sheet template en vul de antwoorden in.</p>
                         <div className="mt-3">
                           <a href="https://docs.google.com/spreadsheets/d/1Qc5Ow3lAWUCWjBW61MKPPVvUMTOPBHAz/copy" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700" >
                             <SafeIcon icon={FiDownload} /> <span>Download Template (Google Sheets)</span>
@@ -389,13 +379,13 @@ Lisa,Tom,Jantje,,Tom,`;
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 font-sans">
                 <div className="flex flex-wrap gap-4 mb-6">
                   <div className="flex space-x-2 p-1 bg-gray-100 rounded-lg">
-                    <button onClick={() => { setActiveTab('sheet'); setIsExampleData(false); }} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'sheet' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
+                    <button onClick={()=> {setActiveTab('sheet');setIsExampleData(false);}} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab==='sheet' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
                       <SafeIcon icon={FiLink} /> <span>Google Sheet Link</span>
                     </button>
-                    <button onClick={() => { setActiveTab('paste'); setIsExampleData(false); }} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'paste' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
+                    <button onClick={()=> {setActiveTab('paste');setIsExampleData(false);}} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab==='paste' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
                       <SafeIcon icon={FiClipboard} /> <span>Plakken</span>
                     </button>
-                    <button onClick={() => { setActiveTab('upload'); setIsExampleData(false); }} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab === 'upload' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
+                    <button onClick={()=> {setActiveTab('upload');setIsExampleData(false);}} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab==='upload' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
                       <SafeIcon icon={FiUpload} /> <span>Uploaden</span>
                     </button>
                   </div>
@@ -408,30 +398,21 @@ Lisa,Tom,Jantje,,Tom,`;
 
                 {!isExampleData && (
                   <>
-                    {activeTab === 'sheet' && (
+                    {activeTab==='sheet' && (
                       <div className="space-y-4">
                         <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl">
-                          <p className="text-sm text-blue-800 font-medium">
-                            Gebruik deze optie als je antwoorden hebt verzameld via Google Forms. 
-                            Leestoegang is voldoende. De data wordt niet opgeslagen.
-                          </p>
+                          <p className="text-sm text-blue-800 font-medium"> Gebruik deze optie als je antwoorden hebt verzameld via Google Forms. Leestoegang is voldoende. </p>
                         </div>
                         <div className="relative">
                           <SafeIcon icon={FiLink} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                          <input 
-                            type="text" 
-                            className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-sans text-sm bg-gray-50" 
-                            placeholder="Plak hier de link naar je Google Sheet (aanbevolen)..." 
-                            value={sheetLink} 
-                            onChange={(e) => setSheetLink(e.target.value)} 
-                          />
+                          <input type="text" className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-sans text-sm bg-gray-50" placeholder="Plak hier de link naar je Google Sheet..." value={sheetLink} onChange={(e)=> setSheetLink(e.target.value)} />
                         </div>
                       </div>
                     )}
-                    {activeTab === 'paste' && (
-                      <textarea className="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-sm bg-gray-50" placeholder="Plak hier de kolommen uit uw Excel..." value={inputText} onChange={(e) => setInputText(e.target.value)} onBlur={() => processText(inputText, true)}></textarea>
+                    {activeTab==='paste' && (
+                      <textarea className="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-sm bg-gray-50" placeholder="Plak hier de kolommen uit uw Excel..." value={inputText} onChange={(e)=> setInputText(e.target.value)} onBlur={()=> processText(inputText,true)}></textarea>
                     )}
-                    {activeTab === 'upload' && (
+                    {activeTab==='upload' && (
                       <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-10 text-center">
                         <input type="file" accept=".csv,.xlsx" onChange={handleFileUpload} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
                       </div>
@@ -446,25 +427,21 @@ Lisa,Tom,Jantje,,Tom,`;
                     {headers.length > 0 && isStep2Expanded && (
                       <div className="mt-10 pt-8 border-t border-gray-100">
                         <div className="mb-6">
-                          <h4 className="font-bold text-gray-900 flex items-center gap-2">
-                             <SafeIcon icon={FiSettings} className="text-blue-600" /> 
-                             Koppel de kolommen
-                          </h4>
-                          <p className="text-xs text-gray-500 mt-1">Geef aan welke kolom in je bronbestand overeenkomt met de juiste sociogramvraag.</p>
+                          <h4 className="font-bold text-gray-900 flex items-center gap-2"> <SafeIcon icon={FiSettings} className="text-blue-600" /> Koppel de kolommen </h4>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
-                          {[
-                            { id: 'name', label: 'Naam Leerling', req: true },
-                            { id: 'socialPos', label: 'Gezellig (Social +)' },
-                            { id: 'socialNeg', label: 'Niet Gezellig (Social -)' },
-                            { id: 'workPos', label: 'Samenwerken (Work +)' },
-                            { id: 'workNeg', label: 'Niet Samenwerken (Work -)' }
-                          ].map(field => (
+                          {[ 
+                            {id: 'name',label: 'Naam Leerling',req: true},
+                            {id: 'socialPos',label: 'Gezellig (Social +)'},
+                            {id: 'socialNeg',label: 'Niet Gezellig (Social -)'},
+                            {id: 'workPos',label: 'Samenwerken (Work +)'},
+                            {id: 'workNeg',label: 'Niet Samenwerken (Work -)'} 
+                          ].map(field=> (
                             <div key={field.id} className="bg-gray-50 p-4 rounded-xl border border-gray-200">
                               <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{field.label} {field.req && <span className="text-red-500">*</span>}</label>
-                              <select className={`w-full p-2.5 border rounded-lg bg-white text-sm focus:ring-2 focus:ring-blue-500 ${mapping[field.id] ? 'border-blue-300' : 'border-gray-300'}`} value={mapping[field.id]} onChange={(e) => setMapping(prev => ({ ...prev, [field.id]: e.target.value }))}>
+                              <select className={`w-full p-2.5 border rounded-lg bg-white text-sm focus:ring-2 focus:ring-blue-500 ${mapping[field.id] ? 'border-blue-300' : 'border-gray-300'}`} value={mapping[field.id]} onChange={(e)=> setMapping(prev=> ({...prev,[field.id]: e.target.value}))}>
                                 <option value="">-- Kies kolom --</option>
-                                {headers.map(h => <option key={h} value={h}>{h}</option>)}
+                                {headers.map(h=> <option key={h} value={h}>{h}</option>)}
                               </select>
                             </div>
                           ))}
@@ -478,61 +455,66 @@ Lisa,Tom,Jantje,,Tom,`;
                     )}
                   </>
                 )}
-
-                {isExampleData && (
-                  <div className="p-12 text-center bg-purple-50 rounded-2xl border border-purple-100">
-                    <SafeIcon icon={FiCheckCircle} className="text-4xl text-purple-600 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-purple-900 mb-2">Voorbeelddata geladen</h3>
-                    <p className="text-purple-700 mb-6 max-w-md mx-auto">De tool heeft de kolommen automatisch herkend. De visualisatie staat hieronder klaar.</p>
-                    <div className="w-16 h-1 bg-purple-200 mx-auto rounded-full"></div>
-                  </div>
-                )}
               </div>
             </div>
           </motion.div>
         ) : (
           /* RESULTATEN SECTIE */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="lg:col-span-8 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col h-[750px] relative">
+            <motion.div initial={{opacity: 0,scale: 0.95}} animate={{opacity: 1,scale: 1}} className="lg:col-span-8 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col h-[750px] relative">
               <div className="p-4 border-b border-gray-100 flex flex-wrap gap-4 justify-between items-center bg-gray-50/50 backdrop-blur-md z-10">
                 <div className="flex bg-white p-1 rounded-xl shadow-sm border border-gray-200">
-                  {['all', 'socialPos', 'socialNeg', 'workPos', 'workNeg'].map(mode => (
-                    <button key={mode} onClick={() => setViewMode(mode)} className={`px-4 py-2 text-xs rounded-lg font-bold transition-all ${viewMode === mode ? 'bg-gray-900 text-white shadow-md' : 'hover:bg-gray-100 text-gray-600'}`}>
-                      {mode === 'all' ? 'Alles' : mode === 'socialPos' ? 'Sociaal+' : mode === 'socialNeg' ? 'Sociaal-' : mode === 'workPos' ? 'Werk+' : 'Werk-'}
+                  {['all','socialPos','socialNeg','workPos','workNeg'].map(mode=> (
+                    <button key={mode} onClick={()=> setViewMode(mode)} className={`px-4 py-2 text-xs rounded-lg font-bold transition-all ${viewMode===mode ? 'bg-gray-900 text-white shadow-md' : 'hover:bg-gray-100 text-gray-600'}`}>
+                      {mode==='all' ? 'Alles' : mode==='socialPos' ? 'Sociaal+' : mode==='socialNeg' ? 'Sociaal-' : mode==='workPos' ? 'Werk+' : 'Werk-'}
                     </button>
                   ))}
                 </div>
-                <button onClick={() => { setIsGenerated(false); setIsExampleData(false); setHeaders([]); setParsedData([]); setSheetLink(''); setInputText(''); }} className="px-4 py-2 text-xs bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 font-bold flex items-center gap-2">
+                <button onClick={()=> {setIsGenerated(false);setIsExampleData(false);setHeaders([]);setParsedData([]);setSheetLink('');setInputText('');}} className="px-4 py-2 text-xs bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 font-bold flex items-center gap-2">
                   <SafeIcon icon={FiGrid} /> Andere Data
                 </button>
               </div>
               <div className="flex-grow bg-slate-50 relative cursor-grab active:cursor-grabbing">
-                <ForceGraph2D ref={graphRef} graphData={graphData} nodeLabel="name" nodeColor={node => selectedNode?.id === node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8')} nodeRelSize={7} linkColor={getLinkColor} linkWidth={link => (highlightLinks.size > 0 && highlightLinks.has(link) ? 3 : 1.5)} linkDirectionalArrowLength={4} linkDirectionalArrowRelPos={1} onNodeHover={node => setHoverNode(node ? node.id : null)} onNodeClick={node => setSelectedNode(node)} d3VelocityDecay={0.4} cooldownTicks={100} nodeCanvasObject={(node, ctx, globalScale) => {
-                  const label = node.name;
-                  const fontSize = 14 / globalScale;
-                  ctx.font = `${fontSize}px Sans-Serif`;
-                  const r = 6;
-                  ctx.beginPath();
-                  ctx.arc(node.x, node.y, r, 0, 2 * Math.PI, false);
-                  ctx.fillStyle = selectedNode?.id === node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8');
-                  ctx.fill();
-                  if (globalScale > 0.4) {
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillStyle = '#1e293b';
-                    ctx.strokeStyle = 'rgba(255,255,255,0.9)';
-                    ctx.lineWidth = 3 / globalScale;
-                    ctx.strokeText(label, node.x, node.y + r + fontSize + 2);
-                    ctx.fillText(label, node.x, node.y + r + fontSize + 2);
-                  }
-                }} />
+                <ForceGraph2D 
+                  ref={graphRef} 
+                  graphData={graphData} 
+                  nodeLabel="name" 
+                  nodeColor={node=> selectedNode?.id===node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8')} 
+                  nodeRelSize={7} 
+                  linkColor={getLinkColor} 
+                  linkWidth={link=> (highlightLinks.size > 0 && highlightLinks.has(link) ? 3 : 1.5)} 
+                  linkDirectionalArrowLength={4} 
+                  linkDirectionalArrowRelPos={1} 
+                  onNodeHover={node=> setHoverNode(node ? node.id : null)} 
+                  onNodeClick={node=> setSelectedNode(node)} 
+                  d3VelocityDecay={0.4} 
+                  cooldownTicks={100} 
+                  nodeCanvasObject={(node,ctx,globalScale)=> {
+                    const label=node.name;
+                    const fontSize=14 / globalScale;
+                    ctx.font=`${fontSize}px Sans-Serif`;
+                    const r=6;
+                    ctx.beginPath();
+                    ctx.arc(node.x,node.y,r,0,2 * Math.PI,false);
+                    ctx.fillStyle=selectedNode?.id===node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8');
+                    ctx.fill();
+                    if (globalScale > 0.4) {
+                      ctx.textAlign='center';
+                      ctx.textBaseline='middle';
+                      ctx.fillStyle='#1e293b';
+                      ctx.strokeStyle='rgba(255,255,255,0.9)';
+                      ctx.lineWidth=3 / globalScale;
+                      ctx.strokeText(label,node.x,node.y + r + fontSize + 2);
+                      ctx.fillText(label,node.x,node.y + r + fontSize + 2);
+                    }
+                  }} 
+                />
               </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="lg:col-span-4 flex flex-col gap-6">
+
+            <motion.div initial={{opacity: 0,x: 20}} animate={{opacity: 1,x: 0}} className="lg:col-span-4 flex flex-col gap-6">
               <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 flex-shrink-0">
-                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2 text-lg">
-                  <SafeIcon icon={FiUsers} className="text-blue-500" /> Details Leerling
-                </h3>
+                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2 text-lg"> <SafeIcon icon={FiUsers} className="text-blue-500" /> Details Leerling </h3>
                 {selectedNode ? (
                   <div className="space-y-6">
                     <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100">
@@ -541,14 +523,14 @@ Lisa,Tom,Jantje,,Tom,`;
                     <div className="grid grid-cols-2 gap-3 text-center">
                       <div className="bg-green-50 p-3 rounded-xl border border-green-100">
                         <div className="text-[10px] text-green-600 font-bold uppercase">Sociaal +</div>
-                        <div className="text-xl font-bold">{graphData.links.filter(l => (typeof l.target === 'object' ? l.target.id : l.target) === selectedNode.id && l.type === 'socialPos').length}x</div>
+                        <div className="text-xl font-bold">{graphData.links.filter(l=> (typeof l.target==='object' ? l.target.id : l.target)===selectedNode.id && l.type==='socialPos').length}x</div>
                       </div>
                       <div className="bg-blue-50 p-3 rounded-xl border border-blue-100">
                         <div className="text-[10px] text-blue-600 font-bold uppercase">Werk +</div>
-                        <div className="text-xl font-bold">{graphData.links.filter(l => (typeof l.target === 'object' ? l.target.id : l.target) === selectedNode.id && l.type === 'workPos').length}x</div>
+                        <div className="text-xl font-bold">{graphData.links.filter(l=> (typeof l.target==='object' ? l.target.id : l.target)===selectedNode.id && l.type==='workPos').length}x</div>
                       </div>
                     </div>
-                    <button onClick={() => setSelectedNode(null)} className="w-full py-2 text-sm text-gray-400 hover:text-gray-600 transition-colors">Deselecteer</button>
+                    <button onClick={()=> setSelectedNode(null)} className="w-full py-2 text-sm text-gray-400 hover:text-gray-600 transition-colors">Deselecteer</button>
                   </div>
                 ) : (
                   <div className="py-10 text-center text-gray-400 italic text-sm"> Klik op een leerling in het netwerk om relaties te bekijken. </div>
@@ -559,7 +541,7 @@ Lisa,Tom,Jantje,,Tom,`;
                 <ul className="text-xs space-y-3 text-indigo-100">
                   <li><strong>Isolatie:</strong> Leerlingen met weinig inkomende lijnen hebben extra aandacht nodig.</li>
                   <li><strong>Wederkerigheid:</strong> Dubbele pijlen duiden op sterke vriendschappen.</li>
-                  <li><strong>Groepsvorming:</strong> Clusters van leerlingen geven inzicht in subgroepen in de klas.</li>
+                  <li><strong>Groepsvorming:</strong> Clusters van leerlingen geven inzicht in subgroepen.</li>
                 </ul>
               </div>
             </motion.div>
