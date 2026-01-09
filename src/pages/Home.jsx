@@ -1,118 +1,93 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import {Link,useNavigate} from 'react-router-dom';
+import {motion} from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
-import { downloadStartersgids } from '../utils/downloadUtils';
+import SEO from '../components/common/SEO';
+import {downloadStartersgids} from '../utils/downloadUtils';
 
-const { FiDownload, FiBook, FiUsers, FiTool, FiTrendingUp, FiAward, FiPlay, FiArrowRight } = FiIcons;
+const {FiDownload,FiBook,FiUsers,FiTool,FiTrendingUp,FiArrowRight}=FiIcons;
 
-const Home = () => {
-  const navigate = useNavigate();
-
-  const features = [
-    { icon: FiBook, title: "Praktische Lessen", description: "Direct toepasbare AI-lessen voor elke onderwijslaag. Voor Levels 1–3 van het Onderwijs-AI Framework™", path: "/leslab" },
-    { icon: FiTool, title: "AI Tools Overzicht", description: "Uitgebreide database van geteste AI-tools voor docenten. Voor Levels 2–4 van het Onderwijs-AI Framework™", path: "/tools" },
-    { icon: FiUsers, title: "Trainingen & Workshops", description: "Persoonlijke begeleiding en teamtrainingen. Voor Levels 3–5 van het Onderwijs-AI Framework™", path: "/trainingen" }
-  ];
-
-  const highlights = [
-    { category: "Voor Docenten", title: "AI in het Basisonderwijs", description: "Ontdek hoe AI het leren van jonge kinderen kan ondersteunen", link: "/voor-docenten/po", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop" },
-    { category: "LesLab", title: "AI-Lessen", description: "Kant-en-klare AI-lessen voor jouw klas", link: "/leslab", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop" },
-    { category: "AI Tools", title: "AI Tool Database", description: "Ontdek the beste AI-tools voor jouw vakgebied", link: "/ai-tools", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop" }
-  ];
-
-  const handleDownloadClick = () => {
-    downloadStartersgids();
+const Home=()=> {
+  const navigate=useNavigate();
+  
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Onderwijs.ai",
+    "url": "https://onderwijs.ai",
+    "description": "Platform voor verantwoord AI-gebruik in het Nederlandse onderwijs.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Onderwijs.ai",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://onderwijs.ai/vite.svg"
+      }
+    }
   };
 
+  const features=[ 
+    {icon: FiBook,title: "Praktische Lessen",description: "Direct toepasbare AI-lessen voor elke onderwijslaag. Voor Levels 1–3 van het Onderwijs-AI Framework™",path: "/leslab"},
+    {icon: FiTool,title: "AI Tools Overzicht",description: "Uitgebreide database van geteste AI-tools voor docenten. Voor Levels 2–4 van het Onderwijs-AI Framework™",path: "/tools"},
+    {icon: FiUsers,title: "Trainingen & Workshops",description: "Persoonlijke begeleiding en teamtrainingen. Voor Levels 3–5 van het Onderwijs-AI Framework™",path: "/trainingen"} 
+  ];
+
+  const highlights=[ 
+    {category: "Voor Docenten",title: "AI in het Basisonderwijs",description: "Ontdek hoe AI het leren van jonge kinderen kan ondersteunen",link: "/voor-docenten/po",image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop", alt: "Kinderen in een klaslokaal die samenwerken met digitale leermiddelen"},
+    {category: "LesLab",title: "AI-Lessen",description: "Kant-en-klare AI-lessen voor jouw klas",link: "/leslab",image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop", alt: "Docent die leerlingen begeleidt bij het gebruik van technologie"},
+    {category: "AI Tools",title: "AI Tool Database",description: "Ontdek de beste AI-tools voor jouw vakgebied",link: "/ai-tools",image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop", alt: "Studenten in het hoger onderwijs die AI-tools gebruiken voor onderzoek"} 
+  ];
+
+  const handleDownloadClick=()=> {downloadStartersgids();};
+
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="min-h-screen">
+    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className="min-h-screen">
+      <SEO 
+        title="Verantwoord AI-gebruik in het Onderwijs" 
+        description="Ontdek hoe u AI verantwoord en veilig inzet in het basisonderwijs, voortgezet en hoger onderwijs. Onderwijs.ai biedt praktische tools en didactische kaders."
+        jsonLd={homeSchema}
+      />
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                De standaard voor verantwoord AI-gebruik in het onderwijs
-              </h1>
-              <p className="text-xl mb-8 text-primary-100">
-                Praktische tools, lessen en trainingen, ingebed in een helder onderwijsframework voor docenten, teams en scholen.
-              </p>
+            <motion.div initial={{opacity: 0,x: -50}} animate={{opacity: 1,x: 0}} transition={{delay: 0.2}}>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 italic"> De standaard voor verantwoord AI-gebruik in het onderwijs </h1>
+              <p className="text-xl mb-8 text-primary-100"> Praktische tools, lessen en trainingen, ingebed in een helder onderwijsframework voor docenten, teams en scholen. </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link
-                  to="/framework"
-                  className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-lg border-2 border-white"
-                >
-                  <SafeIcon icon={FiTrendingUp} />
-                  <span>Ontdek het Onderwijs-AI Framework™</span>
+                <Link to="/framework" className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-lg border-2 border-white" >
+                  <SafeIcon icon={FiTrendingUp} /> <span>Ontdek het Framework</span>
                 </Link>
-                <Link
-                  to="/ai-tools"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2"
-                >
-                  <SafeIcon icon={FiTool} />
-                  <span>AI-tools overzicht</span>
+                <Link to="/ai-tools" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2" >
+                  <SafeIcon icon={FiTool} /> <span>AI-tools overzicht</span>
                 </Link>
-              </div>
-              <div className="grid grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold">2500+</div>
-                  <div className="text-sm text-primary-200">Docenten</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold">75+</div>
-                  <div className="text-sm text-primary-200">AI Tools</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold">150+</div>
-                  <div className="text-sm text-primary-200">Lessen</div>
-                </div>
               </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }} className="relative">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop" alt="AI in onderwijs" className="rounded-2xl shadow-2xl" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent rounded-2xl"></div>
+            <motion.div initial={{opacity: 0,x: 50}} animate={{opacity: 1,x: 0}} transition={{delay: 0.4}} className="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop" 
+                alt="Verantwoord AI-gebruik in een moderne leeromgeving" 
+                className="rounded-2xl shadow-2xl" 
+              />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Under Hero Framework Text */}
-      <div className="bg-white py-6 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-gray-600">
-            Onderwijs.ai werkt vanuit het <Link to="/framework" className="text-primary-600 font-bold hover:underline">Onderwijs-AI Framework™</Link>: zes niveaus die scholen helpen bepalen wat werkt, wat mag en wat verantwoord is bij het inzetten van AI.
-          </p>
-        </div>
-      </div>
-
       {/* Features Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Waarom AI in het Onderwijs?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Kunstmatige intelligentie biedt ongekende mogelijkheden om onderwijs persoonlijker, effectiever en toegankelijker te maken.
-            </p>
+          <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"> AI in het Klaslokaal: Ondersteunend, niet Vervangend </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto"> Kunstmatige intelligentie biedt enorme kansen om onderwijs persoonlijker en effectiever te maken, mits ingezet vanuit een sterke didactische visie. </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow cursor-pointer"
-                onClick={() => navigate(feature.path)}
-              >
+            {features.map((feature,index)=> (
+              <motion.div key={index} initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} transition={{delay: index * 0.1}} className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow cursor-pointer" onClick={()=> navigate(feature.path)} >
                 <SafeIcon icon={feature.icon} className="text-4xl text-primary-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {feature.title}
-                </h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3"> {feature.title} </h3>
                 <p className="text-gray-600">{feature.description}</p>
               </motion.div>
             ))}
@@ -123,36 +98,16 @@ const Home = () => {
       {/* Highlights Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Ontdek Onze Highlights
-            </h2>
-            <p className="text-xl text-gray-600">
-              Van praktische lessen tot complete trainingen
-            </p>
-          </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {highlights.map((highlight, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-              >
-                <img src={highlight.image} alt={highlight.title} className="w-full h-48 object-cover" />
+            {highlights.map((highlight,index)=> (
+              <motion.div key={index} initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}} transition={{delay: index * 0.1}} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" >
+                <img src={highlight.image} alt={highlight.alt} className="w-full h-48 object-cover" />
                 <div className="p-6">
-                  <div className="text-sm text-primary-600 font-medium mb-2">
-                    {highlight.category}
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {highlight.title}
-                  </h3>
+                  <div className="text-sm text-primary-600 font-medium mb-2"> {highlight.category} </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3"> {highlight.title} </h3>
                   <p className="text-gray-600 mb-4">{highlight.description}</p>
                   <Link to={highlight.link} className="inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium">
-                    <span>Meer info</span>
-                    <SafeIcon icon={FiArrowRight} />
+                    <span>Bekijk mogelijkheden</span> <SafeIcon icon={FiArrowRight} />
                   </Link>
                 </div>
               </motion.div>
@@ -164,25 +119,12 @@ const Home = () => {
       {/* Newsletter CTA */}
       <section className="py-20 bg-primary-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Start vandaag met AI in jouw onderwijs
-            </h2>
-            <p className="text-xl text-primary-100 mb-8">
-              Download gratis onze AI-toolkit en ontvang nieuwe lessen en tips
-            </p>
-            <div className="flex flex-col items-center space-y-4">
-              <button
-                onClick={handleDownloadClick}
-                className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 shadow-lg border-2 border-white"
-              >
-                <SafeIcon icon={FiDownload} />
-                <span>AI Handleiding PDF</span>
-              </button>
-              <div className="text-primary-200 text-sm">
-                ✨ Praktische gids • Nederlandse focus • Direct te gebruiken
-              </div>
-            </div>
+          <motion.div initial={{opacity: 0,y: 50}} whileInView={{opacity: 1,y: 0}} viewport={{once: true}}>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4"> Start vandaag met veilige AI-integratie </h2>
+            <p className="text-xl text-primary-100 mb-8"> Download de gratis handleiding voor verantwoord AI-gebruik in de klas. </p>
+            <button onClick={handleDownloadClick} className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 shadow-lg border-2 border-white" >
+              <SafeIcon icon={FiDownload} /> <span>AI Handleiding PDF</span>
+            </button>
           </motion.div>
         </div>
       </section>

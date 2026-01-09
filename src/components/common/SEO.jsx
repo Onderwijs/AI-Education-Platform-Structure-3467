@@ -1,60 +1,42 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
 
-/**
- * SEO Component for Dynamic Metadata in SPA
- * Ensures unique titles, descriptions and canonical links per route.
- */
-const SEO = ({ title, description, schema }) => {
-  const location = useLocation();
-  const siteName = 'Onderwijs.AI';
-  const fullTitle = title.includes(siteName) ? title : `${title} – ${siteName}`;
-
+const SEO = ({ title, description, jsonLd, schemaType = "WebPage" }) => {
   useEffect(() => {
-    // 1. Update Document Title
-    document.title = fullTitle;
+    // Voorzorgsmaatregel: Alleen uitvoeren op toegestane statische routes
+    const forbiddenPaths = ['/tools', '/sociogram', '/klassenplattegrond'];
+    if (forbiddenPaths.some(path => window.location.hash.includes(path))) return;
 
-    // 2. Update Meta Description
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.name = 'description';
-      document.head.appendChild(metaDesc);
+    // Update Title
+    const prevTitle = document.title;
+    document.title = title ? `${title} | Onderwijs.ai` : "Onderwijs.ai | Verantwoord AI-gebruik in het Onderwijs";
+
+    // Update Meta Description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.name = "description";
+      document.head.appendChild(metaDescription);
     }
-    metaDesc.setAttribute('content', description);
+    const prevDescription = metaDescription.getAttribute('content');
+    metaDescription.setAttribute('content', description || "Onderwijs.ai biedt didactische kaders en tools voor verantwoord AI-gebruik in het basisonderwijs, voortgezet onderwijs en hoger onderwijs.");
 
-    // 3. Update Canonical
-    let linkCanonical = document.querySelector('link[rel="canonical"]');
-    if (!linkCanonical) {
-      linkCanonical = document.createElement('link');
-      linkCanonical.rel = 'canonical';
-      document.head.appendChild(linkCanonical);
+    // Injecteer JSON-LD indien aanwezig
+    let scriptTag = null;
+    if (jsonLd) {
+      scriptTag = document.createElement('script');
+      scriptTag.type = 'application/ld+json';
+      scriptTag.text = JSON.stringify(jsonLd);
+      document.head.appendChild(scriptTag);
     }
-    const url = `https://onderwijs.ai${location.pathname}`.replace('/#', '');
-    linkCanonical.setAttribute('href', url);
 
-    // 4. Inject Page-specific Schema
-    if (schema) {
-      const scriptId = 'page-schema';
-      let script = document.getElementById(scriptId);
-      if (script) script.remove();
-      
-      script = document.createElement('script');
-      script.id = scriptId;
-      script.type = 'application/ld+json';
-      script.text = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": title,
-        "description": description,
-        "url": url,
-        ...schema
-      });
-      document.head.appendChild(script);
-    }
-  }, [fullTitle, description, schema, location]);
+    return () => {
+      document.title = prevTitle;
+      if (metaDescription) metaDescription.setAttribute('content', prevDescription || "");
+      if (scriptTag) document.head.removeChild(scriptTag);
+    };
+  }, [title, description, jsonLd]);
 
-  return null;
+  return null; // Render niets in de DOM
 };
 
 export default SEO;
