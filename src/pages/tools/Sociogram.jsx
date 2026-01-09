@@ -48,7 +48,7 @@ const Sociogram=()=> {
     }
   },[isGenerated,graphData,isExampleData]);
 
-  // --- GOOGLE APPS SCRIPT CODE (STRIKT ZONDER BROWSER.MSGBOX) ---
+  // --- GOOGLE APPS SCRIPT CODE ---
   const googleScript=`function createSociogramForm() {
   var form = FormApp.create('Interactief Sociogram Vragenlijst');
   form.setTitle('Sociogram: Hoe werken we samen in de klas?')
@@ -108,7 +108,7 @@ const Sociogram=()=> {
         return obj;
       });
       setParsedData(rows);
-      if (allowAutoMap) allowAutoMapHeaders(validHeaders);
+      if (allowAutoMap) autoMapHeaders(validHeaders);
     } catch (err) {
       console.error("Parse error:",err);
     }
@@ -298,21 +298,48 @@ Lisa,Tom,Jantje,,Tom,`;
 
         {!isGenerated ? (
           <motion.div initial={{opacity: 0,y: 20}} animate={{opacity: 1,y: 0}}>
-            {/* STAP 1 – VERZAMELEN */}
+            <div className="mb-10 p-6 bg-white rounded-2xl shadow-sm border border-blue-100">
+              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <SafeIcon icon={FiInfo} className="text-blue-600" />
+                Zo gebruik je het Sociogram (kort uitgelegd)
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+                <div className="space-y-3">
+                  <p className="flex items-start gap-2">
+                    <span className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 font-bold text-[10px] mt-0.5">1</span>
+                    <span>Gebruik hieronder <strong>Optie A – Automatisch Google Form genereren</strong>.</span>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <span className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 font-bold text-[10px] mt-0.5">2</span>
+                    <span>Kopieer het script en plak dit in een leeg Google Apps Script-project.</span>
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <p className="flex items-start gap-2">
+                    <span className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 font-bold text-[10px] mt-0.5">3</span>
+                    <span>Voer de functie uit en open daarna het <strong>Uitvoeringslogboek</strong>.</span>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <span className="w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 font-bold text-[10px] mt-0.5">4</span>
+                    <span>Deel de <strong>leerling-link</strong> (eindigt op /viewform) met je klas.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6">
                 <div className="bg-blue-100 p-2 rounded-lg text-blue-600"><SafeIcon icon={FiSend} className="text-xl" /></div>
-                <h2 className="text-2xl font-bold text-gray-900">Stap 1 – Verzamel antwoorden van leerlingen</h2>
+                <h2 className="text-2xl font-bold text-gray-900">Stap 1 – Verzamel antwoorden</h2>
               </div>
               <div className="space-y-4">
-                {/* OPTION A */}
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                   <button onClick={()=> setIsScriptExpanded(!isScriptExpanded)} className="w-full p-6 flex items-center justify-between hover:bg-gray-50 transition-colors text-left" >
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center shrink-0"> <SafeIcon icon={FiShare2} /> </div>
                       <div>
-                        <h3 className="font-bold text-gray-900">Optie A: Automatisch een Google Form genereren <span className="text-green-600 text-xs font-medium ml-2 bg-green-50 px-2 py-0.5 rounded-full">(Aanbevolen)</span></h3>
-                        <p className="text-sm text-gray-500">De makkelijkste manier om veilig en anoniem data van je klas te verzamelen.</p>
+                        <h3 className="font-bold text-gray-900">Optie A: Automatisch een Google Form genereren</h3>
+                        <p className="text-sm text-gray-500">De makkelijkste manier om data van je klas te verzamelen.</p>
                       </div>
                     </div>
                     <SafeIcon icon={isScriptExpanded ? FiChevronUp : FiChevronDown} className="text-gray-400" />
@@ -324,108 +351,47 @@ Lisa,Tom,Jantje,,Tom,`;
                           <div className="mt-6 bg-white p-6 rounded-xl border border-gray-200">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                               <div>
-                                <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-4">Stappenplan Sociogram (Google Form automatisch aanmaken)</h5>
+                                <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-4 font-sans">Instructies</h5>
                                 <ol className="space-y-4 text-sm text-gray-700">
                                   <li className="flex gap-3">
                                     <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">1</span>
-                                    <div>
-                                      <strong className="block text-gray-900">Ga naar Google Apps Script</strong>
-                                      <span>Ga naar <a href="https://script.google.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">script.google.com</a> en klik op <strong>Nieuw project</strong>.</span>
-                                    </div>
+                                    <div>Ga naar <a href="https://script.google.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">script.google.com</a> en klik op <strong>Nieuw project</strong>.</div>
                                   </li>
                                   <li className="flex gap-3">
                                     <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">2</span>
-                                    <div>
-                                      <strong className="block text-gray-900">Verwijder de standaardcode (belangrijk!)</strong>
-                                      <span>In het nieuwe project staat standaard code (<code>function myFunction() &#123; &#125;</code>). Selecteer alle code en verwijder deze volledig.</span>
-                                    </div>
+                                    <div>Verwijder de standaardcode en plak de code hiernaast in het venster.</div>
                                   </li>
                                   <li className="flex gap-3">
                                     <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">3</span>
-                                    <div>
-                                      <strong className="block text-gray-900">Plak het sociogram-script</strong>
-                                      <span>Plak nu het volledige Sociogram-script (hiernaast) in het lege venster.</span>
-                                    </div>
-                                  </li>
-                                  <li className="flex gap-3">
-                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">4</span>
-                                    <div>
-                                      <strong className="block text-gray-900">Opslaan</strong>
-                                      <span>Klik op <strong>Opslaan</strong> (Ctrl/Cmd + S).</span>
-                                    </div>
-                                  </li>
-                                  <li className="flex gap-3">
-                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">5</span>
-                                    <div>
-                                      <strong className="block text-gray-900">Script uitvoeren</strong>
-                                      <span>Selecteer bovenin de functie <code>createSociogramForm</code> en klik op <strong>Uitvoeren</strong>.</span>
-                                    </div>
-                                  </li>
-                                  <li className="flex gap-3">
-                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">6</span>
-                                    <div>
-                                      <strong className="block text-gray-900">Machtigingen goedkeuren</strong>
-                                      <span>Sta Google toe om het formulier aan te maken in je Drive. (Kies account &rarr; Geavanceerd &rarr; Ga naar ... (onveilig)).</span>
-                                    </div>
-                                  </li>
-                                  <li className="flex gap-3">
-                                    <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">7</span>
-                                    <div>
-                                      <strong className="block text-gray-900">Open het Uitvoeringslogboek (essentieel)</strong>
-                                      <span>Klik op <strong>Uitvoeringslogboek</strong>. Je ziet daar twee links:</span>
-                                      <ul className="mt-1 list-disc pl-4 space-y-1 text-xs">
-                                        <li><strong>Docent-link (bewerken)</strong> &rarr; alleen voor jou</li>
-                                        <li><strong>Leerling-link (invullen)</strong> &rarr; deel deze met je klas</li>
-                                      </ul>
-                                      <p className="mt-1 text-xs italic text-blue-600">Tip: de leerling-link eindigt altijd op /viewform</p>
-                                    </div>
+                                    <div>Klik op <strong>Uitvoeren</strong> en bekijk het <strong>Uitvoeringslogboek</strong> voor de links.</div>
                                   </li>
                                 </ol>
 
-                                {/* EXTRA SECTION: GOOGLE SHEET STORAGE */}
                                 <div className="mt-10 pt-8 border-t border-gray-100">
-                                  <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-4">Antwoorden opslaan en gebruiken in Google Sheet</h5>
+                                  <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-4">ANTWOORDEN OPSLAAN IN GOOGLE SHEET</h5>
+                                  
+                                  {/* GEBRUIK BASE_URL VOOR DE AFBEELDING */}
+                                  <img 
+                                    src={`${import.meta.env.BASE_URL}googlesheet.png`} 
+                                    alt="Uitleg Google Sheet opslaan" 
+                                    className="w-full h-auto rounded-xl my-4 border border-gray-200 shadow-sm"
+                                    onError={(e) => {
+                                      e.target.onerror = null; 
+                                      e.target.style.display = 'none';
+                                    }}
+                                  />
+
                                   <div className="bg-green-50/50 rounded-xl p-5 border border-green-100">
                                     <h6 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                                       <SafeIcon icon={FiDatabase} className="text-green-600" />
-                                      Antwoorden opslaan in Google Sheet
+                                      Stappenplan Google Sheet
                                     </h6>
-                                    <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                                      Nadat leerlingen het sociogram hebben ingevuld, worden de antwoorden automatisch opgeslagen in het formulier. Zo zet je de antwoorden om naar een Google Sheet:
-                                    </p>
-                                    <ul className="space-y-2 text-sm text-gray-700 mb-4">
-                                      <li className="flex items-start gap-2">
-                                        <SafeIcon icon={FiCheckCircle} className="text-green-500 mt-1 shrink-0" />
-                                        <span>Open het formulier via de <strong>docent-link (bewerken)</strong></span>
-                                      </li>
-                                      <li className="flex items-start gap-2">
-                                        <SafeIcon icon={FiCheckCircle} className="text-green-500 mt-1 shrink-0" />
-                                        <span>Klik bovenin op <strong>Antwoorden</strong></span>
-                                      </li>
-                                      <li className="flex items-start gap-2">
-                                        <SafeIcon icon={FiCheckCircle} className="text-green-500 mt-1 shrink-0" />
-                                        <span>Klik op het <strong>groene spreadsheet-icoon</strong></span>
-                                      </li>
-                                      <li className="flex items-start gap-2">
-                                        <SafeIcon icon={FiCheckCircle} className="text-green-500 mt-1 shrink-0" />
-                                        <span>Kies <strong>Nieuwe spreadsheet maken</strong></span>
-                                      </li>
+                                    <ul className="space-y-2 text-sm text-gray-700">
+                                      <li>1. Open het formulier via de docent-link.</li>
+                                      <li>2. Klik op <strong>Antwoorden</strong>.</li>
+                                      <li>3. Klik op het <strong>groene spreadsheet-icoon</strong>.</li>
+                                      <li>4. Kies <strong>Nieuwe spreadsheet maken</strong>.</li>
                                     </ul>
-                                    <p className="text-sm text-gray-600 mb-4 italic leading-relaxed bg-white/60 p-3 rounded-lg border border-green-50">
-                                      De antwoorden staan nu overzichtelijk in een Google Sheet in je Google Drive. Elke nieuwe inzending wordt automatisch toegevoegd als nieuwe rij.
-                                    </p>
-                                    <div className="space-y-3">
-                                      <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">Waarom dit handig is:</div>
-                                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-gray-600">
-                                        <li className="flex items-center gap-2">• Je kunt de antwoorden filteren en analyseren</li>
-                                        <li className="flex items-center gap-2">• Je behoudt overzicht per leerling</li>
-                                        <li className="flex items-center gap-2">• Direct te gebruiken voor de klassenplattegrond</li>
-                                      </ul>
-                                    </div>
-                                    <div className="mt-4 flex items-center gap-2 text-xs text-blue-700 bg-blue-50 p-2 rounded-lg font-medium">
-                                      <SafeIcon icon={FiInfo} />
-                                      <span><strong>Tip:</strong> Je hoeft dit maar één keer in te stellen. Daarna worden alle nieuwe antwoorden automatisch opgeslagen.</span>
-                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -433,7 +399,7 @@ Lisa,Tom,Jantje,,Tom,`;
                                 <button onClick={copyScript} className={`absolute top-3 right-3 z-10 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-all ${scriptCopied ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}>
                                   <SafeIcon icon={scriptCopied ? FiCheck : FiCopy} /> {scriptCopied ? 'Gekopieerd!' : 'Kopieer Script'}
                                 </button>
-                                <div className="bg-gray-900 rounded-xl p-4 pt-12 h-full max-h-[600px] overflow-y-auto shadow-inner border border-gray-800">
+                                <div className="bg-gray-900 rounded-xl p-4 pt-12 h-full max-h-[500px] overflow-y-auto shadow-inner border border-gray-800">
                                   <pre className="text-[10px] font-mono text-blue-300 leading-relaxed font-normal">{googleScript}</pre>
                                 </div>
                               </div>
@@ -444,201 +410,126 @@ Lisa,Tom,Jantje,,Tom,`;
                     )}
                   </AnimatePresence>
                 </div>
-                {/* OPTION B */}
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                  <div className="p-6 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0"> <SafeIcon icon={FiFileText} /> </div>
-                      <div>
-                        <h3 className="font-bold text-gray-900">Optie B: Gebruik de Google Sheet template</h3>
-                        <p className="text-sm text-gray-500">Download de Google Sheet template en vul de antwoorden in.</p>
-                        <div className="mt-3">
-                          <a href="https://docs.google.com/spreadsheets/d/1Qc5Ow3lAWUCWjBW61MKPPVvUMTOPBHAz/copy" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700" >
-                            <SafeIcon icon={FiDownload} /> <span>Download Template (Google Sheets)</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
-            {/* STAP 3 – UPLOAD & VISUALISEER */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6">
                 <div className="bg-blue-100 p-2 rounded-lg text-blue-600"><SafeIcon icon={FiGrid} className="text-xl" /></div>
-                <h2 className="text-2xl font-bold text-gray-900">Stap 3 – Upload & visualiseer</h2>
+                <h2 className="text-2xl font-bold text-gray-900">Stap 3 – Visualiseer</h2>
               </div>
-              <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 font-sans">
+              <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
                 <div className="flex flex-wrap gap-4 mb-6">
                   <div className="flex space-x-2 p-1 bg-gray-100 rounded-lg">
-                    <button onClick={()=> {setActiveTab('sheet');setIsExampleData(false);}} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab==='sheet' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
-                      <SafeIcon icon={FiLink} /> <span>Google Sheet Link</span>
+                    <button onClick={()=> setActiveTab('sheet')} className={`px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab==='sheet' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600'}`}>
+                      Google Sheet Link
                     </button>
-                    <button onClick={()=> {setActiveTab('paste');setIsExampleData(false);}} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab==='paste' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
-                      <SafeIcon icon={FiClipboard} /> <span>Plakken</span>
-                    </button>
-                    <button onClick={()=> {setActiveTab('upload');setIsExampleData(false);}} className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab==='upload' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>
-                      <SafeIcon icon={FiUpload} /> <span>Uploaden</span>
+                    <button onClick={()=> setActiveTab('paste')} className={`px-4 py-2 rounded-md font-medium transition-colors text-sm ${activeTab==='paste' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600'}`}>
+                      Plakken
                     </button>
                   </div>
-                  <div className="ml-auto text-right">
-                    <button onClick={handleLoadExample} className="flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors text-sm bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200">
-                      <SafeIcon icon={FiDatabase} /> <span>Test met voorbeelddata</span>
-                    </button>
-                  </div>
+                  <button onClick={handleLoadExample} className="ml-auto text-sm font-bold text-purple-600">Test met voorbeelddata</button>
                 </div>
 
-                {!isExampleData && (
-                  <>
-                    {activeTab==='sheet' && (
-                      <div className="space-y-4">
-                        <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl">
-                          <p className="text-sm text-blue-800 font-medium"> Gebruik deze optie als je antwoorden hebt verzameld via Google Forms. Leestoegang is voldoende. </p>
-                        </div>
-                        <div className="relative">
-                          <SafeIcon icon={FiLink} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                          <input type="text" className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-sans text-sm bg-gray-50" placeholder="Plak hier de link naar je Google Sheet..." value={sheetLink} onChange={(e)=> setSheetLink(e.target.value)} />
-                        </div>
-                      </div>
-                    )}
-                    {activeTab==='paste' && (
-                      <textarea className="w-full h-48 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-sm bg-gray-50" placeholder="Plak hier de kolommen uit uw Excel..." value={inputText} onChange={(e)=> setInputText(e.target.value)} onBlur={()=> processText(inputText,true)}></textarea>
-                    )}
-                    {activeTab==='upload' && (
-                      <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-10 text-center">
-                        <input type="file" accept=".csv,.xlsx" onChange={handleFileUpload} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
-                      </div>
-                    )}
-                    <div className="mt-6">
-                      <button onClick={handleGenerateClick} disabled={!hasData || isLoading} className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${hasData && !isLoading ? 'bg-blue-600 text-white hover:bg-blue-700 transform hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`} >
-                        {isLoading ? <SafeIcon icon={FiLoader} className="animate-spin" /> : <SafeIcon icon={FiActivity} />}
-                        <span>{isLoading ? 'Gegevens ophalen...' : 'Gegevens verwerken'}</span>
-                      </button>
-                    </div>
+                {activeTab==='sheet' ? (
+                  <input type="text" className="w-full px-4 py-4 border border-gray-300 rounded-xl bg-gray-50 text-sm" placeholder="Plak Google Sheet link..." value={sheetLink} onChange={(e)=> setSheetLink(e.target.value)} />
+                ) : (
+                  <textarea className="w-full h-48 p-4 border border-gray-300 rounded-xl bg-gray-50 text-sm font-mono" placeholder="Plak CSV data..." value={inputText} onChange={(e)=> setInputText(e.target.value)} />
+                )}
 
-                    {headers.length > 0 && isStep2Expanded && (
-                      <div className="mt-10 pt-8 border-t border-gray-100">
-                        <div className="mb-6">
-                          <h4 className="font-bold text-gray-900 flex items-center gap-2"> <SafeIcon icon={FiSettings} className="text-blue-600" /> Koppel de kolommen </h4>
+                <button onClick={handleGenerateClick} disabled={isLoading} className="w-full mt-6 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
+                  {isLoading ? <SafeIcon icon={FiLoader} className="animate-spin" /> : <SafeIcon icon={FiActivity} />}
+                  <span>Verwerken</span>
+                </button>
+
+                {headers.length > 0 && isStep2Expanded && (
+                  <div className="mt-8 pt-8 border-t border-gray-100">
+                    <h4 className="font-bold mb-6">Koppel de kolommen</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {[ 
+                        {id: 'name',label: 'Naam Leerling',req: true},
+                        {id: 'socialPos',label: 'Gezellig (Social +)'},
+                        {id: 'socialNeg',label: 'Niet Gezellig (Social -)'},
+                        {id: 'workPos',label: 'Samenwerken (Work +)'},
+                        {id: 'workNeg',label: 'Niet Samenwerken (Work -)'} 
+                      ].map(field=> (
+                        <div key={field.id}>
+                          <label className="text-xs font-bold text-gray-500 uppercase">{field.label}</label>
+                          <select className="w-full mt-1 p-2 border rounded-lg bg-white" value={mapping[field.id]} onChange={(e)=> setMapping(prev=> ({...prev,[field.id]: e.target.value}))}>
+                            <option value="">-- Kies kolom --</option>
+                            {headers.map(h=> <option key={h} value={h}>{h}</option>)}
+                          </select>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
-                          {[ 
-                            {id: 'name',label: 'Naam Leerling',req: true},
-                            {id: 'socialPos',label: 'Gezellig (Social +)'},
-                            {id: 'socialNeg',label: 'Niet Gezellig (Social -)'},
-                            {id: 'workPos',label: 'Samenwerken (Work +)'},
-                            {id: 'workNeg',label: 'Niet Samenwerken (Work -)'} 
-                          ].map(field=> (
-                            <div key={field.id} className="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                              <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{field.label} {field.req && <span className="text-red-500">*</span>}</label>
-                              <select className={`w-full p-2.5 border rounded-lg bg-white text-sm focus:ring-2 focus:ring-blue-500 ${mapping[field.id] ? 'border-blue-300' : 'border-gray-300'}`} value={mapping[field.id]} onChange={(e)=> setMapping(prev=> ({...prev,[field.id]: e.target.value}))}>
-                                <option value="">-- Kies kolom --</option>
-                                {headers.map(h=> <option key={h} value={h}>{h}</option>)}
-                              </select>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="flex justify-end pt-6 border-t border-gray-100">
-                          <button onClick={generateGraph} disabled={!isFormValid} className={`px-12 py-4 rounded-xl font-bold flex items-center space-x-2 transition-all shadow-lg ${isFormValid ? 'bg-blue-600 text-white hover:bg-blue-700 transform hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}>
-                            <SafeIcon icon={FiActivity} /> <span>Genereer Sociogram</span>
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </>
+                      ))}
+                    </div>
+                    <button onClick={generateGraph} disabled={!isFormValid} className="w-full mt-8 py-4 bg-blue-600 text-white rounded-xl font-bold">Genereer Sociogram</button>
+                  </div>
                 )}
               </div>
             </div>
           </motion.div>
         ) : (
-          /* RESULTATEN SECTIE */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <motion.div initial={{opacity: 0,scale: 0.95}} animate={{opacity: 1,scale: 1}} className="lg:col-span-8 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col h-[750px] relative">
-              <div className="p-4 border-b border-gray-100 flex flex-wrap gap-4 justify-between items-center bg-gray-50/50 backdrop-blur-md z-10">
-                <div className="flex bg-white p-1 rounded-xl shadow-sm border border-gray-200">
+            <motion.div initial={{opacity: 0}} animate={{opacity: 1}} className="lg:col-span-8 bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[700px]">
+              <div className="p-4 border-b bg-gray-50 flex justify-between items-center">
+                <div className="flex gap-2">
                   {['all','socialPos','socialNeg','workPos','workNeg'].map(mode=> (
-                    <button key={mode} onClick={()=> setViewMode(mode)} className={`px-4 py-2 text-xs rounded-lg font-bold transition-all ${viewMode===mode ? 'bg-gray-900 text-white shadow-md' : 'hover:bg-gray-100 text-gray-600'}`}>
-                      {mode==='all' ? 'Alles' : mode==='socialPos' ? 'Sociaal+' : mode==='socialNeg' ? 'Sociaal-' : mode==='workPos' ? 'Werk+' : 'Werk-'}
+                    <button key={mode} onClick={()=> setViewMode(mode)} className={`px-4 py-2 text-xs rounded-lg font-bold ${viewMode===mode ? 'bg-gray-900 text-white' : 'bg-white text-gray-600 border'}`}>
+                      {mode==='all' ? 'Alles' : mode}
                     </button>
                   ))}
                 </div>
-                <button onClick={()=> {setIsGenerated(false);setIsExampleData(false);setHeaders([]);setParsedData([]);setSheetLink('');setInputText('');}} className="px-4 py-2 text-xs bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 font-bold flex items-center gap-2">
-                  <SafeIcon icon={FiGrid} /> Andere Data
-                </button>
+                <button onClick={()=> setIsGenerated(false)} className="text-xs font-bold text-blue-600">Andere Data</button>
               </div>
-              <div className="flex-grow bg-slate-50 relative cursor-grab active:cursor-grabbing">
+              <div className="flex-grow bg-slate-50 relative">
                 <ForceGraph2D 
                   ref={graphRef} 
                   graphData={graphData} 
                   nodeLabel="name" 
                   nodeColor={node=> selectedNode?.id===node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8')} 
-                  nodeRelSize={7} 
                   linkColor={getLinkColor} 
-                  linkWidth={link=> (highlightLinks.size > 0 && highlightLinks.has(link) ? 3 : 1.5)} 
-                  linkDirectionalArrowLength={4} 
-                  linkDirectionalArrowRelPos={1} 
-                  onNodeHover={node=> setHoverNode(node ? node.id : null)} 
-                  onNodeClick={node=> setSelectedNode(node)} 
-                  d3VelocityDecay={0.4} 
-                  cooldownTicks={100} 
+                  linkWidth={link=> (highlightLinks.has(link) ? 3 : 1)} 
+                  onNodeClick={node=> setSelectedNode(node)}
                   nodeCanvasObject={(node,ctx,globalScale)=> {
                     const label=node.name;
-                    const fontSize=14 / globalScale;
-                    ctx.font=`${fontSize}px Sans-Serif`;
-                    const r=6;
+                    const fontSize=12 / globalScale;
+                    ctx.font=`${fontSize}px Inter`;
                     ctx.beginPath();
-                    ctx.arc(node.x,node.y,r,0,2 * Math.PI,false);
+                    ctx.arc(node.x,node.y,5,0,2*Math.PI);
                     ctx.fillStyle=selectedNode?.id===node.id ? '#1e293b' : (highlightNodes.has(node.id) ? '#2563eb' : '#94a3b8');
                     ctx.fill();
-                    if (globalScale > 0.4) {
-                      ctx.textAlign='center';
-                      ctx.textBaseline='middle';
-                      ctx.fillStyle='#1e293b';
-                      ctx.strokeStyle='rgba(255,255,255,0.9)';
-                      ctx.lineWidth=3 / globalScale;
-                      ctx.strokeText(label,node.x,node.y + r + fontSize + 2);
-                      ctx.fillText(label,node.x,node.y + r + fontSize + 2);
-                    }
-                  }} 
+                    ctx.textAlign='center';
+                    ctx.textBaseline='middle';
+                    ctx.fillStyle='black';
+                    ctx.fillText(label,node.x,node.y+10);
+                  }}
                 />
               </div>
             </motion.div>
 
-            <motion.div initial={{opacity: 0,x: 20}} animate={{opacity: 1,x: 0}} className="lg:col-span-4 flex flex-col gap-6">
-              <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 flex-shrink-0">
-                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2 text-lg"> <SafeIcon icon={FiUsers} className="text-blue-500" /> Details Leerling </h3>
+            <div className="lg:col-span-4 space-y-6">
+              <div className="bg-white p-6 rounded-3xl shadow-xl border">
+                <h3 className="font-bold text-lg mb-4">Details Leerling</h3>
                 {selectedNode ? (
-                  <div className="space-y-6">
-                    <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100">
-                      <div className="text-2xl font-black text-gray-900">{selectedNode.name}</div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-3 text-center">
+                  <div className="space-y-4">
+                    <div className="text-2xl font-black">{selectedNode.name}</div>
+                    <div className="grid grid-cols-2 gap-2 text-center">
                       <div className="bg-green-50 p-3 rounded-xl border border-green-100">
                         <div className="text-[10px] text-green-600 font-bold uppercase">Sociaal +</div>
-                        <div className="text-xl font-bold">{graphData.links.filter(l=> (typeof l.target==='object' ? l.target.id : l.target)===selectedNode.id && l.type==='socialPos').length}x</div>
+                        <div className="text-xl font-bold">{graphData.links.filter(l=> (l.target.id || l.target)===selectedNode.id && l.type==='socialPos').length}x</div>
                       </div>
                       <div className="bg-blue-50 p-3 rounded-xl border border-blue-100">
                         <div className="text-[10px] text-blue-600 font-bold uppercase">Werk +</div>
-                        <div className="text-xl font-bold">{graphData.links.filter(l=> (typeof l.target==='object' ? l.target.id : l.target)===selectedNode.id && l.type==='workPos').length}x</div>
+                        <div className="text-xl font-bold">{graphData.links.filter(l=> (l.target.id || l.target)===selectedNode.id && l.type==='workPos').length}x</div>
                       </div>
                     </div>
-                    <button onClick={()=> setSelectedNode(null)} className="w-full py-2 text-sm text-gray-400 hover:text-gray-600 transition-colors">Deselecteer</button>
+                    <button onClick={()=> setSelectedNode(null)} className="w-full text-sm text-gray-400">Deselecteer</button>
                   </div>
                 ) : (
-                  <div className="py-10 text-center text-gray-400 italic text-sm"> Klik op een leerling in het netwerk om relaties te bekijken. </div>
+                  <div className="py-10 text-center text-gray-400 italic text-sm">Klik op een leerling.</div>
                 )}
               </div>
-              <div className="bg-indigo-900 text-white rounded-3xl shadow-xl p-8">
-                <h3 className="font-bold mb-4 flex items-center gap-2"><SafeIcon icon={FiInfo} className="text-indigo-300" /> Interpretatie</h3>
-                <ul className="text-xs space-y-3 text-indigo-100">
-                  <li><strong>Isolatie:</strong> Leerlingen met weinig inkomende lijnen hebben extra aandacht nodig.</li>
-                  <li><strong>Wederkerigheid:</strong> Dubbele pijlen duiden op sterke vriendschappen.</li>
-                  <li><strong>Groepsvorming:</strong> Clusters van leerlingen geven inzicht in subgruepen.</li>
-                </ul>
-              </div>
-            </motion.div>
+            </div>
           </div>
         )}
       </div>

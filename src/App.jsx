@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import {motion,AnimatePresence} from 'framer-motion';
 
 // Existing Components
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import CookieBanner from './components/common/CookieBanner';
 import Home from './pages/Home';
 import PO from './pages/docenten/PO';
 import VO from './pages/docenten/VO';
@@ -19,7 +20,6 @@ import Privacy from './pages/Privacy';
 
 // Tools
 import ToolsOverview from './pages/tools/ToolsOverview';
-import ToolPlaceholder from './pages/tools/ToolPlaceholder';
 import LessonGenerator from './pages/tools/LessonGenerator';
 import RubricMaker from './pages/tools/RubricMaker';
 import TestQuestionMaker from './pages/tools/TestQuestionMaker';
@@ -74,7 +74,6 @@ function App() {
               {/* 4. Lesmateriaal & Downloads */}
               <Route path="/leslab" element={<LesLab />} />
               <Route path="/downloads" element={<Downloads />} />
-              <Route path="/lesmateriaal/downloads" element={<Downloads />} />
 
               {/* 5. Kenniscentrum */}
               <Route path="/ai-tools" element={<AITools />} />
@@ -87,24 +86,18 @@ function App() {
 
               {/* 6. Trainingen */}
               <Route path="/trainingen" element={<Trainingen />} />
-              <Route path="/trainingen/chatgpt-in-de-klas" element={<TrainingDetail title="ChatGPT in de klas" description="Leer hoe je ChatGPT veilig en effectief inzet als onderwijsassistent." />} />
-              <Route path="/trainingen/ai-differentiatie" element={<TrainingDetail title="Differentiëren met AI" description="Maak onderwijs op maat voor elke leerling met behulp van AI-tools." />} />
-              <Route path="/trainingen/gemini-voor-docenten" element={<TrainingDetail title="Gemini voor Docenten" description="Haal het maximale uit Google's AI-modellen in je lespraktijk." />} />
-              <Route path="/trainingen/ai-en-privacy-avg" element={<TrainingDetail title="AI, Privacy & AVG" description="Juridische en ethische kaders voor veilig gebruik van AI op school." />} />
-
-              {/* 7. Nieuwsbrief/Downloads */}
+              
+              {/* 7. Nieuwsbrief */}
               <Route path="/nieuwsbrief" element={<Nieuwsbrief />} />
 
               {/* 8. Juridisch */}
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/legal/privacy" element={<Privacy />} />
-              <Route path="/cookies" element={<LegalPage title="Cookiebeleid" content={<p>Wij gebruiken functionele cookies om de website te laten werken. Analytische cookies worden anoniem verwerkt.</p>} />} />
-              <Route path="/avg" element={<LegalPage title="AVG Verklaring" content={<p>Wij voldoen aan de AVG richtlijnen. Gegevens worden niet gedeeld met derden zonder toestemming.</p>} />} />
-              <Route path="/legal/terms" element={<LegalPage title="Algemene Voorwaarden" content={<p>Op al onze diensten zijn onze algemene voorwaarden van toepassing.</p>} />} />
             </Routes>
           </AnimatePresence>
         </main>
         <Footer />
+        <CookieBanner />
       </div>
     </Router>
   );
