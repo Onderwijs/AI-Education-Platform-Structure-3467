@@ -36,7 +36,7 @@ const Home=()=> {
   const highlights=[ 
     {category: "Voor Docenten",title: "AI in het Basisonderwijs",description: "Ontdek hoe AI het leren van jonge kinderen kan ondersteunen",link: "/voor-docenten/po",image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop", alt: "Kinderen in een klaslokaal die samenwerken met digitale leermiddelen"},
     {category: "LesLab",title: "AI-Lessen",description: "Kant-en-klare AI-lessen voor jouw klas",link: "/leslab",image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop", alt: "Docent die leerlingen begeleidt bij het gebruik van technologie"},
-    {category: "AI Tools",title: "AI Tool Database",description: "Ontdek de beste AI-tools voor jouw vakgebied",link: "/ai-tools",image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop", alt: "Studenten in het hoger onderwijs die AI-tools gebruiken voor onderzoek"} 
+    {category: "AI Tools",title: "AI Tool Database",description: "Ontdek the beste AI-tools voor jouw vakgebied",link: "/ai-tools",image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop", alt: "Studenten in het hoger onderwijs die AI-tools gebruiken voor onderzoek"} 
   ];
 
   const handleDownloadClick=()=> {downloadStartersgids();};
@@ -54,7 +54,7 @@ const Home=()=> {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{opacity: 0,x: -50}} animate={{opacity: 1,x: 0}} transition={{delay: 0.2}}>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 italic"> De standaard voor verantwoord AI-gebruik in het onderwijs </h1>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6"> De standaard voor verantwoord AI-gebruik in het onderwijs </h1>
               <p className="text-xl mb-8 text-primary-100"> Praktische tools, lessen en trainingen, ingebed in een helder onderwijsframework voor docenten, teams en scholen. </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link to="/framework" className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-lg border-2 border-white" >
