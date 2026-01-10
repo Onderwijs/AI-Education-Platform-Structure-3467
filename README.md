@@ -1,27 +1,45 @@
-# Onderwijs.ai Platform
-Een uitgebreid platform voor Nederlandse docenten om AI verantwoord en effectief in te zetten in de lespraktijk.
+# AI in het Onderwijs Website
 
-## 🚀 Deployment & Beheer
-Voor een schone deployment op Netlify of Vercel:
-1. Wis de browsercache of gebruik Incognito modus.
-2. Gebruik `npm run build` voor productie-output.
-3. PDF-bestanden worden dynamisch gegenereerd om cache-problemen te voorkomen.
+## 🎯 Professional Educational Platform
 
-### GitHub Push Instructies
-Download het project als ZIP en voer lokaal uit:
+A comprehensive platform for Dutch educators to learn and implement AI in their teaching practice.
+
+### ✨ Key Features:
+- **Dynamic PDF Generation** - Professional documents created with jsPDF
+- **Multi-level Education Support** - PO, VO, MBO/HBO specific content
+- **AI Tools Database** - 75+ curated tools for educators
+- **Interactive Lessons** - Ready-to-use classroom materials
+- **Training Programs** - Professional development opportunities
+
+### 🚀 Technology Stack:
+- React 18 with Vite
+- Tailwind CSS for styling
+- Framer Motion for animations
+- React Router for navigation
+- jsPDF for document generation
+
+### 📦 Quick Start:
 ```bash
-git init
-git remote add origin [URL]
-git add .
-git commit -m "Optimize structure"
-git push -u origin main
+npm install
+npm run dev
 ```
 
-### Netlify Fixes
-Als de site niet laadt, controleer de `dist` folder en zorg dat de build settings in Netlify overeenkomen met:
-- **Build command**: `npm run build`
-- **Publish directory**: `dist`
-- **Node version**: 18
+### 🌐 Deployment:
+Ready for deployment on Netlify, Vercel, or any static hosting service.
 
-## 🛠 Architectuur
-Dit project is geoptimaliseerd naar 48 bestanden door consolidatie van documentatie, CSS en het verwijderen van ongebruikte boilerplate-componenten. Alle tools en content blijven 100% functioneel.
+Build command: `npm run build`
+Output directory: `dist`
+
+### 🔒 Security Features:
+- Dynamic content generation (no static sensitive files)
+- Enhanced cache busting for downloads
+- Professional PDF formatting with unique identifiers
+- Form handling with Netlify integration
+
+### 📊 Project Structure:
+- 45 optimized files
+- Modular component architecture
+- Clean separation of concerns
+- Responsive design throughout
+
+Perfect for Dutch educational institutions looking to integrate AI into their curriculum.

@@ -1,178 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 import { downloadSeatingChartPDF } from '../../utils/downloadUtils';
 
-const { 
-  FiGrid, FiUsers, FiInfo, FiCheck, FiLayout, FiCoffee, 
-  FiRefreshCw, FiDatabase, FiSliders, FiShield, FiLock, 
-  FiDownload, FiLoader, FiAlertTriangle 
-} = FiIcons;
+const { FiGrid, FiUsers, FiInfo, FiCheck, FiLayout, FiCoffee, FiAlertCircle, FiRefreshCw, FiArrowRight, FiLink, FiDatabase, FiSliders, FiShield, FiLock, FiDownload, FiLoader } = FiIcons;
 
 const SeatingChart = () => {
   // --- STATE ---
-  const [layout, setLayout] = useState('rijen'); 
+  const [layout, setLayout] = useState('rijen');
   const [goal, setGoal] = useState('rust');
   const [sheetLink, setSheetLink] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [originalData, setOriginalData] = useState({ respondents: [], relations: {} });
+  const [originalData, setOriginalData] = useState({ names: [], relations: {} });
   const [displayStudents, setDisplayStudents] = useState([]);
   const [showPrivacyInfo, setShowPrivacyInfo] = useState(false);
 
-  // --- ONDERWIJS.AI PARSER: RELATIONS ---
-  // Splitst namen op basis van komma's, "en", of spaties gevolgd door hoofdletters
-  const parseRelationNames = (input) => {
-    if (!input) return [];
-    const cleanInput = input.trim().replace(/"/g, '');
-    
-    // RegEx: splitst op , & ; / " en " OF een spatie die gevolgd wordt door een Hoofdletter
-    // Dit herkent "Guus Joshua Sven" als drie namen.
-    const parts = cleanInput.split(/[,&;/]|\s+en\s+|\s+(?=[A-Z])/i);
-    return parts.map(p => p.trim()).filter(p => p.length > 1);
-  };
-
-  // --- ONDERWIJS.AI VALIDATION: RESPONDENTS ---
-  const sanitizeRespondentName = (name) => {
-    if (!name) return null;
-    let cleanName = name.trim().replace(/"/g, '');
-    if (cleanName.length < 2) return null;
-    return cleanName;
-  };
-
-  // --- CORE LOGIC: CARDINALITY 1:1 ---
-  const applyGretaLogic = (respondents, relations, currentGoal, currentLayout) => {
-    // BRON EN CARDINALITEIT: Aantal zitplaatsen = pool.length
-    const pool = respondents
-      .map(r => sanitizeRespondentName(r))
-      .filter(name => name !== null);
-
-    if (!pool.length) return [];
-    
-    // Het resultaat heeft EXACT de lengte van de respondenten-lijst
-    const result = new Array(pool.length).fill(null);
-    const cols = currentLayout === 'rijen' ? 6 : 4;
-
-    // Sociale Scores (Gebruikt voor positionering, NOOIT voor extra seats)
-    const scores = pool.reduce((acc, name) => {
-      const rel = relations[name] || { pos: [], neg: [] };
-      const incomingPos = pool.filter(n => relations[n]?.pos.includes(name)).length;
-      const incomingNeg = pool.filter(n => relations[n]?.neg.includes(name)).length;
-      
-      acc[name] = {
-        tension: rel.neg.length + incomingNeg,
-        popularity: rel.pos.length + incomingPos
-      };
-      return acc;
-    }, {});
-
-    if (currentGoal === 'rust') {
-      const sortedByTension = [...pool].sort((a, b) => scores[b].tension - scores[a].tension);
-      const corners = [0, cols - 1, pool.length - 1, pool.length - cols].filter(i => i >= 0 && i < pool.length);
-      
-      const placed = new Set();
-      corners.forEach(idx => {
-        if (sortedByTension.length > 0) {
-          const student = sortedByTension.shift();
-          result[idx] = student;
-          placed.add(student);
-        }
-      });
-
-      const remaining = pool.filter(n => !placed.has(n)).sort((a, b) => scores[a].tension - scores[b].tension);
-      for (let i = 0; i < result.length; i++) {
-        if (result[i] === null) result[i] = remaining.shift();
-      }
-    } 
-    else if (currentGoal === 'samenwerking') {
-      const placed = new Set();
-      const pairedOrder = [];
-      
-      [...pool].sort((a, b) => scores[b].popularity - scores[a].popularity).forEach(name => {
-        if (placed.has(name)) return;
-        pairedOrder.push(name);
-        placed.add(name);
-        
-        const friends = relations[name]?.pos || [];
-        // Alleen matchen als de vriend OOK een geregistreerde respondent is
-        const bestFriend = friends.find(f => !placed.has(f) && pool.includes(f));
-        if (bestFriend) {
-          pairedOrder.push(bestFriend);
-          placed.add(bestFriend);
-        }
-      });
-      
-      pool.forEach(n => { if(!placed.has(n)) pairedOrder.push(n); });
-      return pairedOrder.slice(0, pool.length);
-    }
-    else {
-      return [...pool].sort((a, b) => scores[b].tension - scores[a].tension);
-    }
-
-    return result.filter(n => n !== null).slice(0, pool.length);
-  };
-
-  useEffect(() => {
-    if (isGenerated && originalData.respondents.length > 0) {
-      const newOrder = applyGretaLogic(originalData.respondents, originalData.relations, goal, layout);
-      setDisplayStudents(newOrder);
-    }
-  }, [goal, layout, isGenerated]);
-
-  // --- DATA FETCHING ---
-  const fetchSheetData = async (url) => {
-    const id = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)?.[1];
-    if (!id) throw new Error("Ongeldige link. Gebruik een Google Sheets URL.");
-    
-    const csvUrl = `https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
-    const response = await fetch(csvUrl);
-    if (!response.ok) throw new Error("Kon data niet ophalen. Controleer de deel-instellingen.");
-    
-    const text = await response.text();
-    const lines = text.split('\n').filter(l => l.trim().length > 0);
-    const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/"/g, ''));
-    
-    const nameIdx = headers.findIndex(h => ['naam', 'leerling', 'student', 'hoe heet je'].some(k => h.includes(k)));
-    const posIdx = headers.findIndex(h => ['vriend', 'positief', 'gezellig', 'samenwerken'].some(k => h.includes(k)));
-    const negIdx = headers.findIndex(h => ['niet', 'negatief', 'lastig', 'vermijden', 'conflict'].some(k => h.includes(k)));
-
-    if (nameIdx === -1) throw new Error("Geen respondent-kolom ('Naam') gevonden.");
-
-    const respondents = [];
-    const relations = {};
-
-    // VERPLICHTE VALIDATIE: 1 Rij = 1 Respondent
-    lines.slice(1).forEach(line => {
-      const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
-      const name = values[nameIdx]?.trim().replace(/"/g, '');
-      
-      if (name) {
-        respondents.push(name);
-        relations[name] = {
-          pos: posIdx !== -1 ? parseRelationNames(values[posIdx]) : [],
-          neg: negIdx !== -1 ? parseRelationNames(values[negIdx]) : []
-        };
-      }
-    });
-
-    return { respondents, relations };
-  };
-
-  const generateChart = async () => {
-    setIsLoading(true);
-    try {
-      const data = await fetchSheetData(sheetLink);
-      setOriginalData(data);
-      setIsGenerated(true);
-    } catch (err) {
-      alert(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+  // Helper function to chunk array for Islands
   const chunkArray = (arr, size) => {
     const chunks = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -181,87 +27,210 @@ const SeatingChart = () => {
     return chunks;
   };
 
+  // --- SEATING LOGIC ALGORITHM ---
+  const applySeatingLogic = (names, relations, currentGoal, currentLayout) => {
+    if (!names.length) return [];
+    let sorted = [...names];
+    const cols = currentLayout === 'rijen' ? 6 : 4;
+
+    if (currentGoal === 'samenwerking') {
+      const placed = new Set();
+      const newOrder = [];
+      sorted.forEach(name => {
+        if (placed.has(name)) return;
+        newOrder.push(name);
+        placed.add(name);
+        const friends = relations[name]?.pos || [];
+        const bestFriend = friends.find(f => !placed.has(f));
+        if (bestFriend) {
+          newOrder.push(bestFriend);
+          placed.add(bestFriend);
+        }
+      });
+      sorted = newOrder;
+    } else if (currentGoal === 'rust') {
+      const tensionScores = names.map(name => {
+        const negCount = (relations[name]?.neg?.length || 0) + Object.values(relations).filter(r => r.neg.includes(name)).length;
+        return { name, score: negCount };
+      }).sort((a, b) => b.score - a.score);
+
+      const highTension = tensionScores.filter(s => s.score > 0).map(s => s.name);
+      const lowTension = tensionScores.filter(s => s.score === 0).map(s => s.name);
+      const result = new Array(names.length).fill(null);
+      const cornerIndices = [0, cols - 1, names.length - 1, names.length - cols];
+      let cornerIdx = 0;
+      highTension.forEach(name => {
+        if (cornerIdx < cornerIndices.length) {
+          result[cornerIndices[cornerIdx]] = name;
+          cornerIdx++;
+        } else {
+          lowTension.push(name);
+        }
+      });
+      let lowIdx = 0;
+      for (let i = 0; i < result.length; i++) {
+        if (result[i] === null) {
+          result[i] = lowTension[lowIdx] || "";
+          lowIdx++;
+        }
+      }
+      sorted = result.filter(n => n !== "");
+    } else if (currentGoal === 'conflicten') {
+      const result = [];
+      const remaining = [...names];
+      while (remaining.length > 0) {
+        const current = remaining.shift();
+        result.push(current);
+        if (remaining.length > 0) {
+          const next = remaining[0];
+          const hasConflict = (relations[current]?.neg || []).includes(next) || (relations[next]?.neg || []).includes(current);
+          if (hasConflict) {
+            const conflict = remaining.shift();
+            remaining.push(conflict);
+          }
+        }
+      }
+      sorted = result;
+    }
+    return sorted;
+  };
+
+  useEffect(() => {
+    if (isGenerated && originalData.names.length > 0) {
+      const newOrder = applySeatingLogic(originalData.names, originalData.relations, goal, layout);
+      setDisplayStudents(newOrder);
+    }
+  }, [goal, layout, isGenerated]);
+
+  const fetchSheetData = async (url) => {
+    const id = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+    if (!id) throw new Error("Ongeldige link.");
+    const csvUrl = `https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
+    const response = await fetch(csvUrl);
+    if (!response.ok) throw new Error("Kon data niet ophalen. Is de sheet openbaar?");
+    const text = await response.text();
+    const lines = text.split('\n').filter(l => l.trim().length > 0);
+    const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/"/g, ''));
+    const nameIdx = headers.findIndex(h => ['naam', 'leerling', 'student', 'hoe heet je'].some(k => h.includes(k)));
+    const posIdx = headers.findIndex(h => ['vriend', 'positief', 'gezellig', 'samenwerken'].some(k => h.includes(k)));
+    const negIdx = headers.findIndex(h => ['niet', 'negatief', 'lastig', 'vermijden'].some(k => h.includes(k)));
+    if (nameIdx === -1) throw new Error("Geen kolom 'Naam' gevonden.");
+    const names = [];
+    const relations = {};
+    lines.slice(1).forEach(line => {
+      const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
+      const name = values[nameIdx]?.trim().replace(/"/g, '');
+      if (name) {
+        names.push(name);
+        relations[name] = {
+          pos: posIdx !== -1 ? (values[posIdx]?.replace(/"/g, '').split(',').map(s => s.trim()) || []) : [],
+          neg: negIdx !== -1 ? (values[negIdx]?.replace(/"/g, '').split(',').map(s => s.trim()) || []) : []
+        };
+      }
+    });
+    return { names, relations };
+  };
+
+  const generateChart = async () => {
+    setIsLoading(true);
+    try {
+      const data = await fetchSheetData(sheetLink);
+      setOriginalData(data);
+      const initialOrder = applySeatingLogic(data.names, data.relations, goal, layout);
+      setDisplayStudents(initialOrder);
+      setIsGenerated(true);
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleReset = () => {
+    setIsGenerated(false);
+    setDisplayStudents([]);
+  };
+
+  const handleDownload = () => {
+    const goalLabel = goal === 'rust' ? 'Rust in de klas' : goal === 'samenwerking' ? 'Samenwerking stimuleren' : 'Conflicten voorkomen';
+    downloadSeatingChartPDF(displayStudents, layout, goalLabel);
+  };
+
+  const isFormValid = sheetLink.includes('google.com/spreadsheets');
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <SimpleHero 
-        title="Klassenplattegrond" 
-        subtitle="Strikte 1-op-1 validatie op basis van ingevulde rijen in de Google Sheet." 
-        color="from-indigo-600 to-blue-700" 
-      />
-      
+      <SimpleHero title="Klassenplattegrond" subtitle="Zet je sociogram om in een praktische klassenplattegrond op basis van sociale veiligheid." color="from-indigo-600 to-blue-700" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
-          {/* LEFT: Config */}
+          {/* LEFT: Configuration */}
           <div className="lg:col-span-4 space-y-6">
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" >
               <div className="p-6 border-b border-gray-50 bg-indigo-50/30">
-                <h2 className="font-bold text-gray-900 flex items-center gap-2 text-sm uppercase tracking-wider">
-                  <SafeIcon icon={FiSliders} className="text-indigo-600" /> Onderwijs.AI validatie
+                <h2 className="font-bold text-gray-900 flex items-center gap-2">
+                  <SafeIcon icon={FiSliders} className="text-indigo-600" /> Configuratie
                 </h2>
               </div>
-              
               <div className="p-6 space-y-8">
+                {/* Step 1: Layout */}
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 text-center">Tafelopstelling</label>
+                  <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Stap 1 – Kies je klasopstelling</label>
                   <div className="grid grid-cols-2 gap-3">
-                    <button onClick={() => setLayout('rijen')} className={`p-4 rounded-xl border-2 transition-all flex flex-col items-center gap-2 ${layout === 'rijen' ? 'border-indigo-600 bg-indigo-50 shadow-inner' : 'border-gray-100 hover:border-indigo-200'}`}>
+                    <button onClick={() => setLayout('rijen')} className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col gap-2 ${layout === 'rijen' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-100 hover:border-indigo-200'}`} >
                       <SafeIcon icon={FiLayout} className={layout === 'rijen' ? 'text-indigo-600' : 'text-gray-400'} />
-                      <span className="text-xs font-bold uppercase">Rijen</span>
+                      <span className={`text-sm font-bold ${layout === 'rijen' ? 'text-indigo-900' : 'text-gray-600'}`}>Rijen</span>
+                      <span className="text-[10px] text-gray-400 leading-tight">2–2–2 Opstelling</span>
                     </button>
-                    <button onClick={() => setLayout('eilandjes')} className={`p-4 rounded-xl border-2 transition-all flex flex-col items-center gap-2 ${layout === 'eilandjes' ? 'border-indigo-600 bg-indigo-50 shadow-inner' : 'border-gray-100 hover:border-indigo-200'}`}>
+                    <button onClick={() => setLayout('eilandjes')} className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col gap-2 ${layout === 'eilandjes' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-100 hover:border-indigo-200'}`} >
                       <SafeIcon icon={FiGrid} className={layout === 'eilandjes' ? 'text-indigo-600' : 'text-gray-400'} />
-                      <span className="text-xs font-bold uppercase">Eilandjes</span>
+                      <span className={`text-sm font-bold ${layout === 'eilandjes' ? 'text-indigo-900' : 'text-gray-600'}`}>Eilandjes</span>
+                      <span className="text-[10px] text-gray-400 leading-tight">Vaste 2×2 groepen</span>
                     </button>
                   </div>
                 </div>
 
+                {/* Step 2: Goal */}
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 text-center">Doelstelling</label>
+                  <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Stap 2 – Wat is het doel?</label>
                   <div className="space-y-2">
                     {[
-                      { id: 'rust', label: 'Rust & Focus', icon: FiCoffee },
-                      { id: 'samenwerking', label: 'Samenwerking', icon: FiUsers },
-                      { id: 'conflicten', label: 'Veiligheid', icon: FiShield }
+                      { id: 'rust', label: 'Rust in de klas', icon: FiCoffee },
+                      { id: 'samenwerking', label: 'Samenwerking stimuleren', icon: FiUsers },
+                      { id: 'conflicten', label: 'Conflicten voorkomen', icon: FiShield }
                     ].map(item => (
-                      <button key={item.id} onClick={() => setGoal(item.id)} className={`w-full p-3 rounded-xl border-2 transition-all flex items-center gap-3 ${goal === item.id ? 'border-indigo-600 bg-indigo-50 text-indigo-900' : 'border-gray-50 hover:border-indigo-100 text-gray-600 text-sm'}`}>
+                      <button key={item.id} onClick={() => setGoal(item.id)} className={`w-full p-3 rounded-xl border-2 transition-all flex items-center gap-3 text-left ${goal === item.id ? 'border-indigo-600 bg-indigo-50 text-indigo-900' : 'border-gray-50 hover:border-indigo-100 text-gray-600'}`} >
                         <SafeIcon icon={item.icon} className="shrink-0" />
-                        <span className="font-bold">{item.label}</span>
+                        <span className="text-sm font-bold">{item.label}</span>
                         {goal === item.id && <SafeIcon icon={FiCheck} className="ml-auto text-indigo-600" />}
                       </button>
                     ))}
                   </div>
                 </div>
 
+                {/* Step 3: Sociogram Data */}
                 <div className="pt-4 border-t border-gray-100">
                   <div className="flex items-center justify-between mb-3">
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest">Google Sheet Link</label>
-                    <button onMouseEnter={() => setShowPrivacyInfo(true)} onMouseLeave={() => setShowPrivacyInfo(false)} className="text-gray-400 hover:text-indigo-600 transition-colors">
-                      <SafeIcon icon={FiInfo} />
-                    </button>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2"> Stap 3 – Sociogramgegevens </label>
+                    <div className="relative">
+                      <button onMouseEnter={() => setShowPrivacyInfo(true)} onMouseLeave={() => setShowPrivacyInfo(false)} className="text-gray-400 hover:text-indigo-600 transition-colors" >
+                        <SafeIcon icon={FiInfo} />
+                      </button>
+                      {showPrivacyInfo && (
+                        <div className="absolute bottom-full right-0 mb-2 w-64 bg-gray-900 text-white text-[10px] p-3 rounded-xl shadow-xl z-20 leading-relaxed border border-gray-700">
+                          <p className="font-bold mb-1 flex items-center gap-1 text-indigo-400 uppercase tracking-wider">
+                            <SafeIcon icon={FiLock} /> Privacy & gegevens
+                          </p>
+                          Je sociogram blijft in je eigen Google Drive. Wij slaan geen leerlingnamen of sociale relaties op.
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <input 
-                    type="text" 
-                    value={sheetLink} 
-                    onChange={(e) => setSheetLink(e.target.value)} 
-                    placeholder="Plak hier de Sheet link..." 
-                    className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs bg-gray-50"
-                  />
-                  {showPrivacyInfo && (
-                    <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="mt-2 text-[10px] bg-gray-900 text-gray-300 p-3 rounded-lg border border-gray-700 shadow-xl leading-relaxed">
-                      <SafeIcon icon={FiLock} className="inline mr-1 text-indigo-400" />
-                      Het aantal zitplaatsen is exact gelijk aan het aantal respondenten. Namen in de antwoordvelden worden alleen gebruikt voor de onderlinge positie.
-                    </motion.div>
-                  )}
+                  <input type="text" value={sheetLink} onChange={(e) => setSheetLink(e.target.value)} placeholder="Google Sheets link..." className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 font-sans text-xs bg-gray-50 mb-2" />
                 </div>
 
-                <button 
-                  onClick={generateChart} 
-                  disabled={!sheetLink.includes('google.com') || isLoading}
-                  className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${!isLoading && sheetLink.includes('google.com') ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
-                >
+                <button onClick={generateChart} disabled={!isFormValid || isLoading} className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${isFormValid && !isLoading ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`} >
                   {isLoading ? <SafeIcon icon={FiLoader} className="animate-spin" /> : <SafeIcon icon={FiRefreshCw} />}
-                  <span>{isLoading ? 'Laden...' : 'Genereer Plattegrond'}</span>
+                  <span>{isLoading ? 'Gegevens ophalen...' : 'Genereer Plattegrond'}</span>
                 </button>
               </div>
             </motion.div>
@@ -274,72 +243,91 @@ const SeatingChart = () => {
                 <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-6">
                   <SafeIcon icon={FiDatabase} className="text-4xl text-gray-200" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-400 mb-2">Wachtend op data</h3>
-                <p className="text-gray-400 max-w-sm text-sm italic">De plattegrond krijgt exact evenveel plaatsen als er respondenten zijn ingevuld.</p>
+                <h3 className="text-xl font-bold text-gray-400 mb-2">Wachtend op sociogramgegevens</h3>
+                <p className="text-gray-400 max-w-sm text-sm">Koppel je Google Sheet aan de linkerkant om de echte namen te vertalen naar een plattegrond.</p>
               </div>
             ) : (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6" >
                 <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                   <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
                     <div>
-                      <h3 className="font-bold text-gray-900">Gevalideerde Plattegrond</h3>
-                      <p className="text-[10px] text-indigo-600 font-black uppercase tracking-widest mt-1">
-                         Zitplaatsen: {displayStudents.length} (Gelijk aan aantal rijen)
+                      <h3 className="font-bold text-gray-900">Gegenereerde Plattegrond</h3>
+                      <p className="text-xs text-indigo-600 font-medium mt-1">
+                        {layout === 'rijen' ? 'Vaste 2–2–2 Tafelopstelling' : 'Vaste 2×2 Eilandjes met Restgroep'}
                       </p>
                     </div>
-                    <button onClick={() => setIsGenerated(false)} className="text-xs font-bold text-gray-400 hover:text-indigo-600 transition-colors flex items-center gap-2">
-                       Nieuwe data
+                    <button onClick={handleReset} className="text-xs font-bold text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-lg transition-colors flex items-center gap-2" >
+                      <SafeIcon icon={FiRefreshCw} /> Andere data
                     </button>
                   </div>
-
-                  <div className="p-8 bg-slate-50/50 overflow-x-auto">
+                  <div className="p-8 bg-gray-50/50 overflow-x-auto">
                     <div className="mb-12 flex justify-center min-w-[800px]">
-                      <div className="w-64 py-3 bg-gray-900 text-white text-[10px] uppercase tracking-[0.3em] font-black text-center rounded-b-2xl shadow-2xl border-t-4 border-indigo-500">
-                        BORD / DOCENT
-                      </div>
+                      <div className="w-48 py-3 bg-gray-800 text-white text-[10px] uppercase tracking-[0.2em] font-bold text-center rounded-b-xl shadow-md border-t-4 border-indigo-500"> Bureau Docent / Digibord </div>
                     </div>
-
+                    
                     {layout === 'rijen' ? (
-                      <div className="grid grid-cols-6 gap-y-8 gap-x-4 min-w-[800px]">
+                      /* ROWS LAYOUT: 6 columns, spacing for pairs */
+                      <div className="grid grid-cols-6 gap-y-6 gap-x-0 min-w-[800px]">
                         {displayStudents.map((name, index) => (
-                          <motion.div 
-                            key={`${name}-${index}`} 
-                            className={`p-4 rounded-2xl border-2 text-center shadow-sm flex flex-col items-center justify-center bg-white h-32 ${(index % 6 === 1 || index % 6 === 3) ? 'mr-8' : ''} border-blue-50 hover:border-indigo-200 transition-colors`}
-                          >
-                            <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center mb-3">
-                              <SafeIcon icon={FiUsers} className="text-gray-300 text-sm" />
+                           <motion.div 
+                           key={`${name}-${index}`} 
+                           initial={{ opacity: 0, scale: 0.8 }} 
+                           animate={{ opacity: 1, scale: 1 }} 
+                           transition={{ delay: index * 0.01 }} 
+                           className={`p-3 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center transition-all w-full h-28 shrink-0 bg-white border-blue-100 ${ (index % 6 === 1 || index % 6 === 3) ? 'mr-12' : ''}`}
+                         >
+                            <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mb-3">
+                              <SafeIcon icon={FiUsers} className="text-gray-400 text-[10px]" />
                             </div>
-                            <span className="text-[11px] font-black text-gray-800 uppercase tracking-tight truncate w-full px-2">{name}</span>
-                          </motion.div>
+                            <span className="text-[11px] font-bold text-gray-800 truncate w-full px-1 mb-3">{name}</span>
+                            <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden mt-auto">
+                              <div className={`h-full ${index % 7 === 0 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
+                            </div>
+                         </motion.div>
                         ))}
                       </div>
                     ) : (
+                      /* ISLANDS LAYOUT: Chunked into islands of 4 */
                       <div className="flex flex-wrap gap-12 justify-center min-w-[800px]">
-                        {chunkArray(displayStudents, 4).map((island, islandIdx) => (
-                          <div key={`island-${islandIdx}`} className="relative p-4 bg-indigo-50/30 rounded-3xl border border-indigo-100/50">
-                            <div className="grid grid-cols-2 gap-3">
-                              {island.map((name, sIdx) => (
-                                <motion.div 
-                                  key={`${name}-${sIdx}`} 
-                                  className="p-4 rounded-xl border-2 border-white text-center shadow-sm bg-white w-32 h-28 flex flex-col items-center justify-center"
-                                >
-                                  <span className="text-[10px] font-black text-gray-700 uppercase tracking-tighter truncate w-full">{name}</span>
-                                </motion.div>
-                              ))}
+                        {chunkArray(displayStudents, 4).map((island, islandIdx, allIslands) => {
+                          const isRestIsland = island.length < 4;
+                          
+                          return (
+                            <div key={`island-${islandIdx}`} className="relative">
+                              {isRestIsland && (
+                                <div className="absolute -top-6 left-0 right-0 text-center">
+                                  <span className="text-[9px] font-black uppercase text-gray-400 tracking-widest">Restgroep</span>
+                                </div>
+                              )}
+                              <div className={`grid grid-cols-2 gap-2 p-3 rounded-2xl transition-all ${isRestIsland ? 'bg-gray-100/50 border-2 border-dashed border-gray-300' : 'bg-indigo-50/30'}`}>
+                                {island.map((name, sIdx) => (
+                                  <motion.div 
+                                    key={`${name}-${sIdx}`} 
+                                    initial={{ opacity: 0, scale: 0.8 }} 
+                                    animate={{ opacity: 1, scale: 1 }} 
+                                    className={`p-3 rounded-xl border-2 text-center shadow-sm flex flex-col items-center justify-center transition-all w-32 h-28 shrink-0 ${isRestIsland ? 'bg-gray-50 border-gray-200 opacity-90' : 'bg-white border-indigo-100'}`}
+                                  >
+                                    <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mb-3">
+                                      <SafeIcon icon={FiUsers} className="text-gray-400 text-[10px]" />
+                                    </div>
+                                    <span className="text-[11px] font-bold text-gray-800 truncate w-full px-1 mb-3">{name}</span>
+                                    <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden mt-auto">
+                                      <div className={`h-full ${Math.random() > 0.8 ? 'w-1/3 bg-orange-400' : 'w-full bg-green-400'}`}></div>
+                                    </div>
+                                  </motion.div>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     )}
                   </div>
                 </div>
 
-                <div className="flex justify-center gap-4 py-4">
-                  <button 
-                    onClick={() => downloadSeatingChartPDF(displayStudents, layout, goal)} 
-                    className="bg-gray-900 text-white px-8 py-4 rounded-xl font-bold hover:bg-black transition-all shadow-xl flex items-center gap-2"
-                  >
-                    <SafeIcon icon={FiDownload} /> <span>Download PDF (A4)</span>
+                <div className="text-center space-y-4 py-8">
+                  <button onClick={handleDownload} className="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg flex items-center justify-center gap-2 mx-auto" >
+                    <SafeIcon icon={FiDownload} /> <span>Download als A4 (PDF)</span>
                   </button>
                 </div>
               </motion.div>
