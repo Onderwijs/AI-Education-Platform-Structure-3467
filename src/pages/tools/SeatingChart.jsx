@@ -22,36 +22,40 @@ const SeatingChart = () => {
   const [displayStudents, setDisplayStudents] = useState([]);
   const [showPrivacyInfo, setShowPrivacyInfo] = useState(false);
 
-  // --- GRETA VALIDATION: STRICT RESPONDENT CLEANING ---
+  // --- ONDERWIJS.AI PARSER: RELATIONS ---
+  // Splitst namen op basis van komma's, "en", of spaties gevolgd door hoofdletters
+  const parseRelationNames = (input) => {
+    if (!input) return [];
+    const cleanInput = input.trim().replace(/"/g, '');
+    
+    // RegEx: splitst op , & ; / " en " OF een spatie die gevolgd wordt door een Hoofdletter
+    // Dit herkent "Guus Joshua Sven" als drie namen.
+    const parts = cleanInput.split(/[,&;/]|\s+en\s+|\s+(?=[A-Z])/i);
+    return parts.map(p => p.trim()).filter(p => p.length > 1);
+  };
+
+  // --- ONDERWIJS.AI VALIDATION: RESPONDENTS ---
   const sanitizeRespondentName = (name) => {
     if (!name) return null;
-    const forbiddenTerms = ['de hele klas', 'alle jongens', 'alle meiden', 'iedereen', 'maakt niet uit', 'niemand', 'vrij'];
-    const splitRegex = /[,&;/]|\s+en\s+/i;
-    
-    let cleanName = name.trim();
-    const lowerName = cleanName.toLowerCase();
-    
-    if (forbiddenTerms.some(term => lowerName.includes(term))) return null;
-    
-    if (splitRegex.test(cleanName)) {
-      const parts = cleanName.split(splitRegex).map(p => p.trim()).filter(p => p.length > 0);
-      return parts[0] || null;
-    }
-
+    let cleanName = name.trim().replace(/"/g, '');
+    if (cleanName.length < 2) return null;
     return cleanName;
   };
 
-  // --- GRETA LOGIC: SEATING ALGORITHM ---
+  // --- CORE LOGIC: CARDINALITY 1:1 ---
   const applyGretaLogic = (respondents, relations, currentGoal, currentLayout) => {
+    // BRON EN CARDINALITEIT: Aantal zitplaatsen = pool.length
     const pool = respondents
       .map(r => sanitizeRespondentName(r))
       .filter(name => name !== null);
 
     if (!pool.length) return [];
     
+    // Het resultaat heeft EXACT de lengte van de respondenten-lijst
     const result = new Array(pool.length).fill(null);
     const cols = currentLayout === 'rijen' ? 6 : 4;
 
+    // Sociale Scores (Gebruikt voor positionering, NOOIT voor extra seats)
     const scores = pool.reduce((acc, name) => {
       const rel = relations[name] || { pos: [], neg: [] };
       const incomingPos = pool.filter(n => relations[n]?.pos.includes(name)).length;
@@ -92,6 +96,7 @@ const SeatingChart = () => {
         placed.add(name);
         
         const friends = relations[name]?.pos || [];
+        // Alleen matchen als de vriend OOK een geregistreerde respondent is
         const bestFriend = friends.find(f => !placed.has(f) && pool.includes(f));
         if (bestFriend) {
           pairedOrder.push(bestFriend);
@@ -116,6 +121,7 @@ const SeatingChart = () => {
     }
   }, [goal, layout, isGenerated]);
 
+  // --- DATA FETCHING ---
   const fetchSheetData = async (url) => {
     const id = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)?.[1];
     if (!id) throw new Error("Ongeldige link. Gebruik een Google Sheets URL.");
@@ -130,13 +136,14 @@ const SeatingChart = () => {
     
     const nameIdx = headers.findIndex(h => ['naam', 'leerling', 'student', 'hoe heet je'].some(k => h.includes(k)));
     const posIdx = headers.findIndex(h => ['vriend', 'positief', 'gezellig', 'samenwerken'].some(k => h.includes(k)));
-    const negIdx = headers.findIndex(h => ['niet', 'negatief', 'lastig', 'vermijden'].some(k => h.includes(k)));
+    const negIdx = headers.findIndex(h => ['niet', 'negatief', 'lastig', 'vermijden', 'conflict'].some(k => h.includes(k)));
 
     if (nameIdx === -1) throw new Error("Geen respondent-kolom ('Naam') gevonden.");
 
     const respondents = [];
     const relations = {};
 
+    // VERPLICHTE VALIDATIE: 1 Rij = 1 Respondent
     lines.slice(1).forEach(line => {
       const values = line.match(/(".*?"|[^",\t;|]+)(?=\s*[,\t;|]|\s*$)/g) || [];
       const name = values[nameIdx]?.trim().replace(/"/g, '');
@@ -144,8 +151,8 @@ const SeatingChart = () => {
       if (name) {
         respondents.push(name);
         relations[name] = {
-          pos: posIdx !== -1 ? (values[posIdx]?.replace(/"/g, '').split(',').map(s => s.trim()) || []) : [],
-          neg: negIdx !== -1 ? (values[negIdx]?.replace(/"/g, '').split(',').map(s => s.trim()) || []) : []
+          pos: posIdx !== -1 ? parseRelationNames(values[posIdx]) : [],
+          neg: negIdx !== -1 ? parseRelationNames(values[negIdx]) : []
         };
       }
     });
@@ -178,13 +185,14 @@ const SeatingChart = () => {
     <div className="min-h-screen bg-gray-50">
       <SimpleHero 
         title="Klassenplattegrond" 
-        subtitle="Gevalideerd op basis van respondent-aantallen uit Google Sheets." 
+        subtitle="Strikte 1-op-1 validatie op basis van ingevulde rijen in de Google Sheet." 
         color="from-indigo-600 to-blue-700" 
       />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           
+          {/* LEFT: Config */}
           <div className="lg:col-span-4 space-y-6">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
               <div className="p-6 border-b border-gray-50 bg-indigo-50/30">
@@ -209,7 +217,7 @@ const SeatingChart = () => {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 text-center">Optimalisatie</label>
+                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 text-center">Doelstelling</label>
                   <div className="space-y-2">
                     {[
                       { id: 'rust', label: 'Rust & Focus', icon: FiCoffee },
@@ -236,13 +244,13 @@ const SeatingChart = () => {
                     type="text" 
                     value={sheetLink} 
                     onChange={(e) => setSheetLink(e.target.value)} 
-                    placeholder="Link naar sociogram data..." 
+                    placeholder="Plak hier de Sheet link..." 
                     className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 text-xs bg-gray-50"
                   />
                   {showPrivacyInfo && (
-                    <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="mt-2 text-[10px] bg-gray-900 text-gray-300 p-3 rounded-lg border border-gray-700 leading-relaxed shadow-xl">
+                    <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="mt-2 text-[10px] bg-gray-900 text-gray-300 p-3 rounded-lg border border-gray-700 shadow-xl leading-relaxed">
                       <SafeIcon icon={FiLock} className="inline mr-1 text-indigo-400" />
-                      Greta telt exact het aantal ingevulde rijen. Namen die alleen in keuze-kolommen staan krijgen GEEN zitplaats.
+                      Het aantal zitplaatsen is exact gelijk aan het aantal respondenten. Namen in de antwoordvelden worden alleen gebruikt voor de onderlinge positie.
                     </motion.div>
                   )}
                 </div>
@@ -253,12 +261,13 @@ const SeatingChart = () => {
                   className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition-all ${!isLoading && sheetLink.includes('google.com') ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:-translate-y-0.5' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
                 >
                   {isLoading ? <SafeIcon icon={FiLoader} className="animate-spin" /> : <SafeIcon icon={FiRefreshCw} />}
-                  <span>{isLoading ? 'Greta valideert...' : 'Genereer Plattegrond'}</span>
+                  <span>{isLoading ? 'Laden...' : 'Genereer Plattegrond'}</span>
                 </button>
               </div>
             </motion.div>
           </div>
 
+          {/* RIGHT: Results */}
           <div className="lg:col-span-8">
             {!isGenerated ? (
               <div className="bg-white rounded-3xl border-2 border-dashed border-gray-200 h-[600px] flex flex-col items-center justify-center text-center p-10">
@@ -266,7 +275,7 @@ const SeatingChart = () => {
                   <SafeIcon icon={FiDatabase} className="text-4xl text-gray-200" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-400 mb-2">Wachtend op data</h3>
-                <p className="text-gray-400 max-w-sm text-sm italic">De plattegrond wordt exact zo groot als het aantal respondenten in de Google Sheet.</p>
+                <p className="text-gray-400 max-w-sm text-sm italic">De plattegrond krijgt exact evenveel plaatsen als er respondenten zijn ingevuld.</p>
               </div>
             ) : (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
@@ -275,11 +284,11 @@ const SeatingChart = () => {
                     <div>
                       <h3 className="font-bold text-gray-900">Gevalideerde Plattegrond</h3>
                       <p className="text-[10px] text-indigo-600 font-black uppercase tracking-widest mt-1">
-                         Aantal zitplaatsen: {displayStudents.length} (Gelijk aan aantal rijen)
+                         Zitplaatsen: {displayStudents.length} (Gelijk aan aantal rijen)
                       </p>
                     </div>
                     <button onClick={() => setIsGenerated(false)} className="text-xs font-bold text-gray-400 hover:text-indigo-600 transition-colors flex items-center gap-2">
-                       Data resetten
+                       Nieuwe data
                     </button>
                   </div>
 
