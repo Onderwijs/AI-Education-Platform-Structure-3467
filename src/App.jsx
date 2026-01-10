@@ -1,11 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
-import {motion,AnimatePresence} from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
-// Existing Components
+// Layout & Common
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import CookieBanner from './components/common/CookieBanner';
+
+// Main Pages
 import Home from './pages/Home';
 import PO from './pages/docenten/PO';
 import VO from './pages/docenten/VO';
@@ -17,6 +19,8 @@ import Trainingen from './pages/Trainingen';
 import Nieuwsbrief from './pages/Nieuwsbrief';
 import OverOns from './pages/OverOns';
 import Privacy from './pages/Privacy';
+import Downloads from './pages/Downloads';
+import Framework from './pages/Framework';
 
 // Tools
 import ToolsOverview from './pages/tools/ToolsOverview';
@@ -35,12 +39,8 @@ import Kennisbank from './pages/kenniscentrum/Kennisbank';
 import WatIsAI from './pages/kenniscentrum/WatIsAI';
 import ChatGPTInDeKlas from './pages/kenniscentrum/ChatGPTInDeKlas';
 import PromptBibliotheek from './pages/kenniscentrum/PromptBibliotheek';
-import Framework from './pages/Framework';
-import Downloads from './pages/Downloads';
-import TrainingDetail from './pages/trainingen/TrainingDetail';
-import LegalPage from './pages/legal/LegalPage';
 
-import './App.css';
+import './index.css';
 
 function App() {
   return (
@@ -50,11 +50,9 @@ function App() {
         <main className="flex-1">
           <AnimatePresence mode="wait">
             <Routes>
-              {/* 1. Algemeen */}
               <Route path="/" element={<Home />} />
               <Route path="/over-ons" element={<OverOns />} />
-
-              {/* 2. AI Tools (Interactive) */}
+              
               <Route path="/tools" element={<ToolsOverview />} />
               <Route path="/tools/lesgenerator" element={<LessonGenerator />} />
               <Route path="/tools/rubriekmaker" element={<RubricMaker />} />
@@ -66,16 +64,13 @@ function App() {
               <Route path="/tools/sociogram" element={<Sociogram />} />
               <Route path="/tools/klassenplattegrond" element={<SeatingChart />} />
 
-              {/* 3. Voor Docenten */}
               <Route path="/voor-docenten/po" element={<PO />} />
               <Route path="/voor-docenten/vo" element={<VO />} />
               <Route path="/voor-docenten/mbo-hbo" element={<MBOHBO />} />
 
-              {/* 4. Lesmateriaal & Downloads */}
               <Route path="/leslab" element={<LesLab />} />
               <Route path="/downloads" element={<Downloads />} />
 
-              {/* 5. Kenniscentrum */}
               <Route path="/ai-tools" element={<AITools />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/kennisbank" element={<Kennisbank />} />
@@ -84,13 +79,8 @@ function App() {
               <Route path="/kennisbank/prompt-bibliotheek" element={<PromptBibliotheek />} />
               <Route path="/framework" element={<Framework />} />
 
-              {/* 6. Trainingen */}
               <Route path="/trainingen" element={<Trainingen />} />
-              
-              {/* 7. Nieuwsbrief */}
               <Route path="/nieuwsbrief" element={<Nieuwsbrief />} />
-
-              {/* 8. Juridisch */}
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/legal/privacy" element={<Privacy />} />
             </Routes>
