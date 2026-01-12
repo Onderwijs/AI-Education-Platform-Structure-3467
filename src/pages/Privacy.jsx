@@ -29,10 +29,10 @@ const Privacy=()=> {
             </ul>
 
             <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">2. Google Analytics</h2>
-            <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 mb-6">
-              <p className="mb-2"><strong>Voor statistische doeleinden maakt Onderwijs.ai gebruik van Google Analytics.</strong></p>
-              <p className="mb-2">Hierbij worden geanonimiseerde gegevens verzameld over het gebruik van de website.</p>
-              <p className="mb-2">Deze analytische cookies worden uitsluitend geplaatst nadat de gebruiker hiervoor toestemming heeft gegeven via de cookiebanner.</p>
+            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 mb-6">
+              <p className="mb-4">Voor statistische doeleinden maakt Onderwijs.ai gebruik van Google Analytics.</p>
+              <p className="mb-4">Hierbij worden geanonimiseerde gegevens verzameld over het gebruik van de website.</p>
+              <p className="mb-4">Deze analytische cookies worden uitsluitend geplaatst nadat de gebruiker hiervoor toestemming heeft gegeven via de cookiebanner.</p>
               <p>De gegevens worden niet gebruikt voor advertentiedoeleinden en niet gecombineerd met andere Google-diensten.</p>
             </div>
 
@@ -58,7 +58,7 @@ const Privacy=()=> {
             </p>
 
             <p className="mt-8 pt-8 border-t border-gray-100 text-sm text-gray-400 italic">
-              Laatste update: 1 februari 2026
+              Laatste update: 5 februari 2026
             </p>
           </div>
           

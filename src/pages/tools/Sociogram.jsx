@@ -48,21 +48,46 @@ const Sociogram=()=> {
     }
   },[isGenerated,graphData,isExampleData]);
 
-  // --- GOOGLE APPS SCRIPT CODE ---
+  // --- GOOGLE APPS SCRIPT CODE (EXACT REPLACEMENT) ---
   const googleScript=`function createSociogramForm() {
   var form = FormApp.create('Interactief Sociogram Vragenlijst');
-  form.setTitle('Sociogram: Hoe werken we samen in de klas?')
-      .setDescription('Vul deze vragenlijst eerlijk in. Je antwoorden zijn alleen zichtbaar voor de leraar.');
   
-  form.addTextItem().setTitle('Hoe heet je?').setRequired(true);
-  form.addTextItem().setTitle('Met wie vind je het gezellig?').setHelpText('Meerdere namen scheiden met een komma.');
-  form.addTextItem().setTitle('Met wie vind je het niet zo gezellig?');
-  form.addTextItem().setTitle('Met wie kan je goed samenwerken?');
-  form.addTextItem().setTitle('Met wie kan je niet zo goed samenwerken?');
+  form.setTitle('Sociogram: Hoe werken we samen in de klas?')
+      .setDescription(
+        'Vul deze vragenlijst eerlijk in. Je antwoorden zijn alleen zichtbaar voor de leraar.\\n\\n' +
+        'Gebruik alleen namen van klasgenoten. ' +
+        'Schrijf geen woorden zoals "niemand" of "iedereen".'
+      );
+  
+  form.addTextItem()
+      .setTitle('Wat is je voornaam?')
+      .setRequired(true);
 
-  Logger.log('Bevestiging: Het sociogramformulier is succesvol aangemaakt.');
-  Logger.log('Docent-link (bewerken): ' + form.getEditUrl());
-  Logger.log('Leerling-link (invullen): ' + form.getPublishedUrl());
+  addNameQuestion(form, 'Met wie vind je het gezellig?');
+  addNameQuestion(form, 'Met wie vind je het niet zo gezellig?');
+  addNameQuestion(form, 'Met wie kan je goed samenwerken?');
+  addNameQuestion(form, 'Met wie kan je niet zo goed samenwerken?');
+
+  Logger.log('Link naar het formulier (bewerken): ' + form.getEditUrl());
+  Logger.log('Link om te delen met leerlingen: ' + form.getPublishedUrl());
+}
+
+function addNameQuestion(form, title) {
+  var validation = FormApp.createTextValidation()
+    .requireTextDoesNotMatchPattern('(niemand|iedereen)')
+    .setHelpText(
+      'Gebruik alleen namen van klasgenoten. ' +
+      'Schrijf geen "niemand" of "iedereen".'
+    )
+    .build();
+
+  form.addTextItem()
+    .setTitle(title)
+    .setHelpText(
+      'Meerdere namen scheiden met een komma.\\n' +
+      'Schrijf geen "niemand" of "iedereen", alleen namen.'
+    )
+    .setValidation(validation);
 }`;
 
   const copyScript=()=> {
@@ -370,7 +395,6 @@ Lisa,Tom,Jantje,,Tom,`;
                                 <div className="mt-10 pt-8 border-t border-gray-100">
                                   <h5 className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-4">ANTWOORDEN OPSLAAN IN GOOGLE SHEET</h5>
                                   
-                                  {/* GEBRUIK BASE_URL VOOR DE AFBEELDING */}
                                   <img 
                                     src={`${import.meta.env.BASE_URL}googlesheet.png`} 
                                     alt="Uitleg Google Sheet opslaan" 
@@ -397,7 +421,7 @@ Lisa,Tom,Jantje,,Tom,`;
                               </div>
                               <div className="relative group">
                                 <button onClick={copyScript} className={`absolute top-3 right-3 z-10 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-all ${scriptCopied ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}>
-                                  <SafeIcon icon={scriptCopied ? FiCheck : FiCopy} /> {scriptCopied ? 'Gekopieerd!' : 'Kopieer Script'}
+                                  <SafeIcon icon={scriptCopied ? FiCheck : FiCopy} /> {scriptCopied ? 'Gekopieerd!' : 'Kopiere Script'}
                                 </button>
                                 <div className="bg-gray-900 rounded-xl p-4 pt-12 h-full max-h-[500px] overflow-y-auto shadow-inner border border-gray-800">
                                   <pre className="text-[10px] font-mono text-blue-300 leading-relaxed font-normal">{googleScript}</pre>
