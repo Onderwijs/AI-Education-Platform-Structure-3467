@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
+// Versie: 1.0.2 - Force Cache Refresh
 const { FiUsers, FiCalendar, FiBook, FiCertificate, FiCheck, FiExternalLink, FiMail, FiClock, FiMapPin } = FiIcons;
 
 const Trainingen = () => {
