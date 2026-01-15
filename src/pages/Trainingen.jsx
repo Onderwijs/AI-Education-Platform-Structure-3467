@@ -4,7 +4,11 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-// Versie: 1.0.2 - Force Cache Refresh
+/**
+ * VERSIE: 1.0.5 - FORCE_REBUILD_TIMESTAMP: 20250205_1200
+ * Deze comment dwingt de build-engine om een nieuwe versie te genereren.
+ */
+
 const { FiUsers, FiCalendar, FiBook, FiCertificate, FiCheck, FiExternalLink, FiMail, FiClock, FiMapPin } = FiIcons;
 
 const Trainingen = () => {
@@ -127,25 +131,6 @@ const Trainingen = () => {
       link: "https://onderwijs-ai.nl/opleidingen/werk-slim-met-ai",
       isExternal: true,
       organizer: "Onderwijs-AI"
-    },
-    {
-      title: "ChatGPT en AI in de klas",
-      level: "Beginner",
-      duration: "Online training",
-      format: "Online",
-      audience: "Docenten alle niveaus",
-      topics: [
-        "Praktische toepassing van ChatGPT",
-        "AI-tools voor lesvoorbereiding",
-        "Veilig gebruik van AI in onderwijs",
-        "Hands-on oefeningen en voorbeelden"
-      ],
-      price: "€195",
-      nextDates: ["Continu beschikbaar"],
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop",
-      link: "https://www.docentenbijscholing.nl/chatgpt-en-ai-in-de-klas/",
-      isExternal: true,
-      organizer: "Docentenbijscholing.nl"
     }
   ];
 
