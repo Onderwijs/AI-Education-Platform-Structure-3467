@@ -4,15 +4,30 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-/**
- * VERSIE: 1.0.5 - FORCE_REBUILD_TIMESTAMP: 20250205_1200
- * Deze comment dwingt de build-engine om een nieuwe versie te genereren.
- */
-
-const { FiUsers, FiCalendar, FiBook, FiCertificate, FiCheck, FiExternalLink, FiMail, FiClock, FiMapPin } = FiIcons;
+const { FiUsers, FiCalendar, FiBook, FiCertificate, FiCheck, FiExternalLink, FiMail, FiClock, FiMapPin, FiArrowRight } = FiIcons;
 
 const Trainingen = () => {
   const trainings = [
+    {
+      title: "Werk slim met AI",
+      level: "Beginner",
+      duration: "1 dag / Incompany",
+      format: "Live op locatie",
+      audience: "Docenten & Teams",
+      topics: [
+        "Effectief gebruik van AI-assistenten",
+        "Prompting voor de onderwijspraktijk",
+        "Tijdsbesparing bij administratie",
+        "Didactische integratie van AI"
+      ],
+      price: "Op aanvraag",
+      priceNote: "Incompany of individueel",
+      nextDates: ["Op aanvraag (neem contact op)"],
+      image: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400&h=250&fit=crop",
+      link: "/over-ons#contact",
+      isExternal: false,
+      organizer: "Onderwijs.ai"
+    },
     {
       title: "Opleiding AI voor Schoolleiders",
       level: "Management",
@@ -112,25 +127,6 @@ const Trainingen = () => {
       link: "https://www.fontys.nl/Opleidingen/AI-voor-het-Onderwijs-Basis-cursus.htm",
       isExternal: true,
       organizer: "Fontys"
-    },
-    {
-      title: "Werk slim met AI",
-      level: "Beginner",
-      duration: "3 dagen",
-      format: "Live",
-      audience: "Docenten & Schoolleiders",
-      topics: [
-        "Praktische AI-toepassingen",
-        "AI-tools leren gebruiken",
-        "AI-prompts schrijven",
-        "Ethische aspecten van AI"
-      ],
-      price: "Prijs op aanvraag",
-      nextDates: ["Meerdere data beschikbaar"],
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop",
-      link: "https://onderwijs-ai.nl/opleidingen/werk-slim-met-ai",
-      isExternal: true,
-      organizer: "Onderwijs-AI"
     }
   ];
 
@@ -142,7 +138,17 @@ const Trainingen = () => {
   ];
 
   const handleExternalLink = (url) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    if (url.startsWith('http')) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      // Internal link handling (e.g. #contact)
+      const [path, hash] = url.split('#');
+      if (hash) {
+        window.location.hash = url;
+      } else {
+        window.location.pathname = path;
+      }
+    }
   };
 
   return (
@@ -152,14 +158,15 @@ const Trainingen = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }}>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">AI Trainingen voor Onderwijsprofessionals</h1>
+              <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                AI Trainingen voor Onderwijsprofessionals
+              </h1>
               <p className="text-xl text-blue-100 mb-8">
                 Praktische workshops en cursussen om AI effectief te integreren in jouw onderwijspraktijk. Voor docenten, mentoren en schoolleiders.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="#trainingen" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2">
-                  <SafeIcon icon={FiCalendar} />
-                  <span>Bekijk Trainingen</span>
+                  <SafeIcon icon={FiCalendar} /> <span>Bekijk Aanbod</span>
                 </a>
               </div>
             </motion.div>
@@ -174,8 +181,8 @@ const Trainingen = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Waarom kiezen voor deze trainingen?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Geselecteerd aanbod van gerenommeerde onderwijsinstellingen</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Waarom deze selectie?</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Geselecteerd aanbod dat past binnen het Onderwijs-AI Framework</p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
@@ -196,9 +203,8 @@ const Trainingen = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Trainingen & Opleidingen</h2>
-            <p className="text-xl text-gray-600">Voor docenten en schoolleiders</p>
+            <p className="text-xl text-gray-600">Aanbod voor docenten en schoolleiders</p>
           </motion.div>
-          
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {trainings.map((training, index) => (
               <motion.div key={index} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow flex flex-col h-full">
@@ -252,7 +258,7 @@ const Trainingen = () => {
                     </div>
                     <button onClick={() => handleExternalLink(training.link)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
                       <span>Info</span>
-                      <SafeIcon icon={FiExternalLink} className="text-sm" />
+                      <SafeIcon icon={training.isExternal ? FiExternalLink : FiArrowRight} className="text-sm" />
                     </button>
                   </div>
                   {training.priceNote && <div className="text-[10px] text-gray-500 mt-2 italic leading-tight">{training.priceNote}</div>}
@@ -261,7 +267,6 @@ const Trainingen = () => {
               </motion.div>
             ))}
           </div>
-
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-16 text-center">
             <div className="bg-blue-50 border border-blue-200 rounded-2xl p-8 max-w-4xl mx-auto">
               <div className="flex items-center justify-center space-x-3 mb-4">
@@ -270,24 +275,10 @@ const Trainingen = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900">Voor Trainingsaanbieders</h3>
               </div>
-              <p className="text-gray-700 mb-6">Wil je ook jouw training hier vermeld zien? We helpen graag andere onderwijsprofessionals om de juiste AI-training te vinden.</p>
+              <p className="text-gray-700 mb-6">Wil je ook jouw training hier vermeld zien? We helpen graag andere onderwijsprofessionals om de juiste AI-training te vinden die past binnen ons framework.</p>
               <Link to="/over-ons#contact" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center space-x-2">
-                <SafeIcon icon={FiMail} />
-                <span>Stuur een bericht</span>
+                <SafeIcon icon={FiMail} /> <span>Stuur een bericht</span>
               </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Klaar om AI te integreren in jouw onderwijs?</h2>
-            <p className="text-xl text-blue-100 mb-8">Schrijf je in voor een training of vraag meer informatie aan</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#trainingen" className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Bekijk alle trainingen</a>
             </div>
           </motion.div>
         </div>

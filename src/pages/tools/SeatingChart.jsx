@@ -26,15 +26,9 @@ const SeatingChart = () => {
     return chunks;
   };
 
-  /**
-   * 1️⃣ HARD MODEL: 1 RIJ = 1 TAFEL = 1 LEERLING
-   * De relatiekolommen (D-G) beïnvloeden alleen de volgorde/positie, 
-   * NOOIT de inhoud van de tafel zelf.
-   */
   const applySeatingLogic = (students, currentGoal, currentLayout) => {
     if (!students || students.length === 0) return [];
     
-    // Initialiseer de resultaat-matrix met exact hetzelfde aantal plekken als leerlingen
     const result = new Array(students.length).fill(null);
     const remaining = [...students];
     const cols = currentLayout === 'rijen' ? 6 : 4;
@@ -60,7 +54,6 @@ const SeatingChart = () => {
         const neighborName = normalize(neighbor.name);
         const studentName = normalize(student.name);
         
-        // Relatie-checks (D-G data)
         const hasNeg = student.neg.some(n => normalize(n) === neighborName) || 
                        neighbor.neg.some(n => normalize(n) === studentName);
         const hasPos = student.pos.some(p => normalize(p) === neighborName) || 
@@ -77,7 +70,6 @@ const SeatingChart = () => {
       return score;
     };
 
-    // Plaats leerlingen één voor één op de beste plek
     for (let i = 0; i < students.length; i++) {
       let bestSpot = -1;
       let maxScore = -Infinity;
@@ -95,8 +87,6 @@ const SeatingChart = () => {
       if (bestSpot !== -1) result[bestSpot] = currentStudent;
     }
 
-    // 3️⃣ RENDERING GUARD: Alleen de naam uit Kolom C wordt gerenderd. 
-    // Geen samenvoegingen mogelijk.
     return result.map(s => s?.name || "");
   };
 
@@ -126,29 +116,22 @@ const SeatingChart = () => {
       const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
       if (lines.length <= 1) throw new Error("Geen leerlingen gevonden vanaf rij 2.");
       
-      // Detecteer separator (komma of puntkomma)
       const firstLine = lines[0];
       const separator = firstLine.includes(';') ? ';' : ',';
 
-      // Custom CSV parser die lege velden (,,) niet overslaat
       const parseCSVLine = (line) => {
         const result = [];
         let current = '';
         let inQuotes = false;
-        
         for (let i = 0; i < line.length; i++) {
           const char = line[i];
-          if (char === '"') {
-            inQuotes = !inQuotes;
-          } else if (char === separator && !inQuotes) {
+          if (char === '"') inQuotes = !inQuotes;
+          else if (char === separator && !inQuotes) {
             result.push(current);
             current = '';
-          } else {
-            current += char;
-          }
+          } else current += char;
         }
         result.push(current);
-        // Clean quotes
         return result.map(val => val.replace(/^"|"$/g, '').trim());
       };
 
@@ -157,15 +140,19 @@ const SeatingChart = () => {
       return dataRows.map(line => {
         const values = parseCSVLine(line);
         
-        // 1️⃣ & 2️⃣: Kolom C is de enige bron voor de naam (Index 2)
-        // Door de robuuste parser is index 2 nu gegarandeerd Kolom C, ook als A/B leeg zijn.
-        const name = values[2] || "";
+        /**
+         * 3️⃣ RENDERING GUARD (ULTRA HARD FIX):
+         * Pak Kolom C (index 2). 
+         * ALS er een separator in staat (komma, ampersand, plus of ' en ') 
+         * -> pak alleen het EERSTE deel.
+         */
+        const rawName = values[2] || "";
+        const name = rawName.split(/[|,&+]| en /i)[0].trim();
         
         if (!name) return null;
 
         return {
-          name: name, // Gebruikt als label op de tafel
-          // Relatie-data voor logica, NOOIT voor tafel-inhoud
+          name: name,
           pos: [...(values[3] || "").split(','), ...(values[5] || "").split(',')].filter(n => n.trim() !== ""),
           neg: [...(values[4] || "").split(','), ...(values[6] || "").split(',')].filter(n => n.trim() !== "")
         };
@@ -179,12 +166,10 @@ const SeatingChart = () => {
     if (isLoading) return;
     setErrorMessage('');
     setIsLoading(true);
-    
     try {
       if (!sheetLink.trim()) throw new Error("Voer eerst een Google Sheet link in.");
       const data = await fetchSheetData(sheetLink);
       if (data.length === 0) throw new Error("Geen leerlingen gevonden in kolom C.");
-
       setStudentData(data);
       const initialOrder = applySeatingLogic(data, goal, layout);
       setDisplayStudents(initialOrder);
@@ -195,12 +180,6 @@ const SeatingChart = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleReset = () => {
-    setIsGenerated(false);
-    setErrorMessage('');
-    setDisplayStudents([]);
   };
 
   const handleDownload = () => {
@@ -335,7 +314,6 @@ const SeatingChart = () => {
                             <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mb-3">
                               <SafeIcon icon={FiUsers} className="text-gray-400 text-[10px]" />
                             </div>
-                            {/* RENDERING GUARD: Alleen de pure string wordt getoond */}
                             <span className="text-[11px] font-bold text-gray-800 truncate w-full px-1">{name}</span>
                           </motion.div>
                         ))}
