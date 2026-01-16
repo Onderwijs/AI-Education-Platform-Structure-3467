@@ -1,12 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiUsers, FiCalendar, FiBook, FiCertificate, FiCheck, FiExternalLink, FiMail, FiClock, FiMapPin, FiArrowRight } = FiIcons;
+const { FiUsers, FiCalendar, FiBook, FiCheck, FiExternalLink, FiMail, FiClock, FiArrowRight } = FiIcons;
 
 const Trainingen = () => {
+  useEffect(() => {
+    document.title = "AI Trainingen & Workshops voor Onderwijs | Onderwijs.ai";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', 'Praktische AI-trainingen voor docenten en schoolleiders. Incompany workshops en online opleidingen gericht op didactiek en tijdsbesparing.');
+
+    const trainingsData = [
+      {
+        "@type": "Course",
+        "name": "Werk slim met AI",
+        "description": "Effectief gebruik van AI-assistenten voor de onderwijspraktijk.",
+        "provider": { "@type": "Organization", "name": "Onderwijs.ai" }
+      },
+      {
+        "@type": "Course",
+        "name": "Opleiding AI voor Schoolleiders",
+        "description": "Strategische visie op AI in school en beleidsvorming.",
+        "provider": { "@type": "Organization", "name": "Voion / CNV" }
+      }
+    ];
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": trainingsData.map((t, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": t
+      }))
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'trainingen-schema';
+    script.innerHTML = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => {
+      const oldScript = document.getElementById('trainingen-schema');
+      if (oldScript) oldScript.remove();
+    };
+  }, []);
+
   const trainings = [
     {
       title: "Werk slim met AI",
@@ -141,7 +183,6 @@ const Trainingen = () => {
     if (url.startsWith('http')) {
       window.open(url, '_blank', 'noopener,noreferrer');
     } else {
-      // Internal link handling (e.g. #contact)
       const [path, hash] = url.split('#');
       if (hash) {
         window.location.hash = url;

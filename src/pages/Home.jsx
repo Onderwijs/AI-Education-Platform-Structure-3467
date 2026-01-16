@@ -1,14 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import { downloadStartersgids } from '../utils/downloadUtils';
 
-const { FiDownload, FiBook, FiUsers, FiTool, FiTrendingUp, FiAward, FiPlay, FiArrowRight } = FiIcons;
+const { FiDownload, FiBook, FiUsers, FiTool, FiTrendingUp, FiArrowRight } = FiIcons;
 
 const Home = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Onderwijs.ai | De standaard voor verantwoord AI-gebruik in het onderwijs";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', 'Het normerend kader voor AI in de klas. Ontdek het Onderwijs-AI Framework™, praktische tools, didactisch lesmateriaal en trainingen voor docenten.');
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Onderwijs.ai",
+      "url": "https://onderwijs.ai",
+      "logo": "https://onderwijs.ai/assets/logo.png",
+      "description": "De standaard voor verantwoord AI-gebruik in het onderwijs. Focus op het Onderwijs-AI Framework™.",
+      "sameAs": ["https://www.linkedin.com/in/maikewarner/"]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'home-schema';
+    script.innerHTML = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => {
+      const oldScript = document.getElementById('home-schema');
+      if (oldScript) oldScript.remove();
+    };
+  }, []);
 
   const features = [
     { icon: FiBook, title: "Praktische Lessen", description: "Direct toepasbare AI-lessen voor elke onderwijslaag. Voor Levels 1–3 van het Onderwijs-AI Framework™", path: "/leslab" },
@@ -33,26 +60,14 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                De standaard voor verantwoord AI-gebruik in het onderwijs
-              </h1>
-              <p className="text-xl mb-8 text-primary-100">
-                Praktische tools, lessen en trainingen, ingebed in een helder onderwijsframework voor docenten, teams en scholen.
-              </p>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6"> De standaard voor verantwoord AI-gebruik in het onderwijs </h1>
+              <p className="text-xl mb-8 text-primary-100"> Praktische tools, lessen en trainingen, ingebed in een helder onderwijsframework voor docenten, teams en scholen. </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link
-                  to="/framework"
-                  className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-lg border-2 border-white"
-                >
-                  <SafeIcon icon={FiTrendingUp} />
-                  <span>Ontdek het Onderwijs-AI Framework™</span>
+                <Link to="/framework" className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2 shadow-lg border-2 border-white" >
+                  <SafeIcon icon={FiTrendingUp} /> <span>Ontdek het Onderwijs-AI Framework™</span>
                 </Link>
-                <Link
-                  to="/ai-tools"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2"
-                >
-                  <SafeIcon icon={FiTool} />
-                  <span>AI-tools overzicht</span>
+                <Link to="/ai-tools" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors flex items-center justify-center space-x-2" >
+                  <SafeIcon icon={FiTool} /> <span>AI-tools overzicht</span>
                 </Link>
               </div>
               <div className="grid grid-cols-3 gap-6">
@@ -81,9 +96,7 @@ const Home = () => {
       {/* Under Hero Framework Text */}
       <div className="bg-white py-6 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-gray-600">
-            Onderwijs.ai werkt vanuit het <Link to="/framework" className="text-primary-600 font-bold hover:underline">Onderwijs-AI Framework™</Link>: zes niveaus die scholen helpen bepalen wat werkt, wat mag en wat verantwoord is bij het inzetten van AI.
-          </p>
+          <p className="text-gray-600"> Onderwijs.ai werkt vanuit het <Link to="/framework" className="text-primary-600 font-bold hover:underline">Onderwijs-AI Framework™</Link>: zes niveaus die scholen helpen bepalen wat werkt, wat mag en wat verantwoord is bij het inzetten van AI. </p>
         </div>
       </div>
 
@@ -91,28 +104,14 @@ const Home = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Waarom AI in het Onderwijs?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Kunstmatige intelligentie biedt ongekende mogelijkheden om onderwijs persoonlijker, effectiever en toegankelijker te maken.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"> Waarom AI in het Onderwijs? </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto"> Kunstmatige intelligentie biedt ongekende mogelijkheden om onderwijs persoonlijker, effectiever en toegankelijker te maken. </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow cursor-pointer"
-                onClick={() => navigate(feature.path)}
-              >
+              <motion.div key={index} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow cursor-pointer" onClick={() => navigate(feature.path)} >
                 <SafeIcon icon={feature.icon} className="text-4xl text-primary-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {feature.title}
-                </h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3"> {feature.title} </h3>
                 <p className="text-gray-600">{feature.description}</p>
               </motion.div>
             ))}
@@ -124,35 +123,19 @@ const Home = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Ontdek Onze Highlights
-            </h2>
-            <p className="text-xl text-gray-600">
-              Van praktische lessen tot complete trainingen
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"> Ontdek Onze Highlights </h2>
+            <p className="text-xl text-gray-600"> Van praktische lessen tot complete trainingen </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {highlights.map((highlight, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-              >
+              <motion.div key={index} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" >
                 <img src={highlight.image} alt={highlight.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
-                  <div className="text-sm text-primary-600 font-medium mb-2">
-                    {highlight.category}
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {highlight.title}
-                  </h3>
+                  <div className="text-sm text-primary-600 font-medium mb-2"> {highlight.category} </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3"> {highlight.title} </h3>
                   <p className="text-gray-600 mb-4">{highlight.description}</p>
                   <Link to={highlight.link} className="inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium">
-                    <span>Meer info</span>
-                    <SafeIcon icon={FiArrowRight} />
+                    <span>Meer info</span> <SafeIcon icon={FiArrowRight} />
                   </Link>
                 </div>
               </motion.div>
@@ -165,23 +148,13 @@ const Home = () => {
       <section className="py-20 bg-primary-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Start vandaag met AI in jouw onderwijs
-            </h2>
-            <p className="text-xl text-primary-100 mb-8">
-              Download gratis onze AI-toolkit en ontvang nieuwe lessen en tips
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4"> Start vandaag met AI in jouw onderwijs </h2>
+            <p className="text-xl text-primary-100 mb-8"> Download gratis onze AI-toolkit en ontvang nieuwe lessen en tips </p>
             <div className="flex flex-col items-center space-y-4">
-              <button
-                onClick={handleDownloadClick}
-                className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 shadow-lg border-2 border-white"
-              >
-                <SafeIcon icon={FiDownload} />
-                <span>AI Handleiding PDF</span>
+              <button onClick={handleDownloadClick} className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 shadow-lg border-2 border-white" >
+                <SafeIcon icon={FiDownload} /> <span>AI Handleiding PDF</span>
               </button>
-              <div className="text-primary-200 text-sm">
-                ✨ Praktische gids • Nederlandse focus • Direct te gebruiken
-              </div>
+              <div className="text-primary-200 text-sm"> ✨ Praktische gids • Nederlandse focus • Direct te gebruiken </div>
             </div>
           </motion.div>
         </div>
