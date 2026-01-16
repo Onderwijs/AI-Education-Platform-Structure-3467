@@ -139,13 +139,6 @@ const SeatingChart = () => {
       
       return dataRows.map(line => {
         const values = parseCSVLine(line);
-        
-        /**
-         * 3️⃣ RENDERING GUARD (ULTRA HARD FIX):
-         * Pak Kolom C (index 2). 
-         * ALS er een separator in staat (komma, ampersand, plus of ' en ') 
-         * -> pak alleen het EERSTE deel.
-         */
         const rawName = values[2] || "";
         const name = rawName.split(/[|,&+]| en /i)[0].trim();
         
@@ -205,6 +198,25 @@ const SeatingChart = () => {
                 </h2>
               </div>
               <div className="p-6 space-y-8">
+                {/* Zo werkt het instructieblok */}
+                <div className="p-4 bg-indigo-50/50 rounded-xl border border-indigo-100 text-sm text-indigo-900 leading-relaxed mb-4">
+                  <p className="font-bold mb-2">Zo werkt het:</p>
+                  <ul className="space-y-2">
+                    <li className="flex gap-2">
+                      <span className="font-bold text-indigo-600">1.</span>
+                      <span>Laat leerlingen eerst het sociogram invullen.</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="font-bold text-indigo-600">2.</span>
+                      <span>Verzamel de antwoorden automatisch in een Google Sheet.</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="font-bold text-indigo-600">3.</span>
+                      <span>Gebruik deze Google Sheet om met de klassenplattegrondtool een optimale tafelindeling te genereren.</span>
+                    </li>
+                  </ul>
+                </div>
+
                 <div>
                   <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Stap 1 – Kies opstelling</label>
                   <div className="grid grid-cols-2 gap-3">
