@@ -27,14 +27,17 @@ const LesLab = () => {
     return matchesMonth && matchesLevel;
   });
 
-  const handleDownload = (lessonTitle) => {
-    setDownloadStarted(true);
-    // Nu roepen we de geüpdatete functie aan die de CONTENT ophaalt
-    downloadLesson(lessonTitle);
-    setTimeout(() => {
-      setDownloadStarted(false);
-    }, 2000);
-  };
+ const handleDownload = (lesson) => {
+  setDownloadStarted(true);
+
+  // Directe browser-download vanuit /public/lessons
+  window.location.href = `/lessons/${lesson.file}`;
+
+  setTimeout(() => {
+    setDownloadStarted(false);
+  }, 2000);
+};
+
 
   return (
     <motion.div
@@ -166,7 +169,7 @@ const LesLab = () => {
               )}
 
               <button 
-                onClick={() => handleDownload(currentLesson.title)}
+                onClick={() => handleDownload(currentLesson)}
                 disabled={downloadStarted}
                 className={`bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 ${downloadStarted ? 'opacity-75' : ''}`}
               >
@@ -271,7 +274,7 @@ const LesLab = () => {
                   </div>
                   
                   <button 
-                    onClick={() => handleDownload(lesson.title)}
+                    onClick={() => handleDownload(lesson)}
                     className="w-full bg-emerald-50 text-emerald-700 px-4 py-2 rounded-lg hover:bg-emerald-100 transition-colors flex items-center justify-center space-x-2 font-medium border border-emerald-100"
                   >
                     <SafeIcon icon={FiDownload} />
