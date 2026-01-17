@@ -66,7 +66,7 @@ const Trainingen = () => {
       priceNote: "Incompany of individueel",
       nextDates: ["Op aanvraag (neem contact op)"],
       image: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400&h=250&fit=crop",
-      link: "/over-ons#contact",
+      link: "https://onderwijs-ai.nl/opleidingen/werk-slim-met-ai",
       isExternal: false,
       organizer: "Onderwijs.ai"
     },
