@@ -64,9 +64,12 @@ function App() {
               <Route path="/tools/taalcoach" element={<Taalcoach />} />
               <Route path="/tools/presentatiegenerator" element={<PresentatieGenerator />} />
               <Route path="/tools/mentorles" element={<MentorLessonPlanner />} />
+              <Route path="/tools/lob" element={<LOBTool />} />
               <Route path="/tools/oudermailgenerator" element={<ParentEmailGenerator />} />
               <Route path="/tools/sociogram" element={<Sociogram />} />
               <Route path="/tools/klassenplattegrond" element={<SeatingChart />} />
+             
+
 
               {/* 3. Voor Docenten */}
               <Route path="/voor-docenten/po" element={<PO />} />
