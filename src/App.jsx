@@ -29,6 +29,8 @@ import MentorLessonPlanner from './pages/tools/MentorLessonPlanner';
 import ParentEmailGenerator from './pages/tools/ParentEmailGenerator';
 import Sociogram from './pages/tools/Sociogram';
 import SeatingChart from './pages/tools/SeatingChart';
+import LOBTool from './pages/tools/LOBTool';
+
 
 // Kenniscentrum
 import Kennisbank from './pages/kenniscentrum/Kennisbank';
