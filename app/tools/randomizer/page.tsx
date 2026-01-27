@@ -1,4 +1,4 @@
-import RandomizerTool from "../../../src/pages/tools/RandomizerTool";
+import RandomizerTool from "./RandomizerTool";
 
 export default function RandomizerPage() {
   return <RandomizerTool />;
