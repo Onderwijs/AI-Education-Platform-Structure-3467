@@ -56,6 +56,15 @@ const ToolsOverview = () => {
       color: "bg-purple-100 text-purple-600",
       status: "In ontwikkeling"
     }
+    {
+      id: 'randomizer',
+      name: "Randomizer",
+      desc: "Maak willekeurige tweetallen, groepjes of een volgorde voor je klas.",
+      icon: FiList,
+      color: "bg-violet-100 text-violet-600",
+      status: "Beschikbaar"
+}
+
   ];
 
   return (
