@@ -7,6 +7,8 @@ const tools = [
   { name: "Tekstherschrijver", href: "/tools/tekstherschrijver", desc: "Herschrijf teksten naar B1, C1 of leerlingentaal." },
   { name: "Taalcoach", href: "/tools/taalcoach", desc: "Krijg feedback en verbeteringen op zinnen." },
   { name: "Presentatiegenerator", href: "/tools/presentatiegenerator", desc: "Genereer een slide-outline voor je presentatie." },
+  { name: "Randomizer", href: "/tools/randomizer", desc: "Maak willekeurige tweetallen, groepjes of een volgorde voor je klas." }
+
 ];
 
 export default function ToolsPage() {
