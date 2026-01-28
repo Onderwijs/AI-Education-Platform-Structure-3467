@@ -1,3 +1,20 @@
+
+<Router>
+  <div className="min-h-screen flex flex-col">
+    <Navbar />
+    <main className="flex-1">
+      <AnimatePresence mode="wait">
+        <Routes>
+          ...
+        </Routes>
+      </AnimatePresence>
+    </main>
+    <Footer />
+    <CookieBanner />
+  </div>
+</Router>
+
+
 import React from 'react';
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import {motion,AnimatePresence} from 'framer-motion';
