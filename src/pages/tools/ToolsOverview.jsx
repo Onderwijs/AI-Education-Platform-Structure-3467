@@ -16,6 +16,7 @@ const ToolsOverview = () => {
     { name: "Mentorlesplanner", path: "/tools/mentorles", icon: FiUsers, desc: "Bedenk snel een veilige en gestructureerde mentorles.", level: "Level 3" },
     { name: "Mentoraat - LOB", path: "/tools/lob", icon: FiBriefcase, desc: "Ontwerp LOB-activiteiten en gesprekken voor loopbaanbegeleiding.", level: "Level 2–3" },
     { name: "Ouder-mailgenerator", path: "/tools/oudermailgenerator", icon: FiMail, desc: "Genereer snel een duidelijke en professionele e-mail voor ouders over schoolactiviteiten.", level: "Level 2" },
+    { name: "Randomizer", path: "/tools/randomizer", icon: FiShuffle, desc: "Maak willekeurige groepen, duo’s of volgordes.", level: "Level 3–4" },
     { name: "Interactief Sociogram", path: "/tools/sociogram", icon: FiActivity, desc: "Maak een netwerkvisualisatie van klaskeuzes (gezellig, niet gezellig, samenwerken, niet samenwerken).", level: "Level 3–4" },
     { name: "Klassenplattegrond", path: "/tools/klassenplattegrond", icon: FiLayout, desc: "Zet je sociogram om in een praktische klassenplattegrond op basis van sociale veiligheid.", level: "Level 3–4" }
   ];
