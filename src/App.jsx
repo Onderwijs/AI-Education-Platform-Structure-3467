@@ -30,6 +30,7 @@ import ParentEmailGenerator from './pages/tools/ParentEmailGenerator';
 import Sociogram from './pages/tools/Sociogram';
 import SeatingChart from './pages/tools/SeatingChart';
 import LOBTool from './pages/tools/LOBTool';
+import RandomizerTool from "./pages/tools/RandomizerTool";
 
 
 // Kenniscentrum
@@ -68,7 +69,7 @@ function App() {
               <Route path="/tools/oudermailgenerator" element={<ParentEmailGenerator />} />
               <Route path="/tools/sociogram" element={<Sociogram />} />
               <Route path="/tools/klassenplattegrond" element={<SeatingChart />} />
-             
+              <Route path="/tools/randomizer" element={<RandomizerTool />} />
 
 
               {/* 3. Voor Docenten */}
