@@ -4,7 +4,7 @@ import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid, FiUsers, FiMail, FiActivity, FiLayout, FiBriefcase } = FiIcons;
+const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid, FiUsers, FiMail, FiActivity, FiLayout, FiBriefcase, FiShuffle } = FiIcons;
 
 const ToolsOverview = () => {
   const tools = [
