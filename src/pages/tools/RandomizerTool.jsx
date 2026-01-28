@@ -9,31 +9,32 @@ const {
   FiUsers,
   FiList,
   FiX,
-  FiUserPlus
+  FiUserPlus,
+  FiMinus,
+  FiPlus
 } = FiIcons;
 
 const RandomizerTool = () => {
   const [rawInput, setRawInput] = useState('');
   const [students, setStudents] = useState([]);
   const [mode, setMode] = useState('duos');
+  const [groupSize, setGroupSize] = useState(3);
   const [result, setResult] = useState(null);
 
   /* -------------------------------
      1. Input normaliseren (Greta)
   --------------------------------*/
-  const normalizeInput = () => {
-    const list = rawInput
-      .split(/[\n,;]+/)
-      .map(n => n.trim())
-      .filter(Boolean);
-
-    const unique = [...new Set(list)];
-    setStudents(unique);
-    setResult(null);
+  const normalizeInput = (input) => {
+    return [...new Set(
+      input
+        .split(/[\n,;]+/)
+        .map(n => n.trim())
+        .filter(Boolean)
+    )];
   };
 
   /* -------------------------------
-     2. Shuffle helpers
+     2. Shuffle helper
   --------------------------------*/
   const shuffle = (arr) => {
     const copy = [...arr];
@@ -45,40 +46,57 @@ const RandomizerTool = () => {
   };
 
   /* -------------------------------
-     3. Hussel-logica (Greta)
+     3. Duo-logica (ALTIJD 2)
+  --------------------------------*/
+  const createDuos = (names) => {
+    const shuffled = shuffle(names);
+    const duos = [];
+
+    for (let i = 0; i < shuffled.length; i += 2) {
+      duos.push(shuffled.slice(i, i + 2));
+    }
+
+    return duos;
+  };
+
+  /* -------------------------------
+     4. Groepen-logica (instelbaar)
+  --------------------------------*/
+  const createGroups = (names, size) => {
+    const shuffled = shuffle(names);
+    const groups = [];
+
+    for (let i = 0; i < shuffled.length; i += size) {
+      groups.push(shuffled.slice(i, i + size));
+    }
+
+    return groups;
+  };
+
+  /* -------------------------------
+     5. Husselen
   --------------------------------*/
   const hussel = () => {
-    if (students.length === 0) return;
+    const normalized = normalizeInput(rawInput);
+    setStudents(normalized);
 
-    const shuffled = shuffle(students);
+    if (normalized.length === 0) return;
 
     if (mode === 'volgorde') {
-      setResult(shuffled);
-      return;
+      setResult(shuffle(normalized));
     }
 
     if (mode === 'duos') {
-      const duos = [];
-      for (let i = 0; i < shuffled.length; i += 2) {
-        duos.push(shuffled.slice(i, i + 2));
-      }
-      setResult(duos);
-      return;
+      setResult(createDuos(normalized));
     }
 
     if (mode === 'groepen') {
-      const size = 3;
-      const groepen = [];
-      for (let i = 0; i < shuffled.length; i += size) {
-        groepen.push(shuffled.slice(i, i + size));
-      }
-      setResult(groepen);
+      setResult(createGroups(normalized, groupSize));
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* ✅ HEADER (zoals Presentatiegenerator) */}
       <SimpleHero
         title="Leerlingen randomizer"
         subtitle="Maak willekeurige duo’s, groepen of een volgorde"
@@ -88,37 +106,30 @@ const RandomizerTool = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-          {/* ================= LEFT: INPUT ================= */}
+          {/* LEFT */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="lg:col-span-5 bg-white rounded-2xl shadow-lg p-6 border border-gray-100 h-fit"
+            className="lg:col-span-5 bg-white rounded-2xl shadow-lg p-6 border"
           >
-            <div className="flex items-center justify-between mb-6 pb-4 border-b">
+            <div className="flex items-center justify-between mb-4 pb-3 border-b">
               <div className="flex items-center gap-2">
                 <SafeIcon icon={FiUserPlus} className="text-2xl text-purple-600" />
                 <h2 className="text-xl font-bold">Leerlingenlijst</h2>
               </div>
-              <span className="text-xs font-bold uppercase bg-purple-100 text-purple-700 px-3 py-1 rounded-full">
-                Input
-              </span>
             </div>
-
-            <p className="text-sm text-gray-600 mb-3">
-              Input accepteert: nieuwe regels, komma’s en puntkomma’s.
-            </p>
 
             <textarea
               rows={6}
               value={rawInput}
               onChange={(e) => setRawInput(e.target.value)}
-              placeholder="Plak hier de namen (bijv. vanuit SOM, Magister, Excel of Word)"
+              placeholder="Plak hier de namen (nieuwe regels, komma’s of puntkomma’s)"
               className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500"
             />
 
-            <div className="flex justify-between items-center mt-2 text-sm">
+            <div className="flex justify-between text-sm mt-2">
               <span className="text-gray-500">
-                {students.length} unieke leerlingen
+                {normalizeInput(rawInput).length} unieke leerlingen
               </span>
               <button
                 onClick={() => {
@@ -126,20 +137,13 @@ const RandomizerTool = () => {
                   setStudents([]);
                   setResult(null);
                 }}
-                className="text-red-500 hover:underline flex items-center gap-1"
+                className="text-red-500 flex items-center gap-1"
               >
                 <SafeIcon icon={FiX} /> Leegmaken
               </button>
             </div>
 
-            <button
-              onClick={normalizeInput}
-              className="w-full mt-4 bg-purple-600 text-white py-2.5 rounded-lg font-semibold hover:bg-purple-700"
-            >
-              Normaliseer invoer
-            </button>
-
-            {/* ===== MODES ===== */}
+            {/* MODES */}
             <div className="mt-6">
               <h3 className="font-semibold mb-3">Instellingen</h3>
 
@@ -155,7 +159,7 @@ const RandomizerTool = () => {
                     className={`border rounded-xl p-3 text-sm font-semibold flex flex-col items-center gap-1
                       ${mode === m.id
                         ? 'border-purple-600 text-purple-600 bg-purple-50'
-                        : 'border-gray-200 hover:border-gray-300'}
+                        : 'border-gray-200'}
                     `}
                   >
                     <SafeIcon icon={m.icon} className="text-xl" />
@@ -164,54 +168,68 @@ const RandomizerTool = () => {
                 ))}
               </div>
 
-              {/* ✅ Husselen: WIT ICON, GEEN BLAUWE BG */}
+              {/* GROUP SIZE */}
+              {mode === 'groepen' && (
+                <div className="mt-4">
+                <label className="block text-sm font-medium mb-2">
+                  Leerlingen per groep
+                  </label>
+
+                  <div className="flex gap-2">
+                  {[3, 4, 5, 6].map(size => (
+              <button
+                key={size}
+                onClick={() => setGroupSize(size)}
+                className={`px-4 py-2 rounded-lg font-semibold border
+                ${groupSize === size
+                ? 'bg-purple-600 text-white border-purple-600'
+                : 'bg-white text-gray-700 border-gray-300 hover:border-purple-400'}
+              `}
+              >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+
               <button
                 onClick={hussel}
                 className="w-full mt-4 bg-purple-500 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-purple-600"
               >
-                <SafeIcon icon={FiShuffle} className="text-white" />
+                <SafeIcon icon={FiShuffle} />
                 Husselen!
               </button>
             </div>
           </motion.div>
 
-          {/* ================= RIGHT: RESULT ================= */}
-          <div className="lg:col-span-7">
+          {/* RIGHT */}
+          <div className="lg:col-span-7 space-y-4">
             {!result ? (
-              <div className="bg-white border-2 border-dashed border-gray-200 rounded-2xl p-10 text-center h-full flex flex-col items-center justify-center text-gray-400 min-h-[400px]">
+              <div className="bg-white border-2 border-dashed rounded-2xl p-10 text-center text-gray-400 min-h-[400px] flex flex-col items-center justify-center">
                 <SafeIcon icon={FiShuffle} className="text-5xl mb-4 opacity-30" />
-                <h3 className="text-lg font-semibold text-gray-700">
-                  Klaar om te husselen
-                </h3>
-                <p>Voer namen in en kies een modus.</p>
+                <p>Klaar om te husselen</p>
               </div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="space-y-4"
-              >
-                {Array.isArray(result[0]) ? (
-                  result.map((group, i) => (
-                    <div key={i} className="bg-white rounded-xl p-4 shadow border">
-                      <h4 className="font-bold mb-2">
-                        {mode === 'duos' ? `Duo ${i + 1}` : `Groep ${i + 1}`}
-                      </h4>
-                      <ul className="list-disc list-inside text-sm">
-                        {group.map((name, idx) => (
-                          <li key={idx}>{name}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))
-                ) : (
-                  <ol className="bg-white rounded-xl p-6 shadow border list-decimal list-inside">
-                    {result.map((name, i) => (
-                      <li key={i} className="py-1">{name}</li>
+            ) : Array.isArray(result[0]) ? (
+              result.map((group, i) => (
+                <div key={i} className="bg-white rounded-xl p-4 shadow border">
+                  <h4 className="font-bold mb-2">
+                    {mode === 'duos' ? `Duo ${i + 1}` : `Groep ${i + 1}`}
+                  </h4>
+                  <ul className="list-disc list-inside text-sm">
+                    {group.map((name, idx) => (
+                      <li key={idx}>{name}</li>
                     ))}
-                  </ol>
-                )}
-              </motion.div>
+                  </ul>
+                </div>
+              ))
+            ) : (
+              <ol className="bg-white rounded-xl p-6 shadow border list-decimal list-inside">
+                {result.map((name, i) => (
+                  <li key={i}>{name}</li>
+                ))}
+              </ol>
             )}
           </div>
 
