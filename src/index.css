@@ -237,3 +237,40 @@ body {
     background: white !important;
   }
 }
+
+/* =========================
+   PRINT STYLES – RANDOMIZER
+   ========================= */
+@media print {
+  /* Verberg alles standaard */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Toon alleen de resultaten */
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+
+  /* Positioneer print area linksboven */
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  /* Verberg navigatie & footer expliciet */
+  nav,
+  footer,
+  header {
+    display: none !important;
+  }
+
+  /* Nettere print */
+  body {
+    background: white;
+  }
+}
+
