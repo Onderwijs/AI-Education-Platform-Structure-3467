@@ -207,7 +207,12 @@ const RandomizerTool = () => {
           {/* RIGHT */}
           {/* RIGHT */}
           
-<div className="lg:col-span-7 space-y-4">
+<div className="lg:col-span-7 space-y-4 print-area">
+  <div className="hidden print:block mb-6 text-sm text-gray-600">
+  <strong>Onderwijs.ai</strong> — https://onderwijs.ai<br />
+  Afgedrukt op: {new Date().toLocaleDateString('nl-NL')}
+</div>
+
 
   {result && (
     <div className="flex justify-end print:hidden">
