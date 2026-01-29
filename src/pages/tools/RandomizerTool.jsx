@@ -247,32 +247,6 @@ const RandomizerTool = () => {
   )}
 </div>
 
-             <div className="bg-white border-2 border-dashed rounded-2xl p-10 text-center text-gray-400 min-h-[400px] flex flex-col items-center justify-center">
-                <SafeIcon icon={FiShuffle} className="text-5xl mb-4 opacity-30" />
-                <p>Klaar om te husselen</p>
-              </div>
-            ) : Array.isArray(result[0]) ? (
-              result.map((group, i) => (
-                <div key={i} className="bg-white rounded-xl p-4 shadow border">
-                  <h4 className="font-bold mb-2">
-                    {mode === 'duos' ? `Duo ${i + 1}` : `Groep ${i + 1}`}
-                  </h4>
-                  <ul className="list-disc list-inside text-sm">
-                    {group.map((name, idx) => (
-                      <li key={idx}>{name}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))
-            ) : (
-              <ol className="bg-white rounded-xl p-6 shadow border list-decimal list-inside">
-                {result.map((name, i) => (
-                  <li key={i}>{name}</li>
-                ))}
-              </ol>
-            )}
-          </div>
-
         </div>
       </div>
     </div>
