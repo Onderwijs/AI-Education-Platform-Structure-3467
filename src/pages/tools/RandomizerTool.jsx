@@ -221,6 +221,23 @@ const RandomizerTool = () => {
   )}
 
   {!result ? (
+ 
+        </div>
+          {/* RIGHT */}
+<div className="lg:col-span-7 space-y-4">
+
+  {result && (
+    <div className="flex justify-end print:hidden">
+      <button
+        onClick={() => window.print()}
+        className="bg-gray-200 hover:bg-gray-300 text-sm px-4 py-2 rounded-lg"
+      >
+        Afdrukken / PDF
+      </button>
+    </div>
+  )}
+
+  {!result ? (
     <div className="bg-white border-2 border-dashed rounded-2xl p-10 text-center text-gray-400 min-h-[400px] flex flex-col items-center justify-center">
       <SafeIcon icon={FiShuffle} className="text-5xl mb-4 opacity-30" />
       <p>Klaar om te husselen</p>
@@ -247,7 +264,7 @@ const RandomizerTool = () => {
   )}
 </div>
 
-              <div className="bg-white border-2 border-dashed rounded-2xl p-10 text-center text-gray-400 min-h-[400px] flex flex-col items-center justify-center">
+             <div className="bg-white border-2 border-dashed rounded-2xl p-10 text-center text-gray-400 min-h-[400px] flex flex-col items-center justify-center">
                 <SafeIcon icon={FiShuffle} className="text-5xl mb-4 opacity-30" />
                 <p>Klaar om te husselen</p>
               </div>
