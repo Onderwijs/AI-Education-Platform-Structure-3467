@@ -206,24 +206,7 @@ const RandomizerTool = () => {
 
           {/* RIGHT */}
           {/* RIGHT */}
-<div className="lg:col-span-7 space-y-4">
-
-  {/* PRINT BUTTON – alleen zichtbaar als er resultaat is */}
-  {result && (
-    <div className="flex justify-end print:hidden">
-      <button
-        onClick={() => window.print()}
-        className="bg-gray-200 hover:bg-gray-300 text-sm px-4 py-2 rounded-lg"
-      >
-        Afdrukken / PDF
-      </button>
-    </div>
-  )}
-
-  {!result ? (
- 
-        </div>
-          {/* RIGHT */}
+          
 <div className="lg:col-span-7 space-y-4">
 
   {result && (
