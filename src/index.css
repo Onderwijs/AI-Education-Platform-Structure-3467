@@ -221,3 +221,19 @@ body {
     display: none;
   }
 }
+
+/* =====================
+   PRINT STYLES
+===================== */
+@media print {
+  nav,
+  footer,
+  button,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+  }
+}
