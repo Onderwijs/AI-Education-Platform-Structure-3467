@@ -222,54 +222,24 @@ body {
   }
 }
 
-/* =====================
-   PRINT STYLES
-===================== */
 @media print {
-  nav,
-  footer,
-  button,
-  .print\:hidden {
-    display: none !important;
-  }
-
-  body {
-    background: white !important;
-  }
-}
-
-/* =========================
-   PRINT STYLES – RANDOMIZER
-   ========================= */
-@media print {
-  /* Verberg alles standaard */
+  /* Verberg alles */
   body * {
     visibility: hidden;
   }
 
-  /* Toon alleen de resultaten */
+  /* Toon alleen print-area */
   .print-area,
   .print-area * {
     visibility: visible;
   }
 
-  /* Positioneer print area linksboven */
+  /* Plaats print-area netjes */
   .print-area {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-  }
-
-  /* Verberg navigatie & footer expliciet */
-  nav,
-  footer,
-  header {
-    display: none !important;
-  }
-
-  /* Nettere print */
-  body {
     background: white;
   }
 }
