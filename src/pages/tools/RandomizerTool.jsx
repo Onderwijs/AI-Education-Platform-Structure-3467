@@ -205,8 +205,7 @@ const RandomizerTool = () => {
           </motion.div>
 
           {/* RIGHT */}
-          <div className="lg:col-span-7 space-y-4">
-            {!result ? (
+          <div className="lg:col-span
               <div className="bg-white border-2 border-dashed rounded-2xl p-10 text-center text-gray-400 min-h-[400px] flex flex-col items-center justify-center">
                 <SafeIcon icon={FiShuffle} className="text-5xl mb-4 opacity-30" />
                 <p>Klaar om te husselen</p>
