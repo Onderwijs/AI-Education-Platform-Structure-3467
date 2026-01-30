@@ -77,7 +77,7 @@ const LeerPadTool = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 overflow-hidden">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
 
       {/* HEADER */}
       <div className="bg-white border-b border-slate-200 px-8 py-5 flex justify-between items-center">
