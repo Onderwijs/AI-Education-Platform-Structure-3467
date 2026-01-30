@@ -1,23 +1,6 @@
-
-<Router>
-  <div className="min-h-screen flex flex-col">
-    <Navbar />
-    <main className="flex-1">
-      <AnimatePresence mode="wait">
-        <Routes>
-          ...
-        </Routes>
-      </AnimatePresence>
-    </main>
-    <Footer />
-    <CookieBanner />
-  </div>
-</Router>
-
-
 import React from 'react';
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
-import {motion,AnimatePresence} from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Existing Components
 import Navbar from './components/layout/Navbar';
@@ -47,8 +30,8 @@ import ParentEmailGenerator from './pages/tools/ParentEmailGenerator';
 import Sociogram from './pages/tools/Sociogram';
 import SeatingChart from './pages/tools/SeatingChart';
 import LOBTool from './pages/tools/LOBTool';
-import RandomizerTool from "./pages/tools/RandomizerTool";
-
+import RandomizerTool from './pages/tools/RandomizerTool';
+import LeerPadTool from './pages/tools/LeerPadTool';
 
 // Kenniscentrum
 import Kennisbank from './pages/kenniscentrum/Kennisbank';
@@ -59,7 +42,6 @@ import Framework from './pages/Framework';
 import Downloads from './pages/Downloads';
 import TrainingDetail from './pages/trainingen/TrainingDetail';
 import LegalPage from './pages/legal/LegalPage';
-
 import './App.css';
 
 function App() {
@@ -80,14 +62,14 @@ function App() {
               <Route path="/tools/rubriekmaker" element={<RubricMaker />} />
               <Route path="/tools/toetsvragenmaker" element={<TestQuestionMaker />} />
               <Route path="/tools/taalcoach" element={<Taalcoach />} />
+              <Route path="/tools/leerpad" element={<LeerPadTool />} />
               <Route path="/tools/presentatiegenerator" element={<PresentatieGenerator />} />
               <Route path="/tools/mentorles" element={<MentorLessonPlanner />} />
               <Route path="/tools/lob" element={<LOBTool />} />
+              <Route path="/tools/randomizer" element={<RandomizerTool />} />
               <Route path="/tools/oudermailgenerator" element={<ParentEmailGenerator />} />
               <Route path="/tools/sociogram" element={<Sociogram />} />
               <Route path="/tools/klassenplattegrond" element={<SeatingChart />} />
-              <Route path="/tools/randomizer" element={<RandomizerTool />} />
-
 
               {/* 3. Voor Docenten */}
               <Route path="/voor-docenten/po" element={<PO />} />
@@ -109,7 +91,7 @@ function App() {
 
               {/* 6. Trainingen */}
               <Route path="/trainingen" element={<Trainingen />} />
-              
+
               {/* 7. Nieuwsbrief */}
               <Route path="/nieuwsbrief" element={<Nieuwsbrief />} />
 
