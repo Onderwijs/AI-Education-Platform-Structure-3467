@@ -4,7 +4,7 @@ import SimpleHero from '../../components/common/SimpleHero';
 import SafeIcon from '../../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid, FiUsers, FiMail, FiActivity, FiLayout, FiBriefcase, FiShuffle } = FiIcons;
+const { FiEdit3, FiMonitor, FiCpu, FiMessageSquare, FiGrid, FiUsers, FiMail, FiActivity, FiLayout, FiBriefcase, FiRefreshCw, FiMap } = FiIcons;
 
 const ToolsOverview = () => {
   const tools = [
@@ -12,11 +12,12 @@ const ToolsOverview = () => {
     { name: "Toetsvragenmaker", path: "/tools/toetsvragenmaker", icon: FiEdit3, desc: "Maak toetsvragen op elk niveau.", level: "Level 2–3" },
     { name: "Rubriekmaker", path: "/tools/rubriekmaker", icon: FiGrid, desc: "Stel beoordelingsrubrieken samen.", level: "Level 2–3" },
     { name: "Taalcoach", path: "/tools/taalcoach", icon: FiMessageSquare, desc: "Ontwerp taalactiviteiten en oefeningen.", level: "Level 2–3" },
+    { name: "LeerPad", path: "/tools/leerpad", icon: FiMap, desc: "Stap-voor-stap interactieve leerervaring zonder tijdsdruk.", level: "Level 2" },
     { name: "Presentatiegenerator", path: "/tools/presentatiegenerator", icon: FiMonitor, desc: "Maak outlines en dia-indelingen voor presentaties.", level: "Level 2" },
     { name: "Mentorlesplanner", path: "/tools/mentorles", icon: FiUsers, desc: "Bedenk snel een veilige en gestructureerde mentorles.", level: "Level 3" },
     { name: "Mentoraat - LOB", path: "/tools/lob", icon: FiBriefcase, desc: "Ontwerp LOB-activiteiten en gesprekken voor loopbaanbegeleiding.", level: "Level 2–3" },
     { name: "Ouder-mailgenerator", path: "/tools/oudermailgenerator", icon: FiMail, desc: "Genereer snel een duidelijke en professionele e-mail voor ouders over schoolactiviteiten.", level: "Level 2" },
-    { name: "Randomizer", path: "/tools/randomizer", icon: FiShuffle, desc: "Maak willekeurige groepen, duo’s of volgordes.", level: "Level 3–4" },
+    { name: "Randomizer", path: "/tools/randomizer", icon: FiRefreshCw, desc: "Maak razendsnel random tweetallen, groepjes of een presentatie-volgorde.", level: "Level 1" },
     { name: "Interactief Sociogram", path: "/tools/sociogram", icon: FiActivity, desc: "Maak een netwerkvisualisatie van klaskeuzes (gezellig, niet gezellig, samenwerken, niet samenwerken).", level: "Level 3–4" },
     { name: "Klassenplattegrond", path: "/tools/klassenplattegrond", icon: FiLayout, desc: "Zet je sociogram om in een praktische klassenplattegrond op basis van sociale veiligheid.", level: "Level 3–4" }
   ];
