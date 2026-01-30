@@ -142,7 +142,7 @@ export default function LeerPadTool() {
         </aside>
 
         {/* RECHTERKOLOM */}
-        <section className="lg:col-span-9 p-8 flex items-center justify-center">
+        <section className="lg:col-span-9 p-8 flex justify-center">
           <AnimatePresence mode="wait">
             {!isStarted ? (
               <motion.div
@@ -169,8 +169,8 @@ export default function LeerPadTool() {
                     {steps[activeStep].title}
                   </h3>
                 </div>
+                  <div className="p-24 text-center min-h-[360px] flex items-center justify-center">
 
-                <div className="p-20 text-center">
                   <h2 className="text-6xl font-black">
                     {steps[activeStep].question}
                   </h2>
