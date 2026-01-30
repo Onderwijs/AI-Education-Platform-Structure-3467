@@ -169,7 +169,12 @@ export default function LeerPadTool() {
                     {steps[activeStep].title}
                   </h3>
                 </div>
-                  <div className="p-24 text-center min-h-[360px] flex items-center justify-center">
+                  <div className="flex-1 p-24 text-center flex items-center justify-center">
+                  <h2 className="text-6xl font-black">
+                    {steps[activeStep].question}
+                    </h2>
+                    </div>          
+
 
                   <h2 className="text-6xl font-black">
                     {steps[activeStep].question}
