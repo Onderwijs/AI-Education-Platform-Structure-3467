@@ -17,7 +17,6 @@ const {
   FiMonitor
 } = FiIcons;
 
-
 export default function LeerPadTool() {
   const [activeStep, setActiveStep] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
@@ -87,7 +86,7 @@ export default function LeerPadTool() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
 
-      {/* 🔥 GEKLEURDE TOOL HEADER (zoals andere tools) */}
+      {/* GEKLEURDE TOOL HEADER */}
       <section className="bg-indigo-600 text-white py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-black mb-4">
@@ -164,23 +163,21 @@ export default function LeerPadTool() {
                 exit={{ opacity: 0, x: -20 }}
                 className="bg-white rounded-3xl shadow-xl border border-slate-200 w-full max-w-6xl overflow-hidden flex flex-col min-h-[600px]"
               >
+                {/* BOVEN */}
                 <div className={`p-10 border-b ${steps[activeStep].color}`}>
                   <h3 className="text-5xl font-black">
                     {steps[activeStep].title}
                   </h3>
                 </div>
-                  <div className="flex-1 p-24 text-center flex items-center justify-center">
-                  <h2 className="text-6xl font-black">
-                    {steps[activeStep].question}
-                    </h2>
-                    </div>          
 
-
+                {/* MIDDEN */}
+                <div className="flex-1 p-24 flex items-center justify-center text-center">
                   <h2 className="text-6xl font-black">
                     {steps[activeStep].question}
                   </h2>
                 </div>
 
+                {/* ONDER */}
                 <div className="bg-slate-50 p-8 border-t flex justify-between items-center">
                   <p className="text-xl font-bold text-slate-700 max-w-3xl">
                     {steps[activeStep].regie}
@@ -210,4 +207,6 @@ export default function LeerPadTool() {
     </div>
   );
 }
+
+
 
