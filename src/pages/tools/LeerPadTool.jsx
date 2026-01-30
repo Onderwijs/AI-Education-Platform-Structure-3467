@@ -162,7 +162,7 @@ export default function LeerPadTool() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="bg-white rounded-3xl shadow-xl border border-slate-200 w-full max-w-6xl overflow-hidden"
+                className="bg-white rounded-3xl shadow-xl border border-slate-200 w-full max-w-6xl overflow-hidden flex flex-col min-h-[600px]"
               >
                 <div className={`p-10 border-b ${steps[activeStep].color}`}>
                   <h3 className="text-5xl font-black">
