@@ -4,7 +4,6 @@ export const lessons = [
   // ==============================================================================================
   {
     id: "wetenschappelijk-onderzoek-ai",
-    file: "wetenschappelijk-onderzoek-met-ai.pdf",
     title: "Wetenschappelijk Onderzoek met AI",
     month: "december 2025",
     level: "HBO/WO",
